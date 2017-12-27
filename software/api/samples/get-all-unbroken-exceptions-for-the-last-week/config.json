@@ -1,0 +1,7 @@
+{
+    "js": true,
+    "css": false,
+    "html": false,
+    "console": true,
+    "output": false
+}

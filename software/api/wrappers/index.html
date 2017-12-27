@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Wrappers | MyGeotab SDK</title>
+<meta name="generator" content="Jekyll v3.6.2" />
+<meta property="og:title" content="Wrappers" />
+<meta name="author" content="The Geotab Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<meta property="og:description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<link rel="canonical" href="https://geotab.github.io/sdk/software/api/wrappers/" />
+<meta property="og:url" content="https://geotab.github.io/sdk/software/api/wrappers/" />
+<meta property="og:site_name" content="MyGeotab SDK" />
+<script type="application/ld+json">
+{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/sdk/software/api/wrappers/","headline":"Wrappers","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <!-- endinject -->
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+
+</head>
+
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            MyGeotab SDK
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+</header>
+
+
+  <div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar ">
+
+    <h4>Software</h4>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+            <a href="/software/introduction/">Introduction</a>
+        </li>
+         
+    
+    <h5>Guides</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="/software/guides/getting-started/">Getting Started</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/concepts/">Concepts</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/using-in-dotnet/">Using in dotnet</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/data-feed">Data Feed</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/go-device-logging/">GO Device Logging</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/third-party-devices/">Using Third-Party Devices</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/developing-addins/">Devloping Add-Ins</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
+        </li>
+        
+    </ul>
+    
+    <h5>API</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="/software/api/reference/">Reference</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/software/api/runner.html">Runner</a>
+        </li>
+        
+        <li class="nav-link active">
+        <a href="/software/api/wrappers/">Wrappers</a>
+        </li>
+        
+    </ul>
+    
+    <h5>Code Samples</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="https://github.com/geotab/js-examples">Javascript Examples</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="https://github.com/geotab/dotnet-examples">Dotnet Examples</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="https://github.com/geotab/addin-examples">Add-in Examples</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="https://github.com/geotab/dotnet-examples/src/data-feed">Data feed example</a>
+        </li>
+        
+    </ul>
+     
+    </ul>
+
+    <h4>Hardware</h4>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+            <a href="/hardware/introduction/">Introduction</a>
+        </li>
+         
+    
+    <h5>Add-on Protocols</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/hardware/addon-protocols/can/">CAN</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/hardware/addon-protocols/ble/">BLE</a>
+        </li>
+        
+    </ul>
+    
+    <h5>Code Samples</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="/hardware/samples/python/">Python</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="https://github.com/Geotab/android-external-device-example">Andoid</a>
+        </li>
+        
+    </ul>
+    
+    <h5>Developing an IOX</h5>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+        <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
+        </li>
+        
+        <li class="nav-link">
+        <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
+        </li>
+        
+    </ul>
+     
+    </ul>
+
+    <h4>Resources</h4>
+    <ul class="nav flex-column">
+        
+        <li class="nav-link">
+            <a href="https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum">Forums</a>
+        </li>
+        
+        <li class="nav-link">
+            <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
+        </li>
+        
+        <li class="nav-link">
+            <a href="/resources/new/">What's New</a>
+        </li>
+         
+     
+    </ul>
+
+</nav>
+<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+  <article class="col-md-12">
+    <header>
+      <h1>Wrappers</h1>
+    </header>
+
+    <div>
+      <p>The MyGeotab API is language agnostic and can be accessed from languages that support HTTPS requests and JSON.</p>
+
+<p>There are a number of language specific API wrappers that roll-up some common functionality such as authentication, session management, deserialization, etc. making it easier to hit the ground running in your language of choice.</p>
+
+<h2 id="dotnet">Dotnet</h2>
+
+<h4 id="quick-start">Quick Start</h4>
+
+<p>Install the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">NuGet package</a> from the package manager console:</p>
+
+<p><code>Install-Package Geotab.Checkmate.ObjectModel</code></p>
+
+<p><strong>Using it in code</strong></p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">api</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">API</span><span class="p">(</span><span class="s">"user@example.com"</span><span class="p">,</span> <span class="s">"password"</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s">"database"</span><span class="p">);</span>
+<span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="nf">AuthenticateAsync</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">devices</span> <span class="p">=</span> <span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="n">CallAsync</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Device</span><span class="p">&gt;&gt;(</span><span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Device</span><span class="p">),</span> <span class="k">new</span> <span class="p">{</span> <span class="n">resultsLimit</span> <span class="p">=</span> <span class="m">1</span> <span class="p">});</span>
+</code></pre></div>
+<h2 id="javascript">Javascript</h2>
+
+<h4 id="quick-start">Quick Start</h4>
+
+<p>Install the Bower package from the command line:</p>
+
+<p>$ <code>bower install --save mg-api-js</code></p>
+
+<p><strong>Using it in code</strong> (more on <a href="https://github.com/Geotab/mg-api-js">github</a>)</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">GeotabApi</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">authenticateCallback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">authenticateCallback</span><span class="p">(</span><span class="s1">'my.geotab.com'</span><span class="p">,</span> <span class="s1">'database'</span><span class="p">,</span> <span class="s1">'user@example.com'</span><span class="p">,</span> <span class="s1">'password'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">api</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'Get'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">typeName</span><span class="p">:</span> <span class="s1">'Device'</span><span class="p">,</span>
+    <span class="na">resultsLimit</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="nodejs">Nodejs</h2>
+
+<h4 id="quick-start">Quick Start</h4>
+
+<p>Install the <a href="https://www.npmjs.com/package/mg-api-node#getting-started">NPM package</a> from the command line:</p>
+
+<p><code>$ npm install mg-api-node --save</code></p>
+
+<p><strong>Using it in code</strong> (more on <a href="https://github.com/Geotab/mg-api-node">github</a>)</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">API</span><span class="p">(</span><span class="s1">'user@example.com'</span><span class="p">,</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'database'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">api</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'Get'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">typeName</span><span class="p">:</span> <span class="s1">'Device'</span><span class="p">,</span>
+    <span class="na">resultsLimit</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">devices</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Devices'</span><span class="p">,</span> <span class="nx">devices</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="python">Python</h2>
+
+<h4 id="quick-start">Quick Start</h4>
+
+<p>Install the library and command line tool:</p>
+
+<p><code>$ pip install mygeotab</code></p>
+
+<p><strong>Using it in code</strong>  (more on <a href="https://github.com/Geotab/mygeotab-python">github</a>)</p>
+<div class="highlight"><pre><code class="language-py" data-lang="py"><span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">mygeotab</span>
+<span class="o">&gt;&gt;</span> <span class="n">api</span> <span class="o">=</span> <span class="n">mygeotab</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'user@example.com'</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">'password'</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">'database'</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Device'</span><span class="p">,</span> <span class="n">resultsLimit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="php">PHP</h2>
+
+<h4 id="quick-start">Quick Start</h4>
+
+<p>Install the composer package from the command line:</p>
+
+<p><code>$ composer require geotab/mygeotab-php</code></p>
+
+<p><strong>Using it in code</strong>  (more on <a href="https://github.com/Geotab/mygeotab-php">github</a>)</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Geotab\API</span><span class="p">(</span><span class="s2">"user@example.com"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">,</span> <span class="s2">"database"</span><span class="p">,</span> <span class="s2">"my.geotab.com"</span><span class="p">);</span>
+<span class="nv">$api</span><span class="o">-&gt;</span><span class="na">authenticate</span><span class="p">();</span>
+
+<span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"Device"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"resultsLimit"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">var\_dump</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+<span class="p">},</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">var\_dump</span><span class="p">(</span><span class="nv">$error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+    </div>
+
+  </article>
+</main>
+    </div>
+  </div>
+
+    <!-- JS -->
+    <!-- inject:js -->
+    <script src="/assets/javascript/index.js"></script>
+    <!-- endinject -->
+
+</body>
+
+</html>
