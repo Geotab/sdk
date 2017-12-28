@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>API Runner</title>
-    <script src="./third-party/JSON-js/cycle.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        geotab = {
+<!doctype html><html lang=en><head><meta charset=UTF-8><title>API Runner</title><script src=./third-party/JSON-js/cycle.js type=text/javascript charset=utf-8></script><script>geotab = {
             require: function(requires, constructor) {
                 if (requires.length > 0) {
                     console.error("It's not a real implementation! Just a wrapper for geotab modules compatibility!");
@@ -13,11 +6,7 @@
                 constructor();
             },
             declare: function() {}
-        };
-    </script>
-    <script type="text/javascript" src="./promise.js"></script>
-    <script>
-        var messages = (function() {
+        };</script><script type=text/javascript src=./promise.js></script><script>var messages = (function() {
             var activeCalls = (function() {
                     var calls = {},
                         add = function(uid, successCallback, errorCallback) {
@@ -196,9 +185,4 @@
                     multiCall: multiCall,
                     abort: abort
                 };
-            })();
-    </script>
-</head>
-<body>
-</body>
-</html>
+            })();</script></head><body></body></html>
