@@ -1,0 +1,86 @@
+toc:
+  - title: Software
+    folderitems:
+    - page: Introduction
+      url: /software/introduction/
+    subfolders: 
+      - title: Guides
+        subfolderitems:
+          - page: Getting Started
+            url: /software/guides/getting-started/
+          - page: Concepts
+            url: /software/guides/concepts/
+          - page: Using in Javascript
+            url: /software/guides/using-in-javascript/
+          - page: Using in dotnet
+            url: /software/guides/using-in-dotnet/
+          - page: Data Feed
+            url: /software/guides/data-feed
+          - page: Using MyGeotab URLs
+            url: /software/guides/mygeotab-urls/
+          - page: GO Device Logging
+            url: /software/guides/go-device-logging/
+          - page: Using Third-Party Devices
+            url: /software/guides/third-party-devices/
+          - page: Devloping Add-Ins
+            url: /software/guides/developing-addins/
+          - page: Geotab Drive Add-Ins
+            url: /software/guides/drive-addins/
+      - title: API
+        subfolderitems:
+          - page: Reference
+            url: /software/api/reference/
+          - page: Runner
+            url: /software/api/runner.html
+          - page: Wrappers
+            url: /software/api/wrappers/
+      - title: Code Samples
+        subfolderitems:
+          - page: Javascript Examples
+            url: https://github.com/geotab/js-examples
+            external: true
+          - page: Dotnet Examples
+            url: https://github.com/geotab/dotnet-examples
+            external: true
+          - page: Add-in Examples
+            url: https://github.com/geotab/addin-examples
+            external: true
+          - page: Data feed example
+            url: https://github.com/geotab/dotnet-examples/src/data-feed
+            external: true
+  - title: Hardware
+    folderitems:
+      - page: Introduction
+        url: /hardware/introduction/
+    subfolders: 
+      - title: Add-on Protocols
+        subfolderitems:
+          - page: RS232 & USB
+            url: /hardware/addon-protocols/rs232-usb/
+          - page: CAN
+            url: /hardware/addon-protocols/can/
+          - page: BLE
+            url: /hardware/addon-protocols/ble/
+      - title: Code Samples
+        subfolderitems:
+          - page: Python
+            url: /hardware/samples/python/
+          - page: Andoid
+            url: https://github.com/Geotab/android-external-device-example
+            external: true
+      - title: Developing an IOX
+        subfolderitems:
+          - page: Hardware Design Guide
+            url: /hardware/developing-an-iox/hardware-design-guide/
+          - page: Messaging Protocol
+            url: /hardware/developing-an-iox/messaging-protocol/
+  - title: Resources
+    folderitems:
+      - page: Forums
+        url: https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum
+        external: true
+      - page: Dev Channel
+        url: https://www.geotab.com/dev-channel/
+        external: true
+      - page: What's New
+        url: /resources/new/

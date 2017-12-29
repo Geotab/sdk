@@ -1,0 +1,49 @@
+# Title, decription, tagline and URL for your site
+# Can be used in your theme by calling 'site.title' and so on
+title: MyGeotab SDK
+description: The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
+url: https://geotab.github.io
+baseurl:
+
+# Used so Jekyll outputs the site correctly so Gulp can do what it wants
+source: .tmp/src
+destination: .tmp/dist
+exclude: ['assets']
+
+# Same as the title etc for your site but can instead be
+# called by using 'site.author.name' and so on
+# NOTE: Don't use @ in front of your Twitter username
+author:
+  name: The Geotab Team
+  email: support@geotab.com
+  uri: https://sdk.geotab.com
+  bio: A Fleet Tracking Platform You Can Build On
+  twitter: https://twitter.com/geotab
+  github: https://geotab.com/geotab
+
+# _config.build.yml overwrites these options when you run `gulp build`
+# Enables future posts (posts with dates in the future) and drafts
+future: true
+show_drafts: true
+# Disables the more accurate related posts for faster generating of the site
+lsi: false
+# Only make the last 10 posts so generating isn't slow
+limit_posts: 10
+
+# Permalink structure and pagination options
+permalink: none
+excerpt_separator: ''
+
+# Markdown library and options
+markdown: redcarpet
+redcarpet:
+  extensions: ['no_intra_emphasis', 'tables', 'fenced_code_blocks', 'autolink', 'smart', 'strikethrough', 'superscript', 'underline', 'highlight', 'footnotes', 'with_toc_data', 'pretty']
+highlighter: rouge
+
+# Extending Jekyll
+plugins:
+  - jekyll-gist
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+  - jekyll-octicons
