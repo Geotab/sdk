@@ -1,35 +1,21 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>MyGeotab Web SDK &rarr; API Runner</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="image/x-icon" rel="shortcut icon" href="/sdk/assets/favicon.ico">
-    <link rel="stylesheet" href="/sdk/assets/stylesheets/style.css" />
-    <link rel="stylesheet" href="./codebase/main.css"/>
+﻿---
+layout: runner
+permalink: /software/api/runner.html
+---
+<link rel="stylesheet" href="./codebase/main.css"/>
 
-    <link rel="stylesheet" href="./codebase/console.css"/>
-    <script type="text/javascript" src="./codebase/console.js" charset="utf-8"></script>
+<link rel="stylesheet" href="./codebase/console.css"/>
+<script type="text/javascript" src="./codebase/console.js" charset="utf-8"></script>
 
-    <script src="./codebase/third-party/github/underscore-min.js"></script>
-    <script src="./codebase/third-party/github/github.js"></script>
-    <script src="./codebase/githubApi.js"></script>
+<script src="./codebase/third-party/github/underscore-min.js"></script>
+<script src="./codebase/third-party/github/github.js"></script>
+<script src="./codebase/githubApi.js"></script>
 
-    <script type="text/javascript" src="./codebase/api.js"></script>
-    <script src="./codebase/third-party/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./codebase/third-party/Base64.js/base64.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./codebase/third-party/JSON-js/cycle.js" type="text/javascript" charset="utf-8"></script>
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/sdk">
-            <img src="/sdk/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            MyGeotab SDK
-        </a>
-        <button class="navbar-toggler d-lg-none" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-</header>
+<script type="text/javascript" src="./codebase/api.js"></script>
+<script src="./codebase/third-party/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="./codebase/third-party/Base64.js/base64.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./codebase/third-party/JSON-js/cycle.js" type="text/javascript" charset="utf-8"></script>
+
 <div class="api">
         <div class="toolbar" id="toolbar">
                 <div class="form-inline d-flex">
@@ -841,7 +827,7 @@
                                     };
 
                             show();
-                            serverInput.value = window.location.host;
+                            serverInput.value = "my.geotab.com";
                             serverInput.focus();
 
                             loginDialog.addEventListener("submit", function (e) {
