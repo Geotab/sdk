@@ -38,7 +38,6 @@ toc:
         subfolderitems:
           - page: Javascript Examples
             url: /software/js-samples/
-            external: true
           - page: Dotnet Examples
             url: https://github.com/geotab/dotnet-examples
             external: true
