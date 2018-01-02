@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Add zone example</title><link href=js/mapbox/mapbox.css rel=stylesheet type=text/css><link href=css/geotab.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Example: Add zone</h1><h3>Creates a new zone by reverse geocoding an address</h3></div></header><div class="container bordered"><div id=signin-content></div><div id=example-content><form><h3>Search for address</h3><p><label for=address>Street address</label><input id=address placeholder="Example: 125 John Street, Mycity"></p><p><label id=sizeLabel for=size>Size (500m)</label><input id=size type=range value=500 min=100 max=2500></p><p><input id=shape-square type=radio name=shape value=Square checked><label for=shape-square>Square</label><input id=shape-circle type=radio name=shape value=Circle><label for=shape-circle>Circle</label></p><p><button id=search>Search</button></p><div id=example-content-details><p><label for=zoneName>Zone name</label><input id=zoneName placeholder="Example: My office" maxlength=255></p><p><input id=zoneDisplayed type=checkbox checked><label for=zoneDisplayed>Show on MyGeotab by default</label></p><p><button id=addZone>Add zone</button></p></div></form></div></div><div class="container bordered spaced"><div id=map></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=help-content><h2>Help</h2><p><strong>Overview</strong><br>This JavaScript example guides you through the process of creating zones and geocoding addresses.</p><p><strong>Work flow</strong><br>Using an address such as "CN Tower", or "102 Main Street East, Toronto, ON" an API request is made to retrieve the latitude and longitude coordinates for that address. Then, a box is created around that point consisting of four corners. The distance apart is variable using the slider provided. To finish creating the zone, add a name and click Add zone and the points you see will be saved to your account.</p><p><strong>Skill level</strong><br>Intermediate</p></div><script src=js/mapbox/mapbox.js></script><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var map;
+            var layerGroup;
+            var zonePoints;
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Initialize MapBox engine (http://www.mapbox.com)
+                L.mapbox.accessToken = "pk.eyJ1IjoiZ2VvdGFiIiwiYSI6ImNpd2Nlam5tajA2cHIyenBmdDQyZG9mMGYifQ.I7NikOui41_ka1TbbFGkFw";
+                map = L.mapbox.map("map").setView([43.437111,-79.712756], 13);
+                L.mapbox.styleLayer("mapbox://styles/mapbox/streets-v10").addTo(map);
+                layerGroup = L.layerGroup().addTo(map);
+
+                document.getElementById("example-content-details").style.display = "none";
+
+                document.getElementById("search").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var address = document.getElementById("address").value;
+
+                    // Use Geotab API to reverse geocode by street address
+                    if (address == "") {
+                        alert("Address is required");
+                    } else {
+                        api.call("GetCoordinates", {
+                            addresses: [address]
+                        }, function (result) {
+                            if (result[0] != null) {
+                                drawZone(result[0]);
+                                document.getElementById("example-content-details").style.display = "block";
+                            } else {
+                                alert("Could not find coordinates for that address");
+                            }
+                        }, function (error) {
+                            alert(error);
+                        });
+                    }
+                });
+
+                document.getElementById("addZone").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var zoneName = document.getElementById("zoneName").value;
+                    var zoneDisplayed = document.getElementById("zoneDisplayed").checked;
+
+                    if (zoneName == "") {
+                        alert("Zone name is required");
+                        return;
+                    }
+
+                    api.call("Add", {
+                        typeName: "Zone",
+                        entity: {
+                            name: zoneName,
+                            externalReference: "",
+                            mustIdentifyStops: true,
+                            displayed: zoneDisplayed,
+                            activeFrom: "1986-01-01T00:00:00.000Z",
+                            activeTo: "2050-01-01T00:00:00.000Z",
+                            zoneTypes: ["ZoneTypeCustomerId"],
+                            groups: [{
+                                id: "GroupCompanyId"
+                            }],
+                            points: zonePoints,
+                            fillColor: {
+                                r: 233,
+                                g: 150,
+                                b: 122,
+                                a: 255
+                            }
+                        }
+                    }, function (result) {
+                        alert("Successfully created zone " + zoneName);
+                    }, function (error) {
+                        console.log(error);
+                    });
+                });
+
+                document.getElementById("size").addEventListener("change", function(event) {
+                    if (event.target.value < 1000) {
+                        document.getElementById("sizeLabel").innerHTML = "Size (" + event.target.value + "m)";
+                    } else {
+                        document.getElementById("sizeLabel").innerHTML = "Size (" + (event.target.value / 1000.0).toFixed(2) + "km)";
+                    }
+                });
+            });
+
+            function drawZone(coordinate) {
+                var center = new L.LatLng(coordinate.y, coordinate.x);
+                var radius = document.getElementById("size").value;
+
+                if (document.getElementById("shape-square").checked) {
+                    generateSquareZonePoints(coordinate, radius);
+                } else {
+                    generateCircleZonePoints(coordinate, radius);
+                }
+
+                var polygon = [];
+
+                for (var i = 0; i < zonePoints.length; i++) {
+                    polygon.push([
+                        zonePoints[i].y, zonePoints[i].x
+                    ]);
+                }
+
+                var shape = L.polygon(polygon);
+
+                layerGroup.clearLayers().addLayer(shape);
+                map.setView(center, 13);
+            }
+
+            function generateSquareZonePoints(coordinates, radius) {
+                var earthRadius = 6371000;
+
+                var x1 = (coordinates.x - toDegrees(radius / earthRadius / Math.cos(toRadians(coordinates.y))));
+                var x2 = (coordinates.x + toDegrees(radius / earthRadius / Math.cos(toRadians(coordinates.y))));
+                var y1 = (coordinates.y + toDegrees(radius / earthRadius / Math.sin(toRadians(coordinates.x))));
+                var y2 = (coordinates.y - toDegrees(radius / earthRadius / Math.sin(toRadians(coordinates.x))));
+
+                zonePoints = [
+                    { "x": x1, "y": y1 },
+                    { "x": x2, "y": y1 },
+                    { "x": x2, "y": y2 },
+                    { "x": x1, "y": y2 }
+                ];
+            }
+
+            function generateCircleZonePoints(coordinate, radius) {
+                var earthRadius = 6371000;
+
+                var latitude = toRadians(coordinate.y);
+                var longitude = toRadians(coordinate.x);
+                var angularDistance = radius / earthRadius;
+
+                zonePoints = [];
+
+                for (var i = 0; i <= 360; i++) {
+                    var radians = toRadians(i);
+                    var latitudeRadians = Math.asin(Math.sin(latitude) * Math.cos(angularDistance) + Math.cos(latitude) * Math.sin(angularDistance) * Math.cos(radians));
+                    var longitudeRadians = longitude + Math.atan2(Math.sin(radians) * Math.sin(angularDistance) * Math.cos(latitude), Math.cos(angularDistance) - Math.sin(latitude) * Math.sin(latitudeRadians));
+
+                    zonePoints.push({
+                        "x": toDegrees(longitudeRadians),
+                        "y": toDegrees(latitudeRadians)
+                    });
+                }
+            }
+
+            function toDegrees(radians) {
+                return radians * 180.0 / Math.PI;
+            }
+
+            function toRadians(degrees) {
+                return degrees * (Math.PI / 180.0);
+            }
+
+            function differenceRadians(degrees1, degrees2) {
+                return toRadians(degrees1) - toRadians(degrees2);
+            }</script></body></html>

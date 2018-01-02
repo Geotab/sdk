@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Move zone example</title><link href=js/mapbox/mapbox.css rel=stylesheet type=text/css><link href=css/geotab.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Example: Move zone</h1><h3>Moves an existing zone to a new address using reverse geocoding</h3></div></header><div class="container bordered"><div id=signin-content></div><div id=example-content><form><h3>Move zone</h3><p><select id=zone><option disabled>Select a zone</option></select></p><div id=example-content-details><p><label for=address>Move to address</label><input id=address placeholder="Example: 137 Main Street, Toronto, ON"></p><button id=moveZone>Move zone</button></div></form></div></div><div class="container bordered spaced"><div id=map></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=help-content><h2>Help</h2><p><strong>Overview</strong><br>This example expands on the example for adding zone by performing an update on the existing zone entity.</p><p><strong>Work flow</strong><br>All the zones on your account are retrieved and one is displayed at a time on the map. You are asked to provide a new address, which is geocoded for its coordinates and then new zone boundary points are created at that location and it will be saved to your account.</p><p><strong>Skill level</strong><br>Intermediate</p></div><script src=js/mapbox/mapbox.js></script><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var map;
+            var featureGroup;
+            var zone;
+            var points = [];
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // Download a group of zones to work with
+                populateZones(1000);
+
+                // Initialize MapBox engine (http://www.mapbox.com)
+                L.mapbox.accessToken = "pk.eyJ1IjoiZ2VvdGFiIiwiYSI6ImNpd2Nlam5tajA2cHIyenBmdDQyZG9mMGYifQ.I7NikOui41_ka1TbbFGkFw";
+                map = L.mapbox.map("map").setView([43.437111,-79.712756], 13);
+                L.mapbox.styleLayer("mapbox://styles/mapbox/streets-v10").addTo(map);
+                featureGroup = L.featureGroup().addTo(map);
+
+                document.getElementById("zone").addEventListener("change", function(event) {
+                    event.preventDefault();
+
+                    var zoneId = event.target[event.target.selectedIndex].getAttribute("data-zoneid");
+
+                    api.call("Get", {
+                        typeName: "Zone",
+                        search: { id: zoneId }
+                    }, function (result) {
+                        if (result.length > 0) {
+                            zone = result[0];
+                            drawZone(result[0].points);
+                        } else {
+                            alert("There was a problem retrieving the selected zone");
+                        }
+                    }, function (error) {
+                        alert(error);
+                    });
+                });
+
+                document.getElementById("moveZone").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var address = document.getElementById("address").value;
+
+                    // Use Geotab API to reverse geocode by street address
+                    if (address == "") {
+                        alert("Address is required");
+                    } else {
+                        api.call("GetCoordinates", {
+                            addresses: [address]
+                        }, function (result) {
+                            if (result[0] != null) {
+                                moveZone(result[0]);
+                            } else {
+                                alert("Could not find coordinates for that address");
+                            }
+                        }, function (error) {
+                            alert(error);
+                        });
+                    }
+                });
+            });
+
+            function populateZones(limit) {
+                api.call("Get", {
+                    typeName: "Zone",
+                    resultsLimit: limit
+                }, function (result) {
+                    var select = document.getElementById("zone");
+                    for (var i = 0; i < result.length; i++) {
+                        var option = new Option();
+                        option.text = result[i].name;
+                        option.setAttribute("data-zoneid", result[i].id)
+                        select.add(option);
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function drawZone(zone) {
+                points = [];
+                for (var i = 0; i < zone.length; i++) {
+                    points.push(new L.LatLng(zone[i].y, zone[i].x));
+                }
+                var shape = L.polygon(points);
+
+                featureGroup.clearLayers().addLayer(shape);
+                map.fitBounds(featureGroup.getBounds());
+            }
+
+            // Determines the centroid of a zone and generates new zone points at geocoded address
+            // In actual use, this function should be shortened but is verbose for demonstration
+            function moveZone(location) {
+                var averageX = 0;
+                var averageY = 0;
+
+                // Calculate centroid point of shape using basic average
+                for (var i = 0; i < points.length; i++) {
+                    averageX += points[i].lng;
+                    averageY += points[i].lat;
+                }
+                var centroidX = averageX / points.length;
+                var centroidY = averageY / points.length;
+
+                // Distances of each point from centroid
+                var deltas = [];
+                for (var i = 0; i < points.length; i++) {
+                    deltas.push({
+                        x: (points[i].lng - centroidX),
+                        y: (points[i].lat - centroidY)
+                    })
+                }
+
+                // Create new polygon using deltas and reverse geocoded address
+                var newPoints = [];
+                for (var i = 0; i < points.length; i++) {
+                    newPoints.push({
+                        x: (location.x + deltas[i].x),
+                        y: (location.y + deltas[i].y)
+                    })
+                }
+
+                // Update map with new zone
+                drawZone(newPoints);
+
+                // Change entity points to new points before saving
+                zone.points = newPoints;
+
+                // Update changes to Geotab
+                api.call("Set", {
+                    typeName: "Zone",
+                    entity: zone
+                }, function (result) {
+                    alert("Successfully moved zone to " + document.getElementById("address").value);
+                }, function (error) {
+                    alert(error);
+                });
+            }</script></body></html>
