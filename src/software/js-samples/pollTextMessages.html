@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>Geotab SDK | Poll text messages example</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Poll text messages</h1>
+                <h3>Polls for delivered, sent and read text messages.</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <p>
+                        This sample is polling for text messages that have been added or modified since you authenticated.
+                        After you send a message (step 1) or reply (step 2), it will be displayed after the next poll for text
+                        messages has completed (the sample poll interval is 5 seconds).
+                    </p>
+                    <h3>1: Send message</h3>
+                    <p>
+                        <select id="device">
+                            <option disabled="disabled">Select a device</option>
+                        </select>
+                    </p>
+                    <button id="send" style="margin-bottom: 20px;">Send</button>
+                    <h3>2: Reply message</h3>
+                    <p>
+                        This will mock the device's reply to the text message we sent.
+                    </p>
+                    <button id="reply" disabled="disabled">Reply</button>
+                </form>
+            </div>
+        </div>
+
+        <table id="messages" class="container bordered spaced" style="display: none">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Parent Id</th>
+                    <th>Reply Id</th>
+                    <th>Device</th>
+                    <th>Sent</th>
+                    <th>Message</th>
+                    <th>Response Options</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This example shows how to regularly poll for new text messages.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                The first step is send to a text message to a Garmin equipped vehicle. An polling interval is created
+                which checks for new delivered, sent and read text messages where you should be able to see the message
+                you have sent. You can then use the options provided to send a mock reply. This will be displayed in
+                the messages table.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Advanced
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var pollSeconds = 5;
+            var lastSentMessageId;
+            var lastPollDate = new Date();
+            var messages = [];
+            var devicesLookup = {};
+            var user;
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // start polling for new text messages
+                pollForTextMessages();
+
+                // Download devices to work with
+                populateDevices();
+
+                document.getElementById("send").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    if (!user) {
+                        populateUser(function() {
+                            var deviceSelect = document.getElementById("device");
+                            var deviceId = deviceSelect[deviceSelect.selectedIndex].getAttribute("data-deviceid");
+                            var device = devicesLookup[deviceId];
+
+                            if (deviceId === null || !device) {
+                                alert("Device is required.");
+                                return;
+                            }
+
+                            sendMessage(createMessage(device));
+                        });
+                    }
+                });
+
+                document.getElementById("reply").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var deviceSelect = document.getElementById("device");
+                    var deviceId = deviceSelect[deviceSelect.selectedIndex].getAttribute("data-deviceid");
+                    var device = devicesLookup[deviceId];
+
+                    if (deviceId === null || !device) {
+                        alert("Device is required.");
+                        return;
+                    }
+
+                    sendMessage(createMessage(device, lastSentMessageId), true);
+                });
+            });
+
+            function pollForTextMessages() {
+                var pollTimeOut = pollSeconds * 1000;
+
+                // Poll text messages every 5 seconds for messages that have been added or modified since our last poll
+                setInterval(function () {
+                    api.call("Get", {
+                        typeName: "TextMessage",
+                        search: {
+                            modifiedSinceDate: lastPollDate.toISOString()
+                        }
+                    }, function (result) {
+                        if (result && result.length) {
+                            updateMessages(result);
+                            renderMessages();
+                        }
+                    }, function (error) {
+                        alert(error);
+                    });
+                    lastPollDate = new Date();
+                }, pollTimeOut);
+            }
+
+            function updateMessages(newMessages) {
+                var i, j, found = false;
+
+                for (i = 0; i < newMessages.length; i += 1) {
+                    for (j = 0; j < messages.length; j += 1) {
+
+                        // If the message has been updated or a reply has been sent replace/add it to messages.
+                        if (newMessages[i].id === messages[j].id) {
+                            messages[j] = newMessages[i];
+                            found = true;
+                            break;
+                        } else if (newMessages[i].parentMessage && newMessages[i].parentMessage.id === messages[j].id) {
+                            messages[j].replyMessage = newMessages[i];
+                            found = true;
+                            break;
+                        }
+
+                    }
+                    // If not found it is a new message
+                    if (!found) {
+                        messages.push(newMessages[i]);
+                    }
+                }
+            }
+
+            function renderMessages() {
+                var i;
+                var messagesTableBody = document.getElementById("messages").children[1];
+                var createTD = function (text) {
+                    var element = document.createElement("td");
+                    element.textContent = text;
+                    return element;
+                };
+                var createTableRow = function (message, isReply) {
+                    var tr = document.createElement("tr");
+                    tr.appendChild(createTD(message.id));
+                    tr.appendChild(createTD(message.parentMessage && message.parentMessage.id ? message.parentMessage.id : ""));
+                    tr.appendChild(createTD(message.replyMessage && message.replyMessage.id ? message.replyMessage.id : ""));
+                    tr.appendChild(createTD(devicesLookup[message.device.id].name));
+                    tr.appendChild(createTD(message.sent));
+                    tr.appendChild(createTD(message.messageContent.message));
+                    tr.appendChild(createTD(message.messageContent.cannedResponseOptions ? message.messageContent.cannedResponseOptions.map(function (option) {
+                        return option.text;
+                    }).join(", ") : ""));
+                    tr.appendChild(createTD(message.user && message.user.id ? message.user.id : ""));
+                    if (isReply) {
+                        tr.className += "highlight";
+                    }
+                    return tr;
+                };
+
+                if (messages.length) {
+
+                    // Remove old results
+                    while (messagesTableBody.children.length) {
+                        messagesTableBody.removeChild(messagesTableBody.children[0]);
+                    }
+
+                    // Create new results rows
+                    for (i = 0; i < messages.length; i += 1) {
+                        messagesTableBody.appendChild(createTableRow(messages[i]));
+
+                        // Show the reply message as row as well
+                        if (messages[i].replyMessage) {
+                            messagesTableBody.appendChild(createTableRow(messages[i].replyMessage, true));
+                        }
+                    }
+
+                    messagesTableBody.parentElement.style.display = "table";
+                }
+            }
+
+            function populateDevices() {
+                api.call("Get", {
+                    typeName: "Device"
+                }, function (result) {
+                    if (result !== undefined && result.length) {
+                        var select = document.getElementById("device");
+                        for (var i = 0; i < result.length; i++) {
+                            var option = new Option();
+                            option.text = result[i].name;
+                            option.setAttribute("data-deviceid", result[i].id);
+                            select.add(option);
+
+                            devicesLookup[result[i].id] = result[i];
+                        }
+                    } else {
+                        alert("Could not retrieve devices");
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function populateUser(callback) {
+                api.getSession(function (credentials, server) {
+                    api.call("Get", {
+                        typeName: "User",
+                        search: {
+                            name: credentials.userName
+                        }
+                    }, function (result) {
+                        if (!result || !result.length) {
+                            alert("Could not find user: " + credentials.userName);
+                        }
+                        user = result[0];
+                        callback();
+                    }, function (error) {
+                        alert(error);
+                    });
+                }, false);
+            }
+
+            function sendMessage(textMessage, isReply) {
+                // To send a text message we simply add it to MyGeotab
+                api.call("Add", {
+                    typeName: "TextMessage",
+                    entity: textMessage
+                }, function (result) {
+                    lastSentMessageId = result;
+                    if (isReply) {
+                        document.getElementById("reply").setAttribute("disabled", "disabled");
+                        document.getElementById("device").removeAttribute("disabled");
+                        document.getElementById("send").removeAttribute("disabled");
+                    } else {
+                        document.getElementById("device").setAttribute("disabled", "disabled");
+                        document.getElementById("send").setAttribute("disabled", "disabled");
+                        document.getElementById("reply").removeAttribute("disabled");
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function createMessage(device, parentId) {
+                // Create a basic text message
+                var textMessage;
+
+                if (!parentId) {
+                    // Canned response message sent to the vehicle
+                    textMessage = {
+                        isDirectionToVehicle: true,
+                        device: {
+                            id: device.id
+                        },
+                        messageContent: {
+                            contentType: "CannedResponse",
+                            message: "Test: Poll text messages sample",
+                            cannedResponseOptions: [
+                                { text: "Yes" },
+                                { text: "Maybe" },
+                                { text: "No" }
+                            ]
+                        },
+                        user: {
+                            id: user.id
+                        }
+                    };
+                } else {
+                    // Reply message sent from vehicle
+                    textMessage = {
+                        isDirectionToVehicle: false,
+                        device: {
+                            id: device.id,
+                            name: device.name
+                        },
+                        messageContent: {
+                            contentType: "Normal",
+                            message: "Yes"
+                        },
+                        parentMessage: {
+                            id: parentId
+                        }
+                    };
+                }
+                return textMessage;
+            }
+
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Import devices</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Import devices</h1>
+                <h3>How to import a collection of devices to MyGeotab</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Import devices</h3>
+                    <p>
+                        Use the text box below to import multiple devices at a time. Place each device
+                        on its own line as follows:
+                    </p>
+                    <div class="code">
+                        <pre>SerialNumber,Name1,GroupName<br />SerialNumber,Name2,GroupName<br />SerialNumber,Name3,GroupName</pre>
+                    </div>
+                    <p>
+                        <input id="createGroups" type="checkbox" checked="checked" /> <label for="createGroups">Automatically create new groups if needed</label>
+                    </p>
+                    <p>
+                        <textarea id="content" cols="80" rows="8"></textarea>
+                    </p>
+                    <button id="importDevices">Import devices</button>
+                    <span id="result"></span>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This utility helps you import devices to your account using comma separated values (CSV).
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                Initially a cache will be created of all the devices currently on your account. The input provided
+                is parsed and if a device does not exist in the cache, it will be added and then saved to your account.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Intermediate
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var groupCache;
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                groupCache = refreshGroupCache(null);
+
+                document.getElementById("importDevices").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var content = document.getElementById("content").value,
+                        createGroups = document.getElementById("createGroups").checked;
+
+                    if (content === "") {
+                        alert("At least one device is required");
+                    } else {
+                        // Split up the lines one by one
+                        var devices = content.split("\n"),
+                            newGroups = [];
+
+                        // Reset the result display
+                        document.getElementById("result").innerHTML = "";
+
+                        for (var i = 0; i < devices.length; i++) {
+                            // Split up the device properties
+                            var split = devices[i].split(",");
+
+                            // Each imported device can only have 3 properties
+                            if (split.length !== 3) {
+                                alert("There is an error on line " + (i + 1) + ": " + devices[i]);
+                                return;
+                            }
+
+                            if (split[1].length > 255) {
+                                alert("Device name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            if (split[2].length > 255) {
+                                alert("Group name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            // If create groups is enabled, queue up the new groups to be created
+							if (!groupCache.hasOwnProperty(split[2])) {
+								if (createGroups) {
+									(newGroups.indexOf(split[2]) === -1) && newGroups.push(split[2]);
+								} else {
+									alert("Can't import " + split[1] + " because its group does not exist");
+                                    return;
+								}
+							}
+                        }
+
+                        // MultiCalls for new groups
+                        var calls = [];
+
+                        // Build array of new groups to add
+                        for (var i = 0; i < newGroups.length; i++) {
+                            calls.push(["Add", {
+                                typeName: "Group",
+                                entity: {
+                                    name: newGroups[i],
+                                    comments: "Imported with SDK",
+                                    parent: {
+                                        id: "GroupCompanyId"
+                                    },
+                                    color: {
+                                        a: 0,
+                                        r: 255,
+                                        g: 0,
+                                        b: 0
+                                    }
+                                }
+                            }]);
+                        }
+
+                        api.multiCall(calls, function (results) {
+                            refreshGroupCache(function () {
+                                for (var i = 0; i < devices.length; i++) {
+                                    var split = devices[i].split(",");
+                                    addDevice(split[0], split[1], groupCache[split[2]].id);
+                                }
+                            });
+                        }, function (error) {
+                            alert(error);
+                        });
+
+                        document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
+                    }
+                });
+
+            });
+
+            function addDevice(serialNumber, name, groupId) {
+                api.call("Add", {
+                    typeName: "Device",
+                    entity: {
+                        serialNumber: serialNumber,
+                        name: name,
+                        groups: [{
+                            id: groupId
+                        }]
+                    }
+                }, function (result) {
+                    console.log("Successfully imported " + name + " (" + result + ")");
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function refreshGroupCache(callback) {
+                api.call("Get", {
+                    typeName: "Group"
+                }, function (result) {
+                    if (result !== undefined && result.length > 0) {
+                        groupCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].name === undefined) { // Built-in groups do not have proper names
+                                groupCache[result[i].id] = result[i];
+                            } else {
+                                groupCache[result[i].name] = result[i];
+                            }
+                        }
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+            }
+
+        </script>
+
+    </body>
+
+</html>

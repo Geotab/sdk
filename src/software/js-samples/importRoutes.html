@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Import routes</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Import routes</h1>
+                <h3>How to import a collection of routes to MyGeotab</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Import routes</h3>
+                    <p>
+                        Use the text box below to import multiple routes at a time. Place each route
+                        on its own line as follows:
+                    </p>
+                    <div class="code">
+                        <pre>RouteName1,ZoneName1|ZoneName2|ZoneName3|...|ZoneNameN,Comment<br />RouteName2,ZoneName1|ZoneName2|ZoneName3|...|ZoneNameN,Comment<br />RouteName3,ZoneName1|ZoneName2|ZoneName3|...|ZoneNameN,Comment</pre>
+                    </div>
+                    <p>
+                        Each line represents a route to be imported. The sequence you name the route stops using zone names is the sequence the route will save them as.
+                        If your route is a round trip, ensure that the first and last zone name are the same.
+                    </p>
+                    <p>
+                        <textarea id="content" cols="80" rows="8"></textarea>
+                    </p>
+                    <button id="importRoutes">Import routes</button>
+                    <span id="result"></span>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This utility helps you import routes to your account using comma separated values (CSV).
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                Routes on Geotab can be thought of as waypoints through a sequence of zones. Initially a cache will be
+                created of all the zones currently on your account. The input provided is parsed and if all zone waypoints
+                exist, a new route is saved to your account.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Intermediate
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var zoneCache;
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                zoneCache = refreshZoneCache(null);
+
+                document.getElementById("importRoutes").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    var content = document.getElementById("content").value;
+
+                    if (content === "") {
+                        alert("At least one route is required");
+                    } else {
+                        // Split up the lines one by one
+                        var routes = content.split("\n");
+
+                        document.getElementById("result").innerHTML = "";
+
+                        for (var i = 0; i < routes.length; i++) {
+                            // Split up the route properties
+                            var split = routes[i].split(",");
+
+                            // Each imported route can only have 3 properties
+                            if (split.length !== 3) {
+                                console.log("Could not import " + routes[i]);
+                                continue;
+                            }
+
+                            if (split[0].length > 255) {
+                                alert("Route name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            var name = split[0];
+                            var parsedZones = parseZones(split[1]);
+                            if(parsedZones.routePlanItems.length != parsedZones.zoneNames.length){
+                                alert("Could not match one or more zone names to zones int the system");
+                                return;
+                            }
+                            if(parsedZones.routePlanItems < 2){
+                                alert("Route must have 2 or more zone waypoints");
+                                return;
+                            }
+                            var comment = split[2];
+
+                            api.call("Add", {
+                                typeName: "Route",
+                                entity: {
+                                    name: name,
+                                    comment: comment,
+                                    routePlanItemCollection: parsedZones.routePlanItems
+                                }
+                            }, function(result) {
+                                console.log("Successfully imported " + name + " (" + result + ")");
+                            }, function(error) {
+                                console.log(error);
+                            });
+                        }
+                        document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details";
+                    }
+                });
+            });
+
+            function parseZones(text) {
+                var routePlanItems = [];
+                var zoneNames = text.split("|");
+                var zoneName;
+                for (var i = 0; i < zoneNames.length; i++) {
+                    zoneName = zoneNames[i].trim();
+                    if (zoneCache.hasOwnProperty(zoneName)) {
+                        routePlanItems.push({
+                            activeFrom: new Date().toISOString(),
+                            activeTo: "2050-01-01T00:00:00.000Z",
+                            sequence: i,
+                            zone: zoneCache[zoneName]
+                        });
+                    }
+                }
+                return {
+                    routePlanItems: routePlanItems,
+                    zoneNames: zoneNames
+                };
+            }
+
+            function refreshZoneCache(callback) {
+                api.call("Get", {
+                    typeName: "Zone"
+                }, function(result) {
+                    if (result != undefined && result.length > 0) {
+                        zoneCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (!zoneCache.hasOwnProperty(result[i].name)) {
+                                zoneCache[result[i].name] = result[i];
+                            }
+                        }
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+        </script>
+
+    </body>
+
+</html>

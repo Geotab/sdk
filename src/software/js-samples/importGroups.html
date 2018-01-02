@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Import groups</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt=""/>
+                <button id="help">Help</button>
+                <button id="signout">Sign out</button>
+            </nav>
+            <h1>Example: Import groups</h1>
+            <h3>How to import a collection of groups to MyGeotab</h3>
+        </div>
+    </header>
+
+    <div class="container bordered">
+
+        <div id="signin-content"></div>
+
+        <div id="example-content">
+            <form>
+                <h3>Import groups</h3>
+                <p>
+                    Use the text box below to import multiple groups at a time. Place each group
+                    on its own line as follows:
+                </p>
+                <div class="code">
+                    <pre>Name1,Description,ParentGroupName<br />Name2,Description,ParentGroupName<br />Name3,Description,</pre>
+                </div>
+                <p>
+                    Note: The last example does not specify a parent group and will instead be placed
+                    in your top-most group. Groups will automatically be created for you if they do not
+                    already exist.
+                </p>
+                <p>
+                    <textarea id="content" cols="80" rows="8"></textarea>
+                </p>
+                <button id="importGroups">Import groups</button>
+                <span id="result"></span>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container footernotes">
+            <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+            <p>Last updated on 08/31/2015</p>
+        </div>
+    </footer>
+
+    <div id="help-content">
+        <h2>Help</h2>
+        <p>
+            <strong>Overview</strong><br />
+            This utility helps you import groups to your account using comma separated values (CSV).
+        </p>
+        <p>
+            <strong>Work flow</strong><br />
+            Initially a cache will be created of all the groups currently on your account. The input provided
+            is parsed and if a group does not exist in the cache, it will be added and then saved to your account.
+        </p>
+        <p>
+            <strong>Skill level</strong><br />
+            Intermediate
+        </p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+
+    <script type="text/javascript">
+
+        var groupCache;
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            groupCache = refreshGroupCache(null);
+
+            document.getElementById("importGroups").addEventListener("click", function(event) {
+                event.preventDefault();
+
+                var content = document.getElementById("content").value,
+                    addGroups = function (groups) {
+                        if (!groups.length) {
+                            document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
+                            return;
+                        }
+                        // Split up the group properties
+                        var group = groups.shift(),
+                            split = group.split(",");
+
+                        if (split.length !== 3) {
+                            console.log("Could not import " + group);
+                            addGroups(groups);
+                            return;
+                        }
+
+                        var name = split[0];
+                        var comments = split[1];
+                        var parent = parseParentGroup(split[2]);
+
+                        if (parent === null) {
+                            console.log("Could not import " + group);
+                            addGroups(groups);
+                            return;
+                        }
+
+                        if (name.length > 255) {
+                            alert("Group name on line " + (i + 1) + " exceeds 255 characters");
+                            return;
+                        }
+
+                        if (comments.length > 255) {
+                            alert("Description on line " + (i + 1) + " exceeds 255 characters");
+                            return;
+                        }
+
+                        if (groupCache.hasOwnProperty(name)) {
+                            console.log("Skipped group " + name + " because it already exists");
+                            addGroups(groups);
+                        } else {
+                            api.call("Add", {
+                                typeName: "Group",
+                                entity: {
+                                    name: name,
+                                    comments: comments,
+                                    parent: {
+                                        id: parent
+                                    },
+                                    color: {
+                                        a: 0,
+                                        r: 0,
+                                        g: 0,
+                                        b: 255
+                                    }
+                                }
+                            }, function(result) {
+                                if (result !== undefined && result) {
+                                    groupCache[split[0]] = result
+                                }
+                                setTimeout(function () {
+                                    addGroups(groups);
+                                }, 10);
+                            }, function(error) {
+                                console.log(error);
+                                addGroups(groups);
+                            });
+                        }
+                    };
+
+                if (content === "") {
+                    alert("At least one group is required");
+                } else {
+                    // Split up the lines one by one
+                    var groups = content.split("\n");
+
+                    // Reset the result display
+                    document.getElementById("result").innerHTML = "";
+
+                    addGroups(content.split("\n"));
+                }
+            });
+
+        });
+
+        function parseParentGroup(text) {
+            if (text === "") {
+                return "GroupCompanyId";
+            } else if (groupCache.hasOwnProperty(text)) {
+                return groupCache[text];
+            } else {
+                return null;
+            }
+        }
+
+        function refreshGroupCache(callback) {
+            api.call("Get", {
+                typeName: "Group"
+            }, function(result) {
+                if (result !== undefined && result.length > 0) {
+                    groupCache = {};
+                    for (var i = 0; i < result.length; i++) {
+                        // Built-in groups do not have proper names
+                        if (result[i].name === undefined) {
+                            groupCache[result[i].id] = result[i].id;
+                        } else {
+                            groupCache[result[i].name] = result[i].id;
+                        }
+                    }
+                }
+                if (callback) {
+                    callback();
+                }
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+    </script>
+
+    </body>
+
+</html>

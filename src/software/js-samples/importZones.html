@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    
+    <head>
+        
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Import zones</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Import zones</h1>
+                <h3>How to import a collection of zones to MyGeotab</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Import devices</h3>
+                    <p>
+                        Use the text box below to import multiple zones at a time. Place each zone
+                        on its own line as follows:
+                    </p>
+                    <div class="code">
+                        <pre>Name1,Latitude,Longitude,Size(m or ft),Red(0 to 255),Green(0 to 255),Blue(0 to 255),Transparency(0 to 255),GroupName1|GroupName2|...|GroupNameN,ZoneTypeName1|ZoneTypeName2|...|ZoneTypeNameN,Comment<br />Name2,Latitude,Longitude,Size(m or ft),Red(0 to 255),Green(0 to 255),Blue(0 to 255),Transparency(0 to 255),GroupName1|GroupName2|...|GroupNameN,ZoneTypeName1|ZoneTypeName2|...|ZoneTypeNameN,Comment<br />Name3,Latitude,Longitude,Size(m or ft),Red(0 to 255),Green(0 to 255),Blue(0 to 255),Transparency(0 to 255),GroupName1|GroupName2|...|GroupNameN,ZoneTypeName1|ZoneTypeName2|...|ZoneTypeNameN,Comment</pre>
+                    </div>
+                    <p>
+                        <input id="isMetric" type="checkbox" checked="checked" /> <label for="isMetric">Use meters for zone size</label>
+                    </p>
+                    <p>
+                        <textarea id="content" cols="120" rows="8"></textarea>
+                    </p>
+                    <button id="importZones">Import zones</button>
+                    <span id="result"></span>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This utility helps you import zones to your account using comma separated values (CSV).
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                Initially a cache will be created of all the zones currently on your account. The input provided
+                is parsed and a set of boundary points is created at the specified coordinates. These points are
+                the extents of the new zone and are then saved to your account.
+            </p>
+			<p>Example Entry: ExampleTestZoneSDK1,43.7,-79.6,100,10,20,30,40,Live|Driver Category,Home|Office,Comment goes here</p>
+            <p>
+                For a simpler approach to understanding the necessary trigonometry involved, see the JavaScript SDK
+                sample "AddZone".
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Advanced
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var groupCache;
+            var zoneTypeCache;
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                groupCache = refreshGroupCache(null);
+                zoneTypeCache = refreshZoneTypeCache(null);
+
+                document.getElementById("importZones").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    var content = document.getElementById("content").value;
+                    var isMetric = document.getElementById("isMetric").checked;
+
+                    if (content === "") {
+                        alert("At least one zone is required");
+                    } else {
+                        // Split up the lines one by one
+                        var zones = content.split("\n");
+
+                        // Reset the result display
+                        document.getElementById("result").innerHTML = "";
+
+                        for (var i = 0; i < zones.length; i++) {
+                            // Split up the zone properties
+                            var split = zones[i].split(",");
+
+                            // Zones can only have 10 properties with 1 additional optional
+                            if (split.length < 10 || split.length > 11) {
+                                console.log("Could not import " + zones[i]);
+                                continue;
+                            }
+
+                            if (split[0].length > 255) {
+                                alert("Zone name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            // Parse each part of the input
+                            var name = split[0];
+                            var latitude = parseFloat(split[1]);
+                            var longitude = parseFloat(split[2]);
+                            var size = parseSize(split[3]);
+                            var red = parseRGBA(split[4]);
+                            var green = parseRGBA(split[5]);
+                            var blue = parseRGBA(split[6]);
+                            var transparency = parseRGBA(split[7]);
+                            var groups = parseGroups(split[8]);
+                            var zoneTypes = parseZoneTypes(split[9]);
+                            var comment = "";
+                            if (split.length === 11) {
+                                comment = parseComment(split[10]);
+                            }
+
+                            // Generates a box around the latitude and longitude
+                            var zonePoints = generateZonePoints(latitude, longitude, size, isMetric);
+
+                            api.call("Add", {
+                                typeName: "Zone",
+                                entity: {
+                                    name: name,
+                                    comment: comment,
+                                    externalReference: "",
+                                    mustIdentifyStops: true,
+                                    displayed: true,
+                                    activeFrom: "1986-01-01T00:00:00.000Z",
+                                    activeTo: "2050-01-01T00:00:00.000Z",
+                                    groups: groups,
+                                    zoneTypes: zoneTypes,
+                                    points: zonePoints,
+                                    fillColor: {
+                                        r: red,
+                                        g: green,
+                                        b: blue,
+                                        a: transparency
+                                    }
+                                }
+                            }, function(result) {
+                                console.log("Successfully imported " + name + " (" + result + ")");
+                            }, function(error) {
+                                console.log("There was an issue creating the zone " + name);
+                            });
+                        }
+
+                        document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
+                    }
+
+                });
+
+            });
+
+            // Ensure each zone has at least (a small) radius
+            function parseSize(text) {
+                return Math.max(parseFloat(text), 25.0);
+            }
+
+            // Clamp color and transparency to 0...255
+            // Note: Alpha 255 means 100% transparent, 0 means opaque
+            function parseRGBA(text) {
+                return Math.min(Math.max(parseInt(text), 0), 255);
+            }
+
+            function parseComment(text) {
+                return text.trim();
+            }
+
+            function parseGroups(text) {
+                var groups = [];
+                var split = text.split("|");
+
+                for (var i = 0; i < split.length; i++) {
+                    if (groupCache.hasOwnProperty(split[i])) {
+                        groups.push({
+                            id: groupCache[split[i]].id
+                        });
+                    }
+                }
+
+                return groups;
+            }
+
+            function parseZoneTypes(text) {
+                var zoneTypes = [];
+                var split = text.split("|");
+
+                for (var i = 0; i < split.length; i++) {
+                    if (zoneTypeCache.hasOwnProperty(split[i])) {
+                        zoneTypes.push(zoneTypeCache[split[i]].id);
+                    }
+                }
+
+                return zoneTypes;
+            }
+
+            function toDegrees(radians) {
+                return radians * 180.0 / Math.PI;
+            }
+
+            function toRadians(degrees) {
+                return degrees * (Math.PI / 180.0);
+            }
+
+            // Generates a box around a latitude and longitude with a given radius
+            // See the addZone.html SDK sample for a visualization
+            function generateZonePoints(latitude, longitude, size, isMetric) {
+                var earthRadius = (isMetric === true) ? 6371000 /* meters */ : 20903520 /* feet */;
+
+                var x1 = (longitude - toDegrees(size / earthRadius / Math.cos(toRadians(latitude))));
+                var x2 = (longitude + toDegrees(size / earthRadius / Math.cos(toRadians(latitude))));
+                var y1 = (latitude  + toDegrees(size / earthRadius / Math.sin(toRadians(longitude))));
+                var y2 = (latitude  - toDegrees(size / earthRadius / Math.sin(toRadians(longitude))));
+
+                return [
+                    { "x": x1, "y": y1 },
+                    { "x": x2, "y": y1 },
+                    { "x": x2, "y": y2 },
+                    { "x": x1, "y": y2 }
+                ];
+            }
+
+            function refreshGroupCache(callback) {
+                api.call("Get", {
+                    typeName: "Group"
+                }, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        groupCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            // Built-in groups do not have proper names
+                            if (result[i].name === undefined) {
+                                groupCache[result[i].id] = result[i];
+                            } else {
+                                groupCache[result[i].name] = result[i];
+                            }
+                        }
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function refreshZoneTypeCache(callback) {
+                api.call("Get", {
+                    typeName: "ZoneType"
+                }, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        zoneTypeCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            // Built-in zone types do not have proper names
+                            if (result[i].name === undefined) {
+                                zoneTypeCache[result[i].replace("ZoneType", "").replace("Id", "")] = {
+                                    id: result[i]
+                                };
+                            } else {
+                                zoneTypeCache[result[i].name] = result[i];
+                            }
+                        }
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+        </script>
+
+    </body>
+
+</html>

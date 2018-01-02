@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>Geotab SDK | Send text message</title>
+
+        <link href="js/mapbox/mapbox.css" rel="stylesheet" type="text/css" />
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Send text message</h1>
+                <h3>Sends a text message to a device in a vehicle</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Send message</h3>
+                    <p>
+                        <input class="tab" id="tabBasic" type="radio" name="rg1" checked >
+                        <label for="tabBasic">Basic Message</label>
+
+                        <input class="tab" id="tabCannedResponse" type="radio" name="rg1">
+                        <label for="tabCannedResponse">Canned Response Message</label>
+
+                        <input class="tab" id="tabLocation" type="radio" name="rg1">
+                        <label for="tabLocation">Location Message</label>
+                    </p>
+                    <p>
+                        <select id="device">
+                            <option disabled="disabled">Select a device</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="8" cols="60">John, please head to XYZ after you finish that job.</textarea>
+                    </p>
+                    <div id="cannedResponseContainer"  style="display: none">
+                        <p>
+                            Add predetermined responses to your message by entering comma delimited strings below.
+                        </p>
+                        <p>
+                            <label for="cannedResponses">Canned Responses</label>
+                            <input id="cannedResponses" type="text" placeholder="Yes, No, Maybe">
+                        </p>
+                    </div>
+                    <div id="locationContainer" style="display: none">
+                        <p>
+                            Add a location to your message by clicking the map to drop a pin.<br>
+                        </p>
+                        <p>
+                            <label for="location">Location</label>
+                            <input id="location" type="text" disabled="disabled">
+                        </p>
+                    </div>
+                    <button id="send">Send</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="mapContainer" class="container bordered spaced" style="display: none">
+            <div id="map"></div>
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This example demonstrates how to send the three different types of text messages.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                Vehicles which are equipped with Garmin devices can received text messages from users of Geotab.
+                There are three types of text messages which can be sent:
+            </p>
+            <ol>
+                <li>Basic: Simple text based messaging</li>
+                <li>Canned Response: Text message with responses such as "Yes, No, Maybe"</li>
+                <li>Location: Text message with integrated location used for routing and dispatch</li>
+            </ol>
+            <p>
+                <strong>Skill level</strong><br />
+                Intermediate
+            </p>
+        </div>
+
+        <script src="js/mapbox/mapbox.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var map;
+            var featureGroup;
+            var devicesLookup = {};
+            var user;
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // Radio button events
+                var tabs = document.querySelectorAll(".tab");
+                for (var i = 0; i < tabs.length; i += 1) {
+                    tabs[i].addEventListener("click", onTabChange);
+                }
+
+                // Download devices to work with
+                populateDevices();
+
+                // Get our own user so we can be identified as the user sending the message
+                populateUser();
+
+                document.getElementById("send").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var deviceSelect = document.getElementById("device");
+                    var deviceId = deviceSelect[deviceSelect.selectedIndex].getAttribute("data-deviceid");
+                    var device = devicesLookup[deviceId];
+                    var message = document.getElementById("message").value;
+                    var location = document.getElementById("location").value;
+                    var cannedResponses = document.getElementById("cannedResponses").value;
+
+                    var errors = 0;
+                    if (deviceId === null) {
+                        errors++;
+                    }
+                    if (message === "") {
+                        errors++;
+                    }
+                    if (errors > 0) {
+                        alert("Device and message are required.");
+                        return;
+                    }
+
+                    sendMessage(createMessage(device, message, location, cannedResponses));
+                });
+            });
+
+            function onMapClicked(event) {
+                var location = document.getElementById("location");
+                location.value = event.latlng.lat.toFixed(5) + ", " + event.latlng.lng.toFixed(5);
+                location.setAttribute("data-latitude", event.latlng.lat);
+                location.setAttribute("data-longitude", event.latlng.lng);
+
+                var marker = new L.Marker(event.latlng, {
+                    icon: L.mapbox.marker.icon({'marker-color': '669900'}),
+                    draggable: true
+                });
+
+                featureGroup.clearLayers();
+                featureGroup.addLayer(marker);
+            }
+
+            function populateDevices() {
+                api.call("Get", {
+                    typeName: "Device"
+                }, function (result) {
+                    if (result !== undefined && result.length) {
+                        var select = document.getElementById("device");
+                        for (var i = 0; i < result.length; i++) {
+                            var option = new Option();
+                            option.text = result[i].name;
+                            option.setAttribute("data-deviceid", result[i].id);
+                            select.add(option);
+
+                            // Add devices to dictionary so we can quickly look them up by ID
+                            devicesLookup[result[i].id] = result[i];
+                        }
+                    } else {
+                        alert("Could not retrieve devices");
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function populateUser() {
+                api.getSession(function (credentials, server) {
+                    api.call("Get", {
+                        typeName: "User",
+                        search: {
+                            name: credentials.userName
+                        }
+                    }, function (result) {
+                        if (!result || !result.length) {
+                            alert("Could not find user: " + credentials.userName);
+                        }
+                        user = result[0];
+                    }, function (error) {
+                        alert(error);
+                    });
+                }, false);
+            }
+
+            function sendMessage(textMessage) {
+                api.call("Add", {
+                    typeName: "TextMessage",
+                    entity: textMessage
+                }, function (result) {
+                    document.getElementById("message").value = "";
+                    alert("Successfully sent text message to " + devicesLookup[textMessage.device.id].name);
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function createMessage(device, message, location, cannedResponses) {
+                // Create a basic text message
+                var textMessage = {
+                    isDirectionToVehicle: true,
+                    device: {
+                        id: device.id
+                    },
+                    messageContent: {
+                        contentType: "Normal",
+                        message: message
+                    },
+                    user: {
+                        id: user.id
+                    }
+                };
+
+                // If address or valid GPS was specified, make it a location message and pass the address/GPS
+                // or if cannedResponse is specified, make it a canned response message and paa in the canned responses
+                if (location !== "") {
+                    // Note: A "clear previous stops" message can be sent by sending lat/lon of 0.
+                    // Example:
+                    // textMessage.messageContent.contentType = "Location";
+                    // textMessage.messageContent.address = "reset stops";
+                    // textMessage.messageContent.latitude = 0;
+                    // textMessage.messageContent.longitude = 0;
+                    textMessage.messageContent.contentType = "Location";
+                    textMessage.messageContent.address = location;
+                    textMessage.messageContent.latitude = parseFloat(document.getElementById("location").getAttribute("data-latitude"));
+                    textMessage.messageContent.longitude = parseFloat(document.getElementById("location").getAttribute("data-longitude"));
+                } else if (cannedResponses !== "") {
+                    textMessage.messageContent.contentType = "CannedResponse";
+                    textMessage.messageContent.cannedResponseOptions = cannedResponses.split(",").map(function (response) {
+                        return {
+                            text: response
+                        };
+                    });
+                }
+
+                return textMessage;
+            }
+
+            function onTabChange(event) {
+                var tab = event.target.id;
+                document.getElementById("location").value = "";
+                document.getElementById("cannedResponses").value = "";
+
+                document.getElementById("locationContainer").style.display = (tab === "tabLocation" ? "block" : "none");
+                document.getElementById("mapContainer").style.display = (tab === "tabLocation" ? "block" : "none");
+                document.getElementById("cannedResponseContainer").style.display = (tab === "tabCannedResponse" ? "block" : "none");
+
+                if (tab === "tabLocation") {
+                    if (!map) {
+                        // Initialize MapBox engine (http://www.mapbox.com)
+                        map = L.mapbox.map("map", "examples.map-vyofok3q");
+                        featureGroup = L.featureGroup().addTo(map);
+
+                        map.on("click", onMapClicked);
+                    } else {
+                        featureGroup.clearLayers();
+                    }
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

@@ -37,7 +37,7 @@ toc:
       - title: Code Samples
         subfolderitems:
           - page: Javascript Examples
-            url: https://github.com/geotab/js-examples
+            url: /software/js-samples/
             external: true
           - page: Dotnet Examples
             url: https://github.com/geotab/dotnet-examples

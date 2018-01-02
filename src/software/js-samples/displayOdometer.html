@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Geotab SDK | Display odometer</title>
+
+    <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                <button id="help">Help</button>
+                <button id="signout">Sign out</button>
+            </nav>
+            <h1>Example: Display odometer</h1>
+            <h3>Displays a vehicle's odometer readings over time</h3>
+        </div>
+    </header>
+
+    <div class="container bordered">
+
+        <div id="signin-content"></div>
+
+        <div id="example-content">
+            <form>
+                <h3>Display odometer</h3>
+                <p>
+                    <select id="device">
+                        <option disabled="disabled">Select a vehicle</option>
+                    </select>
+                </p>
+                <p>
+                    <input id="date-from" type="date" />&nbsp;&nbsp;to&nbsp;&nbsp;<input id="date-to" type="date" />
+                </p>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="chart-container" class="container bordered spaced" style="display:none;">
+        <div id="chart" class="chart"></div>
+    </div>
+
+    <footer>
+        <div class="container footernotes">
+            <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+            <p>Last updated on 08/31/2015</p>
+        </div>
+    </footer>
+
+    <div id="help-content">
+        <h2>Help</h2>
+        <p>
+            <strong>Overview</strong><br />
+            This examples demonstrates retrieving trips and plotting the vehicle's odometer reading over time.
+        </p>
+        <p>
+            <strong>Work flow</strong><br />
+            Your vehicles are retrieved using an initial API request for all Device entities. Then when one is
+            selected, the current odometer value is retrieved if available. Then, the vehicle's trips are
+            used to count backward the distance travelled. Each trip distance is plotted on the chart.
+        </p>
+        <p>
+            <strong>Skill level</strong><br />
+            Intermediate
+        </p>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+
+    <script type="text/javascript">
+
+        var startOdometer;
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            populateDevices();
+
+            document.getElementById("device").addEventListener("change", function(event) {
+                event.preventDefault();
+
+                retrieveOdometer();
+            });
+
+            document.getElementById("date-from").addEventListener("change", function(event) {
+                event.preventDefault();
+
+                retrieveOdometer();
+            });
+
+            document.getElementById("date-to").addEventListener("change", function(event) {
+                event.preventDefault();
+
+                retrieveOdometer();
+            });
+        });
+
+        function retrieveOdometer() {
+            var select = document.getElementById("device");
+
+            var deviceId = select[select.selectedIndex].getAttribute("data-deviceid");
+            var fromDateRaw = document.getElementById("date-from").value;
+            var toDateRaw = document.getElementById("date-to").value;
+
+            if (fromDateRaw === "" || toDateRaw === "") {
+                return;
+            }
+
+            var fromDate = new Date(fromDateRaw);
+            var toDate = new Date(toDateRaw);
+
+            var calls = [];
+
+            calls.push(["Get", {
+                typeName: "StatusData",
+                search: {
+                    deviceSearch: {
+                        id: deviceId
+                    },
+                    diagnosticSearch: {
+                        id: "DiagnosticOdometerId"
+                    },
+                    fromDate: fromDate,
+                    toDate: toDate
+                }
+            }]);
+
+            calls.push(["Get", {
+                typeName: "StatusData",
+                search: {
+                    deviceSearch: {
+                        id: deviceId
+                    },
+                    diagnosticSearch: {
+                        id: "DiagnosticOBDOdometerReaderId"
+                    },
+                    fromDate: fromDate,
+                    toDate: toDate
+                }
+            }]);
+
+            calls.push(["Get", {
+                typeName: "StatusData",
+                search: {
+                    deviceSearch: {
+                        id: deviceId
+                    },
+                    diagnosticSearch: {
+                        id: "DiagnosticJ1939TotalVehicleDistanceId"
+                    },
+                    fromDate: fromDate,
+                    toDate: toDate
+                }
+            }]);
+
+            calls.push(["Get", {
+                typeName: "StatusData",
+                search: {
+                    deviceSearch: {
+                        id: deviceId
+                    },
+                    diagnosticSearch: {
+                        id: "DiagnosticJ1708TotalVehicleDistanceId"
+                    },
+                    fromDate: fromDate,
+                    toDate: toDate
+                }
+            }]);
+
+            calls.push(["Get", {
+                typeName: "StatusData",
+                search: {
+                    deviceSearch: {
+                        id: deviceId
+                    },
+                    diagnosticSearch: {
+                        id: "DiagnosticOdometerAdjustmentId"
+                    },
+                    fromDate: fromDate,
+                    toDate: toDate
+                }
+            }]);
+
+            api.multiCall(calls, function(result) {
+                if (result && result.length == 5) {
+                    var merged = result[0].concat(result[1]).concat(result[2]).concat(result[3]).concat(result[4]);
+                    var sorted = merged.sort(function (a, b) {
+                        return new Date(a.dateTime) - new Date(b.dateTime);
+                    });
+					if (sorted && sorted.length > 0) {
+						startOdometer = sorted[0].data;
+						displayOdometer(sorted.filter(function(element) {
+							var dateTime = new Date(element.dateTime);
+							return (dateTime >= fromDate) && (dateTime <= toDate);
+						}));
+					}
+                } else {
+                    alert("Could not retrieve the current odometer value");
+                }
+            }, function(error) {
+                alert(error);
+            });
+        }
+
+        function populateDevices() {
+            api.call("Get", {
+                typeName: "Device"
+            }, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    var select = document.getElementById("device");
+                    var now = new Date();
+                    for (var i = 0; i < result.length; i++) {
+                        if (new Date(result[i].activeTo) > now) {
+                            var option = new Option();
+                            option.text = result[i].name;
+                            option.setAttribute("data-deviceid", result[i].id);
+                            select.add(option);
+                        }
+                    }
+                } else {
+                    alert("Could not retrieve devices");
+                }
+            }, function (error) {
+                alert(error);
+            });
+        }
+
+        function displayOdometer(statusData) {
+            var points = [];
+            var minimum = Number.MAX_VALUE;
+            var maximum = Number.MIN_VALUE;
+
+            for (var i = 0; i < statusData.length; i++) {
+                if (statusData[i].data < minimum) {
+                    minimum = statusData[i].data;
+                }
+                if (statusData[i].data > maximum) {
+                    maximum = statusData[i].data;
+                }
+
+                points.push({
+                    date: statusData[i].dateTime,
+                    value: parseInt(statusData[i].data / 1000.0)
+                });
+            }
+
+            document.getElementById("chart-container").style.display = "block";
+            document.getElementById("chart").innerHTML = "";
+
+            new Morris.Area({
+                element: "chart",
+                data: points,
+                xkey: "date",
+                ykeys: ["value"],
+                labels: ["Odometer"],
+                ymin: minimum / 1000.0,
+                ymax: maximum / 1000.0,
+                yLabelFormat: function(y) {
+                    return parseInt(y);
+                },
+                hoverCallback: function(index, options, content) {
+                    return renderHover(options.data[index].date, options.data[index].value);
+                },
+				smooth: false,
+                parseTime: true,
+                postUnits: " km",
+                lineColors: ["#104B7D"],
+                fillOpacity: 0.3,
+                pointSize: 0
+            });
+        }
+
+        Date.prototype.mmddyyyy = function() {
+            var yyyy = this.getFullYear().toString();
+            var mm = (this.getMonth()+1).toString();
+            var dd  = this.getDate().toString();
+            return (mm[1]?mm:"0"+mm[0]) + "/" + (dd[1]?dd:"0"+dd[0]) + "/" + yyyy;
+        }
+
+        function renderHover(title, content) {
+            var hover = "<div class='morris-hover-row-label' style='font-size:1.2em'>";
+            hover += parseInt(content) + " km";
+            hover += "</div><div class='morris-hover-point' style='color: #104B7D'>";
+            hover += new Date(title).mmddyyyy();
+            hover += "</div>";
+            return hover;
+        }
+
+    </script>
+
+</body>
+
+</html>

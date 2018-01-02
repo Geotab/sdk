@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Get count of vehicles and users</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Count vehicles and users</h1>
+                <h3>Simply counts the number of devices and users on your account.</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content" class="padded">
+                <p>
+                    Total vehicles: <span id="vehicleCount">Not determined yet</span>
+                </p>
+                <p>
+                    Total users: <span id="userCount">Not determined yet</span>
+                </p>
+                <button id="submit">Get count</button>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p><strong>&copy; 2015 Geotab, Inc.</strong></p>
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This example shows you how to make simple API requests.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                We make two API requests to retrieve the count of the <a href="https://my6.geotab.com/sdk/default.html#/api" target="_blank">Device</a>
+                and <a href="https://my6.geotab.com/sdk/default.html#/api" target="_blank">User</a> entities. The API response containing the count is
+                then displayed on the page.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Beginner
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                document.getElementById("submit").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    api.call("GetCountOf", {
+                        typeName: "Device"
+                    }, function (result) {
+                        if (result) {
+                            document.getElementById("vehicleCount").innerHTML = result;
+                        }
+                    }, function (error) {
+                        alert(error);
+                    });
+
+                    api.call("GetCountOf", {
+                        typeName: "User"
+                    }, function (result) {
+                        if (result) {
+                            document.getElementById("userCount").innerHTML = result;
+                        }
+                    }, function (error) {
+                        alert(error);
+                    });
+                });
+
+            });
+
+        </script>
+
+    </body>
+
+</html>

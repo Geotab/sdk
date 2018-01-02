@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <title>Geotab SDK | Starter kit</title>
+
+    </head>
+
+    <body>
+
+        <h1>Geotab API - Starter kit</h1>
+        <p>This example can be used as a template to get started with the Geotab API using JavaScript. A modern browser is required.</p>
+
+        <fieldset>
+            <legend>Sign in to continue</legend>
+            <p>
+                <label for="server">Server</label><br />
+                <input id="server" type="text">
+            </p>
+            <p>
+                <label for="database">Database</label><br />
+                <input id="database" type="text">
+            </p>
+            <p>
+                <label for="username">User</label><br />
+                <input id="username" type="email">
+            </p>
+            <p>
+                <label for="password">Password</label><br />
+                <input id="password" type="password">
+            </p>
+            <button id="submit">Get Devices</button>
+        </fieldset>
+
+        <div id="result"></div>
+
+        <!-- Geotab JS Library -->
+        <script type="text/javascript" src="js/api.js"></script>
+
+        <script type="text/javascript">
+
+            // Handler: Initialize Geotab API on page content loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                var
+                    authenticateCallback,
+                    api = GeotabApi(function (detailsCallback) {
+                        authenticateCallback = detailsCallback;
+
+                        // Put handling code here that executes when:
+                        //      a) We don't have credentials yet (first page load)
+                        //      b) The credentials have expired (password changed or server moved)
+                        //      c) You've called "api.forget()"
+                        // For example, show the login dialog if it is hidden, or prompt the user to
+                        // enter their credentials
+                    }, {
+                        // Overrides for default options
+                        rememberMe: false
+                    });
+
+                // Handler: Authentication submit button
+                document.getElementById("submit").addEventListener("click", function () {
+                    var server   = document.getElementById("server").value,
+                        userName = document.getElementById("username").value,
+                        password = document.getElementById("password").value,
+                        database = document.getElementById("database").value;
+
+                    authenticateCallback(server, database, userName, password, function(error) {
+                        alert(error);
+                    });
+                }, false);
+
+                // Sample API invocation retrieves all "Device" objects
+                api.call("Get", {
+                    typeName: "Device",
+                    search: {
+                        groups: [{ id: "GroupCompanyId" }]
+                    }
+                }, function (result) {
+                    if (result) {
+                        document.getElementById("result").innerHTML = JSON.stringify(result);
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            });
+
+        </script>
+
+    </body>
+
+</html>

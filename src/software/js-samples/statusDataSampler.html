@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Status data sampler</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Status data sampler</h1>
+                <h3>Shows how to retrieve the engine status data for a vehicle</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Show status data</h3>
+                    <p>
+                        <select id="device">
+                            <option disabled="disabled">Select a vehicle</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="engineType">Filter by</label>
+                        <select id="engineType">
+                            <option>Any engine type</option>
+                        </select>
+                        &nbsp;
+                        <select id="diagnosticCode">
+                            <option>Any diagnostic code</option>
+                        </select>
+                        &nbsp;
+                        <select id="diagnosticSource">
+                            <option>Any diagnostic source</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="startDate">Start date</label>
+                        <input type="date" id="startDate" />
+                    </p>
+                    <p>
+                        <label for="endDate">End date</label>
+                        <input type="date" id="endDate" />
+                    </p>
+                    <button id="show">Show status data</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="table-container" class="container bordered spaced invisible">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Diagnostic</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This example demonstrates how to retrieve a vehicle's engine status data.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                Use the provided form to select a vehicle and then filter the type of engine status data you would like
+                to retrieve. You can narrow your search even more by selecting a specific date range.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Intermediate
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var table;
+            var device;
+            var engineType;
+            var diagnosticCode;
+            var diagnosticSource;
+            var startDate;
+            var endDate;
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                table = document.getElementById("table-body");
+                device = document.getElementById("device");
+                engineType = document.getElementById("engineType");
+                diagnosticCode = document.getElementById("diagnosticCode");
+                diagnosticSource = document.getElementById("diagnosticSource");
+                startDate = document.getElementById("startDate");
+                endDate = document.getElementById("endDate");
+
+                populateInterface();
+
+                document.getElementById("show").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    var deviceId = device[device.selectedIndex].getAttribute("data-id");
+                    var engineTypeId = engineType[engineType.selectedIndex].getAttribute("data-id");
+                    var diagnosticCodeId = diagnosticCode[diagnosticCode.selectedIndex].getAttribute("data-id");
+                    var diagnosticSourceId = diagnosticSource[diagnosticSource.selectedIndex].getAttribute("data-id");
+                    var dateRange = {
+                        start: startDate.value,
+                        end: endDate.value
+                    };
+
+                    if (deviceId === null) {
+                        alert("Please select a vehicle first");
+                        return;
+                    }
+                    if ((dateRange.start === "") || (dateRange.end === "")) {
+                        alert("Please enter a valid start and end date");
+                        return;
+                    }
+
+                    table.innerHTML = "";
+                    document.getElementById("table-container").setAttribute("style", "display:block;");
+                    showStatusData(getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange));
+                });
+
+            });
+
+            function showStatusData(searchObject) {
+                api.call("Get", searchObject, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            table.appendChild(createRow(result[i]));
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange) {
+                var searchObject = {};
+
+                searchObject["typeName"] = "StatusData";
+                searchObject["search"] = {};
+                searchObject["search"]["deviceSearch"] = {
+                    "id": deviceId
+                };
+                searchObject["search"]["fromDate"] = dateRange.start;
+                searchObject["search"]["toDate"] = dateRange.end;
+
+                if (engineTypeId !== null) {
+                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                        searchObject["search"]["diagnosticSearch"] = {};
+                    }
+                    searchObject["search"]["diagnosticSearch"]["engineTypeSearch"] = {
+                        id: engineTypeId
+                    }
+                }
+
+                if (diagnosticCodeId !== null) {
+                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                        searchObject["search"]["diagnosticSearch"] = {};
+                    }
+                    searchObject["search"]["diagnosticSearch"]["code"] = parseInt(diagnosticCodeId);
+                }
+
+                if (diagnosticSourceId !== null) {
+                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                        searchObject["search"]["diagnosticSearch"] = {};
+                    }
+                    searchObject["search"]["diagnosticSearch"]["sourceSearch"] = {
+                        id: diagnosticSourceId
+                    }
+                }
+
+                return searchObject;
+            }
+
+            function createRow(statusDataItem) {
+                var row = document.createElement("tr");
+                row.appendChild(createCell(statusDataItem.dateTime));
+                row.appendChild(createCell(statusDataItem.diagnostic.id.replace("Diagnostic", "").replace("Id", "")));
+                row.appendChild(createCell(statusDataItem.data));
+                return row;
+            }
+
+            function createCell(text) {
+                var cell = document.createElement("td");
+                var textNode = document.createTextNode(text);
+                cell.appendChild(textNode);
+                return cell;
+            }
+
+            function populateInterface() {
+                // Date inputs
+                var today = new Date();
+                var tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+                startDate.value = today.toJSON().slice(0, 10);
+                endDate.value = tomorrow.toJSON().slice(0, 10);
+
+                // Retrieve the list of vehicles
+                api.call("Get", {
+                    "typeName": "Device"
+                }, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        var now = new Date();
+                        for (var i = 0; i < result.length; i++) {
+                            if (new Date(result[i].activeTo) > now) {
+                                var option = new Option();
+                                option.text = result[i].name;
+                                option.setAttribute("data-id", result[i].id);
+                                device.add(option);
+                            }
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+
+                // Retrieve the engine types
+                api.call("Get", {
+                    "typeName": "EngineType"
+                }, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            var option = new Option();
+                            option.text = result[i].name;
+                            option.setAttribute("data-id", result[i].id);
+                            engineType.add(option);
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+
+                // Retrieve the diagnostics and split them up
+                api.call("Get", {
+                    "typeName": "Diagnostic"
+                }, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        var diagnosticCodes = [];
+                        var diagnosticSources = {};
+
+                        for (var i = 0; i < result.length; i++) {
+                            if (!diagnosticCodes.hasOwnProperty(result[i].code)) {
+                                diagnosticCodes[result[i].code] = result[i];
+
+                                var option = new Option();
+                                option.text = result[i].name + " (" + result[i].code + ")";
+                                option.setAttribute("data-id", result[i].code);
+                                diagnosticCode.add(option);
+                            }
+                            if (!diagnosticSources.hasOwnProperty(result[i].source)) {
+                                diagnosticSources[result[i].source] = result[i];
+
+                                var option = new Option();
+                                option.text = result[i].source.replace("Source", "").replace("Id", "");
+                                option.setAttribute("data-id", result[i].source);
+                                diagnosticSource.add(option);
+                            }
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+        </script>
+
+    </body>
+
+</html>

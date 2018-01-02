@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Data feed example</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Data feed</h1>
+                <h3>Demonstrates how to poll for newly available data</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Select feed data</h3>
+                    <p>
+                        This example will show you how you can poll your Geotab account on a regular interval for new information.
+                        You can use this framework to integrate your location history and vehicle status in to your own applications
+                        by performing periodic updates when needed.
+                    </p>
+                    <p>
+                        In order to reduce the amount of network traffic, this example uses aggregated API calls which are called
+                        <i>multi-calls</i>. You can read more about them in the 
+                        <a href="https://my.geotab.com/sdk/#/concepts" target="_blank">Geotab SDK documentation</a>.
+                    </p>
+                    <p>
+                        <input id="includeLocationData" type="checkbox" checked="checked" /> <label for="includeLocationData">Include location data</label>
+                    </p>
+                    <p>
+                        <input id="includeStatusData" type="checkbox" checked="checked" /> <label for="includeStatusData">Include engine status data</label>
+                    </p>
+                    <p>
+                        <input id="includeFaultData" type="checkbox" checked="checked" /> <label for="includeFaultData">Include vehicle fault data</label>
+                    </p>
+                    <button id="toggleFeed">Start data feed</button>&nbsp;<button id="clear">Clear</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="feed-container" class="container bordered spaced invisible">
+            <table>
+                <thead>
+                <tr>
+                    <th>Vehicle Id</th>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Speed</th>
+                    <th>Diagnostic</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody id="feed"></tbody>
+            </table>
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This example shows you how you can implement polling for multiple sources of data.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                We retrieve new information by setting up JavaScript intervals which invoke a function every few seconds. This function
+                is responsible for building a set of API requests using <a href="https://my6.geotab.com/sdk/default.html#/concepts" target="_blank">MultiCall</a>
+                to reduce network traffic. After we have the results from the API response, we dynamically build an HTML table with all the data.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Advanced
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            var table;
+            var enabled = false;
+            var updateInterval = 5; // In seconds
+            var update = null;
+            var lastVersions = [ null, null, null ];
+            var startDate = new Date().toISOString();
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                table = document.getElementById("feed");
+
+                document.getElementById("toggleFeed").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    enabled = !enabled;
+                    event.target.innerHTML = enabled ? "Stop data feed" : "Start data feed";
+
+                    if (enabled) {
+                        document.getElementById("feed-container").setAttribute("style", "display:block;");
+                        pollForData(); // This ensures it starts right away
+                        update = setInterval(pollForData, 1000 * updateInterval);
+                    } else {
+                        if (update) {
+                            clearInterval(update);
+                        }
+                    }
+                });
+
+                document.getElementById("clear").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    table.innerHTML = "";
+                });
+
+            });
+
+            function pollForData() {
+                var includeLocationData = document.getElementById("includeLocationData").checked;
+                var includeStatusData = document.getElementById("includeStatusData").checked;
+                var includeFaultData = document.getElementById("includeFaultData").checked;
+
+                if (!includeLocationData && !includeStatusData && !includeFaultData) {
+                    document.getElementById("includeLocationData").checked = true;
+                }
+
+                var apiCalls = [];
+
+                if (includeLocationData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "LogRecord",
+                        "fromVersion": lastVersions[0],
+                        "search": {
+                            "fromDate": startDate
+                        }
+                    }]);
+                }
+
+                if (includeStatusData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "StatusData",
+                        "fromVersion": lastVersions[1],
+                        "search": {
+                            "fromDate": startDate
+                        }
+                    }]);
+                }
+
+                if (includeFaultData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "FaultData",
+                        "fromVersion": lastVersions[2],
+                        "search": {
+                            "fromDate": startDate
+                        }
+                    }]);
+                }
+
+                api.multiCall(apiCalls, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            displayFeed(result[i]);
+                            lastVersions[i] = result[i].toVersion;
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function displayFeed(feed) {
+                if (feed.data !== undefined && feed.data.length > 0) {
+                    for (var i = 0; i < feed.data.length; i++) {
+                        var row = null,
+                        	feedData = feed.data[i];
+                        if (feedData.hasOwnProperty("data") || feedData.hasOwnProperty("failureMode")) {
+                            row = createEngineRow(feedData);
+                        } else {
+                            row = createLocationRow(feedData);
+                        }
+                        table.appendChild(row);
+                    }
+                }
+            }
+
+            function createLocationRow(feedItem) {
+                var row = document.createElement("tr");
+                row.appendChild(createCell(feedItem.device.id));
+                row.appendChild(createCell(feedItem.id));
+                row.appendChild(createCell(feedItem.dateTime));
+                row.appendChild(createCell(feedItem.latitude));
+                row.appendChild(createCell(feedItem.longitude));
+                row.appendChild(createCell(feedItem.speed));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                return row;
+            }
+
+            function createEngineRow(feedItem) {
+                var row = document.createElement("tr");
+                row.appendChild(createCell(feedItem.device.id));
+                row.appendChild(createCell(feedItem.id));
+                row.appendChild(createCell(feedItem.dateTime));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell(feedItem.diagnostic.id.replace("Diagnostic", "").replace("Id", "")));
+                row.appendChild(createCell(feedItem.data || "-"));
+                return row;
+            }
+
+            function createCell(text) {
+                var cell = document.createElement("td");
+                var textNode = document.createTextNode(text);
+                cell.appendChild(textNode);
+                return cell;
+            }
+
+        </script>
+
+    </body>
+
+</html>

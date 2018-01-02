@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Add driver</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Add driver</h1>
+                <h3>Demonstrates how to add drivers to MyGeotab</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Add driver</h3>
+                    <p>
+                        <label for="firstName">First name</label>
+                        <input id="firstName" type="text" placeholder="John" maxlength="255">
+                    </p>
+                    <p>
+                        <label for="lastName">Last name</label>
+                        <input id="lastName" type="text" placeholder="Hammond" maxlength="255">
+                    </p>
+                    <p>
+                        <label for="userName">Email address</label>
+                        <input id="userName" type="text" placeholder="Email address" maxlength="255">
+                    </p>
+                    <p>
+                        <label for="goKey">Go Key <small>(optional)</small></label>
+                        <input id="goKey" type="text" placeholder="Serial number">
+                    </p>
+                    <p>
+                        <label for="nfcKey">NFC Key <small>(optional)</small></label>
+                        <input id="nfcKey" type="text" placeholder="Serial number">
+                    </p>
+                    <p>
+                        <label for="password1">Password</label>
+                        <input id="password1" type="text" maxlength="255">
+                    </p>
+                    <p>
+                        <label for="password2">Verify password</label>
+                        <input id="password2" type="text" maxlength="255">
+                    </p>
+                    <button id="addDriver">Add driver</button>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This JavaScript example guides you through the process of creating drivers, which are special types of user accounts.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                We use some simple to understand client side validation on our form to ensure the entered values are correct. Then, an API
+                call is made to Geotab to create the driver. If it was successful, a message will notify you that the new driver is
+                ready to be used.
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Beginner
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                document.getElementById("addDriver").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var firstName = document.getElementById("firstName").value;
+                    var lastName = document.getElementById("lastName").value;
+                    var email = document.getElementById("userName").value;
+                    var password1 = document.getElementById("password1").value;
+                    var password2 = document.getElementById("password2").value;
+                    var goKey = document.getElementById("goKey").value;
+                    var nfcKey = document.getElementById("nfcKey").value;
+
+                    if (firstName === "") {
+                        alert("First name is required");
+                    } else if (lastName === "") {
+                        alert("Last name is required");
+                    } else if (email === "") {
+                        alert("Email address is required");
+                    } else if (password1 === "") {
+                        alert("Password is required");
+                    } else if (password2 === "") {
+                        alert("Password is required");
+                    } else if (password1 != password2) {
+                        alert("Passwords do not match");
+                    } else if (password1.length < 4) {
+                        alert("Password is too short");
+                    } else {
+                        api.call("Add", {
+                            typeName: "User",
+                            entity: {
+                                // User specific properties (parent of Driver)
+                                name: email,
+                                firstName: firstName,
+                                lastName: lastName,
+                                password: password1,
+                                companyGroups: [{
+                                    id: "GroupCompanyId"
+                                }],
+                                securityGroups: [{
+                                    id: "GroupEverythingSecurityId"
+                                }],
+                                userAuthenticationType: "BasicAuthentication",
+                                activeFrom: new Date().toISOString(),
+                                activeTo: "2050-01-01T00:00:00.000Z",
+
+                                // Driver specific properties
+                                driverGroups: [{
+                                    id: "GroupCompanyId"
+                                }],
+                                keys: parseKeys(goKey, nfcKey),
+                                viewDriversOwnDataOnly: false
+                            }
+                        }, function (result) {
+                            alert("Successfully added driver: " + email);
+                        }, function (error) {
+                            console.log(error);
+                        });
+                    }
+                });
+            });
+
+            function parseKeys(goKey, nfcKey) {
+                var keys = [];
+                if (goKey !== "") {
+                    keys.push({
+                        serialNumber: goKey,
+                        driverKeyType: "Usb",
+                        isImmobilizeOnly: true
+                    });
+                }
+                if (nfcKey !== "") {
+                    keys.push({
+                        serialNumber: nfcKey,
+                        driverKeyType: "Nfc",
+                        isImmobilizeOnly: true
+                    });
+                }
+                return keys;
+            }
+
+        </script>
+
+    </body>
+
+</html>

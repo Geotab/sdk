@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Geotab SDK | Import HOS logs</title>
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Example: Import HOS logs</h1>
+                <h3>How to import a list of JSON HOS logs to MyGeotab</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+            <div id="signin-content"></div>
+            <div id="example-content">
+                <form>
+                    <h3>Import HOS logs</h3>
+                    <p>
+                        Use the text box below to import multiple HOS logs at a time. Place each device
+                        on its own line as follows:
+                    </p>
+                    <div class="code">
+                        <pre>{"dateTime":"2014-12-09T22:47:10.969Z","verifyDateTime":"2014-12-09T23:25:07.078Z","driver":{"id":"b41B4DC3B"},"id":"aHic5TSUoXEqVQagnbQmtpg","device":{"id":"b142"},"version":"000229ddc4f469b8","status":"ON"}</pre>
+						<pre>{"dateTime":"2014-12-10T15:13:22.646Z","verifyDateTime":"2014-12-10T23:35:26.300Z","driver":{"id":"b41B4DC3B"},"id":"aqwQdey20FEOPM9guvRs86Q","device":{"id":"b122"},"version":"00022c4707312d6f","status":"D"}</pre>
+                    </div>
+                    <p>
+                        <textarea id="content" cols="80" rows="8"></textarea>
+                    </p>
+                    <button id="importLogs">Import logs</button>
+                    <span id="result"></span>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 11/11/2013</p>
+            </div>
+        </footer>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                <strong>Overview</strong><br />
+                This utility helps you import HOS logs to your account using a line list of JSON objects.
+            </p>
+            <p>
+                <strong>Work flow</strong><br />
+                TODO
+            </p>
+            <p>
+                <strong>Skill level</strong><br />
+                Intermediate
+            </p>
+        </div>
+
+		<script src="js/api.js"></script>
+		<script src="js/login.js"></script>
+
+        <script type="text/javascript">
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                document.getElementById("importLogs").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var content = document.getElementById("content").value;
+					var i;
+
+                    if (content === "") {
+                        alert("At least one log is required");
+                    } else {
+						// Split up the lines one by one
+                        var logs = content.split("\n");
+
+                        // Reset the result display
+                        document.getElementById("result").innerHTML = "";
+
+						// Build array of logs to multicall
+						var calls = [];
+						for (i = 0; i < logs.length; i++) {
+							if (logs[i].length == 0) continue;
+
+                            var logJSON = JSON.parse(logs[i]);
+
+                            //Only let the location.location exist
+                            if (logJSON.location && logJSON.location.location) {
+                                logJSON.location = {
+                                    location: logJSON.location.location
+                                };
+                            }
+
+							calls.push(["Add", {
+								typeName: "DutyStatusLog",
+								entity: logJSON
+							}]);
+                        }
+
+                        document.getElementById("result").innerHTML = "Importing started ... ";
+                        api.multiCall(calls, function (results) {
+							console.log(results);
+                            document.getElementById("result").innerHTML = "Importing finished";
+                        }, function (error) {
+							console.log(error);
+                            document.getElementById("result").innerHTML = "Error importing!";
+                        });
+                    }
+                });
+
+            });
+        </script>
+
+    </body>
+
+</html>

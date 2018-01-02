@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+
+        <title>Geotab SDK | Import users</title>
+
+        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <nav>
+                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <button id="template">Template</button>&nbsp;&nbsp;
+                    <button id="help">Help</button>
+                    <button id="signout">Sign out</button>
+                </nav>
+                <h1>Import users</h1>
+                <h3>Creates new users from a comma separated list</h3>
+            </div>
+        </header>
+
+        <div class="container bordered">
+
+            <div id="signin-content"></div>
+
+            <div id="example-content">
+                <form>
+                    <h3>Import users</h3>
+                    <p>
+                        <label for="import-userName">Email or user name</label>
+                        <input id="import-userName" type="text" placeholder="user@geotab.com" maxlength="255" />
+                    </p>
+                    <p>
+                        <label for="import-firstName">Full name</label>
+                        <input id="import-firstName" type="text" placeholder="John" maxlength="255" />
+                        <input id="import-lastName" type="text" placeholder="Smith" maxlength="255" />
+                    </p>
+                    <p>
+                        <label for="import-password">Password</label>
+                        <input id="import-password" type="text" placeholder="Minimum of 6 characters" maxlength="255" />
+                    </p>
+                    <p>
+						<label for="import-groups">Groups</label>
+                        <select id="import-groups" multiple data-placeholder="Select groups"></select>
+                    </p>
+					<p>
+						<label for="import-securityClearance">Security clearance</label>
+						<select id="import-securityClearance"></select>
+					</p>
+					<p>
+						<label for="import-nfcKey">Driver key (optional)</label>
+						<input id="import-nfcKey" type="text" placeholder="NFC key number" />&nbsp;&nbsp;or&nbsp;
+						<input id="import-goKey" type="text" placeholder="GO key number" />
+					</p>
+					<p>
+						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>
+					</p>
+                    <p>
+                        <textarea id="content" cols="80" rows="8"></textarea>
+                    </p>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container footernotes">
+                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on 08/31/2015</p>
+            </div>
+        </footer>
+        
+        <div id="template-content">
+            <h2>Template</h2>
+            <p>
+                You can use a spreadsheet application such as Microsoft Excel or Google Drive to create a list of comma separated users to import multiple users at once.<br /><br />
+                <a href="http://www.geotab.com/geodownloads/templates/import-user.xls" target="_blank">Click here to download</a> the Microsoft Excel template.<br />
+            </p>
+            <div class="code">
+                <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,GoKey<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,GoKey<br />Email4,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,</pre>
+            </div>
+        </div>
+
+        <div id="help-content">
+            <h2>Help</h2>
+            <p>
+                This utility helps you import users to your account using comma separated values (CSV).
+            </p>
+            <p>
+				Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.
+				<table>
+					<thead>
+						<tr>
+							<th>Value</th>
+							<th>Example</th>
+							<th>Notes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Email</td>
+							<td>john.smith@geotab.com</td>
+							<td>Can be email or user name. Spaces are not allowed.</td>
+						</tr>
+						<tr>
+							<td>First name</td>
+							<td>John</td>
+							<td>Spaces are not allowed.</td>
+						</tr>
+						<tr>
+							<td>Last name</td>
+							<td>Smith</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td></td>
+							<td>Minimum of 6 characters.</td>
+						</tr>
+						<tr>
+							<td>Groups</td>
+							<td>Drivers|West|Garmin</td>
+							<td>Names of groups separated by the | character.</td>
+						</tr>
+						<tr>
+							<td>Security clearance ID</td>
+							<td>b28A7</td>
+							<td>
+								Found in the URL when viewing a security clearance in MyGeotab.<br /><br />
+								Example:<br />
+								my.geotab.com/DATABASE/#clearance,id:<strong>b28A7</strong>
+							</td>
+						</tr>
+						<tr>
+							<td>NFC key number</td>
+							<td>T1234S</td>
+							<td><i>Optional</i>. Found on the NFC key fob.</td>
+						</tr>
+						<tr>
+							<td>GO key number</td>
+							<td>12345678</td>
+							<td><i>Optional</i>. Found in the "Read Key Info" area of "Keys & RF" in your MyGeotab account.</td>
+						</tr>
+					</tbody>
+				</table>
+            </p>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/login.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
+
+        <script type="text/javascript">
+
+            var groupCache = {};
+            var securityClearanceCache = {};
+			var selectedGroups = [];
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                groupCache = refreshGroupCache(null);
+                securityClearanceCache = refreshSecurityClearanceCache(null);
+				
+				document.getElementById("content").addEventListener("keyup", function(event) {
+					event.preventDefault();
+					
+					document.getElementById("importUsers").disabled = (event.target.value === "");
+				});
+				
+				$("#import-groups").on("change", function(event, parameters) {
+					if (parameters.selected) {
+						selectedGroups.push(parameters.selected);
+					} else {
+						var index = selectedGroups.indexOf(parameters.deselected);
+						if (index > -1) {
+							selectedGroups.splice(index, 1);
+						}
+					}
+				});
+				
+				document.getElementById("addUser").addEventListener("click", function(event) {
+					event.preventDefault();
+					
+					var user = parseUserFromFields();
+					
+					if (user.userName === "") {
+						alert("Email or user name is required");
+						return;
+					}
+					if (user.userName.indexOf(" ") > 0) {
+						alert("Email or user name cannot contain a space");
+						return;
+					}
+					if (user.firstName === "") {
+						alert("First name is required");
+						return;
+					}
+					if (user.lastName === "") {
+						alert("Last name is required");
+						return;
+					}
+					if (user.password === "") {
+						alert("Password is required");
+						return;
+					}
+					if (user.groups.length <= 0) {
+						alert("User must belong to at least one group");
+						return;
+					}
+					if (user.securityClearance === "") {
+						alert("Security clearance is required");
+						return;
+					}
+					
+					var newContent = document.getElementById("content").value;
+					
+					if (newContent !== "") {
+						newContent += "\n";
+					}
+					newContent += user.userName + ",";
+					newContent += user.firstName + ",";
+					newContent += user.lastName + ",";
+					newContent += user.password + ",";
+					for (var i = 0; i < user.groups.length; i++) {
+						if (i < user.groups.length - 1) {
+							newContent += user.groups[i] + "|";
+						} else {
+							newContent += user.groups[i] + ",";
+						}
+					}
+					newContent += user.securityClearance + ",";
+					newContent += user.nfcKey + ",";
+					newContent += user.goKey;
+					
+					document.getElementById("content").value = newContent;
+					document.getElementById("importUsers").disabled = false;
+				});
+
+                document.getElementById("importUsers").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    var content = document.getElementById("content").value;
+
+                    if (content === "") {
+                        alert("At least one user is required");
+                    } else {
+                        var userRows = content.split("\n");
+						
+						var users = [];
+						
+						for (var i = 0; i < userRows.length; i++) {
+							if (userRows[i].trim() !== "") {
+								users.push(userRows[i].trim());
+							}
+						}
+						
+						var calls = [];
+						
+                        for (i = 0; i < users.length; i++) {
+                            var split = users[i].split(",");
+
+                            if (split.length !== 8) {
+                                alert("Missing necessary information from user: " + users[i]);
+                                continue;
+                            }
+
+                            var userName = split[0];
+                            var firstName = split[1];
+                            var lastName = split[2];
+                            var password = split[3];
+                            var groups = parseGroups(split[4]);
+                            var securityGroups = parseSecurityClearanceName(split[5]);
+                            var keys = parseKeys(split[6], split[7]);
+							
+							calls.push([
+								"Add", {
+									typeName: "User",
+									entity: {
+										name: userName,
+										firstName: firstName,
+										lastName: lastName,
+										password: password,
+										companyGroups: groups,
+										securityGroups: securityGroups,
+										userAuthenticationType: "BasicAuthentication",
+										activeFrom: new Date().toISOString(),
+										activeTo: "2050-01-01T00:00:00.000Z",
+										driverGroups: groups,
+										keys: keys,
+										viewDriversOwnDataOnly: false
+									}
+								}
+							]);
+                        }
+						
+						api.multiCall(calls, function(results) {
+							if (results !== undefined && results !== null && results.length > 0) {
+								alert("Imported " + results.length + " of " + users.length + " users");
+							}
+						}, function(error) {
+							if (error !== undefined && error !== null) {
+								if (error.indexOf("checksum") > 0) {
+									alert("There was a problem importing users. Please check that the NFC driver keys are entered correctly.");
+								} else if (error.indexOf("Index was outside") > 0) {
+									alert("There was a problem importing users. Please check that the GO driver keys are entered correctly.");
+								} else if (error.indexOf("DuplicateUserException") > 0) {
+									alert("There was a problem importing users. You have attempted to import a user name which already exists on your database.");
+								} else if (error.indexOf("DuplicateException") > 0) {
+									alert("There was a problem importing users. You have attmepted to import a driver key which already exists on your database.");
+								} else {
+									alert("There was a problem importing users. Please check that all fields are entered correctly, the groups and security clearances still exist on your account and that the email addresses or user names are not currently in use.");
+								}
+							}
+						});
+                    }
+                });
+
+            });
+			
+			function parseUserFromFields() {
+				var groups = [];
+			
+				for (var i = 0; i < selectedGroups.length; i++) {
+					for (var key in groupCache) {
+						if (groupCache[key].id == selectedGroups[i]) {
+							groups.push(groupCache[key].name);
+							break;
+						}
+					}
+				}
+				
+				var securityClearanceSelect = document.getElementById("import-securityClearance");
+				var securityClearanceId = securityClearanceSelect[securityClearanceSelect.selectedIndex].value;
+			
+				return {
+					userName: document.getElementById("import-userName").value,
+					firstName: document.getElementById("import-firstName").value,
+					lastName: document.getElementById("import-lastName").value,
+					password: document.getElementById("import-password").value,
+					groups: groups,
+					securityClearance: securityClearanceId,
+					nfcKey: document.getElementById("import-nfcKey").value,
+					goKey: document.getElementById("import-goKey").value
+				}
+			}
+
+            function parseGroups(text) {
+                var result = [];
+                var split = text.split("|");
+                for (var i = 0; i < split.length; i++) {
+                    if (groupCache.hasOwnProperty(split[i].trim())) {
+                        result.push(groupCache[split[i].trim()]);
+                    }
+                }
+                if (result.length <= 0) {
+                    result.push(groupCache["GroupCompanyId"]);
+                }
+                return result;
+            }
+
+            function parseSecurityClearanceName(text) {
+                var result = [];
+                var split = text.split("|");
+                for (var i = 0; i < split.length; i++) {
+                    if (securityClearanceCache.hasOwnProperty(split[i].trim())) {
+                        result.push(securityClearanceCache[split[i].trim()]);
+                    }
+                }
+                if (result.length <= 0) {
+                    result.push(securityClearanceCache["GroupEverythingSecurityId"]);
+                }
+                return result;
+            }
+
+            function parseKeys(nfcKey, goKey) {
+                var keys = [];
+                if (nfcKey !== "") {
+                    keys.push({
+                        serialNumber: nfcKey,
+                        driverKeyType: "Nfc",
+                        isImmobilizeOnly: true
+                    });
+                }
+                if (goKey !== "") {
+                    keys.push({
+                        serialNumber: goKey,
+                        driverKeyType: "Usb",
+                        isImmobilizeOnly: true
+                    });
+                }
+                return keys;
+            }
+
+            function refreshGroupCache(callback) {
+				var select = document.getElementById("import-groups");
+			
+                api.call("Get", {
+                    typeName: "Group"
+                }, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        groupCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].name === undefined) {
+								result[i].name = result[i].id;
+                            }
+                        }
+						result.sort(function(a, b) {
+							if (a.name.toLowerCase() < b.name.toLowerCase()) {
+								return -1;
+							}
+							if (a.name.toLowerCase() > b.name.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						});
+						for (i = 0; i < result.length; i++) {
+							groupCache[result[i].name] = result[i];
+							var option = new Option();
+							option.text = result[i].name;
+							option.value = result[i].id;
+							select.add(option);
+						}
+                    }
+					$("#import-groups").chosen({
+						search_contains: true
+					});
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function refreshSecurityClearanceCache(callback) {
+				var select = document.getElementById("import-securityClearance");
+			
+                api.call("Get", {
+                    typeName: "Group",
+                    search: {
+                        id: "GroupSecurityId"
+                    }
+                }, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        securityClearanceCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].name === undefined) {
+								result[i].name = result[i].id;
+                            }
+                        }
+						result.sort(function(a, b) {
+							if (a.name.toLowerCase() < b.name.toLowerCase()) {
+								return -1;
+							}
+							if (a.name.toLowerCase() > b.name.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						});
+						for (i = 0; i < result.length; i++) {
+							securityClearanceCache[result[i].id] = result[i];
+							var option = new Option();
+							option.text = result[i].name;
+							option.value = result[i].id;
+							select.add(option);
+						}
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+        </script>
+
+    </body>
+
+</html>

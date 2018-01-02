@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <title>Geotab SDK | Import route plan</title>
+
+    <link href="css/geotab.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt=""/>
+            <button id="help">Help</button>
+            <button id="signout">Sign out</button>
+        </nav>
+        <h1>Example: Import route plan</h1>
+
+        <h3>How to import a collection of route plans to MyGeotab</h3>
+    </div>
+</header>
+
+<div class="container bordered">
+
+    <div id="signin-content"></div>
+
+    <div id="example-content">
+        <form>
+            <h3>Import route plans</h3>
+
+            <p>
+                Use the text box below to import multiple route plans at a time. Place each route plan
+                on its own line as follows:
+            </p>
+
+            <div class="code">
+                <pre>RouteName1,DeviceName1,ZoneName1|StartTime1|TripTime1|StopTime1|Distance1<br/>RouteName2,DeviceName2,ZoneName1|StartTime1|||<br/>RouteName3,DeviceName3,ZoneName1|StartTime1|||,ZoneName2|StartTime2|||<br/>RouteName4,DeviceName4,ZoneName1|StartTime1|||,ZoneName2|StartTime2|||,ZoneName3|StartTime3|||</pre>
+            </div>
+            <p>
+                <textarea id="content" cols="80" rows="8"></textarea>
+            </p>
+            <button id="importRoutePlans">Import route plans</button>
+            <ul id="result"></ul>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    <div class="container footernotes">
+        <p>Source code provided as part of the
+            <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.
+        </p>
+
+        <p>Last updated on 08/31/2015</p>
+    </div>
+</footer>
+
+<div id="help-content">
+    <h2>Help</h2>
+
+    <p>
+        <strong>Overview</strong><br/>
+        This utility helps you import route plans to your account using comma separated values (CSV).
+    </p>
+
+    <p>
+        <strong>Work flow</strong><br/>
+        Route plans in MyGeotab can be thought of as waypoints through a sequence of zones combined with a vehicle
+        (which will drive the route) and some optional information about when that vehicle
+        should depart from and make it to each waypoint. The input provided is parsed and if the specified device and all
+        zone waypoints exist, a new route is saved to your account.  Note that a route needs a minimum of two waypoints.
+    </p>
+    <table>
+        <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>RouteName</td>
+            <td>Name of the route</td>
+            <td><strong>Yes</strong></td>
+        </tr>
+        <tr>
+            <td>DeviceName</td>
+            <td>Which device to assign to the route</td>
+            <td><strong>Yes</strong></td>
+        </tr>
+        <tr>
+            <td>ZoneName</td>
+            <td>Name of a zone to include as a waypoint</td>
+            <td><strong>Yes</strong></td>
+        </tr>
+        <tr>
+            <td>StartTime</td>
+            <td>When the route will be driven (yyyy-mm-dd hh:mm:ss)</td>
+            <td><strong>Yes</strong></td>
+        </tr>
+        <tr>
+            <td>TripTime</td>
+            <td>Estimated time it will take to reach next the waypoint (hh:mm:ss)</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>StopTime</td>
+            <td>Estimated additional time the vehicle will spend at this stop (hh:mm:ss)</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Distance (km)</td>
+            <td>Estimated travel distance to the stop</td>
+            <td>No</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        <strong>Parameter format example</strong><br/>
+        <small>My Route 01,My Vehicle 01,Office Zone 1|2015-08-31T08:00:00.000Z|||,Office Zone 2|2015-08-31T10:00:00.000Z|||</small>
+    </p>
+    <p>
+        <strong>Skill level</strong><br/>
+        Intermediate
+    </p>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/login.js"></script>
+
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.getElementById("importRoutePlans").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var content = document.getElementById("content").value;
+            var i;
+            var split;
+            var routes;
+            var routeName;
+            var deviceName;
+            var routePlans = [];
+            var routePlanItems;
+
+            if (content === "") {
+                log("Error: At least one route is required");
+            } else {
+                // Split up the lines one by one
+                routes = content.split("\n");
+
+                document.getElementById("result").innerHTML = "";
+
+                for (i = 0; i < routes.length; i++) {
+                    // Split up the route properties
+                    split = routes[i].split(",");
+
+                    // Each imported route must have at least a name, device and one zone
+                    if (split.length < 3) {
+                        log("Error: Could not import " + routes[i]);
+                        continue;
+                    }
+
+                    if (split[0].length > 255) {
+                        alert("Route name on line " + (i + 1) + " exceeds 255 characters");
+                        return;
+                    }
+
+                    if (split[1].length > 255) {
+                        alert("Device name on line " + (i + 1) + " exceeds 255 characters");
+                        return;
+                    }
+
+                    routeName = split[0];
+                    deviceName = split[1];
+                    routePlanItems = parseRoutePlanItems(split.slice(2, split.length));
+
+                    // Ensure that no issues were found parsing the route plan items
+                    if (routePlanItems === null) {
+                        log("Error: Could not parse route plan items: " + split.slice(2, split.length));
+                        continue;
+                    }
+
+                    routePlans.push({
+                        comment: "",
+                        device: deviceName,
+                        name: routeName,
+                        routePlanItemCollection: routePlanItems,
+                        routeType: "Plan"
+                    });
+                }
+
+                populateDevices(routePlans, function (routePlans) {
+                    populateZones(routePlans, function (routePlans) {
+                        addRoutes(routePlans);
+                    });
+                });
+            }
+        });
+    });
+
+    function log(message) {
+        var elResults = document.getElementById("result");
+        var elItem = document.createElement("LI");
+        elItem.textContent = message;
+        elResults.insertBefore(elItem, elResults.firstChild)
+    }
+
+    function parseRoutePlanItems(items) {
+        var i, split, startDate, routePlanItems = [];
+
+        if (items === undefined || items === null || items.length === 0) {
+            return null;
+        }
+
+        for (i = 0; i < items.length; i++) {
+            split = items[i].split("|");
+            startDate = split[1];
+
+            routePlanItems.push({
+                activeFrom: startDate,
+                activeTo: startDate,
+                zone: split[0],
+                expectedTripDurationToArrival: split[2] || null,
+                expectedStopDuration: split[3] || null,
+                expectedDistanceToArrival: parseFloat(split[4]) || null,
+                sequence: i
+            });
+        }
+        return routePlanItems;
+    }
+
+    function addRoutes(routePlans) {
+        for (var i = 0; i < routePlans.length; i++) {
+            api.call("Add", {
+                typeName: "Route",
+                entity: routePlans[i]
+            }, (function () {
+                var index = i; // closure for value of i
+                return function (result) {
+                    log("Successfully imported " + routePlans[index].name + " (" + result + ")");
+                };
+            }()), function (error) {
+                log("Error: " + error.toString());
+            });
+        }
+    }
+
+    function populateZones(routePlans, callback) {
+        var zoneLookup = {}, calls;
+        routePlans.forEach(function (routePlan) {
+            routePlan.routePlanItemCollection.forEach(function (routePlanItem) {
+                zoneLookup[routePlanItem.zone] = null;
+            });
+        });
+        calls = Object.keys(zoneLookup).map(function (name) {
+            return ["Get", { typeName: "Zone", search: {name: name} }];
+        });
+
+        api.multiCall(calls, function (result) {
+            var i, j, zone, zoneName, routePlan, routePlanItem;
+            if (result != undefined && result.length > 0) {
+                for (i = 0; i < result.length; i++) {
+                    zone = result[i][0];
+                    if (zone) {
+                        zoneLookup[zone.name] = zone;
+                    }
+                }
+            }
+            for (i = 0; i < routePlans.length; i++) {
+                routePlan = routePlans[i];
+                for (j = 0; j < routePlan.routePlanItemCollection.length; j++) {
+                    routePlanItem = routePlan.routePlanItemCollection[j];
+                    zoneName = routePlanItem.zone;
+                    zone = zoneLookup[zoneName];
+                    if(zone){
+                        // to save bytes we don't need to send the whole zone, only the id
+                        routePlanItem.zone = { id:  zone.id };
+                    } else {
+                        log("Error: " + routePlan.name + " could not find a zone matching name: " + zoneName);
+                        routePlans.splice(i, 1);
+                        i--;
+                        break;
+                    }
+                }
+            }
+            if (callback) {
+                callback(routePlans);
+            }
+        }, function (error) {
+            log(error);
+        });
+    }
+
+    function populateDevices(routePlans, callback) {
+        var deviceLookup = {}, calls;
+        routePlans.forEach(function (routePlan) {
+            deviceLookup[routePlan.device] = null;
+        });
+        calls = Object.keys(deviceLookup).map(function (name) {
+            return ["Get", { typeName: "Device", search: {name: name} }];
+        });
+
+        api.multiCall(calls, function (result) {
+            var i, device, name, routePlan;
+            if (result != undefined && result.length > 0) {
+                for (i = 0; i < result.length; i++) {
+                    device = result[i][0];
+                    if (device) {
+                        deviceLookup[device.name] = device;
+                    }
+                }
+            }
+            for (i = 0; i < routePlans.length; i++) {
+                routePlan = routePlans[i];
+                name = routePlan.device;
+                device = deviceLookup[name];
+                if(device){
+                    // to save bytes we don't need to send the whole device, only the id
+                    routePlan.device = { id: device.id };
+                } else {
+                    log("Error: " +routePlan.name + " could not find a device matching name: " + name);
+                    routePlans.splice(i, 1);
+                    i--;
+                    break;
+                }
+            }
+            if (callback) {
+                callback(routePlans);
+            }
+        }, function (error) {
+            log(error);
+        });
+    }
+
+</script>
+
+</body>
+
+</html>
