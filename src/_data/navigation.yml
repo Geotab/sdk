@@ -39,13 +39,10 @@ toc:
           - page: Javascript Examples
             url: /software/js-samples/
           - page: Dotnet Examples
-            url: https://github.com/geotab/dotnet-examples
+            url: https://github.com/Geotab/sdk-dotnet-samples#dotnet-examples
             external: true
           - page: Add-in Examples
-            url: https://github.com/geotab/addin-examples
-            external: true
-          - page: Data feed example
-            url: https://github.com/geotab/dotnet-examples/src/data-feed
+            url: https://github.com/geotab/sdk-addin-examples
             external: true
   - title: Hardware
     folderitems:
