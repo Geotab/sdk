@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImportZonesShapeFile": {
+      "commandName": "Project",
+      "commandLineArgs": "\"127.0.0.1\" \"geotabdemo\" \"stevehansen@geotab.com\" \"16v1983RoCCo!\" \"owensboro.shp\""
+    }
+  }
+}

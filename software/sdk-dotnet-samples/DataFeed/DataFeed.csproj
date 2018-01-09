@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>DataFeed</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <OutDir>bin\$(Configuration)\$(TargetFramework)</OutDir>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Geotab.SDK.DataFeed</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Geotab.Checkmate.ObjectModel" Version="5.7.1712" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth">
+      <HintPath>DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis">
+      <HintPath>Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Authentication.OAuth2">
+      <HintPath>Google.Apis.Authentication.OAuth2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Bigquery.v2">
+      <HintPath>Google.Apis.Bigquery.v2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

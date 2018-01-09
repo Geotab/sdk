@@ -1,0 +1,25 @@
+# ImportGroups.csv
+# Structure: <parent group name>,<new group name>
+# Both <parent group name>,<new group name> must be unique 
+# -------------------------------------------------------------------------
+# lines beginning with '#' are comments and ignored
+# 
+# create 2 groups under 'Organization'
+# -------------------------------------------------------------------------
+Organization,DriverGroup
+Organization,VehicleGroups
+# -------------------------------------------------------------------------
+# create 2 groups: 'Canada' and 'USA' with the parent group: 'VehicleGroups'
+# -------------------------------------------------------------------------
+VehicleGroups,Canada
+VehicleGroups,USA
+# -------------------------------------------------------------------------
+# create 2 groups under Canada
+# -------------------------------------------------------------------------
+Canada,Ontario
+Canada,BC
+# -------------------------------------------------------------------------
+# create 2 groups under USA
+# -------------------------------------------------------------------------
+USA,CA
+USA,MI

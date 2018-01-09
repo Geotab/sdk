@@ -1,0 +1,8 @@
+# importZones.csv
+# Structure: <name>, <longitude>, <latitude>, <size>, <nodeName>
+# -------------------------------------------------------------------------
+# lines beginning with '#' are comments and ignored
+Customer 1,40.68775,-73.98997,200,Organization
+Customer 2,41.68775,-73.98997,200,Oakville
+Customer 3,42.68775,-73.98997,200,Organization
+Customer 4,43.68775,-73.98997,200,Oakville

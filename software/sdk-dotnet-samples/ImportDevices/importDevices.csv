@@ -1,0 +1,14 @@
+# importDevices.csv
+# Structure: <description>, <serialNumber>, <node1|node2>
+# -------------------------------------------------------------------------
+# lines beginning with '#' are comments and ignored
+Vehicle 1,GT-810-000-0001,Organization
+Vehicle 2,GT-820-000-0002,Organization
+Vehicle 3,GT-830-000-0003,Organization
+Vehicle 4,GT-840-000-0004,Organization
+Vehicle 5,GT-850-000-0005,Organization
+Vehicle 6,GT-860-000-0006,Oakville
+Vehicle 7,GT-870-000-0007,Organization
+Vehicle 8,GT-880-000-0008,Organization
+Vehicle 9,GT-890-000-0009,Organization
+Vehicle 10,GT-910-000-000A,Oakville|Toronto
