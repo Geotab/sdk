@@ -19,6 +19,15 @@ main img:not(.welcome) {
     @extend .img-thumbnail;
 }
 
+main {
+    h2 {
+        margin-top: 3rem;
+    }
+    h1, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        margin-top: 2rem;
+    }
+}
+
 blockquote {
     padding: 1rem;
     border-left: 3px solid #0B4B77;
