@@ -570,6 +570,7 @@ permalink: /software/api/reference/
             removeLeadingGetRegex = /^get(.*$)/,
             removeBracketsRegex = /\(.*\)/g,
             replaceGeotabRegex = /Geotab\./ig,
+            replaceUrlCharactersRegex = /[!@#$%^&`*]/g,
             createDictionaryOfMembers = function (objectModelMembers, pullTextWithLinked, memberDictionary) {
                 var getArgumentsArray = function (memberName, indexesToHide) {
                     var argsTemp = [],
@@ -705,7 +706,7 @@ permalink: /software/api/reference/
 
                         //Find type
                         memberPropMeth.fullName = name = node.getAttribute("name");
-                        memberPropMeth.anchor = name.replace(removeBracketsRegex, "");
+                        memberPropMeth.anchor = name.replace(removeBracketsRegex, "").replace(replaceUrlCharactersRegex, "");
 
                         // Type - T:Type, F:Enum, M:Method, P:Property
                         memberPropMeth.type = name.substr(0, 1);
@@ -804,7 +805,7 @@ permalink: /software/api/reference/
                             memberPropMeth.fullName = "P" + memberPropMeth.fullName.substring(1);
                             memberPropMeth.fullName = memberPropMeth.fullName.replace(fullNameRegex, "$1$3");
 
-                            memberPropMeth.anchor = memberPropMeth.fullName;
+                            memberPropMeth.anchor = memberPropMeth.fullName.replace(replaceUrlCharactersRegex, "");
 
                             searchPropDataType = node.querySelector("returns see");
                             if (searchPropDataType) {
