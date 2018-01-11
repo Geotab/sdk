@@ -24,15 +24,15 @@ Refer to the "[Geotab Support Documentation](https://www.geotab.com/support-docu
 
 3. Add your GO device serial number to this database so you can collect some GPS, Engine and other useful data
 
-## What’s next?
+## What's next?
 
 There are several other items in the SDK to help you get started:
 
 * [Concepts](../concepts/) — Be sure to read through this before building your application
 
-* [Using in Javascript](../using-in-javaScript/)
+* [Using in Javascript](../using-in-javascript/)
 
-* [Using in .NET](../using-in-dotNet)
+* [Using in .NET](../using-in-dotnet/)
 
 * [Support Alerts](https://www.geotab.com/support-alert/) — To view our support notification page and to sign up for the Geotab Newsletter
 

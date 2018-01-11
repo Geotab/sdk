@@ -83,7 +83,7 @@ When using HTTP POST request to invoke an API method, the same endpoint as the G
 
 `https://[myserver]/apiv1/`
 
-However, instead of encoding the method name and parameters in the query string, it is passed in the HTTP body using the [JSON-RPC](http://en.wikipedia.org/wiki/JSON-RPC)format. Geotab API version 1 supports JSON-RPC version 2.0.
+However, instead of encoding the method name and parameters in the query string, it is passed in the HTTP body using the [JSON-RPC](http://en.wikipedia.org/wiki/JSON-RPC) format. Geotab API version 1 supports JSON-RPC version 2.0.
 
 The following is a JavaScript example that shows how an HTTP POST can be used to invoke a method. Note that this can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.Http.HttpClient in .Net can be utilized.
 
@@ -397,7 +397,7 @@ var deviceLookup = {
 
 statusDatas[i].device = deviceLookup[statusDatas[i].device.id];
 
-Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call.This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the C# and [JavaScript DataFeed](../js-samples/dataFeed.html) examples.
+Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call.This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) and [JavaScript DataFeed](../../js-samples/dataFeed.html) examples.
 
 ## MultiCall
 
