@@ -1,16 +1,23 @@
 --- 
 layout: default 
 --- 
+<div id="wrapper">
 {% include sidebar.html %}
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-  <article class="col-md-12">
-    <header>
-      <h1>{{ page.title }}</h1>
-    </header>
+<main role="main">
+    <div class="container-fluid">
+      <div class="row">
 
-    <div>
-      {{ content }}
+        <article class="col-md-12">
+          <header>
+            <h1>{{ page.title }}</h1>
+          </header>
+
+          <div>
+            {{ content }}
+          </div>
+        </article>
+
+      </div>
     </div>
-
-  </article>
-</main>
+  </main>
+</div>
