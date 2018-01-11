@@ -173,7 +173,7 @@ The MyGeotab API supports _gzip_ and _deflate_ compression. To utilize either of
 
 Accept-Encoding: gzip, deflate
 
-> If you are using an API wrapper (.Net, JavaScript, Nodejs, etc) this header should be enabled automatically.
+> If you are using an API client (.Net, JavaScript, Nodejs, etc) this header should be enabled automatically.
 
 ## Authentication
 
@@ -484,9 +484,9 @@ results = {
 }
 ```
 
-### API wrapper support
+### API client support
 
-All of the [API wrappers](../../api/wrappers/) have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
+All of the [API clients](../../api/clients/) have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
 
 JavaScript API multi-call example:
 

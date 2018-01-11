@@ -82,7 +82,7 @@ title: What’s New
 * GetFeed of Trip now includes stop point (woohoo!)
 ***requires server running 5.7.1706.x**
 
-* [API wrappers](https://my112.geotab.com/sdk/#/apiWrappers) section added to SDK documentation
+* [API Clients](https://my112.geotab.com/sdk/#/apiWrappers) section added to SDK documentation
 
 * Geotab.Reflection package no longer a dependency of Geotab.Checkmate.Objectmodel nuget package
 
@@ -477,7 +477,7 @@ For detailed information on new features please review the API Reference.
 
 * Get *all* zones now populating points correctly ([see forum post](https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points))
 
-* Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API wrapper
+* Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API client
 
 * Units of measure have been converted to use Known Id’s ([see forum post](https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId))
 

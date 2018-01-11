@@ -32,8 +32,8 @@ toc:
             url: /software/api/reference/
           - page: Runner
             url: /software/api/runner.html
-          - page: Wrappers
-            url: /software/api/wrappers/
+          - page: API Clients
+            url: /software/api/clients/
       - title: Code Samples
         subfolderitems:
           - page: Javascript Examples
