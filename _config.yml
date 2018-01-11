@@ -5,6 +5,9 @@ description: The Geotab SDK (Software Development Kit) is a powerful set of tool
 url: https://geotab.github.io
 baseurl:
 
+github:
+  repository_url: https://github.com/Geotab/sdk
+
 # Used so Jekyll outputs the site correctly so Gulp can do what it wants
 source: .tmp/src
 destination: .tmp/dist
