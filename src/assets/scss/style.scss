@@ -39,6 +39,17 @@ blockquote {
     max-width: 800px;
 }
 
+// permalinks
+.header .header-link {
+    opacity:0;
+    transition:opacity 0.2s linear;
+}
+
+.header:hover .header-link:not(:hover),
+.header-link:hover {
+    opacity:1;
+}
+
 // reference
 .beta {
     @extend .badge; 

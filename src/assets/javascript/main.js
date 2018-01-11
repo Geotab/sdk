@@ -13,6 +13,7 @@ var linkifyAnchors = function (level, containingElement) {
         var header = headers[h];
 
         if (typeof header.id !== "undefined" && header.id !== "") {
+            header.className += " header";
             header.appendChild(anchorForId(header.id));
         }
     }
