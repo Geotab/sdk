@@ -12,31 +12,14 @@ To create a link to a page, the following URL structure is used:
 
 `https://<serverName>/<databaseName>/#<page>,<parameters>`
 
-> The portions of the examples noted with < and > (e.g. <serverName>) indicate where the user will enter information specific to their requirements.
+> The portions of the examples noted with < and > (e.g. `<serverName>`) indicate where the user will enter information specific to their requirements.
 
-<table class="table">
-  <tr>
-    <th>Item</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>serverName</td>
-    <td>The name of the server the database is on. For example, my.geotab.com</td>
-  </tr>
-  <tr>
-    <td>databaseName</td>
-    <td>The name of the database. This is typically the company name used during registration. If there are spaces in the name, they are replaced with underscore characters (_)</td>
-  </tr>
-  <tr>
-    <td>page</td>
-    <td>The MyGeotab web application page name</td>
-  </tr>
-  <tr>
-    <td>parameters</td>
-    <td>Additional arguments to apply to the request. For example, ‘currentSortMode:deviceName’ will sort the devices on the device list page by name. Note: each additional parameter is separated by a comma</td>
-  </tr>
-</table>
-
+| Item | Description
+| --- | --- |
+| serverName | The name of the server the database is on. For example, my.geotab.com |
+| databaseName | The name of the database. This is typically the company name used during registration. If there are spaces in the name, they are replaced with underscore characters (_) |
+| page | The MyGeotab web application page name |
+| parameters | Additional arguments to apply to the request. For example, `currentSortMode:deviceName` will sort the devices on the device list page by name. Note: each additional parameter is separated by a comma |
 
 #### Example
 
@@ -56,7 +39,7 @@ To create a link to a page, the following URL structure is used:
 
 #### Example
 
-[https://my3.geotab.com/g560/geotab/checkmate/ui/devices.html](https://my3.geotab.com/g560/geotab/checkmate/ui/devices.html)
+[https://my.geotab.com/g560/geotab/checkmate/ui/devices.html](https://my.geotab.com/g560/geotab/checkmate/ui/devices.html)
 
 > If you are not yet logged in, you will be prompted for your credentials.
 
@@ -66,7 +49,7 @@ Parameters are added at the end of the URL and each is separated by a comma. The
 
 #### Example
 
-These links will navigate to the map pages showing the live position of a device with id ‘b21’, and with the group ‘b1234’ highlighted.
+These links will navigate to the map pages showing the live position of a device with id `b21`, and with the group `b1234` highlighted.
 
 `https://<serverName>/<databaseName>/#map,highlightGroup:b1234,liveVehicleIds:!(b21)`
 
@@ -80,25 +63,10 @@ The list of devices in the system.
 
 Default: list of all devices sorted by name.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>sortMode</td>
-    <td>Sorts the list of devices in a specific way</td>
-    <td>byType — sort by device
-byName — sort by name</td>
-  </tr>
-  <tr>
-    <td>groupSelection</td>
-    <td>Divides the device list into subheadings, which are children groups of the selected parent</td>
-    <td><groupName> — parent group name that the device belongs to</td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| sortMode | Sorts the list of devices in a specific way | byType — sort by devicebyName — sort by name |
+| groupSelection | Divides the device list into subheadings, which are children groups of the selected parent | `<groupName>` — parent group name that the device belongs to |
 
 #### Example
 
@@ -114,19 +82,9 @@ Edit an individual device.
 
 Default: no default page, you must have an id parameter.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>id</td>
-    <td>Goes to a device’s edit page</td>
-    <td><deviceId></td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| id | Goes to a device’s edit page | `<deviceId>` |
 
 #### Example
 
@@ -148,29 +106,11 @@ The map viewer page.
 
 Default: shows the map with your default map settings.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>liveVehicleIds</td>
-    <td>Used to show the live location of a device by its id</td>
-    <td><list of deviceIds></td>
-  </tr>
-  <tr>
-    <td>planRoutes</td>
-    <td>Show a route on the map</td>
-    <td><list of deviceIds></td>
-  </tr>
-  <tr>
-    <td>highlightGroup</td>
-    <td>Will highlight all devices in that group on the map display</td>
-    <td><groupId></td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| liveVehicleIds | Used to show the live location of a device by its id | `<list of deviceIds>` |
+| planRoutes | Show a route on the map | `<list of deviceIds>` |
+| highlightGroup | Will highlight all devices in that group on the map display | `<groupId>` |
 
 #### Example
 
@@ -184,32 +124,11 @@ The detailed vehicle trip history page.
 
 Default: will request you to select settings from the drop down menus. You can define the settings using the parameters.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>dateRange</td>
-    <td>Sets the range of dates for the trips</td>
-    <td>(interval:<value>) — values: ‘Today’, ‘Yesterday’, ‘This Week’, ‘Last Week’, ‘This Month’, ‘Last Month’
-
-(interval:custom,startDate: ‘<date1>’,endDate:‘<date2>’)</td>
-  </tr>
-  <tr>
-    <td>entityType</td>
-    <td>Show activity for drivers or devices</td>
-    <td>Device — list device activity
-Driver — list driver activity</td>
-  </tr>
-  <tr>
-    <td>selectedEntities</td>
-    <td>Vehicles to list information for</td>
-    <td>!(<listOfEnitities>) or ‘all’</td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| dateRange | Sets the range of dates for the trips | `(interval:<value>)` — values: `Today`, `Yesterday`, `This Week`, `Last Week`, `This Month`, `Last Month`, `(interval:custom,startDate: <date1>,endDate:`<date2>)` |
+| entityType | Show activity for drivers or devices | Device — list device activity, Driver — list driver activity |
+| selectedEntities | Vehicles to list information for | !(`<listOfEnitities>`) or `all` |
 
 #### Example
 
@@ -223,27 +142,10 @@ The zone list page.
 
 Default: list of all zones by name.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>sortOrder</td>
-    <td>The list order</td>
-    <td> 1 — list alphabetically
--1 — Invert the list</td>
-  </tr>
-  <tr>
-    <td>sortMode</td>
-    <td>Choose how the sort the list</td>
-    <td>zoneName — sorts by name
-zoneType — sorts by type
-zoneGroup — sorts by group</td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| sortOrder | The list order | `1` — list alphabetically, `-1` — Invert the list|
+| sortMode | Choose how the sort the list | `zoneName` — sorts by name, `zoneType` — sorts by type, `zoneGroup` — sorts by group |
 
 #### Example
 
@@ -259,19 +161,9 @@ The zone edit page.
 
 Default: No default available. Needs parameters.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>id</td>
-    <td>Goes to edit page for the selected zone</td>
-    <td><zoneId></td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| id | Goes to edit page for the selected zone | `<zoneId>` |
 
 #### Example
 
@@ -283,29 +175,11 @@ The notification list page.
 
 Default: full list of user notifications listed in order of most recent time.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>sortOrder</td>
-    <td>The list order</td>
-    <td> 1 — list the most recent time first -1 — invert the list</td>
-  </tr>
-  <tr>
-    <td>sortMode</td>
-    <td>Selects the sort mode</td>
-    <td>machineName — sorts by machine</td>
-  </tr>
-  <tr>
-    <td>showDismissed:!t</td>
-    <td>Shows all dismissed messages</td>
-    <td>None</td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| sortOrder | The list order | `1` — list the most recent time first `-1` — invert the list |
+| sortMode | Selects the sort mode | `machineName` — sorts by machine |
+| showDismissed:!t | Shows all dismissed messages | None |
 
 #### Example
 
@@ -317,20 +191,9 @@ The user list page.
 
 Default: list of all current users.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>sortOrder</td>
-    <td>The list order</td>
-    <td> 1 — list alphabetically 
--1 — invert the list</td>
-  </tr>
-</table>
-
+| Parameter | Description | Values |
+| --- | --- | --- |
+| sortOrder | The list order | `1` — list alphabetically `-1` — invert the list |
 
 #### Example
 
@@ -342,18 +205,9 @@ The user edit page.
 
 Default: goes to add a new user page.
 
-<table class="table">
-  <tr>
-    <td>Parameter</td>
-    <td>Description</td>
-    <td>Values</td>
-  </tr>
-  <tr>
-    <td>id</td>
-    <td>The user’s id. Will link to the edit page for that user</td>
-    <td><userId></td>
-  </tr>
-</table>
+| Parameter | Description | Values |
+| --- | --- | --- |
+| id | The user’s id. Will link to the edit page for that user | `<userId>` |
 
 #### Example
 
@@ -375,31 +229,31 @@ Default: edit user preferences page, no parameters required.
 
 It is possible to insert username and database credentials into a URL. Note that the user will be required to be logged in to utilize these types of links.
 
-#### MyGeotab Page Example
+MyGeotab Page Example
 
 `https://<serverName>/<databaseName>/?('userName':'<userName>','database':<databaseName>)#<page>`
 
-#### Standalone Page Example
+Standalone Page Example
 
 `https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:(database:<databaseName>,userName:'<userName>')`
 
 We do not support passing the password credential through the URL because it is unsafe. The way around this is to use a session Id.
 
-### Links that include username, database and session id:
+### Links that include username, database and session id
 
 It is also possible to include a session id in the URL. This will not prompt the user to login if the session id is valid.
 
-#### MyGeotab Page Example
+MyGeotab Page Example
 
 `https://<serverName>/<databaseName>/#<page>,token:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
 
-#### Standalone Page Example
+Standalone Page Example
 
 `https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
 
-## Getting the session Id using the API:
+## Getting the session Id using the API
 
-Refer to the [Concepts](/software/guides/concepts/#authentication) page, under the section ‘Authentication’. Within that section the instructions explain the process of authenticating a user to obtain their session id.
+Refer to the [Authentication](../concepts/#authentication) section. Within that section the instructions explain the process of authenticating a user to obtain their session id.
 
 ## Security Using the Session Id
 

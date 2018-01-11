@@ -17,13 +17,15 @@ Various working examples are included in this SDK for use as a starting point wi
 
 The Geotab Data Feed API is a scalable, efficient and secure method to access all the device’s data.
 
-There are three different types of data that can be requested from the API:
+There are many different types of data that can be requested from the API. For example:
 
-* LogRecords (such as position and speed)
-* StatusData (readings of vehicle measurements e.g. oil temperature or acceleration)
-* FaultData (fault codes and measurements reported by the engine)
+* LogRecords (GPS and speed)
+* StatusData (readings of vehicle measurements e.g. oil temperature or accelerometer)
+* FaultData (fault codes reported by the engine)
 
-The data feed service sample application allows the feed to be installed as a Windows service and run continuously in the background downloading data from the server (see [here](http://my3.geotab.com/sdk/#/dataFeed?geotabsdk=dataFeed)).
+> See the full list of supported data feed types [here](../api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1)
+
+The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the a database (see [here](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed)).
 
 ## Importing, exporting and synchronizing
 
@@ -35,7 +37,7 @@ Geotab has a set of pre-made applications (which include full source code) for s
 * Synchronize your vehicle groups based on the vehicle’s role in the company
 * Track Hours of Service (HOS) for regulations compliance
 
-You can start using these tools right now by downloading the C# examples [here](https://my3.geotab.com/sdk/dotnet.zip?geotabsdk=/dotnet.zip) and the JavaScript examples [here](https://my3.geotab.com/sdk/javascript.zip?geotabsdk=/javascript.zip).
+You can start using these tools right now by trying the .Net [here](https://github.com/Geotab/sdk-dotnet-samples) and JavaScript examples [here](../js-samples/).
 
 ## Automating tasks
 
@@ -48,7 +50,7 @@ Common tasks that you perform online using MyGeotab can all be automated using t
 
 Geotab has developed a number of Add-In products which can be easily integrated into your MyGeotab UI. The benefits of using Add-Ins are:
 
-* Ready availability of Add-Ins to instantly integrate into your MyGeotab. Visit the [Geotab Marketplace](http://www.geotab.com/marketplace/) and the [Developing Add-Ins](https://my3.geotab.com/sdk/default.html#/addins?geotabsdk=addins) SDK page to see the available Add-Ins
+* Ready availability of Add-Ins to instantly integrate into your MyGeotab and Geotab Drive. Visit the [Geotab Marketplace](http://www.geotab.com/marketplace/) and the [Developing Add-Ins](../guides/developing-addins/) SDK page to see the available Add-Ins
 * Versatility to create your own Add-In to customize a page or button to suit your needs
 
 ## Integrating with MyGeotab
@@ -62,7 +64,7 @@ By using single sign-on authentication with the Geotab API, you have the ability
 * Updating a user’s password
 * Adding and removing a user
 
-Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to. This is a great way to leverage MyGeotab and make it part of your services. See [here](http://my3.geotab.com/sdk/#/urlRequests?geotabsdk=urlRequests) for more details.
+Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to. This is a great way to leverage MyGeotab and make it part of your services. See [here](../guides/mygeotab-urls/) for more details.
 
 ## Integrating third-party tracking devices into MyGeotab
 
@@ -70,4 +72,4 @@ Third-party tracking devices can have their data added into the MyGeotab databas
 
 Note: There may be differences in how devices from third-party manufacturers record the data; frequency of data collection and accuracy of the device record may vary. The rich information contained in the MyGeotab reports may not be fully available. Testing of these tracking device will be required to properly integrate the data into MyGeotab.
 
-Please refer to [Using third-party devices in MyGeotab](http://my3.geotab.com/sdk/#/otherDevice?geotabsdk=otherDevice) for further details on using your own devices with MyGeotab.
+Please refer to [Using third-party devices in MyGeotab](../guides/third-party-devices/) for further details on using your own devices with MyGeotab.

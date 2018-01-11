@@ -28,21 +28,21 @@ Refer to the "[Geotab Support Documentation](https://www.geotab.com/support-docu
 
 There are several other items in the SDK to help you get started:
 
-* [Concepts](/software/guides/concepts/) — Be sure to read through this before building your application
+* [Concepts](../concepts/) — Be sure to read through this before building your application
 
-* [Using in Javascript](/software/guides/using-in-javaScript/)
+* [Using in Javascript](../using-in-javaScript/)
 
-* [Using in .NET](/software/guides/using-in-dotNet)
+* [Using in .NET](../using-in-dotNet)
 
 * [Support Alerts](https://www.geotab.com/support-alert/) — To view our support notification page and to sign up for the Geotab Newsletter
 
-* [API Reference](/software/reference/api) — the reference documentation that explains what each API call does and documents the parameters and results for each call
+* [API Reference](../../api/reference) — the reference documentation that explains what each API call does and documents the parameters and results for each call
 
-* [API Runner](/software/reference/runner) — an easy way to "play" with the API. Click on the “Runner” link from the API Reference. It is a tool that can be used to make method calls to a MyGeotab server and see what the results look like
+* [API Runner](../../api/runner.html) — an easy way to "play" with the API. Click on the “Runner” link from the API Reference. It is a tool that can be used to make method calls to a MyGeotab server and see what the results look like
 
 Note: Remember you are not in a sandbox — you are executing API commands against a real database. For example, removing a Device via the API will really delete that device from the database!
 
-* [JavaScript](/software/examples/javascript/) or [.NET](/software/examples/dotnet/) Code samples. The JavaScript sample are "live" and can be run against your database hosted on my.geotab.com. The .NET examples are downloadable and can be compiled and run against your MyGeotab server.
+* [JavaScript](../../js-samples/) or [.NET](https://github.com/Geotab/sdk-dotnet-samples) Code samples. The JavaScript sample are "live" and can be run against your database hosted on my.geotab.com. The .NET examples are downloadable and can be compiled and run against your MyGeotab server.
 
 For additional support [use the SDK forums](https://helpdesk.geotab.com/forums/21798473-Community-Forum?geotabsdk=forums). A number of solutions have already been provided in the forums. They are monitored by Geotab staff and other users of the SDK.
 

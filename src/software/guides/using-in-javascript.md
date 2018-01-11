@@ -8,7 +8,7 @@ title: Using in JavaScript
 
 Geotab provides JavaScript developers with easy to use and consistent access to our API through the [GeotabApi](https://github.com/Geotab/mg-api-js) object. The GeotabAPI provides authentication handling, asynchronous method calling, error handling and multi-call support.
 
-> See how to install GeotabAPI in [API Wrappers](/software/api/wrappers/#javascript)
+> Quick start in [API Wrappers](/software/api/wrappers/#javascript)
 
 ## Creating a GeotabApi object
 
@@ -115,5 +115,5 @@ When the examples are downloaded, the GeotabApi object has an option to use JSON
 
 # Next steps
 
-Once you have a basic understanding of how *api.js* and the JavaScript API work and want to learn more, you can take a look at our examples [here](/software/examples/javascript).
+Once you have a basic understanding of how *api.js* and the JavaScript API work and want to learn more, you can take a look at our examples [here](../../js-samples).
 
