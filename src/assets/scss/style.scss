@@ -15,7 +15,7 @@ table {
     @extend .table-bordered;
 }
 
-main img {
+main img:not(.welcome) {
     @extend .img-thumbnail;
 }
 
@@ -34,9 +34,29 @@ blockquote {
     background: linear-gradient(to right,#0B4B77 0,#0B4B77 20%,#1179B6 50%,#0B4B77 80%,#0B4B77 100%);
 }
 
+.btn-primary {
+    background-color: #56A1D5;
+    border-color: #3983c3;
+}
+
+.btn-primary:hover {
+    background-color: #3983c3;
+}
+
 .embed-responsive {
     margin-bottom: 2rem;
     max-width: 800px;
+}
+
+
+// welcome
+.jumbotron img {
+    width: 1em;
+    height: 1em;
+}
+
+.welcome {
+    max-height: 350px;
 }
 
 // permalinks
