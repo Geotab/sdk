@@ -4,7 +4,11 @@
     <ul class="nav flex-column">
         {% for entry in item.folderitems %}
         <li class="nav-link{% if page.url == entry.url %} active{% endif %}">
+            {% if entry.external %}
+            <a href="{{ entry.url }}">{{ entry.page }}</a>
+            {% else %}
             <a href="{{site.baseurl}}{{ entry.url }}">{{ entry.page }}</a>
+            {% endif %}
         </li>
         {% endfor %} 
     {% for entry in item.subfolders %}
