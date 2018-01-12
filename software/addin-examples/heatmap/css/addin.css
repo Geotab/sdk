@@ -1,0 +1,99 @@
+#heatmap-container input[type="text"], select {
+	padding: 5px;
+	width: 295px;
+}
+
+#heatmap-container input[type="datetime-local"] {
+	padding: 5px;
+	width: 280px;
+}
+
+#heatmap-container h3 {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+#heatmap-container h4 {
+	margin: 20px 0 0;
+	font-size: 1.2em;
+}
+
+#heatmap-container h5 {
+	margin: 20px 0 0;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+#heatmap-container small {
+	color: #777;
+}
+
+#heatmap-container hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #eee;
+}
+
+#heatmap-container a.button {
+    margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #246591;
+    border-color: #0099cc;
+    display: inline-block;
+    padding: 6px 18px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.428571429;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#heatmap-container a.button:hover {
+	background-color: #2972A3;
+}
+
+.heatmap-header-paragraph  {
+	margin-top: 5px;
+}
+
+#heatmap-container {
+	height: 100%;
+}
+
+#heatmap-loading {
+	position: absolute;
+	bottom: 40px;
+	right: 105px;
+	display: none;
+}
+
+#heatmap-map {
+	height: 100%;
+	right: 341px;
+}
+
+#heatmap-controls {
+	position: absolute;
+	width: 300px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border-left: 1px solid #aaa;
+}
+
+#heatmap-error {
+	margin-top: 20px;
+	color: #cc0000;
+}

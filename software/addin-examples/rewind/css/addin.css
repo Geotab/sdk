@@ -1,0 +1,122 @@
+input[type="text"], select {
+	padding: 5px;
+	width: 295px;
+}
+
+input[type="datetime-local"] {
+	padding: 5px;
+	width: 280px;
+}
+
+select {
+    width: 295px;
+}
+
+h3 {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+h4 {
+	margin: 0;
+	margin-top: 20px;
+	font-size: 1.2em;
+}
+
+h5 {
+	margin: 0;
+	margin-top: 20px;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+small {
+	color: #777;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #eee;
+}
+
+.rewind-popup-title {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.leaflet-popup-content {
+    width: 400px;
+}
+
+.leaflet-popup-content > img {
+    border: 1px solid #aaa;
+}
+
+a.rewind-button {
+    margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #246591;
+    border-color: #0099cc;
+    display: inline-block;
+    padding: 6px 7px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.428571429;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+a.rewind-button:hover {
+	background-color: #2972A3;
+}
+
+.rewind-header-paragraph  {
+	margin-top: 5px;
+}
+
+.rewind-popup-title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+#rewind-container {
+	height: 100%;
+}
+
+#rewind-loading {
+	position: absolute;
+	bottom: 40px;
+	right: 105px;
+	display: none;
+}
+
+#rewind-map {
+	height: 100%;
+	right: 341px;
+}
+
+#rewind-controls {
+	position: absolute;
+	width: 300px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border-left: 1px solid #aaa;
+}
+
+#rewind-error {
+	margin-top: 20px;
+	color: #cc0000;
+}

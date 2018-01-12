@@ -1,0 +1,107 @@
+/*
+ *  Custom styles for Add-In.
+ *  To avoid conflicts with common HTML elements such as h1, span, strong, etc
+ *  it is recommended that you prefix your own elements with "addinName" where
+ *  "addinName" is your own unique name to create your own CSS name space.
+ */
+
+
+.stopStart-container {
+	height: 200px;
+	padding-left: 40px;
+}
+
+.stopStart-intro {
+	font-size: 1.2em;
+	background: #F4F4F4;
+	padding: 1px 20px 1px 20px;
+	margin: 15px 20px 0px 20px;
+}
+
+.stopStart-card {
+	float: left;
+	width: 180px;
+	height: 100%;
+	border: 1px solid #888888;
+	border-radius: 5px;
+	margin-right: 4em;
+	margin-bottom: 1em;
+	position: relative;
+	box-shadow: 0px 0px 3px #ddd;
+	background: #9C9C9C;
+}
+.stopStart-card .stopStart-inner {
+	background: #F9F9F9;
+	border: 1px solid #E3E3E3;
+	border-radius: 0px 0px 5px 5px;
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	bottom: -1px;
+	left: -1px;
+	font-family: arial;
+	text-align: center;
+	box-shadow: inset 0px 0px 1px #FFF;
+	border-top: 1px solid #888888;
+}
+.stopStart-card .stopStart-inner .stopStart-title {
+	display: block;
+	font-size: 12px;
+	color: #fff;
+	margin-top: -12px;
+	text-transform: uppercase;
+}
+.stopStart-card .stopStart-inner .stopStart-title .stopStart-text {
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 50px;
+	font-weight: bold;
+}
+.stopStart-card .stopStart-inner .stopStart-number {
+	color: #313A3E;
+	font-size: 50px;
+	display: block;
+	margin-top: 5px;
+}
+.stopStart-card .stopStart-inner .stopStart-measure {
+	color: #676767;
+	font-size: 10px;
+	display: block;
+	margin-top: -10px;
+	text-transform: uppercase;
+}
+
+.card-blue .stopStart-inner .stopStart-text {
+	border: 1px solid #2498C7;
+	background: #2ebef9;
+	text-shadow: 1px 1px 0px #2498C7;
+}
+
+.card-red .stopStart-inner .stopStart-text {
+	border: 1px solid #BC1944;
+	background: #ea1f56;
+	text-shadow: 1px 1px 0px #BC1944;
+}
+
+.card-green .stopStart-inner .stopStart-text {
+	border: 1px solid #7B9E40;
+	background: #9bc650;
+	text-shadow: 1px 1px 0px #7B9E40;
+}
+
+.card-yellow .stopStart-inner .stopStart-text {
+	border: 1px solid #CBA33C;
+	background: #fdcd4c;
+	text-shadow: 1px 1px 0px #CBA33C;
+}
+
+.stopStart-card .stopStart-inner .stopStart-icon {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: -80px;
+	left: 60px;
+	color: white;
+	font-size: 4em;
+}
+

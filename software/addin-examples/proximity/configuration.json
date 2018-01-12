@@ -1,0 +1,15 @@
+{
+  "name": "Proximity",
+  "supportEmail": "support@geotab.com",
+  "version": "1.0",
+  "items": [
+    {
+      "url": "proximity.html",
+      "path": "AdministrationLink/",
+      "icon": "images/icon.svg",
+      "menuName": {
+        "en": "Proximity"
+      }
+    }
+  ]
+}
