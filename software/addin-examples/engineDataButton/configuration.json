@@ -1,0 +1,17 @@
+{
+    "name": "Engine Data Button",
+    "supportEmail": "support@geotab.com",
+    "version": "1.0",
+    "items": [
+        {
+            "page": "map",
+            "click": "js/button.js",
+            "buttonName": {
+                "en": "Engine Data Profile",
+                "fr": "Profil des données-moteur",
+                "es": "Perfil de datos de motor",
+                "ja": "エンジンデータプロフィール"
+            }
+        }
+    ]
+}

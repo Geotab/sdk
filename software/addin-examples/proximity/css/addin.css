@@ -1,0 +1,120 @@
+#proximity-container select {
+	padding: 5px;
+	width: 295px;
+}
+
+#proximity-container input[type="text"] {
+    padding: 5px;
+    width: 280px;
+}
+
+#proximity-container input[type="datetime-local"] {
+	padding: 5px;
+	width: 280px;
+}
+
+#proximity-container input[type="checkbox"] {
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+#proximity-container input[type="range"] {
+    width: 290px;
+}
+
+#proximity-container h3 {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+#proximity-container h4 {
+	margin: 0;
+	margin-top: 20px;
+	font-size: 1.2em;
+}
+
+#proximity-container h5 {
+	margin: 0;
+	margin-top: 20px;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+#proximity-container small {
+	color: #777;
+}
+
+#proximity-container hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #eee;
+}
+
+#proximity-container a.button {
+    margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #246591;
+    border-color: #0099cc;
+    display: inline-block;
+    padding: 6px 18px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.428571429;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#proximity-container a.button:hover {
+	background-color: #2972A3;
+}
+
+.proximity-header-paragraph  {
+	margin-top: 5px;
+}
+
+#proximity-container {
+	height: 100%;
+}
+
+#proximity-loading {
+	position: absolute;
+	bottom: 40px;
+	right: 105px;
+	display: none;
+}
+
+#proximity-map {
+	height: 100%;
+	right: 341px;
+}
+
+#proximity-div-select-all {
+    margin-top: 10px;
+}
+
+#proximity-controls {
+	position: absolute;
+	width: 300px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border-left: 1px solid #aaa;
+    overflow-y: scroll;
+}
+
+#proximity-error {
+	margin-top: 20px;
+	color: #cc0000;
+}
