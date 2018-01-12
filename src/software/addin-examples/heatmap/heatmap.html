@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Heatmap (by Geotab)</title>
+		
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.5.1/leaflet.min.css" rel="stylesheet" />
+        <link href="css/addin.css" rel="stylesheet" />
+		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.5.1/leaflet-src.js"></script>
+        <script src="js/heatmap.js"></script>
+        <script src="js/heatmap-leaflet.js"></script>
+        <script src="js/QuadTree.js"></script>
+        <script src="js/addin.js"></script>
+	</head>
+
+	<body>
+		<div id="heatmap-container">
+			<div id="heatmap-map"></div>
+			<div id="heatmap-controls">
+			
+				<h3>Heatmap</h3>
+				<p class="heatmap-header-paragraph">
+					This Add-In demonstrates how to create an Add-In to visualize your location history using a heat map.
+				</p>
+				
+				<h5>Instructions</h5>
+				<p class="heatmap-header-paragraph">
+					Select a vehicle and then select a date range to display where the vehicle has been.
+					Areas of the map colored which appear <i>hot</i> indicates that the vehicle has spent time at that location.
+				</p>
+				
+				<hr/>
+				
+				<select id="heatmap-vehicles">
+					<option disabled="disabled">Select a vehicle</option>
+				</select>
+				
+				<h4>From</h4>
+                <input id="heatmap-from" type="datetime-local" />
+				
+				<br/>
+				
+				<h4>To</h4>
+				<input id="heatmap-to" type="datetime-local" />
+				
+				<hr/>
+				
+				<div id="heatmap-error"></div>
+				<div id="heatmap-loading">
+					<img src="images/loading.gif" alt="" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

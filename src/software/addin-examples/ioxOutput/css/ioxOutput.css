@@ -1,0 +1,51 @@
+#ioxoutput-container {
+	height: 100%;
+}
+
+#ioxoutput-loading {
+	position: absolute;
+	bottom: 40px;
+	right: 105px;
+	display: none;
+}
+
+#ioxoutput-map {
+	height: 100%;
+	right: 341px;
+}
+
+#ioxoutput-controls {
+	position: absolute;
+	width: 300px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border-left: 1px solid #aaa;
+}
+
+#ioxoutput-error {
+	margin-top: 20px;
+	color: #cc0000;
+}
+
+#ioxoutput-header-paragraph  {
+	margin-top: 5px;
+}
+
+.ioxoutput input[type="text"], select {
+	padding: 5px;
+	width: 295px;
+}
+
+.ioxoutput h3 {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+.ioxoutput h4 {
+    margin: 0;
+    margin-top: 20px;
+    font-size: 1.2em;
+}

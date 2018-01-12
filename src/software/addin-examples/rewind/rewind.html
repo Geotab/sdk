@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rewind (by Geotab)</title>
+		
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet.css" rel="stylesheet" />
+        <link href="lib/leaflet.label/leaflet.label.css" rel="stylesheet" />
+        <link href="css/addin.css" rel="stylesheet" />
+        <link href="lib/chosen-1.0.0/chosen.min.css" rel="stylesheet" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet-src.js"></script>
+        <script src="lib/leaflet.label/leaflet.label.js"></script>
+        <script src="lib/chosen-1.0.0/chosen.jquery.min.js"></script>
+        <script src="js/addin.js"></script>
+
+	</head>
+
+	<body>
+	
+		<div id="rewind-container">
+			<div id="rewind-map"></div>
+			<div id="rewind-controls">
+				<h3>Rewind</h3>
+				<p class="rewind-header-paragraph">
+				    This Add-In demonstrates mapping your fleet at specific time frames. You can use the controls to "rewind"
+                    to assist with understanding events at which occurred while on the road.
+				</p>
+                <h5>Instructions</h5>
+                <p class="rewind-header-paragraph">
+                    Select one or more vehicles then select a time and date to view. Use the controls to rewind and fast forward time
+                    to recreate where your vehicles were at that moment.
+                </p>
+				<hr/>
+
+				<h4>Time</h4>
+                <input id="rewind-time" type="datetime-local" />
+				
+			    <a href="#" id="rewind30" class="rewind-button" title="Rewind 30 minutes">&lt;&lt;&lt;</a>
+                <a href="#" id="rewind5" class="rewind-button" title="Rewind 5 minutes">&lt;&lt;</a>
+                <a href="#" id="rewind1" class="rewind-button" title="Rewind 1 minute">&lt;</a>
+                <a href="#" id="now" class="rewind-button" title="Now">Now</a>
+                <a href="#" id="forward1" class="rewind-button" title="Forward 1 minute">&gt;</a>
+                <a href="#" id="forward5" class="rewind-button" title="Forward 5 minutes">&gt;&gt;</a>
+                <a href="#" id="forward30" class="rewind-button" title="Forward 30 minutes">&gt;&gt;&gt;</a>
+
+                <h4>Vehicles</h4>
+                <select id="rewind-vehicles" multiple style="width:295px" data-placeholder="No vehicles selected" />
+
+                <p>
+                    <input type="checkbox" id="rewind-resize" checked="checked" />   <label for="rewind-resize">Automatically zoom to best view</label>
+                </p>
+
+			    <hr/>
+
+                <div id="rewind-error"></div>
+
+                <div id="rewind-loading">
+                    <img src="https://www.geotab.com/mygeotab/addin/rewind/images/loading.gif" alt="" />
+                </div>
+			</div>
+		</div>
+
+	</body>
+</html>

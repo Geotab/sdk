@@ -1,0 +1,14 @@
+{
+    "name": "History Report",
+    "supportEmail": "support@geotab.com",
+    "version": "1.0",
+    "items": [
+        {
+            "url": "historyReport.html",
+            "path": "ActivityLink/",
+            "menuName": {
+                "en": "History Report"
+            }
+        }
+    ]
+}

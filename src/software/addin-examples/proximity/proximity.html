@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Proximity (by Geotab)</title>
+		
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.5.1/leaflet.min.css" rel="stylesheet" />
+        <link href="css/addin.css" rel="stylesheet" />
+        <link href="lib/leaflet.label/leaflet.label.css" rel="stylesheet" />
+        <link href="lib/chosen-1.0.0/chosen.min.css" rel="stylesheet" />
+		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.5.1/leaflet-src.js"></script>
+        <script src="lib/leaflet.label/leaflet.label.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="lib/parallel/parallel.js"></script>
+        <script src="lib/chosen-1.0.0/chosen.jquery.min.js"></script>
+        <script src="js/addin.js"></script>
+
+	</head>
+	<body>
+	
+		<div id="proximity-container">
+			<div id="proximity-map"></div>
+			<div id="proximity-controls">
+			
+				<h3>Proximity</h3>
+				<p class="proximity-header-paragraph">
+					This Add-In allows looking up an address to visualize when your fleet was nearby that location in the past.
+				</p>
+				
+				<h5>Instructions</h5>
+				<p class="proximity-header-paragraph">
+                    Find out when team members visited an address by typing it in below. Filter your results by selecting specific vehicles or narrowing the time frame shown.
+				</p>
+				
+				<hr/>
+				
+                <h4>Address</h4>
+                <input id="proximity-address" type="text" placeholder="Example: 512 Main Street, Toronto, ON" />
+
+                <h4>Size <span id="proximity-size-label">(1.5 km)</span></h4>
+                <input id="proximity-size" type="range" min="5" max="1000" value="300" step="1" />
+
+                <h4>Vehicles</h4>                
+                <div id="proximity-div-select-all">
+                    <input type="checkbox" name="proximity-select-all" id="proximity-select-all" /><label for="proximity-select-all">Show everyone</label>
+                </div>
+
+                <div id="proximity-div-vehicles" style="margin-bottom:20px;">
+                    <select id="proximity-vehicles" multiple data-placeholder="Select vehicles"></select>
+                </div>
+
+				<h4 style="margin-top:0;">From</h4>
+                <input id="proximity-from" type="datetime-local" />
+				
+				<br/>
+				
+				<h4>To</h4>
+				<input id="proximity-to" type="datetime-local" />
+				
+				<hr/>
+
+				<div id="proximity-error"></div>
+				<div id="proximity-loading">
+					<img src="images/loading.gif" alt="" />
+				</div>
+			</div>
+			<img style="display: none;" src="images/pin.png" id="pinImage" />
+		</div>
+	</body>
+</html>

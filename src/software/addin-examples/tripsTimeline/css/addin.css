@@ -1,0 +1,70 @@
+/*
+ *  Custom styles for Add-In.
+ *  To avoid conflicts with common HTML elements such as h1, span, strong, etc
+ *  it is recommended that you prefix your own elements with "addinName" where
+ *  "addinName" is your own unique name to create your own CSS name space.
+ */
+.tripstimeline-parent {
+    display: table;
+    overflow: hidden;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tripstimeline-parent .item.selected {
+    min-width: 200px !important;
+}
+.vis.timeline .item.range .content {
+    text-overflow: ellipsis;
+}
+.tripstimeline-parent .item .content {
+    width: 100%;
+}
+.tripstimeline-parent .item .detailslink {
+    display: none;
+    right: 0px;
+    top: 2px;
+}
+.tripstimeline-parent .item.selected .detailslink {
+    display: block;
+}
+
+
+#tripstimeline-chart-prev,
+#tripstimeline-chart-next {
+    width: 50px;
+    border: 1px solid #BFBFBF;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    top: auto;
+    box-sizing: border-box;
+    padding: 7px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #838383;
+    display: table-cell;
+}
+
+#tripstimeline-chart-prev:hover,
+#tripstimeline-chart-next:hover {
+    background-color: #DCE7F9;
+}
+
+#tripstimeline-chart-prev {
+    border-right: none;
+}
+
+#tripstimeline-chart-next {
+    border-left: none;
+}
+
+#tripstimeline-chart-container {
+    display: table-cell;
+}

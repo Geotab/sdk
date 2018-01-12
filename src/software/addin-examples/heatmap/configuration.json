@@ -1,0 +1,14 @@
+{
+    "name": "Heat Map",
+    "supportEmail": "support@geotab.com",
+    "version": "1.0",
+    "items": [
+        {
+            "url": "heatmap.html",
+            "path": "AdministrationLink/",
+            "menuName": {
+                "en": "Heat Map"
+            }
+        }
+    ]
+}

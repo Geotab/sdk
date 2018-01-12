@@ -42,7 +42,7 @@ toc:
             url: https://github.com/Geotab/sdk-dotnet-samples#dotnet-examples
             external: true
           - page: Add-in Examples
-            url: https://github.com/geotab/sdk-addin-examples
+            url: /software/addin-samples/
             external: true
   - title: Hardware
     folderitems:
