@@ -16,25 +16,25 @@ This Add-In is visualizes the location history of a vehicle by displaying areas 
 
 Note: This example demonstrates how to use jQuery, Leaflet and other third-party libraries.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/heatmap)
 
 ### History Report
 
 The history report Add-In provides a method of viewing a selected vehicle&#39;s location history. Several options are available to select the date range, time interval, US/metric units and display stationary locations.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/historyReport)
 
 ### Import KML Zones
 
 This Add-In automates the importing of KML Zones into MyGeotab.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/importKMLZones)
 
 ### IOX Output
 
 An easy way to demonstrate the capabilities of the IOX-Output. Simply select the IOX state and then press send to deliver a message to the device turning the IOX on or off.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/ioxOutput)
 
 ### Proximity
 
@@ -42,7 +42,7 @@ This Add-In is a real-world example of a fully featured Geotab Add-In. Use this 
 
 Note: This example demonstrates how to use jQuery and Leaflet.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/proximity)
 
 ### Rewind
 
@@ -50,19 +50,19 @@ This Add-In is a visual report which allows you to use music player style contro
 
 Note: This example demonstrates how to use jQuery and Leaflet.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/rewind)
 
 ### Stop-Start
 
 An informational display Add-In which provides an estimate of fuel savings for vehicles which have stop-start systems. The number of stop/starts, idling time and estimated fuel saved are provided for the previous month and year for the selected vehicle.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/stopStart)
 
 ### Trips Timeline
 
 A compact visualization of the times vehicles made their trips throughout the day. Scroll through the trips taken by the vehicles over time in a grid format which shows the start and stop of the trip. Selection can be narrowed down based on groups. The user can then select a particular trip and view the trip history of that vehicle for the day selected.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/tripsTimeline)
 
 ### Trips Street View
 
@@ -82,4 +82,4 @@ This Add-In automates the generation of a report for the most recent assignment 
 
 With this Add-In example; the Engine Data Profile for a selected vehicle is displayed.  Examine the data over the adjustable timespan to view the recorded engine speed at that time.
 
-[Source]()
+[Source](https://github.com/Geotab/sdk/tree/master/src/software/addin-examples/engineDataButton)
