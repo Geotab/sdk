@@ -6,7 +6,7 @@ title: Using in .NET
 
 The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software. All of the communication to Geotab’s services is accomplished over HTTPS with data serialized in [JSON](http://en.wikipedia.org/wiki/JSON) format. The .NET library provided will automatically handle the JSON serialization and deserialization into MyGeotab objects.
 
-## Geotab.Checkmate.ObjectModel nuget package
+## Nuget package
 
 The [nuget package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/) is an SDK library for accessing MyGeotab customer databases. It is a convenient "wrapper" around Geotab’s HTTP/JSON API to allow developers focus on writing code instead of moving data over the wire. It includes tools to assist authenticating against Geotab’s servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.
 

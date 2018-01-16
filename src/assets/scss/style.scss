@@ -13,36 +13,48 @@ body {
 table {
     @extend .table;
     @extend .table-bordered;
+    @extend .table-responsive;
 }
 
 main {
     width: 100%;
     transition: all 0.4s ease 0s;
 
-    h1 {
+    h1,
+    .h1 {
         margin-top: 1.5rem;
+        text-transform: capitalize;
     }
 
-    h2 {
+    h2,
+    .h2 {
         margin-top: 3rem;
+        text-transform: capitalize;
     }
 
     h3,
     h4,
     h5,
     h6,
-    .h1,
-    .h2,
     .h3,
     .h4,
     .h5,
     .h6 {
         margin-top: 2rem;
+        text-transform: capitalize;
     }
 
     img:not(.welcome) {
         @extend .img-thumbnail;
     }
+}
+
+code {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
 }
 
 blockquote {

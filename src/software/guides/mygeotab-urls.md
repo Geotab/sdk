@@ -37,10 +37,6 @@ To create a link to a page, the following URL structure is used:
 
 `https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>**,**<parameters>`
 
-#### Example
-
-[https://my.geotab.com/g560/geotab/checkmate/ui/devices.html](https://my.geotab.com/g560/geotab/checkmate/ui/devices.html)
-
 > If you are not yet logged in, you will be prompted for your credentials.
 
 ## Passing parameters to a page

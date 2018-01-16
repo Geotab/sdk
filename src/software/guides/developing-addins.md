@@ -100,9 +100,9 @@ The Add-In navigation entry can be placed after any of the following built-in va
 
 To place the navigation entry as a sub-menu entry in one of the main entries place a slash ("/") character after the name. The custom entry will be the first item inside the sub-menu.
 
-For example, by changing "ZoneAndMessagesLink/" as the value for the "path" key:
+For example, by changing `"ZoneAndMessagesLink/"` as the value for the "path" key:
 
-"path": "ZoneAndMessagesLink/",
+`"path": "ZoneAndMessagesLink/",`
 
  This will insert the custom navigation entry as follows:
 
@@ -165,9 +165,9 @@ A parent menu item defines a new menu item and where it should reside within the
 
 | **Name** | **Description** | **Type** |
 | --- | --- | --- |
-| menuId | A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above "GettingStartedLink", "ActivityLink", etc. | String |
-| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as "ActivityLink/". | String |
-| menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: {"EN", "New menu item"}. | Object |
+| menuId | A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above `"GettingStartedLink"`, `"ActivityLink"`, etc. | String |
+| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
 | icon | A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. | String |
 
 ### Table 3 — Menu item
@@ -175,8 +175,8 @@ A parent menu item defines a new menu item and where it should reside within the
 | **Name** | **Description** | **Type** |
 | --- | --- | --- |
 | URL | A URL to the HTML page to load when clicking on this menu item. | String |
-| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as "ActivityLink/". | String |
-| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: {"EN", "New menu item"}. | Object |
+| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
 | icon | A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. | String |
 
 ### Table 4 — Button item
@@ -185,14 +185,14 @@ A parent menu item defines a new menu item and where it should reside within the
 | --- | --- | --- |
 | page | Which built-in page to place the button on | String |
 | click | A URL to a JavaScript file which is executed when the button is clicked | String |
-| buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example {"EN", "New menu item"} | Object |
+| buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
 | icon | Reference to the image for placing it in the button label | String |
 
-At least one language is required in each item definition. The following language options are currently supported in MyGeotab:English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl") Brazilian Portuguese ("bp"), Dutch ("nl") and Italian ("it").
+At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl") Brazilian Portuguese ("bp"), Dutch ("nl") and Italian ("it").
 
-Note: Reference to the image can be an external URL such as: https://mysite.com/images/icon.png; or a link to the image from the images folder of your Add-In_._
+Note: Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
 
-When using the items property to include your source code exclusively, you can set the files property an empty object using "{ }" as seen in Listing 1.
+When using the items property to include your source code exclusively, you can set the files property an empty object using `{ }` as seen in Listing 1.
 
 Every Add-In has a JavaScript object which is set in your addin.js file. For example, the Add-In class name "myaddin" is provided by the following JavaScript entry point:
 
@@ -263,7 +263,7 @@ Referencing an external image using an absolute URL in the HTML or CSS.
 
 ### Listing 6 — Add-In configuration file with Base64 encoded image
 
-The other method is to embed the images along with the rest of the source code in the markup. First the images will need to be encoded using Base64 encoding ( [http://en.wikipedia.org/wiki/Base64](http://en.wikipedia.org/wiki/Base64)), then the references to the image files replaced with the encoded version directly in the HTML or CSS.
+The other method is to embed the images along with the rest of the source code in the markup. First the images will need to be encoded using [Base64 encoding](http://en.wikipedia.org/wiki/Base64), then the references to the image files replaced with the encoded version directly in the HTML or CSS.
 
 ```javascript
  "files": {
@@ -325,14 +325,10 @@ Table 5 — Add-In lifecycle methods
 
 | **Method** | **Description** | **Signature** |
 | --- | --- | --- |
-| initialize | Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In. | function(api, state, callback) {
-   ...
+| initialize | Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In. | `function(api, state, callback) { ... }` |
+| focus | This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page. | `function() {...`
 } |
-| focus | This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page. | function() {
-   ...
-} |
-| blur | This method is called when the user is navigating away from your page. Use this method to save any required state. | function() {
-   ...
+| blur | This method is called when the user is navigating away from your page. Use this method to save any required state. | `function() {...`
 } |
 
 ### Visual diagram
@@ -453,14 +449,11 @@ The state object is a powerful tool for creating navigational components by chan
 
 | **Method** | **Description** | **Parameters** | **Return Type** |
 | --- | --- | --- | --- |
-| getState | Gets an object that represents the current URL state | None | Object |
-| setState | Sets the current URL state. The object parameter is a modified state retrieved from _getState_. | Object | Void |
-| gotoPage | Redirects the user to another page with optional parameters.Example:state.gotoPage("map", {
-    someParameter1: true,
-    someParameter2: 5
-}); | String, [Object] | Void |
-| hasAccessToPage | Checks whether the current user has the security clearance to view a page by its # (hash) value.Example:var result =    state.hasAccessToPage("map"); | String | Boolean |
-| getGroupFilter | Gets an array with ids of the selected groups in the organization filter.Example:var result = state.getGroupFilter(); | None | Array |
+| `getState` | Gets an object that represents the current URL state | None | Object |
+| `setState` | Sets the current URL state. The object parameter is a modified state retrieved from _getState_. | Object | Void |
+| `gotoPage` | Redirects the user to another page with optional parameters. `Example:state.gotoPage("map", { someParameter1: true, someParameter2: 5 });` | String, [Object] | Void |
+| `hasAccessToPage` | Checks whether the current user has the security clearance to view a page by its `#` (hash) value. Example: `var result =    state.hasAccessToPage("map");` | String | Boolean |
+| `getGroupFilter` | Gets an array with ids of the selected groups in the organization filter. Example: `var result = state.getGroupFilter();` | None | Array |
 
 > The second parameter to the gotoPage method is optional and is used for query string parameters.
 
@@ -569,6 +562,6 @@ Using all the concepts outlined in this document, the following is a complete in
 
 When developing Add-Ins, the use of Google Chrome and its Developer Tools window is recommended. To open the Chrome Developer Tools on Windows, press CTRL + SHIFT + I; on a Mac, press CMD + OPTION + I.
 
-The contents of console.log("...") statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.
+The contents of `console.log("...")` statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.
 
 It is also recommended to read Google's extensive learning resources available on using [Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/) to get started debugging or learn about the advanced features they have available.
