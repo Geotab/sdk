@@ -7,7 +7,7 @@ The MyGeotab API is language agnostic and can be accessed from languages that su
 
 There are a number of language specific API clients that roll-up some common functionality such as authentication, session management, deserialization, etc. making it easier to hit the ground running in your language of choice.
 
-## Dotnet
+## .Net
 
 #### Quick Start
 

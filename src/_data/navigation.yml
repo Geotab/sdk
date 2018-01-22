@@ -12,7 +12,7 @@ toc:
             url: /software/guides/concepts/
           - page: Using in Javascript
             url: /software/guides/using-in-javascript/
-          - page: Using in dotnet
+          - page: Using in .Net
             url: /software/guides/using-in-dotnet/
           - page: Data Feed
             url: /software/guides/data-feed
@@ -22,7 +22,7 @@ toc:
             url: /software/guides/go-device-logging/
           - page: Using Third-Party Devices
             url: /software/guides/third-party-devices/
-          - page: Devloping Add-Ins
+          - page: Developing Add-Ins
             url: /software/guides/developing-addins/
           - page: Geotab Drive Add-Ins
             url: /software/guides/drive-addins/
@@ -38,7 +38,7 @@ toc:
         subfolderitems:
           - page: Javascript Examples
             url: /software/js-samples/
-          - page: Dotnet Examples
+          - page: .Net Examples
             url: https://github.com/Geotab/sdk-dotnet-samples#dotnet-examples
             external: true
           - page: Add-in Examples

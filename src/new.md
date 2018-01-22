@@ -7,7 +7,7 @@ title: What’s New
 # 2017
 
 ## December (5.7.1712.x)
-* API.cs (dotnet only) - Fix: When password and session id are supplied to constructor, session id will be used until no longer valid. Previously, session id would only be used if password was not supplied.
+* API.cs (.Net only) - Fix: When password and session id are supplied to constructor, session id will be used until no longer valid. Previously, session id would only be used if password was not supplied.
 
 * FuelTaxDetail - Added properties: ”IsEnterOdometerInterpolated”, “IsExitOdometerInterpolated”, “HourlyIsOdometerInterpolated”
 
@@ -22,13 +22,13 @@ title: What’s New
 
 * HosRuleSet - Added "CarrierExemption"
 
-* dotnet SDK samples updated to target netcoreapp2.0
+* .Net SDK samples updated to target netcoreapp2.0
 
-* dotnet nuget package now supports framework: netstandard2.0 (removed support for net46)
+* .Net nuget package now supports framework: netstandard2.0 (removed support for net46)
 
 ## September (5.7.1709.x)
 
-* API.cs (dotnet only) - Added cancellation token parameter to AuthenticateAsync and CallAsync methods.
+* API.cs (.Net only) - Added cancellation token parameter to AuthenticateAsync and CallAsync methods.
 
 * DutyStatusLog - Added "Malfunction" property - The DutyStatusMalfunctionType of the DutyStatusLog record. As a flag it can be both a diagnostic and malfunction state which is used to mark status based records (e.g. "D", "SB") as having a diagnostic or malfunction present at time of recording.
 
@@ -271,7 +271,7 @@ For detailed information on new features please review the API Reference.
 
 ## April (5.7.1604.x)
 
-* For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the [latest SDK dll](https://my.geotab.com/sdk/dotnet.zip). For more information, please visit the [forum discussion](https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice).
+* For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the [latest nuget package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/). For more information, please visit the [forum discussion](https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice).
 
 * Driver has a new property: viewDriversOwnDataOnly. When set to true, a driver gains the ability to view their own driving data.
 ** .Net users will require a dll update*
