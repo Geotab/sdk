@@ -43,7 +43,6 @@ toc:
             external: true
           - page: Add-in Examples
             url: /software/addin-samples/
-            external: true
   - title: Hardware
     folderitems:
       - page: Introduction

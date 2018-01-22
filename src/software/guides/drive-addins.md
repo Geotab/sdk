@@ -10,7 +10,7 @@ title: Drive Add-Ins
 
 The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also been completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
 
-Please read the [Developing Add-Ins](https://my3.geotab.com/sdk/#/addins?geotabsdk=addins) guide first before attempting a Geotab Drive Add-In.
+Please read the [Developing Add-Ins](../developing-addins) guide first before attempting a Geotab Drive Add-In.
 
 All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if **state.online** returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.
 
