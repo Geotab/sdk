@@ -1,41 +1,50 @@
-# Geotab SDK
+# MyGeotab SDK
 
-> Geotab SDK
+> This project serves as the online SDK or the MyGeotab Hardware and Software API hosted via Github pages.
 
-## To get started
+## Getting Started
+
+Make sure you have installed:
+
+* **Ruby**: `>2.0` with Bundler `>1.10`
+* **Node**: `>4.2`
+* **Gulp:** `4.0` : `npm install gulp-cli -g`
+
+If you have cloned this repo or want to reinstall, make sure there's no `node_modules` or `Gemfile.lock` folder/file and then run:
 
 ```sh
-$ gulp [--prod]
+$ npm install
+$ bundle install
 ```
 
-## Usage
+For local testing run with command:
 
 ```sh
-$ gulp build [--prod]
+$ gulp
+```
+
+## Deployment
+
+The documention can be built and deployed using these commands:
+
+```sh
+$ gulp build --prod
 ```
 
 ```sh
 $ gulp deploy
 ```
 
-#### Settings
-In your `_config.yml` and `humans.txt` you should add your Github and Twitter
-profile if you want to.
+### Settings
 
-## Install
-If you have cloned this repo or want to reinstall, make sure there&#39;s no
-`node_modules` or `Gemfile.lock` folder/file and then run `npm install` and
-`bundle install`.
+The `_config.yml` and `_config.build.yml` provide the Jekyll settings. `_config.build.yml` is only used in production build and overrides settings in `_config.yml`;
 
-#### Update
-To update: `npm update generator-jekyllized -g`, then run `yo jekyllized:gulp
-[--rsync|amazon|pages]` in this directory. Note that this will overwrite any
-local changes, so back it up.
+## Dependancies
 
-## Github
-For more information on how to use your new project, please refer to the [README
+> generator-jekyllized
+For more information on how to use this project, please refer to the [README
 on Github](https://github.com/sondr3/generator-jekyllized).
 
 ## Owner
 
-> [Steve Hansen](https://geotab.github.io/sdk)
+> [Geotab Inc.](https://my.geotab.com)
