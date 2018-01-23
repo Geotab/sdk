@@ -3,7 +3,8 @@ layout: page
 permalink: /software/guides/developing-addins/
 title: Developing Add-ins
 ---
-Add-Ins are used to extend the functionality provided by MyGeotab. An Add-In is just JavaScript, HTML and CSS loaded into the MyGeotab portal and resides directly inside the MyGeotab user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. [Click here](http://my3.geotab.com/sdk/addins.zip?geotabsdk=/addins.zip) to find our sample Add-Ins.
+
+Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. [Click here](https://github.com/Geotab/sdk-addin-samples) to find the sample Add-Ins.
 
 ## Geotab Add-Ins can be of two types:
 

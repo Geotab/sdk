@@ -18,6 +18,8 @@ toc:
             url: /software/guides/data-feed
           - page: Using MyGeotab URLs
             url: /software/guides/mygeotab-urls/
+          - page: Using GO Devices
+            url: /software/guides/using-go-devices/
           - page: GO Device Logging
             url: /software/guides/go-device-logging/
           - page: Using Third-Party Devices
@@ -39,10 +41,11 @@ toc:
           - page: Javascript Examples
             url: /software/js-samples/
           - page: .Net Examples
-            url: https://github.com/Geotab/sdk-dotnet-samples#dotnet-examples
+            url: https://github.com/Geotab/sdk-dotnet-samples
             external: true
           - page: Add-in Examples
-            url: /software/addin-samples/
+            url: https://github.com/Geotab/sdk-addin-samples
+            external: true
   - title: Hardware
     folderitems:
       - page: Introduction
