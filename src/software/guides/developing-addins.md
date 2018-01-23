@@ -79,7 +79,7 @@ Each Add-In can create a navigation entry in the left hand side menu. This allow
 
 ```json
 {
-    "path": "ActivityLink",
+    "path": "ActivityLink/",
     "menuName": {
         "en": "English Menu Text",
         "fr": "French Menu Text"
@@ -92,16 +92,16 @@ Image 1 — Modified left-hand-side menu
 
 The Add-In navigation entry can be placed after any of the following built-in values:
 
-- GettingStartedLink
-- ActivityLink
-- EngineMaintenanceLink
-- ZoneAndMessagesLink
-- RuleAndGroupsLink
-- AdministrationLink
+- `GettingStartedLink`
+- `ActivityLink`
+- `EngineMaintenanceLink`
+- `ZoneAndMessagesLink`
+- `RuleAndGroupsLink`
+- `AdministrationLink`
 
-To place the navigation entry as a sub-menu entry in one of the main entries place a slash ("/") character after the name. The custom entry will be the first item inside the sub-menu.
+To place the navigation entry as a sub-menu entry in one of the main entries place a slash (`/`) character after the name. The custom entry will be the first item inside the sub-menu.
 
-For example, by changing `"ZoneAndMessagesLink/"` as the value for the "path" key:
+For example, by changing `"ZoneAndMessagesLink/"` as the value for the `"path"` key:
 
 `"path": "ZoneAndMessagesLink/",`
 
@@ -111,7 +111,7 @@ For example, by changing `"ZoneAndMessagesLink/"` as the value for the "path" ke
 
 Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the menu.
 
-Note: A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
+> A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
 
 ## Listing 2 — Add-In configuration section for submenu
 
@@ -124,32 +124,24 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
  "name": "My First Geotab Add-In",
  "supportEmail": "myname@mycompany.com",
  "version": "1.0",
- "items": [
-  {
-   "path": "ActivityLink",
-   "menuId": "newSubPathLink",
-   "menuName": {
-    "en": "English Menu Text",
-    "fr": "French Menu Text"
-   }
-  },
-  {
-   "path": "newSubPathLink/",
-   "url": "https://www.geotab.com/mygeotab/addin/heatmap/heatmap.html",
-   "menuName": {
-    "en": "English Sub-Menu 2 Text",
-    "fr": "French Sub-Menu 2 Text"
-   }
-  },
-  {
-   "path": "newSubPathLink/",
-   "url": "https://my3.geotab.com/g560/customerPage1.html",
-   "menuName": {
-    "en": "English Sub-Menu 1 Text",
-    "fr": "French Sub-Menu 1 Text"
-   }
-  }
- ],
+ "items": [{
+        "url": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/heatmap.html",
+        "path": "sdkAddinsLink/",
+        "menuName": {
+            "en": "Heat Map"
+        },
+        "icon": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/images/icon.svg"
+    }, {
+        "page": "device",
+        "click": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/scripts/engineDataButton.js",
+        "buttonName": {
+            "en": "Engine Data Profile",
+            "fr": "Profil des données-moteur",
+            "es": "Perfil de datos de motor",
+            "ja": "エンジンデータプロフィール"
+        },
+        "icon": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/images/icon.svg"
+    }],
  "isSigned": false,
  "signature": "12345-MYSIGNATURE",
  "key": "12345-MYAPIKEY"
@@ -189,21 +181,21 @@ A parent menu item defines a new menu item and where it should reside within the
 | buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
 | icon | Reference to the image for placing it in the button label | String |
 
-At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl") Brazilian Portuguese ("bp"), Dutch ("nl") and Italian ("it").
+At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`) and Italian (`"it"`).
 
-Note: Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
+> Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
 
 When using the items property to include your source code exclusively, you can set the files property an empty object using `{ }` as seen in Listing 1.
 
-Every Add-In has a JavaScript object which is set in your addin.js file. For example, the Add-In class name "myaddin" is provided by the following JavaScript entry point:
+Every Add-In has a JavaScript object which is set in your main.js file. For example, the Add-In class name "myaddin" is provided by the following JavaScript entry point:
 
 ```javascript
-geotab.addin.myaddin = function(api, state) {
+geotab.addin.myaddin = () => {
  ...
 }
 ```
 
-The name you provide should be unique for each database the Add-In is deployed to and should take care to avoid including invalid characters in the name. Additionally, when referencing Add-Ins hosted externally, the absolute path to the Add-In should not include the following characters anywhere in their URL:
+The name you provide should be unique for each Add-In and should take care to avoid including invalid characters in the name. Additionally, when referencing Add-Ins hosted externally, the absolute path to the Add-In should not include the following characters anywhere in their URL:
 
 - "-" The dash symbol
 - "@" The "at" symbol
@@ -211,7 +203,7 @@ The name you provide should be unique for each database the Add-In is deployed t
 
 For example, the following is an invalid absolute URL due to its dashes and will not be loaded correctly by MyGeotab:
 
-`http://my-web-server.com/pathToAddIn/index.html`
+`https://my-web-server.com/pathToAddIn/index.html`
 
 ### Embedding source code
 
@@ -327,14 +319,14 @@ Table 5 — Add-In lifecycle methods
 | **Method** | **Description** | **Signature** |
 | --- | --- | --- |
 | initialize | Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In. | `function(api, state, callback) { ... }` |
-| focus | This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page. | `function() {...`
-} |
-| blur | This method is called when the user is navigating away from your page. Use this method to save any required state. | `function() {...`
-} |
+| focus | This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page. | `function(api, state) { ... }` |
+| blur | This method is called when the user is navigating away from your page. Use this method to save any required state. | `function(api, state) { ... }` |
 
 ### Visual diagram
 
 Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the _focus_ method will be called. Finally, when the user is navigating away from your custom page Add-In, the _blur_ method will be called, completing the Add-In lifecycle.
+
+> It's impportant to call the `callback` passed into `intialize` _after_ all work is complete. Keep in mind the asynchrosous nature of JavaScript.
 
 ![]({{site.baseurl}}/software/guides/developing-addins_2.png)
 Image 2 — Add-In lifecycle workflow diagram
@@ -346,13 +338,14 @@ The following code can be used as a starting point for a custom page Add-In. All
 Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix geotab.addin (note that the namespace is not hyphenated). In the example below the full namespace is geotab.addin.myCustomPage1.
 
 ### Listing 9 — HTML and JavaScript entry point example
+
 ```html
 <!DOCTYPE html>
 <html>
 <head>
  <title>Custom Page Add-In</title>
  <script>
-  geotab.addin.myCustomPage1 = function(api, state) {
+  geotab.addin.myCustomPage1 = () => {
    // Initialize required Add-In variables
    // Example:
    // var element = document.getElementById("myButton");
@@ -363,13 +356,13 @@ Use the commented area to define and then assign variables in the scope of the A
    //     });
    // }
    return {
-    initialize: function(api, state, callback) {
+    initialize(api, state, callback) {
      callback();
     },
-    focus: function() {
+    focus(api, state) {
      // User interface is available
     },
-    blur: function() {
+    blur(api, state) {
      // Save any Add-In state
     }
    };
@@ -433,12 +426,12 @@ Almost any page is available to have a custom button Add-In added to it. Use a w
 
 When a custom button Add-In is clicked by a user, it will execute a predefined method from the JavaScript file referenced. This method provides the button action with access to the generated event, the Geotab API as the signed-in user, and the page state.
 
-Note: To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.
+> To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.
 
 ### Listing 12 — Custom button click method
 
 ```javascript
-geotab.customButtons.customExample1 = function(event, api, state) {
+geotab.customButtons.customExample1 = (event, api, state) => {
         alert("Custom button Add-In clicked!");
         state.gotoPage("map");
 };
@@ -512,7 +505,7 @@ Using all the concepts outlined in this document, the following is a complete in
                 };
 
             return {
-                initialize: function(api, state, callback) {
+                initialize: (api, state, callback) {
                     document.getElementById("vehiclesButton")
                         .addEventListener("click", function() {
                             state.gotoPage("devices");

@@ -311,7 +311,7 @@ For detailed information on new features please review the API Reference.
 
 ## November (5.7.1511.x)
 
-* Added new security clearances for: 
+* Added new security clearances for:
 
     * ViewMarketplacePaidItems:  Allow user to see paid Marketplace items
 
@@ -321,7 +321,7 @@ For detailed information on new features please review the API Reference.
 
 ## September (5.7.1509.x)
 
-* New SDK.  Featuring the new [SDK Runner](https://my3.geotab.com/sdk/api/apiRunner.html), new methods and objects (click [here](https://my3.geotab.com/sdk/#/api) to see the preview items)
+* New SDK.  Featuring the new [SDK Runner](https://geotab.github.io/sdk/software/api/runner.html), new methods and objects (click [here](https://geotab.github.io/sdk/software/api/reference/) to see the preview items)
 
 * Code snippets in the reference documentation.  Now you can see working examples of the methods as they are used in the runner.
 
