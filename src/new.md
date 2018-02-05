@@ -8,8 +8,6 @@ title: What’s New
 
 ### January (5.7.1801)
 
-* DeviceType - Added: `Go9`
-
 * KnownId - Removed: `UnitOfMeasureLitersPer100KilometersId`. Diagnostics associated with this unit of measure now use `UnitOfMeasureKilometersPerLiterId`. This will not affect any previously recorded data.
 
 * KnownId - Added: `DiagnosticGpsLogReasonId`, `DiagnosticEngineRoadSpeedId`
@@ -17,10 +15,6 @@ title: What’s New
 * ConditionType - Added: `DVIRDefect` - Currently works with Devices not Trailers
 
 * SecurityIdentifier - Added: `DriverIdentificationClearance`, `AccelerometerDataClearance`, `ServicePlansClearance`, `AuxiliaryClearance`, `EngineStatusDataClearance`, `ResellerControlClearance`, `GoTalkClearance`, `StatusGroupsClearance`, `ProductGuideClearance`, `FeaturePreviewClearance`, `NewsNotificationsClearance`, `ManageAddinsClearance`, `DeviceCurrentStatusClearance`
-
-#### New Objects
-
-* GO9 - Added - Object representing the GO9 Device
 
 #### Notice
 
