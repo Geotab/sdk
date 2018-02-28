@@ -21,9 +21,9 @@ var linkifyAnchors = function (level, containingElement) {
 
 var setupSidebarToggle = function () {
     const toggleClass = " active";
-    var taggler = document.querySelector("#toggler");
+    var toggler = document.querySelector("#toggler");
     var wrapper = document.querySelector("#wrapper");
-    taggler.addEventListener("click", (e) => {
+    toggler.addEventListener("click", (e) => {
         e.preventDefault();
         if (wrapper.className.indexOf(toggleClass) > -1) {
             wrapper.className = wrapper.className.replace(toggleClass, "");
@@ -31,6 +31,9 @@ var setupSidebarToggle = function () {
             wrapper.className += toggleClass;
         }
     });
+    if (window.location.pathname.indexOf("/software/api/runner.html") > -1) {
+        toggler.style.display = 'none';
+    }
 };
 
 window.addEventListener("DOMContentLoaded", () => {
