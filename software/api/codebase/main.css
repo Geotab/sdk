@@ -19,13 +19,11 @@ article {
     width: 100%;
     background-color: #ffffff;
     padding: 1rem 0;
-    border-bottom: 1px solid #cccccc;
     box-sizing: border-box;
 }
 .content {
     width: 100%;
     height: calc(100% - 72px);
-    padding: 2px;
     box-sizing: border-box;
 }
 .content .pane {
