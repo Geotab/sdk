@@ -6,7 +6,7 @@ title: JavaScript Examples
 
 The following examples show common usages of the SDK using JavaScript. We recommend that you examine the examples in the following order to learn more about build great web applications using the Geotab JavaScript API. These examples are stand-alone HTML, JavaScript and CSS written so you can extract them and "run" them without having your own Web server.
 
-You can also use the [Runner](/software/api/runner.html) to run code snippets that you can run directly against a database. The runner has code snippets that demonstrate:
+You can also use the [Runner](../api/runner.html) to run code snippets that you can run directly against a database. The runner has code snippets that demonstrate:
 
 * Adding a driver
 * Adding a driver with 'View Nothing' clearance
