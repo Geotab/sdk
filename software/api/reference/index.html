@@ -15,7 +15,7 @@
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "../SDK.xml");
+            xhr.open("GET", "https://127.0.0.1/sdk/SDK.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
