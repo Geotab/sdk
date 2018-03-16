@@ -156,6 +156,14 @@ permalink: /software/api/runner.html
                     resize: fireEvent
                 };
             },
+            htmlEscape = function (str) {
+                return String(str || "")
+                    .replace(/&/g, "&amp;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+            },
             EditorManager = function (container, language, resizeObserver, urlState) {
                 var editor,
                         supportedLanguages = {
@@ -492,7 +500,7 @@ permalink: /software/api/runner.html
                                 userLabel = document.getElementById("userLabel"),
                                 session = null,
                                 getUserLabel = function (session) {
-                                    return session.userName + " (" + session.database + ")";
+                                    return htmlEscape(session.userName) + " (" + htmlEscape(session.database) + ")";
                                 },
                                 showUserInfo = function (session) {
                                     userLabel.innerHTML = getUserLabel(session);
