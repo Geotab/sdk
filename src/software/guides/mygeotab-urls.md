@@ -35,7 +35,7 @@ Standalone pages are used to get a my.geotab.com page without the header and sid
 
 To create a link to a page, the following URL structure is used:
 
-`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>**,**<parameters>`
+`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>,<parameters>`
 
 > If you are not yet logged in, you will be prompted for your credentials.
 

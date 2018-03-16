@@ -59,7 +59,7 @@ All values must be sent with the least significant byte first.
 
 Each piece of information related to the third-party device must be sent individually and have its own Status Data ID as part of the message.
 
-Note: See Appendix A for an example of raw message data.
+Note: See [Appendix A](#appendix-a-raw-message-data-example-for-iox-can) for an example of raw message data.
 
 ## Messages from GO device
 
