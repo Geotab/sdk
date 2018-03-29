@@ -22,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("signin-content").style.display = "block";
                 document.getElementById("example-content").style.display = "none";
             }, {
-                rememberMe: false,
-                jsonp: true
+                rememberMe: false
             });
         }
 
