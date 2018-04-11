@@ -4,9 +4,27 @@ permalink: /resources/new/
 title: What’s New
 ---
 
-## 2018
+## 5.7.1802
 
-### January (5.7.1801)
+* [DutyStatusLog](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added properties `Odometer`, `EngineHours`, `EventRecordStatus`, `EventCode`, `EventType`
+
+* [DutyStatusLogType](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `SituationalDrivingClear`
+
+* [FuelTaxDetail](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Added properties `HourlyIsOdometerInterpolated`, `IsEnterOdometerInterpolated`, `IsExitOdometerInterpolated`
+
+* [FuelTaxDetail](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Obsolete `IsClusterOdometer` - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.
+
+* [FuelTaxDetailSearch](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
+
+* [SecurityIdentifier](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
+
+* SDK documentation and samples moving to [github](https://github.com/Geotab). Navigating to my.geotab.com/sdk will soon forward to the documentation's new home [geotab.github.com/sdk](https://geotab.github.io/sdk/).
+
+### Notice
+
+An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serailizaion failure when a new DiagnisticType is introduced. The issue has been addressed in nuget package v[5.7.1802](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/). To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)
+
+## 5.7.1801
 
 * KnownId - Removed: `UnitOfMeasureLitersPer100KilometersId`. Diagnostics associated with this unit of measure now use `UnitOfMeasureKilometersPerLiterId`. This will not affect any previously recorded data.
 
@@ -16,7 +34,7 @@ title: What’s New
 
 * SecurityIdentifier - Added: `DriverIdentificationClearance`, `AccelerometerDataClearance`, `ServicePlansClearance`, `AuxiliaryClearance`, `EngineStatusDataClearance`, `ResellerControlClearance`, `GoTalkClearance`, `StatusGroupsClearance`, `ProductGuideClearance`, `FeaturePreviewClearance`, `NewsNotificationsClearance`, `ManageAddinsClearance`, `DeviceCurrentStatusClearance`
 
-#### Notice
+### Notice
 
 In early 2018 the following legacy properties will be removed:
 
@@ -24,9 +42,7 @@ In early 2018 the following legacy properties will be removed:
 
 **LoginResult**: `securityToken` property. LoginResult is the object returned by the Authenticate method. It's property `securityToken` was kept around for compatibility with legacy (5.6.* and lower) integrations. It has not been publicly exposed or documented since version 5.6 of MyGeotab. It is planned to be removed as a valid parameter in version 5.7.1803. The property `credentials` is the standard supported property that shares the same value.
 
-## 2017
-
-### December (5.7.1712.x)
+## 5.7.1712
 
 * API.cs (.Net only) - Fix: When password and session id are supplied to constructor, session id will be used until no longer valid. Previously, session id would only be used if password was not supplied.
 
@@ -34,7 +50,7 @@ In early 2018 the following legacy properties will be removed:
 
 * User - Removed property: “MenuCollapsedNotified”
 
-### November (5.7.1711.x)
+## 5.7.1711
 
 * GetAddresses - Added: "hosAddresses" parameter to optionally search for ELD compliant address
 
@@ -48,7 +64,7 @@ In early 2018 the following legacy properties will be removed:
 
 * .Net nuget package now supports framework: netstandard2.0 (removed support for net46)
 
-### September (5.7.1709.x)
+## 5.7.1709
 
 * API.cs (.Net only) - Added cancellation token parameter to AuthenticateAsync and CallAsync methods.
 
@@ -68,13 +84,13 @@ In early 2018 the following legacy properties will be removed:
 
 * InvalidUserException - Message changed from to "Incorrect MyGeotab login credentials..." to "Incorrect login credentials...".
 
-#### New Objects
+### New Objects
 
 * DutyStatusMalfunctionType - Added - Malfunction or Diagnostic type of the DutyStatusLog.
 
 * DutyStatusState - Added - The record status of DutyStatusLog.
 
-### July (5.7.1707.x)
+## 5.7.1707
 
 * Web Request Notifications: fix {zoneId} and {zoneComment} tokens would not get populated unless {zone} or {address} were also included.
 
@@ -88,7 +104,7 @@ In early 2018 the following legacy properties will be removed:
 
 * Added: FuelTaxDetail - A new entity which provides API access to calculated fuel tax data. In the past this data was only available via the IFTA Report in MyGeotab where it was calculated on the fly. Fuel tax details are now processed using live data and stored in the database and they can be access using the API via Get and GetFeed methods. Full documentation coming soon.
 
-### June (5.7.1706.x)
+## 5.7.1706
 
 * DatabaseId has been removed from .net package as per the [December 2016 post](https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes)
 
@@ -108,7 +124,7 @@ In early 2018 the following legacy properties will be removed:
 
 * Geotab.Reflection package no longer a dependency of Geotab.Checkmate.Objectmodel nuget package
 
-### May (5.7.1705.x)
+## 5.7.1705
 
 * GO8: Added preliminary support for GO8 devices
 ***requires update of .net nuget package to correctly read/write GO8 devices***
@@ -117,7 +133,7 @@ In early 2018 the following legacy properties will be removed:
 
 * TextMessageSearch: Added search by: "ParentTextMessageId"
 
-### April (5.7.1704.x)
+## 5.7.1704
 
 * DutyStatusLog - Added property: State
 
@@ -129,7 +145,7 @@ In early 2018 the following legacy properties will be removed:
 
 * Fix, content type of API response headers changed from "text/html" to "application/json"
 
-### March (5.7.1703.x)
+## 5.7.1703
 
 * DevicePlan: Added: D2GODriverChallengeStandard
 ***requires update of .net nuget package to ensure compatibility***
@@ -142,7 +158,7 @@ In early 2018 the following legacy properties will be removed:
 
 * TimeZoneId: it was possible to add a user or device with "Unknown" time zone ID. This was only possible using the API and "Unknown" is not returned via the GetTimeZones method or a valid Olson time zone. The ability to add users and devices with "Unknown" as been removed and all users and devices with this time zone ID have been changed to "Etc/GMT"
 
-### February (5.7.1702.x)
+## 5.7.1702
 
 * FuelTransactionProvider: Added - "Voyager", "UltramarCST"
 
@@ -156,7 +172,7 @@ In early 2018 the following legacy properties will be removed:
 
 * Fix: TimeZoneInfoAdjustmentRule serialization (result of GetDaylightSavingRules)
 
-### January (5.7.1701.x)
+## 5.7.1701
 
 * Added "Hardware" section to SDK
 
@@ -171,9 +187,7 @@ In early 2018 the following legacy properties will be removed:
 
 * If you are using the .net nuget package and plan to use the new "HOS Only" device plan you must update to nuget package version 5.7.1701 or greater to ensure compatibility.
 
-# 2016
-
-### December (5.7.1612.x)
+## 5.7.1612
 
 * Id refactoring - The ID object has been refactored in the .NET SDK. See [this forum post](https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes) for details.
 
@@ -181,7 +195,7 @@ In early 2018 the following legacy properties will be removed:
 ImmobilizeUnit: With ImmobilizeUnit being true, it is used to define the delay before the driver identification reminder is sent out if the driver key has not been not swiped. The maximum value of this property is 255. When it is less or equal to 180, it indicates the number of seconds of the delay.  When it is greater than 180, the delay increases 30 seconds for every increment of one of this property. For example, 180 indicates 180 seconds, 181 indicates 210 seconds, and 182 indicates 240 seconds.
 ImmobilizeArming: A value mainly used for enable or disable driver identification reminder. If it is used in conjunction with vehicle relay circuits, it can force the driver to swipe the driver key before starting the vehicle.
 
-### November (5.7.1611.x)
+## 5.7.1611
 
 * Authentication rate limiting being phased in. See this [Blog Post](https://www.geotab.com/blog/api-call-limits/) for more details. Added "Rate Limiting" section to SDK [Concepts](https://my.geotab.com/sdk/default.html#/concepts).
 
@@ -197,22 +211,22 @@ ImmobilizeArming: A value mainly used for enable or disable driver identificatio
 
 *Important: Update .Net [nuget](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/) package to ensure compatibility
 
-### October (5.7.1610.x)
+## 5.7.1610
 
 * KnownId - Added: "DiagnosticDieselExhaustFluidId”, "DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”
 
 * HosRuleSet - Added: "Florida7Day”, "Florida8Day”, “FloridaShortHaul7Day”, “FloridaShortHaul8Day”
 
-#### New Objects
+### New Objects
 
 * OverLimitException:
 Thrown when a user has exceeded the query limit of an API (currently only applies to authentication). Previously, if a user reached this limit, an InvalidUserException would have been thrown.
 
-### September (5.7.1609.x)
+## 5.7.1609
 
 * KnownId - "DiagnosticRamFailure" name fixed to be “DiagnosticRamFailureId”
 
-### August (5.7.1608.x)
+## 5.7.1608
 
 * MessageContentType - Added: "DriverWhiteList"
 
@@ -232,7 +246,7 @@ Thrown when a user has exceeded the query limit of an API (currently only applie
 
 * TimeZoneInfo - Adjusted to support recently updated Windows times zones and the latest version of [IANA/Windows](http://www.unicode.org/cldr/charts/dev/supplemental/zone_tzid.html) maped time zones. [Click here for more info](https://docs.google.com/document/d/1kjIhyqpgOg1wNHi3JkvV7uXVBzhl5stlZZxIVjXs1Fc/edit#)
 
-#### New Objects
+### New Objects
 
 * DriverWhiteListContent
 
@@ -244,11 +258,11 @@ For detailed information on new features please review the API Reference.
 
 **.Net users will require a dll update*
 
-### July (5.7.1607.x)
+## 5.7.1607
 
 * Performance and maintenance enhancements.
 
-### June (5.7.1606.x)
+## 5.7.1606
 
 * DiagnosticTypes - Added "GoFault"
 
@@ -268,13 +282,13 @@ For detailed information on new features please review the API Reference.
 
 * dll requires .Net Framework version v4.6+
 
-#### New APIs
+### New APIs
 
 * GetDirections
 
 * OptimizeWaypoints
 
-#### New Objects
+### New Objects
 
 * Directions
 
@@ -286,24 +300,24 @@ For detailed information on new features please review the API Reference.
 
 **.Net users will require a dll update*
 
-### May (5.7.1605.x)
+## 5.7.1605
 
 *  Added new Units of Measure (km/L, kg/km, L/lane km, L/ton and g/m^2)
 ** .Net users will require a dll update*
 
-### April (5.7.1604.x)
+## 5.7.1604
 
 * For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the [latest nuget package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/). For more information, please visit the [forum discussion](https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice).
 
 * Driver has a new property: viewDriversOwnDataOnly. When set to true, a driver gains the ability to view their own driving data.
 ** .Net users will require a dll update*
 
-### February (5.7.1602.x)
+## 5.7.1602
 
 * TextToSpeechContent has been renamed to GoTalkContent and RelayContent has been renamed to IoxOutputContent
 ** .Net users will require a dll update*
 
-### January (5.7.1601.x)
+## 5.7.1601
 
 * New recipient types added that will send even if there is a delay in data. (BeepTenTimesRapidlyAllowDelay, BeepThreeTimesAllowDelay, BeepThreeTimesRapidlyAllowDelay , TextToSpeechAllowDelay)
 ** .Net users will require a dll update*
@@ -311,7 +325,7 @@ For detailed information on new features please review the API Reference.
 * Access to third party messages via API.
 ** .Net users will require a dll update*
 
-#### New Objects
+### New Objects
 
 * IoxAddOn
 
@@ -323,15 +337,13 @@ For detailed information on new features please review the API Reference.
 
 * GoTalkContent
 
-# 2015
-
-### December (5.7.1512.x)
+## 5.7.1512
 
 * Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - **If you are using dll version 5.7.1508-1511 this will require a dll update.*
 
 * New addin: Trips Streetview added to [GitHub](https://github.com/Geotab/addin-trips-streetview)
 
-### November (5.7.1511.x)
+## 5.7.1511
 
 * Added new security clearances for:
 
@@ -341,7 +353,7 @@ For detailed information on new features please review the API Reference.
 
 **If you are using dll version 5.7.1508-1510 this will require a dll update.*
 
-### September (5.7.1509.x)
+## 5.7.1509
 
 * New SDK.  Featuring the new [SDK Runner](https://geotab.github.io/sdk/software/api/runner.html), new methods and objects (click [here](https://geotab.github.io/sdk/software/api/reference/) to see the preview items)
 
@@ -349,7 +361,7 @@ For detailed information on new features please review the API Reference.
 
 * .Net users will require a .DLL update to access the latest features.
 
-#### New Methods
+### New Methods
 
 * CreateDatabase
 
@@ -359,7 +371,7 @@ For detailed information on new features please review the API Reference.
 
 * GetVersionInformation
 
-#### New Objects
+### New Objects
 
 * AnnotationLog
 
@@ -451,7 +463,7 @@ For detailed information on new features please review the API Reference.
 
 * VolumeUnit
 
-#### Deprecated
+### Deprecated
 
 * BingMapStyle
 
@@ -461,7 +473,7 @@ For detailed information on new features please review the API Reference.
 
 * StatusDataRequestContent
 
-### August (5.7.1508.x)
+## 5.7.1508
 
 * DriverChangeSearch received new search points including: DeviceSearch, DriverSearch, FromDate and ToDate. Checkout the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details
 
@@ -487,15 +499,15 @@ For detailed information on new features please review the API Reference.
 
 * Geotab Announces New [DEV Channel](https://www.geotab.com/dev-channel/) for Developers
 
-### May (5.7.1505.x)
+## 5.7.1505
 
 * New condition types added - .Net will require dll update
 
-### March (5.7.1504.x)
+## 5.7.1504
 
 * Add KnownId for DiagnosticDeviceTotalIdleFuelId - .Net will require dll update
 
-### February (5.7.1502.x)
+## 5.7.1502
 
 * Get *all* zones now populating points correctly ([see forum post](https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points))
 
@@ -508,4 +520,3 @@ For detailed information on new features please review the API Reference.
 * Clearer documentation of date and long values in [API Reference](https://my.geotab.com/sdk/default.html#/api)
 
 * Data Feed section added to Guides portion of SDK ([see document](https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit))
-
