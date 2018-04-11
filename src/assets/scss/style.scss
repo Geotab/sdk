@@ -158,6 +158,10 @@ blockquote {
     margin: 0;
 }
 
+.member-parameters-list-param.enum-property {
+    text-transform: capitalize;
+}
+
 @media (min-width: 768px) {
     #api-reference-search {
         position: sticky;
