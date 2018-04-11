@@ -22,7 +22,7 @@ title: What’s New
 
 ### Notice
 
-An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serailizaion failure when a new DiagnisticType is introduced. The issue has been addressed in nuget package v[5.7.1802](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/). To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)
+An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serailizaion failure when a new DiagnosticType is introduced. The issue has been addressed in nuget package v[5.7.1802](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/). To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)
 
 ## 5.7.1801
 
