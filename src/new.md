@@ -6,17 +6,17 @@ title: What’s New
 
 ## 5.7.1802
 
-* [DutyStatusLog](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added properties `Odometer`, `EngineHours`, `EventRecordStatus`, `EventCode`, `EventType`
+* [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added properties `Odometer`, `EngineHours`, `EventRecordStatus`, `EventCode`, `EventType`
 
-* [DutyStatusLogType](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `SituationalDrivingClear`
+* [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `SituationalDrivingClear`
 
-* [FuelTaxDetail](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Added properties `HourlyIsOdometerInterpolated`, `IsEnterOdometerInterpolated`, `IsExitOdometerInterpolated`
+* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Added properties `HourlyIsOdometerInterpolated`, `IsEnterOdometerInterpolated`, `IsExitOdometerInterpolated`
 
-* [FuelTaxDetail](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Obsolete `IsClusterOdometer` - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.
+* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Obsolete `IsClusterOdometer` - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.
 
-* [FuelTaxDetailSearch](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
+* [FuelTaxDetailSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
 
-* [SecurityIdentifier](/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
+* [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
 
 * SDK documentation and samples moving to [github](https://github.com/Geotab). Navigating to my.geotab.com/sdk will soon forward to the documentation's new home [geotab.github.com/sdk](https://geotab.github.io/sdk/).
 
