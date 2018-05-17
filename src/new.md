@@ -3,6 +3,11 @@ layout: page
 permalink: /resources/new/
 title: What’s New
 ---
+## 5.7.1803
+
+* SecurityRole: Added `CertificateSet` permission
+
+* [DriverChangeSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChangeSearch): Added property `Type` indicating the DriverChangeType to search for exclusively.
 
 ## 5.7.1802
 
@@ -17,8 +22,6 @@ title: What’s New
 * [FuelTaxDetailSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
 
 * [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
-
-* SDK documentation and samples moving to [github](https://github.com/Geotab). Navigating to my.geotab.com/sdk will soon forward to the documentation's new home [geotab.github.com/sdk](https://geotab.github.io/sdk/).
 
 ### Notice
 
