@@ -715,8 +715,8 @@
                                 hasCredentials = param.getAttribute("name") === "credentials";
                             }
 
-                            //Don't Display hidden or webDataStore or httpContext
-                            if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "request") {
+                            //Don't Display hidden or httpContext
+                            if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context") {
                                 memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required")));
                             } else {
                                 indexesToHide.push(i);
