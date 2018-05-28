@@ -12,7 +12,9 @@ Note: The portions of the examples noted with `[` and `]` (e.g. `[myserver]`) in
 
 API request parameters and the results are transported in the lightweight [JSON](http://www.json.org/) format. The [API reference](../../api/reference) contains a listing of the methods that can be invoked, the parameters they expect and the results they return. Below are examples to illustrate the capabilities of the Geotab API.
 
-Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests uses the JSON-RPC standard. The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
+Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests uses the JSON-RPC standard. 
+
+The following sections explain how to construct HTTP GET and POST requests to the Geotab API. When making requests which contain MyGeotab credentials to the Geotab API only POST requests should be used. This will help minimize the potential for credentials being leaked into browser histories or in web server logs.
 
 The MyGeotab API only allows making requests over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
 
@@ -22,7 +24,9 @@ Methods can be invoked via HTTPS GET request as follows:
 
 `https://[myserver]/apiv1/[methodname]?[parameters]`
 
-Here is a simple example of invoking the method GetVersion. This method does not require any parameters and can be called without credentials:
+When using methods which require MyGeotab Credentials to be passed as parameters the HTTP GET requests should be avioded and HTTP POST requests should be used instead.   
+
+Here is a simple example of invoking the method GetVersion. This method does not require any parameters.
 
 `https://my3.geotab.com/apiv1/GetVersion`
 
@@ -35,20 +39,15 @@ The HTTP response is returned as JSON. For example:
 Where the version will be the current version on the server.
 
 ### Make your first API call
+Here is a more complex example that requires parameters. Well both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.
 
-Here is a more complex example that requires parameters. For the sake of clarity, the example below is not URI (Universal Resource Identifier) encoded (more on this below). Both POST and GET requests are supported. This example shows a GET request that returns all devices (vehicles) and their properties.
+The following endpoint is used to invoke an API method when an HTTP POST request is used
 
-`https://[my3.geotab.com]/apiv1/Get?typeName=Device&credentials={"database":"[demo]","userName":"[bob@geotab.com]","password":"[xxx]"}`
+`https://[myserver]/apiv1/`
 
-The HTTP response is returned a JSON object (shortened for example purposes). The return will be similar to this format:
+The method name and parameters are passed in the HTTP body using the [JSON-RPC](http://en.wikipedia.org/wiki/JSON-RPC) format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the [API reference](../../api/reference). 
 
-```json
-{"result":[{"name":"Pickup truck", "id":"b0123"}]}
-```
-
-The full set of API methods and objects returned can be viewed in the [API reference](../../api/reference). When utilizing methods which require the user to send their login credentials as part of the URL, it is advised to take precautions regarding visibility of their password to other parties.
-
-To understand how the parameters were passed in the URL, consider the following JSON object that needs to be passed to the method:
+To understand what parameters need to be passed to the method consider the following JSON object:
 
 ```json
 {
@@ -61,29 +60,6 @@ To understand how the parameters were passed in the URL, consider the following 
 }
 ```
 
-Using an HTTP query string, all the JSON object properties above are serialized after the method name in the query string as key/value pairs, separated by ampersand characters as follows:
-
-Generic:
-
-`https://[...]?property1=value1&property2=value2`
-
-Specific example:
-
-`https://[...]?typeName=Device&credentials={"database":"demo"}`
-
-Note that in the examples above, the property credentials are objects. In this case, stringify the JSON object and set that as the property value. Also take note that the query string should be properly URI encoded; paste the example below [here](http://www.url-encode-decode.com/) and select decode URL. The final HTTP GET request looks as follows:
-
-`https://my3.geotab.com/apiv1/Get?typeName=Device&credentials={"database":"demo","userName":"bob@geotab.com","sessionId":"xxx"}`
-
-> The MyGeotab API also supports JSONP when doing HTTP GET requests from JavaScript. This can be useful when writing a standalone HTML/JavaScript app. See the [Using in JavaScript](../using-in-javascript/) section for more information.
-
-## HTTP POST request
-
-When using HTTP POST request to invoke an API method, the same endpoint as the GET is used:
-
-`https://[myserver]/apiv1/`
-
-However, instead of encoding the method name and parameters in the query string, it is passed in the HTTP body using the [JSON-RPC](http://en.wikipedia.org/wiki/JSON-RPC) format. Geotab API version 1 supports JSON-RPC version 2.0.
 
 The following is a JavaScript example that shows how an HTTP POST can be used to invoke a method. Note that this can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.Http.HttpClient in .Net can be utilized.
 
@@ -409,7 +385,21 @@ Making an HTTP request over a network has overhead. This can be in the form of N
 
 For example, if we make a request to get the max road speed from a set of points. The request would be constructed in a format similar to:
 
-`https://my.geotab.com/apiv1/GetRoadMaxSpeeds?simplePoints=[{"y":[37.61610412597656],"x":[-121.8139419555664]}]&credentials={"database":"[demo]","userName":"[bob@geotab.com]","sessionId":"[xxx]"}`
+`var data = {
+ "id" : 0,
+ "method" : "GetRoadMaxSpeeds",
+ "params" : {
+  "simplePoints" : {
+  "y": "37.61610412597656",
+  "x": "-121.8139419555664"
+  }
+  "credentials" : {
+   "database" : "demo",
+   "userName" : "bob@geotab.com",
+   "sessionId" : "xxx"
+  }
+ }
+};`
 
 Response:
 
@@ -427,7 +417,30 @@ The above illustration is an extreme example to demonstrate the benefits of usin
 
 Making a MultiCall is very simple, use the method "ExecuteMultiCall" with the parameter "calls" of JSON type Array. Each call should be formatted as an Object with property "method" of type string with the method name as its value and a property "params" of type Object with the method parameters as its properties. The "params" object will also need to contain the user credentials if they are required for the method being called.
 
-`https://my.geotab.com/apiv1/ExecuteMultiCall?calls=[{"method":"GetRoadMaxSpeeds","params":{"simplePoints":[{"y":37.61610412597656,"x":-121.8139419555664}],"credentials":{"database":"demo","userName":"bob@geotab.com","sessionId":"xxx"}}},{"method":"GetRoadMaxSpeeds","params":{"simplePoints":[{"y":38.61610412597656,"x":-122.8139419555664}]}}]`
+`var data = {
+ "id" : 0,
+ "method" : "ExecuteMultiCall",
+ "calls":{
+    "method" : "GetRoadMaxSpeeds",
+    "params" : {
+    "simplePoints" : {
+      "y": "37.61610412597656",
+      "x": "-121.8139419555664"
+                      },
+    "credentials" : {
+      "database" : "demo",
+      "userName" : "bob@geotab.com",
+      "sessionId" : "xxx"
+                     }
+         },{
+    "method" : "GetRoadMaxSpeeds",
+    "params" : {
+    "simplePoints" : {
+      "y": "38.61610412597656",
+      "x": "-122.8139419555664"
+                      }     
+                }
+         }}`
 
 Response:
 
