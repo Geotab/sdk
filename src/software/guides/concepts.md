@@ -39,7 +39,7 @@ The HTTP response is returned as JSON. For example:
 Where the version will be the current version on the server.
 
 ### Make your first API call
-Here is a more complex example that requires parameters. Well both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.
+Here is a more complex example that requires parameters. While both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.
 
 The following endpoint is used to invoke an API method when an HTTP POST request is used
 
