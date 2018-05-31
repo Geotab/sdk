@@ -724,11 +724,11 @@ permalink: /software/api/reference/
 
                         //In the case of properties/enums there are much more supported than not so we only note the unsupported ones
                         if (memberPropMeth.type === memberTypes.property || memberPropMeth.type === memberTypes.enumeration || isPropertyMethod) {
-                            memberPropMeth.supported = supported.length && supported[0].textContent === "true" || !supported.length;
+                            memberPropMeth.supported = supported.length && supported[0].textContent.indexOf("true") > -1 || !supported.length;
                         } else {
                             // potential partial classes, if any part is true, use true
                             for (i = 0; i < supported.length; i++) {
-                                if (supported[i].textContent === "true") {
+                                if (supported[i].textContent.indexOf("true") > -1) {
                                     memberPropMeth.supported = true;
                                 }
                             }
