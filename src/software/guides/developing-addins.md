@@ -451,7 +451,7 @@ The state object is a powerful tool for creating navigational components by chan
 
 > The second parameter to the gotoPage method is optional and is used for query string parameters.
 
-## Opening third-party applications using URI schema from Addins.
+## Opening third-party applications using URI schema from Addins.(Only for Drive app v. 4.1.0
 
 It's possible to open different applications like prontoforms or native calendar from addins. To do so, it's important to construct correct URI schema string and pass it to 
 
