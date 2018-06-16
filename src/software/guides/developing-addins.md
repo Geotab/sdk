@@ -451,6 +451,30 @@ The state object is a powerful tool for creating navigational components by chan
 
 > The second parameter to the gotoPage method is optional and is used for query string parameters.
 
+## Opening third-party applications using URI schema from Addins.(Only for Drive app v. 4.1.0
+
+It's possible to open different applications like prontoforms or native calendar from addins. To do so, it's important to construct correct URI schema string and pass it to 
+
+```javascript
+window.open(uriSchemaString, "_system")
+```
+
+Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:
+
+```javascript
+window.open("twitter://messages", "_system")
+```
+
+You can't use just "twitter://" since it's not correct and app won't open. You need to specify which page you want to open: messages, account etc.
+
+To open webpage you need to use the same method, but with this notation:
+
+```javascript
+window.open("https://google.com", "_blank")
+```
+
+Where ```_blank``` is important, especially for iOS devices.
+
 ## Complete integration example
 
 Using all the concepts outlined in this document, the following is a complete integration example which creates a custom page Add-In with real-world functionality. In this example, the custom page has JavaScript methods that make requests using the Geotab API to retrieve the current vehicles on your account. The result of the API request is shown on the custom page in a list. Finally, when the user leaves the page, the custom page performs cleanup during the lifecycle methods.
