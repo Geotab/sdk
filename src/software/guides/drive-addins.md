@@ -54,3 +54,29 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | state.online | Mobile device has internet access | None | Boolean |
 | state.deviceCommunicating | Telematics device is communicating to the server | None | Boolean |
 | state.gpsConnected | Mobile device has GPS enabled | None | Boolean |
+
+## Opening third-party applications using URI schema
+
+> Drive app v4.1.0+
+
+It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to `window.open. For example:
+
+```javascript
+window.open(uriSchemaString, "_system")
+```
+
+Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:
+
+```javascript
+window.open("twitter://messages", "_system")
+```
+
+You can't use just `twitter://` as it's not correct and app won't open. You need to specify which page you want to open: `messages`, `account` etc.
+
+To open webpage you need to use the same method, but with this notation:
+
+```javascript
+window.open("https://google.com", "_blank")
+```
+
+> `_blank` is important, especially for iOS devices
