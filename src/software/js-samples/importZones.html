@@ -32,7 +32,7 @@
 
             <div id="example-content">
                 <form>
-                    <h3>Import devices</h3>
+                    <h3>Import Zones</h3>
                     <p>
                         Use the text box below to import multiple zones at a time. Place each zone
                         on its own line as follows:
@@ -44,7 +44,7 @@
                         <input id="isMetric" type="checkbox" checked="checked" /> <label for="isMetric">Use meters for zone size</label>
                     </p>
                     <p>
-                        <textarea id="content" cols="120" rows="8"></textarea>
+                        <textarea onclick="clear_cache()" id="content" cols="120" rows="8"></textarea>
                     </p>
                     <button id="importZones">Import zones</button>
                     <span id="result"></span>
@@ -88,8 +88,7 @@
 
         <script type="text/javascript">
 
-            var groupCache;
-            var zoneTypeCache;
+            var groupCache,zoneTypeCache,count=0;
 
             document.addEventListener("DOMContentLoaded", function() {
 
@@ -101,6 +100,7 @@
 
                     var content = document.getElementById("content").value;
                     var isMetric = document.getElementById("isMetric").checked;
+					count=0;
 
                     if (content === "") {
                         alert("At least one zone is required");
@@ -168,7 +168,7 @@
                             }, function(result) {
                                 console.log("Successfully imported " + name + " (" + result + ")");
                             }, function(error) {
-                                console.log("Error: " + error);
+                                console.log("There was an issue creating the zone " + name);
                             });
                         }
 
@@ -215,7 +215,7 @@
 
                 for (var i = 0; i < split.length; i++) {
                     if (zoneTypeCache.hasOwnProperty(split[i])) {
-                        zoneTypes.push(zoneTypeCache[split[i]].id);
+                        zoneTypes.push({"id":zoneTypeCache[split[i]].id});
                     }
                 }
 
@@ -296,6 +296,18 @@
                 });
             }
 
+			function clear_cache(){
+			if(count<1){
+				groupCache = refreshGroupCache(null);
+				console.log("cleared group cache");
+
+				zoneTypeCache = refreshZoneTypeCache(null);
+				console.log("cleared zone cache");
+				
+				count++;
+				}
+			}
+		
         </script>
 
     </body>
