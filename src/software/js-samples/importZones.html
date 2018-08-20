@@ -44,7 +44,7 @@
                         <input id="isMetric" type="checkbox" checked="checked" /> <label for="isMetric">Use meters for zone size</label>
                     </p>
                     <p>
-                        <textarea onclick="clear_cache()" id="content" cols="120" rows="8"></textarea>
+                        <textarea id="content" cols="120" rows="8"></textarea>
                     </p>
                     <button id="importZones">Import zones</button>
                     <span id="result"></span>
@@ -88,19 +88,21 @@
 
         <script type="text/javascript">
 
-            var groupCache,zoneTypeCache,count=0;
+            var groupCache,zoneTypeCache,clearCacheLimit=0;
 
             document.addEventListener("DOMContentLoaded", function() {
 
                 groupCache = refreshGroupCache(null);
                 zoneTypeCache = refreshZoneTypeCache(null);
+				
+				document.getElementById("content").addEventListener("click", clearCache);
 
                 document.getElementById("importZones").addEventListener("click", function(event) {
                     event.preventDefault();
 
                     var content = document.getElementById("content").value;
                     var isMetric = document.getElementById("isMetric").checked;
-					count=0;
+					clearCacheLimit=0;
 
                     if (content === "") {
                         alert("At least one zone is required");
@@ -296,13 +298,11 @@
                 });
             }
 
-			function clear_cache(){
-			if(count<1){
+			function clearCache(){
+			if(clearCacheLimit < 1){
 				groupCache = refreshGroupCache(null);
-				//console.log("cleared group cache");
 				zoneTypeCache = refreshZoneTypeCache(null);
-				//console.log("cleared zone cache");
-				count++;
+				clearCacheLimit++;
 				}
 			}
 		
