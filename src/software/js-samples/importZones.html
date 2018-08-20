@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
     
@@ -32,7 +32,7 @@
 
             <div id="example-content">
                 <form>
-                    <h3>Import devices</h3>
+                    <h3>Import Zones</h3>
                     <p>
                         Use the text box below to import multiple zones at a time. Place each zone
                         on its own line as follows:
@@ -88,19 +88,21 @@
 
         <script type="text/javascript">
 
-            var groupCache;
-            var zoneTypeCache;
+            var groupCache,zoneTypeCache,clearCacheLimit=0;
 
             document.addEventListener("DOMContentLoaded", function() {
 
                 groupCache = refreshGroupCache(null);
                 zoneTypeCache = refreshZoneTypeCache(null);
+				
+				document.getElementById("content").addEventListener("click", clearCache);
 
                 document.getElementById("importZones").addEventListener("click", function(event) {
                     event.preventDefault();
 
                     var content = document.getElementById("content").value;
                     var isMetric = document.getElementById("isMetric").checked;
+					clearCacheLimit=0;
 
                     if (content === "") {
                         alert("At least one zone is required");
@@ -215,7 +217,7 @@
 
                 for (var i = 0; i < split.length; i++) {
                     if (zoneTypeCache.hasOwnProperty(split[i])) {
-                        zoneTypes.push(zoneTypeCache[split[i]].id);
+                        zoneTypes.push({"id":zoneTypeCache[split[i]].id});
                     }
                 }
 
@@ -296,6 +298,14 @@
                 });
             }
 
+			function clearCache(){
+			if(clearCacheLimit < 1){
+				groupCache = refreshGroupCache(null);
+				zoneTypeCache = refreshZoneTypeCache(null);
+				clearCacheLimit++;
+				}
+			}
+		
         </script>
 
     </body>
