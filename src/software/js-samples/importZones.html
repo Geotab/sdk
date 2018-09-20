@@ -102,7 +102,8 @@
 
                     var content = document.getElementById("content").value;
                     var isMetric = document.getElementById("isMetric").checked;
-					clearCacheLimit=0;
+					          clearCacheLimit=0;
+					          
 
                     if (content === "") {
                         alert("At least one zone is required");
@@ -112,10 +113,13 @@
 
                         // Reset the result display
                         document.getElementById("result").innerHTML = "";
-
-                        for (var i = 0; i < zones.length; i++) {
+                        
+                        var name = [];
+					              var calls = [];
+					              
+                        for (let i = 0; i < zones.length; i++) {
                             // Split up the zone properties
-                            var split = zones[i].split(",");
+                            let split = zones[i].split(",");
 
                             // Zones can only have 10 properties with 1 additional optional
                             if (split.length < 10 || split.length > 11) {
@@ -129,7 +133,7 @@
                             }
 
                             // Parse each part of the input
-                            var name = split[0];
+                            name[i] = split[0];
                             var latitude = parseFloat(split[1]);
                             var longitude = parseFloat(split[2]);
                             var size = parseSize(split[3]);
@@ -146,11 +150,11 @@
 
                             // Generates a box around the latitude and longitude
                             var zonePoints = generateZonePoints(latitude, longitude, size, isMetric);
-
-                            api.call("Add", {
+                            
+                            calls.push(["Add", {
                                 typeName: "Zone",
                                 entity: {
-                                    name: name,
+                                    name: name[i],
                                     comment: comment,
                                     externalReference: "",
                                     mustIdentifyStops: true,
@@ -166,20 +170,26 @@
                                         b: blue,
                                         a: transparency
                                     }
-                                }
-                            }, function(result) {
-                                console.log("Successfully imported " + name + " (" + result + ")");
+                                },
+                            }]);
+                        }
+
+                            api.multiCall(calls, function(result) {
+                              for (var y = 0; y < result.length; y++){
+                                 console.log("Successfully imported " + name[y] + " (" + result[y] + ")");
+                              }
                             }, function(error) {
-                                console.log("There was an issue creating the zone " + name);
+                              for (var y = 0; y < result.length; y++){
+                                console.log("There was an issue creating the zone " + name[y]);
+                              }
                             });
                         }
 
                         document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
-                    }
+                    });
 
                 });
 
-            });
 
             // Ensure each zone has at least (a small) radius
             function parseSize(text) {
