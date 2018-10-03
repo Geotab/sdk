@@ -4,7 +4,7 @@ permalink: /software/js-samples/
 title: JavaScript Examples
 ---
 
-The following examples show common usages of the SDK using JavaScript. We recommend that you examine the examples in the following order to learn more about build great web applications using the Geotab JavaScript API. These examples are stand-alone HTML, JavaScript and CSS written so you can extract them and "run" them without having your own Web server.
+The following examples show common usages of the SDK using JavaScript. We recommend that you examine the examples in the following order to learn more about building great web applications using the Geotab JavaScript API. These examples are stand-alone HTML, JavaScript and CSS written so you can extract them and "run" them without having your own Web server.
 
 You can also use the [Runner](../api/runner.html) to run code snippets that you can run directly against a database. The runner has code snippets that demonstrate:
 
@@ -14,8 +14,8 @@ You can also use the [Runner](../api/runner.html) to run code snippets that you 
 * Calculate vehicle fuel usage
 * Create 10 groups and add devices
 * Get vehicle location and driving status
-* Get vheilce location
-* Get DVIR unrepaaired defects for last month
+* Get vehicle location
+* Get DVIR unrepaired defects for last month
 * Filtering out invalid position log records
 * Find current live address of a driver
 * Find the month with longest distance driven
