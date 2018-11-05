@@ -36,9 +36,9 @@ To make an Add-In on the Geotab Drive app, the **item** in your configuration fi
 
 ## API and State Documentation
 
-Inside the Geotab Drive app, we provide the same _api_ and _state_ properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
+Inside the Geotab Drive app, we provide the same _api_ and _state_ properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided in __api.mobile__.
 
-### Table 1 — Geotab Drive additional properties and methods
+### Table 1 — api.mobile device additional properties and methods
 
 |   | **Description** | **Parameters** | **Return Type** |
 | --- | --- | --- | --- |
@@ -47,6 +47,40 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.speak() | If `api.mobile.exists()`, uses the text to speech functionality on the mobile device | String | Void |
 | api.mobile.notify() | If `api.mobile.exists()`, will add a notification to the top bar of a native operating system Example: `api.mobile.notify("Fill up your vehicle", "Low on gas")` | String[Message], String[Title], String[Id], [String[JsonData]], [Boolean[Permanent]] | Void |
 | api.mobile.geolocation() | A navigator object that is similar to HTML5 `navigator.geolocation` Example: `api.mobile.geolocation.getCurrentPosition(function (position) { }, function (error) { }, { enableHighAccuracy: true })` | None | None |
+
+### Table 2 - api.mobile.user data methods
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| api.mobile.user.get() | By default returns all drivers & co-drivers. If __includeAllDrivers__ is set to __false__, it will return the user in the driver's seat | Boolean(includeAllDrivers=true) | User |
+| api.mobile.user.setDriverSeat() | Will set the vehicle's driver to the user Id provided. Only works with user Id's that are logged in. Tries to perform a __Set<DriverChange>__ api call, or updates local database if offline | String(id) | User |
+| api.mobile.user.getHosRuleSet() | Returns the configuration of the 'active' driver's current ruleset | None | RuleSet Configuration |
+| api.mobile.user.getAvailability() | Returns the 'active' driver's availability hours | None | DutyStatusAvailability |
+| api.mobile.user.getViolations() | Returns an array of violations the driver has since the start of their cycle | None | DutyStatusViolation |
+
+### Table 3 - api.mobile.dutyStatusLog data methods
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| api.mobile.dutyStatusLog.get() | Returns array of 'active' driver's DutyStatusLogs | None | DutyStatusLog[] |
+| api.mobile.dutyStatusLog.getCurrentDrivingLog() | Returns a single DutyStatusLog that is the driver's present "driving" status. Where "driving" is defined as D, ON, OFF, SB, WT logs. | None | DutyStatusLog |
+
+### Table 4 - api.mobile.vehicle data methods
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| api.mobile.vehicle.get() | Returns current vehicle (Device) or null | None | Device / null |
+
+### Table 5 - api.mobile.trailer data methods
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| api.mobile.trailer.get() | Returns array of current trailer(s) or an empty array | None | Trailer[] |
+
+### Table 6 - api.mobile.shipment data methods
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| api.mobile.shipment.get() | Returns array of current shipment(s) or an empty array | None | ShipmentLog[] |
+
+### Table 8 - state additional parameters
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
@@ -54,6 +88,26 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | state.online | Mobile device has internet access | None | Boolean |
 | state.deviceCommunicating | Telematics device is communicating to the server | None | Boolean |
 | state.gpsConnected | Mobile device has GPS enabled | None | Boolean |
+
+## Host Geotab Drive in WebView
+
+It is possible to host the Geotab Drive application *within* an Android or iOS application's WebView. It is possible, today, for developers to do this but it is often requested that they have programmatic access to Geotab Drive's features in the WebView. For example: being able to get a driver's availability locally in the app and not having to make a Get<DutyStatusAvailability> call to the server. This will save server load, and make your application more stable in situations of poor network connectivity.
+
+### Table 9 - Global access to Drive app
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| window.webViewLayer.getApiUserNames | Returns a list of all logged in users' names | None | String |
+| window.webViewLayer.getApi | Accepting a userName, this will return the user's __api__ object. This is the same __api__ object described above, and has __api.mobile__ and all other attributes & methods | String(userName) | Object |
+
+Use those global methods to get access to users' API objects and all the bells & whistles that have been extended into the Geotab Drive application.
+
+### Table 9 - Global events
+|   | **Description** | **Parameters** | **Return Type** |
+| --- | --- | --- | --- |
+| window.webViewLayer.pageNavigation | Register this function to be notified of page navigation within the Geotab Drive application | None | String |
+| window.webViewLayer.newDutyStatusLog | Register this function to be notified when a new DutyStatusLog is created in Geotab Drive. It will return the whole object | None | Object |
+| window.webViewLayer.driverActionNecessary | Register this function to be notified when the Geotab Drive application would like to be visually presented to the user. | None | None |
+
 
 ## Opening third-party applications using URI schema
 
