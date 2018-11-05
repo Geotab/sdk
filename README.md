@@ -39,7 +39,7 @@ $ gulp deploy
 
 The `_config.yml` and `_config.build.yml` provide the Jekyll settings. `_config.build.yml` is only used in production build and overrides settings in `_config.yml`;
 
-## Dependancies
+## Dependencies
 
 > generator-jekyllized
 For more information on how to use this project, please refer to the [README
