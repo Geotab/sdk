@@ -20,6 +20,10 @@ title: What's New
 
   - Added `LicencePlate` and `LicenceState` properties
 
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Added BETA support for `Recap` and `CycleAvailabilities` properties
+
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Replaced `Availabilities` list with separate properties: `Driving`, `Cycle`, `Rest`, `Duty`, `Workday`
+
 - [DeviceType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceType): Added `CustomVehicleDevice`.
 
 - [DriverChange]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChange): DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.
