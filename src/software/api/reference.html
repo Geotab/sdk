@@ -592,11 +592,16 @@ permalink: /software/api/reference/
                     return args;
                 },
                     getMemberName = function (memberName, args) {
-                        var isGeneric = memberName.indexOf("``1", 0) > -1 || memberName.indexOf("``2", 0) > -1;
+                        var isGeneric = memberName.indexOf("``1", 0) > -1 || memberName.indexOf("``2", 0) > -1,
+                            async = "Async";
 
                         memberName = args !== "" ? memberName.substr(0, memberName.indexOf("(")) : memberName;
                         // Generics
                         memberName = removeGenericsSymbols(memberName);
+
+                        if (!memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
+                            memberName = memberName.substring(0, memberName.length - async.length);
+                        }
 
                         // Split member path into array
                         return {
