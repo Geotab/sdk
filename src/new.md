@@ -1,8 +1,45 @@
 ---
 layout: page
 permalink: /resources/new/
-title: What’s New
+title: What's New
 ---
+
+## 5.7.1804
+
+- [Add]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Add1)/[Set]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Set1) [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): `ParameterVersion` will auto increment server side when device parameters property changed. Server must see that  `ParameterVersion` has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, `ParameterVersion` required manual increment.
+
+- [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): Fix bug, in certian senario changing `Timeout` property could abort the action on timeout and not cancel underlying request.
+
+- [CustomVehicleDevice]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.CustomVehicleDevice): Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.
+
+  - Improved support for calculated odometer and raw odometer with third-party diagnostic KnownId `DiagnosticThirdPartyOdometerId` and `OdometerAdjusmentId`
+
+  - Improved support for calculated engine hours with third-party diagnostic KnownId `DiagnosticThirdPartyEngineRunTimeId` and `EngineHoursAdjusmentId`
+
+  - `VehicleIdentificationNumber` property moved from CustomDevice to CustomVehicleDevice
+
+  - Added `LicencePlate` and `LicenceState` properties
+
+- [DeviceType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceType): Added `CustomVehicleDevice`.
+
+- [DriverChange]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChange): DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.
+
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `ExemptionOffDutyDeferral`.
+
+- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolationType): Added `DailyDriving`, `DailyRest`, `DailyDuty`, `DailyOff`.
+
+- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId): Added `DiagnosticThirdPartyEngineRunTimeId`,  `DiagnosticThirdPartyOdometerId`.
+
+- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) [LogRecord]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LogRecord): Fixed bug with inconstant results limit.
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `DirectSupportAdmin`, `UserLoginStatusRead`, `UserLoginStatusSet`.
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Values `AlarmSoundList`, `Tracking`, `CreateNewSqlDatabase`, `EngineControllerList`, `PurgeSettings`, `SendImmobilizationInstruction` are obsolete and will be removed in version 1806+.
+
+- [SecurityRole]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityRole): Added `SupportTicketInsert`, `TrainingTicketInser`, `SupportTicketSet`, `TrainingTicketSetUser`, `LoginFailure`, `UserLockout`, `UserUnlocked`, `ShipmentLogInsert`, `ShipmentLogSet`, `ShipmentLogRemove`, `TrailerAttachmentInsert`, `TrailerAttachmentSet`, `TrailerAttachmentRemove`.
+
+- [ZoneSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ZoneSearch): Added `FromDate` and `ToDate` search properties providing ability to filter zones by their active dates.
+
 ## 5.7.1803
 
 * SecurityRole: Added `CertificateSet` permission

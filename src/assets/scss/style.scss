@@ -47,6 +47,12 @@ main {
     img:not(.welcome) {
         @extend .img-thumbnail;
     }
+
+    ul {
+        ul {
+            margin-bottom: 1em;
+        }
+    }
 }
 
 code {
