@@ -8,7 +8,7 @@ title: Drive Add-Ins
 
 ## Overview
 
-The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also been completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
+The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
 
 Please read the [Developing Add-Ins](../developing-addins) guide first before attempting a Geotab Drive Add-In.
 
