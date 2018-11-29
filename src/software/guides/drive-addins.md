@@ -102,12 +102,11 @@ It is possible to host the Geotab Drive application *within* an Android or iOS a
 Use those global methods to get access to users' API objects and all the bells & whistles that have been extended into the Geotab Drive application.
 
 ### Table 9 - Global events
-|   | **Description** | **Parameters** | **Return Type** |
-| --- | --- | --- | --- |
-| window.webViewLayer.pageNavigation | Register this function to be notified of page navigation within the Geotab Drive application | None | String |
-| window.webViewLayer.newDutyStatusLog | Register this function to be notified when a new DutyStatusLog is created in Geotab Drive. It will return the whole object | None | Object |
-| window.webViewLayer.driverActionNecessary | Register this function to be notified when the Geotab Drive application would like to be visually presented to the user. | None | None |
-
+|   | **Description** | **Callback Function Parameters** |
+| --- | --- | --- |
+| window.webViewLayer.pageNavigation | Register this function to be notified of page navigation within the Geotab Drive application | None |
+| window.webViewLayer.newDutyStatusLog | Register this function to be notified when a new DutyStatusLog is created in Geotab Drive. It will return the whole object | Object(dutyStatusLog) |
+| window.webViewLayer.driverActionNecessary | Register this function to be notified when the Geotab Drive application would like to be visually presented to the user. | Boolean(unknown), String(workflow) |
 
 ## Opening third-party applications using URI schema
 
