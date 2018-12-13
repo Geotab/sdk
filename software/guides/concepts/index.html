@@ -1,816 +1,205 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- SEO -->
-  <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Concepts | MyGeotab SDK</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Concepts" />
-<meta name="author" content="The Geotab Team" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
-<meta property="og:description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
-<link rel="canonical" href="https://geotab.github.io/software/guides/concepts/" />
-<meta property="og:url" content="https://geotab.github.io/software/guides/concepts/" />
-<meta property="og:site_name" content="MyGeotab SDK" />
-<script type="application/ld+json">
-{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/software/guides/concepts/","headline":"Concepts","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-  <!-- CSS -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="/assets/stylesheets/style.css">
-  <!-- endinject -->
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-
-</head>
-
-
-<body>
-
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            MyGeotab SDK
-        </a>
-        <button class="navbar-toggler d-lg-none" id="toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-</header>
-
-
-  <div id="wrapper">
-<div id="sidebar-wrapper" class="bg-light">
-    <nav id="sidebar" class="sidebar">
-    
-        <h4>Software</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/introduction/">Introduction</a>
-                
-            </li>
-            
-        
-        <h5>Guides</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/getting-started/">Getting Started</a>
-                
-            </li>
-            
-            <li class="nav-link active">
-                
-                <a href="/software/guides/concepts/">Concepts</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/using-in-dotnet/">Using in .Net</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/data-feed">Data Feed</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/using-go-devices/">Using GO Devices</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/go-device-logging/">GO Device Logging</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/third-party-devices/">Using Third-Party Devices</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/developing-addins/">Developing Add-Ins</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>API</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/reference/">Reference</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/runner.html">Runner</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/clients/">API Clients</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Code Samples</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/js-samples/">Javascript Examples</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net Examples</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/sdk-addin-samples">Add-in Examples</a>
-                
-            </li>
-            
-        </ul>
-         
-        </ul>
-    
-        <h4>Hardware</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/introduction/">Introduction</a>
-                
-            </li>
-            
-        
-        <h5>Add-on Protocols</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/can/">CAN</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/ble/">BLE</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Code Samples</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/samples/python/">Python</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/android-external-device-example">Android</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Developing an IOX</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
-                
-            </li>
-            
-        </ul>
-         
-        </ul>
-    
-        <h4>Resources</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum">Forums</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/resources/new/">What's New</a>
-                
-            </li>
-            
-         
-        </ul>
-    
-    </nav>
-</div>
-<main role="main">
-  <div class="container-fluid">
-    <div class="row">
-
-      <article class="col-md-12">
-        <header>
-          <a href="https://github.com/Geotab/sdk/blob/master/src/software/guides/concepts.md" class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a>
-          <h1>Concepts</h1>
-        </header>
-
-        <div>
-          <p>Requests made to the Geotab API are performed over HTTPS. The current API is version 1 — this is denoted in the API endpoint URL the web application will send requests to:</p>
-
-<p><code>https://[myserver]/apiv1</code></p>
-
-<p>Note: The portions of the examples noted with <code>[</code> and <code>]</code> (e.g. <code>[myserver]</code>) indicate where the user will enter information specific to their requirements.</p>
-
-<p>API request parameters and the results are transported in the lightweight <a href="http://www.json.org/">JSON</a> format. The <a href="../../api/reference">API reference</a> contains a listing of the methods that can be invoked, the parameters they expect and the results they return. Below are examples to illustrate the capabilities of the Geotab API.</p>
-
-<p>Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests uses the JSON-RPC standard. </p>
-
-<p>The following sections explain how to construct HTTP GET and POST requests to the Geotab API. When making requests which contain MyGeotab credentials to the Geotab API only POST requests should be used. This will help minimize the potential for credentials being leaked into browser histories or in web server logs.</p>
-
-<p>The MyGeotab API only allows making requests over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.</p>
-
-<h2 id="http-get-request">HTTP GET request</h2>
-
-<p>Methods can be invoked via HTTPS GET request as follows:</p>
-
-<p><code>https://[myserver]/apiv1/[methodname]?[parameters]</code></p>
-
-<p>When using methods which require MyGeotab Credentials to be passed as parameters the HTTP GET requests should be avioded and HTTP POST requests should be used instead.   </p>
-
-<p>Here is a simple example of invoking the method GetVersion. This method does not require any parameters.</p>
-
-<p><code>https://my3.geotab.com/apiv1/GetVersion</code></p>
-
-<p>The HTTP response is returned as JSON. For example:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"5.7.1508.122"</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Where the version will be the current version on the server.</p>
-
-<h3 id="make-your-first-api-call">Make your first API call</h3>
-
-<p>Here is a more complex example that requires parameters. While both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.</p>
-
-<p>The following endpoint is used to invoke an API method when an HTTP POST request is used</p>
-
-<p><code>https://[myserver]/apiv1/</code></p>
-
-<p>The method name and parameters are passed in the HTTP body using the <a href="http://en.wikipedia.org/wiki/JSON-RPC">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href="../../api/reference">API reference</a>. </p>
-
-<p>To understand what parameters need to be passed to the method consider the following JSON object:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"typeName"</span><span class="p">:</span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"credentials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"database"</span><span class="p">:</span><span class="s2">"acme"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"userName"</span><span class="p">:</span><span class="s2">"bob@acme.com"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"sessionId"</span><span class="p">:</span><span class="s2">"1234"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>The following is a JavaScript example that shows how an HTTP POST can be used to invoke a method. Note that this can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.Http.HttpClient in .Net can be utilized.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://[myserver]/apiv1"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
- <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-   <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
-   <span class="k">if</span> <span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Work with your result</span>
-    <span class="c1">// Simple example just alerts its presence</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Received Data"</span><span class="p">);</span>
-   <span class="p">}</span>
-  <span class="p">}</span>
- <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// Send the HTTP BODY in the JSON-RPC format.</span>
-<span class="c1">// The method being called is "Get".</span>
-<span class="c1">// The "Get" method's parameters are then passed in the "params" property</span>
-
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
- <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="s2">"method"</span> <span class="p">:</span> <span class="s2">"Get"</span><span class="p">,</span>
- <span class="s2">"params"</span> <span class="p">:</span> <span class="p">{</span>
-  <span class="s2">"typeName"</span> <span class="p">:</span> <span class="s2">"Device"</span><span class="p">,</span>
-  <span class="s2">"credentials"</span> <span class="p">:</span> <span class="p">{</span>
-   <span class="s2">"database"</span> <span class="p">:</span> <span class="s2">"demo"</span><span class="p">,</span>
-   <span class="s2">"userName"</span> <span class="p">:</span> <span class="s2">"bob@geotab.com"</span><span class="p">,</span>
-   <span class="s2">"sessionId"</span> <span class="p">:</span> <span class="s2">"xxx"</span>
-  <span class="p">}</span>
- <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-</code></pre></div>
-<h2 id="results-and-errors">Results and Errors</h2>
-
-<p>Using the example above, a successful call to the server will result in an object with property &ldquo;result&rdquo;, in this format:</p>
-
-<p>Generic:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"results"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Specific:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"5.7.1801.122"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>However, when the call is incorrect or an error is triggered on the server, the error will be returned as an object with property &ldquo;error&rdquo;. For example:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"error"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">-32000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"5531c760-4ff7-485c-bb47-b6ed509b76d6"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"InvalidUserException"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"requestIndex"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Incorrect login credentials"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>The properties of the error object are <a href="../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcError">JsonRpcError</a> and <a href="../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcErrorData">JsonRpcErrorData</a> objects as documented in the API Reference.</p>
-
-<p>See <a href="#example-3-dealing-with-a-database-move-or-credential-expiry">Example 3</a>: Dealing with a database move or credential expiry for an example of a case where it would be useful to catch and handle errors.</p>
-
-<h2 id="http-compression">HTTP Compression</h2>
-
-<p>The MyGeotab API supports <u>gzip</u> and <u>deflate</u> compression. To utilize either of these supported compression methods, include the HTTP header for &ldquo;Accept-Encoding&rdquo;. Ex:</p>
-
-<p>Accept-Encoding: gzip, deflate</p>
-
-<blockquote>
-<p>If you are using an API client (.Net, JavaScript, Nodejs, etc) this header should be enabled automatically.</p>
-</blockquote>
-
-<h2 id="authentication">Authentication</h2>
-
-<p>Data is stored on one of many servers in our cloud. A group of servers is referred to as a <u>federation</u> of servers. For example, the my.geotab.com federation consists of my1.geotab.com, my2.geotab.com and many other servers.</p>
-
-<p>While it is tempting to simply &ldquo;hard code&rdquo; the application to point to a particular server, such as my20.geotab.com, this is the incorrect approach. Over the course of time a database is not guaranteed to remain on the same server. It is common for load balancing to occur and resources to be transferred from one server to another as necessary. To prevent the application from losing its connection to the correct database, authentication calls must be made to the root federation server instead of making the request to a particular server.</p>
-
-<p>As an example; making an authentication call to &ldquo;my.geotab.com&rdquo; and authentication occurring. Such a call could be made as:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-  <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"Authenticate"</span><span class="p">,</span>
-  <span class="s2">"params"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"database"</span><span class="p">:</span> <span class="s2">"database"</span><span class="p">,</span>
-    <span class="s2">"userName"</span><span class="p">:</span> <span class="s2">"user@geotab.com"</span><span class="p">,</span>
-    <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"password"</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"readystatechange"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://my.geotab.com/apiv1"</span><span class="p">);</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"content-type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"cache-control"</span><span class="p">,</span> <span class="s2">"no-cache"</span><span class="p">);</span>
-
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre></div>
-<p>Where the database, user and password are set by you.</p>
-
-<p>If a redirect is necessary, the application will be informed and the correct server can be targeted. Below are special cases which should be considered when accessing the federation.</p>
-
-<h3 id="example-1-currently-on-the-correct-server">Example 1: Currently on the correct server</h3>
-
-<p>In this example, an authentication call is made to my.geotab.com to log into the database &ldquo;<u>acme&rdquo;</u> and the server responds that the server is correct (e.g. no need to redirect).</p>
-
-<p>Steps:</p>
-
-<ol>
-<li>The <strong>Authenticate</strong> method is called with the given credentials</li>
-<li>The response from the server contains two important properties: path and credentials</li>
-</ol>
-
-<p>The path will either contain the URL of a server <u>or</u> the string value <u>ThisServer</u>. Since the database &ldquo;<u>acme&rdquo;</u> in this example is on my.geotab.com, it simply returns <u>ThisServer</u> as highlighted below. This means that the correct server has been targeted and there is no need for a redirect.</p>
-
-<p>The credentials object contains the username, database and session ID. This object will be used in all subsequent calls (password not required when used).</p>
-
-<ol>
-<li>As the authentication method stated the server is correct, other methods can be called. For example <u>GetCountOf</u>, to my.geotab.com. Pass the property called <u>credentials</u> and send along the contents of <u>credentials</u> that was returned in step 2</li>
-<li>The result of the GetCountOf is returned, in this case it is 1234</li>
-</ol>
-
-<h3 id="example-2-redirect-to-different-server">Example 2: Redirect to different server</h3>
-
-<p>In this example, an authentication call to my.geotab.com is made trying to log into database &ldquo;<u>acme&rdquo;</u>. Here the server responds that the database is located on my23.geotab.com. Subsequent calls are then directed to my23.geotab.com</p>
-
-<p>Steps:</p>
-
-<ol>
-<li>The Authenticate method is called with the given credentials</li>
-<li>The response from the server contains two properties: path and credentials</li>
-</ol>
-
-<p>The path will either contain the URL of a server <u>or</u> the string value <u>ThisServer</u>. Since the database &ldquo;<u>acme&rdquo;</u> in this example is on my23.geotab.com, the return is &ldquo;my23.geotab.com&rdquo; meaning that all subsequent requests should be directed at my23.geotab.com.</p>
-
-<p>The credentials object contains the username, database and session ID. This object will be required in all subsequent calls to the server for security reasons (password not required when used).</p>
-
-<ol>
-<li>As the authentication method stated that <u>acme</u> is on the my23.geotab.com server, other methods can be called, for example <u>GetCountOf</u>, to my23.geotab.com. Pass the property called <u>credentials</u> and send along the contents of <u>credentials</u> that was returned in step 2</li>
-<li>The result of the GetCountOf is returned, in this case it is 1234</li>
-</ol>
-
-<p><img src="/software/guides/concepts_0.png" alt=""></p>
-
-<h3 id="example-3-dealing-with-a-database-move-or-credential-expiry">Example 3: Dealing with a database move or credential expiry</h3>
-
-<p>The examples in the previous sections demonstrated how to specify which server to communicate with during authentication. There are however two additional situations to consider:</p>
-
-<ol>
-<li>the database has moved to a different server</li>
-<li>the credentials object returned willeventually expire</li>
-</ol>
-
-<p>When this happens the next API call will fail with the following error object:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"error"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">-32000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"5531c760-4ff7-485c-bb47-b6ed509b76d6"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"InvalidUserException"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"requestIndex"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Incorrect login credentials"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>When the errors collection contains an object with name <u>&ldquo;InvalidUserException&rdquo;</u>, the authentication process must be repeated. This will indicate what the new server is and provide a new credentials object. If the authentication process returns an error, the user was likely changed, in this case another user will be required for the login.</p>
-
-<h2 id="rate-limiting">Rate limiting</h2>
-
-<p>To safeguard optimal functioning and ensure that poorly written SDK applications do not impact the overall system performance,  a limit is imposed on Authentication calls. Starting in <u>November 2016</u>, the MyGeotab API will enforce limits on the number of Authentication requests it will accept. This change will start rolling out in November 2016 for <u>new</u> customers, and will be fully enforced for <u>all</u> customers by end of <u>January 2017</u>.</p>
-
-<p>No more than <strong>10 Authentication requests per minute</strong> are permitted for a user. Both successful and unsuccessful Authentication calls count towards the limit. When the Authentication limit has been exceeded, the server will return an <u>OverLimitException</u> until the limit is automatically reset every minute.</p>
-
-<p>Authentication should be avoided by using the <strong>credentials</strong> object that is returned from an Authentication request for subsequent calls. It contains a token that confirms your identity for API operations. If the session expires or a database is moved, a new Authentication call should be made. This approach allows for efficient usage of Authentication requests and is detailed in the Authentication section above.</p>
-
-<p>Credentials provided with password instead of or combined with session ID must be authenticated. Therefor, each request where credentials are provided in this way will tally against a given user&rsquo;s authentication limits.</p>
-
-<h2 id="working-with-dates">Working with dates</h2>
-
-<p>When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> string (format <code>yyyy-MM-ddTHH:mm:ss.fffZ</code>). In addition, all dates will have to first be converted to <a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> in order to ensure time zone information and daylight savings times are accounted for correctly.</p>
-
-<h2 id="unit-of-measure">Unit of measure</h2>
-
-<p>As a general rule, MyGeotab uses the metric system for values such as speed (km/h) and distance (m). For example, if you queried the odometer reading for a vehicle, the value would be returned in meters or if you retrieved the current speed of a vehicle it would be in km/h. It does not matter in which region in the world the vehicle or user of MyGeotab system is located — we always return the values in metric.A simple conversion can be applied to these values should you wish to work in imperial units or other customized units instead.</p>
-
-<p>Please note that MyGeotab also records various other status data (i.e. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable <a href="http://standards.sae.org/automotive/">SAE</a> standard of the specific code for the associated unit of measure.</p>
-
-<h2 id="entities">Entities</h2>
-
-<p>All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.</p>
-
-<h2 id="id">ID</h2>
-
-<p>An ID is used to uniquely reference entities in the API. IDs are represented by opaque strings. Generally the contents of the IDs are not significant for the user. Building logic around the value of the string should be avoided — unless it is a system ID (see the examples below).</p>
-
-<h3 id="example-4">Example 4</h3>
-
-<p>In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b0a46"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"007 - Aston Martin"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"serialNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTA9000003EA"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"deviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GO6"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vehicleIdentificationNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Note the &ldquo;id&rdquo; property with value &ldquo;b0a46&rdquo;. This is the unique identifier for the device (vehicle) with description &ldquo;007 - Aston Martin&rdquo;.</p>
-
-<p>To find Trips for this vehicle all of the properties of the device do not have to be passed to the Get method. Instead, only the ID property of the device object is required. Below is an example of a valid parameter object (TripSearch) for passing into Get method. The deviceSearch with the ID property set to the value &ldquo;b0a46&rdquo; (as indicated in the example above) is passed.</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"typeName"</span><span class="p">:</span><span class="s2">"Trip"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"search"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"deviceSearch"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"b0a46"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Calling the Get method with the parameter defined above will return all trips for the vehicle &ldquo;007 - Aston Martin&rdquo;.</p>
-
-<h3 id="example-5">Example 5</h3>
-
-<p>There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of &ldquo;CompanyGroupId&rdquo; rather than other characters (such as &ldquo;b0a46&rdquo; above). For example:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CompanyGroupId"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Company Group"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">..</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>If the system entities do not have any properties then they are specified as strings with their ID&rsquo;s name.  For example the source &ldquo;Obd&rdquo; will be identified as &ldquo;SourceObdId&rdquo;.</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"738960445"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"engineType"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b2715"</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SourceObdId"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h2 id="building-block-approach">Building block approach</h2>
-
-<p>The results of a call to our API will only contain literal values and the identities of contained objects — not the actual fully populated child objects. This provides a predictable system that efficiently serializes objects to JSON and back. Additional lookups of the nested objects will be required to retrieve additional properties of the objects.</p>
-
-<p>For example, an engine status data record has a device property. If 1000 engine status data records are retrieved for a device, the status data&rsquo;s device property will only contain the ID of the device. An additional retrieval for the devices object will be required to obtain the status data records. This approach has several benefits:</p>
-
-<ul>
-<li>Saves bytes over the wire</li>
-<li>Reduces request time</li>
-<li>Avoids redundant copies of entities</li>
-<li>More flexible since the child objects may not always be required</li>
-</ul>
-
-<p>In the example below it can be seen how, by creating a dictionary of devices where the key is the device ID and the value is the device object, devices can be easily &ldquo;stitched&rdquo; into the status data records:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">statusDatas</span> <span class="o">=</span> <span class="p">[{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"a1"</span><span class="p">,</span>
-        <span class="s2">"device"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"b1"</span>
-        <span class="p">},</span>
-        <span class="s2">"data"</span><span class="p">:</span> <span class="mf">0.002</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="p">},{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"a2"</span><span class="p">,</span>
-        <span class="s2">"device"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"b1"</span>
-        <span class="p">},</span>
-        <span class="s2">"data"</span><span class="p">:</span> <span class="mf">1.05</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="p">}</span>
-<span class="p">];</span>
-
-<span class="kd">var</span> <span class="nx">deviceLookup</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"b1"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"b1"</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Device 1"</span><span class="p">,</span>
-        <span class="p">...</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>statusDatas[i].device = deviceLookup[statusDatas[i].device.id];</p>
-
-<p>Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call.This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the <a href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed">.Net</a> and <a href="../../js-samples/dataFeed.html">JavaScript DataFeed</a> examples.</p>
-
-<h2 id="multicall">MultiCall</h2>
-
-<p>A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.</p>
-
-<p>Why use a MultiCall?</p>
-
-<p>Making an HTTP request over a network has overhead. This can be in the form of Network overhead, the round trip time to send and receive data over the network and HTTP overhead, the HTTP request and response headers. A MultiCall can be used to reduce amount of overhead in situations where many small requests need to be made to a server.</p>
-
-<p>For example, if we make a request to get the max road speed from a set of points. The request would be constructed in a format similar to:</p>
-
-<p><code>var data = {
- &quot;id&quot; : 0,
- &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;,
- &quot;params&quot; : {
-  &quot;simplePoints&quot; : {
-  &quot;y&quot;: &quot;37.61610412597656&quot;,
-  &quot;x&quot;: &quot;-121.8139419555664&quot;
-  }
-  &quot;credentials&quot; : {
-   &quot;database&quot; : &quot;demo&quot;,
-   &quot;userName&quot; : &quot;bob@geotab.com&quot;,
-   &quot;sessionId&quot; : &quot;xxx&quot;
-  }
- }
-};</code></p>
-
-<p>Response:</p>
-
-<p><code>{&quot;result&quot;:[88.513920000000013]}</code></p>
-
-<p>Making the assumption that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), 40 milliseconds to send the request, 20 ms to process the data on the server and 40 ms for the response to be returned. <a href="http://dev.chromium.org/spdy/spdy-whitepaper">Google&rsquo;s SPDY research project</a> <a href="http://dev.chromium.org/spdy/spdy-whitepaper">white paper</a> states that &ldquo;<u>typical header sizes of 700-800 bytes is common</u>&rdquo;. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the &ldquo;cost of doing business&rdquo; when making a request over a network.</p>
-
-<p>Taking the previous assumptions, what would the overhead be for making 1000 requests for road max speeds? When individual calls are made to the server for 1000 addresses; the base (minimum) HTTP and Network overhead is required for each of these calls. This would result in 80 seconds (80,000 milliseconds) of network overhead and 5.72 MB (750,000 bytes) in headers just going to and from the server. It can be clearly seen that a great deal of overhead can be generated by making small but repeated requests.</p>
-
-<p>By using a MultiCall, the network and HTTP overhead remains at the cost of a single request. This brings the overhead back down to our original 80 milliseconds and 750 bytes. The server processes each request and returns an Array of results when complete.</p>
-
-<p>The above illustration is an extreme example to demonstrate the benefits of using a MultiCall. A MultiCall can (and should) be used to make short running calls of 2 or more requests more efficient than individual calls.</p>
-
-<h3 id="basic-implementation">Basic implementation</h3>
-
-<p>Making a MultiCall is very simple, use the method &ldquo;ExecuteMultiCall&rdquo; with the parameter &ldquo;calls&rdquo; of JSON type Array. Each call should be formatted as an Object with property &ldquo;method&rdquo; of type string with the method name as its value and a property &ldquo;params&rdquo; of type Object with the method parameters as its properties. The &ldquo;params&rdquo; object will also need to contain the user credentials if they are required for the method being called.</p>
-
-<p><code>var data = {
- &quot;id&quot; : 0,
- &quot;method&quot; : &quot;ExecuteMultiCall&quot;,
- &quot;calls&quot;:{
-    &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;,
-    &quot;params&quot; : {
-    &quot;simplePoints&quot; : {
-      &quot;y&quot;: &quot;37.61610412597656&quot;,
-      &quot;x&quot;: &quot;-121.8139419555664&quot;
-                      },
-    &quot;credentials&quot; : {
-      &quot;database&quot; : &quot;demo&quot;,
-      &quot;userName&quot; : &quot;bob@geotab.com&quot;,
-      &quot;sessionId&quot; : &quot;xxx&quot;
-                     }
-         },{
-    &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;,
-    &quot;params&quot; : {
-    &quot;simplePoints&quot; : {
-      &quot;y&quot;: &quot;38.61610412597656&quot;,
-      &quot;x&quot;: &quot;-122.8139419555664&quot;
-                      }     
-                }
-         }}</code></p>
-
-<p>Response:</p>
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">88.513920000000013</span><span class="p">],[</span><span class="mf">-1.0</span><span class="p">]]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="errors">Errors</h3>
-
-<p>In a MultiCall, each request is run on the server in syncronously. If one fails, the error results are returned immediately and <strong>unreached calls are not run</strong>. The error results includes the index of the call in the array that the exception occured.</p>
-
-<p>To illustrate, let&rsquo;s assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">calls</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="nx">call</span><span class="o">-</span><span class="nx">a</span><span class="p">,</span> <span class="c1">// ran successfully</span>
-  <span class="nx">call</span><span class="o">-</span><span class="nx">b</span><span class="p">,</span> <span class="c1">// error occurred, throw and return error</span>
-  <span class="nx">call</span><span class="o">-</span><span class="nx">c</span>  <span class="c1">// never ran</span>
-<span class="p">]</span>
-</code></pre></div>
-<p>Below is an example of the error result. The <code>requestIndex</code> property contains the index of the call that failed.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"error"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"The method 'Foobar' could not be found. Verify the method name and ensure all method parameters are included."</span><span class="p">,</span>
-        <span class="s2">"code"</span><span class="p">:</span> <span class="o">-</span><span class="mi">32601</span><span class="p">,</span>
-        <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"id"</span><span class="p">:</span><span class="s2">"2901ac83-0d7f-41a1-9cca-fd4a68e77ae7"</span><span class="p">,</span>
-            <span class="s2">"type"</span><span class="p">:</span><span class="s2">"MissingMethodException"</span><span class="p">,</span>
-            <span class="s2">"requestIndex"</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">"jsonrpc"</span><span class="p">:</span><span class="s2">"2.0"</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Alternatively, a successful MultiCall would look similar to:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">calls</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">call</span><span class="o">-</span><span class="nx">a</span><span class="p">,</span> <span class="c1">// ran successfully</span>
-    <span class="nx">call</span><span class="o">-</span><span class="nx">b</span><span class="p">,</span> <span class="c1">// ran successfully</span>
-    <span class="nx">call</span><span class="o">-</span><span class="nx">c</span>  <span class="c1">// ran successfully</span>
-<span class="p">]</span>
-<span class="nx">results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"results"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">[...],</span>
-        <span class="p">[...],</span>
-        <span class="p">[...]</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="api-client-support">API client support</h3>
-
-<p>All of the <a href="../../api/clients/">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:</p>
-
-<p>JavaScript API multi-call example:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">calls</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s2">"Get"</span><span class="p">,</span> <span class="p">{</span> <span class="na">typeName</span><span class="p">:</span> <span class="s2">"Diagnostic"</span> <span class="p">}],</span>
-    <span class="p">[</span><span class="s2">"Get"</span><span class="p">,</span> <span class="p">{</span> <span class="na">typeName</span><span class="p">:</span> <span class="s2">"Source"</span><span class="p">,</span> <span class="na">search</span><span class="p">:</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="s2">"SourceGeotabGoId"</span><span class="p">}}],</span>
-    <span class="p">[</span><span class="s2">"Get"</span><span class="p">,</span> <span class="p">{</span> <span class="na">typeName</span><span class="p">:</span> <span class="s2">"Controller"</span> <span class="p">}]</span>
-<span class="p">];</span>
-
-<span class="nx">api</span><span class="p">.</span><span class="nx">multiCall</span><span class="p">(</span><span class="nx">calls</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">diagnostics</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">sources</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">controllers</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">errorString</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>.Net nuget package multi-call example:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">calls</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span>
-    <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Diagnostic</span><span class="p">),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Diagnostic</span><span class="p">&gt;)},</span>
-    <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Source</span><span class="p">),</span> <span class="k">new</span> <span class="p">{</span> <span class="n">search</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SourceSearch</span> <span class="p">{</span> <span class="n">Id</span> <span class="p">=</span> <span class="n">KnownId</span><span class="p">.</span><span class="n">SourceGeotabGoId</span> <span class="p">}</span> <span class="p">},</span> <span class="k">typeof</span><span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Source</span><span class="p">&gt;)},</span>
-    <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Controller</span><span class="p">),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Controller</span><span class="p">&gt;)},</span>
-<span class="p">};</span>
-
-<span class="kt">var</span> <span class="n">results</span> <span class="p">=</span> <span class="n">api</span><span class="p">.</span><span class="nf">MultiCall</span><span class="p">(</span><span class="n">calls</span><span class="p">);</span>
-
-<span class="kt">var</span> <span class="n">diagnostics</span> <span class="p">=</span> <span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Diagnostic</span><span class="p">&gt;)</span><span class="n">results</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-<span class="kt">var</span> <span class="n">sources</span> <span class="p">=</span> <span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Source</span><span class="p">&gt;)</span><span class="n">results</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-<span class="kt">var</span> <span class="n">controllers</span> <span class="p">=</span> <span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Controller</span><span class="p">&gt;)</span><span class="n">results</span><span class="p">[</span><span class="m">2</span><span class="p">];</span>
-</code></pre></div>
-<h3 id="multicall-faq">MultiCall FAQ</h3>
-
-<p><em>Can I use a search in a multicall?</em></p>
-
-<p>Yes, it is possible to use a search in a multicall.</p>
-
-<p><em>When shouldn&rsquo;t I use a multicall?</em></p>
-
-<ol>
-<li>If you need to make a few requests that are long running and return a large amount of data.In these casesit may be preferable to make these requests singularly instead of running one request that continues for a very long time before completion. When the connection is held open for a long period of time you become increasingly susceptible to network interference that could terminate the request.</li>
-<li>Manipulating data (Add,Set,Remove) is not recommended via a multicall. A muilticall is not transactional. Therefore, if call 1 of 3 to Add succeeds and call 2 of 3 fails, call 3 of 3 is not executed and call 1 is not rolled back. See &ldquo;What if an error occurs in one of the MultiCall requests?&rdquo; below for illustration.</li>
-</ol>
-
-<p><em>How many request can I put in a multicall?</em></p>
-
-<p>There is no limit on the number of requests that can be made in a multicall. When making a large number of requests it may be desirable to &ldquo;chunk&rdquo; the requests into several requests of a smaller and more manageable size.</p>
-
-<p><em>What if the call doesn&rsquo;t return a result?</em></p>
-
-<p>The index in the array of results will have a <strong>null</strong> value.</p>
-
-        </div>
-      </article>
-
-    </div>
-  </div>
-</main>
-</div>
-
-  <!-- JS -->
-  <!-- inject:js -->
-  <script src="/assets/javascript/index.js"></script>
-  <!-- endinject -->
-
-</body>
-
-</html>
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Concepts | MyGeotab SDK</title><meta name=generator content="Jekyll v3.8.5"><meta property=og:title content=Concepts><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><meta property=og:description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><link rel=canonical href=https://geotab.github.io/sdk/software/guides/concepts/ ><meta property=og:url content=https://geotab.github.io/sdk/software/guides/concepts/ ><meta property=og:site_name content="MyGeotab SDK"><script type=application/ld+json>{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/sdk/software/guides/concepts/","headline":"Concepts","@context":"http://schema.org"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-5d420f1df7.min.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> MyGeotab SDK </a><button class="navbar-toggler d-lg-none" id=toggler type=button><span class=navbar-toggler-icon></span></button></nav></header><div id=wrapper><div id=sidebar-wrapper class=bg-light><nav id=sidebar class=sidebar><h4>Software</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/introduction/ >Introduction</a></li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/guides/getting-started/ >Getting Started</a></li><li class="nav-link active"><a href=/sdk/software/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-javascript/ >Using in Javascript</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-dotnet/ >Using in .Net</a></li><li class=nav-link><a href=/sdk/software/guides/data-feed>Data Feed</a></li><li class=nav-link><a href=/sdk/software/guides/mygeotab-urls/ >Using MyGeotab URLs</a></li><li class=nav-link><a href=/sdk/software/guides/using-go-devices/ >Using GO Devices</a></li><li class=nav-link><a href=/sdk/software/guides/go-device-logging/ >GO Device Logging</a></li><li class=nav-link><a href=/sdk/software/guides/third-party-devices/ >Using Third-Party Devices</a></li><li class=nav-link><a href=/sdk/software/guides/developing-addins/ >Developing Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/drive-addins/ >Geotab Drive Add-Ins</a></li></ul><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/api/reference/ >Reference</a></li><li class=nav-link><a href=/sdk/software/api/runner.html>Runner</a></li><li class=nav-link><a href=/sdk/software/api/clients/ >API Clients</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/js-samples/ >Javascript Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-dotnet-samples>.Net Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-addin-samples>Add-in Examples</a></li></ul></ul><h4>Hardware</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/introduction/ >Introduction</a></li><h5>Add-on Protocols</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/addon-protocols/rs232-usb/ >RS232 & USB</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/can/ >CAN</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/ble/ >BLE</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/samples/python/ >Python</a></li><li class=nav-link><a href=https://github.com/Geotab/android-external-device-example>Android</a></li></ul><h5>Developing an IOX</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/developing-an-iox/hardware-design-guide/ >Hardware Design Guide</a></li><li class=nav-link><a href=/sdk/hardware/developing-an-iox/messaging-protocol/ >Messaging Protocol</a></li></ul></ul><h4>Resources</h4><ul class="nav flex-column"><li class=nav-link><a href=https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum>Forums</a></li><li class=nav-link><a href=https://www.geotab.com/dev-channel/ >Dev Channel</a></li><li class=nav-link><a href=/sdk/resources/new/ >What's New</a></li></ul></nav></div><main role=main><div class=container-fluid><div class=row><article class=col-md-12><header><a href=https://github.com/Geotab/sdk/blob/master/src/software/guides/concepts.md class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a><h1>Concepts</h1></header><div><p>Requests made to the Geotab API are performed over HTTPS. The current API is version 1 — this is denoted in the API endpoint URL the web application will send requests to:</p><p><code>https://[myserver]/apiv1</code></p><p>Note: The portions of the examples noted with <code>[</code> and <code>]</code> (e.g. <code>[myserver]</code>) indicate where the user will enter information specific to their requirements.</p><p>API request parameters and the results are transported in the lightweight <a href=http://www.json.org/ >JSON</a> format. The <a href=../../api/reference>API reference</a> contains a listing of the methods that can be invoked, the parameters they expect and the results they return. Below are examples to illustrate the capabilities of the Geotab API.</p><p>Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests uses the JSON-RPC standard.</p><p>The following sections explain how to construct HTTP GET and POST requests to the Geotab API. When making requests which contain MyGeotab credentials to the Geotab API only POST requests should be used. This will help minimize the potential for credentials being leaked into browser histories or in web server logs.</p><p>The MyGeotab API only allows making requests over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.</p><h2 id=http-get-request>HTTP GET request</h2><p>Methods can be invoked via HTTPS GET request as follows:</p><p><code>https://[myserver]/apiv1/[methodname]?[parameters]</code></p><p>When using methods which require MyGeotab Credentials to be passed as parameters the HTTP GET requests should be avioded and HTTP POST requests should be used instead.</p><p>Here is a simple example of invoking the method GetVersion. This method does not require any parameters.</p><p><code>https://my3.geotab.com/apiv1/GetVersion</code></p><p>The HTTP response is returned as JSON. For example:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=s2>"result"</span><span class=p>:</span><span class=s2>"5.7.1508.122"</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>Where the version will be the current version on the server.</p><h3 id=make-your-first-api-call>Make your first API call</h3><p>Here is a more complex example that requires parameters. While both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.</p><p>The following endpoint is used to invoke an API method when an HTTP POST request is used</p><p><code>https://[myserver]/apiv1/</code></p><p>The method name and parameters are passed in the HTTP body using the <a href=http://en.wikipedia.org/wiki/JSON-RPC>JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href=../../api/reference>API reference</a>.</p><p>To understand what parameters need to be passed to the method consider the following JSON object:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"typeName"</span><span class=p>:</span><span class=s2>"Device"</span><span class=p>,</span><span class=w>
+        </span><span class=s2>"credentials"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
+            </span><span class=s2>"database"</span><span class=p>:</span><span class=s2>"acme"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"userName"</span><span class=p>:</span><span class=s2>"bob@acme.com"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"sessionId"</span><span class=p>:</span><span class=s2>"1234"</span><span class=w>
+        </span><span class=p>}</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>The following is a JavaScript example that shows how an HTTP POST can be used to invoke a method. Note that this can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.Http.HttpClient in .Net can be utilized.</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=kd>var</span> <span class=nx>request</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>XMLHttpRequest</span><span class=p>();</span>
+<span class=nx>request</span><span class=p>.</span><span class=nx>open</span><span class=p>(</span><span class=s2>"POST"</span><span class=p>,</span> <span class=s2>"https://[myserver]/apiv1"</span><span class=p>,</span> <span class=kc>true</span><span class=p>);</span>
+<span class=nx>request</span><span class=p>.</span><span class=nx>setRequestHeader</span><span class=p>(</span><span class=s2>"Content-Type"</span><span class=p>,</span> <span class=s2>"application/json"</span><span class=p>);</span>
+<span class=nx>request</span><span class=p>.</span><span class=nx>onreadystatechange</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+ <span class=k>if</span> <span class=p>(</span><span class=nx>request</span><span class=p>.</span><span class=nx>readyState</span> <span class=o>===</span> <span class=mi>4</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=nx>request</span><span class=p>.</span><span class=nx>status</span> <span class=o>===</span> <span class=mi>200</span><span class=p>)</span> <span class=p>{</span>
+   <span class=kd>var</span> <span class=nx>json</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>request</span><span class=p>.</span><span class=nx>responseText</span><span class=p>);</span>
+   <span class=k>if</span> <span class=p>(</span><span class=nx>json</span><span class=p>.</span><span class=nx>result</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// Work with your result</span>
+    <span class=c1>// Simple example just alerts its presence</span>
+    <span class=nx>alert</span><span class=p>(</span><span class=s2>"Received Data"</span><span class=p>);</span>
+   <span class=p>}</span>
+  <span class=p>}</span>
+ <span class=p>}</span>
+<span class=p>};</span>
+
+<span class=c1>// Send the HTTP BODY in the JSON-RPC format.</span>
+<span class=c1>// The method being called is "Get".</span>
+<span class=c1>// The "Get" method's parameters are then passed in the "params" property</span>
+
+<span class=kd>var</span> <span class=nx>data</span> <span class=o>=</span> <span class=p>{</span>
+ <span class=s2>"id"</span> <span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+ <span class=s2>"method"</span> <span class=p>:</span> <span class=s2>"Get"</span><span class=p>,</span>
+ <span class=s2>"params"</span> <span class=p>:</span> <span class=p>{</span>
+  <span class=s2>"typeName"</span> <span class=p>:</span> <span class=s2>"Device"</span><span class=p>,</span>
+  <span class=s2>"credentials"</span> <span class=p>:</span> <span class=p>{</span>
+   <span class=s2>"database"</span> <span class=p>:</span> <span class=s2>"demo"</span><span class=p>,</span>
+   <span class=s2>"userName"</span> <span class=p>:</span> <span class=s2>"bob@geotab.com"</span><span class=p>,</span>
+   <span class=s2>"sessionId"</span> <span class=p>:</span> <span class=s2>"xxx"</span>
+  <span class=p>}</span>
+ <span class=p>}</span>
+<span class=p>};</span>
+
+<span class=nx>request</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>data</span><span class=p>));</span>
+</code></pre></div><h2 id=results-and-errors>Results and Errors</h2><p>Using the example above, a successful call to the server will result in an object with property &ldquo;result&rdquo;, in this format:</p><p>Generic:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"result"</span><span class=p>:</span><span class=s2>"results"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"jsonrpc"</span><span class=p>:</span><span class=s2>"2.0"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>Specific:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"result"</span><span class=p>:</span><span class=s2>"5.7.1801.122"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"jsonrpc"</span><span class=p>:</span><span class=s2>"2.0"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>However, when the call is incorrect or an error is triggered on the server, the error will be returned as an object with property &ldquo;error&rdquo;. For example:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"error"</span><span class=p>:{</span><span class=w>
+        </span><span class=s2>"code"</span><span class=p>:</span><span class=mi>-32000</span><span class=p>,</span><span class=w>
+        </span><span class=s2>"data"</span><span class=p>:{</span><span class=w>
+            </span><span class=s2>"id"</span><span class=p>:</span><span class=s2>"5531c760-4ff7-485c-bb47-b6ed509b76d6"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"type"</span><span class=p>:</span><span class=s2>"InvalidUserException"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"requestIndex"</span><span class=p>:</span><span class=mi>0</span><span class=w>
+        </span><span class=p>},</span><span class=w>
+        </span><span class=s2>"message"</span><span class=p>:</span><span class=s2>"Incorrect login credentials"</span><span class=w>
+    </span><span class=p>},</span><span class=w>
+    </span><span class=s2>"jsonrpc"</span><span class=p>:</span><span class=s2>"2.0"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>The properties of the error object are <a href=../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcError>JsonRpcError</a> and <a href=../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcErrorData>JsonRpcErrorData</a> objects as documented in the API Reference.</p><p>See <a href=#example-3-dealing-with-a-database-move-or-credential-expiry>Example 3</a>: Dealing with a database move or credential expiry for an example of a case where it would be useful to catch and handle errors.</p><h2 id=http-compression>HTTP Compression</h2><p>The MyGeotab API supports <u>gzip</u> and <u>deflate</u> compression. To utilize either of these supported compression methods, include the HTTP header for &ldquo;Accept-Encoding&rdquo;. Ex:</p><p>Accept-Encoding: gzip, deflate</p><blockquote><p>If you are using an API client (.Net, JavaScript, Nodejs, etc) this header should be enabled automatically.</p></blockquote><h2 id=authentication>Authentication</h2><p>Data is stored on one of many servers in our cloud. A group of servers is referred to as a <u>federation</u> of servers. For example, the my.geotab.com federation consists of my1.geotab.com, my2.geotab.com and many other servers.</p><p>While it is tempting to simply &ldquo;hard code&rdquo; the application to point to a particular server, such as my20.geotab.com, this is the incorrect approach. Over the course of time a database is not guaranteed to remain on the same server. It is common for load balancing to occur and resources to be transferred from one server to another as necessary. To prevent the application from losing its connection to the correct database, authentication calls must be made to the root federation server instead of making the request to a particular server.</p><p>As an example; making an authentication call to &ldquo;my.geotab.com&rdquo; and authentication occurring. Such a call could be made as:</p><div class=highlight><pre><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>({</span>
+  <span class=s2>"method"</span><span class=p>:</span> <span class=s2>"Authenticate"</span><span class=p>,</span>
+  <span class=s2>"params"</span><span class=p>:</span> <span class=p>{</span>
+    <span class=s2>"database"</span><span class=p>:</span> <span class=s2>"database"</span><span class=p>,</span>
+    <span class=s2>"userName"</span><span class=p>:</span> <span class=s2>"user@geotab.com"</span><span class=p>,</span>
+    <span class=s2>"password"</span><span class=p>:</span> <span class=s2>"password"</span>
+  <span class=p>}</span>
+<span class=p>});</span>
+
+<span class=kd>var</span> <span class=nx>xhr</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>XMLHttpRequest</span><span class=p>();</span>
+
+<span class=nx>xhr</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>"readystatechange"</span><span class=p>,</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>readyState</span> <span class=o>===</span> <span class=mi>4</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>responseText</span><span class=p>);</span>
+  <span class=p>}</span>
+<span class=p>});</span>
+
+<span class=nx>xhr</span><span class=p>.</span><span class=nx>open</span><span class=p>(</span><span class=s2>"POST"</span><span class=p>,</span> <span class=s2>"https://my.geotab.com/apiv1"</span><span class=p>);</span>
+<span class=nx>xhr</span><span class=p>.</span><span class=nx>setRequestHeader</span><span class=p>(</span><span class=s2>"content-type"</span><span class=p>,</span> <span class=s2>"application/json"</span><span class=p>);</span>
+<span class=nx>xhr</span><span class=p>.</span><span class=nx>setRequestHeader</span><span class=p>(</span><span class=s2>"cache-control"</span><span class=p>,</span> <span class=s2>"no-cache"</span><span class=p>);</span>
+
+<span class=nx>xhr</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+</code></pre></div><p>Where the database, user and password are set by you.</p><p>If a redirect is necessary, the application will be informed and the correct server can be targeted. Below are special cases which should be considered when accessing the federation.</p><h3 id=example-1-currently-on-the-correct-server>Example 1: Currently on the correct server</h3><p>In this example, an authentication call is made to my.geotab.com to log into the database &ldquo;<u>acme&rdquo;</u> and the server responds that the server is correct (e.g. no need to redirect).</p><p>Steps:</p><ol><li>The <strong>Authenticate</strong> method is called with the given credentials</li><li>The response from the server contains two important properties: path and credentials</li></ol><p>The path will either contain the URL of a server <u>or</u> the string value <u>ThisServer</u>. Since the database &ldquo;<u>acme&rdquo;</u> in this example is on my.geotab.com, it simply returns <u>ThisServer</u> as highlighted below. This means that the correct server has been targeted and there is no need for a redirect.</p><p>The credentials object contains the username, database and session ID. This object will be used in all subsequent calls (password not required when used).</p><ol><li>As the authentication method stated the server is correct, other methods can be called. For example <u>GetCountOf</u>, to my.geotab.com. Pass the property called <u>credentials</u> and send along the contents of <u>credentials</u> that was returned in step 2</li><li>The result of the GetCountOf is returned, in this case it is 1234</li></ol><h3 id=example-2-redirect-to-different-server>Example 2: Redirect to different server</h3><p>In this example, an authentication call to my.geotab.com is made trying to log into database &ldquo;<u>acme&rdquo;</u>. Here the server responds that the database is located on my23.geotab.com. Subsequent calls are then directed to my23.geotab.com</p><p>Steps:</p><ol><li>The Authenticate method is called with the given credentials</li><li>The response from the server contains two properties: path and credentials</li></ol><p>The path will either contain the URL of a server <u>or</u> the string value <u>ThisServer</u>. Since the database &ldquo;<u>acme&rdquo;</u> in this example is on my23.geotab.com, the return is &ldquo;my23.geotab.com&rdquo; meaning that all subsequent requests should be directed at my23.geotab.com.</p><p>The credentials object contains the username, database and session ID. This object will be required in all subsequent calls to the server for security reasons (password not required when used).</p><ol><li>As the authentication method stated that <u>acme</u> is on the my23.geotab.com server, other methods can be called, for example <u>GetCountOf</u>, to my23.geotab.com. Pass the property called <u>credentials</u> and send along the contents of <u>credentials</u> that was returned in step 2</li><li>The result of the GetCountOf is returned, in this case it is 1234</li></ol><p><img src=/sdk/software/guides/concepts_0.png alt=""></p><h3 id=example-3-dealing-with-a-database-move-or-credential-expiry>Example 3: Dealing with a database move or credential expiry</h3><p>The examples in the previous sections demonstrated how to specify which server to communicate with during authentication. There are however two additional situations to consider:</p><ol><li>the database has moved to a different server</li><li>the credentials object returned willeventually expire</li></ol><p>When this happens the next API call will fail with the following error object:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"error"</span><span class=p>:{</span><span class=w>
+        </span><span class=s2>"code"</span><span class=p>:</span><span class=mi>-32000</span><span class=p>,</span><span class=w>
+        </span><span class=s2>"data"</span><span class=p>:{</span><span class=w>
+            </span><span class=s2>"id"</span><span class=p>:</span><span class=s2>"5531c760-4ff7-485c-bb47-b6ed509b76d6"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"type"</span><span class=p>:</span><span class=s2>"InvalidUserException"</span><span class=p>,</span><span class=w>
+            </span><span class=s2>"requestIndex"</span><span class=p>:</span><span class=mi>0</span><span class=w>
+        </span><span class=p>},</span><span class=w>
+        </span><span class=s2>"message"</span><span class=p>:</span><span class=s2>"Incorrect login credentials"</span><span class=w>
+    </span><span class=p>},</span><span class=w>
+    </span><span class=s2>"jsonrpc"</span><span class=p>:</span><span class=s2>"2.0"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>When the errors collection contains an object with name <u>&ldquo;InvalidUserException&rdquo;</u>, the authentication process must be repeated. This will indicate what the new server is and provide a new credentials object. If the authentication process returns an error, the user was likely changed, in this case another user will be required for the login.</p><h2 id=rate-limiting>Rate limiting</h2><p>To safeguard optimal functioning and ensure that poorly written SDK applications do not impact the overall system performance, a limit is imposed on Authentication calls. Starting in <u>November 2016</u>, the MyGeotab API will enforce limits on the number of Authentication requests it will accept. This change will start rolling out in November 2016 for <u>new</u> customers, and will be fully enforced for <u>all</u> customers by end of <u>January 2017</u>.</p><p>No more than <strong>10 Authentication requests per minute</strong> are permitted for a user. Both successful and unsuccessful Authentication calls count towards the limit. When the Authentication limit has been exceeded, the server will return an <u>OverLimitException</u> until the limit is automatically reset every minute.</p><p>Authentication should be avoided by using the <strong>credentials</strong> object that is returned from an Authentication request for subsequent calls. It contains a token that confirms your identity for API operations. If the session expires or a database is moved, a new Authentication call should be made. This approach allows for efficient usage of Authentication requests and is detailed in the Authentication section above.</p><p>Credentials provided with password instead of or combined with session ID must be authenticated. Therefor, each request where credentials are provided in this way will tally against a given user&rsquo;s authentication limits.</p><h2 id=working-with-dates>Working with dates</h2><p>When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href=http://en.wikipedia.org/wiki/ISO_8601>ISO 8601</a> string (format <code>yyyy-MM-ddTHH:mm:ss.fffZ</code>). In addition, all dates will have to first be converted to <a href=http://en.wikipedia.org/wiki/Coordinated_Universal_Time>UTC</a> in order to ensure time zone information and daylight savings times are accounted for correctly.</p><h2 id=unit-of-measure>Unit of measure</h2><p>As a general rule, MyGeotab uses the metric system for values such as speed (km/h) and distance (m). For example, if you queried the odometer reading for a vehicle, the value would be returned in meters or if you retrieved the current speed of a vehicle it would be in km/h. It does not matter in which region in the world the vehicle or user of MyGeotab system is located — we always return the values in metric.A simple conversion can be applied to these values should you wish to work in imperial units or other customized units instead.</p><p>Please note that MyGeotab also records various other status data (i.e. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable <a href=http://standards.sae.org/automotive/ >SAE</a> standard of the specific code for the associated unit of measure.</p><h2 id=entities>Entities</h2><p>All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.</p><h2 id=id>ID</h2><p>An ID is used to uniquely reference entities in the API. IDs are represented by opaque strings. Generally the contents of the IDs are not significant for the user. Building logic around the value of the string should be avoided — unless it is a system ID (see the examples below).</p><h3 id=example-4>Example 4</h3><p>In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"id"</span><span class=p>:</span><span class=w> </span><span class=s2>"b0a46"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"007 - Aston Martin"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"serialNumber"</span><span class=p>:</span><span class=w> </span><span class=s2>"GTA9000003EA"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"deviceType"</span><span class=p>:</span><span class=w> </span><span class=s2>"GO6"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"vehicleIdentificationNumber"</span><span class=p>:</span><span class=w> </span><span class=s2>"1002"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>Note the &ldquo;id&rdquo; property with value &ldquo;b0a46&rdquo;. This is the unique identifier for the device (vehicle) with description &ldquo;007 - Aston Martin&rdquo;.</p><p>To find Trips for this vehicle all of the properties of the device do not have to be passed to the Get method. Instead, only the ID property of the device object is required. Below is an example of a valid parameter object (TripSearch) for passing into Get method. The deviceSearch with the ID property set to the value &ldquo;b0a46&rdquo; (as indicated in the example above) is passed.</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+  </span><span class=s2>"typeName"</span><span class=p>:</span><span class=s2>"Trip"</span><span class=p>,</span><span class=w>
+  </span><span class=s2>"search"</span><span class=w> </span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
+    </span><span class=s2>"deviceSearch"</span><span class=w> </span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
+      </span><span class=s2>"id"</span><span class=w> </span><span class=p>:</span><span class=w> </span><span class=s2>"b0a46"</span><span class=w>
+    </span><span class=p>}</span><span class=w>
+  </span><span class=p>}</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>Calling the Get method with the parameter defined above will return all trips for the vehicle &ldquo;007 - Aston Martin&rdquo;.</p><h3 id=example-5>Example 5</h3><p>There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of &ldquo;CompanyGroupId&rdquo; rather than other characters (such as &ldquo;b0a46&rdquo; above). For example:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"id"</span><span class=p>:</span><span class=w> </span><span class=s2>"CompanyGroupId"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"The Company Group"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"children"</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=err>..</span><span class=p>]</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>If the system entities do not have any properties then they are specified as strings with their ID&rsquo;s name. For example the source &ldquo;Obd&rdquo; will be identified as &ldquo;SourceObdId&rdquo;.</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"code"</span><span class=p>:</span><span class=w> </span><span class=s2>"738960445"</span><span class=p>,</span><span class=w>
+    </span><span class=s2>"engineType"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
+        </span><span class=s2>"id"</span><span class=p>:</span><span class=w> </span><span class=s2>"b2715"</span><span class=p>,</span><span class=w>
+    </span><span class=p>},</span><span class=w>
+    </span><span class=s2>"source"</span><span class=p>:</span><span class=w> </span><span class=s2>"SourceObdId"</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><h2 id=building-block-approach>Building block approach</h2><p>The results of a call to our API will only contain literal values and the identities of contained objects — not the actual fully populated child objects. This provides a predictable system that efficiently serializes objects to JSON and back. Additional lookups of the nested objects will be required to retrieve additional properties of the objects.</p><p>For example, an engine status data record has a device property. If 1000 engine status data records are retrieved for a device, the status data&rsquo;s device property will only contain the ID of the device. An additional retrieval for the devices object will be required to obtain the status data records. This approach has several benefits:</p><ul><li>Saves bytes over the wire</li><li>Reduces request time</li><li>Avoids redundant copies of entities</li><li>More flexible since the child objects may not always be required</li></ul><p>In the example below it can be seen how, by creating a dictionary of devices where the key is the device ID and the value is the device object, devices can be easily &ldquo;stitched&rdquo; into the status data records:</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=kd>var</span> <span class=nx>statusDatas</span> <span class=o>=</span> <span class=p>[{</span>
+        <span class=s2>"id"</span><span class=p>:</span> <span class=s2>"a1"</span><span class=p>,</span>
+        <span class=s2>"device"</span><span class=p>:</span> <span class=p>{</span>
+            <span class=s2>"id"</span><span class=p>:</span> <span class=s2>"b1"</span>
+        <span class=p>},</span>
+        <span class=s2>"data"</span><span class=p>:</span> <span class=mf>0.002</span><span class=p>,</span>
+    <span class=p>...</span>
+    <span class=p>},{</span>
+        <span class=s2>"id"</span><span class=p>:</span> <span class=s2>"a2"</span><span class=p>,</span>
+        <span class=s2>"device"</span><span class=p>:</span> <span class=p>{</span>
+            <span class=s2>"id"</span><span class=p>:</span> <span class=s2>"b1"</span>
+        <span class=p>},</span>
+        <span class=s2>"data"</span><span class=p>:</span> <span class=mf>1.05</span><span class=p>,</span>
+    <span class=p>...</span>
+    <span class=p>}</span>
+<span class=p>];</span>
+
+<span class=kd>var</span> <span class=nx>deviceLookup</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=s2>"b1"</span><span class=p>:</span> <span class=p>{</span>
+        <span class=s2>"id"</span><span class=p>:</span> <span class=s2>"b1"</span><span class=p>,</span>
+        <span class=s2>"name"</span><span class=p>:</span> <span class=s2>"Device 1"</span><span class=p>,</span>
+        <span class=p>...</span>
+    <span class=p>}</span>
+<span class=p>};</span>
+</code></pre></div><p>statusDatas[i].device = deviceLookup[statusDatas[i].device.id];</p><p>Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call.This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the <a href=https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed>.Net</a> and <a href=../../js-samples/dataFeed.html>JavaScript DataFeed</a> examples.</p><h2 id=multicall>MultiCall</h2><p>A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.</p><p>Why use a MultiCall?</p><p>Making an HTTP request over a network has overhead. This can be in the form of Network overhead, the round trip time to send and receive data over the network and HTTP overhead, the HTTP request and response headers. A MultiCall can be used to reduce amount of overhead in situations where many small requests need to be made to a server.</p><p>For example, if we make a request to get the max road speed from a set of points. The request would be constructed in a format similar to:</p><p><code>var data = { &quot;id&quot; : 0, &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;, &quot;params&quot; : { &quot;simplePoints&quot; : { &quot;y&quot;: &quot;37.61610412597656&quot;, &quot;x&quot;: &quot;-121.8139419555664&quot; } &quot;credentials&quot; : { &quot;database&quot; : &quot;demo&quot;, &quot;userName&quot; : &quot;bob@geotab.com&quot;, &quot;sessionId&quot; : &quot;xxx&quot; } } };</code></p><p>Response:</p><p><code>{&quot;result&quot;:[88.513920000000013]}</code></p><p>Making the assumption that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), 40 milliseconds to send the request, 20 ms to process the data on the server and 40 ms for the response to be returned. <a href=http://dev.chromium.org/spdy/spdy-whitepaper>Google&rsquo;s SPDY research project</a> <a href=http://dev.chromium.org/spdy/spdy-whitepaper>white paper</a> states that &ldquo;<u>typical header sizes of 700-800 bytes is common</u>&rdquo;. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the &ldquo;cost of doing business&rdquo; when making a request over a network.</p><p>Taking the previous assumptions, what would the overhead be for making 1000 requests for road max speeds? When individual calls are made to the server for 1000 addresses; the base (minimum) HTTP and Network overhead is required for each of these calls. This would result in 80 seconds (80,000 milliseconds) of network overhead and 5.72 MB (750,000 bytes) in headers just going to and from the server. It can be clearly seen that a great deal of overhead can be generated by making small but repeated requests.</p><p>By using a MultiCall, the network and HTTP overhead remains at the cost of a single request. This brings the overhead back down to our original 80 milliseconds and 750 bytes. The server processes each request and returns an Array of results when complete.</p><p>The above illustration is an extreme example to demonstrate the benefits of using a MultiCall. A MultiCall can (and should) be used to make short running calls of 2 or more requests more efficient than individual calls.</p><h3 id=basic-implementation>Basic implementation</h3><p>Making a MultiCall is very simple, use the method &ldquo;ExecuteMultiCall&rdquo; with the parameter &ldquo;calls&rdquo; of JSON type Array. Each call should be formatted as an Object with property &ldquo;method&rdquo; of type string with the method name as its value and a property &ldquo;params&rdquo; of type Object with the method parameters as its properties. The &ldquo;params&rdquo; object will also need to contain the user credentials if they are required for the method being called.</p><p><code>var data = { &quot;id&quot; : 0, &quot;method&quot; : &quot;ExecuteMultiCall&quot;, &quot;calls&quot;:{ &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;, &quot;params&quot; : { &quot;simplePoints&quot; : { &quot;y&quot;: &quot;37.61610412597656&quot;, &quot;x&quot;: &quot;-121.8139419555664&quot; }, &quot;credentials&quot; : { &quot;database&quot; : &quot;demo&quot;, &quot;userName&quot; : &quot;bob@geotab.com&quot;, &quot;sessionId&quot; : &quot;xxx&quot; } },{ &quot;method&quot; : &quot;GetRoadMaxSpeeds&quot;, &quot;params&quot; : { &quot;simplePoints&quot; : { &quot;y&quot;: &quot;38.61610412597656&quot;, &quot;x&quot;: &quot;-122.8139419555664&quot; } } }}</code></p><p>Response:</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
+    </span><span class=s2>"result"</span><span class=p>:</span><span class=w> </span><span class=p>[[</span><span class=mf>88.513920000000013</span><span class=p>],[</span><span class=mf>-1.0</span><span class=p>]]</span><span class=w>
+</span><span class=p>}</span><span class=w>
+</span></code></pre></div><h3 id=errors>Errors</h3><p>In a MultiCall, each request is run on the server in syncronously. If one fails, the error results are returned immediately and <strong>unreached calls are not run</strong>. The error results includes the index of the call in the array that the exception occured.</p><p>To illustrate, let&rsquo;s assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=kd>var</span> <span class=nx>calls</span> <span class=o>=</span> <span class=p>[</span>
+  <span class=nx>call</span><span class=o>-</span><span class=nx>a</span><span class=p>,</span> <span class=c1>// ran successfully</span>
+  <span class=nx>call</span><span class=o>-</span><span class=nx>b</span><span class=p>,</span> <span class=c1>// error occurred, throw and return error</span>
+  <span class=nx>call</span><span class=o>-</span><span class=nx>c</span>  <span class=c1>// never ran</span>
+<span class=p>]</span>
+</code></pre></div><p>Below is an example of the error result. The <code>requestIndex</code> property contains the index of the call that failed.</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=nx>results</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=s2>"error"</span><span class=p>:</span> <span class=p>{</span>
+        <span class=s2>"message"</span><span class=p>:</span> <span class=s2>"The method 'Foobar' could not be found. Verify the method name and ensure all method parameters are included."</span><span class=p>,</span>
+        <span class=s2>"code"</span><span class=p>:</span> <span class=o>-</span><span class=mi>32601</span><span class=p>,</span>
+        <span class=s2>"data"</span><span class=p>:</span> <span class=p>{</span>
+            <span class=s2>"id"</span><span class=p>:</span><span class=s2>"2901ac83-0d7f-41a1-9cca-fd4a68e77ae7"</span><span class=p>,</span>
+            <span class=s2>"type"</span><span class=p>:</span><span class=s2>"MissingMethodException"</span><span class=p>,</span>
+            <span class=s2>"requestIndex"</span><span class=p>:</span> <span class=mi>1</span>
+        <span class=p>}</span>
+    <span class=p>},</span>
+    <span class=s2>"jsonrpc"</span><span class=p>:</span><span class=s2>"2.0"</span>
+<span class=p>}</span>
+</code></pre></div><p>Alternatively, a successful MultiCall would look similar to:</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=nx>calls</span> <span class=o>=</span> <span class=p>[</span>
+    <span class=nx>call</span><span class=o>-</span><span class=nx>a</span><span class=p>,</span> <span class=c1>// ran successfully</span>
+    <span class=nx>call</span><span class=o>-</span><span class=nx>b</span><span class=p>,</span> <span class=c1>// ran successfully</span>
+    <span class=nx>call</span><span class=o>-</span><span class=nx>c</span>  <span class=c1>// ran successfully</span>
+<span class=p>]</span>
+<span class=nx>results</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=s2>"results"</span><span class=p>:</span> <span class=p>[</span>
+        <span class=p>[...],</span>
+        <span class=p>[...],</span>
+        <span class=p>[...]</span>
+    <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=api-client-support>API client support</h3><p>All of the <a href=../../api/clients/ >API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:</p><p>JavaScript API multi-call example:</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=kd>var</span> <span class=nx>calls</span> <span class=o>=</span> <span class=p>[</span>
+    <span class=p>[</span><span class=s2>"Get"</span><span class=p>,</span> <span class=p>{</span> <span class=na>typeName</span><span class=p>:</span> <span class=s2>"Diagnostic"</span> <span class=p>}],</span>
+    <span class=p>[</span><span class=s2>"Get"</span><span class=p>,</span> <span class=p>{</span> <span class=na>typeName</span><span class=p>:</span> <span class=s2>"Source"</span><span class=p>,</span> <span class=na>search</span><span class=p>:</span> <span class=p>{</span><span class=na>id</span><span class=p>:</span> <span class=s2>"SourceGeotabGoId"</span><span class=p>}}],</span>
+    <span class=p>[</span><span class=s2>"Get"</span><span class=p>,</span> <span class=p>{</span> <span class=na>typeName</span><span class=p>:</span> <span class=s2>"Controller"</span> <span class=p>}]</span>
+<span class=p>];</span>
+
+<span class=nx>api</span><span class=p>.</span><span class=nx>multiCall</span><span class=p>(</span><span class=nx>calls</span><span class=p>,</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>results</span><span class=p>)</span> <span class=p>{</span>
+    <span class=kd>var</span> <span class=nx>diagnostics</span> <span class=o>=</span> <span class=nx>results</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
+    <span class=kd>var</span> <span class=nx>sources</span> <span class=o>=</span> <span class=nx>results</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>
+    <span class=kd>var</span> <span class=nx>controllers</span> <span class=o>=</span> <span class=nx>results</span><span class=p>[</span><span class=mi>2</span><span class=p>];</span>
+<span class=p>},</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>errorString</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>alert</span><span class=p>(</span><span class=nx>errorString</span><span class=p>);</span>
+<span class=p>});</span>
+</code></pre></div><p>.Net nuget package multi-call example:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=kt>var</span> <span class=n>calls</span> <span class=p>=</span> <span class=k>new</span> <span class=kt>object</span><span class=p>[]</span> <span class=p>{</span>
+    <span class=k>new</span> <span class=kt>object</span><span class=p>[]</span> <span class=p>{</span> <span class=s>"Get"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>Diagnostic</span><span class=p>),</span> <span class=k>typeof</span><span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Diagnostic</span><span class=p>&gt;)},</span>
+    <span class=k>new</span> <span class=kt>object</span><span class=p>[]</span> <span class=p>{</span> <span class=s>"Get"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>Source</span><span class=p>),</span> <span class=k>new</span> <span class=p>{</span> <span class=n>search</span> <span class=p>=</span> <span class=k>new</span> <span class=n>SourceSearch</span> <span class=p>{</span> <span class=n>Id</span> <span class=p>=</span> <span class=n>KnownId</span><span class=p>.</span><span class=n>SourceGeotabGoId</span> <span class=p>}</span> <span class=p>},</span> <span class=k>typeof</span><span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Source</span><span class=p>&gt;)},</span>
+    <span class=k>new</span> <span class=kt>object</span><span class=p>[]</span> <span class=p>{</span> <span class=s>"Get"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>Controller</span><span class=p>),</span> <span class=k>typeof</span><span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Controller</span><span class=p>&gt;)},</span>
+<span class=p>};</span>
+
+<span class=kt>var</span> <span class=n>results</span> <span class=p>=</span> <span class=n>api</span><span class=p>.</span><span class=nf>MultiCall</span><span class=p>(</span><span class=n>calls</span><span class=p>);</span>
+
+<span class=kt>var</span> <span class=n>diagnostics</span> <span class=p>=</span> <span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Diagnostic</span><span class=p>&gt;)</span><span class=n>results</span><span class=p>[</span><span class=m>0</span><span class=p>];</span>
+<span class=kt>var</span> <span class=n>sources</span> <span class=p>=</span> <span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Source</span><span class=p>&gt;)</span><span class=n>results</span><span class=p>[</span><span class=m>1</span><span class=p>];</span>
+<span class=kt>var</span> <span class=n>controllers</span> <span class=p>=</span> <span class=p>(</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Controller</span><span class=p>&gt;)</span><span class=n>results</span><span class=p>[</span><span class=m>2</span><span class=p>];</span>
+</code></pre></div><h3 id=multicall-faq>MultiCall FAQ</h3><p><em>Can I use a search in a multicall?</em></p><p>Yes, it is possible to use a search in a multicall.</p><p><em>When shouldn&rsquo;t I use a multicall?</em></p><ol><li>If you need to make a few requests that are long running and return a large amount of data.In these casesit may be preferable to make these requests singularly instead of running one request that continues for a very long time before completion. When the connection is held open for a long period of time you become increasingly susceptible to network interference that could terminate the request.</li><li>Manipulating data (Add,Set,Remove) is not recommended via a multicall. A muilticall is not transactional. Therefore, if call 1 of 3 to Add succeeds and call 2 of 3 fails, call 3 of 3 is not executed and call 1 is not rolled back. See &ldquo;What if an error occurs in one of the MultiCall requests?&rdquo; below for illustration.</li></ol><p><em>How many request can I put in a multicall?</em></p><p>There is no limit on the number of requests that can be made in a multicall. When making a large number of requests it may be desirable to &ldquo;chunk&rdquo; the requests into several requests of a smaller and more manageable size.</p><p><em>What if the call doesn&rsquo;t return a result?</em></p><p>The index in the array of results will have a <strong>null</strong> value.</p></div></article></div></div></main></div><script src=/sdk/assets/javascript/index-b894a07771.min.js></script></body></html>

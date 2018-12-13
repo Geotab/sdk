@@ -1,409 +1,50 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Using in .NET | MyGeotab SDK</title><meta name=generator content="Jekyll v3.8.5"><meta property=og:title content="Using in .NET"><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><meta property=og:description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><link rel=canonical href=https://geotab.github.io/sdk/software/guides/using-in-dotnet/ ><meta property=og:url content=https://geotab.github.io/sdk/software/guides/using-in-dotnet/ ><meta property=og:site_name content="MyGeotab SDK"><script type=application/ld+json>{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/sdk/software/guides/using-in-dotnet/","headline":"Using in .NET","@context":"http://schema.org"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-5d420f1df7.min.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> MyGeotab SDK </a><button class="navbar-toggler d-lg-none" id=toggler type=button><span class=navbar-toggler-icon></span></button></nav></header><div id=wrapper><div id=sidebar-wrapper class=bg-light><nav id=sidebar class=sidebar><h4>Software</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/introduction/ >Introduction</a></li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/guides/getting-started/ >Getting Started</a></li><li class=nav-link><a href=/sdk/software/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-javascript/ >Using in Javascript</a></li><li class="nav-link active"><a href=/sdk/software/guides/using-in-dotnet/ >Using in .Net</a></li><li class=nav-link><a href=/sdk/software/guides/data-feed>Data Feed</a></li><li class=nav-link><a href=/sdk/software/guides/mygeotab-urls/ >Using MyGeotab URLs</a></li><li class=nav-link><a href=/sdk/software/guides/using-go-devices/ >Using GO Devices</a></li><li class=nav-link><a href=/sdk/software/guides/go-device-logging/ >GO Device Logging</a></li><li class=nav-link><a href=/sdk/software/guides/third-party-devices/ >Using Third-Party Devices</a></li><li class=nav-link><a href=/sdk/software/guides/developing-addins/ >Developing Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/drive-addins/ >Geotab Drive Add-Ins</a></li></ul><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/api/reference/ >Reference</a></li><li class=nav-link><a href=/sdk/software/api/runner.html>Runner</a></li><li class=nav-link><a href=/sdk/software/api/clients/ >API Clients</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/js-samples/ >Javascript Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-dotnet-samples>.Net Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-addin-samples>Add-in Examples</a></li></ul></ul><h4>Hardware</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/introduction/ >Introduction</a></li><h5>Add-on Protocols</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/addon-protocols/rs232-usb/ >RS232 & USB</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/can/ >CAN</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/ble/ >BLE</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/samples/python/ >Python</a></li><li class=nav-link><a href=https://github.com/Geotab/android-external-device-example>Android</a></li></ul><h5>Developing an IOX</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/developing-an-iox/hardware-design-guide/ >Hardware Design Guide</a></li><li class=nav-link><a href=/sdk/hardware/developing-an-iox/messaging-protocol/ >Messaging Protocol</a></li></ul></ul><h4>Resources</h4><ul class="nav flex-column"><li class=nav-link><a href=https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum>Forums</a></li><li class=nav-link><a href=https://www.geotab.com/dev-channel/ >Dev Channel</a></li><li class=nav-link><a href=/sdk/resources/new/ >What's New</a></li></ul></nav></div><main role=main><div class=container-fluid><div class=row><article class=col-md-12><header><a href=https://github.com/Geotab/sdk/blob/master/src/software/guides/using-in-dotnet.md class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a><h1>Using in .NET</h1></header><div><p>The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software. All of the communication to Geotab’s services is accomplished over HTTPS with data serialized in <a href=http://en.wikipedia.org/wiki/JSON>JSON</a> format. The .NET library provided will automatically handle the JSON serialization and deserialization into MyGeotab objects.</p><h2 id=nuget-package>Nuget package</h2><p>The <a href=https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/ >nuget package</a> is an SDK library for accessing MyGeotab customer databases. It is a convenient &ldquo;wrapper&rdquo; around Geotab’s HTTP/JSON API to allow developers focus on writing code instead of moving data over the wire. It includes tools to assist authenticating against Geotab’s servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.</p><blockquote><p>Quick start in <a href=../../api/clients>API Clients</a></p></blockquote><h2 id=api-class>API class</h2><h3 id=step-1-initialization-authentication>Step 1: Initialization &amp; authentication</h3><p>In order to have access to the API class, add the following to the file’s includes section:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=nn>Geotab.Checkmate</span><span class=p>;</span>
+<span class=k>using</span> <span class=nn>Geotab.Checkmate.ObjectModel</span><span class=p>;</span>
+</code></pre></div><p>An instance of API can now be constructed to be used in the code. For the most basic use case, all the data that is needed is user credentials and a database name:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=kt>var</span> <span class=n>api</span> <span class=p>=</span> <span class=k>new</span> <span class=nf>API</span><span class=p>(</span><span class=n>userName</span><span class=p>,</span> <span class=n>password</span><span class=p>,</span> <span class=k>null</span><span class=p>,</span> <span class=n>databaseName</span><span class=p>,</span> <span class=n>server</span><span class=p>);</span>
+</code></pre></div><p>At this point there has not been any communication with Geotab’s servers. In order to make calls to Geotab’s API, an authentication call must be made:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=k>await</span> <span class=n>api</span><span class=p>.</span><span class=nf>AuthenticateAsync</span><span class=p>();</span>
+</code></pre></div><p>When the call is made to Geotab’s servers to authenticate, a token is returned for security. Behind the scenes, the Authenticate call makes a JSON-RPC request to Geotab’s &ldquo;Authenticate&rdquo; method. The resulting security token and server information are stored in order to make further calls to the API.</p><blockquote><p>For more information regarding authentication, please review the <a href=../concepts/#authentication>Authentication</a> documentation.</p></blockquote><h3 id=step-2-making-calls>Step 2: Making calls</h3><p>When authenticated, calls are made to the API by invoking the <code>Call</code> method of the API class.</p><p>The example below illustrates how to make a generic call to get all devices in the system.</p><p><code>List&lt;Device&gt; devices = await api.CallAsync&lt;List&lt;Device&gt;&gt;(&quot;Get&quot;, typeof(Device));</code></p><p>In the example below it is shown how to delete a device using the generic &ldquo;Remove&rdquo; method. Notice that it is not required to send all of the device’s information to remove it, the device’s id is sufficient:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=k>await</span> <span class=n>api</span><span class=p>.</span><span class=n>CallAsync</span><span class=p>&lt;</span><span class=kt>object</span><span class=p>&gt;(</span><span class=s>"Remove"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>Device</span><span class=p>),</span> <span class=k>new</span> <span class=p>{</span>
+    <span class=n>entity</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Device</span> <span class=p>{</span>
+        <span class=n>Id</span> <span class=p>=</span> <span class=s>"b1a34"</span>
+    <span class=p>}</span>
+<span class=p>});</span>
+</code></pre></div><p>The last parameter to this Call method is an <a href=http://msdn.microsoft.com/en-us/library/bb397696.aspx>anonymous object</a> which contains the parameters for the method (please review the <a href=../../api/reference/#M:Geotab.Checkmate.Database.DataStore.Remove1>API reference</a> to see which parameters the method expects, and whether the parameters are required or optional). The parameter order is not significant, and it is acceptable to omit optional parameters. Optional parameters will revert to their default values, typically &ldquo;null&rdquo; or “false” values.</p><p>The API class automatically handles databases that are moved to different servers in the federation and expired tokens (token are typically valid for 2 weeks) by automatically re-authenticating and continuing.</p><h3 id=example-code>Example code</h3><p>The following is a simple console app that will output the latitude and longitude of each device in a list of devices:</p><div class=highlight><pre><code class=language-csharp data-lang=csharp><span class=c1>// Create the API object and authenticate</span>
+<span class=k>public</span> <span class=k>static</span> <span class=k>async</span> <span class=n>Task</span> <span class=nf>Main</span><span class=p>(</span><span class=kt>string</span><span class=p>[]</span> <span class=n>args</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=c1>// Create the API object and authenticate</span>
+    <span class=kt>var</span> <span class=n>api</span> <span class=p>=</span> <span class=k>new</span> <span class=nf>API</span><span class=p>(</span><span class=s>"bob@geotab.com"</span><span class=p>,</span> <span class=s>"password"</span><span class=p>,</span> <span class=k>null</span><span class=p>,</span> <span class=s>"demo"</span><span class=p>,</span> <span class=s>"server"</span><span class=p>);</span>
+    <span class=k>await</span> <span class=n>api</span><span class=p>.</span><span class=nf>AuthenticateAsync</span><span class=p>();</span>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <span class=c1>// Get all devices</span>
+    <span class=kt>var</span> <span class=n>devices</span> <span class=p>=</span> <span class=k>await</span> <span class=n>api</span><span class=p>.</span><span class=n>CallAsync</span><span class=p>&lt;</span><span class=n>List</span><span class=p>&lt;</span><span class=n>Device</span><span class=p>&gt;&gt;(</span><span class=s>"Get"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>Device</span><span class=p>));</span>
+    <span class=n>Console</span><span class=p>.</span><span class=nf>WriteLine</span><span class=p>(</span><span class=s>"SerialNumber\tLatitude\tLongitude"</span><span class=p>);</span>
+    <span class=k>foreach</span> <span class=p>(</span><span class=n>Device</span> <span class=n>device</span> <span class=k>in</span> <span class=n>devices</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=c1>// Get the Device Status Info which contains the current latitude and longitude for this device</span>
+        <span class=kt>var</span> <span class=n>results</span> <span class=p>=</span> <span class=k>await</span> <span class=n>api</span><span class=p>.</span><span class=n>CallAsync</span><span class=p>&lt;</span><span class=n>List</span><span class=p>&lt;</span><span class=n>DeviceStatusInfo</span><span class=p>&gt;&gt;(</span><span class=s>"Get"</span><span class=p>,</span> <span class=k>typeof</span><span class=p>(</span><span class=n>DeviceStatusInfo</span><span class=p>),</span> <span class=k>new</span>
+        <span class=p>{</span>
+            <span class=n>search</span> <span class=p>=</span> <span class=k>new</span> <span class=n>DeviceStatusInfoSearch</span>
+            <span class=p>{</span>
+                <span class=n>DeviceSearch</span> <span class=p>=</span> <span class=k>new</span> <span class=n>DeviceSearch</span>
+                <span class=p>{</span>
+                    <span class=n>Id</span> <span class=p>=</span> <span class=n>device</span><span class=p>.</span><span class=n>Id</span>
+                <span class=p>}</span>
+            <span class=p>}</span>
+        <span class=p>});</span>
 
-  <!-- SEO -->
-  <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Using in .NET | MyGeotab SDK</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Using in .NET" />
-<meta name="author" content="The Geotab Team" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
-<meta property="og:description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
-<link rel="canonical" href="https://geotab.github.io/software/guides/using-in-dotnet/" />
-<meta property="og:url" content="https://geotab.github.io/software/guides/using-in-dotnet/" />
-<meta property="og:site_name" content="MyGeotab SDK" />
-<script type="application/ld+json">
-{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/software/guides/using-in-dotnet/","headline":"Using in .NET","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+        <span class=k>if</span> <span class=p>(</span><span class=n>results</span><span class=p>.</span><span class=n>Count</span> <span class=p>&lt;=</span> <span class=m>0</span><span class=p>)</span>
+        <span class=p>{</span>
+            <span class=k>continue</span><span class=p>;</span>
+        <span class=p>}</span>
 
+        <span class=n>DeviceStatusInfo</span> <span class=n>deviceStatus</span> <span class=p>=</span> <span class=n>results</span><span class=p>[</span><span class=m>0</span><span class=p>];</span>
 
-  <!-- CSS -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="/assets/stylesheets/style.css">
-  <!-- endinject -->
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-
-</head>
-
-
-<body>
-
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            MyGeotab SDK
-        </a>
-        <button class="navbar-toggler d-lg-none" id="toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-</header>
-
-
-  <div id="wrapper">
-<div id="sidebar-wrapper" class="bg-light">
-    <nav id="sidebar" class="sidebar">
-    
-        <h4>Software</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/introduction/">Introduction</a>
-                
-            </li>
-            
-        
-        <h5>Guides</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/getting-started/">Getting Started</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/concepts/">Concepts</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
-                
-            </li>
-            
-            <li class="nav-link active">
-                
-                <a href="/software/guides/using-in-dotnet/">Using in .Net</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/data-feed">Data Feed</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/using-go-devices/">Using GO Devices</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/go-device-logging/">GO Device Logging</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/third-party-devices/">Using Third-Party Devices</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/developing-addins/">Developing Add-Ins</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>API</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/reference/">Reference</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/runner.html">Runner</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/software/api/clients/">API Clients</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Code Samples</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/software/js-samples/">Javascript Examples</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net Examples</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/sdk-addin-samples">Add-in Examples</a>
-                
-            </li>
-            
-        </ul>
-         
-        </ul>
-    
-        <h4>Hardware</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/introduction/">Introduction</a>
-                
-            </li>
-            
-        
-        <h5>Add-on Protocols</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/can/">CAN</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/addon-protocols/ble/">BLE</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Code Samples</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/samples/python/">Python</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://github.com/Geotab/android-external-device-example">Android</a>
-                
-            </li>
-            
-        </ul>
-        
-        <h5>Developing an IOX</h5>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
-                
-            </li>
-            
-        </ul>
-         
-        </ul>
-    
-        <h4>Resources</h4>
-        <ul class="nav flex-column">
-            
-            <li class="nav-link">
-                
-                <a href="https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum">Forums</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
-                
-            </li>
-            
-            <li class="nav-link">
-                
-                <a href="/resources/new/">What's New</a>
-                
-            </li>
-            
-         
-        </ul>
-    
-    </nav>
-</div>
-<main role="main">
-  <div class="container-fluid">
-    <div class="row">
-
-      <article class="col-md-12">
-        <header>
-          <a href="https://github.com/Geotab/sdk/blob/master/src/software/guides/using-in-dotnet.md" class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a>
-          <h1>Using in .NET</h1>
-        </header>
-
-        <div>
-          <p>The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software. All of the communication to Geotab’s services is accomplished over HTTPS with data serialized in <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> format. The .NET library provided will automatically handle the JSON serialization and deserialization into MyGeotab objects.</p>
-
-<h2 id="nuget-package">Nuget package</h2>
-
-<p>The <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">nuget package</a> is an SDK library for accessing MyGeotab customer databases. It is a convenient &ldquo;wrapper&rdquo; around Geotab’s HTTP/JSON API to allow developers focus on writing code instead of moving data over the wire. It includes tools to assist authenticating against Geotab’s servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.</p>
-
-<blockquote>
-<p>Quick start in <a href="../../api/clients">API Clients</a></p>
-</blockquote>
-
-<h2 id="api-class">API class</h2>
-
-<h3 id="step-1-initialization-authentication">Step 1: Initialization &amp; authentication</h3>
-
-<p>In order to have access to the API class, add the following to the file’s includes section:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">Geotab.Checkmate</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Geotab.Checkmate.ObjectModel</span><span class="p">;</span>
-</code></pre></div>
-<p>An instance of API can now be constructed to be used in the code. For the most basic use case, all the data that is needed is user credentials and a database name:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">api</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">API</span><span class="p">(</span><span class="n">userName</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="n">databaseName</span><span class="p">,</span> <span class="n">server</span><span class="p">);</span>
-</code></pre></div>
-<p>At this point there has not been any communication with Geotab’s servers. In order to make calls to Geotab’s API, an authentication call must be made:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="nf">AuthenticateAsync</span><span class="p">();</span>
-</code></pre></div>
-<p>When the call is made to Geotab’s servers to authenticate, a token is returned for security. Behind the scenes, the Authenticate call makes a JSON-RPC request to Geotab’s &ldquo;Authenticate&rdquo; method. The resulting security token and server information are stored in order to make further calls to the API.</p>
-
-<blockquote>
-<p>For more information regarding authentication, please review the <a href="../concepts/#authentication">Authentication</a> documentation.</p>
-</blockquote>
-
-<h3 id="step-2-making-calls">Step 2: Making calls</h3>
-
-<p>When authenticated, calls are made to the API by invoking the <code>Call</code> method of the API class.</p>
-
-<p>The example below illustrates how to make a generic call to get all devices in the system.</p>
-
-<p><code>List&lt;Device&gt; devices = await api.CallAsync&lt;List&lt;Device&gt;&gt;(&quot;Get&quot;, typeof(Device));</code></p>
-
-<p>In the example below it is shown how to delete a device using the generic &ldquo;Remove&rdquo; method. Notice that it is not required to send all of the device’s information to remove it, the device’s id is sufficient:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="n">CallAsync</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;(</span><span class="s">"Remove"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Device</span><span class="p">),</span> <span class="k">new</span> <span class="p">{</span>
-    <span class="n">entity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Device</span> <span class="p">{</span>
-        <span class="n">Id</span> <span class="p">=</span> <span class="s">"b1a34"</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>The last parameter to this Call method is an <a href="http://msdn.microsoft.com/en-us/library/bb397696.aspx">anonymous object</a> which contains the parameters for the method (please review the <a href="../../api/reference/#M:Geotab.Checkmate.Database.DataStore.Remove1">API reference</a> to see which parameters the method expects, and whether the parameters are required or optional). The parameter order is not significant, and it is acceptable to omit optional parameters. Optional parameters will revert to their default values, typically &ldquo;null&rdquo; or “false” values.</p>
-
-<p>The API class automatically handles databases that are moved to different servers in the federation and expired tokens (token are typically valid for 2 weeks) by automatically re-authenticating and continuing.</p>
-
-<h3 id="example-code">Example code</h3>
-
-<p>The following is a simple console app that will output the latitude and longitude of each device in a list of devices:</p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="c1">// Create the API object and authenticate</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// Create the API object and authenticate</span>
-    <span class="kt">var</span> <span class="n">api</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">API</span><span class="p">(</span><span class="s">"bob@geotab.com"</span><span class="p">,</span> <span class="s">"password"</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s">"demo"</span><span class="p">,</span> <span class="s">"server"</span><span class="p">);</span>
-    <span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="nf">AuthenticateAsync</span><span class="p">();</span>
-
-    <span class="c1">// Get all devices</span>
-    <span class="kt">var</span> <span class="n">devices</span> <span class="p">=</span> <span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="n">CallAsync</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Device</span><span class="p">&gt;&gt;(</span><span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Device</span><span class="p">));</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"SerialNumber\tLatitude\tLongitude"</span><span class="p">);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="n">Device</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// Get the Device Status Info which contains the current latitude and longitude for this device</span>
-        <span class="kt">var</span> <span class="n">results</span> <span class="p">=</span> <span class="k">await</span> <span class="n">api</span><span class="p">.</span><span class="n">CallAsync</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">DeviceStatusInfo</span><span class="p">&gt;&gt;(</span><span class="s">"Get"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">DeviceStatusInfo</span><span class="p">),</span> <span class="k">new</span>
-        <span class="p">{</span>
-            <span class="n">search</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DeviceStatusInfoSearch</span>
-            <span class="p">{</span>
-                <span class="n">DeviceSearch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DeviceSearch</span>
-                <span class="p">{</span>
-                    <span class="n">Id</span> <span class="p">=</span> <span class="n">device</span><span class="p">.</span><span class="n">Id</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">Count</span> <span class="p">&lt;=</span> <span class="m">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="n">DeviceStatusInfo</span> <span class="n">deviceStatus</span> <span class="p">=</span> <span class="n">results</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-
-        <span class="c1">// Print the results to the console</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">SerialNumber</span> <span class="p">+</span> <span class="s">"\t"</span> <span class="p">+</span> <span class="n">deviceStatus</span><span class="p">.</span><span class="n">Latitude</span> <span class="p">+</span> <span class="s">"\t"</span> <span class="p">+</span> <span class="n">deviceStatus</span><span class="p">.</span><span class="n">Longitude</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<blockquote>
-<p>Hint: async main method requires <a href="https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7-1">C# 7.1</a>.</p>
-</blockquote>
-
-<p>After entering your credentials into the API constructor, this example will produce results similar to this in your command prompt window.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">&gt; dotnet run
+        <span class=c1>// Print the results to the console</span>
+        <span class=n>Console</span><span class=p>.</span><span class=nf>WriteLine</span><span class=p>(</span><span class=n>device</span><span class=p>.</span><span class=n>SerialNumber</span> <span class=p>+</span> <span class=s>"\t"</span> <span class=p>+</span> <span class=n>deviceStatus</span><span class=p>.</span><span class=n>Latitude</span> <span class=p>+</span> <span class=s>"\t"</span> <span class=p>+</span> <span class=n>deviceStatus</span><span class=p>.</span><span class=n>Longitude</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><blockquote><p>Hint: async main method requires <a href=https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7-1>C# 7.1</a>.</p></blockquote><p>After entering your credentials into the API constructor, this example will produce results similar to this in your command prompt window.</p><div class=highlight><pre><code class=language- data-lang="">&gt; dotnet run
 SerialNumber    Latitude        Longitude
 G70000000001    43.4371071      -79.7124329
 G70000000002    43.3683701      -79.7784042
 G80000000003    43.4620934      -79.6879883
-</code></pre></div>
-<h2 id="next-steps">Next steps</h2>
-
-<p>Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created <a href="https://github.com/Geotab/sdk-dotnet-samples">here</a>.</p>
-
-        </div>
-      </article>
-
-    </div>
-  </div>
-</main>
-</div>
-
-  <!-- JS -->
-  <!-- inject:js -->
-  <script src="/assets/javascript/index.js"></script>
-  <!-- endinject -->
-
-</body>
-
-</html>
+</code></pre></div><h2 id=next-steps>Next steps</h2><p>Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created <a href=https://github.com/Geotab/sdk-dotnet-samples>here</a>.</p></div></article></div></div></main></div><script src=/sdk/assets/javascript/index-b894a07771.min.js></script></body></html>
