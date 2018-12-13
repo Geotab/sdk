@@ -63,7 +63,7 @@ toc:
         subfolderitems:
           - page: Python
             url: /hardware/samples/python/
-          - page: Andoid
+          - page: Android
             url: https://github.com/Geotab/android-external-device-example
             external: true
       - title: Developing an IOX
