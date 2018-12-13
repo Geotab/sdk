@@ -1,1 +1,327 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>MyGeotab SDK | The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.</title><meta name=generator content="Jekyll v3.8.5"><meta property=og:title content="MyGeotab SDK"><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><meta property=og:description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><link rel=canonical href=https://geotab.github.io/sdk/ ><meta property=og:url content=https://geotab.github.io/sdk/ ><meta property=og:site_name content="MyGeotab SDK"><script type=application/ld+json>{"name":"MyGeotab SDK","description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebSite","url":"https://geotab.github.io/sdk/","headline":"MyGeotab SDK","@context":"http://schema.org"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-5d420f1df7.min.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> MyGeotab SDK </a><button class="navbar-toggler d-lg-none" id=toggler type=button><span class=navbar-toggler-icon></span></button></nav></header><div id=wrapper><div id=sidebar-wrapper class=bg-light><nav id=sidebar class=sidebar><h4>Software</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/introduction/ >Introduction</a></li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/guides/getting-started/ >Getting Started</a></li><li class=nav-link><a href=/sdk/software/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-javascript/ >Using in Javascript</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-dotnet/ >Using in .Net</a></li><li class=nav-link><a href=/sdk/software/guides/data-feed>Data Feed</a></li><li class=nav-link><a href=/sdk/software/guides/mygeotab-urls/ >Using MyGeotab URLs</a></li><li class=nav-link><a href=/sdk/software/guides/using-go-devices/ >Using GO Devices</a></li><li class=nav-link><a href=/sdk/software/guides/go-device-logging/ >GO Device Logging</a></li><li class=nav-link><a href=/sdk/software/guides/third-party-devices/ >Using Third-Party Devices</a></li><li class=nav-link><a href=/sdk/software/guides/developing-addins/ >Developing Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/drive-addins/ >Geotab Drive Add-Ins</a></li></ul><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/api/reference/ >Reference</a></li><li class=nav-link><a href=/sdk/software/api/runner.html>Runner</a></li><li class=nav-link><a href=/sdk/software/api/clients/ >API Clients</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/js-samples/ >Javascript Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-dotnet-samples>.Net Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-addin-samples>Add-in Examples</a></li></ul></ul><h4>Hardware</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/introduction/ >Introduction</a></li><h5>Add-on Protocols</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/addon-protocols/rs232-usb/ >RS232 & USB</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/can/ >CAN</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/ble/ >BLE</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/samples/python/ >Python</a></li><li class=nav-link><a href=https://github.com/Geotab/android-external-device-example>Andoid</a></li></ul><h5>Developing an IOX</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/developing-an-iox/hardware-design-guide/ >Hardware Design Guide</a></li><li class=nav-link><a href=/sdk/hardware/developing-an-iox/messaging-protocol/ >Messaging Protocol</a></li></ul></ul><h4>Resources</h4><ul class="nav flex-column"><li class=nav-link><a href=https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum>Forums</a></li><li class=nav-link><a href=https://www.geotab.com/dev-channel/ >Dev Channel</a></li><li class=nav-link><a href=/sdk/resources/new/ >What's New</a></li></ul></nav></div><main role=main><div class=container-fluid><div class=row><article class=col-md-12><header><h1></h1></header><div><div class="jumbotron jumbotron-fluid bg-light"><div class=container><h1 class=display-4><img class=welcome src=/sdk/assets/images/pillar.svg> MyGeotab SDK</h1><p class=lead>The MyGeotab SDK is a powerful set of tools for working with connected vehicle data.</p><hr class=my-4><p>Within these documents you will find the information and tools needed to develop applications, build and integrate Add-Ins and use MyGeotab with third-party systems and hardware.</p></div></div><div class=container><div class=row><div class="col text-center"><h2>Software</h2><a class="btn btn-primary btn-lg" href=./software/introduction/ >Get Started</a> <img class=welcome src=/sdk/assets/images/geotab-drive-partner-add-ins-icon.svg></div><div class="col text-center"><h2>Hardware</h2><a class="btn btn-primary btn-lg" href=./hardware/introduction/ >Get Started</a> <img class=welcome src=/sdk/assets/images/geotab-drive-partner-add-ons-icon.svg></div></div></div></div></article></div></div></main></div><script src=/sdk/assets/javascript/index-b894a07771.min.js></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>MyGeotab SDK | The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="MyGeotab SDK" />
+<meta name="author" content="The Geotab Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<meta property="og:description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<link rel="canonical" href="https://geotab.github.io/" />
+<meta property="og:url" content="https://geotab.github.io/" />
+<meta property="og:site_name" content="MyGeotab SDK" />
+<script type="application/ld+json">
+{"name":"MyGeotab SDK","description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebSite","url":"https://geotab.github.io/","headline":"MyGeotab SDK","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <!-- endinject -->
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+</head>
+
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            MyGeotab SDK
+        </a>
+        <button class="navbar-toggler d-lg-none" id="toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+</header>
+
+
+  <div id="wrapper">
+<div id="sidebar-wrapper" class="bg-light">
+    <nav id="sidebar" class="sidebar">
+    
+        <h4>Software</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/introduction/">Introduction</a>
+                
+            </li>
+            
+        
+        <h5>Guides</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/getting-started/">Getting Started</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/concepts/">Concepts</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-dotnet/">Using in .Net</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/data-feed">Data Feed</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-go-devices/">Using GO Devices</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/go-device-logging/">GO Device Logging</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/third-party-devices/">Using Third-Party Devices</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/developing-addins/">Developing Add-Ins</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>API</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/reference/">Reference</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/runner.html">Runner</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/clients/">API Clients</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/js-samples/">Javascript Examples</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net Examples</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-addin-samples">Add-in Examples</a>
+                
+            </li>
+            
+        </ul>
+         
+        </ul>
+    
+        <h4>Hardware</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/introduction/">Introduction</a>
+                
+            </li>
+            
+        
+        <h5>Add-on Protocols</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/can/">CAN</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/ble/">BLE</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/samples/python/">Python</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/android-external-device-example">Android</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Developing an IOX</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
+                
+            </li>
+            
+        </ul>
+         
+        </ul>
+    
+        <h4>Resources</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum">Forums</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/resources/new/">What's New</a>
+                
+            </li>
+            
+         
+        </ul>
+    
+    </nav>
+</div>
+<main role="main">
+    <div class="container-fluid">
+      <div class="row">
+
+        <article class="col-md-12">
+          <header>
+            <h1></h1>
+          </header>
+
+          <div>
+            <div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container">
+        <h1 class="display-4"> <img class="welcome" src="/assets/images/pillar.svg" /> MyGeotab SDK</h1>
+        <p class="lead">The MyGeotab SDK is a powerful set of tools for working with connected vehicle data.</p>
+        <hr class="my-4">
+        <p>Within these documents you will find the information and tools needed to develop applications, build and integrate Add-Ins and use MyGeotab with third-party systems and hardware.</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Software</h2>
+            <a class="btn btn-primary btn-lg" href="./software/introduction/">Get Started</a>
+            <img class="welcome" src="/assets/images/geotab-drive-partner-add-ins-icon.svg" />
+        </div>
+        <div class="col text-center">
+            <h2>Hardware</h2>
+            <a class="btn btn-primary btn-lg" href="./hardware/introduction/">Get Started</a>
+            <img class="welcome" src="/assets/images/geotab-drive-partner-add-ons-icon.svg" />
+        </div>
+    </div>
+</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+  <!-- JS -->
+  <!-- inject:js -->
+  <script src="/assets/javascript/index.js"></script>
+  <!-- endinject -->
+
+</body>
+
+</html>
