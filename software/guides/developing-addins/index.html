@@ -1,238 +1,993 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Developing Add-ins | MyGeotab SDK</title><meta name=generator content="Jekyll v3.8.5"><meta property=og:title content="Developing Add-ins"><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><meta property=og:description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><link rel=canonical href=https://geotab.github.io/sdk/software/guides/developing-addins/ ><meta property=og:url content=https://geotab.github.io/sdk/software/guides/developing-addins/ ><meta property=og:site_name content="MyGeotab SDK"><script type=application/ld+json>{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/sdk/software/guides/developing-addins/","headline":"Developing Add-ins","@context":"http://schema.org"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-5d420f1df7.min.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> MyGeotab SDK </a><button class="navbar-toggler d-lg-none" id=toggler type=button><span class=navbar-toggler-icon></span></button></nav></header><div id=wrapper><div id=sidebar-wrapper class=bg-light><nav id=sidebar class=sidebar><h4>Software</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/introduction/ >Introduction</a></li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/guides/getting-started/ >Getting Started</a></li><li class=nav-link><a href=/sdk/software/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-javascript/ >Using in Javascript</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-dotnet/ >Using in .Net</a></li><li class=nav-link><a href=/sdk/software/guides/data-feed>Data Feed</a></li><li class=nav-link><a href=/sdk/software/guides/mygeotab-urls/ >Using MyGeotab URLs</a></li><li class=nav-link><a href=/sdk/software/guides/using-go-devices/ >Using GO Devices</a></li><li class=nav-link><a href=/sdk/software/guides/go-device-logging/ >GO Device Logging</a></li><li class=nav-link><a href=/sdk/software/guides/third-party-devices/ >Using Third-Party Devices</a></li><li class="nav-link active"><a href=/sdk/software/guides/developing-addins/ >Developing Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/drive-addins/ >Geotab Drive Add-Ins</a></li></ul><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/api/reference/ >Reference</a></li><li class=nav-link><a href=/sdk/software/api/runner.html>Runner</a></li><li class=nav-link><a href=/sdk/software/api/clients/ >API Clients</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/js-samples/ >Javascript Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-dotnet-samples>.Net Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-addin-samples>Add-in Examples</a></li></ul></ul><h4>Hardware</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/introduction/ >Introduction</a></li><h5>Add-on Protocols</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/addon-protocols/rs232-usb/ >RS232 & USB</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/can/ >CAN</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/ble/ >BLE</a></li></ul><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/samples/python/ >Python</a></li><li class=nav-link><a href=https://github.com/Geotab/android-external-device-example>Andoid</a></li></ul><h5>Developing an IOX</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/developing-an-iox/hardware-design-guide/ >Hardware Design Guide</a></li><li class=nav-link><a href=/sdk/hardware/developing-an-iox/messaging-protocol/ >Messaging Protocol</a></li></ul></ul><h4>Resources</h4><ul class="nav flex-column"><li class=nav-link><a href=https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum>Forums</a></li><li class=nav-link><a href=https://www.geotab.com/dev-channel/ >Dev Channel</a></li><li class=nav-link><a href=/sdk/resources/new/ >What's New</a></li></ul></nav></div><main role=main><div class=container-fluid><div class=row><article class=col-md-12><header><a href=https://github.com/Geotab/sdk/blob/master/src/software/guides/developing-addins.md class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a><h1>Developing Add-ins</h1></header><div><p>Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. <a href=https://github.com/Geotab/sdk-addin-samples>Click here</a> to find the sample Add-Ins.</p><h2 id=geotab-add-ins-can-be-of-two-types>Geotab Add-Ins can be of two types:</h2><h4 id=pages>Pages</h4><p>A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.</p><h4 id=buttons>Buttons</h4><p>Custom button Add-Inscan be included to perform different functions. Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1). Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).</p><h2 id=use-cases>Use cases</h2><p>Consider a manager who regularly performs similar tasks each day. Their workflow may consist of comparing fleet metrics with local data from your software. By creating a custom page Add-In, you can combine both of these tasks into one easy-to-use page where all the information is readily available.</p><p>Another example is to quickly navigate between different areas of Geotab. A simple-to-use one-click button Add-In can be made for most pages. The button will guide the user between areas, and can optionally use the page state to automatically fill in URL parameters to run reports with a single click.</p><h3 id=requirements>Requirements</h3><p>The Add-Ins created can either have their source code embedded and stored on Geotab&rsquo;s servers or can be stored externally using your own hosting provider or your own servers.</p><blockquote><p>Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.</p></blockquote><h2 id=add-inconfiguration-files>Add-Inconfiguration files</h2><p>Each Add-In created will have one configuration file. The configuration file is a JSON file ( <a href=http://www.json.org>http://www.json.org</a>) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.</p><h3 id=table-1-add-in-configuration-file-keys-values>Table 1 — Add-In configuration file keys/values</h3><table><thead><tr><th><strong>Property</strong></th><th><strong>Description</strong></th><th><strong>Type</strong></th></tr></thead><tbody><tr><td>name</td><td>The name of this Add-In</td><td>String</td></tr><tr><td>supportEmail</td><td>Email address for support related to this Add-In</td><td>String</td></tr><tr><td>items</td><td>Array of custom pages and/or buttons (External references)</td><td>Array</td></tr><tr><td>files</td><td>Custom pages and/or buttons (Embedded code)</td><td>Object</td></tr><tr><td>key</td><td>Unique MyGeotab Add-In key assigned by Geotab</td><td>String</td></tr><tr><td>signature</td><td>Digital signature of the Add-In</td><td>String</td></tr><tr><td>version</td><td>Which Geotab API version to use</td><td>String</td></tr></tbody></table><blockquote><p>If you do not know your MyGeotab Add-In key, please contact your authorized Geotab reseller for support.</p></blockquote><p>The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab&rsquo;s servers.</p><h2 id=example-add-in-configuration-file>Example Add-In configuration file</h2><p>The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.</p><h3 id=listing-1-a-simple-add-in-configuration-json-file>Listing 1 — A simple Add-In configuration JSON file</h3><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
-        </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"My First Geotab Add-In"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"supportEmail"</span><span class=p>:</span><span class=w> </span><span class=s2>"myname@mycompany.com"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"version"</span><span class=p>:</span><span class=w> </span><span class=s2>"1.0"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"items"</span><span class=p>:</span><span class=w> </span><span class=p>[{</span><span class=w>
-                </span><span class=s2>"url"</span><span class=p>:</span><span class=s2>"https://my3.geotab.com/g560/customerPage1.html"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"path"</span><span class=p>:</span><span class=w> </span><span class=s2>"ActivityLink"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"icon"</span><span class=p>:</span><span class=s2>"https://www.geotab.com/geoimages/home/icon-solutions.png"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"menuName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-                        </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"English Menu Text"</span><span class=p>,</span><span class=w>
-                        </span><span class=s2>"fr"</span><span class=p>:</span><span class=w> </span><span class=s2>"French Menu Text"</span><span class=w>
-                </span><span class=p>}</span><span class=w>
-        </span><span class=p>}],</span><span class=w>
-        </span><span class=s2>"files"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=p>},</span><span class=w>
-        </span><span class=s2>"key"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYAPIKEY"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"signature"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYSIGNATURE"</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><p>Test the example above by navigating to Administration → System → System Settings → Add-Ins. Select New Add-In and paste the example in the configuration tab. Be sure to select save then refresh the page.</p><p>Each Add-In can create a navigation entry in the left hand side menu. This allows quick and easy access to all of the Add-Ins. The placement of the navigation entry for the Add-In is specified in the configuration file, relative to another built-in navigation entry. In the section below, a navigation entry is placed directly after the Activity entry. A user with English as their interface language will see &ldquo;English Menu Text&rdquo; as the label. Note that we show only two properties for brevity.</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
-    </span><span class=s2>"path"</span><span class=p>:</span><span class=w> </span><span class=s2>"ActivityLink/"</span><span class=p>,</span><span class=w>
-    </span><span class=s2>"menuName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-        </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"English Menu Text"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"fr"</span><span class=p>:</span><span class=w> </span><span class=s2>"French Menu Text"</span><span class=w>
-    </span><span class=p>}</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><p><img src=/sdk/software/guides/developing-addins_0.png alt=""> Image 1 — Modified left-hand-side menu</p><p>The Add-In navigation entry can be placed after any of the following built-in values:</p><ul><li><code>GettingStartedLink</code></li><li><code>ActivityLink</code></li><li><code>EngineMaintenanceLink</code></li><li><code>ZoneAndMessagesLink</code></li><li><code>RuleAndGroupsLink</code></li><li><code>AdministrationLink</code></li></ul><p>To place the navigation entry as a sub-menu entry in one of the main entries place a slash (<code>/</code>) character after the name. The custom entry will be the first item inside the sub-menu.</p><p>For example, by changing <code>&quot;ZoneAndMessagesLink/&quot;</code> as the value for the <code>&quot;path&quot;</code> key:</p><p><code>&quot;path&quot;: &quot;ZoneAndMessagesLink/&quot;,</code></p><p>This will insert the custom navigation entry as follows:</p><p><img src=/sdk/software/guides/developing-addins_1.png alt=""></p><p>Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the menu.</p><blockquote><p>A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.</p></blockquote><h2 id=listing-2-add-in-configuration-section-for-submenu>Listing 2 — Add-In configuration section for submenu</h2><p>To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.</p><p>To place buttons inside a new sub-menu, use subMenuPath property as illustrated in Listing 3. This sub-menu will be shown only if there are at least two items inside it. The sub-menu items appear in reverse order of the JSON entered below.</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
- </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"My First Geotab Add-In"</span><span class=p>,</span><span class=w>
- </span><span class=s2>"supportEmail"</span><span class=p>:</span><span class=w> </span><span class=s2>"myname@mycompany.com"</span><span class=p>,</span><span class=w>
- </span><span class=s2>"version"</span><span class=p>:</span><span class=w> </span><span class=s2>"1.0"</span><span class=p>,</span><span class=w>
- </span><span class=s2>"items"</span><span class=p>:</span><span class=w> </span><span class=p>[{</span><span class=w>
-        </span><span class=s2>"url"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/heatmap.html"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"path"</span><span class=p>:</span><span class=w> </span><span class=s2>"sdkAddinsLink/"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"menuName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-            </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"Heat Map"</span><span class=w>
-        </span><span class=p>},</span><span class=w>
-        </span><span class=s2>"icon"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/images/icon.svg"</span><span class=w>
-    </span><span class=p>},</span><span class=w> </span><span class=p>{</span><span class=w>
-        </span><span class=s2>"page"</span><span class=p>:</span><span class=w> </span><span class=s2>"device"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"click"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/scripts/engineDataButton.js"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"buttonName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-            </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"Engine Data Profile"</span><span class=p>,</span><span class=w>
-            </span><span class=s2>"fr"</span><span class=p>:</span><span class=w> </span><span class=s2>"Profil des données-moteur"</span><span class=p>,</span><span class=w>
-            </span><span class=s2>"es"</span><span class=p>:</span><span class=w> </span><span class=s2>"Perfil de datos de motor"</span><span class=p>,</span><span class=w>
-            </span><span class=s2>"ja"</span><span class=p>:</span><span class=w> </span><span class=s2>"エンジンデータプロフィール"</span><span class=w>
-        </span><span class=p>},</span><span class=w>
-        </span><span class=s2>"icon"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/images/icon.svg"</span><span class=w>
-    </span><span class=p>}],</span><span class=w>
- </span><span class=s2>"isSigned"</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=p>,</span><span class=w>
- </span><span class=s2>"signature"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYSIGNATURE"</span><span class=p>,</span><span class=w>
- </span><span class=s2>"key"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYAPIKEY"</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><h3 id=referencing-source-items>Referencing source items</h3><p>Each Add-In can define zero or more <u>items</u> as part of its configuration file. An item is a collection of keys and values which represent a page or a button.</p><h3 id=table-2-parent-menu-item>Table 2 — Parent menu item</h3><p>A parent menu item defines a new menu item and where it should reside within the menu hierarchy. It does not have a URL that activates a page and serves only as the container for sub-menu items.</p><table><thead><tr><th><strong>Name</strong></th><th><strong>Description</strong></th><th><strong>Type</strong></th></tr></thead><tbody><tr><td>menuId</td><td>A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above <code>&quot;GettingStartedLink&quot;</code>, <code>&quot;ActivityLink&quot;</code>, etc.</td><td>String</td></tr><tr><td>path</td><td>Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as <code>&quot;ActivityLink/&quot;</code>.</td><td>String</td></tr><tr><td>menuName</td><td>An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code>.</td><td>Object</td></tr><tr><td>icon</td><td>A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling.</td><td>String</td></tr></tbody></table><h3 id=table-3-menu-item>Table 3 — Menu item</h3><table><thead><tr><th><strong>Name</strong></th><th><strong>Description</strong></th><th><strong>Type</strong></th></tr></thead><tbody><tr><td>URL</td><td>A URL to the HTML page to load when clicking on this menu item.</td><td>String</td></tr><tr><td>path</td><td>Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as <code>&quot;ActivityLink/&quot;</code>.</td><td>String</td></tr><tr><td>menuName</td><td>An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code>.</td><td>Object</td></tr><tr><td>icon</td><td>A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling.</td><td>String</td></tr></tbody></table><h3 id=table-4-button-item>Table 4 — Button item</h3><table><thead><tr><th><strong>Name</strong></th><th><strong>Description</strong></th><th><strong>Type</strong></th></tr></thead><tbody><tr><td>page</td><td>Which built-in page to place the button on</td><td>String</td></tr><tr><td>click</td><td>A URL to a JavaScript file which is executed when the button is clicked</td><td>String</td></tr><tr><td>buttonName</td><td>An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code></td><td>Object</td></tr><tr><td>icon</td><td>Reference to the image for placing it in the button label</td><td>String</td></tr></tbody></table><p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (<code>&quot;en&quot;</code>), French (<code>&quot;fr&quot;</code>), German (<code>&quot;de&quot;</code>), Spanish (<code>&quot;es&quot;</code>), Japanese (<code>&quot;ja&quot;</code>), Polish (<code>&quot;pl&quot;</code>) Brazilian Portuguese (<code>&quot;bp&quot;</code>), Dutch (<code>&quot;nl&quot;</code>) and Italian (<code>&quot;it&quot;</code>).</p><blockquote><p>Reference to the image can be an external URL such as: <code>https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In_._</p></blockquote><p>When using the items property to include your source code exclusively, you can set the files property an empty object using <code>{ }</code> as seen in Listing 1.</p><p>Every Add-In has a JavaScript object which is set in your main.js file. For example, the Add-In class name &ldquo;myaddin&rdquo; is provided by the following JavaScript entry point:</p><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=nx>geotab</span><span class=p>.</span><span class=nx>addin</span><span class=p>.</span><span class=nx>myaddin</span> <span class=o>=</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=p>{</span>
- <span class=p>...</span>
-<span class=p>}</span>
-</code></pre></div><p>The name you provide should be unique for each Add-In and should take care to avoid including invalid characters in the name. Additionally, when referencing Add-Ins hosted externally, the absolute path to the Add-In should not include the following characters anywhere in their URL:</p><ul><li>&ldquo;-&rdquo; The dash symbol</li><li>&ldquo;@&rdquo; The &ldquo;at&rdquo; symbol</li><li>&ldquo;#&rdquo; The hash symbol</li></ul><p>For example, the following is an invalid absolute URL due to its dashes and will not be loaded correctly by MyGeotab:</p><p><code>https://my-web-server.com/pathToAddIn/index.html</code></p><h3 id=embedding-source-code>Embedding source code</h3><p>When developing a custom page or button Add-In, you have the option to embed the source code for your project in the JSON configuration file. When using this method, there is no requirement to host your own HTML, CSS or JavaScript files as they will be converted into strings and written inside the configuration file itself.</p><h3 id=listing-3-add-in-configuration-file-using-embedded-source-code>Listing 3 — Add-In configuration file using embedded source code</h3><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
-        </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"Example Embedded Add-In"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"supportEmail"</span><span class=p>:</span><span class=w> </span><span class=s2>"myname@mycompany.com"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"version"</span><span class=p>:</span><span class=w> </span><span class=s2>"1.0"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"items"</span><span class=p>:</span><span class=w> </span><span class=p>[],</span><span class=w>
-        </span><span class=s2>"files"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-                </span><span class=s2>"customPage.html"</span><span class=p>:</span><span class=w> </span><span class=s2>"&lt;html&gt;&lt;head&gt; **...** &lt;/head&gt;&lt;body&gt; **...** &lt;/body&gt;&lt;/html&gt;"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"js"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-                        </span><span class=s2>"customScript1.js"</span><span class=p>:</span><span class=w> </span><span class=s2>"alert('Embedded Add-In');"</span><span class=p>,</span><span class=w>
-                        </span><span class=s2>"customScript2.js"</span><span class=p>:</span><span class=w> </span><span class=s2>"var e = 2.718;"</span><span class=w>
-                </span><span class=p>},</span><span class=w>
-                </span><span class=s2>"css"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-                        </span><span class=s2>"customStyles.css"</span><span class=p>:</span><span class=w> </span><span class=s2>"#customDiv{color:#ff0;}"</span><span class=w>
-                </span><span class=p>}</span><span class=w>
-        </span><span class=p>},</span><span class=w>
-        </span><span class=s2>"key"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYAPIKEY"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"signature"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYSIGNATURE"</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><blockquote><p>Please be aware that some characters may need to use HTML escape characters ( <a href=http://www.w3schools.com/charsets/ref_html_8859.asp>HTML ISO-8859-1 Reference</a>) and <a href=http://dev.w3.org/html5/html-author/charref>Character Reference</a> for the overall JSON object to be validated.</p></blockquote><p>By reproducing the previous example, there would be two folders, one named &ldquo;js&rdquo; and the other &ldquo;css&rdquo;. Inside the folders are two JavaScript files and one CSS stylesheet; respectively.</p><p>The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.</p><h3 id=listing-4-absolute-path-to-image-in-html>Listing 4 — Absolute path to image in HTML</h3><p>Referencing an external image using an absolute URL in the HTML or CSS.</p><div class=highlight><pre><code class=language-html data-lang=html><span class=nt>&lt;img</span> <span class=na>src=</span><span class=s>"https://mycompany.com/images/customImage.png"</span> <span class=na>alt=</span><span class=s>"CustomImage"</span> <span class=nt>/&gt;</span>
-</code></pre></div><h3 id=listing-5-absolute-path-to-image-in-css>Listing 5 — Absolute path to image in CSS</h3><div class=highlight><pre><code class=language-css data-lang=css><span class=nf>#customImage</span> <span class=p>{</span>
- <span class=nl>background</span><span class=p>:</span> <span class=sx>url('https://mycompany.com/images/customImage.png')</span> <span class=nb>no-repeat</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><h3 id=listing-6-add-in-configuration-file-with-base64-encoded-image>Listing 6 — Add-In configuration file with Base64 encoded image</h3><p>The other method is to embed the images along with the rest of the source code in the markup. First the images will need to be encoded using <a href=http://en.wikipedia.org/wiki/Base64>Base64 encoding</a>, then the references to the image files replaced with the encoded version directly in the HTML or CSS.</p><div class=highlight><pre><code class=language-javascript data-lang=javascript> <span class=s2>"files"</span><span class=p>:</span> <span class=p>{</span>
-  <span class=s2>"customPage.html"</span><span class=p>:</span> <span class=s2>"&lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;"</span><span class=p>,</span>
-  <span class=s2>"css"</span><span class=p>:</span> <span class=p>{</span>
-   <span class=s2>"customStyles.css"</span><span class=p>:</span> <span class=s2>"#customDiv{background:url('images/img.png);}"</span>
-  <span class=p>}</span>
-  <span class=s2>"images"</span><span class=p>:</span> <span class=p>{</span>
-   <span class=s2>"img.png"</span><span class=p>:</span> <span class=p>[</span><span class=s2>"PD94bWdG3sN1M..."</span><span class=p>]</span>
-  <span class=p>}</span>
-  <span class=p>...</span>
- <span class=p>}</span>
-</code></pre></div><h2 id=using-third-party-libraries>Using third-party libraries</h2><p>Add-Ins can include references to external libraries that have been custom developed or to existing libraries such as jQuery. This is performed in the traditional way by including a <code>&lt;script&gt;</code> tag to the URL of the file.</p><h3 id=listing-7-referencing-jquery-from-an-add-in>Listing 7 — Referencing jQuery from an Add-In</h3><div class=highlight><pre><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=nt>&lt;html&gt;</span>
-  <span class=nt>&lt;head&gt;</span>
-    <span class=nt>&lt;script </span><span class=na>src=</span><span class=s>"//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"</span><span class=nt>&gt;&lt;/script&gt;</span>
-  <span class=nt>&lt;/head&gt;</span>
-</code></pre></div><p>Keep in mind that the end-user using the Add-In will be viewing your Add-In from a Geotab server. The files referenced must be publicly available on the Internet. Firewalls cannot be configured with a specific IP address for the Geotab server as the address may change in the future.</p><p>References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.</p><h3 id=listing-8-avoiding-css-naming-conflicts>Listing 8 — Avoiding CSS naming conflicts</h3><p>When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab&rsquo;s outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.</p><div class=highlight><pre><code class=language-html data-lang=html><span class=nt>&lt;div</span> <span class=na>id=</span><span class=s>"myaddin-menu"</span><span class=nt>&gt;</span>
-  <span class=nt>&lt;a</span> <span class=na>href=</span><span class=s>"#"</span> <span class=na>id=</span><span class=s>"myaddin-refreshButton"</span><span class=nt>&gt;</span>Refresh<span class=nt>&lt;/a&gt;</span>
-<span class=nt>&lt;/div&gt;</span>
-</code></pre></div><div class=highlight><pre><code class=language-css data-lang=css><span class=nf>#myaddin-menu</span> <span class=p>{</span>
-  <span class=nl>position</span><span class=p>:</span> <span class=nb>absolute</span><span class=p>;</span>
-  <span class=nl>background-color</span><span class=p>:</span> <span class=m>#99cc00</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=nf>#myaddin-refreshButton</span> <span class=p>{</span>
-  <span class=nl>text-decoration</span><span class=p>:</span> <span class=nb>none</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><h2 id=page-lifecycle>Page lifecycle</h2><p>When designing a custom page Add-In, it is important to understand the JavaScript events that take place on Geotab&rsquo;s servers. The user-defined JavaScript code must supply an entry point object which will be created with a predefined parameter signature. From these parameters a signed-in Geotab API object will be received, along with the page state and a callback synchronization function.</p><p>Every page on Geotab&rsquo;s servers, including custom page Add-Ins, have the following three methods called during their lifecycle:</p><p>Table 5 — Add-In lifecycle methods</p><table><thead><tr><th><strong>Method</strong></th><th><strong>Description</strong></th><th><strong>Signature</strong></th></tr></thead><tbody><tr><td>initialize</td><td>Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In.</td><td><code>function(api, state, callback) { ... }</code></td></tr><tr><td>focus</td><td>This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page.</td><td><code>function(api, state) { ... }</code></td></tr><tr><td>blur</td><td>This method is called when the user is navigating away from your page. Use this method to save any required state.</td><td><code>function(api, state) { ... }</code></td></tr></tbody></table><h3 id=visual-diagram>Visual diagram</h3><p>Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the <u>focus</u> method will be called. Finally, when the user is navigating away from your custom page Add-In, the <u>blur</u> method will be called, completing the Add-In lifecycle.</p><blockquote><p>It&rsquo;s impportant to call the <code>callback</code> passed into <code>intialize</code> <u>after</u> all work is complete. Keep in mind the asynchrosous nature of JavaScript.</p></blockquote><p><img src=/sdk/software/guides/developing-addins_2.png alt=""> Image 2 — Add-In lifecycle workflow diagram</p><h3 id=lifecycle-implementation>Lifecycle implementation</h3><p>The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined and the optional focus and blur methods will be called due to the callback method being called in the initialize method.</p><p>Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix geotab.addin (note that the namespace is not hyphenated). In the example below the full namespace is geotab.addin.myCustomPage1.</p><h3 id=listing-9-html-and-javascript-entry-point-example>Listing 9 — HTML and JavaScript entry point example</h3><div class=highlight><pre><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=nt>&lt;html&gt;</span>
-<span class=nt>&lt;head&gt;</span>
- <span class=nt>&lt;title&gt;</span>Custom Page Add-In<span class=nt>&lt;/title&gt;</span>
- <span class=nt>&lt;script&gt;</span>
-  <span class=nx>geotab</span><span class=p>.</span><span class=nx>addin</span><span class=p>.</span><span class=nx>myCustomPage1</span> <span class=o>=</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=p>{</span>
-   <span class=c1>// Initialize required Add-In variables</span>
-   <span class=c1>// Example:</span>
-   <span class=c1>// var element = document.getElementById("myButton");</span>
-   <span class=c1>// if (element) {</span>
-   <span class=c1>//     element.addEventListener("click", function (event) {</span>
-   <span class=c1>//         event.preventDefault();</span>
-   <span class=c1>//         alert("Action performed");</span>
-   <span class=c1>//     });</span>
-   <span class=c1>// }</span>
-   <span class=k>return</span> <span class=p>{</span>
-    <span class=nx>initialize</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>,</span> <span class=nx>callback</span><span class=p>)</span> <span class=p>{</span>
-     <span class=nx>callback</span><span class=p>();</span>
-    <span class=p>},</span>
-    <span class=nx>focus</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
-     <span class=c1>// User interface is available</span>
-    <span class=p>},</span>
-    <span class=nx>blur</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
-     <span class=c1>// Save any Add-In state</span>
-    <span class=p>}</span>
-   <span class=p>};</span>
-  <span class=p>};</span>
- <span class=nt>&lt;/script&gt;</span>
-<span class=nt>&lt;/head&gt;</span>
-<span class=nt>&lt;body&gt;</span>
- <span class=nt>&lt;button</span> <span class=na>id=</span><span class=s>"myButton"</span><span class=nt>&gt;</span>Do Action<span class=nt>&lt;/button&gt;</span>
-<span class=nt>&lt;/body&gt;</span>
-<span class=nt>&lt;/html&gt;</span>
-</code></pre></div><h2 id=custom-button-add-ins>Custom button Add-Ins</h2><p>Custom button Add-Ins allow you to extend the capabilities of a built-in Geotab page by appending a new button to the top menu of the page. When a user clicks the custom button Add-In, the JavaScript method that has been defined will be called. This JavaScript method has access to the event which was generated by the click, the Geotab API under the credentials of the current user and the page state variables.</p><h3 id=button-add-in-configuration-file>Button Add-In configuration file</h3><p>The following example adds a custom button Add-In to the live map page. When clicked, the button will redirect the user to the vehicles page. Use this example as a starting point for creating your own custom button Add-Ins.</p><p>The exact position of the custom button Add-In within a built-in page is defined by the developer. For instance, in Image 3, a new button labelled <u>Perform Action</u> is added to the toolbar of the live map page.</p><blockquote><p>This example uses external references to the source code. Similar to custom page Add-Ins, the Files property of the configuration file can be used to embed the source code on the Geotab servers.</p></blockquote><p><img src=/sdk/software/guides/developing-addins_3.png alt=""> Image 3 — Custom button Add-In on live map page</p><h3 id=use-cases>Use cases</h3><p>The action your custom button Add-In performs is decided by your specific business requirement.The following are example actions that can be implemented:</p><ul><li>One-click navigation between maps and reports</li><li>Call an API to alert for driver proximity</li><li>Create a new zone at the current location</li><li>Automated execution of a sequence of actions</li></ul><h3 id=listing-10-custom-button-add-in-configuration-file>Listing 10 — Custom button Add-In configuration file</h3><p>Almost any page is available to have a custom button Add-In added to it. Use a web browser&rsquo;s address bar to find the correct value for the Page property. Geotab pages will have a trailing hash (&ldquo;#&rdquo;) symbol followed by the page name. Determine the page name and then set the &ldquo;page&rdquo; value of your custom button Add-In configuration file to that value.</p><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
-        </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"Custom Button Add-In Example"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"supportEmail"</span><span class=p>:</span><span class=w> </span><span class=s2>"myname@mycompany.com"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"version"</span><span class=p>:</span><span class=w> </span><span class=s2>"1.0"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"items"</span><span class=p>:</span><span class=w> </span><span class=p>[{</span><span class=w>
-                </span><span class=s2>"page"</span><span class=p>:</span><span class=w> </span><span class=s2>"map"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"click"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://www.hosting.com/mycompany/customButton.js"</span><span class=p>,</span><span class=w>
-                </span><span class=s2>"buttonName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-                        </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"English Button"</span><span class=p>,</span><span class=w>
-                        </span><span class=s2>"fr"</span><span class=p>:</span><span class=w> </span><span class=s2>"French Button"</span><span class=w>
-                </span><span class=p>}</span><span class=w>
-        </span><span class=p>}],</span><span class=w>
-        </span><span class=s2>"files"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=p>},</span><span class=w>
-        </span><span class=s2>"key"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYAPIKEY"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"signature"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYSIGNATURE"</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><h2 id=javascript-button-action>JavaScript Button Action</h2><p>When a custom button Add-In is clicked by a user, it will execute a predefined method from the JavaScript file referenced. This method provides the button action with access to the generated event, the Geotab API as the signed-in user, and the page state.</p><blockquote><p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p></blockquote><h3 id=listing-12-custom-button-click-method>Listing 12 — Custom button click method</h3><div class=highlight><pre><code class=language-javascript data-lang=javascript><span class=nx>geotab</span><span class=p>.</span><span class=nx>customButtons</span><span class=p>.</span><span class=nx>customExample1</span> <span class=o>=</span> <span class=p>(</span><span class=nx>event</span><span class=p>,</span> <span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
-        <span class=nx>alert</span><span class=p>(</span><span class=s2>"Custom button Add-In clicked!"</span><span class=p>);</span>
-        <span class=nx>state</span><span class=p>.</span><span class=nx>gotoPage</span><span class=p>(</span><span class=s2>"map"</span><span class=p>);</span>
-<span class=p>};</span>
-</code></pre></div><p>The state object is a powerful tool for creating navigational components by changing the current page state. The state object has access to a number of methods as follows:</p><h3 id=table-6-geotab-page-state-methods>Table 6 - Geotab page state methods</h3><table><thead><tr><th><strong>Method</strong></th><th><strong>Description</strong></th><th><strong>Parameters</strong></th><th><strong>Return Type</strong></th></tr></thead><tbody><tr><td><code>getState</code></td><td>Gets an object that represents the current URL state</td><td>None</td><td>Object</td></tr><tr><td><code>setState</code></td><td>Sets the current URL state. The object parameter is a modified state retrieved from <u>getState</u>.</td><td>Object</td><td>Void</td></tr><tr><td><code>gotoPage</code></td><td>Redirects the user to another page with optional parameters. <code>Example:state.gotoPage(&quot;map&quot;, { someParameter1: true, someParameter2: 5 });</code></td><td>String, [Object]</td><td>Void</td></tr><tr><td><code>hasAccessToPage</code></td><td>Checks whether the current user has the security clearance to view a page by its <code>#</code> (hash) value. Example: <code>var result = state.hasAccessToPage(&quot;map&quot;);</code></td><td>String</td><td>Boolean</td></tr><tr><td><code>getGroupFilter</code></td><td>Gets an array with ids of the selected groups in the organization filter. Example: <code>var result = state.getGroupFilter();</code></td><td>None</td><td>Array</td></tr></tbody></table><blockquote><p>The second parameter to the gotoPage method is optional and is used for query string parameters.</p></blockquote><h2 id=complete-integration-example>Complete integration example</h2><p>Using all the concepts outlined in this document, the following is a complete integration example which creates a custom page Add-In with real-world functionality. In this example, the custom page has JavaScript methods that make requests using the Geotab API to retrieve the current vehicles on your account. The result of the API request is shown on the custom page in a list. Finally, when the user leaves the page, the custom page performs cleanup during the lifecycle methods.</p><blockquote><p>For the purpose of this example, the integrationExample.css and integrationExample.js are empty files.</p></blockquote><h3 id=source-code>Source code</h3><h3 id=listing-13-html-and-javascript-code-for-integration-example>Listing 13 — HTML and JavaScript code for integration example</h3><div class=highlight><pre><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=nt>&lt;html&gt;</span>
-<span class=nt>&lt;head&gt;</span>
-    <span class=nt>&lt;title&gt;</span>Custom Integration Example<span class=nt>&lt;/title&gt;</span>
-    <span class=nt>&lt;link</span> <span class=na>rel=</span><span class=s>"stylesheet"</span> <span class=na>href=</span><span class=s>"integrationExample.css"</span> <span class=nt>/&gt;</span>
-    <span class=nt>&lt;script&gt;</span>
-        <span class=nx>geotab</span><span class=p>.</span><span class=nx>addin</span><span class=p>.</span><span class=nx>integrationExample</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
-            <span class=kd>var</span> <span class=nx>center</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>"center"</span><span class=p>),</span>
-                <span class=nx>listCreator</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>entities</span><span class=p>)</span> <span class=p>{</span>
-                    <span class=kd>var</span> <span class=nx>listElement</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>"UL"</span><span class=p>);</span>
-                    <span class=nx>listElement</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>entities</span><span class=p>.</span><span class=nx>reduce</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>frag</span><span class=p>,</span> <span class=nx>entity</span><span class=p>)</span> <span class=p>{</span>
-                        <span class=kd>var</span> <span class=nx>element</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>"LI"</span><span class=p>);</span>
-                        <span class=nx>element</span><span class=p>.</span><span class=nx>textContent</span> <span class=o>=</span> <span class=nx>entity</span><span class=p>.</span><span class=nx>name</span><span class=p>;</span>
-                        <span class=nx>element</span><span class=p>.</span><span class=nx>setAttribute</span><span class=p>(</span><span class=s2>"data-id"</span><span class=p>,</span> <span class=nx>entity</span><span class=p>.</span><span class=nx>id</span><span class=p>);</span>
-                        <span class=nx>frag</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>element</span><span class=p>);</span>
-                        <span class=k>return</span> <span class=nx>frag</span><span class=p>;</span>
-                    <span class=p>},</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createDocumentFragment</span><span class=p>()));</span>
-                    <span class=k>return</span> <span class=nx>listElement</span><span class=p>;</span>
-                <span class=p>},</span>
-                <span class=nx>goToVehicles</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>{</span>
-                    <span class=kd>var</span> <span class=nx>id</span> <span class=o>=</span> <span class=nx>event</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>getAttribute</span><span class=p>(</span><span class=s2>"data-id"</span><span class=p>);</span>
-                    <span class=k>if</span> <span class=p>(</span><span class=nx>id</span><span class=p>)</span> <span class=p>{</span>
-                        <span class=nx>state</span><span class=p>.</span><span class=nx>gotoPage</span><span class=p>(</span><span class=s2>"device"</span><span class=p>,</span> <span class=p>{</span>
-                            <span class=na>id</span><span class=p>:</span> <span class=nx>id</span>
-                        <span class=p>});</span>
-                    <span class=p>}</span>
-                <span class=p>},</span>
-                <span class=nx>refreshPage</span> <span class=o>=</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
-                    <span class=nx>api</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=s2>"Get"</span><span class=p>,</span> <span class=p>{</span>
-                        <span class=na>typeName</span><span class=p>:</span> <span class=s2>"Device"</span>
-                    <span class=p>},</span> <span class=kd>function</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span> <span class=p>{</span>
-                        <span class=nx>center</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>"click"</span><span class=p>,</span> <span class=nx>goToVehicles</span><span class=p>,</span> <span class=kc>false</span><span class=p>);</span>
-                        <span class=nx>center</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>listCreator</span><span class=p>(</span><span class=nx>result</span><span class=p>));</span>
-                    <span class=p>},</span> <span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
-                        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>error</span><span class=p>.</span><span class=nx>message</span><span class=p>);</span>
-                    <span class=p>});</span>
-                <span class=p>},</span>
-                <span class=nx>clearOnLeaving</span> <span class=o>=</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
-                    <span class=nx>center</span><span class=p>.</span><span class=nx>removeEventListener</span><span class=p>(</span><span class=s2>"click"</span><span class=p>,</span> <span class=nx>goToVehicles</span><span class=p>,</span> <span class=kc>false</span><span class=p>);</span>
-                    <span class=nx>center</span><span class=p>.</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=s2>""</span><span class=p>;</span>
-                <span class=p>};</span>
+<!DOCTYPE html>
+<html>
 
-            <span class=k>return</span> <span class=p>{</span>
-                <span class=na>initialize</span><span class=p>:</span> <span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>,</span> <span class=nx>callback</span><span class=p>)</span> <span class=p>{</span>
-                    <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>"vehiclesButton"</span><span class=p>)</span>
-                        <span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>"click"</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
-                            <span class=nx>state</span><span class=p>.</span><span class=nx>gotoPage</span><span class=p>(</span><span class=s2>"devices"</span><span class=p>);</span>
-                        <span class=p>},</span> <span class=kc>false</span><span class=p>);</span>
-                    <span class=nx>callback</span><span class=p>();</span>
-                <span class=p>},</span>
-                <span class=na>focus</span><span class=p>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
-                    <span class=nx>refreshPage</span><span class=p>();</span>
-                <span class=p>},</span>
-                <span class=na>blur</span><span class=p>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>api</span><span class=p>,</span> <span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
-                    <span class=nx>clearOnLeaving</span><span class=p>();</span>
-                <span class=p>}</span>
-            <span class=p>}</span>
-        <span class=p>};</span>
-    <span class=nt>&lt;/script&gt;</span>
-<span class=nt>&lt;/head&gt;</span>
-<span class=nt>&lt;body&gt;</span>
-    <span class=nt>&lt;div</span> <span class=na>id=</span><span class=s>"center"</span><span class=nt>&gt;</span>
-        <span class=nt>&lt;button</span> <span class=na>id=</span><span class=s>"vehiclesButton"</span><span class=nt>&gt;</span>Go to vehicles page<span class=nt>&lt;/button&gt;</span>
-    <span class=nt>&lt;/div&gt;</span>
-<span class=nt>&lt;/body&gt;</span>
-<span class=nt>&lt;/html&gt;</span>
-</code></pre></div><h3 id=listing-14-configuration-file-for-integration-example>Listing 14 — Configuration file for integration example</h3><div class=highlight><pre><code class=language-json data-lang=json><span class=p>{</span><span class=w>
-  </span><span class=s2>"name"</span><span class=p>:</span><span class=w> </span><span class=s2>"Integration Example"</span><span class=p>,</span><span class=w>
-  </span><span class=s2>"supportEmail"</span><span class=p>:</span><span class=w> </span><span class=s2>"myname@mycompany.com"</span><span class=p>,</span><span class=w>
-  </span><span class=s2>"items"</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=w>
-    </span><span class=p>{</span><span class=w>
-      </span><span class=s2>"version"</span><span class=p>:</span><span class=w> </span><span class=s2>"1.0"</span><span class=p>,</span><span class=w>
-      </span><span class=s2>"url"</span><span class=p>:</span><span class=w> </span><span class=s2>"https://app.geotab.com/GeotabApps/SDKIntegrationExample/IntegrationExample.html"</span><span class=p>,</span><span class=w>
-      </span><span class=s2>"path"</span><span class=p>:</span><span class=w> </span><span class=s2>"ActivityLink"</span><span class=p>,</span><span class=w>
-      </span><span class=s2>"menuName"</span><span class=p>:</span><span class=w> </span><span class=p>{</span><span class=w>
-        </span><span class=s2>"en"</span><span class=p>:</span><span class=w> </span><span class=s2>"English Label"</span><span class=p>,</span><span class=w>
-        </span><span class=s2>"fr"</span><span class=p>:</span><span class=w> </span><span class=s2>"French Label"</span><span class=w>
-      </span><span class=p>}</span><span class=w>
-    </span><span class=p>}</span><span class=w>
-  </span><span class=p>],</span><span class=w>
-  </span><span class=s2>"key"</span><span class=p>:</span><span class=w> </span><span class=s2>"123456-MYKEY"</span><span class=p>,</span><span class=w>
-  </span><span class=s2>"signature"</span><span class=p>:</span><span class=w> </span><span class=s2>"12345-MYSIGNATURE"</span><span class=p>,</span><span class=w>
-  </span><span class=s2>"isSigned"</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
-</span><span class=p>}</span><span class=w>
-</span></code></pre></div><h2 id=troubleshooting-and-debugging>Troubleshooting and debugging</h2><p>When developing Add-Ins, the use of Google Chrome and its Developer Tools window is recommended. To open the Chrome Developer Tools on Windows, press CTRL + SHIFT + I; on a Mac, press CMD + OPTION + I.</p><p>The contents of <code>console.log(&quot;...&quot;)</code> statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.</p><p>It is also recommended to read Google&rsquo;s extensive learning resources available on using <a href=https://developers.google.com/chrome-developer-tools/ >Chrome Developer Tools</a> to get started debugging or learn about the advanced features they have available.</p></div></article></div></div></main></div><script src=/sdk/assets/javascript/index-b894a07771.min.js></script></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Developing Add-ins | MyGeotab SDK</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Developing Add-ins" />
+<meta name="author" content="The Geotab Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<meta property="og:description" content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems." />
+<link rel="canonical" href="https://geotab.github.io/software/guides/developing-addins/" />
+<meta property="og:url" content="https://geotab.github.io/software/guides/developing-addins/" />
+<meta property="og:site_name" content="MyGeotab SDK" />
+<script type="application/ld+json">
+{"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","author":{"@type":"Person","name":"The Geotab Team"},"@type":"WebPage","url":"https://geotab.github.io/software/guides/developing-addins/","headline":"Developing Add-ins","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <!-- endinject -->
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+</head>
+
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            MyGeotab SDK
+        </a>
+        <button class="navbar-toggler d-lg-none" id="toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+</header>
+
+
+  <div id="wrapper">
+<div id="sidebar-wrapper" class="bg-light">
+    <nav id="sidebar" class="sidebar">
+    
+        <h4>Software</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/introduction/">Introduction</a>
+                
+            </li>
+            
+        
+        <h5>Guides</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/getting-started/">Getting Started</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/concepts/">Concepts</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-dotnet/">Using in .Net</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/data-feed">Data Feed</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-go-devices/">Using GO Devices</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/go-device-logging/">GO Device Logging</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/third-party-devices/">Using Third-Party Devices</a>
+                
+            </li>
+            
+            <li class="nav-link active">
+                
+                <a href="/software/guides/developing-addins/">Developing Add-Ins</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>API</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/reference/">Reference</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/runner.html">Runner</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/clients/">API Clients</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/js-samples/">Javascript Examples</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net Examples</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-addin-samples">Add-in Examples</a>
+                
+            </li>
+            
+        </ul>
+         
+        </ul>
+    
+        <h4>Hardware</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/introduction/">Introduction</a>
+                
+            </li>
+            
+        
+        <h5>Add-on Protocols</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/can/">CAN</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/ble/">BLE</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/samples/python/">Python</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/android-external-device-example">Android</a>
+                
+            </li>
+            
+        </ul>
+        
+        <h5>Developing an IOX</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
+                
+            </li>
+            
+        </ul>
+         
+        </ul>
+    
+        <h4>Resources</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum">Forums</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/resources/new/">What's New</a>
+                
+            </li>
+            
+         
+        </ul>
+    
+    </nav>
+</div>
+<main role="main">
+  <div class="container-fluid">
+    <div class="row">
+
+      <article class="col-md-12">
+        <header>
+          <a href="https://github.com/Geotab/sdk/blob/master/src/software/guides/developing-addins.md" class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Edit on GitHub</a>
+          <h1>Developing Add-ins</h1>
+        </header>
+
+        <div>
+          <p>Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. <a href="https://github.com/Geotab/sdk-addin-samples">Click here</a> to find the sample Add-Ins.</p>
+
+<h2 id="geotab-add-ins-can-be-of-two-types">Geotab Add-Ins can be of two types:</h2>
+
+<h4 id="pages">Pages</h4>
+
+<p>A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.</p>
+
+<h4 id="buttons">Buttons</h4>
+
+<p>Custom button Add-Inscan be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).</p>
+
+<h2 id="use-cases">Use cases</h2>
+
+<p>Consider a manager who regularly performs similar tasks each day. Their workflow may consist of comparing fleet metrics with local data from your software. By creating a custom page Add-In, you can combine both of these tasks into one easy-to-use page where all the information is readily available.</p>
+
+<p>Another example is to quickly navigate between different areas of Geotab. A simple-to-use one-click button Add-In can be made for most pages. The button will guide the user between areas, and can optionally use the page state to automatically fill in URL parameters to run reports with a single click.</p>
+
+<h3 id="requirements">Requirements</h3>
+
+<p>The Add-Ins created can either have their source code embedded and stored on Geotab&rsquo;s servers or can be stored externally using your own hosting provider or your own servers.</p>
+
+<blockquote>
+<p>Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.</p>
+</blockquote>
+
+<h2 id="add-inconfiguration-files">Add-Inconfiguration files</h2>
+
+<p>Each Add-In created will have one configuration file. The configuration file is a JSON file ( <a href="http://www.json.org">http://www.json.org</a>) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.</p>
+
+<h3 id="table-1-add-in-configuration-file-keys-values">Table 1 — Add-In configuration file keys/values</h3>
+
+<table><thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>The name of this Add-In</td>
+<td>String</td>
+</tr>
+<tr>
+<td>supportEmail</td>
+<td>Email address for support related to this Add-In</td>
+<td>String</td>
+</tr>
+<tr>
+<td>items</td>
+<td>Array of custom pages and/or buttons (External references)</td>
+<td>Array</td>
+</tr>
+<tr>
+<td>files</td>
+<td>Custom pages and/or buttons (Embedded code)</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>key</td>
+<td>Unique MyGeotab Add-In key assigned by Geotab</td>
+<td>String</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>Digital signature of the Add-In</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Which Geotab API version to use</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>If you do not know your MyGeotab Add-In key, please contact your authorized Geotab reseller for support.</p>
+</blockquote>
+
+<p>The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab&rsquo;s servers.</p>
+
+<h2 id="example-add-in-configuration-file">Example Add-In configuration file</h2>
+
+<p>The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.</p>
+
+<h3 id="listing-1-a-simple-add-in-configuration-json-file">Listing 1 — A simple Add-In configuration JSON file</h3>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My First Geotab Add-In"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supportEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myname@mycompany.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://my3.geotab.com/g560/customerPage1.html"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ActivityLink"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"icon"</span><span class="p">:</span><span class="s2">"https://www.geotab.com/geoimages/home/icon-solutions.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"menuName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English Menu Text"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"French Menu Text"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+        </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYAPIKEY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYSIGNATURE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Test the example above by navigating to Administration → System → System Settings → Add-Ins. Select New Add-In and paste the example in the configuration tab. Be sure to select save then refresh the page.</p>
+
+<p>Each Add-In can create a navigation entry in the left hand side menu. This allows quick and easy access to all of the Add-Ins. The placement of the navigation entry for the Add-In is specified in the configuration file, relative to another built-in navigation entry. In the section below, a navigation entry is placed directly after the Activity entry. A user with English as their interface language will see &ldquo;English Menu Text&rdquo; as the label. Note that we show only two properties for brevity.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ActivityLink/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"menuName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English Menu Text"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"French Menu Text"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><img src="/software/guides/developing-addins_0.png" alt="">
+Image 1 — Modified left-hand-side menu</p>
+
+<p>The Add-In navigation entry can be placed after any of the following built-in values:</p>
+
+<ul>
+<li><code>GettingStartedLink</code></li>
+<li><code>ActivityLink</code></li>
+<li><code>EngineMaintenanceLink</code></li>
+<li><code>ZoneAndMessagesLink</code></li>
+<li><code>RuleAndGroupsLink</code></li>
+<li><code>AdministrationLink</code></li>
+</ul>
+
+<p>To place the navigation entry as a sub-menu entry in one of the main entries place a slash (<code>/</code>) character after the name. The custom entry will be the first item inside the sub-menu.</p>
+
+<p>For example, by changing <code>&quot;ZoneAndMessagesLink/&quot;</code> as the value for the <code>&quot;path&quot;</code> key:</p>
+
+<p><code>&quot;path&quot;: &quot;ZoneAndMessagesLink/&quot;,</code></p>
+
+<p>This will insert the custom navigation entry as follows:</p>
+
+<p><img src="/software/guides/developing-addins_1.png" alt=""></p>
+
+<p>Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the menu.</p>
+
+<blockquote>
+<p>A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.</p>
+</blockquote>
+
+<h2 id="listing-2-add-in-configuration-section-for-submenu">Listing 2 — Add-In configuration section for submenu</h2>
+
+<p>To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.</p>
+
+<p>To place buttons inside a new sub-menu, use subMenuPath property as illustrated in Listing 3. This sub-menu will be shown only if there are at least two items inside it. The sub-menu items appear in reverse order of the JSON entered below.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+ </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My First Geotab Add-In"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"supportEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myname@mycompany.com"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/heatmap.html"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sdkAddinsLink/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"menuName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heat Map"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/images/icon.svg"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"click"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/scripts/engineDataButton.js"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"buttonName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Engine Data Profile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Profil des données-moteur"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"es"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perfil de datos de motor"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ja"</span><span class="p">:</span><span class="w"> </span><span class="s2">"エンジンデータプロフィール"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/images/icon.svg"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+ </span><span class="s2">"isSigned"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYSIGNATURE"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYAPIKEY"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="referencing-source-items">Referencing source items</h3>
+
+<p>Each Add-In can define zero or more <u>items</u> as part of its configuration file. An item is a collection of keys and values which represent a page or a button.</p>
+
+<h3 id="table-2-parent-menu-item">Table 2 — Parent menu item</h3>
+
+<p>A parent menu item defines a new menu item and where it should reside within the menu hierarchy. It does not have a URL that activates a page and serves only as the container for sub-menu items.</p>
+
+<table><thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>menuId</td>
+<td>A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above <code>&quot;GettingStartedLink&quot;</code>, <code>&quot;ActivityLink&quot;</code>, etc.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>path</td>
+<td>Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as <code>&quot;ActivityLink/&quot;</code>.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>menuName</td>
+<td>An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code>.</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling.</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3 id="table-3-menu-item">Table 3 — Menu item</h3>
+
+<table><thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URL</td>
+<td>A URL to the HTML page to load when clicking on this menu item.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>path</td>
+<td>Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as <code>&quot;ActivityLink/&quot;</code>.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>menuName</td>
+<td>An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code>.</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling.</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3 id="table-4-button-item">Table 4 — Button item</h3>
+
+<table><thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>Which built-in page to place the button on</td>
+<td>String</td>
+</tr>
+<tr>
+<td>click</td>
+<td>A URL to a JavaScript file which is executed when the button is clicked</td>
+<td>String</td>
+</tr>
+<tr>
+<td>buttonName</td>
+<td>An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example <code>{&quot;EN&quot;, &quot;New menu item&quot;}</code></td>
+<td>Object</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>Reference to the image for placing it in the button label</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (<code>&quot;en&quot;</code>), French (<code>&quot;fr&quot;</code>), German (<code>&quot;de&quot;</code>), Spanish (<code>&quot;es&quot;</code>), Japanese (<code>&quot;ja&quot;</code>), Polish (<code>&quot;pl&quot;</code>) Brazilian Portuguese (<code>&quot;bp&quot;</code>), Dutch (<code>&quot;nl&quot;</code>) and Italian (<code>&quot;it&quot;</code>).</p>
+
+<blockquote>
+<p>Reference to the image can be an external URL such as: <code>https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In_._</p>
+</blockquote>
+
+<p>When using the items property to include your source code exclusively, you can set the files property an empty object using <code>{ }</code> as seen in Listing 1.</p>
+
+<p>Every Add-In has a JavaScript object which is set in your main.js file. For example, the Add-In class name &ldquo;myaddin&rdquo; is provided by the following JavaScript entry point:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">geotab</span><span class="p">.</span><span class="nx">addin</span><span class="p">.</span><span class="nx">myaddin</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+ <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The name you provide should be unique for each Add-In and should take care to avoid including invalid characters in the name. Additionally, when referencing Add-Ins hosted externally, the absolute path to the Add-In should not include the following characters anywhere in their URL:</p>
+
+<ul>
+<li>&ldquo;-&rdquo; The dash symbol</li>
+<li>&ldquo;@&rdquo; The &ldquo;at&rdquo; symbol</li>
+<li>&ldquo;#&rdquo; The hash symbol</li>
+</ul>
+
+<p>For example, the following is an invalid absolute URL due to its dashes and will not be loaded correctly by MyGeotab:</p>
+
+<p><code>https://my-web-server.com/pathToAddIn/index.html</code></p>
+
+<h3 id="embedding-source-code">Embedding source code</h3>
+
+<p>When developing a custom page or button Add-In, you have the option to embed the source code for your project in the JSON configuration file. When using this method, there is no requirement to host your own HTML, CSS or JavaScript files as they will be converted into strings and written inside the configuration file itself.</p>
+
+<h3 id="listing-3-add-in-configuration-file-using-embedded-source-code">Listing 3 — Add-In configuration file using embedded source code</h3>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Embedded Add-In"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supportEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myname@mycompany.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"customPage.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html&gt;&lt;head&gt; **...** &lt;/head&gt;&lt;body&gt; **...** &lt;/body&gt;&lt;/html&gt;"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"js"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"customScript1.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alert('Embedded Add-In');"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"customScript2.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"var e = 2.718;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"css"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"customStyles.css"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#customDiv{color:#ff0;}"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYAPIKEY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYSIGNATURE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Please be aware that some characters may need to use HTML escape characters ( <a href="http://www.w3schools.com/charsets/ref_html_8859.asp">HTML ISO-8859-1 Reference</a>) and <a href="http://dev.w3.org/html5/html-author/charref">Character Reference</a> for the overall JSON object to be validated.</p>
+</blockquote>
+
+<p>By reproducing the previous example, there would be two folders, one named &ldquo;js&rdquo; and the other &ldquo;css&rdquo;. Inside the folders are two JavaScript files and one CSS stylesheet; respectively.</p>
+
+<p>The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.</p>
+
+<h3 id="listing-4-absolute-path-to-image-in-html">Listing 4 — Absolute path to image in HTML</h3>
+
+<p>Referencing an external image using an absolute URL in the HTML or CSS.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://mycompany.com/images/customImage.png"</span> <span class="na">alt=</span><span class="s">"CustomImage"</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<h3 id="listing-5-absolute-path-to-image-in-css">Listing 5 — Absolute path to image in CSS</h3>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#customImage</span> <span class="p">{</span>
+ <span class="nl">background</span><span class="p">:</span> <span class="sx">url('https://mycompany.com/images/customImage.png')</span> <span class="nb">no-repeat</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="listing-6-add-in-configuration-file-with-base64-encoded-image">Listing 6 — Add-In configuration file with Base64 encoded image</h3>
+
+<p>The other method is to embed the images along with the rest of the source code in the markup. First the images will need to be encoded using <a href="http://en.wikipedia.org/wiki/Base64">Base64 encoding</a>, then the references to the image files replaced with the encoded version directly in the HTML or CSS.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"> <span class="s2">"files"</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s2">"customPage.html"</span><span class="p">:</span> <span class="s2">"&lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;"</span><span class="p">,</span>
+  <span class="s2">"css"</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">"customStyles.css"</span><span class="p">:</span> <span class="s2">"#customDiv{background:url('images/img.png);}"</span>
+  <span class="p">}</span>
+  <span class="s2">"images"</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">"img.png"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"PD94bWdG3sN1M..."</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+ <span class="p">}</span>
+</code></pre></div>
+<h2 id="using-third-party-libraries">Using third-party libraries</h2>
+
+<p>Add-Ins can include references to external libraries that have been custom developed or to existing libraries such as jQuery. This is performed in the traditional way by including a <code>&lt;script&gt;</code> tag to the URL of the file.</p>
+
+<h3 id="listing-7-referencing-jquery-from-an-add-in">Listing 7 — Referencing jQuery from an Add-In</h3>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+</code></pre></div>
+<p>Keep in mind that the end-user using the Add-In will be viewing your Add-In from a Geotab server. The files referenced must be publicly available on the Internet. Firewalls cannot be configured with a specific IP address for the Geotab server as the address may change in the future.</p>
+
+<p>References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.</p>
+
+<h3 id="listing-8-avoiding-css-naming-conflicts">Listing 8 — Avoiding CSS naming conflicts</h3>
+
+<p>When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab&rsquo;s outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"myaddin-menu"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">id=</span><span class="s">"myaddin-refreshButton"</span><span class="nt">&gt;</span>Refresh<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#myaddin-menu</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#99cc00</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#myaddin-refreshButton</span> <span class="p">{</span>
+  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="page-lifecycle">Page lifecycle</h2>
+
+<p>When designing a custom page Add-In, it is important to understand the JavaScript events that take place on Geotab&rsquo;s servers. The user-defined JavaScript code must supply an entry point object which will be created with a predefined parameter signature. From these parameters a signed-in Geotab API object will be received, along with the page state and a callback synchronization function.</p>
+
+<p>Every page on Geotab&rsquo;s servers, including custom page Add-Ins, have the following three methods called during their lifecycle:</p>
+
+<p>Table 5 — Add-In lifecycle methods</p>
+
+<table><thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Signature</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>initialize</td>
+<td>Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In.</td>
+<td><code>function(api, state, callback) { ... }</code></td>
+</tr>
+<tr>
+<td>focus</td>
+<td>This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page.</td>
+<td><code>function(api, state) { ... }</code></td>
+</tr>
+<tr>
+<td>blur</td>
+<td>This method is called when the user is navigating away from your page. Use this method to save any required state.</td>
+<td><code>function(api, state) { ... }</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="visual-diagram">Visual diagram</h3>
+
+<p>Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the <u>focus</u> method will be called. Finally, when the user is navigating away from your custom page Add-In, the <u>blur</u> method will be called, completing the Add-In lifecycle.</p>
+
+<blockquote>
+<p>It&rsquo;s impportant to call the <code>callback</code> passed into <code>intialize</code> <u>after</u> all work is complete. Keep in mind the asynchrosous nature of JavaScript.</p>
+</blockquote>
+
+<p><img src="/software/guides/developing-addins_2.png" alt="">
+Image 2 — Add-In lifecycle workflow diagram</p>
+
+<h3 id="lifecycle-implementation">Lifecycle implementation</h3>
+
+<p>The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined and the optional focus and blur methods will be called due to the callback method being called in the initialize method.</p>
+
+<p>Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix geotab.addin (note that the namespace is not hyphenated). In the example below the full namespace is geotab.addin.myCustomPage1.</p>
+
+<h3 id="listing-9-html-and-javascript-entry-point-example">Listing 9 — HTML and JavaScript entry point example</h3>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+ <span class="nt">&lt;title&gt;</span>Custom Page Add-In<span class="nt">&lt;/title&gt;</span>
+ <span class="nt">&lt;script&gt;</span>
+  <span class="nx">geotab</span><span class="p">.</span><span class="nx">addin</span><span class="p">.</span><span class="nx">myCustomPage1</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="c1">// Initialize required Add-In variables</span>
+   <span class="c1">// Example:</span>
+   <span class="c1">// var element = document.getElementById("myButton");</span>
+   <span class="c1">// if (element) {</span>
+   <span class="c1">//     element.addEventListener("click", function (event) {</span>
+   <span class="c1">//         event.preventDefault();</span>
+   <span class="c1">//         alert("Action performed");</span>
+   <span class="c1">//     });</span>
+   <span class="c1">// }</span>
+   <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">initialize</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">callback</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="nx">focus</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// User interface is available</span>
+    <span class="p">},</span>
+    <span class="nx">blur</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// Save any Add-In state</span>
+    <span class="p">}</span>
+   <span class="p">};</span>
+  <span class="p">};</span>
+ <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+ <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"myButton"</span><span class="nt">&gt;</span>Do Action<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<h2 id="custom-button-add-ins">Custom button Add-Ins</h2>
+
+<p>Custom button Add-Ins allow you to extend the capabilities of a built-in Geotab page by appending a new button to the top menu of the page. When a user clicks the custom button Add-In, the JavaScript method that has been defined will be called. This JavaScript method has access to the event which was generated by the click, the Geotab API under the credentials of the current user and the page state variables.</p>
+
+<h3 id="button-add-in-configuration-file">Button Add-In configuration file</h3>
+
+<p>The following example adds a custom button Add-In to the live map page. When clicked, the button will redirect the user to the vehicles page. Use this example as a starting point for creating your own custom button Add-Ins.</p>
+
+<p>The exact position of the custom button Add-In within a built-in page is defined by the developer. For instance, in Image 3, a new button labelled <u>Perform Action</u> is added to the toolbar of the live map page.</p>
+
+<blockquote>
+<p>This example uses external references to the source code. Similar to custom page Add-Ins, the Files property of the configuration file can be used to embed the source code on the Geotab servers.</p>
+</blockquote>
+
+<p><img src="/software/guides/developing-addins_3.png" alt="">
+ Image 3 — Custom button Add-In on live map page</p>
+
+<h3 id="use-cases">Use cases</h3>
+
+<p>The action your custom button Add-In performs is decided by your specific business requirement.The following are example actions that can be implemented:</p>
+
+<ul>
+<li>One-click navigation between maps and reports</li>
+<li>Call an API to alert for driver proximity</li>
+<li>Create a new zone at the current location</li>
+<li>Automated execution of a sequence of actions</li>
+</ul>
+
+<h3 id="listing-10-custom-button-add-in-configuration-file">Listing 10 — Custom button Add-In configuration file</h3>
+
+<p>Almost any page is available to have a custom button Add-In added to it. Use a web browser&rsquo;s address bar to find the correct value for the Page property. Geotab pages will have a trailing hash (&ldquo;#&rdquo;) symbol followed by the page name. Determine the page name and then set the &ldquo;page&rdquo; value of your custom button Add-In configuration file to that value.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Button Add-In Example"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supportEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myname@mycompany.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"map"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"click"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.hosting.com/mycompany/customButton.js"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"buttonName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English Button"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"French Button"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+        </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYAPIKEY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYSIGNATURE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h2 id="javascript-button-action">JavaScript Button Action</h2>
+
+<p>When a custom button Add-In is clicked by a user, it will execute a predefined method from the JavaScript file referenced. This method provides the button action with access to the generated event, the Geotab API as the signed-in user, and the page state.</p>
+
+<blockquote>
+<p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p>
+</blockquote>
+
+<h3 id="listing-12-custom-button-click-method">Listing 12 — Custom button click method</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">geotab</span><span class="p">.</span><span class="nx">customButtons</span><span class="p">.</span><span class="nx">customExample1</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Custom button Add-In clicked!"</span><span class="p">);</span>
+        <span class="nx">state</span><span class="p">.</span><span class="nx">gotoPage</span><span class="p">(</span><span class="s2">"map"</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The state object is a powerful tool for creating navigational components by changing the current page state. The state object has access to a number of methods as follows:</p>
+
+<h3 id="table-6-geotab-page-state-methods">Table 6 - Geotab page state methods</h3>
+
+<table><thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Parameters</strong></th>
+<th><strong>Return Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>getState</code></td>
+<td>Gets an object that represents the current URL state</td>
+<td>None</td>
+<td>Object</td>
+</tr>
+<tr>
+<td><code>setState</code></td>
+<td>Sets the current URL state. The object parameter is a modified state retrieved from <u>getState</u>.</td>
+<td>Object</td>
+<td>Void</td>
+</tr>
+<tr>
+<td><code>gotoPage</code></td>
+<td>Redirects the user to another page with optional parameters. <code>Example:state.gotoPage(&quot;map&quot;, { someParameter1: true, someParameter2: 5 });</code></td>
+<td>String, [Object]</td>
+<td>Void</td>
+</tr>
+<tr>
+<td><code>hasAccessToPage</code></td>
+<td>Checks whether the current user has the security clearance to view a page by its <code>#</code> (hash) value. Example: <code>var result =    state.hasAccessToPage(&quot;map&quot;);</code></td>
+<td>String</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>getGroupFilter</code></td>
+<td>Gets an array with ids of the selected groups in the organization filter. Example: <code>var result = state.getGroupFilter();</code></td>
+<td>None</td>
+<td>Array</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The second parameter to the gotoPage method is optional and is used for query string parameters.</p>
+</blockquote>
+
+<h2 id="complete-integration-example">Complete integration example</h2>
+
+<p>Using all the concepts outlined in this document, the following is a complete integration example which creates a custom page Add-In with real-world functionality. In this example, the custom page has JavaScript methods that make requests using the Geotab API to retrieve the current vehicles on your account. The result of the API request is shown on the custom page in a list. Finally, when the user leaves the page, the custom page performs cleanup during the lifecycle methods.</p>
+
+<blockquote>
+<p>For the purpose of this example, the integrationExample.css and integrationExample.js are empty files.</p>
+</blockquote>
+
+<h3 id="source-code">Source code</h3>
+
+<h3 id="listing-13-html-and-javascript-code-for-integration-example">Listing 13 — HTML and JavaScript code for integration example</h3>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Custom Integration Example<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"integrationExample.css"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="nx">geotab</span><span class="p">.</span><span class="nx">addin</span><span class="p">.</span><span class="nx">integrationExample</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">center</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"center"</span><span class="p">),</span>
+                <span class="nx">listCreator</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">entities</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">listElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"UL"</span><span class="p">);</span>
+                    <span class="nx">listElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">entities</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">frag</span><span class="p">,</span> <span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"LI"</span><span class="p">);</span>
+                        <span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+                        <span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"data-id"</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+                        <span class="nx">frag</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+                        <span class="k">return</span> <span class="nx">frag</span><span class="p">;</span>
+                    <span class="p">},</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">()));</span>
+                    <span class="k">return</span> <span class="nx">listElement</span><span class="p">;</span>
+                <span class="p">},</span>
+                <span class="nx">goToVehicles</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"data-id"</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">state</span><span class="p">.</span><span class="nx">gotoPage</span><span class="p">(</span><span class="s2">"device"</span><span class="p">,</span> <span class="p">{</span>
+                            <span class="na">id</span><span class="p">:</span> <span class="nx">id</span>
+                        <span class="p">});</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nx">refreshPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">api</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s2">"Get"</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="na">typeName</span><span class="p">:</span> <span class="s2">"Device"</span>
+                    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">center</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">goToVehicles</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                        <span class="nx">center</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">listCreator</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+                    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+                    <span class="p">});</span>
+                <span class="p">},</span>
+                <span class="nx">clearOnLeaving</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">center</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">goToVehicles</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                    <span class="nx">center</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+                <span class="p">};</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="na">initialize</span><span class="p">:</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"vehiclesButton"</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                            <span class="nx">state</span><span class="p">.</span><span class="nx">gotoPage</span><span class="p">(</span><span class="s2">"devices"</span><span class="p">);</span>
+                        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+                    <span class="nx">callback</span><span class="p">();</span>
+                <span class="p">},</span>
+                <span class="na">focus</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">refreshPage</span><span class="p">();</span>
+                <span class="p">},</span>
+                <span class="na">blur</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">clearOnLeaving</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"center"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"vehiclesButton"</span><span class="nt">&gt;</span>Go to vehicles page<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<h3 id="listing-14-configuration-file-for-integration-example">Listing 14 — Configuration file for integration example</h3>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integration Example"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"supportEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myname@mycompany.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.geotab.com/GeotabApps/SDKIntegrationExample/IntegrationExample.html"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ActivityLink"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"menuName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English Label"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"French Label"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456-MYKEY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-MYSIGNATURE"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isSigned"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h2 id="troubleshooting-and-debugging">Troubleshooting and debugging</h2>
+
+<p>When developing Add-Ins, the use of Google Chrome and its Developer Tools window is recommended. To open the Chrome Developer Tools on Windows, press CTRL + SHIFT + I; on a Mac, press CMD + OPTION + I.</p>
+
+<p>The contents of <code>console.log(&quot;...&quot;)</code> statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.</p>
+
+<p>It is also recommended to read Google&rsquo;s extensive learning resources available on using <a href="https://developers.google.com/chrome-developer-tools/">Chrome Developer Tools</a> to get started debugging or learn about the advanced features they have available.</p>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+</div>
+
+  <!-- JS -->
+  <!-- inject:js -->
+  <script src="/assets/javascript/index.js"></script>
+  <!-- endinject -->
+
+</body>
+
+</html>
