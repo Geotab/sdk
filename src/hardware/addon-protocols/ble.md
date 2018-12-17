@@ -44,7 +44,17 @@ These information types are optional and are not part of the required packet str
 | 9 | Relative Humidity | FP24 | 3 | Percent (%) |
 | 10 | Barometric Pressure | FP24 | 3 | Pascals (Pa) |
 | 11 | Altitude | FP24 | 3 | Meters (m) |
-| 12 to 199 | Reserved(for future data types) | FP24 | 3 |   |
+| 12 | Particulate Matter (less than 1 µm) | FP24 | 3 | Micrograms per cubic meter (µg/m3) |
+| 13 | Particulate Matter (less than 2.5 µm) | FP24 | 3 | Micrograms per cubic meter (µg/m3) |
+| 14 | Particulate Matter (less than 10 µm) | FP24 | 3 | Micrograms per cubic meter (µg/m3) |
+| 15 | Nitric Oxide | FP24 | 3 | Parts per million (ppm) |
+| 16 | Nitrogen Dioxide | FP24 | 3 | Parts per million (ppm) |
+| 17 | Carbon Monoxide | FP24 | 3 | Parts per million (ppm) |
+| 18 | Ammonia | FP24 | 3 | Parts per million (ppm) |
+| 19 | Methane | FP24 | 3 | Parts per million (ppm) |
+| 20 | Ethanol | FP24 | 3 | Parts per million (ppm) |
+| 21 | Hydrogen | FP24 | 3 | Parts per million (ppm) |
+| 22 to 199 | Reserved(for future data types) | FP24 | 3 |   |
 | 200 to 229 | Reserved |   |   |   |
 | 230 to 239 | Generic Byte (1 to 10) | UINT8 | 1 | None |
 | 240 to 249 | Generic Timer (1 to 10) | UINT8UINT16 | 12 | Event CounterUnits Of Time |
