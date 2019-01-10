@@ -4,6 +4,10 @@ permalink: /resources/new/
 title: What's New
 ---
 
+## 5.7.1804.1
+
+- [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): Fix bug, Windows 10 using IIS Express possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804.
+
 ## 5.7.1804
 
 - [Add]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Add1)/[Set]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Set1) [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): `ParameterVersion` will auto increment server side when device parameters property changed. Server must see that  `ParameterVersion` has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, `ParameterVersion` required manual increment.
@@ -44,11 +48,15 @@ title: What's New
 
 - [ZoneSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ZoneSearch): Added `FromDate` and `ToDate` search properties providing ability to filter zones by their active dates.
 
+> [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
+
 ## 5.7.1803
 
 * SecurityRole: Added `CertificateSet` permission
 
 * [DriverChangeSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChangeSearch): Added property `Type` indicating the DriverChangeType to search for exclusively.
+
+> [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
 
 ## 5.7.1802
 
