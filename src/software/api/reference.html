@@ -462,7 +462,8 @@ permalink: /software/api/reference/
             },
             listMatchRegex = /^Geotab.[a-zA-Z.]+List$/,
             dataTypeToClass = function (dataTypeString) {
-                var memberDictionaryObject,
+                var unmodifiedDataTypeString = dataTypeString,
+                    memberDictionaryObject,
                     dataTypeNameSpace,
                     indexOfStartCB = dataTypeString.lastIndexOf("{"),
                     indexOfEndCB = dataTypeString.indexOf("}"),
@@ -558,7 +559,7 @@ permalink: /software/api/reference/
                         return dataTypes.object;
                 }
                 //Enum
-                memberDictionaryObject = findMemberDictionaryObject(dataTypeString.replace("Geotab.", ""));
+                memberDictionaryObject = findMemberDictionaryObject(unmodifiedDataTypeString.replace("Geotab.", ""));
                 if (memberDictionaryObject && memberDictionaryObject.isEnum()) {
                     return dataTypes.string;
                 }
