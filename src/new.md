@@ -4,6 +4,20 @@ permalink: /resources/new/
 title: What's New
 ---
 
+## 5.7.1901
+
+- Sun-setting support for SendEmail API. No longer available in API documentation.
+
+- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): Active from/to:
+  - The device property `ActiveTo` will automatically be set to max date (2050-01-01) to denote that it is active.
+  - To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of `ActiveTo` to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.
+
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog): Added `Location` property.
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewBusinessIntelligence`, `ActiveTrackingClearance`.
+
+- SecurityRole: Added `EmailSent`, `SkipHosVerify`, `SkipHosClaimUnassigned`, `SkipDvirInspect`.
+
 ## 5.7.1804.1
 
 - [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): Fix bug, Windows 10 using IIS Express possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804.
