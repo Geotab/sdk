@@ -16,7 +16,7 @@ The Arbitration ID Field for IOX Messages:
 
 | Bits | 28 to 22 | 21 to 16 | 15 to 0 |
 | --- | --- | --- | --- |
-| Contents | Reserved: 0 | Message: 0–63 | All Expanders: 0Expander ID: 1–65535 |
+| Contents | Reserved: 0 | Message: 0–63 | All Expanders: 0, Expander ID: 1–65535 |
 
 0x1FC00000 IO\_EXPANDER\_RESERVED\_MASK
 
@@ -68,61 +68,45 @@ Sent by the GO device in broadcast fashion to all units to check if they are the
 
 ### Poll Response (0x02)
 
-Sent by the IO Expanders when a poll is received. The ACK procedure must be obeyed.
+Sent by the IO Expanders when a poll is received. The ACK procedure must be obeyed. The first poll-response after power up (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll-responses (when Byte 0 Bit 0 is 0) only contain the first byte.
 
 #### Payload — Poll Response
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Bit 0 | 0 = Have been polled before.1 = First poll after power up. |
-| Bit 1 | 0 = Not Going to Sleep.1 = Going to Sleep. |
-| Bit 2 | 0 = Normal reply.1 = First poll response after wake up. |
-| Bit 3 | 0 = Power Supply 1 disabled.1 = Power Supply 1 enabled. |
-| Bit 4 | 0 = Power Supply 2 disabled.1 = Power Supply 2 enabled. |
-| Bit 5 | Power Supply 1 overcurrent. |
-| Bit 6 | Power Supply 2 overcurrent. |
-| Bit 7 | Reserved |
-| Following Bytes are only sent on first poll-response after power (when Byte 1 Bit 0 is 1). |
+| 0 - Bit 0 | 0 = Have been polled before. <br> 1 = First poll after power up. |
+| 0 - Bit 1 | 0 = Not Going to Sleep. <br> 1 = Going to Sleep. |
+| 0 - Bit 2 | 0 = Normal reply. <br> 1 = First poll response after wake up. |
+| 0 - Bit 3 | 0 = Power Supply 1 disabled. <br> 1 = Power Supply 1 enabled. |
+| 0 - Bit 4 | 0 = Power Supply 2 disabled. <br> 1 = Power Supply 2 enabled. |
+| 0 - Bit 5 | Power Supply 1 overcurrent. |
+| 0 - Bit 6 | Power Supply 2 overcurrent. |
+| 0 - Bit 7 | Reserved |
+| | The following Bytes are sent only on first poll-response |
 | 1 | Firmware Version Major Revision |
 | 2 | Firmware Version Minor Revision |
-| 3 | 2 Most significant bytes of serial number |
-| 4 |
-| 5 | Reset Reason0 —  Power Reset1 —  Reset Command2 —  New FirmwareAll others reserved. |
-| 6 | Bit 0 | Loop Back Info:0 — No Loop Backs1 — Aux 1 to 4 Loopback |
-| Bit 1 |
-| Bit 2 |
-| Bit 3 |   |
-| Bit 4 |   |
-| Bit 5 |   |
-| Bit 6 |   |
-| Bit 7 |   |
-| 7 | 0 — Digital Aux Harness1 — Garmin Harness2 — Iridium Harness3 — RF-ID Harness4 — RS-232 Harness5 — HOS Harness6 — WIFI7 — NFC8 — Dickey John9 — Analog Aux10 — USB Charger11 — Buzzer12 — CAN13 — USB Charger &amp; Comm V114 — TTS15 — Rexroth16 — Output17 —Reserved18 — Bluetooth19 — Alert20 — USB Charger &amp; Comm V2All others reserved. |
+| 3-4 | 2 Most significant bytes of serial number |
+| 5 | Reset Reason <br> 0 =  Power Reset <br> 1 =  Reset Command <br> 2 = New Firmware <br> All others reserved. |
+| 6 - Bit 0 | Reserved |
+| 6 - Bit 1 | Loop Back Info: <br> 0 = No Loop Backs <br> 1 = Aux 1 to 4 Loopback
+| 6 - Bit 2-7 | Reserved |
+| 7 | 150 to 199 <br> Please contact Geotab to get an ID assigned. |
 
 When the &quot;Go to Sleep&quot; command is received, and before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.
 
 ### Additional Info (0x03)
 
-Sent by the IOX after an ACK for the first poll is received.
+Sent by the IOX after an ACK for the first poll is received. This is not a required message. It may be omitted if none of the contents are relevant for a custom integration.
 
 #### Payload — Additional Info
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Software Version Control Number(Ex: SVN Version, Git SHA) |
-| 1 |
-| 2 |
-| 3 |
+| 0-3 | Software Version Control Number(Ex: SVN Version, Git SHA) |
 | 4 | Product Version |
-| 5 | Bit 0 | 0 = TX not connected to RX1 = TX connected to RX |
-| Bit 1 | 0 = TX not connected to CTS1 = TX connected to CTS |
-| Bit 2 | 0 = TX not connected to DCD1 = TX connected to DCD |
-| Bit 3 |   |
-| Bit 4 | 0 = RTS not connected to RX1 = RTS connected to RX |
-| Bit 5 | 0 = RTS not connected to CTS1 = RTS connected to CTS |
-| Bit 6 | 0 = RTS not connected to DCD1 = RTS connected to DCD |
-| Bit 7 |   |
-| 6 | Error Condition0 — No error1 — Memory allocation error |
-| 7 | Hardware Versionv1 = 0 or 0xFFv1.4 = 1v2 = 2 |
+| 5 | Reserved |
+| 6 | Error Condition <br> 0 = No error <br> 1 = Memory allocation error |
+| 7 | Hardware Version |
 
 ### Wakeup (0x04)
 
@@ -140,13 +124,7 @@ Data sent from the GO device to the addressed IO Expander.
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Data to transmit |
-| 1 |
-| 2 |
-| 3 |
-| 4 |
-| 5 |
-| 6 |
+| 0-7 | Data to transmit |
 
 ### RX Data (0x0C)
 
@@ -156,13 +134,7 @@ Data sent from an IO Expander to the GO device. The GO will reply with an ACK.
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Received data |
-| 1 |
-| 2 |
-| 3 |
-| 4 |
-| 5 |
-| 6 |
+| 0-7 | Received data |
 
 ### Acknowledge (0x14)
 
@@ -172,17 +144,10 @@ The ACK to an RX Data frame includes 1 more byte of data. This data is used as f
 
 #### Payload
 
-| Byte # | Byte Description |
+| Byte #     | Byte Description |
 | --- | --- |
-| 0 | Bit | Bit Description | This byte is only sent when needed. |
-| 0 | 0 = Clear to send more UART Data.1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
-| 1 |   |
-| 2 |   |
-| 3 |   |
-| 4 |   |
-| 5 |   |
-| 6 |   |
-| 7 |   |
+| 0 - Bit 0 | 0 = Clear to send more UART Data. <br> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
+| 1 - Bit 1-7 | Reserved |
 
 ### Application Specific Data (0x1C)
 
@@ -193,7 +158,7 @@ Sent by the GO device after a packet wrapped passthrough message attempt to the 
 | **Byte #** | **Byte Description** |
 | --- | --- |
 | 0 | Log Type |
-| 1 | MODEM\_RESULT\_FAILED = 0,MODEM\_RESULT\_SUCCESS = 1, |
+| 1 | MODEM\_RESULT\_FAILED = 0, MODEM\_RESULT\_SUCCESS = 1 |
 | 2 | Data |
 | 3 | Data |
 | 4 | Data |
@@ -224,28 +189,23 @@ Sent from the IOX to the GO device when the IOX wants create a log that can fit 
 
 | Data | Description |
 | --- | --- |
-| 1 | Data ID |
-| 2 |
+| 1-2 | Data ID |
 | 3 | Length |
-| 4 | Data |
-| 5 |
-| 6 |
-| 7 |
+| 4-7 | Data |
 
 #### Log Type: 1 (externalDeviceConnectionStatus)
 
 | Data | Description |
 | --- | --- |
 | 1 | Connected = 1, Disconnected = 0 |
-| 2 | Data ID |
-| 3 |
+| 2-3 | Data ID |
+| 4-5 | Conection flags |
 
 #### Log Type: 2 (GenericFaultRecord)
 
 | Data | Description |
 | --- | --- |
-| 1 | Fault code |
-| 2 |
+| 1-2 | Fault code |
 | 3 | Active / Inactive |
 | 4 | Log Once Per Trip / Log Every Fault |
 
@@ -259,8 +219,7 @@ Sent from the IOX to the GO device when the IOX wants create a log that cannot f
 | --- | --- |
 | 0 | Frame Counter (0x00) |
 | 1 | Log Type |
-| 2 | Length |
-| 3 |
+| 2-3 | Length |
 | 4 | Data |
 | 5 | Data |
 | 6 | Data |
@@ -297,8 +256,7 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Information Type |
-| 1 |
+| 0-1 | Information Type |
 | 2 |   |
 | 3 |   |
 | 4 |   |
@@ -310,32 +268,28 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | 0x0000 |
-| 1 |
-| 2 | 0 - Not busy1 - Busy |
+| 0-1 | 0x0000 |
+| 2 | 0 = Not busy <br> 1 = Busy |
 
 #### Information Type 1 - Packet Wrapper
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | 0x0001 |
-| 1 |
-| 2 | 0 - Beginning of data packet1 - End of data packet |
+| 0-1 | 0x0001 |
+| 2 | 0 = Beginning of data packet <br> 1 = End of data packet |
 
 #### Information Type 2 - Request GO Device Data Message
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | 0x0002 |
-| 1 |
+| 0-1 | 0x0002 |
 | 2 | Message Version (1 or 2) |
 
 #### Information Type 3 - Connect and Send Records
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | 0x0003 |
-| 1 |
+| 0-1 | 0x0003 |
 | 2 | Unused |
 
 ### GO Status Information (0x26)
@@ -346,8 +300,7 @@ Sent from the GO to the IOX to pass information the IOX may need.
 
 | Byte # | Byte Description |
 | --- | --- |
-| 0 | Information Type |
-| 1 |
+| 0-1 | Information Type |
 | 2 |   |
 | 3 |   |
 | 4 |   |
@@ -359,36 +312,5 @@ Sent from the GO to the IOX to pass information the IOX may need.
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | 0x0000 |
-| 1 |
-| 2 | 0 - Ignition Off1 - Ignition On |
-
-### Pass through CAN Message (0x27) (0x28)
-
-Sent from the IOX to pass a raw CAN message to the the GO device, encapsulated in the IOX private bus protocol. This message is meant for third-party companies developing their own IOXs and wanting to transfer CAN messages.
-
-Both messages must be Acked by the GO device. 0x28 cannot be sent until 0x27 has been acked.
-
-#### Payload (0x27)
-
-| Byte # | Byte Description |
-| --- | --- |
-| 0 | Encapsulated CAN message Arbitration ID. LSB format. |
-| 1 |
-| 2 |
-| 3 |
-| 4 | Bit 0: Remote Frame (not used)Bit 1: Extended frame (0 = 11 bit Arb ID, 1 = 29 bit Arb ID)Bit 2 to Bit 7: Reserved. Must be 0. |
-| 5 | Encapsulated CAN message DLC: 0 to 8 |
-
-#### Payload (0x28)
-
-| Byte # | Byte Description |
-| --- | --- |
-| 0 | Encapsulated CAN message data. Actual number of bytes present must match the DLC indicated in the previous message (0x27) |
-| 1 |
-| 2 |
-| 3 |
-| 4 |
-| 5 |
-| 6 |
-| 7 |
+| 0-1 | 0x0000 |
+| 2 | 0 = Ignition Off <br> 1 = Ignition On |
