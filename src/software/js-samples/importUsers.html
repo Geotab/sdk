@@ -281,10 +281,7 @@
                             var securityGroups = parseSecurityClearanceName(split[5]);
                             var keys = parseKeys(split[6], split[7]);
 							
-							calls.push([
-								"Add", {
-									typeName: "User",
-									entity: {
+							var newUser = {
 										name: userName,
 										firstName: firstName,
 										lastName: lastName,
@@ -293,11 +290,19 @@
 										securityGroups: securityGroups,
 										userAuthenticationType: "BasicAuthentication",
 										activeFrom: new Date().toISOString(),
-										activeTo: "2050-01-01T00:00:00.000Z",
-										driverGroups: groups,
-										keys: keys,
-										viewDriversOwnDataOnly: false
-									}
+										activeTo: "2050-01-01T00:00:00.000Z"
+									};
+							if (keys.length > 0){
+								newUser.driverGroups =  groups;
+								newUser.viewDriversOwnDataOnly =  false;
+								newUser.keys = keys;
+								newUser.isDriver = true;
+							}
+
+							calls.push([
+								"Add", {
+									typeName: "User",
+									entity: newUser
 								}
 							]);
                         }
