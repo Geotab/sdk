@@ -188,17 +188,6 @@
 						}
 					}
 				});
-
-				// $(passwordResetCheckbox).change(function(){
-				// 	if ($(this).is(":checked")){
-				// 		document.getElementById("import-password").disabled = true;
-				// 		//$("#import-password").disabled = true;
-				// 	}
-				// 	else{
-				// 		//$("#import-password").disabled = false;
-				// 		document.getElementById("import-password").disabled = false;
-				// 	}
-				// });
 				
 				document.getElementById("addUser").addEventListener("click", function(event) {
 					event.preventDefault();
@@ -312,9 +301,10 @@
 								newUser.isDriver = true;
 							}
 							if ($(passwordResetCheckbox).is(":checked"))
+							{
 								newUser.changePassword = true;
+							}
 							
-							console.log(newUser);
 							calls.push([
 								"Add", {
 									typeName: "User",
