@@ -45,8 +45,9 @@
                     </p>
                     <p>
                         <label for="import-password">Password</label>
-                        <input id="import-password" type="text" placeholder="Minimum of 6 characters" maxlength="255" />
-                    </p>
+						<input id="import-password" type="text" placeholder="Minimum of 6 characters" maxlength="255" />
+						<label style="font-size: 14px; margin-top: 10px;"><input id="import-password-reset" style="float:none" type="checkbox" title="This user will need to enter a new password the first time they log in to the database.">Force password change on next login</label>
+					</p>
                     <p>
 						<label for="import-groups">Groups</label>
                         <select id="import-groups" multiple data-placeholder="Select groups"></select>
@@ -164,6 +165,7 @@
             var groupCache = {};
             var securityClearanceCache = {};
 			var selectedGroups = [];
+			var passwordResetCheckbox = document.getElementById("import-password-reset");
 
             document.addEventListener("DOMContentLoaded", function() {
 
@@ -196,7 +198,7 @@
 						alert("Email or user name is required");
 						return;
 					}
-					if (user.userName.indexOf(" ") > 0) {
+					if (user.userName.indexOf(" ") >= 0) {
 						alert("Email or user name cannot contain a space");
 						return;
 					}
@@ -208,7 +210,7 @@
 						alert("Last name is required");
 						return;
 					}
-					if (user.password === "") {
+					if (!$(passwordResetCheckbox).is(":checked") && user.password === "") {
 						alert("Password is required");
 						return;
 					}
@@ -298,7 +300,11 @@
 								newUser.keys = keys;
 								newUser.isDriver = true;
 							}
-
+							if ($(passwordResetCheckbox).is(":checked"))
+							{
+								newUser.changePassword = true;
+							}
+							
 							calls.push([
 								"Add", {
 									typeName: "User",
