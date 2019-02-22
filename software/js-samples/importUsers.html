@@ -1,6 +1,7 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Import users</title><link href=css/geotab.css rel=stylesheet type=text/css><link href=https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=template>Template</button>&nbsp;&nbsp; <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Import users</h1><h3>Creates new users from a comma separated list</h3></div></header><div class="container bordered"><div id=signin-content></div><div id=example-content><form><h3>Import users</h3><p><label for=import-userName>Email or user name</label><input id=import-userName placeholder=user@geotab.com maxlength=255></p><p><label for=import-firstName>Full name</label><input id=import-firstName placeholder=John maxlength=255> <input id=import-lastName placeholder=Smith maxlength=255></p><p><label for=import-password>Password</label><input id=import-password placeholder="Minimum of 6 characters" maxlength=255></p><p><label for=import-groups>Groups</label><select id=import-groups multiple data-placeholder="Select groups"></select></p><p><label for=import-securityClearance>Security clearance</label><select id=import-securityClearance></select></p><p><label for=import-nfcKey>Driver key (optional)</label><input id=import-nfcKey placeholder="NFC key number">&nbsp;&nbsp;or&nbsp; <input id=import-goKey placeholder="GO key number"></p><p><button id=addUser>Add user</button>&nbsp;&nbsp;<button id=importUsers disabled>Import users</button></p><p><textarea id=content cols=80 rows=8></textarea></p></form></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=template-content><h2>Template</h2><p>You can use a spreadsheet application such as Microsoft Excel or Google Drive to create a list of comma separated users to import multiple users at once.<br><br><a href=templates/import-user.xls target=_blank>Click here to download</a> the Microsoft Excel template.<br></p><div class=code><pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,GoKey<br>Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,<br>Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,GoKey<br>Email4,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,</pre></div></div><div id=help-content><h2>Help</h2><p>This utility helps you import users to your account using comma separated values (CSV).</p><p>Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.<table><thead><tr><th>Value</th><th>Example</th><th>Notes</th></tr></thead><tbody><tr><td>Email</td><td>john.smith@geotab.com</td><td>Can be email or user name. Spaces are not allowed.</td></tr><tr><td>First name</td><td>John</td><td>Spaces are not allowed.</td></tr><tr><td>Last name</td><td>Smith</td><td></td></tr><tr><td>Password</td><td></td><td>Minimum of 6 characters.</td></tr><tr><td>Groups</td><td>Drivers|West|Garmin</td><td>Names of groups separated by the | character.</td></tr><tr><td>Security clearance ID</td><td>b28A7</td><td>Found in the URL when viewing a security clearance in MyGeotab.<br><br>Example:<br>my.geotab.com/DATABASE/#clearance,id:<strong>b28A7</strong></td></tr><tr><td>NFC key number</td><td>T1234S</td><td><i>Optional</i>. Found on the NFC key fob.</td></tr><tr><td>GO key number</td><td>12345678</td><td><i>Optional</i>. Found in the "Read Key Info" area of "Keys & RF" in your MyGeotab account.</td></tr></tbody></table></p></div><script src=js/api.js></script><script src=js/login.js></script><script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js></script><script type=text/javascript>var groupCache = {};
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Import users</title><link href=css/geotab.css rel=stylesheet type=text/css><link href=https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=template>Template</button>&nbsp;&nbsp; <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Import users</h1><h3>Creates new users from a comma separated list</h3></div></header><div class="container bordered"><div id=signin-content></div><div id=example-content><form><h3>Import users</h3><p><label for=import-userName>Email or user name</label><input id=import-userName placeholder=user@geotab.com maxlength=255></p><p><label for=import-firstName>Full name</label><input id=import-firstName placeholder=John maxlength=255> <input id=import-lastName placeholder=Smith maxlength=255></p><p><label for=import-password>Password</label><input id=import-password placeholder="Minimum of 6 characters" maxlength=255><label style="font-size: 14px; margin-top: 10px"><input id=import-password-reset style=float:none type=checkbox title="This user will need to enter a new password the first time they log in to the database.">Force password change on next login</label></p><p><label for=import-groups>Groups</label><select id=import-groups multiple data-placeholder="Select groups"></select></p><p><label for=import-securityClearance>Security clearance</label><select id=import-securityClearance></select></p><p><label for=import-nfcKey>Driver key (optional)</label><input id=import-nfcKey placeholder="NFC key number">&nbsp;&nbsp;or&nbsp; <input id=import-goKey placeholder="GO key number"></p><p><button id=addUser>Add user</button>&nbsp;&nbsp;<button id=importUsers disabled>Import users</button></p><p><textarea id=content cols=80 rows=8></textarea></p></form></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=template-content><h2>Template</h2><p>You can use a spreadsheet application such as Microsoft Excel or Google Drive to create a list of comma separated users to import multiple users at once.<br><br><a href=templates/import-user.xls target=_blank>Click here to download</a> the Microsoft Excel template.<br></p><div class=code><pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,GoKey<br>Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,<br>Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,GoKey<br>Email4,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,,</pre></div></div><div id=help-content><h2>Help</h2><p>This utility helps you import users to your account using comma separated values (CSV).</p><p>Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.<table><thead><tr><th>Value</th><th>Example</th><th>Notes</th></tr></thead><tbody><tr><td>Email</td><td>john.smith@geotab.com</td><td>Can be email or user name. Spaces are not allowed.</td></tr><tr><td>First name</td><td>John</td><td>Spaces are not allowed.</td></tr><tr><td>Last name</td><td>Smith</td><td></td></tr><tr><td>Password</td><td></td><td>Minimum of 6 characters.</td></tr><tr><td>Groups</td><td>Drivers|West|Garmin</td><td>Names of groups separated by the | character.</td></tr><tr><td>Security clearance ID</td><td>b28A7</td><td>Found in the URL when viewing a security clearance in MyGeotab.<br><br>Example:<br>my.geotab.com/DATABASE/#clearance,id:<strong>b28A7</strong></td></tr><tr><td>NFC key number</td><td>T1234S</td><td><i>Optional</i>. Found on the NFC key fob.</td></tr><tr><td>GO key number</td><td>12345678</td><td><i>Optional</i>. Found in the "Read Key Info" area of "Keys & RF" in your MyGeotab account.</td></tr></tbody></table></p></div><script src=js/api.js></script><script src=js/login.js></script><script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js></script><script type=text/javascript>var groupCache = {};
             var securityClearanceCache = {};
 			var selectedGroups = [];
+			var passwordResetCheckbox = document.getElementById("import-password-reset");
 
             document.addEventListener("DOMContentLoaded", function() {
 
@@ -33,7 +34,7 @@
 						alert("Email or user name is required");
 						return;
 					}
-					if (user.userName.indexOf(" ") > 0) {
+					if (user.userName.indexOf(" ") >= 0) {
 						alert("Email or user name cannot contain a space");
 						return;
 					}
@@ -45,7 +46,7 @@
 						alert("Last name is required");
 						return;
 					}
-					if (user.password === "") {
+					if (!$(passwordResetCheckbox).is(":checked") && user.password === "") {
 						alert("Password is required");
 						return;
 					}
@@ -118,10 +119,7 @@
                             var securityGroups = parseSecurityClearanceName(split[5]);
                             var keys = parseKeys(split[6], split[7]);
 							
-							calls.push([
-								"Add", {
-									typeName: "User",
-									entity: {
+							var newUser = {
 										name: userName,
 										firstName: firstName,
 										lastName: lastName,
@@ -130,11 +128,23 @@
 										securityGroups: securityGroups,
 										userAuthenticationType: "BasicAuthentication",
 										activeFrom: new Date().toISOString(),
-										activeTo: "2050-01-01T00:00:00.000Z",
-										driverGroups: groups,
-										keys: keys,
-										viewDriversOwnDataOnly: false
-									}
+										activeTo: "2050-01-01T00:00:00.000Z"
+									};
+							if (keys.length > 0){
+								newUser.driverGroups =  groups;
+								newUser.viewDriversOwnDataOnly =  false;
+								newUser.keys = keys;
+								newUser.isDriver = true;
+							}
+							if ($(passwordResetCheckbox).is(":checked"))
+							{
+								newUser.changePassword = true;
+							}
+							
+							calls.push([
+								"Add", {
+									typeName: "User",
+									entity: newUser
 								}
 							]);
                         }
