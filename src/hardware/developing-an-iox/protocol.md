@@ -8,6 +8,12 @@ title: IO Expander Protocol
 
 The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device.
 
+### Interoperability
+
+Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
+
+Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.
+
 ### Message Structure
 
 Message identification is done with an arbitration ID.
@@ -150,7 +156,7 @@ Sent by the GO device after a packet wrapped passthrough message attempt to the 
 | **Byte #** | **Byte Description** |
 | --- | --- |
 | 0 | Log Type |
-| 1 | 0 = Rejected = 0. <br> 1 = Accepted. |
+| 1 | 0 = Rejected. <br> 1 = Accepted. |
 
 
 ### IOX Single Frame Log Data (0x1D)
