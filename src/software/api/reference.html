@@ -35,6 +35,7 @@ permalink: /software/api/reference/
     </li>
 </ul>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.3/polyfill.min.js"></script>
 <script src="../codebase/third-party/Base64.js/base64.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//cdn.rawgit.com/Nanonid/rison/master/js/rison.js"></script>
@@ -317,7 +318,7 @@ permalink: /software/api/reference/
                     searchObj = items || [];
                     close();
                 },
-                close
+                close: close
             }
         })(document.getElementById("api-reference-search")),
 
