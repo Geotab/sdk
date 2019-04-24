@@ -3,7 +3,9 @@ toc:
     folderitems:
     - page: Introduction
       url: /software/introduction/
-    subfolders: 
+    - page: What's New
+      url: /resources/new/
+    subfolders:
       - title: Guides
         subfolderitems:
           - page: Getting Started
@@ -80,5 +82,3 @@ toc:
       - page: Dev Channel
         url: https://www.geotab.com/dev-channel/
         external: true
-      - page: What's New
-        url: /resources/new/
