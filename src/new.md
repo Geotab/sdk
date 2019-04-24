@@ -64,7 +64,7 @@ title: What's New
 
 For an in-depth description of the result in rate limit changes in 5.7.1902 and future releases see [this blog post](https://www.geotab.com/blog/result-and-rate-limits/)
 
-- Concepts section updated to reflect new result and rate limits.
+- [Concepts]({{site.baseurl}}/software/guides/concepts/#limits) section updated to reflect new result and rate limits.
 
 - Result Limits: Maximum result limit of 50,000 has been added to generic `Get` (including `Get` using `search`) requests of entity types: AnnotationLog, DVIRLog, TrailerAttachment, IoxAddOn, CustomData, BinaryData. Results limits will be added to more entity types in future releases.
 
