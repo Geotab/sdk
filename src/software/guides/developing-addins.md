@@ -14,7 +14,7 @@ A custom page Add-In can be thought of as a complete web application inside your
 
 #### Buttons
 
-Custom button Add-Inscan be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).
+Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).
 
 ## Use cases
 
@@ -28,9 +28,9 @@ The Add-Ins created can either have their source code embedded and stored on Geo
 
 > Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.
 
-## Add-Inconfiguration files
+## Add-In configuration files
 
-Each Add-In created will have one configuration file. The configuration file is a JSON file ( [http://www.json.org](http://www.json.org)) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.
+Each Add-In created will have one configuration file. The configuration file is a JSON file ([http://www.json.org](http://www.json.org)) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.
 
 ### Table 1 — Add-In configuration file keys/values
 
