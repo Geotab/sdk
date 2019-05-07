@@ -512,6 +512,8 @@ permalink: /software/api/reference/
                 }
 
                 switch (dataTypeString) {
+                    case "Array":
+                        return dataTypes.array;
                     case "Byte[]":
                     case "byte[]":
                         return dataTypes.byteArray;
