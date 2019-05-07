@@ -4,6 +4,72 @@ permalink: /resources/new/
 title: What's New
 ---
 
+## 5.7.1902
+
+- [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation): Added beta support
+
+- [BinaryDataType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryDataType): Added `SoftwareVersionSection1`, `SoftwareVersionSection2`, `SoftwareVersionSection3`
+
+- [DefectRemark]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DefectRemark): Added beta support
+
+- [DefectSeverity]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DefectSeverity): Added `Unregulated`
+
+- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.
+
+- [DeviceType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceType): Added `GO9`
+
+- [DiagnosticType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DiagnosticType): Added `ProprietaryFault`, `LegacyFault`
+
+- [DriverRegulation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverRegulation): Added beta support
+
+- [DtcClass]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DtcClass): Added beta support
+
+- [DtcSeverity]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DtcSeverity): Added beta support
+
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Added properties `CycleRest`, `DutySinceCycleRest`, `Is16HourExemptionAvailable`, `IsAdverseDrivingExemptionAvailable`, `IsOffDutyDeferralExemptionAvailable`
+
+- DutyStatusAvailabilityDuration: Removed from documentionation, will be obsoleted in future
+
+- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolationType): Added `CycleRest` and `DutySinceCycleRest`
+
+- [DVIRDefect]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRDefect): Added beta support
+
+- [ElectricEnergyUnit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.ElectricEnergyUnit): Added beta support
+
+- [ElectricEnergyEconomyUnit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.ElectricEnergyEconomyUnit): Added beta support
+
+- [FaultData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.FaultData): Added `ClassCode`, `Severity` and `SourceAddress` properties
+
+- [GO9]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Go9): Added support
+
+- [GroupSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupSearch): Added search by `Reference`
+
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet): Added `CaliforniaFlammableLiquid`, `CaliforniaSchoolPupil`, `CaliforniaFarmProduct`, `OilTransportCalifornia8day`, `OilWellCalifornia8day`
+
+- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId): Added `UnitOfMeasureLitersPerTonneId`, `DiagnosticStateOfChargeId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringACChargingId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringDCChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyOutDuringACChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyInDuringACChargingInId`, `DiagnosticOnBoardChargerAcInputVoltageId`, `DiagnosticElectricVehicleChargingStateId`, `DiagnosticElectricVehicleBatteryPowerId`,  `DiagnosticOnBoardChargerACInputPowerId`, `DiagnosticOnBoardChargerDCOutputPowerId`, `DiagnosticElectricEnergyInId,DiagnosticElectricEnergyOutId`, `HosRuleSetCaliforniaFlammableLiquid`, `HosRuleSetCaliforniaSchoolPupil`, `HosRuleSetCaliforniaFarmProduct`, `HosRuleSetOilTransportCalifornia8day`, `HosRuleSetOilWellCalifornia8day`, `ControllerProprietaryFaultId`, `ControllerLegacyFaultId`, `SourceProprietaryId`, `SourceLegacyId`, `DiagnosticBluetoothNitricOxideConcentrationId`, `DiagnosticBluetoothNitrogenDioxideConcentrationId`, `DiagnosticBluetoothCarbonMonoxideConcentrationId`, `DiagnosticBluetoothAmmoniaConcentrationId`, `DiagnosticBluetoothMethaneConcentrationId`, `DiagnosticBluetoothEthanolConcentrationId`, `DiagnosticBluetoothHydrogenConcentrationId`, `DiagnosticBluetoothCarbonDioxideConcentrationId`
+
+- [MimeContent]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.MimeContent): Added `ChannelNumber` property
+
+- [RepairStatusType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.RepairStatusType): Added beta support
+
+- [SecurityIdentifierPermalink]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifierPermalink): Added `InspectDVIR`, `CertifyDVIR` - Removed `DailyUsageReport`
+
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Added `ElectricEnergyEconomyUnit` and `isEmailReportEnabled` properties
+
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Fixed bug where `isDriver` property would be included with `id` in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.
+
+- [VersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.VersionInformation): `Server` is obsolete and replaced with more detailed `Application` property (see [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation))
+
+### Result and Rate Limits
+
+For an in-depth description of the result in rate limit changes in 5.7.1902 and future releases see [this blog post](https://www.geotab.com/blog/result-and-rate-limits/)
+
+- Concepts section updated to reflect new result and rate limits.
+
+- Result Limits: Maximum result limit of 50,000 has been added to generic `Get` (including `Get` using `search`) requests of entity types: AnnotationLog, DVIRLog, TrailerAttachment, IoxAddOn, CustomData, BinaryData. Results limits will be added to more entity types in future releases.
+
+- Rate Limits: Rate limits of 1 RPS (request-per-second) has been added to all `GetFeed` APIs.
+
 ## 5.7.1901
 
 - Sun-setting support for SendEmail API. No longer available in API documentation.
