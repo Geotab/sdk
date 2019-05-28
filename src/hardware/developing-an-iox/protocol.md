@@ -225,7 +225,7 @@ Sent from the IOX to the GO device when the IOX wants create a log that cannot f
 | 2 | Bluetooth Record |
 
 
-### IOX Status Information (0x25)
+### IOX Request/Status (0x25)
 
 Sent from the IOX to the GO device to inform the GO device of events or status changes.
 
@@ -265,6 +265,13 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 | 0-1 | 0x0003 |
 | 2 | Unused |
 
+#### Information Type 4 - Request VIN Message
+
+| Parameter Type | Description |
+| --- | --- |
+| 0-1 | 0x0004 |
+| 2 | Unused |
+
 ### GO Status Information (0x26)
 
 Sent from the GO to the IOX to pass information the IOX may need.
@@ -283,3 +290,33 @@ Sent from the GO to the IOX to pass information the IOX may need.
 | --- | --- |
 | 0-1 | 0x0000 |
 | 2 | 0 = Ignition Off <br> 1 = Ignition On |
+
+
+### GO Multi-Frame Data (0x27)
+
+Sent from the GO to the IOX when the GO wants to transfer data that can not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.
+
+#### Payload First Frame
+
+| Byte # | Byte Description |
+| --- | --- |
+| 0 | Frame Counter (0x00) |
+| 1 | Log Type |
+| 2-3 | Length |
+| 4-7 | Data |
+
+#### Payload Subsequent Frames
+
+| Byte # | Byte Description |
+| --- | --- |
+| 0 | Frame Counter |
+| 1-7 | Data |
+
+#### Log Types
+
+| Parameter Type | Description |
+| --- | --- |
+| 0 | Reserved |
+| 1 | Reserved |
+| 2 | GO device status packet |
+| 3 | VIN |
