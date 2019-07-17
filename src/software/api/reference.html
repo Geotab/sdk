@@ -401,6 +401,9 @@ permalink: /software/api/reference/
                             if (node.nodeName === "para") {
                                 returnText.push("<p>");
                                 returnText.push(pullTextWithLinked(nodeChildren, []));
+                                if (node.getAttribute("beta")) {
+                                    returnText.push(" <span class='beta'>Preview</span>");
+                                }
                                 returnText.push("</p>");
                             } else if (node.nodeName === "list") {
                                 returnText.push("<ul>");
