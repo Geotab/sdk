@@ -125,22 +125,22 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
  "supportEmail": "myname@mycompany.com",
  "version": "1.0",
  "items": [{
-        "url": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/heatmap.html",
+        "url": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/heatmap.html",
         "path": "sdkAddinsLink/",
         "menuName": {
             "en": "Heat Map"
         },
-        "icon": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-heatmap/dist/images/icon.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
     }, {
         "page": "device",
-        "click": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/scripts/engineDataButton.js",
+        "click": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/scripts/engineDataButton.js",
         "buttonName": {
             "en": "Engine Data Profile",
             "fr": "Profil des données-moteur",
             "es": "Perfil de datos de motor",
             "ja": "エンジンデータプロフィール"
         },
-        "icon": "https://cdn.rawgit.com/Geotab/sdk-addin-samples/master/addin-engine-data-button/dist/images/icon.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
     }],
  "isSigned": false,
  "signature": "12345-MYSIGNATURE",
