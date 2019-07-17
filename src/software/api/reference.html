@@ -2,6 +2,12 @@
 layout: pageNoEdit
 permalink: /software/api/reference/
 ---
+<style>
+    /* Hide footer until content loaded. */
+    footer {
+        display: none;
+    }
+</style>
 <input type="search" class="form-control" id="api-reference-search" title="Search for Methods and Objects" placeholder="Search"
     style="display:none">
 
@@ -67,6 +73,7 @@ permalink: /software/api/reference/
                     if (xhr.status === 200) {
                         doc = new DOMParser();
                         renderSDK(doc.parseFromString(xhr.responseText, "text/xml"));
+                        document.querySelector("footer").style.display = "block";
                     } else {
                         handleError({
                             message: "Fail to load a file " + url
