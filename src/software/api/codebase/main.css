@@ -15,6 +15,13 @@ article {
     height: calc(100% - 1rem);
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
 .toolbar {
     width: 100%;
     background-color: #ffffff;
@@ -25,6 +32,11 @@ article {
     width: 100%;
     height: calc(100% - 72px);
     box-sizing: border-box;
+}
+@media (max-width: 540px) {
+    .content {
+        height: calc(100% - 202px);
+    }
 }
 .content .pane {
     height: calc(100% - 4px);

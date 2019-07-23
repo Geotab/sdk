@@ -16,6 +16,17 @@ table {
     @extend .table-responsive;
 }
 
+footer {
+    background-color: #56A1D5;
+    color: white;
+    font-size: 0.8em;
+    padding-left: 1rem;
+
+    a {
+        color: #25477B;
+    }
+}
+
 main {
     width: 100%;
     transition: all 0.4s ease 0s;
