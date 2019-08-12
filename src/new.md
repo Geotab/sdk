@@ -4,6 +4,49 @@ permalink: /resources/new/
 title: What's New
 ---
 
+## 5.7.1903
+
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added `EditRequestedByUser`.
+
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Locations will not be included with DutyStatusLog by default. To include locations must use `dutyStatusLogSearch.IncludeLocations: true`.
+
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `HosEnabled`, `HosDisabled`.
+
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog): Added `RepairDate`.
+
+- [IoxAddOn]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.IoxAddOn): Added `DateTime` representing when the channel was set to the given value..
+
+- Serialization: ISO date time at zero hour will now have full ISO time ex `1986-01-01` -> `1986-01-01T00:00:00.000Z`.
+
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet): Added `AmericaShortHaul14hrWorkday`, `AmericaShortHaul8Day14hrWorkday`, `OilTransportShortHaul14hrWorkday`, `OilTransportShortHaul8Day14hrWorkday`, `CaliforniaFlammableLiquidWithRestRequirement`, `CaliforniaSchoolPupilWithRestRequirement`, `CaliforniaFarmProductWithRestRequirement`, `OilTransportCaliforniaProperty`, `OilWellCaliforniaProperty`, `AmericaSalespersonNonCdlShortHaul`
+
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Active from/to: The user property `ActiveTo` will automatically be set to max date (2050-01-01) to denote that it is active.
+To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of `ActiveTo` to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.
+
+- [CustomData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.CustomData): Incomplete custom data is no longer returned via GetFeed API.
+
+- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1): Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.
+
+    - [Audit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Audit) - 50,000 record limit
+
+    - [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - 5,000 record limit
+
+    - [Diagnostic]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.Diagnostic) - 50,000 record limit
+
+    - [DriverChange]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChange) - 50,000 record limit
+
+    - [Route]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Route) - 10,000 record limit
+
+    - [Rule]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.Rule) - 10,000 record limit
+
+    - [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - 50,000 record limit
+
+    - [Trailer]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Trailer) - 50,000 record limit
+
+    - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - 5,000 record limit
+
+    - [Zone]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Zone) - 10,000 record limit
+
 ## 5.7.1902
 
 - [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation): Added beta support
@@ -59,6 +102,8 @@ title: What's New
 - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Fixed bug where `isDriver` property would be included with `id` in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.
 
 - [VersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.VersionInformation): `Server` is obsolete and replaced with more detailed `Application` property (see [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation))
+
+- .Net nuget package: Group constructor with only ID has been removed.
 
 ### Result and Rate Limits
 
