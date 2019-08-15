@@ -14,7 +14,7 @@ title: What's New
 
 - [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog): Added `RepairDate`.
 
-- [IoxAddOn]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.IoxAddOn): Added `DateTime` representing when the channel was set to the given value..
+- [IoxAddOn]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.IoxAddOn): Added `DateTime` representing when the channel was set to the given value.
 
 - Serialization: ISO date time at zero hour will now have full ISO time ex `1986-01-01` -> `1986-01-01T00:00:00.000Z`.
 
