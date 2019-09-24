@@ -91,7 +91,7 @@ ChkB = ChkB + ChkA;
 
 ## Messages from the GO device
 
-### Msg Type 1: Handshake Request
+### Msg Type 0x01: Handshake Request
 
 Issued by GO device on receipt of the Handshake Sync and periodically re-sent to confirm that the external device is still attached.
 
@@ -104,7 +104,7 @@ Issued by GO device on receipt of the Handshake Sync and periodically re-sent to
 | ETX (0x03) | 1 | 5 |
 | Reply: Handshake Confirmation (Msg Type 0x81) |
 
-### Msg Type 2: Third-Party Data Acknowledge
+### Msg Type 0x02: Third-Party Data Acknowledge
 
 Issued by GO device on receipt of Third-Party Data from the External Device.
 
@@ -134,7 +134,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Road Speed [3] | 1 | 15 |
 | RPM | 2 | 16 |
 | Odometer [4] | 4 | 18 |
-| Status Flags (from LSB):1st bit: 1 = GPS Valid, 2nd bit: 1 = Ignition On, 3rd bit: 1 = Engine Bus Activity, 4th bit: 1 = Date/Time Valid,5th bit: 1 = Speed From Engine,6th bit: 1 = Odometer From Engine, | 1 | 22 |
+| Status Flags (from LSB): <br> 1st bit: 1 = GPS Valid <br> 2nd bit: 1 = Ignition On <br> 3rd bit: 1 = Engine Bus Activity <br> 4th bit: 1 = Date/Time Valid <br> 5th bit: 1 = Speed From Engine <br> 6th bit: 1 = Odometer From Engine | 1 | 22 |
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration | 4 | 31 |
@@ -169,7 +169,7 @@ Issued by the GO device on successful/unsuccessful transmission of Binary Data (
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x22 | 1 | 1 |
 | Message Body Length = 4 | 1 | 2 |
-| Binary data transmission success0 = transmission failure1 = transmission success | 1 | 3 |
+| Binary data transmission success <br> 0 = transmission failure <br> 1 = transmission success | 1 | 3 |
 | Reserved | 3 | 4 |
 | Checksum | 2 | 7 |
 | ETX (0x03) | 1 | 9 |
@@ -208,7 +208,7 @@ Issued by the External Device when it receives the Handshake Request.
 | Message Type = 0x81 | 1 | 1 |
 | Message Body Length = 4 | 1 | 2 |
 | External Device ID (assigned by Geotab) | 2 | 3 |
-| Flags1st bit: Handshake Confirmation ACK2nd bit: Binary Data Packet WrappingAll other bits:Reserved for future implementation, must be set to 0 | 2 | 5 |
+| Flags <br> 1st bit: Handshake Confirmation ACK <br> 2nd bit: Binary Data Packet Wrapping <br> All other bits:Reserved for future implementation, must be set to 0 | 2 | 5 |
 | Checksum | 2 | 7 |
 | ETX (0x03) | 1 | 9 |
 
@@ -235,7 +235,7 @@ Issued by the external device whenever it requires Third-Party Data to be saved 
 | Data | 4 | 5 |
 | Checksum | 2 | 9 |
 | ETX (0x03) | 1 | 11 |
-| Reply: Third-Party Data Ack (Msg Type 2) |
+| Reply: Third-Party Data Ack (Msg Type 0x02) |
 
 ### Msg Type 0x82: Free Format Third-Party Data
 
@@ -249,7 +249,7 @@ Issued by the external device whenever it wants Third-Party Data to be saved on 
 | Data | x | 3 |
 | Checksum | 2 | 3 + x |
 | ETX (0x03) | 1 | 5 + x |
-| Reply: Third-Party Data Ack (Msg Type 2) |
+| Reply: Third-Party Data Ack (Msg Type 0x02) |
 
 ### Msg Type 0x84: Device Data ACK
 
@@ -280,7 +280,7 @@ This is a request-response message. It can be issued by the External Device when
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
-| _  Reply: Device Data Message_ _       _ |   |   |
+| Reply: GO Device Data (Msg Type 0x21) |   |   |
 
 ### Msg Type 0x86: Binary Data Packet
 
@@ -294,7 +294,7 @@ Sent by the external device when sending binary data directly to the server. The
 | Binary Data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
-| _  Reply: Binary Data Response_ _       _ |   |   |
+| Reply: Binary Data Response (Msg Type 0x22) |   |   |
 
 The payload of the binary data would need to adhere to a protocol understood by the server. The MIME data transfer protocol is under review and will be linked to from here when ready. The proposed implementation includes:
 
@@ -318,7 +318,20 @@ Priority Status Data will be treated the same as the 0x80 Status Data message, b
 | Data | 4 | 5 |
 | Checksum | 2 | 9 |
 | ETX (0x03) | 1 | 11 |
-| Reply: Third-Party Data Ack (Msg Type 2) |
+| Reply: Third-Party Data Ack (Msg Type 0x02) |
+
+### Msg Type 0x89: Ping
+
+After handshaking, this message can be issued periodically by the External Device to check that the GO device is active and ready. The GO device will normally reply with the Third-Party Data Ack (Msg Type 0x02). If this reply is not received, the External Device should reset and begin sending the Handshake Sync (0x55).
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x89 | 1 | 1 |
+| Message Body Length = 0 | 1 | 2 |
+| Checksum | 2 | 3 |
+| ETX (0x03) | 1 | 5 |
+| Reply: Third-Party Data Ack (Msg Type 0x02) |
 
 ## Appendices
 
