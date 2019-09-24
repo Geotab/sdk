@@ -94,7 +94,7 @@ When the &quot;Go to Sleep&quot; command is received, and before actually going 
 
 ### Additional Info (0x03)
 
-Sent by the IOX after an ACK for the first poll is received. This is not a required message. It may be omitted if none of the contents are relevant for a custom integration.
+Sent by the IOX after an ACK for the first poll is received. This message is not strictly required for operation. However, sending of this message is required if any version information is to be reported, including: Product, Hardware, Firmware Major, Firmware Minor, or Version Control.
 
 #### Payload — Additional Info
 
