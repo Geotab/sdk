@@ -802,7 +802,9 @@
 						api.multiCall(calls, function(results) {
                             var userIds = results;
 							pushRulesets(userIds);
+
 							api.multiCall(moreCalls, function(results) {moreCalls = []; console.log(moreCalls);}, function(error) {moreCalls = []; console.log(error);});
+
 							if (results !== undefined && results !== null && results.length > 0) {
 								alert("Imported " + results.length + " of " + users.length + " users");
 							}
