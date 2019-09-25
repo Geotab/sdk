@@ -1183,8 +1183,8 @@
 						
 						api.multiCall(calls, function(results) {
                             var userIds = results;
-							anotherCall(userIds);
-							api.multiCall(moreCalls, function(results) {}, function(error) {});
+							pushRulesets(userIds);
+							api.multiCall(moreCalls, function(results) {moreCalls = [];}, function(error) {console.error(error); moreCalls = [];});
 							if (results !== undefined && results !== null && results.length > 0) {
 								alert("Imported " + results.length + " of " + users.length + " users");
 							}
@@ -1205,7 +1205,7 @@
 							}
                         });
 
-						var anotherCall = function (userIds) {
+						var pushRulesets = function (userIds) {
 							for (i = 0; i < userIds.length; i++) {
 
 								var anotherUser = {
@@ -1223,8 +1223,6 @@
 									}
 								]);
 							}
-
-							console.log(moreCalls);
 						}
 
 
