@@ -390,7 +390,7 @@
         <footer>
             <div class="container footernotes">
                 <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 09/04/2019</p>
+                <p>Last updated on 09/25/2019</p>
             </div>
         </footer>
         
@@ -801,8 +801,8 @@
 						
 						api.multiCall(calls, function(results) {
                             var userIds = results;
-							anotherCall(userIds);
-							api.multiCall(moreCalls, function(results) {moreCalls = []; console.log(moreCalls);}, function(error) {});
+							pushRulesets(userIds);
+							api.multiCall(moreCalls, function(results) {moreCalls = []; console.log(moreCalls);}, function(error) {moreCalls = []; console.log(error);});
 							if (results !== undefined && results !== null && results.length > 0) {
 								alert("Imported " + results.length + " of " + users.length + " users");
 							}
@@ -823,7 +823,7 @@
 							}
                         });
 
-						var anotherCall = function (userIds) {
+						var pushRulesets = function (userIds) {
 							for (i = 0; i < userIds.length; i++) {
 
 								var anotherUser = {
