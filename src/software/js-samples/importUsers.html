@@ -391,6 +391,7 @@
             <div class="container footernotes">
                 <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
                 <p>Last updated on 10/03/2019</p>
+
             </div>
         </footer>
         
@@ -801,7 +802,7 @@
 						api.multiCall(calls, function(results) {
                             var userIds = results;
 							pushRulesets(userIds);
-
+              
 							api.multiCall(moreCalls, function(results) {moreCalls = [];}, function(error) {console.log(error); moreCalls = [];});
 
 							if (results !== undefined && results !== null && results.length > 0) {
