@@ -58,7 +58,7 @@
 					</p>
 					<p>
 						<label for="import-nfcKey">Driver key (optional)</label>
-						<input id="import-nfcKey" type="text" placeholder="NFC key number" />&nbsp;&nbsp;or&nbsp;
+						<input id="import-nfcKey" type="text" placeholder="NFC key number" />
 						<input id="import-customNFC" type="text" placeholder="Custom NFC key number" />
 					</p>
 					<p>
@@ -390,15 +390,16 @@
         <footer>
             <div class="container footernotes">
                 <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 09/25/2019</p>
+                <p>Last updated on 10/03/2019</p>
+
             </div>
         </footer>
         
         <div id="template-content">
             <h2>Template</h2>
             <p>
-                You can use a spreadsheet application such as Microsoft Excel or Google Drive to create a list of comma separated users to import multiple users at once.<br /><br />
-                <a href="templates/import-user.xls" target="_blank">Click here to download</a> the Microsoft Excel template.<br />
+                An excel template is in the works and will be made available shortly.<br /><br />
+                <a href="templates/import-user.xls" target="_blank">Click here to download</a> the ruleset lookup table.<br />
             </p>
 			<div class="code">
 				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
@@ -795,15 +796,14 @@
 									typeName: "User",
 									entity: newUser
 								}
-                            ]);
-                            
+							]);                            
                         }
 						
 						api.multiCall(calls, function(results) {
                             var userIds = results;
 							pushRulesets(userIds);
-
-							api.multiCall(moreCalls, function(results) {moreCalls = []; console.log(moreCalls);}, function(error) {moreCalls = []; console.log(error);});
+              
+							api.multiCall(moreCalls, function(results) {moreCalls = [];}, function(error) {console.log(error); moreCalls = [];});
 
 							if (results !== undefined && results !== null && results.length > 0) {
 								alert("Imported " + results.length + " of " + users.length + " users");
@@ -986,7 +986,10 @@
                         driverKeyType: "CustomNfc",
                         isImmobilizeOnly: true
                     });
-				} else if (customNfcKey === "") {keys = [];} 
+				} 
+				else if (customNfcKey === "") {
+					// do nothing	
+				} 
 				else alert("Custom NFC Key Serial Number must be between 0 and 72057594037927940.")
                 return keys;
 			}
