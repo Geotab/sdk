@@ -81,7 +81,7 @@ var SamplesApi = function() {
             "get-all-unbroken-exceptions-for-the-last-week",
             "filter-out-non-valid-position-log-records",
             "calculate-fuel-usage",
-            "import-USA-states-as-zones"
+            "import-usa-states-as-zones"
         ],
         createXHR = ((typeof (window) !== 'undefined' && window.XMLHttpRequest) ?
                 function () {
