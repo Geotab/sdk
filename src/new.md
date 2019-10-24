@@ -3,6 +3,29 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.1904
+
+- AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object. Removing this restriction means any user is now allowed to get an AddInData object.
+
+- API.cs (nuget only) - Now implements IApi interface. This allows for simpler unit testing of integration code using mocks.
+
+- [BinaryDataType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryData) - Added `SoftwareVersionFull`
+
+- Calculated Engine Hours Search - With a custom setting (`ENABLEENGINEHOURSINTERPOLATION`) applied to your database, DiagnosticEngineHoursAdjustmentId will now be interpolated using trips and DiagnosticIgnitionId values when a search includes a from/toDate value(s) to provide exact values. To apply this custom setting to your database, please reach out to Geotab support. This will become the default behavior in v5.7.2001.
+
+- [DatabaseExists]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.DatabaseExistsAsync) fixed to include databases existing in other federations.
+
+- [FuelTransactionProductType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransactionProductType) - Added `Hydrogen` and `DieselExhaustFluid`.
+
+- [FuelTransactionProvider]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransactionProvider) - Added `GFN`.
+
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet) - Added `HosRuleSetCanadaCycleOneTeam` and `HosRuleSetCanadaCycleTwoTeam`.
+
+- [LoginResult]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LoginResult) - Removed unsupported legacy property `SecurityToken`. This property duplicated the supported property `Credentials`. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.
+
+- [Rule]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.Rule) - Fix, don't allow adding Rules without Conditions.
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - Added `ViewGroups`.
 
 ## 5.7.1903
 
