@@ -5,7 +5,7 @@ title: What's New
 ---
 ## 5.7.1904
 
-- AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object. Removing this restriction means any user is now allowed to get an AddInData object.
+- AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object.
 
 - API.cs (nuget only) - Now implements IApi interface. This allows for simpler unit testing of integration code using mocks.
 
