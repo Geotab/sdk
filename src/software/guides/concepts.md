@@ -343,15 +343,15 @@ Example
 
 ```json
 {
-	"error": {
-		"message": "Supplied results limit (50001) exceeds maximum limit (50000).",
-		"code": -32000,
-		"data": {
-			"id": "16526e19-06b9-4a4a-b2a3-c1dbc0144cd8",
-			"type": "OverLimitException"
-		}
-	},
-	"jsonrpc": "2.0"
+ "error": {
+  "message": "Supplied results limit (50001) exceeds maximum limit (50000).",
+  "code": -32000,
+  "data": {
+   "id": "16526e19-06b9-4a4a-b2a3-c1dbc0144cd8",
+   "type": "OverLimitException"
+  }
+ },
+ "jsonrpc": "2.0"
 }
 ```
 
@@ -480,27 +480,30 @@ Why use a MultiCall?
 
 Making an HTTP request over a network has overhead. This can be in the form of Network overhead, the round trip time to send and receive data over the network and HTTP overhead, the HTTP request and response headers. A MultiCall can be used to reduce amount of overhead in situations where many small requests need to be made to a server.
 
-For example, if we make a request to get the max road speed from a set of points. The request would be constructed in a format similar to:
+For example, if we make a request to get the count of devices. The request would be constructed in a format similar to:
 
-`var data = {
- "id" : 0,
- "method" : "GetRoadMaxSpeeds",
- "params" : {
-  "simplePoints" : {
-  "y": "37.61610412597656",
-  "x": "-121.8139419555664"
-  }
-  "credentials" : {
-   "database" : "demo",
-   "userName" : "bob@geotab.com",
-   "sessionId" : "xxx"
+```json
+{
+ "method": "GetCountOf",
+ "params": {
+  "typeName": "Device",
+  "credentials": {
+   "database": "demo",
+   "sessionId": "xxx",
+   "userName": "bob@geotab.com"
   }
  }
-};`
+}
+```
 
 Response:
 
-`{"result":[88.513920000000013]}`
+```json
+{
+ "result": 2340,
+ "jsonrpc": "2.0"
+}
+```
 
 Making the assumption that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), 40 milliseconds to send the request, 20 ms to process the data on the server and 40 ms for the response to be returned. [Google's SPDY research project](http://dev.chromium.org/spdy/spdy-whitepaper) [white paper](http://dev.chromium.org/spdy/spdy-whitepaper) states that "_typical header sizes of 700-800 bytes is common_". Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the "cost of doing business" when making a request over a network.
 
@@ -512,38 +515,44 @@ The above illustration is an extreme example to demonstrate the benefits of usin
 
 ### Basic implementation
 
-Making a MultiCall is very simple, use the method "ExecuteMultiCall" with the parameter "calls" of JSON type Array. Each call should be formatted as an Object with property "method" of type string with the method name as its value and a property "params" of type Object with the method parameters as its properties. The "params" object will also need to contain the user credentials if they are required for the method being called.
+Making a MultiCall is simple, use the method "ExecuteMultiCall" with the parameter "calls" of JSON type Array. Each call should be formatted as an Object with property "method" of type string with the method name as its value and a property "params" of type Object with the method parameters as its properties. The parent "params" object will also need to contain the user credentials if they are required for at least on of the child methods being called. It is not nessicary to include credentials with each child call.
 
-`var data = {
- "id" : 0,
- "method" : "ExecuteMultiCall",
- "calls":{
-    "method" : "GetRoadMaxSpeeds",
-    "params" : {
-    "simplePoints" : {
-      "y": "37.61610412597656",
-      "x": "-121.8139419555664"
-                      },
-    "credentials" : {
-      "database" : "demo",
-      "userName" : "bob@geotab.com",
-      "sessionId" : "xxx"
-                     }
-         },{
-    "method" : "GetRoadMaxSpeeds",
-    "params" : {
-    "simplePoints" : {
-      "y": "38.61610412597656",
-      "x": "-122.8139419555664"
-                      }     
-                }
-         }}`
+```json
+{
+  "method": "ExecuteMultiCall",
+  "params": {
+  "calls": [
+   {
+    "method": "GetCountOf",
+    "params": {
+     "typeName": "Device"
+    }
+   },
+   {
+    "method": "GetCountOf",
+    "params": {
+     "typeName": "User"
+    }
+   }
+  ],
+  "credentials": {
+   "database": "demo",
+   "sessionId": "xxx",
+   "userName": "bob@geotab.com"
+  }
+ }
+}
+```
 
 Response:
 
 ```json
 {
-    "result": [[88.513920000000013],[-1.0]]
+ "result": [
+  2340,
+  2022
+ ],
+ "jsonrpc": "2.0"
 }
 ```
 
