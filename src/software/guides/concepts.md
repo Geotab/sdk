@@ -515,7 +515,7 @@ The above illustration is an extreme example to demonstrate the benefits of usin
 
 ### Basic implementation
 
-Making a MultiCall is simple, use the method "ExecuteMultiCall" with the parameter "calls" of JSON type Array. Each call should be formatted as an Object with property "method" of type string with the method name as its value and a property "params" of type Object with the method parameters as its properties. The parent "params" object will also need to contain the user credentials if they are required for at least on of the child methods being called. It is not nessicary to include credentials with each child call.
+Making a MultiCall is simple, use the method "ExecuteMultiCall" with the parameter "calls" of JSON type Array. Each call should be formatted as an Object with property "method" of type string with the method name as its value and a property "params" of type Object with the method parameters as its properties. The parent "params" object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.
 
 ```json
 {
