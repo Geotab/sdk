@@ -55,7 +55,8 @@ These information types are optional and are not part of the required packet str
 | 20 | Ethanol | FP24 | 3 | Parts per million (ppm) |
 | 21 | Hydrogen | FP24 | 3 | Parts per million (ppm) |
 | 22 | Carbon Dioxide | FP24 | 3 | Parts per million (ppm) |
-| 23 to 199 | Reserved(for future data types) | FP24 | 3 |   |
+| 23 | Fuel Level | FP24 | 3 | Percent (%) |
+| 24 to 199 | Reserved(for future data types) | FP24 | 3 |   |
 | 200 to 229 | Reserved |   |   |   |
 | 230 to 239 | Generic Byte (1 to 10) | UINT8 | 1 | None |
 | 240 to 249 | Generic Timer (1 to 10) | UINT8UINT16 | 12 | Event CounterUnits Of Time |
