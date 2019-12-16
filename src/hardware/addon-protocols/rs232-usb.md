@@ -138,7 +138,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration | 4 | 31 |
-| GO Device ID | 4 | 35 |
+| GO Device ID [5] | 4 | 35 |
 | Driver ID | 4 | 39 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
@@ -148,6 +148,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
 3. If Road Speed from the engine is not available, GPS speed is used.
 4. If Odometer is not available, GPS device distance is used.
+5. Driver ID only available when using the IOX-NFC.
 
 ### Conversions
 
