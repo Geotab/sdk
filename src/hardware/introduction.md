@@ -8,7 +8,7 @@ permalink: /hardware/introduction/
 
 Geotab supports third-party device integration through the CAN, USB, RS232, and BLE interfaces. The Add-On Protocols section outlines the integration process for all four applications. Data can be sent via any of these interfaces and will be saved as status data in the GO device which will then be sent up to MyGeotab along with all other GO device data and can be reported on just like any other data. Data being sent to the GO device from external devices via the third party protocol include tire pressures, multiple temperatures, external switch states, load weights and much more. If you have an external device that reports information, and you want to send that data to the GO device there is reasonable chance we already have it defined. If we don't we will define it and add it to the system.
 
-When using Geotab's hardware add-on protocols, it is important not to send excessive amounts of data to the GO device.  This can be assured by only sending data when it is completely necessary and avoiding the sending of repetitive values. The GO device will stop recording data from the hardware add-on device if excessive third-party data is detected. When this condition occurs, "Status data no longer being saved due to excessive data" will appear in the Fault Data for the GO device within MyGeotab. In order to re-enable data logging for the hardware add-on, the GO device will need to be completely disconnected from power and then powered back up.
+THIS IS A TEST! AGAIN!
 
 ## Input-Output Expander (IOX)
 
