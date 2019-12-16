@@ -256,11 +256,11 @@ At Geotab, we strive to create an open and flexible API that fosters creativity 
 
 ### Rate limits
 
-#### Autenticate
+#### Authenticate
 
 No more than **10 requests-per-minute** are permitted for a user. Both successful and unsuccessful Authentication calls count towards the limit.
 
-Credentials provided with password instead of or combined with session ID must be authenticated. Therefor, each request where credentials are provided in this way will tally against a given user's authentication limits.
+Credentials provided with password instead of or combined with session ID must be authenticated. Therefore, each request where credentials are provided in this way will tally against a given user's authentication limits.
 
 #### GetFeed
 
