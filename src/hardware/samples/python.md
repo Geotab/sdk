@@ -55,8 +55,8 @@ def createMessage(message):
   tester.write(handshakeResponse)
   time.sleep(1)
   # send some status data
-  statusDataID = 53 #status data id of Outside Temperature
-  dataValue = 60 #temperature value of 20C (because of offset of -40)
+  statusDataID = 34801 #status data id of Air Temperature
+  dataValue = 200 #temperature value of 20C (because of the conversion factor of 0.1)
 
   dataMessage = createMessage(bytes([0x80, 6, statusDataID%256, (statusDataID >> 8)%256, dataValue%256, (dataValue >> 8)%256, 0, 0]))
 
