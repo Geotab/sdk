@@ -30,6 +30,9 @@ toc:
             url: /software/guides/developing-addins/
           - page: Geotab Drive Add-Ins
             url: /software/guides/drive-addins/
+          - page: Map Add-ins
+            url: /software/guides/map-add-ins-docs/
+            beta: true
       - title: API
         subfolderitems:
           - page: Reference

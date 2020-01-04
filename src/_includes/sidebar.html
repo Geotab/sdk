@@ -22,6 +22,9 @@
                 {% else %}
                 <a href="{{site.baseurl}}{{ entry.url }}">{{ entry.page }}</a>
                 {% endif %}
+                {% if entry.beta %}
+                <span class="beta">Preview</span>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>
