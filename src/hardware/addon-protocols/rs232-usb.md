@@ -9,7 +9,7 @@ External devices can communicate with the Geotab GO device through the Third-Par
  - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
 
-## Special Requirements for USB Integrations
+### Special Requirements
 ##### Enabling IOX-USB Data Transfer
 
 To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through MyGeotab.
@@ -26,7 +26,13 @@ The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rat
 - The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
 - USB-CDC (Communications Device Class)
 
+##### Powering a device using the IOX-NFC
+Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
 
+- The IOX-USB can provide 5V/1.5A as a power output. 
+- The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
+
+\* *Note* \- It is possible to detect Go Device Resets by monitoring continuity of the output power voltage.
 
 ## Integration Process
 
