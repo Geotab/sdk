@@ -409,7 +409,7 @@ permalink: /software/api/reference/
                                 returnText.push("<p>");
                                 returnText.push(pullTextWithLinked(nodeChildren, []));
                                 if (node.getAttribute("beta")) {
-                                    returnText.push(" <span class='beta'>Preview</span>");
+                                    returnText.push(" <span class='beta'>Beta</span>");
                                 }
                                 returnText.push("</p>");
                             } else if (node.nodeName === "list") {
@@ -440,7 +440,7 @@ permalink: /software/api/reference/
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push("<a href='#" + uniqueName + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -967,25 +967,25 @@ permalink: /software/api/reference/
                     case dataTypes.long:
                         return {
                             class: type,
-                            dataType: dataTypes.string + "*",
-                            description: "64bit integer is represented by a hex string in JSON because some languages to not support 64bit number type"
+                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            description: "64bit integer is represented by a hex string in JSON because some languages do not support 64bit number type"
                         };
                     case dataTypes.date:
                         return {
                             class: type,
-                            dataType: dataTypes.string + "*",
+                            dataType: dataTypes.string + ' {% octicon plus-small %}',
                             description: "Date time is represented by an ISO string in UTC time (\"2000-01-01T01:00:00.000Z\")"
                         };
                     case dataTypes.timespan:
                         return {
                             class: type,
-                            dataType: dataTypes.string + "*",
+                            dataType: dataTypes.string + ' {% octicon plus-small %}',
                             description: "An time span interval represented in the format [-][d.]hh:mm:ss[.fffffff]. For example: \"2.05:02:44.928\""
                         };
                     case dataTypes.byteArray:
                         return {
                             class: type,
-                            dataType: dataTypes.string + "*",
+                            dataType: dataTypes.string + ' {% octicon plus-small %}',
                             description: "A byte array represented by a base64 encoded string"
                         };
                     default:
@@ -1058,7 +1058,7 @@ permalink: /software/api/reference/
 
                 // Runner Args - only do for methods of DataStore and WebMethods. Do it here so we can do an enum and object lookup on the completed member dictionary.
                 memberHtmlString += !isObject && (member.parent === "DataStore" || member.parent === "WebMethods") ? getRunnerLink(member) : "";
-                memberHtmlString += '<h3 class="member-name" id="' + member.anchor + '">' + member.name + (member.isBeta ? ' <span class="beta">Preview</span> ' : '') + '</h3>';
+                memberHtmlString += '<h3 class="member-name" id="' + member.anchor + '">' + member.name + (member.isBeta ? ' <span class="beta">Beta</span> ' : '') + '</h3>';
                 // memberHtmlString += '<p class="member-namespace">' + (!isMethod ? member.nameSpace : '') + '</p>';
                 memberHtmlString += '<p class="member-description">' + member.summary + '</p>';
                 memberHtmlString += member.remarks ? ('<p class="member-remarks"><span class="warnIcon"></span>' + member.remarks + '</p>') : "";
@@ -1079,7 +1079,7 @@ permalink: /software/api/reference/
                             parameter = memberParameters[j];
                             argument = memberParameters[j].dataType;
                             title = (!!parameter.required ? "required" : "optional");
-                            let icon = !!parameter.required ? ' {% octicon plus-small %}' : "";
+                            let icon = !!parameter.required ? ' *' : "";
                             memberHtmlString += "<tr>";
                             memberHtmlString += "<td nowrap class='member-parameters-list-param " + title + "' title='" + title + "'>" + parameter.name + icon + "</td>";
                             paramDataType = argument ? getDataType(argument) : {};
