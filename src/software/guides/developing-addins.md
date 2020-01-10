@@ -67,9 +67,7 @@ The Add-In configuration file below demonstrates how to define a simple Add-In w
                         "fr": "French Menu Text"
                 }
         }],
-        "files": { },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        "files": { }
 }
 ```
 
@@ -142,9 +140,7 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
         },
         "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
     }],
- "isSigned": false,
- "signature": "12345-MYSIGNATURE",
- "key": "12345-MYAPIKEY"
+ "isSigned": false
 }
 ```
 
@@ -226,9 +222,7 @@ When developing a custom page or button Add-In, you have the option to embed the
                 "css": {
                         "customStyles.css": "#customDiv{color:#ff0;}"
                 }
-        },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        }
 }
 ```
 
@@ -416,9 +410,7 @@ Almost any page is available to have a custom button Add-In added to it. Use a w
                         "fr": "French Button"
                 }
         }],
-        "files": { },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        "files": { }
 }
 ```
 

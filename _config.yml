@@ -38,7 +38,7 @@ permalink: none
 excerpt_separator: ''
 
 # Markdown library and options
-markdown: redcarpet
+markdown: kramdown
 redcarpet:
   extensions: ['no_intra_emphasis', 'tables', 'fenced_code_blocks', 'autolink', 'smart', 'strikethrough', 'superscript', 'underline', 'highlight', 'footnotes', 'with_toc_data', 'pretty']
 highlighter: rouge
