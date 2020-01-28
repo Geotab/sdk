@@ -3,6 +3,48 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2001
+
+- AddInData (Feature Preview) - Remove requirement of `AddInDataId` for search by `Id`.
+
+- [AuditSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.AuditSearch), [DeviceSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceSearch), [ShipmentLogSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ShipmentLogSearch), [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch), [ZoneSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ZoneSearch) - Added new search by list of `Keywords`. This allows searching "or" across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against `Comment`, `LicensePlate`, `Name`, `SerialNumber` and `VehicleIdentificationNumber` matching the provided keywords. Keywords strings support wildcard character (`%`).
+
+- [BinaryData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryData) (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.
+
+- Calculated Engine Hours Search - As mentioned in 5.7.1904 What’s New, `DiagnosticEngineHoursAdjustmentId` is now interpolated using trips and `DiagnosticIgnitionId` values when a search includes a from/toDate value(s) to provide exact values by default.
+
+- [CompanyDetails]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Registration.CompanyDetails) - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from `CreateDatabase` method.
+
+- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - `HardwareId` is no longer returned as part of Device object. For more information regarding this change, please refer to this [community post](https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property).
+
+- [DVIRDefect]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRDefect) - Providing `RepairUser` and `RepairDateTime` are no longer supported for unrepaired `DVIRDefect`.
+
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - `DefectList` must be provided with `DVIRLog`.
+
+- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) - Fixed corner case where it was possible to miss data in feed due to concurrency issue.
+
+- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) `StatusData` - Fix, providing a search to GetFeed `StatusData` containing a `DiagnosticSearch` which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.
+
+- [Get]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Get1) `Diagnostic` - Fix issue searching by `DiagnosticType.ProprietaryFault` or `DiagnosticType.LegacyFault` causing error result.
+
+- [GoCurve]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GoCurve) - Added `IsIoxConnectionEnabled`. (Adds to `GO4v3`, `GO5`, `GO6`, `GO7`, `GO8`, `GO9`)
+
+- [Group]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) (nuget only) - Removed `left` and `right` parameters from constructor and `Group.Get` method.
+
+- [GroupRelations]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupRelations) - Added `AddInDatas` property. When `Group` linked `AddInData` (Feature Preview) is blocking `Group` remove a list blocking `AddInData` `Id`s will be retuend int the `GroupRelations` property of `GroupRelationViolatedException`.
+
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet) - Added `WashingtonIntrastate7Day`, `WashingtonIntrastate8Day`, `NoneCanada`, `HosRuleSetCanadaNorthOf60CycleOne`, `HosRuleSetCanadaNorthOf60CycleTwo`
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) -  Added `ViewGroups`, `AdministerWiFiHotspotSettings`, `ViewWiFiHotspotSettings` 
+
+- [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - Proper support of active from/to dates. *Messages that have not been sent by active to date will not be sent.
+
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - `ParentTextMessageId` (long) is obsolete. Usage should be replaced with `ParentMessageId` (Id).
+
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `MaxPCDistancePerDay`
+
+- [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch) - Added "negatable" search of `FistName`, `LastName` and `Name` properties. If the first character of this search property is '!', then the API will know to negate the search logic. For example: `field = "!John%"`, is equivalent to: `WHERE NOT LIKE 'John%'`.
+
 ## 5.7.1904
 
 - AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object.
