@@ -31,7 +31,7 @@ title: What's New
 
 - [Group]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) (nuget only) - Removed `left` and `right` parameters from constructor and `Group.Get` method.
 
-- [GroupRelations]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupRelations) - Added `AddInDatas` property. When `Group` linked `AddInData` (Feature Preview) is blocking a `Group` remove, a list blocking `AddInData` `Id`s will be retuend int the `GroupRelations` property of `GroupRelationViolatedException`.
+- [GroupRelations]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupRelations) - Added `AddInDatas` property. When `Group` linked `AddInData` (Feature Preview) is blocking a `Group` remove, a list blocking `AddInData` `Id`s will be returned in the `GroupRelations` property of `GroupRelationViolatedException`.
 
 - [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet) - Added `WashingtonIntrastate7Day`, `WashingtonIntrastate8Day`, `NoneCanada`, `HosRuleSetCanadaNorthOf60CycleOne`, `HosRuleSetCanadaNorthOf60CycleTwo`
 
