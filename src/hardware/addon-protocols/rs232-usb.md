@@ -9,7 +9,7 @@ External devices can communicate with the Geotab GO device through the Third-Par
  - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
 
-### Special Requirements
+## Special Requirements
 ##### Enabling IOX-USB Data Transfer
 
 To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through MyGeotab.
@@ -18,13 +18,13 @@ To enable third-party data communication on the IOX-USB, apply the following cus
 <GoParameters><Parameter Description="Enable USB Data" Offset="164" Bytes="02"/></GoParameters>
 ```
 
-The GO device will automatically upgrade to the ProPlus rate plan once third-party data transfer begins.
+\* *Note* \- The GO device will automatically upgrade to the ProPlus rate plan once third-party data transfer begins.
 ##### IOX-USB Communication Consideration
  
 The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rate is 12 Mbit/s. The IOX-USB can use two methods to enumerate a USB device:
 
-- The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
-- USB-CDC (Communications Device Class)
+1. The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
+2. USB-CDC (Communications Device Class)
 
 ##### Powering a device using the IOX-NFC
 Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
@@ -38,15 +38,15 @@ Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
 
-### Contact Geotab Solutions Engineering
+##### Contact Solutions Engineering
 
 Contact the [Geotab Solutions Engineering team](mailto:soleng@geotab.com) with a detailed integration proposal, this should include:
 
  - A name for the integration
  - The interfacing hardware
  - Data types that will be sent to MyGeotab
- - Will Status Data be required
- - Will the integration be bi-directional
+ - The required Status Data
+ - Whether the integration is bi-directional
  - Expected timelines for integrating
  
 The Solutions Engineering team will respond with follow up questions to define the integration, and assign an External device ID, and any Status Data IDs that would be required. 
@@ -66,7 +66,7 @@ A multiplier and offset must be supplied by the third-party vendor when requesti
 
 
 
-The GO device will relay the raw data sent by the external device to MyGeotab. MyGeotab will then take the raw value received from the GO device and adjust by the multiplier and the offset. When MyGeotab applies the conversion, the multiplier is always done first, followed by the offset, as per the formula:
+The GO device will relay the raw data sent by the external device to MyGeotab. MyGeotab will then take the raw value received from the GO device and adjust by the multiplier and the offset, as per the formula:
 
 <b><center><i>
 Final Value = (Initial Value × Multiplier) + Offset
@@ -84,8 +84,11 @@ The unit refers to the unit of measurement that you wish to see in MyGeotab afte
 
 *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here*
 
-### Concepts:
-##### Handshake
+##### Implement The Third Party Protocol
+
+Implement the Third-Party Protocol in the external device as detailed below.
+
+## Handshake
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
 
@@ -98,7 +101,7 @@ An initial Handshake **is required** in order for the GO device to accept third-
   - If the external device receives no response to a Third-Party Data message, it must restart the handshake process — returning to step 1 above.
 5. The GO device may send a Handshake Request message at any time after the initial handshake. The external device must respond with a Handshake Confirmation message. If the external device does not respond, it must restart the handshake process — returning to step 1 above.
 
-##### Checksum
+## Checksum
 
 Each message will contain a 2-byte Fletcher's Checksum calculated across all the bytes of the message except the checksum itself. The checksum values are bytes, and as such overflow from 255 (0xFF) to 0 (0x00). The bytes used for the checksum calculation are all the bytes up to the checksum byte, including STX, LEN, TYPE, but not including ETX.
 
@@ -117,7 +120,7 @@ ChkB = ChkB + ChkA;
 // ChkA precedes ChkB in the message
 ```
 
-##### Data Endianness
+## Data Endianness
 
 All values must be sent using Little Endian Byte Order, meaning the least significant byte first.
 
