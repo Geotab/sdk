@@ -92,7 +92,7 @@ An initial Handshake **is required** in order for the GO device to accept third-
 1. After powering up, the GO device will enter an external device detection cycle. The external device will be powered for 72 seconds. In this interval, the GO device will listen for a Handshake Sync from the external device. The Handshake Sync is used to indicate that an external device is present. For implementations using the IOX-RS232, the Handshake Sync is also used to detect baud rate.
   - The external device must send the Handshake Sync message once per second.
   - If a Handshake Sync message is not detected from the external device after 72 seconds, the external device is powered down for 5 seconds, then powered up again to restart the detection cycle.
-2. The GO device will reply to a Handshake Sync with with a Handshake Request.
+2. The GO device will reply to a Handshake Sync with a Handshake Request.
 3. The external device must reply with a Handshake Confirmation message within 2 seconds. If the external device would like an acknowledgment from the GO device that it received the Handshake Confirmation message, the corresponding flag in the Handshake Confirmation message may be set.
 4. After sending the Handshake Confirmation message, the external device can begin to send third-party data as required. For every Third-Party Data Message sent, the GO device will reply with a Data Acknowledge message.
   - If the external device receives no response to a Third-Party Data message, it must restart the handshake process — returning to step 1 above.
