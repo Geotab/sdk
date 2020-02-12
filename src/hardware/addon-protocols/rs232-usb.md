@@ -46,7 +46,7 @@ Contact the [Geotab Solutions Engineering team](mailto:soleng@geotab.com) with a
  - The interfacing hardware
  - Data types that will be sent to MyGeotab
  - The required Status Data
- - Whether the integration is bi-directional
+ - Direction of data transfer
  - Expected timelines for integrating
  
 The Solutions Engineering team will respond with follow up questions to define the integration, and assign an External device ID, and any Status Data IDs that would be required. 
@@ -88,12 +88,12 @@ The unit refers to the unit of measurement that you wish to see in MyGeotab afte
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
 
-1. After powering up, the GO device will enter an external device detection cycle. The external device will be powered for 72 seconds. In this interval, the GO device will listen for a Handshake Sync from the external device. The Handshake Sync is used to indicate that an external device is present. For implementations using the IOX-RS232, the Handshake Sync is also used to detect baud rate.
+1. After powering up, the GO device will enter an external device detection cycle. The external device will be powered for 72 seconds. In this interval, the GO device will listen for a [Handshake Sync](#handshake-sync-auto-baud-detect-for-rs232) from the external device. The Handshake Sync is used to indicate that an external device is present. For implementations using the IOX-RS232, the Handshake Sync is also used to detect baud rate.
   - The external device must send the Handshake Sync message once per second.
   - If a Handshake Sync message is not detected from the external device after 72 seconds, the external device is powered down for 5 seconds, then powered up again to restart the detection cycle.
-2. The GO device will reply to a Handshake Sync with a Handshake Request.
-3. The external device must reply with a Handshake Confirmation message within 2 seconds. If the external device would like an acknowledgment from the GO device that it received the Handshake Confirmation message, the corresponding flag in the Handshake Confirmation message may be set.
-4. After sending the Handshake Confirmation message, the external device can begin to send third-party data as required. For every Third-Party Data Message sent, the GO device will reply with a Data Acknowledge message.
+2. The GO device will reply to a Handshake Sync with a [Handshake Request](#msg-type-0x01-handshake-request).
+3. The external device must reply with a [Handshake Confirmation](#msg-type-0x81-handshake-confirmation) message within 2 seconds. If the external device would like an acknowledgment from the GO device that it received the Handshake Confirmation message, the corresponding flag in the Handshake Confirmation message may be set.
+4. After sending the Handshake Confirmation message, the external device can begin to send third-party data as required. For every [Third-Party Data Message](#msg-type-0x80-third-party-data-as-status-data) sent, the GO device will reply with a [Data Acknowledge message](#msg-type-0x02-third-party-data-acknowledge).
   - If the external device receives no response to a Third-Party Data message, it must restart the handshake process — returning to step 1 above.
 5. The GO device may send a Handshake Request message at any time after the initial handshake. The external device must respond with a Handshake Confirmation message. If the external device does not respond, it must restart the handshake process — returning to step 1 above.
 
@@ -128,11 +128,11 @@ Issued by GO device on receipt of the Handshake Sync and periodically re-sent to
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
-| Message Type = 1 | 1 | 1 |
+| Message Type = 0x01 | 1 | 1 |
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
-| Reply: Handshake Confirmation (Msg Type 0x81) |
+| Reply: Handshake Confirmation ([Msg Type 0x81](#msg-type-0x81-handshake-confirmation)) |
 
 #### Msg Type 0x02: Third-Party Data Acknowledge
 
@@ -141,7 +141,7 @@ Issued by GO device on receipt of Third-Party Data from the External Device.
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
-| Message Type = 2 | 1 | 1 |
+| Message Type = 0x02 | 1 | 1 |
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
@@ -172,7 +172,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Driver ID | 4 | 39 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
-| _Reply: Device Data Ack_ |   |   |
+| Reply: Device Data Ack ([Msg Type 0x84](#msg-type-0x84-device-data-ack)) |   |   |
 
 1. All implementations of this message must cater for the message length increasing in the future.
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
@@ -227,7 +227,7 @@ Issued by External Device every second until the Handshake Request is received.
 |   | Bytes | Position |
 | --- | --- | --- |
 | Sync Char (0x55) | 1 | 0 |
-| Reply: Handshake Request (Msg Type 0x01) |
+| Reply: Handshake Request ([Msg Type 0x01](#msg-type-0x01-handshake-request)) |
 
 #### Msg Type 0x81: Handshake Confirmation
 
@@ -266,7 +266,7 @@ Issued by the external device whenever it requires Third-Party Data to be saved 
 | Data | 4 | 5 |
 | Checksum | 2 | 9 |
 | ETX (0x03) | 1 | 11 |
-| Reply: Third-Party Data Ack (Msg Type 0x02) |
+| Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
 #### Msg Type 0x82: Free Format Third-Party Data
 
@@ -280,7 +280,7 @@ Issued by the external device whenever it wants Third-Party Data to be saved on 
 | Data | x | 3 |
 | Checksum | 2 | 3 + x |
 | ETX (0x03) | 1 | 5 + x |
-| Reply: Third-Party Data Ack (Msg Type 0x02) |
+| Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
 #### Msg Type 0x84: Device Data ACK
 
@@ -311,7 +311,7 @@ This is a request-response message. It can be issued by the External Device when
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
-| Reply: GO Device Data (Msg Type 0x21) |   |   |
+| Reply: GO Device Data ([Msg Type 0x21](#msg-type-0x21-go-device-data)) |   |   |
 
 #### Msg Type 0x86: Binary Data Packet
 
@@ -325,7 +325,7 @@ Sent by the external device when sending binary data directly to the server. The
 | Binary Data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
-| Reply: Binary Data Response (Msg Type 0x22) |   |   |
+| Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |   |   |
 
 The payload of the binary data would need to adhere to a protocol understood by the server. The MIME data transfer protocol is under review and will be linked to from here when ready. The proposed implementation includes:
 
@@ -349,7 +349,7 @@ Priority Status Data will be treated the same as the 0x80 Status Data message, b
 | Data | 4 | 5 |
 | Checksum | 2 | 9 |
 | ETX (0x03) | 1 | 11 |
-| Reply: Third-Party Data Ack (Msg Type 0x02) |
+| Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
 #### Msg Type 0x89: Ping
 
@@ -362,7 +362,7 @@ After handshaking, this message can be issued periodically by the External Devic
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
-| Reply: Third-Party Data Ack (Msg Type 0x02) |
+| Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
 ## Appendices
 
