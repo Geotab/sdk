@@ -22,7 +22,7 @@ The main concept behind GO device logging is to produce an accurate representati
 
 In this graph, the actual trip is represented by the blue curve. The red dots represent a simple time-based sampling where a speed value is recorded at regularly spaced time intervals. Notice how some high points and low points are missed by this approach. Also notice that, even when the speed does not change, the time-based approach continues reading the same value.
 
-The green dots represent a more accurate record of the data by establishing the ideal way to reproduce the data with with the fewest number of data points. This is the basic principle that underpins the intelligent logging of the GO device.
+The green dots represent a more accurate record of the data by establishing the ideal way to reproduce the data with the fewest number of data points. This is the basic principle that underpins the intelligent logging of the GO device.
 
 ### Position and Speed
 
