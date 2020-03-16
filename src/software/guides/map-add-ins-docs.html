@@ -35,29 +35,37 @@ title: Geotab Deeper Add-In Overview
     border-top: none;
 }</style>
         <div>
-            <p>Deeper Add-Ins, also referred to as Deeper Integrations or simply Map Add-Ins, embed  third-party integrations within the Maps page and the Trips History page of MyGeotab, enabling Geotab customers to access the integration from within the native MyGeotab Map and Trips History pages. A panel will slide out on the right-side of the page, allowing users to manipulate the map and see data presented by the integration alongside Geotab GO device data.</p>
-            <p>Below is an example of a Deeper Add-In on the Trips History page. When a user hovers over any part of a trip, this add-in displays the vehicles odometer and fuel level in the native tooltip that appears when hovering your mouse over any part of the trip. Note that the other details in the tooltip are displayed by the MyGeotab system by default.</p>
-            <figure>
-                <img src="../map-add-ins-docs-1.jpg" alt="Example of adding new information to vehicle tooltip on the map.">
-                <figcaption>Pic 1 - Tooltip with additional information.</figcaption>
-            </figure>
-            <p>This document provides the setup process and functionality available to Partners looking to build Deeper Add-Ins.</p>
+            <p>While most Addins exist as separate pages of MyGeotab, Deeper Add-Ins can be installed into the native pages of the MyGeotab portal. A panel will appear on the right-side of the page, containg the UI of the Deeper Addin. Deeper Addins are unique because they can interact with the native MyGeotab pages in new ways.
 
-            <h2>How to Install Deeper Add-Ins</h2>
-            <p>Deeper Add-Ins are installed on the System Settings page, just <a href="https://geotab.github.io/sdk/software/guides/developing-addins/" target="_blank">like regular Add-Ins</a>. The difference is in the contents of the configuration file. Deeper Add-Ins have following configuration JSON file:</p>
+            The current pages compatible with Deeper Add-Ins are:
+            1. Map
+            2. Trips History   
+            </p>
+            <p>Below is an example of a Deeper Add-In on the Maps page of MyGeotab. When a user clicks on a vehicle on the Map, this add-in displays relevant vehicle data in its panel.</p>
+            <figure> <!-- put an img of Justin's addin -->
+                <img src="../map-add-ins-docs-1.jpg" alt="Example of displaying vehicle information on the Maps page with a Deeper Addin.">
+                <figcaption>Figure #1 - Deeper Addin displaying vehicle data.</figcaption>
+            </figure>
+            <p>This document provides the installation process and APIs available to developers aiming to build Deeper Add-Ins.</p>
+
+            <h2>Installation</h2>
+            <p>Deeper Add-Ins are installed by uploading Add-In Configuration Files into MyGeotab, just like other Add-Ins. If you are working with Addins for the first time, please read <a href="https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files" target="_blank">this</a> to learn about uploading Add-In Configuration Files to MyGeotab.
+                
+            The Configuration File for a Deeper Add-In looks like this:</p>
             <div>
 <pre class="code-example">
     <code class="language-json" data-lang="json">
 {
     "name": "Tooltip",
-    "supportEmail": "",
+    "supportEmail": "yourSupportEmail@company.com",
     "version": "1.0",
     "items": [{
         "page": "map",
         "title": "Tooltips",
         "mapScript": {
-            "src": "/tooltip/addin.js",
-            "style": "/tooltip/addin.css"
+            "src": "addin.js",
+            "style": "addin.css"
+            "url": "addin.html"
         }
     }]
 }
@@ -65,25 +73,25 @@ title: Geotab Deeper Add-In Overview
 </pre>
             </div>
 
-            <p>The five main properties of the configuration file are as follows:</p>
+            <p>The main properties of the configuration file are as follows:</p>
             <ol>
                 <li>
-                    <strong>page</strong> - Defines which page the Add-In will exist within. It has two possible values: “map” (for the Maps page) or “tripsHistory” (for the Trips History page). The default value is “map”.
+                    <strong>page</strong> - This defines which page the Add-In will exist within. This could be “map” (Map page) or “tripsHistory” (Trips History page). The default value is “map”.
                 </li>
                 <li>
-                    <strong>src</strong> - JavaScript file reference for this Add-In. In the example above, the JS file was dropped into MyGeotab, but an external reference is possible and recommended.
+                    <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Deeper Add-Ins installed.
                 </li>
                 <li>
-                    <strong>style</strong> - CSS file reference for this Add-In.
+                    <strong>src</strong> - The JavaScript file reference for this Add-In. This can be an externally hosted file or uploaded into MyGeotab by dragging and dropping it into the Configuration File window.
                 </li>
                 <li>
-                    <strong>title</strong> - The title that will be displayed in the right-side panel if there are multiple Deeper Add-Ins installed.
+                    <strong>style</strong> - The CSS file reference for this Add-In. This can be externally hosted or uploaded to MyGeotab.
                 </li>
                 <li>
-                    <strong>url</strong> - HTML file reference for this Add-In. This option should be used instead of <strong>src</strong> and <strong>style</strong>. All link to stylesheets and javascript modules can be listed in this HTML file. Also all content of the &lt;body&gt; tag will be automatically added to add-in tab. (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html" target="_blank">Example</a>)
+                    <strong>url</strong> -The HTML file reference for this Add-In. This option can be used instead of src and style. Links to CSS and JavaScript files can be made within this HTML file. All content within the <body> tags will be added to the Deeper Add-in UI. (<a href="https://github.com/Geotab/sdk-map-addin-samples/blob/master/html/addin.html" target="_blank">Example</a>)
                 </li>
             </ol>
-            <p>The script file from the “src” property and the style file from the “style” property will be added to the MyGeotab page iframe in the right-side panel.</p>
+            <!-- <p>The script file from the “src” property and the style file from the “style” property will be added to the MyGeotab page iframe in the right-side panel.</p>
             <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to “window.geotab.addin”. For example:</p>
             <div class="highlights">
 <pre>
@@ -102,10 +110,10 @@ geotab.addin.request = (elt, service) => {
                 <li>
                     <strong><a href="#services-list">services</a></strong> - JavaScript file reference for this Add-In. In the example above, the JS file was dropped into MyGeotab, but an external reference is possible and recommended.
                 </li>
-            </ol>
+            </ol>  -->
 
-            <h2>How Deeper Add-Ins are Opened Inside MyGeotab</h2>
-            <p>In MyGeotab, Deeper Add-Ins are opened inside an sandboxed iframe. This means that custom scripts is run inside the iframe.</p>
+            <h2>Launching Deeper Add-Ins inside MyGeotab</h2>
+            <p>In MyGeotab, Deeper Add-Ins are opened inside an iframe with a sandbox attribute set to “allow-scripts”. This means that the Deeper Add-In can run custom scripts inside the iframe.</p>
             <p>There are a few differences between a script run in the browser and a script run inside an  iframe. When the user leaves the Map or Trips History page, the content of the iframe is cleared by the browser.</p>
             <ul>
                 <li>When the user returns to the page, the scripts inside the iframe are reloaded.</li>
