@@ -91,7 +91,10 @@ title: Geotab Deeper Add-In Overview
                     <strong>url</strong> -The HTML file reference for this Add-In. This option can be used instead of src and style. Links to CSS and JavaScript files can be made within this HTML file. All content within the <body> tags will be added to the Deeper Add-in UI. (<a href="https://github.com/Geotab/sdk-map-addin-samples/blob/master/html/addin.html" target="_blank">Example</a>)
                 </li>
             </ol>
-            <!-- <p>The script file from the “src” property and the style file from the “style” property will be added to the MyGeotab page iframe in the right-side panel.</p>
+
+            <p>You can find sample Deeper Add-Ins ready to be installed <a href="https://github.com/Geotab/sdk-map-addin-samples">here</a></p>
+
+            <!--
             <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to “window.geotab.addin”. For example:</p>
             <div class="highlights">
 <pre>
@@ -112,32 +115,38 @@ geotab.addin.request = (elt, service) => {
                 </li>
             </ol>  -->
 
-            <h2>Launching Deeper Add-Ins inside MyGeotab</h2>
-            <p>In MyGeotab, Deeper Add-Ins are opened inside an iframe with a sandbox attribute set to “allow-scripts”. This means that the Deeper Add-In can run custom scripts inside the iframe.</p>
-            <p>There are a few differences between a script run in the browser and a script run inside an  iframe. When the user leaves the Map or Trips History page, the content of the iframe is cleared by the browser.</p>
+            <h2>Usage</h2>
+
+            <h3>Iframe Setup</h3>
+            <p>In the MyGeotab portal, Deeper Add-Ins are automatically loaded when the user visits the native MyGeotab page containing the Add-In. For example, the Add-In in Figure 1 loads when the user visits the Map page.</p>
+            
+            <p>Deeper Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the Deeper Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Config File.</p>
+
+            <p>Notes:</p>
             <ul>
+                <li>When the user leaves the page, the content of the iframe is cleared by the browser.</li>
                 <li>When the user returns to the page, the scripts inside the iframe are reloaded.</li>
-                <li>The current Add-In state should be saved in localStorage, IndexedDB, or elsewhere, if necessary.</li>
+                <li>If necessary, the current Add-In state can be saved in Local Storage, IndexedDB, or elsewhere.</li>
             </ul>
-            <p class="important">Don't access any elements or API in main window because they can be changed in future. To make sure that your add-ins won't be broken in later versions of MyGeotab all communications with main window should be made with documented services.</p>
-            <p>The maximum width of the Deeper Add-In panel is 450 px. The height is responsive to fill the height of the iframe that the panel exists within. The width may become smaller for mobile devices.</p>
-            <p>The following screenshots display how the panel size changes between a laptop screen and a mobile phone screen.</p>
-            <figure>
-                <img src="../map-add-ins-docs-2.jpg" alt="Example of how map add-ins look like on laptop screen size">
-                <figcaption>Pic 2 - Add-ins on the map page (desktop).</figcaption>
-            </figure>
-            <figure>
-                <img src="../map-add-ins-docs-3.jpg" alt="Example of how map add-ins look like on mobile screen size">
-                <figcaption>Pic 3 - Add-ins on the map page (mobile).</figcaption>
-            </figure>
-            <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
+            
+            <p class="important">Do not access elements or APIs outside the iframe panel; they can be changed without notice in future versions of MyGeotab, which might break your Add-In. Use only the services and methods documented here and on the <a href="https://geotab.github.io/sdk/software/api/reference/">API Reference page</a> when interacting with the page outside the iframe.</p>
+
+
+            <h3>Panel Size</h3>
+            <p>The iframe panel has a fixed width of 450 pixels. The panel width shrinks only to accomodate screens with widths below 600 pixels.</p>
+            
+            <p>The iframe panel height is responsive to always reach the bottom of the page.</p>
+
+            <p>If multiple Deeper Add-Ins are installed, each is accessible as a separate tab at the top of the panel.</p>
+
+            <!-- <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
             <p>The screenshot below displays the tabs for different Deeper Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
             <figure>
                 <img src="../map-add-ins-docs-4.jpg" alt="Example of how tabs looks like if multiple map add-ins are installed">
                 <figcaption>Pic 4 - Multiple add-ins on the map page.</figcaption>
-            </figure>
+            </figure> -->
 
-            <h2 id="services-list">Deeper Add-In Services</h2>
+            <h2 id="services-list">Services</h2>
             <div class="services-list"><div class="docs-service">
         <div class="docs-service__part">
             <h3 class="docs-service__title">
