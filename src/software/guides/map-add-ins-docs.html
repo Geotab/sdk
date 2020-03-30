@@ -49,7 +49,8 @@ title: Geotab Deeper Add-In Overview
             <p>This document provides the installation process and APIs available to developers aiming to build Deeper Add-Ins.</p>
 
             <h2>Installation</h2>
-            <p>Deeper Add-Ins are installed by uploading Add-In Configuration Files into MyGeotab, just like other Add-Ins. If you are working with Addins for the first time, please read <a href="https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files" target="_blank">this</a> to learn about uploading Add-In Configuration Files to MyGeotab.
+            <p>Deeper Add-Ins are installed by uploading Add-In Configuration Files into MyGeotab. 
+            Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In -> Upload Files and fill Configuration tab. <!-- Replace this with steps on the https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files page -->
                 
             The Configuration File for a Deeper Add-In looks like this:</p>
             <div>
@@ -79,7 +80,7 @@ title: Geotab Deeper Add-In Overview
                     <strong>page</strong> - This defines which page the Add-In will exist within. This could be “map” (Map page) or “tripsHistory” (Trips History page). The default value is “map”.
                 </li>
                 <li>
-                    <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Deeper Add-Ins installed.
+                    <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Deeper Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" paramter.
                 </li>
                 <li>
                     <strong>src</strong> - The JavaScript file reference for this Add-In. This can be an externally hosted file or uploaded into MyGeotab by dragging and dropping it into the Configuration File window.
@@ -92,30 +93,11 @@ title: Geotab Deeper Add-In Overview
                 </li>
             </ol>
 
-            <p>You can find sample Deeper Add-Ins ready to be installed <a href="https://github.com/Geotab/sdk-map-addin-samples">here</a></p>
-
-            <!--
-            <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to “window.geotab.addin”. For example:</p>
-            <div class="highlights">
-<pre>
-    <code class="language-js" data-lang="js">
-geotab.addin.request = (elt, service) => {
-    // code for Deeper Add-In
-}
-    </code>
-</pre>
-            </div>
-            <p>This function has two arguments:</p>
-            <ol>
-                <li>
-                    <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the Add-In. Nothing will be removed or changed.
-                </li>
-                <li>
-                    <strong><a href="#services-list">services</a></strong> - JavaScript file reference for this Add-In. In the example above, the JS file was dropped into MyGeotab, but an external reference is possible and recommended.
-                </li>
-            </ol>  -->
+            <p>You can find sample Deeper Add-Ins ready to be installed <a href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
 
             <h2>Usage</h2>
+
+            <p>In order to use the Deeper Add-ins, it is necessary to enable Feature Preview. In the MyGeotab portal, click on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save Changes</p>
 
             <h3>Iframe Setup</h3>
             <p>In the MyGeotab portal, Deeper Add-Ins are automatically loaded when the user visits the native MyGeotab page containing the Add-In. For example, the Add-In in Figure 1 loads when the user visits the Map page.</p>
@@ -139,7 +121,29 @@ geotab.addin.request = (elt, service) => {
 
             <p>If multiple Deeper Add-Ins are installed, each is accessible as a separate tab at the top of the panel.</p>
 
-            <!-- <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
+
+            <h3>Structure</h3>
+            <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to “window.geotab.addin”. For example:</p>
+            <div class="highlights">
+<pre>
+    <code class="language-js" data-lang="js">
+geotab.addin.request = (elt, service) => {
+    // code for Deeper Add-In
+}
+    </code>
+</pre>
+            </div>
+            <p>This function has two arguments:</p>
+            <ol>
+                <li>
+                    <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the Add-In. Nothing will be removed or changed.
+                </li>
+                <li>
+                    <strong><a href="#services-list">services</a></strong> - JavaScript file reference for this Add-In.
+                </li>
+            </ol> 
+<!--
+           <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
             <p>The screenshot below displays the tabs for different Deeper Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
             <figure>
                 <img src="../map-add-ins-docs-4.jpg" alt="Example of how tabs looks like if multiple map add-ins are installed">
@@ -152,35 +156,56 @@ geotab.addin.request = (elt, service) => {
             <h3 class="docs-service__title">
                 <span class="docs-service__name">page</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page" target="_blank">Example</a>)
             </h3>
-            <p>Service for getting/setting page state and moving between MyGeotab page</p>
-            <h4>Methods</h4>
+            <p>Service for getting/setting page state and moving between MyGeotab pages.</p>
+            <h4>Methods</h4> <!-- need to change this section to be like the MyGeotab Reference page methods-->
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
-            <td>set (key: string, value: string): Promise&lt;boolean&gt;</td>
-            <td>Sets new key/value pair to page state</td>
+            <td>set (key, value): Promise&lt;boolean&gt; <!-- remove these Promises and put them under Variable Types-->
+                Variable types:
+                key : string
+                value : string
+            </td>
+            <td>Adds a new key-value pair to the Page State object, or updates an existing pair with the same key.</td>
         </tr><tr>
             <td>get (): Promise&lt;object&gt;</td>
-            <td>Gets page state</td>
+            <td>Gets the current Page State.</td>
         </tr><tr>
-            <td>go (page: string, state?: object): Promise&lt;boolean&gt;</td>
-            <td>Changes current page</td>
+            <td>go (page, state): Promise&lt;boolean&gt;
+                Variable types:
+                page: string
+                state: object
+            </td>
+            <td>Changes the page. The valid "page" values are found in the URL of the destination page. For example, the Vehicles page URL format is "my.geotab.com/MyDatabaseName/#devices". "devices" is the required value to go to the Vehicles page. The "state" key-value object is applied to the destination page.</td>
         </tr><tr>
-            <td>hasAccessToPage (page: string): Promise&lt;boolean&gt;</td>
-            <td>Checks whether current user has access to MyGeotab page</td>
+            <td>hasAccessToPage (page): Promise&lt;boolean&gt;
+                Variable types:
+                page: string
+            </td>
+            <td>Checks if the active user has access to that page.</td>
         </tr><tr>
             <td>getFilterState (): Promise&lt;<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]&gt;</td>
-            <td>Gets current company filter state</td>
+            <td>Gets the current <a href="https://docs.google.com/document/d/14GNbMq_ZKSUpkmSdJ8ws-DyO4P_HmTYOIu3k52f7KKY/edit#heading=h.jsoq92404xyh">Company Filter</a> state.</td>
         </tr><tr>
-            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
-            <td>Attaches event handler to service</td>
+            <td>attach (eventName, eventHandler): void
+                Variable types:
+                eventName: string
+                eventHandler: function(serviceData){}
+                serviceData : any type
+            </td>
+            <td>Attaches the event handler to the service.</td>
         </tr><tr>
-            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
-            <td>Detaches event handler to service</td>
+            <td>detach (eventName, eventHandler): void
+                Variable types:
+                eventName: string
+                eventHandler: function(serviceData){}
+                serviceData : any type
+            </td>
+            <td>Detaches the event handler from the service.</td>
         </tr>
             </tbody>
         </table>
@@ -195,32 +220,32 @@ geotab.addin.request = (elt, service) => {
                 <tr>
             <td>active</td>
             <td>boolean</td>
-            <td>Current map add-in state. It's true if current add-in is focused</td>
+            <td>True if the add-in is focused, False otherwise.</td>
         </tr>
             </tbody>
         </table>
             <h4>Events</h4>
         <table>
             <thead>
-                <th>Event name</th>
-                <th>Event object</th>
+                <th>Name</th>
+                <th>Object</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
             <td>focus</td>
             <td>Empty object</td>
-            <td>Event is fired when user focuses on current map add-in</td>
+            <td>Fired when the user focuses on the Add-In.</td>
         </tr><tr>
             <td>blur</td>
             <td>Empty object</td>
-            <td>Event is fired when user focuses on another map add-in</td>
+            <td>Fired when the user focuses on a differ Deeper Add-In.</td>
         </tr><tr>
             <td>stateChange</td>
             <td><div>
-            state: (object) - Updated page state
+            state: {object containing updated page state}
         </div></td>
-            <td>Event is fired when the state of the page is changed</td>
+            <td>Fired when the page state is changed.</td>
         </tr><tr>
             <td>filterChange</td>
             <td><div>
@@ -256,23 +281,34 @@ geotab.addin.request = (elt, service) => {
             <h3 class="docs-service__title">
                 <span class="docs-service__name">localStorage</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage" target="_blank">Example</a>)
             </h3>
-            <p>Service to request information stored in browser LocalStorage</p>
+            <p>Service to store and retrieve data from the browsers LocalStorage.</p>
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
-            <td>set (key: string, value: string): Promise&lt;boolean&gt;</td>
-            <td>Sets key-value pairs to browser localStorage with key</td>
+            <td>set (key, value): Promise&lt;boolean&gt;
+                Variable types:
+                key: string
+                value: string
+            </td>
+            <td>Sets the key-value pair to browser localStorage.</td>
         </tr><tr>
-            <td>remove (key: string): Promise&lt;boolean&gt;</td>
-            <td>Removes value from browser localStorage by key</td>
+            <td>remove (key: string): Promise&lt;boolean&gt;
+                Variable types:
+                key: string
+                value: string
+            </td>
+            <td>Removes the key-value pair from browser localStorage. Identifies the pair by key.</td>
         </tr><tr>
-            <td>get (key: string): Promise&lt;string&gt;</td>
-            <td>Gets value from browser localStorage by key</td>
+            <td>get (key): Promise&lt;string&gt;
+                Variable types:
+                key: string
+            </td>
+            <td>Gets the paired value from browser localStorage. Identifies the pair by key.</td>
         </tr>
             </tbody>
         </table>
@@ -284,25 +320,32 @@ geotab.addin.request = (elt, service) => {
     </div><div class="docs-service">
         <div class="docs-service__part">
             <h3 class="docs-service__title">
-                <span class="docs-service__name">api</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request" target="_blank">Example</a>)
+                <span class="docs-service__name">API</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request" target="_blank">Example</a>)
             </h3>
-            <p>Service for requesting data from Geotab server</p>
+            <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API calls</a>.</p>
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
-            <td>call (method: string, params: object): Promise&lt;any[]&gt;</td>
-            <td>Sends single request to Geotab server</td>
+            <td>call (method, parameters): Promise&lt;any[]&gt;
+                Variable types:
+                method: string
+                parameters: object containing call parameters
+            </td>
+            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on the <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK Reference</a> page.</td>
         </tr><tr>
-            <td>multiCall (calls: <a href="#TApiCall_5345683199380336">TApiCall</a>[]): Promise&lt;any[][]&gt;</td>
-            <td>Sends multiple requests to Geotab server in one batch</td>
+            <td>multiCall (calls): Promise&lt;any[][]&gt;
+            Variable types:
+            calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
+            </td> <!-- Need this in the example -->
+            <td>Sends multiple requests to Geotab server as one batch. Read the <a href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall" section of the Concepts page</a> for more details on MultiCalls.</td>
         </tr><tr>
-            <td>getSession (): Promise&lt;ISessionInfo&gt;</td>
-            <td>Gets current user session information</td>
+            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
+            <td>When executed in the Deeper Add-In, it gets the active user's database, username, session id (token), and the server path of their database (Examle: my123.geotab.com). This information is used to make API calls against MyGeotab from outside the Deeper Add-In, such as a web application.</td>
         </tr>
             </tbody>
         </table>
@@ -313,29 +356,42 @@ geotab.addin.request = (elt, service) => {
         <div class="docs-service__part"><div class="docs-type">
             <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
             <p>
-                <pre><code class="language-js" data-lang="js">[string, object]</code></pre>
+                <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
             </p>
-            <p>Tuple for calling server methods where first element is method name and second is an object with parameters.</p>
+            <p>Variable types:
+                method : string
+                parameters : object
+            An array containing the API call details to be sent in the MultiCall.</p>
         </div></div>
     </div><div class="docs-service">
         <div class="docs-service__part">
             <h3 class="docs-service__title">
                 <span class="docs-service__name">events</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events" target="_blank">Example</a>)
             </h3>
-            <p>Service for catching events that happens when user interact with different entities on the map</p>
+            <p>Service for catching events that trigger when the user interacts with entities on the map.</p>
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
-            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
-            <td>Attaches event handler to service</td>
+            <td>attach (eventName, eventHandler)
+                Variable types:
+                eventName: string
+                eventHandler : function to run when event is triggered. Example: (serviceData) => void
+                serviceData : any
+            </td>
+            <td>Attaches the event handler to the service.</td>
         </tr><tr>
-            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
-            <td>Detaches event handler to service</td>
+            <td>detach (eventName, eventHandler)
+                Variable types:
+                eventName: string
+                eventHandler : function to run when event is triggered. Example: (serviceData) => void
+                serviceData : any
+            </td>
+            <td>Detaches the event handler from the service.</td>
         </tr>
             </tbody>
         </table>
@@ -343,42 +399,42 @@ geotab.addin.request = (elt, service) => {
             <h4>Events</h4>
         <table>
             <thead>
-                <th>Event name</th>
-                <th>Event object</th>
+                <th>Name</th>
+                <th>Object</th>
                 <th>Description</th>
             </thead>
             <tbody>
                 <tr>
             <td>move</td>
             <td><div>
-            data: (<a href="#ICoordinate_9360730390494372">ICoordinate</a>) - Position of the pointer on the map
+            data : <a href="#ICoordinate_9360730390494372">ICoordinate</a>
         </div></td>
-            <td>Event is fired when user moves pointer over the map</td>
+            <td>Fired when the user moves their pointer anywhere over the map. Contains the pointer's position on the map.</td>
         </tr><tr>
             <td>over</td>
             <td><div>
-            data: (<a href="#TEventData_17548217952829526">TEventData</a>) - Main information about entity
+            data: <a href="#TEventData_17548217952829526">TEventData</a>
         </div></td>
-            <td>Event is fired when user moves pointer over an obejct on the map</td>
+            <td>Fired when the user moves their pointer over an object (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
         </tr><tr>
             <td>out</td>
             <td><div>
-            data: (<a href="#TEventData_17548217952829526">TEventData</a>) - Main information about entity
+            data: <a href="#TEventData_17548217952829526">TEventData</a>
         </div></td>
-            <td>Event is fired when user moves pointer out of an obejct on the map</td>
+            <td>Fired when the user moves their pointer out of an object (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
         </tr><tr>
             <td>click</td>
             <td><div>
-            data: (<a href="#TEventData_17548217952829526">TEventData</a>) - Main information about entity
+            data: <a href="#TEventData_17548217952829526">TEventData</a>
         </div></td>
-            <td>Event is fired when user clicks on an obejct on the map</td>
+            <td>Fired when the user clicks on an obejct (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
         </tr>
             </tbody>
         </table>
         </div>
         <div class="docs-service__part"><div class="docs-interface">
             <h4 id="IZoneEvent_41586038932589475">Interface IZoneEvent</h4>
-            <p>Event object that is sent to add-in when user interacts with zone</p>
+            <p>The Event object called when the user interacts with a Zone.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -393,14 +449,13 @@ geotab.addin.request = (elt, service) => {
         </tr><tr>
             <td>entity</td>
             <td><a href="#IZoneEventData_44042843256501873">IZoneEventData</a></td>
-            
         </tr>
             </tbody>
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="IZoneEventData_44042843256501873">Interface IZoneEventData</h4>
-            <p>Zone object that is sent to add-in when user interacts with zone</p>
+            <p>The Zone object placed into the IZoneEvent object when the user interacts with a Zone.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -418,7 +473,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="IDeviceEvent_30163573678461186">Interface IDeviceEvent</h4>
-            <p>Event object that is sent to add-in when user interacts with device</p>
+            <p>The Event object called when the user interacts with a Device.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -440,7 +495,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="IDeviceEventData_2923566451586521">Interface IDeviceEventData</h4>
-            <p>Device object that is sent to add-in when user interacts with device</p>
+            <p>The Device object placed into the IDeviceEvent object when the user interacts with a Device.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -458,7 +513,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="IRouteEvent_24176276971063237">Interface IRouteEvent</h4>
-            <p>Event object that is sent to add-in when user interacts with route</p>
+            <p>The Event object called when the user interacts with a Route.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -480,7 +535,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="IRouteEventData_8248259915560439">Interface IRouteEventData</h4>
-            <p>Route object that is sent to add-in when user interacts with route</p>
+            <p>The Route object placed into the IRouteEvent object when the user interacts with a Route.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -498,7 +553,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="ITripEvent_1095796138370515">Interface ITripEvent</h4>
-            <p>Event object that is sent to add-in when user interacts with trip</p>
+            <p>The Event object called when the user interacts with a Trip.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -520,7 +575,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
             <h4 id="ITripEventData_5051625304962382">Interface ITripEventData</h4>
-            <p>Trip object that is sent to add-in when user interacts with trip</p>
+            <p>The Trip object placed into the ITripEvent object when the user interacts with a Trip.</p>
             <table>
             <thead>
                 <th>Property</th>
@@ -531,7 +586,7 @@ geotab.addin.request = (elt, service) => {
                 <tr>
             <td>id</td>
             <td>string</td>
-            <td>Id of the trip</td>
+            <td>Id of the trip.</td>
         </tr><tr>
             <td>device</td>
             <td>{ id: string; }</td>
@@ -635,7 +690,7 @@ geotab.addin.request = (elt, service) => {
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -664,8 +719,8 @@ geotab.addin.request = (elt, service) => {
             <h4>Events</h4>
         <table>
             <thead>
-                <th>Event name</th>
-                <th>Event object</th>
+                <th>Name</th>
+                <th>Object</th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -760,7 +815,7 @@ geotab.addin.request = (elt, service) => {
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -854,7 +909,7 @@ geotab.addin.request = (elt, service) => {
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -880,8 +935,8 @@ geotab.addin.request = (elt, service) => {
             <h4>Events</h4>
         <table>
             <thead>
-                <th>Event name</th>
-                <th>Event object</th>
+                <th>Name</th>
+                <th>Object</th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -1117,7 +1172,7 @@ geotab.addin.request = (elt, service) => {
             <h4>Methods</h4>
         <table>
             <thead>
-                <th>Service methods</th>
+                <th>Name</th>
                 <th>Description</th>
             </thead>
             <tbody>
