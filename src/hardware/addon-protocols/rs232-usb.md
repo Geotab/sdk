@@ -26,14 +26,6 @@ The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rat
 1. The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
 2. USB-CDC (Communications Device Class)
 
-#### Powering a device using the IOX-NFC
-Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
-
-- The IOX-USB can provide 5V/1.5A as a power output. 
-- The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
-
-\* *Note* \- It is possible to detect Go Device Resets by monitoring continuity of the output power voltage.
-
 ## Integration Process
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
@@ -51,11 +43,11 @@ Contact the [Geotab Solutions Engineering team](mailto:soleng@geotab.com) with a
  
 The Solutions Engineering team will respond with follow up questions to define the integration, and assign an External device ID, and any Status Data IDs that would be required. 
 
-An additional resource is the Hardware Integration Toolkit with integration walkthrough. *Linked here*
+An additional resource is the [Hardware Integration Toolkit](https://docs.google.com/presentation/d/1nkmDYw2tscZxKaezFm5sR3jLItI3IRJTS6JIhgg0rFU/edit#slide=id.g625282e7fc_0_0) with integration walkthrough.
 
 #### Using Status Data IDs
 
-There is an extensive defined Status Data ID list which can be found at MyGeotab >  **Engine & Maintenance** > **Engine & Device…** > **Diagnostics**. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
+There is an extensively defined Status Data ID list which can be found at MyGeotab >  **Engine & Maintenance** > **Engine & Device…** > **Diagnostics**. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
 
 | Status Data ID | Description | Multiplier | Offset | Unit |
 | --- | --- | --- | --- | --- |
@@ -80,9 +72,9 @@ The unit refers to the unit of measurement that you wish to see in MyGeotab afte
 
 - The third-party device is sending a distance in 0.1 km increments, such that a value of 1223 represents a distance of 122.3 km. A multiplier of 0.1 should be applied so that the value is properly converted to kilometers on MyGeotab.
 
+<!-- The below note will be added once the Status ID link is available -->
 
-
-*Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here*
+<!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
 
 #### Handshake
 
@@ -168,8 +160,8 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration | 4 | 31 |
-| GO Device ID [5] | 4 | 35 |
-| Driver ID | 4 | 39 |
+| GO Device ID | 4 | 35 |
+| Driver ID [5] | 4 | 39 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
 | Reply: Device Data Ack ([Msg Type 0x84](#msg-type-0x84-device-data-ack)) |   |   |
