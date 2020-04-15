@@ -30,9 +30,6 @@ toc:
             url: /software/guides/developing-addins/
           - page: Geotab Drive Add-Ins
             url: /software/guides/drive-addins/
-          - page: Map Add-ins
-            url: /software/guides/map-add-ins-docs/
-            beta: true
       - title: API
         subfolderitems:
           - page: Reference
@@ -55,6 +52,8 @@ toc:
     folderitems:
       - page: Introduction
         url: /hardware/introduction/
+      - page: Hardware Add-On data types
+        url: /hardware/hardware-add-on-data-types/
     subfolders: 
       - title: Add-on Protocols
         subfolderitems:
@@ -80,7 +79,7 @@ toc:
   - title: Resources
     folderitems:
       - page: Forums
-        url: https://community.geotab.com/s/
+        url: https://helpdesk.geotab.com/hc/en-us/community/topics/200655183-SDK-Forum
         external: true
       - page: Dev Channel
         url: https://www.geotab.com/dev-channel/
