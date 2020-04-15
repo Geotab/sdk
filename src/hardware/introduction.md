@@ -20,7 +20,7 @@ Hardware Add-Ons communicate with the GO device using an IOX corresponding to th
 | IOX-USB | Y | Y | Y | Y | Y |
 | IOX-CAN | Y | Y | N | N | Y |
 | IOX-BT | Y | Y | Y | N | N |
-| IOX-ANAGLOG | N | Y | N | N | N |
+| IOX-ANALOG | N | Y | N | N | N |
 | Custom IOX | Y | Y | Y | Y | Y |
 
 Hardware Add-On data can be sent via any of these IOX and will be be transmitted to the Geotab server in several formats, namely "Status Data", "Custom Data", and "Binary Data". Data in all three formats may be retrieved via [API](../../software/introduction). However, only Status Data can be queried within MyGeotab by navigating to **Engine &amp; Maintenance** > **Engine &amp; Device…** > **Measurements**. Only with Status Data, it is possible to create meaningful reports or leverage the rules engine via MyGeotab.
