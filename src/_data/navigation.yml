@@ -55,6 +55,8 @@ toc:
     folderitems:
       - page: Introduction
         url: /hardware/introduction/
+      - page: Hardware Add-On data types
+        url: /hardware/hardware-add-on-data-types/
     subfolders: 
       - title: Add-on Protocols
         subfolderitems:
