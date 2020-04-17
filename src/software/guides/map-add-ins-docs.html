@@ -40,34 +40,27 @@ title: Geotab Map Add-In Overview
 <div>
     <p> Map Add-ins are embed third-party integrations that exist within the native Map and Trip History pages of
         the MyGeotab portal. A panel will appear on the right-side of the page, containing the UI of
-        the Map Addin. The Add-in may also manipulate the map, allowing data from the integration to be displayed
-        alongside
-        Geotab Go Device data.
+        the Map Add-in. The Add-in may also manipulate the map, allowing data from the integration to be displayed
+        alongside Geotab Go Device data. This document outlines the installation process and APIs available for Map
+        Add-In development.
     </p>
 
-    <p>The
-        current pages compatible with Deeper Add-Ins are:
-        1. Map
-        2. Trips History
-    </p>
-
-    <p>Below is an example of a Deeper Add-In on the Maps page of MyGeotab. When a user clicks a vehicle on the Map,
+    <p>Below is an example of a Map Add-In installed within the Maps page of MyGeotab. When a user clicks a vehicle on
+        the Map,
         this integration displays the relevant data for that vehicle.</p>
     <figure>
         <!-- put an img of Justin's addin -->
         <img src="../map-add-ins-docs-1.PNG"
-            alt="Example of displaying vehicle information on the Maps page with a Deeper Addin.">
-        <figcaption>Figure #1 - Deeper Addin displaying vehicle data.</figcaption>
+            alt="Example of displaying vehicle information on the Maps page with a Map Addin.">
+        <figcaption>Figure #1 - Map Addin displaying vehicle data.</figcaption>
     </figure>
-    <p>This document outlines the installation process and APIs available for Deeper Add-In development.</p>
 
     <h2>Installation</h2>
-    <p>Deeper Add-Ins are installed by uploading an Add-In Configuration File into MyGeotab.
+    <p>Map Add-Ins are installed by uploading an Add-In Configuration File into MyGeotab.
         Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In. When the Add-in window opens,
         upload your files and fill in the Configuration tab.
         <!-- Replace this with steps on the https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files page -->
-
-        The Configuration File for a Deeper Add-In looks like this:</p>
+        The following is an example of a Map Add-in Configuration File:</p>
     <div>
         <pre class="code-example">
     <code class="language-json" data-lang="json">
@@ -96,7 +89,7 @@ title: Geotab Map Add-In Overview
             or “tripsHistory” (Trips History page). The default value is “map”.
         </li>
         <li>
-            <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Deeper
+            <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Map
             Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" paramter.
         </li>
         <li>
@@ -112,27 +105,27 @@ title: Geotab Map Add-In Overview
             using this option. Links to CSS and JavaScript files can be made within this HTML file. All content within
             the
 
-            <body> tags will be added to the Deeper Add-in UI. (<a
+            <body> tags will be added to the Map Add-in UI. (<a
                     href="https://github.com/Geotab/sdk-map-addin-samples/blob/master/html/addin.html"
                     target="_blank">Example</a>)
         </li>
     </ol>
 
-    <p>You can find sample Deeper Add-Ins ready to be installed <a
+    <p>You can find sample Map Add-Ins ready to be installed <a
             href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
 
     <h2>Usage</h2>
 
-    <p>In order to use the Deeper Add-ins, it is necessary to enable Feature Preview. In the MyGeotab portal, click on
-        Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save
+    <p>In order to view installed Map Add-ins, it is necessary to enable Feature Preview. In the MyGeotab portal, click
+        on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save
         Changes</p>
 
     <h3>Iframe Setup</h3>
-    <p>In the MyGeotab portal, Deeper Add-Ins are automatically loaded when the user visits the native MyGeotab page
+    <p>In the MyGeotab portal, Map Add-Ins are automatically loaded when the user visits the native MyGeotab page
         containing the Add-In. For example, the Add-In in Figure 1 loads when the user visits the Map page.</p>
 
-    <p>Deeper Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the
-        Deeper Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Config File.</p>
+    <p>Map Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the
+        Map Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Config File.</p>
 
     <p>Notes:</p>
     <ul>
@@ -144,7 +137,7 @@ title: Geotab Map Add-In Overview
     <p class="important">Do not access elements or APIs outside the iframe panel; they can be changed without notice in
         future versions of MyGeotab, which might break your Add-In. Use only the services and methods documented here
         and on the <a href="https://geotab.github.io/sdk/software/api/reference/">API Reference page</a> when
-        interacting with the page outside the iframe.</p>
+        interacting with a page outside the iframe.</p>
 
 
     <h3>Panel Size</h3>
@@ -153,17 +146,22 @@ title: Geotab Map Add-In Overview
 
     <p>The iframe panel height is responsive to always reach the bottom of the page.</p>
 
-    <p>If multiple Deeper Add-Ins are installed, each is accessible as a separate tab at the top of the panel.</p>
-
+    <p>If multiple Map Add-Ins are installed, each is accessible by selecting a tab at the top
+        of the panel. Three add-ins exist on the panel in Figure #2, denoted by the three tabs titled: Live Trip
+        History, Tooltip and Vehicle Info. </p>
+    <figure>
+        <img src="../map-add-ins-docs-4.jpg" alt="Example of multiple add-ins on the map.">
+        <figcaption>Figure #2 - Multiple Add-Ins on the map page.</figcaption>
+    </figure>
 
     <h3>Structure</h3>
-    <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to
+    <p>The starting point for the Map Add-In JS script will be the function that is added as a method to
         “window.geotab.addin”. For example:</p>
     <div class="highlights">
         <pre>
     <code class="language-js" data-lang="js">
 geotab.addin.request = (elt, service) => {
-    // code for Deeper Add-In
+    // code for Map Add-In
 }
     </code>
 </pre>
@@ -171,7 +169,8 @@ geotab.addin.request = (elt, service) => {
     <p>This function has two arguments:</p>
     <ol>
         <li>
-            <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the Add-In.
+            <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the
+            Add-In.
             Nothing will be removed or changed.
         </li>
         <li>
@@ -179,8 +178,8 @@ geotab.addin.request = (elt, service) => {
         </li>
     </ol>
     <!--
-           <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
-            <p>The screenshot below displays the tabs for different Deeper Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
+           <p>Each Map Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
+            <p>The screenshot below displays the tabs for different Map Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
             <figure>
                 <img src="../map-add-ins-docs-4.jpg" alt="Example of how tabs looks like if multiple map add-ins are installed">
                 <figcaption>Pic 4 - Multiple add-ins on the map page.</figcaption>
@@ -210,7 +209,8 @@ geotab.addin.request = (elt, service) => {
                                 key : string
                                 value : string
                             </td>
-                            <td>Adds a new key-value pair to the Page State object, or updates an existing pair with the
+                            <td>Adds a new key-value pair to the Page State object, or updates an existing pair with
+                                the
                                 same key.</td>
                         </tr>
                         <tr>
@@ -223,9 +223,12 @@ geotab.addin.request = (elt, service) => {
                                 page: string
                                 state: object
                             </td>
-                            <td>Changes the page. The valid "page" values are found in the URL of the destination page.
-                                For example, the Vehicles page URL format is "my.geotab.com/MyDatabaseName/#devices".
-                                "devices" is the required value to go to the Vehicles page. The "state" key-value object
+                            <td>Changes the page. The valid "page" values are found in the URL of the destination
+                                page.
+                                For example, the Vehicles page URL format is
+                                "my.geotab.com/MyDatabaseName/#devices".
+                                "devices" is the required value to go to the Vehicles page. The "state" key-value
+                                object
                                 is applied to the destination page.</td>
                         </tr>
                         <tr>
@@ -293,7 +296,7 @@ geotab.addin.request = (elt, service) => {
                         <tr>
                             <td>blur</td>
                             <td>Empty object</td>
-                            <td>Fired when the user focuses on a differ Deeper Add-In.</td>
+                            <td>Fired when the user focuses on a differ Map Add-In.</td>
                         </tr>
                         <tr>
                             <td>stateChange</td>
@@ -308,7 +311,8 @@ geotab.addin.request = (elt, service) => {
                             <td>filterChange</td>
                             <td>
                                 <div>
-                                    groups: (<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]) - Updated
+                                    groups: (<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]) -
+                                    Updated
                                     array of filter groups
                                 </div>
                             </td>
@@ -369,7 +373,8 @@ geotab.addin.request = (elt, service) => {
                                 key: string
                                 value: string
                             </td>
-                            <td>Removes the key-value pair from browser localStorage. Identifies the pair by key.</td>
+                            <td>Removes the key-value pair from browser localStorage. Identifies the pair by key.
+                            </td>
                         </tr>
                         <tr>
                             <td>get (key): Promise&lt;string&gt;
@@ -408,7 +413,8 @@ geotab.addin.request = (elt, service) => {
                                 method: string
                                 parameters: object containing call parameters
                             </td>
-                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on the
+                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on
+                                the
                                 <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK
                                     Reference</a> page.</td>
                         </tr>
@@ -423,9 +429,10 @@ geotab.addin.request = (elt, service) => {
                         </tr>
                         <tr>
                             <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
-                            <td>When executed in the Deeper Add-In, it gets the active user's database, username,
-                                session id (token), and the server path of their database (Examle: my123.geotab.com).
-                                This information is used to make API calls against MyGeotab from outside the Deeper
+                            <td>When executed in the Map Add-In, it gets the active user's database, username,
+                                session id (token), and the server path of their database (Examle:
+                                my123.geotab.com).
+                                This information is used to make API calls against MyGeotab from outside the Map
                                 Add-In, such as a web application.</td>
                         </tr>
                     </tbody>
@@ -466,7 +473,8 @@ geotab.addin.request = (elt, service) => {
                             <td>attach (eventName, eventHandler)
                                 Variable types:
                                 eventName: string
-                                eventHandler : function to run when event is triggered. Example: (serviceData) => void
+                                eventHandler : function to run when event is triggered. Example: (serviceData) =>
+                                void
                                 serviceData : any
                             </td>
                             <td>Attaches the event handler to the service.</td>
@@ -475,7 +483,8 @@ geotab.addin.request = (elt, service) => {
                             <td>detach (eventName, eventHandler)
                                 Variable types:
                                 eventName: string
-                                eventHandler : function to run when event is triggered. Example: (serviceData) => void
+                                eventHandler : function to run when event is triggered. Example: (serviceData) =>
+                                void
                                 serviceData : any
                             </td>
                             <td>Detaches the event handler from the service.</td>
@@ -498,7 +507,8 @@ geotab.addin.request = (elt, service) => {
                                     data : <a href="#ICoordinate_9360730390494372">ICoordinate</a>
                                 </div>
                             </td>
-                            <td>Fired when the user moves their pointer anywhere over the map. Contains the pointer's
+                            <td>Fired when the user moves their pointer anywhere over the map. Contains the
+                                pointer's
                                 position on the map.</td>
                         </tr>
                         <tr>
@@ -508,7 +518,8 @@ geotab.addin.request = (elt, service) => {
                                     data: <a href="#TEventData_17548217952829526">TEventData</a>
                                 </div>
                             </td>
-                            <td>Fired when the user moves their pointer over an object (device, zone, route, etc.) on
+                            <td>Fired when the user moves their pointer over an object (device, zone, route, etc.)
+                                on
                                 the map. Contains various data points about the entity.</td>
                         </tr>
                         <tr>
@@ -518,7 +529,8 @@ geotab.addin.request = (elt, service) => {
                                     data: <a href="#TEventData_17548217952829526">TEventData</a>
                                 </div>
                             </td>
-                            <td>Fired when the user moves their pointer out of an object (device, zone, route, etc.) on
+                            <td>Fired when the user moves their pointer out of an object (device, zone, route, etc.)
+                                on
                                 the map. Contains various data points about the entity.</td>
                         </tr>
                         <tr>
@@ -528,7 +540,8 @@ geotab.addin.request = (elt, service) => {
                                     data: <a href="#TEventData_17548217952829526">TEventData</a>
                                 </div>
                             </td>
-                            <td>Fired when the user clicks on an obejct (device, zone, route, etc.) on the map. Contains
+                            <td>Fired when the user clicks on an obejct (device, zone, route, etc.) on the map.
+                                Contains
                                 various data points about the entity.</td>
                         </tr>
                     </tbody>
@@ -609,7 +622,8 @@ geotab.addin.request = (elt, service) => {
             <div class="docs-service__part">
                 <div class="docs-interface">
                     <h4 id="IDeviceEventData_2923566451586521">Interface IDeviceEventData</h4>
-                    <p>The Device object placed into the IDeviceEvent object when the user interacts with a Device.</p>
+                    <p>The Device object placed into the IDeviceEvent object when the user interacts with a Device.
+                    </p>
                     <table>
                         <thead>
                             <th>Property</th>
@@ -760,7 +774,8 @@ geotab.addin.request = (elt, service) => {
             <div class="docs-service__part">
                 <div class="docs-interface">
                     <h4 id="IExceptionsEventData_7157557693392491">Interface IExceptionsEventData</h4>
-                    <p>Exceptions object that is sent to add-in when user interacts with exception icon on the map</p>
+                    <p>Exceptions object that is sent to add-in when user interacts with exception icon on the map
+                    </p>
                     <table>
                         <thead>
                             <th>Property</th>
@@ -781,7 +796,8 @@ geotab.addin.request = (elt, service) => {
             <div class="docs-service__part">
                 <div class="docs-interface">
                     <h4 id="IExceptionEventData_6444035965958528">Interface IExceptionEventData</h4>
-                    <p>Exception object that is sent to add-in when user interacts with exception icon on the map</p>
+                    <p>Exception object that is sent to add-in when user interacts with exception icon on the map
+                    </p>
                     <table>
                         <thead>
                             <th>Property</th>
@@ -825,7 +841,8 @@ geotab.addin.request = (elt, service) => {
                     <p>
                         <pre><code class="language-js" data-lang="js"><a href="#IZoneEvent_41586038932589475">IZoneEvent</a> | <a href="#IDeviceEvent_30163573678461186">IDeviceEvent</a> | <a href="#IRouteEvent_24176276971063237">IRouteEvent</a> | <a href="#ITripEvent_1095796138370515">ITripEvent</a> | <a href="#IExceptionsEvent_03095104080644484">IExceptionsEvent</a></code></pre>
                     </p>
-                    <p>Event object that is sent to add-in when user interacts with different types of entitis on the
+                    <p>Event object that is sent to add-in when user interacts with different types of entitis on
+                        the
                         map</p>
                 </div>
             </div>
@@ -1071,7 +1088,8 @@ geotab.addin.request = (elt, service) => {
                             <tr>
                                 <td>url</td>
                                 <td>string</td>
-                                <td>Either link to external image or serialized base64 image or stringified SVG image
+                                <td>Either link to external image or serialized base64 image or stringified SVG
+                                    image
                                 </td>
                             </tr>
                             <tr>
@@ -1114,18 +1132,20 @@ geotab.addin.request = (elt, service) => {
                     <tbody>
                         <tr>
                             <td>show (position: <a href="#TPosition_7366708519730412">TPosition</a>, title: string,
-                                items: <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]): void</td>
+                                items: <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]): void
+                            </td>
                             <td>Shows custom action menu on certain position</td>
                         </tr>
                         <tr>
-                            <td>attachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler: <a
-                                    href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
-                            <td>Subscribes on event when one of the MyGeotab map menus is shown to add new action button
+                            <td>attachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler:
+                                <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
+                            <td>Subscribes on event when one of the MyGeotab map menus is shown to add new action
+                                button
                             </td>
                         </tr>
                         <tr>
-                            <td>detachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler?: <a
-                                    href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
+                            <td>detachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>,
+                                handler?: <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
                             <td>Unsubscribes on event when one of the MyGeotab map menus is shown</td>
                         </tr>
                         <tr>
@@ -1154,7 +1174,8 @@ geotab.addin.request = (elt, service) => {
                                     data: (object) - Data from `IAddinActionItem.data` for the current button
                                 </div>
                             </td>
-                            <td>Event is fired when user clicks on custom button in action list. Event name is defined
+                            <td>Event is fired when user clicks on custom button in action list. Event name is
+                                defined
                                 by "clickEvent" property in custom button object.</td>
                         </tr>
                     </tbody>
@@ -1184,7 +1205,8 @@ geotab.addin.request = (elt, service) => {
                             <tr>
                                 <td>url</td>
                                 <td>string</td>
-                                <td>URL to external page. If this property is used than button will be an anchor element
+                                <td>URL to external page. If this property is used than button will be an anchor
+                                    element
                                 </td>
                             </tr>
                             <tr>
@@ -1200,7 +1222,8 @@ geotab.addin.request = (elt, service) => {
                             <tr>
                                 <td>data</td>
                                 <td>object</td>
-                                <td>Custom data that will be send with `clickEvent` when user clicks on this button</td>
+                                <td>Custom data that will be send with `clickEvent` when user clicks on this button
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -1458,7 +1481,8 @@ geotab.addin.request = (elt, service) => {
                             <td>Draws SVG circle element on the map</td>
                         </tr>
                         <tr>
-                            <td>text (coords: <a href="#TPosition_7366708519730412">TPosition</a>, text: string, zIndex:
+                            <td>text (coords: <a href="#TPosition_7366708519730412">TPosition</a>, text: string,
+                                zIndex:
                                 number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
                             <td>Draws SVG text element on the map</td>
                         </tr>
@@ -1531,14 +1555,16 @@ geotab.addin.request = (elt, service) => {
                             </tr>
                             <tr>
                                 <td>attach (event: <a
-                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>, handler:
+                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>,
+                                    handler:
                                     (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a
                                         href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
                                 <td>Attaches event handler to current element event</td>
                             </tr>
                             <tr>
                                 <td>detach (event: <a
-                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>, handler?:
+                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>,
+                                    handler?:
                                     (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a
                                         href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
                                 <td>Detaches event handler from current element event</td>
@@ -1692,8 +1718,10 @@ geotab.addin.request = (elt, service) => {
 
     <h2>Sample Add-Ins</h2>
     <p><a href="https://github.com/Geotab/sdk-map-addin-samples" target="_blank">Here are some examples</a> and <a
-            href="https://github.com/Geotab/map-addins-definitions/" target="_blank">types definition file</a> that can
+            href="https://github.com/Geotab/map-addins-definitions/" target="_blank">types definition file</a> that
+        can
         help developers understand how to work with the new Add-Ins. Please download them, extract the files, then
-        follow the instructions in the ReadMe document. Remember to have Feature Preview enabled in your MyGeotab User
-        Options so you can see the Deeper Add-ins.</p>
+        follow the instructions in the ReadMe document. Remember to have Feature Preview enabled in your MyGeotab
+        User
+        Options so you can see the Map Add-ins.</p>
 </div>
