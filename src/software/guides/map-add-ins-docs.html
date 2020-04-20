@@ -188,56 +188,80 @@ geotab.addin.request = (elt, service) => {
                         href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request"
                         target="_blank">Example</a>)
                 </h3>
-                <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API
-                        calls</a>.</p>
+                <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API calls</a>.</p>
                 <h4>Methods</h4>
+                <h5>service.api.call(...)</h5>
+                <p>Sends an API call to the MyGeotab server, using the <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab SDK</a>. A Promise (.then()) is used to capture the results and work with them, as shown in the example above.</p>
+                <h6>Parameters:</h6>
                 <table>
                     <thead>
                         <th>Name</th>
-                        <th>Description</th>
+                        <th>Variable Type</th>
+                        <th>Details</th>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>call (method, parameters): Promise&lt;any[]&gt;
-                                Variable types:
-                                method: string
-                                parameters: object containing call parameters
-                            </td>
-                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on
-                                the
-                                <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK
-                                    Reference</a> page.</td>
+                            <td>method*</td>
+                            <td>string</td>
+                            <td>Contains the method name of the API call being made. Eg. "Get", "Add", "GetFeed", "Remove"</td>
                         </tr>
                         <tr>
-                            <td>multiCall (calls): Promise&lt;any[][]&gt;
-                                Variable types:
-                                calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
-                            </td> <!-- Need this in the example -->
-                            <td>Sends multiple requests to Geotab server as one batch. Read the <a
-                                    href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall"
-                                    section of the Concepts page</a> for more details on MultiCalls.</td>
-                        </tr>
-                        <tr>
-                            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
-                            <td>When executed in the Map Add-In, it gets the active user's database, username,
-                                session id (token), and the server path of their database (Examle:
-                                my123.geotab.com).
-                                This information is used to make API calls against MyGeotab from outside the Map
-                                Add-In, such as a web application.</td>
+                            <td>parameters*</td>
+                            <td>object</td>
+                            <td>The parameters of the API call being made, as listed under the corresponding API call on the <a href="https://geotab.github.io/sdk/software/api/reference">SDK Reference Page</a></td>
                         </tr>
                     </tbody>
                 </table>
+                
+                <h5>service.api.multiCall(...)</h5>
+                <p>Bundles multiple MyGeotab API calls into a single request, and sends it to the MyGeotab server. A Promise (.then()) is used to capture the results and work with them. Read the <a href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall" documentation</a> for more details on MultiCalls.</p>
+                <h6>Parameters:</h6>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Variable Type</th>
+                        <th>Details</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>calls*</td>
+                            <td>array containing  <a href="#TApiCall_5345683199380336">TApiCall</a> arrays</td>
+                            <td>Each TApiCall array contains the details for a single API call.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h5>service.api.getSession(...)</h5>
+                <p>When executed within the Map Add-In, it retrieves the active user's database name, username, session id (token), and the server path of their database (Example: my123.geotab.com). This information is used to authenticate the user into external applications, similar to Single Sign On (SSO).</p>
+                <h6>Parameters:</h6>
+                <h6>None</h6>
             </div>
             <div class="docs-service__part">
                 <div class="docs-type">
                     <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
                     <p>
                         <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
+                        The format of an array placed into a MultiCall.
                     </p>
-                    <p>Variable types:
-                        method : string
-                        parameters : object
-                        An array containing the API call details to be sent in the MultiCall.</p>
+                    <table>
+                        <thead>
+                            <th>Name</th>
+                            <th>Variable Type</th>
+                            <th>Details</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>method</td>
+                                <td>string</td>
+                                <td>Contains the method name of the API call being made. Eg. "Get", "Add", "GetFeed", "Remove"</td>
+                            </tr>
+                            <tr>
+                                <td>parameters</td>
+                                <td>object</td>
+                                <td>The parameters of the API call being made, as listed under the corresponding API call on the <a href="https://geotab.github.io/sdk/software/api/reference">SDK Reference Page</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
