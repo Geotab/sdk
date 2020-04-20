@@ -1,60 +1,68 @@
---- 
+---
 layout: pageNoEdit
 permalink: /software/guides/map-add-ins-docs/
-title: Geotab Deeper Add-In Overview
+title: Geotab Map Add-In Overview
 ---
-    
-<style>.docs-service {
-    margin: 1rem 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: rgb(255, 255, 255);
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-}
 
-.docs-service__part {
-    flex: 1 1 auto;
-    padding: 1.25rem;
-    border-top: 1px solid rgba(0,0,0,.125);
-}
+<style>
+    .docs-service {
+        margin: 1rem 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: rgb(255, 255, 255);
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
 
-.docs-service__title {
-    margin-bottom: .5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
-}
+    .docs-service__part {
+        flex: 1 1 auto;
+        padding: 1.25rem;
+        border-top: 1px solid rgba(0, 0, 0, .125);
+    }
 
-.docs-service__part:first-child {
-    border-top: none;
-}</style>
-        <div>
-            <p>While most Addins exist as separate pages of MyGeotab, Deeper Add-Ins can be installed into the native pages of the MyGeotab portal. A panel will appear on the right-side of the page, containing the UI of the Deeper Addin. Deeper Addins are unique because they can interact with the native MyGeotab pages in new ways.
+    .docs-service__title {
+        margin-bottom: .5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+    }
 
-            The current pages compatible with Deeper Add-Ins are:
-            1. Map
-            2. Trips History   
-            </p>
-            <p>Below is an example of a Deeper Add-In on the Maps page of MyGeotab. When a user clicks on a vehicle on the Map, this add-in displays relevant vehicle data in its panel.</p>
-            <figure> <!-- put an img of Justin's addin -->
-                <img src="../map-add-ins-docs-1.PNG" alt="Example of displaying vehicle information on the Maps page with a Deeper Addin.">
-                <figcaption>Figure #1 - Deeper Addin displaying vehicle data.</figcaption>
-            </figure>
-            <p>This document provides the installation process and APIs available to developers aiming to build Deeper Add-Ins.</p>
+    .docs-service__part:first-child {
+        border-top: none;
+    }
+</style>
 
-            <h2>Installation</h2>
-            <p>Deeper Add-Ins are installed by uploading Add-In Configuration Files into MyGeotab. 
-            Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In -> Upload Files and fill Configuration tab. <!-- Replace this with steps on the https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files page -->
-                
-            The Configuration File for a Deeper Add-In looks like this:</p>
-            <div>
-<pre class="code-example">
+<div>
+    <p> Map Add-ins are embed third-party integrations that exist within the native Map and Trip History pages of
+        the MyGeotab portal. Once installed, a panel will appear on the right-side of the page, containing the UI of
+        the Map Add-in. These Add-ins can manipulate the map, allowing data from the integration to be displayed
+        alongside Geotab Go Device data. This document outlines the installation process and APIs available for Map
+        Add-In development.
+    </p>
+
+    <p>Below is an example of a Map Add-In installed within the Maps page of MyGeotab. When a user clicks a vehicle on
+        the Map, this integration displays the relevant data for that vehicle.</p>
+    <figure>
+        <!-- put an img of Justin's addin -->
+        <img src="../map-add-ins-docs-1.PNG"
+            alt="Example of displaying vehicle information on the Maps page with a Map Addin.">
+        <figcaption>Figure #1 - Map Addin displaying vehicle data.</figcaption>
+    </figure>
+
+    <h2>Installation</h2>
+    <p>Map Add-Ins are installed by uploading an <a
+            href="https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files">Add-In
+            Configuration File</a> into MyGeotab.
+        Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In, and upload the Add-in
+        Configuration File along with any other dependencies.
+        The following is an example of a Map Add-in Configuration File:</p>
+    <div>
+        <pre class="code-example">
     <code class="language-json" data-lang="json">
 {
     "name": "Tooltip",
@@ -66,1301 +74,1645 @@ title: Geotab Deeper Add-In Overview
         "mapScript": {
             "src": "addin.js",
             "style": "addin.css"
-            "url": "addin.html"
+            "url": "addin.html" 
         }
     }]
 }
     </code>
 </pre>
-            </div>
+    </div>
 
-            <p>The main properties of the configuration file are as follows:</p>
-            <ol>
-                <li>
-                    <strong>page</strong> - This defines which page the Add-In will exist within. This could be “map” (Map page) or “tripsHistory” (Trips History page). The default value is “map”.
-                </li>
-                <li>
-                    <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Deeper Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" paramter.
-                </li>
-                <li>
-                    <strong>src</strong> - The JavaScript file reference for this Add-In. This can be an externally hosted file or uploaded into MyGeotab by dragging and dropping it into the Configuration File window.
-                </li>
-                <li>
-                    <strong>style</strong> - The CSS file reference for this Add-In. This can be externally hosted or uploaded to MyGeotab.
-                </li>
-                <li>
-                    <strong>url</strong> -The HTML file reference for this Add-In. This option can be used instead of src and style. Links to CSS and JavaScript files can be made within this HTML file. All content within the <body> tags will be added to the Deeper Add-in UI. (<a href="https://github.com/Geotab/sdk-map-addin-samples/blob/master/html/addin.html" target="_blank">Example</a>)
-                </li>
-            </ol>
+    <p>The main properties of the configuration file are as follows:</p>
+    <ol>
+        <li>
+            <strong>page</strong> - This defines which page the Add-In will exist within. This could be “map” (Map page)
+            or “tripsHistory” (Trips History page). The default value is “map”.
+        </li>
+        <li>
+            <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Map
+            Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" parameter.
+        </li>
+        <li>
+            <strong>src</strong> - The JavaScript file reference for this Add-In. This can be an externally hosted file
+            or uploaded into MyGeotab by dragging and dropping it into the Configuration File window.
+        </li>
+        <li>
+            <strong>style</strong> - The CSS file reference for this Add-In. This can be externally hosted or uploaded
+            to MyGeotab.
+        </li>
+        <li>
+            <strong>url</strong> -The HTML file reference for this Add-In. It is not necessary to use src and style when
+            using this option. Links to CSS and JavaScript files can be made within this HTML file. All content within
+            the
 
-            <p>You can find sample Deeper Add-Ins ready to be installed <a href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
+            <body> tags will be added to the Map Add-in UI. (<a
+                    href="https://github.com/Geotab/sdk-map-addin-samples/blob/master/html/addin.html"
+                    target="_blank">Example</a>)
+        </li>
+    </ol>
 
-            <h2>Usage</h2>
+    <p>You can find sample Map Add-Ins ready to be installed <a
+            href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
 
-            <p>In order to use the Deeper Add-ins, it is necessary to enable Feature Preview. In the MyGeotab portal, click on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save Changes</p>
+    <h2>Usage</h2>
 
-            <h3>Iframe Setup</h3>
-            <p>In the MyGeotab portal, Deeper Add-Ins are automatically loaded when the user visits the native MyGeotab page containing the Add-In. For example, the Add-In in Figure 1 loads when the user visits the Map page.</p>
-            
-            <p>Deeper Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the Deeper Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Config File.</p>
+    <p>In order to view installed Map Add-ins, it is necessary to enable Feature Preview. In the MyGeotab portal, click
+        on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save
+        Changes</p>
 
-            <p>Notes:</p>
-            <ul>
-                <li>When the user leaves the page, the content of the iframe is cleared by the browser.</li>
-                <li>When the user returns to the page, the scripts inside the iframe are reloaded.</li>
-                <li>If necessary, the current Add-In state can be saved in Local Storage, IndexedDB, or elsewhere.</li>
-            </ul>
-            
-            <p class="important">Do not access elements or APIs outside the iframe panel; they can be changed without notice in future versions of MyGeotab, which might break your Add-In. Use only the services and methods documented here and on the <a href="https://geotab.github.io/sdk/software/api/reference/">API Reference page</a> when interacting with the page outside the iframe.</p>
+    <h4>Iframe Setup</h4>
+    <p>In the MyGeotab portal, Map Add-Ins are automatically loaded when the user visits the native MyGeotab page
+        containing that Add-In. For example, the Add-In in Figure #1 loads when the user visits the Map page.</p>
+
+    <p>Map Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the
+        Map Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Add-in
+        Configuration File.</p>
+
+    <p>Notes:</p>
+    <ul>
+        <li>When the user leaves the page, the content of the iframe is cleared by the browser.</li>
+        <li>When the user returns to the page, the scripts inside the iframe are reloaded.</li>
+        <li>If necessary, the current Add-In state can be saved in Local Storage, IndexedDB, or elsewhere.</li>
+    </ul>
+
+    <p class="important">Do not access elements or APIs outside the iframe panel; they can be changed without notice in
+        future versions of MyGeotab, which might break your Add-In. Use only the services and methods documented here
+        and on the <a href="https://geotab.github.io/sdk/software/api/reference/">API Reference page</a> when
+        interacting with a page outside the iframe.</p>
 
 
-            <h3>Panel Size</h3>
-            <p>The iframe panel has a fixed width of 450 pixels. The panel width shrinks only to accomodate screens with widths below 600 pixels.</p>
-            
-            <p>The iframe panel height is responsive to always reach the bottom of the page.</p>
+    <h4>Panel Size</h4>
+    <p>The iframe panel has a fixed width of 450 pixels. The panel width shrinks only to accomodate screens with widths
+        below 600 pixels.</p>
 
-            <p>If multiple Deeper Add-Ins are installed, each is accessible as a separate tab at the top of the panel.</p>
+    <p>The panel height is responsive, always reaching the bottom of the page.</p>
 
+    <p>If multiple Map Add-Ins are installed, each is accessible by selecting a tab at the top
+        of the panel. Three add-ins exist on the panel in Figure #2, denoted by the three tabs titled: Live Trip
+        History, Tooltip and Vehicle Info. </p>
+    <figure>
+        <img src="../map-add-ins-docs-4.jpg" alt="Example of multiple add-ins on the map.">
+        <figcaption>Figure #2 - Multiple Add-Ins on the map page.</figcaption>
+    </figure>
 
-            <h3>Structure</h3>
-            <p>The starting point for the Deeper Add-In JS script will be the function that is added as a method to “window.geotab.addin”. For example:</p>
-            <div class="highlights">
-<pre>
+    <h3>Structure</h3>
+    <p>The starting point for the Map Add-In JS script is the function that is added as a method to
+        “window.geotab.addin”. For example:</p>
+    <div class="highlights">
+        <pre>
     <code class="language-js" data-lang="js">
 geotab.addin.request = (elt, service) => {
-    // code for Deeper Add-In
+    // code for Map Add-In
 }
     </code>
 </pre>
+    </div>
+    <p>This function has two arguments:</p>
+    <ol>
+        <li>
+            <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the
+            Add-In.
+            Nothing will be removed or changed.
+        </li>
+        <li>
+            <strong><a href="#services-list">service</a></strong> - JavaScript file reference for this Add-In.
+        </li>
+    </ol>
+
+    <h2 id="services-list">Services</h2>
+    <div class="services-list">
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">API</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API
+                        calls</a>.</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>call (method, parameters): Promise&lt;any[]&gt;
+                                Variable types:
+                                method: string
+                                parameters: object containing call parameters
+                            </td>
+                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on
+                                the
+                                <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK
+                                    Reference</a> page.</td>
+                        </tr>
+                        <tr>
+                            <td>multiCall (calls): Promise&lt;any[][]&gt;
+                                Variable types:
+                                calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
+                            </td> <!-- Need this in the example -->
+                            <td>Sends multiple requests to Geotab server as one batch. Read the <a
+                                    href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall"
+                                    section of the Concepts page</a> for more details on MultiCalls.</td>
+                        </tr>
+                        <tr>
+                            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
+                            <td>When executed in the Map Add-In, it gets the active user's database, username,
+                                session id (token), and the server path of their database (Examle:
+                                my123.geotab.com).
+                                This information is used to make API calls against MyGeotab from outside the Map
+                                Add-In, such as a web application.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <p>This function has two arguments:</p>
-            <ol>
-                <li>
-                    <strong>elt</strong> - The HTMLElement for the Add-In. Inside it is everything that belongs to the Add-In. Nothing will be removed or changed.
-                </li>
-                <li>
-                    <strong><a href="#services-list">services</a></strong> - JavaScript file reference for this Add-In.
-                </li>
-            </ol> 
-<!--
-           <p>Each Deeper Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
-            <p>The screenshot below displays the tabs for different Deeper Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
-            <figure>
-                <img src="../map-add-ins-docs-4.jpg" alt="Example of how tabs looks like if multiple map add-ins are installed">
-                <figcaption>Pic 4 - Multiple add-ins on the map page.</figcaption>
-            </figure> -->
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
+                    </p>
+                    <p>Variable types:
+                        method : string
+                        parameters : object
+                        An array containing the API call details to be sent in the MultiCall.</p>
+                </div>
+            </div>
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">page</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for getting/setting page state and moving between MyGeotab pages.</p>
+                <h4>Methods</h4> <!-- need to change this section to be like the MyGeotab Reference page methods-->
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>set (key, value): Promise&lt;boolean&gt;
+                                <!-- remove these Promises and put them under Variable Types-->
+                                Variable types:
+                                key : string
+                                value : string
+                            </td>
+                            <td>Adds a new key-value pair to the Page State object, or updates an existing pair with
+                                the
+                                same key.</td>
+                        </tr>
+                        <tr>
+                            <td>get (): Promise&lt;object&gt;</td>
+                            <td>Gets the current Page State.</td>
+                        </tr>
+                        <tr>
+                            <td>go (page, state): Promise&lt;boolean&gt;
+                                Variable types:
+                                page: string
+                                state: object
+                            </td>
+                            <td>Changes the page. The valid "page" values are found in the URL of the destination
+                                page.
+                                For example, the Vehicles page URL format is
+                                "my.geotab.com/MyDatabaseName/#devices".
+                                "devices" is the required value to go to the Vehicles page. The "state" key-value
+                                object
+                                is applied to the destination page.</td>
+                        </tr>
+                        <tr>
+                            <td>hasAccessToPage (page): Promise&lt;boolean&gt;
+                                Variable types:
+                                page: string
+                            </td>
+                            <td>Checks if the active user has access to that page.</td>
+                        </tr>
+                        <tr>
+                            <td>getFilterState (): Promise&lt;<a
+                                    href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]&gt;</td>
+                            <td>Gets the current <a
+                                    href="https://docs.google.com/document/d/14GNbMq_ZKSUpkmSdJ8ws-DyO4P_HmTYOIu3k52f7KKY/edit#heading=h.jsoq92404xyh">Company
+                                    Filter</a> state.</td>
+                        </tr>
+                        <tr>
+                            <td>attach (eventName, eventHandler): void
+                                Variable types:
+                                eventName: string
+                                eventHandler: function(serviceData){}
+                                serviceData : any type
+                            </td>
+                            <td>Attaches the event handler to the service.</td>
+                        </tr>
+                        <tr>
+                            <td>detach (eventName, eventHandler): void
+                                Variable types:
+                                eventName: string
+                                eventHandler: function(serviceData){}
+                                serviceData : any type
+                            </td>
+                            <td>Detaches the event handler from the service.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Properties</h4>
+                <table>
+                    <thead>
+                        <th>Service property name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>active</td>
+                            <td>boolean</td>
+                            <td>True if the add-in is focused, False otherwise.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Events</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Object</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>focus</td>
+                            <td>Empty object</td>
+                            <td>Fired when the user focuses on the Add-In.</td>
+                        </tr>
+                        <tr>
+                            <td>blur</td>
+                            <td>Empty object</td>
+                            <td>Fired when the user focuses on a differ Map Add-In.</td>
+                        </tr>
+                        <tr>
+                            <td>stateChange</td>
+                            <td>
+                                <div>
+                                    state: {object containing updated page state}
+                                </div>
+                            </td>
+                            <td>Fired when the page state is changed.</td>
+                        </tr>
+                        <tr>
+                            <td>filterChange</td>
+                            <td>
+                                <div>
+                                    groups: (<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]) -
+                                    Updated
+                                    array of filter groups
+                                </div>
+                            </td>
+                            <td>Event is fired when the company filter groups is changed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IGroupFilterId_9098983511349479">Interface IGroupFilterId</h4>
+                    <p>Group id object that is selected by user in company filter</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
 
-            <h2 id="services-list">Services</h2>
-            <div class="services-list"><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">page</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page" target="_blank">Example</a>)
-            </h3>
-            <p>Service for getting/setting page state and moving between MyGeotab pages.</p>
-            <h4>Methods</h4> <!-- need to change this section to be like the MyGeotab Reference page methods-->
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>set (key, value): Promise&lt;boolean&gt; <!-- remove these Promises and put them under Variable Types-->
-                Variable types:
-                key : string
-                value : string
-            </td>
-            <td>Adds a new key-value pair to the Page State object, or updates an existing pair with the same key.</td>
-        </tr><tr>
-            <td>get (): Promise&lt;object&gt;</td>
-            <td>Gets the current Page State.</td>
-        </tr><tr>
-            <td>go (page, state): Promise&lt;boolean&gt;
-                Variable types:
-                page: string
-                state: object
-            </td>
-            <td>Changes the page. The valid "page" values are found in the URL of the destination page. For example, the Vehicles page URL format is "my.geotab.com/MyDatabaseName/#devices". "devices" is the required value to go to the Vehicles page. The "state" key-value object is applied to the destination page.</td>
-        </tr><tr>
-            <td>hasAccessToPage (page): Promise&lt;boolean&gt;
-                Variable types:
-                page: string
-            </td>
-            <td>Checks if the active user has access to that page.</td>
-        </tr><tr>
-            <td>getFilterState (): Promise&lt;<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]&gt;</td>
-            <td>Gets the current <a href="https://docs.google.com/document/d/14GNbMq_ZKSUpkmSdJ8ws-DyO4P_HmTYOIu3k52f7KKY/edit#heading=h.jsoq92404xyh">Company Filter</a> state.</td>
-        </tr><tr>
-            <td>attach (eventName, eventHandler): void
-                Variable types:
-                eventName: string
-                eventHandler: function(serviceData){}
-                serviceData : any type
-            </td>
-            <td>Attaches the event handler to the service.</td>
-        </tr><tr>
-            <td>detach (eventName, eventHandler): void
-                Variable types:
-                eventName: string
-                eventHandler: function(serviceData){}
-                serviceData : any type
-            </td>
-            <td>Detaches the event handler from the service.</td>
-        </tr>
-            </tbody>
-        </table>
-            <h4>Properties</h4>
-        <table>
-            <thead>
-                <th>Service property name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>active</td>
-            <td>boolean</td>
-            <td>True if the add-in is focused, False otherwise.</td>
-        </tr>
-            </tbody>
-        </table>
-            <h4>Events</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Object</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>focus</td>
-            <td>Empty object</td>
-            <td>Fired when the user focuses on the Add-In.</td>
-        </tr><tr>
-            <td>blur</td>
-            <td>Empty object</td>
-            <td>Fired when the user focuses on a differ Deeper Add-In.</td>
-        </tr><tr>
-            <td>stateChange</td>
-            <td><div>
-            state: {object containing updated page state}
-        </div></td>
-            <td>Fired when the page state is changed.</td>
-        </tr><tr>
-            <td>filterChange</td>
-            <td><div>
-            groups: (<a href="#IGroupFilterId_9098983511349479">IGroupFilterId</a>[]) - Updated array of filter groups
-        </div></td>
-            <td>Event is fired when the company filter groups is changed</td>
-        </tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IGroupFilterId_9098983511349479">Interface IGroupFilterId</h4>
-            <p>Group id object that is selected by user in company filter</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>id</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">localStorage</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage" target="_blank">Example</a>)
-            </h3>
-            <p>Service to store and retrieve data from the browsers LocalStorage.</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>set (key, value): Promise&lt;boolean&gt;
-                Variable types:
-                key: string
-                value: string
-            </td>
-            <td>Sets the key-value pair to browser localStorage.</td>
-        </tr><tr>
-            <td>remove (key: string): Promise&lt;boolean&gt;
-                Variable types:
-                key: string
-                value: string
-            </td>
-            <td>Removes the key-value pair from browser localStorage. Identifies the pair by key.</td>
-        </tr><tr>
-            <td>get (key): Promise&lt;string&gt;
-                Variable types:
-                key: string
-            </td>
-            <td>Gets the paired value from browser localStorage. Identifies the pair by key.</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            
-        </div>
-        
-        
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">API</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request" target="_blank">Example</a>)
-            </h3>
-            <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API calls</a>.</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>call (method, parameters): Promise&lt;any[]&gt;
-                Variable types:
-                method: string
-                parameters: object containing call parameters
-            </td>
-            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on the <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK Reference</a> page.</td>
-        </tr><tr>
-            <td>multiCall (calls): Promise&lt;any[][]&gt;
-            Variable types:
-            calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
-            </td> <!-- Need this in the example -->
-            <td>Sends multiple requests to Geotab server as one batch. Read the <a href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall" section of the Concepts page</a> for more details on MultiCalls.</td>
-        </tr><tr>
-            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
-            <td>When executed in the Deeper Add-In, it gets the active user's database, username, session id (token), and the server path of their database (Examle: my123.geotab.com). This information is used to make API calls against MyGeotab from outside the Deeper Add-In, such as a web application.</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            
-        </div>
-        
-        <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
-            </p>
-            <p>Variable types:
-                method : string
-                parameters : object
-            An array containing the API call details to be sent in the MultiCall.</p>
-        </div></div>
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">events</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events" target="_blank">Example</a>)
-            </h3>
-            <p>Service for catching events that trigger when the user interacts with entities on the map.</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>attach (eventName, eventHandler)
-                Variable types:
-                eventName: string
-                eventHandler : function to run when event is triggered. Example: (serviceData) => void
-                serviceData : any
-            </td>
-            <td>Attaches the event handler to the service.</td>
-        </tr><tr>
-            <td>detach (eventName, eventHandler)
-                Variable types:
-                eventName: string
-                eventHandler : function to run when event is triggered. Example: (serviceData) => void
-                serviceData : any
-            </td>
-            <td>Detaches the event handler from the service.</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            <h4>Events</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Object</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>move</td>
-            <td><div>
-            data : <a href="#ICoordinate_9360730390494372">ICoordinate</a>
-        </div></td>
-            <td>Fired when the user moves their pointer anywhere over the map. Contains the pointer's position on the map.</td>
-        </tr><tr>
-            <td>over</td>
-            <td><div>
-            data: <a href="#TEventData_17548217952829526">TEventData</a>
-        </div></td>
-            <td>Fired when the user moves their pointer over an object (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
-        </tr><tr>
-            <td>out</td>
-            <td><div>
-            data: <a href="#TEventData_17548217952829526">TEventData</a>
-        </div></td>
-            <td>Fired when the user moves their pointer out of an object (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
-        </tr><tr>
-            <td>click</td>
-            <td><div>
-            data: <a href="#TEventData_17548217952829526">TEventData</a>
-        </div></td>
-            <td>Fired when the user clicks on an obejct (device, zone, route, etc.) on the map. Contains various data points about the entity.</td>
-        </tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneEvent_41586038932589475">Interface IZoneEvent</h4>
-            <p>The Event object called when the user interacts with a Zone.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>&quot;zone&quot;</td>
-            
-        </tr><tr>
-            <td>entity</td>
-            <td><a href="#IZoneEventData_44042843256501873">IZoneEventData</a></td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneEventData_44042843256501873">Interface IZoneEventData</h4>
-            <p>The Zone object placed into the IZoneEvent object when the user interacts with a Zone.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>id</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceEvent_30163573678461186">Interface IDeviceEvent</h4>
-            <p>The Event object called when the user interacts with a Device.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>&quot;device&quot;</td>
-            
-        </tr><tr>
-            <td>entity</td>
-            <td><a href="#IDeviceEventData_2923566451586521">IDeviceEventData</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceEventData_2923566451586521">Interface IDeviceEventData</h4>
-            <p>The Device object placed into the IDeviceEvent object when the user interacts with a Device.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>id</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteEvent_24176276971063237">Interface IRouteEvent</h4>
-            <p>The Event object called when the user interacts with a Route.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>&quot;route&quot;</td>
-            
-        </tr><tr>
-            <td>entity</td>
-            <td><a href="#IRouteEventData_8248259915560439">IRouteEventData</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteEventData_8248259915560439">Interface IRouteEventData</h4>
-            <p>The Route object placed into the IRouteEvent object when the user interacts with a Route.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>id</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripEvent_1095796138370515">Interface ITripEvent</h4>
-            <p>The Event object called when the user interacts with a Trip.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>&quot;trip&quot;</td>
-            
-        </tr><tr>
-            <td>entity</td>
-            <td><a href="#ITripEventData_5051625304962382">ITripEventData</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripEventData_5051625304962382">Interface ITripEventData</h4>
-            <p>The Trip object placed into the ITripEvent object when the user interacts with a Trip.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>id</td>
-            <td>string</td>
-            <td>Id of the trip.</td>
-        </tr><tr>
-            <td>device</td>
-            <td>{ id: string; }</td>
-            <td>Device id object that drove this trip</td>
-        </tr><tr>
-            <td>dateTime</td>
-            <td>string</td>
-            <td>Date and time of the trip point</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionsEvent_03095104080644484">Interface IExceptionsEvent</h4>
-            <p>Event object that is sent to add-in when user interacts with device exceptions</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>&quot;exceptions&quot;</td>
-            
-        </tr><tr>
-            <td>entity</td>
-            <td><a href="#IExceptionsEventData_7157557693392491">IExceptionsEventData</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionsEventData_7157557693392491">Interface IExceptionsEventData</h4>
-            <p>Exceptions object that is sent to add-in when user interacts with exception icon on the map</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>exceptions</td>
-            <td><a href="#IExceptionEventData_6444035965958528">IExceptionEventData</a>[]</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionEventData_6444035965958528">Interface IExceptionEventData</h4>
-            <p>Exception object that is sent to add-in when user interacts with exception icon on the map</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>to</td>
-            <td>string</td>
-            <td>Date and time when this exception ends</td>
-        </tr><tr>
-            <td>from</td>
-            <td>string</td>
-            <td>Date and time when this exception starts</td>
-        </tr><tr>
-            <td>id</td>
-            <td>string</td>
-            <td>Id of the exception</td>
-        </tr><tr>
-            <td>rule</td>
-            <td>{ id: string; }</td>
-            <td>Rule id object of this exception</td>
-        </tr><tr>
-            <td>device</td>
-            <td>{ id: string; }</td>
-            <td>Device id object where this exception happen</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TEventData_17548217952829526">Type TEventData</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js"><a href="#IZoneEvent_41586038932589475">IZoneEvent</a> | <a href="#IDeviceEvent_30163573678461186">IDeviceEvent</a> | <a href="#IRouteEvent_24176276971063237">IRouteEvent</a> | <a href="#ITripEvent_1095796138370515">ITripEvent</a> | <a href="#IExceptionsEvent_03095104080644484">IExceptionsEvent</a></code></pre>
-            </p>
-            <p>Event object that is sent to add-in when user interacts with different types of entitis on the map</p>
-        </div></div>
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">map</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map" target="_blank">Example</a>)
-            </h3>
-            <p>Service for manipulating viewport of the map and getting updates about changed map viewport</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>setBounds (bounds: <a href="#IMapBounds_023731171390437567">IMapBounds</a>): Promise&lt;boolean&gt;</td>
-            <td>Sets map bounds</td>
-        </tr><tr>
-            <td>getBounds (): Promise&lt;<a href="#IMapBounds_023731171390437567">IMapBounds</a>&gt;</td>
-            <td>Gets current map bounds</td>
-        </tr><tr>
-            <td>setZoom (zoom: number): Promise&lt;boolean&gt;</td>
-            <td>Sets map zoom level</td>
-        </tr><tr>
-            <td>getZoom (): Promise&lt;number&gt;</td>
-            <td>Gets current map zoom level</td>
-        </tr><tr>
-            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
-            <td>Attaches event handler to service</td>
-        </tr><tr>
-            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
-            <td>Detaches event handler to service</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            <h4>Events</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Object</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>change</td>
-            <td>Empty object</td>
-            <td>Event is fired when viewport of map is changed. This event fires each time when use drags or zooms map</td>
-        </tr><tr>
-            <td>changed</td>
-            <td><div>
-            viewport: (<a href="#IChangedViewport_9940525146327717">IChangedViewport</a>) - Current map zoom and bounds
-        </div></td>
-            <td>Event is fired when user finished dragging and zooming map</td>
-        </tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IChangedViewport_9940525146327717">Interface IChangedViewport</h4>
-            <p>Current map viewport</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>zoom</td>
-            <td>number</td>
-            <td>Current map zoom</td>
-        </tr><tr>
-            <td>bounds</td>
-            <td><a href="#IMapBounds_023731171390437567">IMapBounds</a></td>
-            <td>Current map bounds</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapBounds_023731171390437567">Interface IMapBounds</h4>
-            <p>Object that represents a map bounding box.</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>sw</td>
-            <td><a href="#IMapLatLng_8914788191107179">IMapLatLng</a></td>
-            <td>The southwest corner of the bounding box.</td>
-        </tr><tr>
-            <td>ne</td>
-            <td><a href="#IMapLatLng_8914788191107179">IMapLatLng</a></td>
-            <td>The northeast corner of the bounding box.</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapLatLng_8914788191107179">Interface IMapLatLng</h4>
-            <p>An object that represents longitude and latitude</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>lat</td>
-            <td>number</td>
-            <td>Latitude, measured in degrees.</td>
-        </tr><tr>
-            <td>lng</td>
-            <td>number</td>
-            <td>Longitude, measured in degrees.</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">tooltip</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip" target="_blank">Example</a>)
-            </h3>
-            <p>Service for showing additional information in entities tooltip</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>showAt (position: <a href="#TPosition_7366708519730412">TPosition</a>, pattern: <a href="#ITooltip_9063177280037997">ITooltip</a>, sequence: number): void</td>
-            <td>Shows custom tooltip at certain position on the map</td>
-        </tr><tr>
-            <td>show (pattern: <a href="#ITooltip_9063177280037997">ITooltip</a>, sequence: number): void</td>
-            <td>Adds additional information to already shown tooltip on the map</td>
-        </tr><tr>
-            <td>hide (): void</td>
-            <td>Hids additional information from already shown and custom tooltip</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITooltip_9063177280037997">Interface ITooltip</h4>
-            <p>Custom map add-in tooltip options. It can be either a text information or an image</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>icon</td>
-            <td>string</td>
-            <td>Icon image for custom tooltip part.</td>
-        </tr><tr>
-            <td>image</td>
-            <td><a href="#ITooltipImage_43880809372053853">ITooltipImage</a></td>
-            <td>Image options that should be shown instead of text in tooltip</td>
-        </tr><tr>
-            <td>main</td>
-            <td>string</td>
-            <td>Main tooltip text</td>
-        </tr><tr>
-            <td>secondary</td>
-            <td>string[]</td>
-            <td>Secondary information that will be written with smaller font</td>
-        </tr><tr>
-            <td>additional</td>
-            <td>string[]</td>
-            <td>Some additional tooltip information</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITooltipImage_43880809372053853">Interface ITooltipImage</h4>
-            <p>Custom tooltip image options. It can be either link to external image, base64 image or image stored in ArrayBuffer</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>url</td>
-            <td>string</td>
-            <td>Either link to external image or serialized base64 image or stringified SVG image</td>
-        </tr><tr>
-            <td>buffer</td>
-            <td>ArrayBuffer</td>
-            <td>Image stored in ArrayBuffer</td>
-        </tr><tr>
-            <td>width</td>
-            <td>number</td>
-            <td>Width of the image</td>
-        </tr><tr>
-            <td>height</td>
-            <td>number</td>
-            <td>Height of the image</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">actionList</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action" target="_blank">Example</a>)
-            </h3>
-            <p>Service for showing a custom action list instead of the existing one, or adding custom buttons to existing action lists.</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>show (position: <a href="#TPosition_7366708519730412">TPosition</a>, title: string, items: <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]): void</td>
-            <td>Shows custom action menu on certain position</td>
-        </tr><tr>
-            <td>attachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler: <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
-            <td>Subscribes on event when one of the MyGeotab map menus is shown to add new action button</td>
-        </tr><tr>
-            <td>detachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler?: <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
-            <td>Unsubscribes on event when one of the MyGeotab map menus is shown</td>
-        </tr><tr>
-            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
-            <td>Attaches event handler to service</td>
-        </tr><tr>
-            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
-            <td>Detaches event handler to service</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            <h4>Events</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Object</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>CustomEvent</td>
-            <td><div>
-            data: (object) - Data from `IAddinActionItem.data` for the current button
-        </div></td>
-            <td>Event is fired when user clicks on custom button in action list. Event name is defined by "clickEvent" property in custom button object.</td>
-        </tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMenuActionItem_029612845099294516">Interface IMenuActionItem</h4>
-            <p>Custom action button options</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>title</td>
-            <td>string</td>
-            <td>Button title</td>
-        </tr><tr>
-            <td>icon</td>
-            <td>string</td>
-            <td>Button icon image</td>
-        </tr><tr>
-            <td>url</td>
-            <td>string</td>
-            <td>URL to external page. If this property is used than button will be an anchor element</td>
-        </tr><tr>
-            <td>clickEvent</td>
-            <td>string</td>
-            <td>Name of the event that will be fired when user clicks on this button</td>
-        </tr><tr>
-            <td>zIndex</td>
-            <td>number</td>
-            <td>Number that defined position of the custom action button in menu</td>
-        </tr><tr>
-            <td>data</td>
-            <td>object</td>
-            <td>Custom data that will be send with `clickEvent` when user clicks on this button</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMenuEventData_6809985707913828">Interface IMenuEventData</h4>
-            <p>Data that is passed to add-in when all types of map action menus are about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>x</td>
-            <td>number</td>
-            
-        </tr><tr>
-            <td>y</td>
-            <td>number</td>
-            
-        </tr><tr>
-            <td>menuName</td>
-            <td>string</td>
-            
-        </tr><tr>
-            <td>location</td>
-            <td><a href="#ILocation_47443820316200935">ILocation</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapMenuEventData_5465331585004432">Interface IMapMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when map action menu is about to be shown</p>
-            
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneMenuEventData_09090521325190326">Interface IZoneMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when zone action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>zone</td>
-            <td>{ id: string; }</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteMenuEventData_37133845860864345">Interface IRouteMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when route action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>route</td>
-            <td>{ id: string; }</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMarkerMenuEventData_33955682754560623">Interface IMarkerMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when location marker action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>title</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceMenuEventData_8833740855806305">Interface IDeviceMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when device action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>device</td>
-            <td>{ id: string; }</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripMenuEventData_23882461194470617">Interface ITripMenuEventData extends <a href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
-            <p>Data that is passed to add-in when trip action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>dateTime</td>
-            <td>string</td>
-            
-        </tr><tr>
-            <td>device</td>
-            <td>{ id: string; }</td>
-            
-        </tr><tr>
-            <td>trip</td>
-            <td><a href="#ITripData_8276889804597649">ITripData</a></td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripData_8276889804597649">Interface ITripData</h4>
-            <p>Trip data that is passed to add-in when trip action menu is about to be shown</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>start</td>
-            <td>string</td>
-            
-        </tr><tr>
-            <td>stop</td>
-            <td>string</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuType_23233765865529943">Type TMenuType</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js">&quot;zone&quot; | &quot;map&quot; | &quot;device&quot; | &quot;route&quot; | &quot;marker&quot; | &quot;trip&quot;</code></pre>
-            </p>
-            <p>Types of menus where custom action buttons can be added</p>
-        </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuHandler_1651454077367045">Type TMenuHandler</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js">(menuName: string, data: <a href="#TMenuEventData_711554926312495">TMenuEventData</a>) =&gt; <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[] | Promise&lt;<a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]&gt;</code></pre>
-            </p>
-            <p>Function that will be called when certain action menu is about to be opened</p>
-        </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuEventData_711554926312495">Type TMenuEventData</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js"><a href="#IMapMenuEventData_5465331585004432">IMapMenuEventData</a> | <a href="#IZoneMenuEventData_09090521325190326">IZoneMenuEventData</a> | <a href="#IRouteMenuEventData_37133845860864345">IRouteMenuEventData</a> | <a href="#IMarkerMenuEventData_33955682754560623">IMarkerMenuEventData</a> | <a href="#IDeviceMenuEventData_8833740855806305">IDeviceMenuEventData</a> | <a href="#ITripMenuEventData_23882461194470617">ITripMenuEventData</a></code></pre>
-            </p>
-            <p>Data that is passed to add-in based on type of menu that is shown</p>
-        </div></div>
-    </div><div class="docs-service">
-        <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">canvas</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements" target="_blank">Example</a>)
-            </h3>
-            <p>Service for drawing custom shapes on the map</p>
-            <h4>Methods</h4>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>path (path: <a href="#IPathSeg_3333674895364078">IPathSeg</a>[], zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Draws SVG path element on the map</td>
-        </tr><tr>
-            <td>rect (coords: <a href="#TPosition_7366708519730412">TPosition</a>, width: number, height: number, radius: number, zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Draws SVG rect element on the map</td>
-        </tr><tr>
-            <td>circle (coords: <a href="#TPosition_7366708519730412">TPosition</a>, radius: number, zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Draws SVG circle element on the map</td>
-        </tr><tr>
-            <td>text (coords: <a href="#TPosition_7366708519730412">TPosition</a>, text: string, zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Draws SVG text element on the map</td>
-        </tr><tr>
-            <td>marker (coords: <a href="#TPosition_7366708519730412">TPosition</a>, width: number, height: number, source: <a href="#TMarkerSource_46512197559650414">TMarkerSource</a>, zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Draws custom image element on the map</td>
-        </tr><tr>
-            <td>clear (): void</td>
-            <td>Clears all drawn elements on the map</td>
-        </tr>
-            </tbody>
-        </table>
-            
-            
-        </div>
-        <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IPathSeg_3333674895364078">Interface IPathSeg</h4>
-            <p>Segment of the path element that will be added in `d` attribute</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>type</td>
-            <td>string</td>
-            <td>Type of the segment. Supported types `M`, `m`, `L`, `l`, `Z`, `C`, `c`, `S`, `s`</td>
-        </tr><tr>
-            <td>points</td>
-            <td><a href="#TPathSegPoint_7092445778380438">TPathSegPoint</a>[]</td>
-            <td>Locations or coordinates that should be used in current segment</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasElement_8459057171879436">Interface ICanvasElement</h4>
-            <p>New map element object</p>
-            
-            <table>
-            <thead>
-                <th>Method</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>change (attrs: <a href="#IFrameCanvasElementStyleAttributes_46279222035579015">IFrameCanvasElementStyleAttributes</a>): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Changes style attributes of the current map element</td>
-        </tr><tr>
-            <td>remove (): void</td>
-            <td>Removes current map element</td>
-        </tr><tr>
-            <td>isRemoved (): boolean</td>
-            <td>Returns true if element was removed</td>
-        </tr><tr>
-            <td>attach (event: <a href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>, handler: (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Attaches event handler to current element event</td>
-        </tr><tr>
-            <td>detach (event: <a href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>, handler?: (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
-            <td>Detaches event handler from current element event</td>
-        </tr>
-            </tbody>
-        </table>
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IFrameCanvasElementStyleAttributes_46279222035579015">Interface IFrameCanvasElementStyleAttributes</h4>
-            <p>Style properties that can be changed for every custom element</p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                <tr>
-            <td>fill</td>
-            <td>string</td>
-            <td>Background color of the element</td>
-        </tr><tr>
-            <td>stroke</td>
-            <td>string</td>
-            <td>Border color of the element</td>
-        </tr><tr>
-            <td>stroke-width</td>
-            <td>number</td>
-            <td>Border width of the element</td>
-        </tr><tr>
-            <td>fill-opacity</td>
-            <td>number</td>
-            <td>Opacity of the element</td>
-        </tr><tr>
-            <td>font-size</td>
-            <td>number</td>
-            <td>Text element font size</td>
-        </tr><tr>
-            <td>font-weight</td>
-            <td>number</td>
-            <td>Text element font weight</td>
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div>
-        <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TPathSegPoint_7092445778380438">Type TPathSegPoint</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js"><a href="#ILocation_47443820316200935">ILocation</a> | <a href="#ICoordinate_9360730390494372">ICoordinate</a> | number</code></pre>
-            </p>
-            <p>Location or coordinate of the next point</p>
-        </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TCanvasElementEvent_8500628213537043">Type TCanvasElementEvent</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js">&quot;click&quot; | &quot;over&quot; | &quot;out&quot;</code></pre>
-            </p>
-            <p>Supported custom map element event types</p>
-        </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMarkerSource_46512197559650414">Type TMarkerSource</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js">string | ArrayBuffer</code></pre>
-            </p>
-            <p>Marker can be presented as a encoded SVG or base64 string or URL to third party resource or binary array in ArrayBuffer</p>
-        </div></div>
-    </div></div>
-            <div class="deps-list"><div class="docs-service"><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICoordinate_9360730390494372">Interface ICoordinate</h4>
-            <p></p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>x</td>
-            <td>number</td>
-            
-        </tr><tr>
-            <td>y</td>
-            <td>number</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ILocation_47443820316200935">Interface ILocation</h4>
-            <p></p>
-            <table>
-            <thead>
-                <th>Property</th>
-                <th>Type</th>
-                
-            </thead>
-            <tbody>
-                <tr>
-            <td>lat</td>
-            <td>number</td>
-            
-        </tr><tr>
-            <td>lng</td>
-            <td>number</td>
-            
-        </tr>
-            </tbody>
-        </table>
-            
-        </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TPosition_7366708519730412">Type TPosition</h4>
-            <p>
-                <pre><code class="language-js" data-lang="js"><a href="#ILocation_47443820316200935">ILocation</a> | <a href="#ICoordinate_9360730390494372">ICoordinate</a></code></pre>
-            </p>
-            <p></p>
-        </div></div></div></div>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
 
-            <h2>Sample Add-Ins</h2>
-            <p><a href="https://github.com/Geotab/sdk-map-addin-samples" target="_blank">Here are some examples</a> and <a href="https://github.com/Geotab/map-addins-definitions/" target="_blank">types definition file</a> that can help developers understand how to work with the new Add-Ins. Please download them, extract the files, then follow the instructions in the ReadMe document. Remember to have Feature Preview enabled in your MyGeotab User Options so you can see the Deeper Add-ins.</p>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
         </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">localStorage</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service to store and retrieve data from the browsers LocalStorage.</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>set (key, value): Promise&lt;boolean&gt;
+                                Variable types:
+                                key: string
+                                value: string
+                            </td>
+                            <td>Sets the key-value pair to browser localStorage.</td>
+                        </tr>
+                        <tr>
+                            <td>remove (key: string): Promise&lt;boolean&gt;
+                                Variable types:
+                                key: string
+                                value: string
+                            </td>
+                            <td>Removes the key-value pair from browser localStorage. Identifies the pair by key.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>get (key): Promise&lt;string&gt;
+                                Variable types:
+                                key: string
+                            </td>
+                            <td>Gets the paired value from browser localStorage. Identifies the pair by key.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">events</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for catching events that trigger when the user interacts with entities on the map.</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>attach (eventName, eventHandler)
+                                Variable types:
+                                eventName: string
+                                eventHandler : function to run when event is triggered. Example: (serviceData) =>
+                                void
+                                serviceData : any
+                            </td>
+                            <td>Attaches the event handler to the service.</td>
+                        </tr>
+                        <tr>
+                            <td>detach (eventName, eventHandler)
+                                Variable types:
+                                eventName: string
+                                eventHandler : function to run when event is triggered. Example: (serviceData) =>
+                                void
+                                serviceData : any
+                            </td>
+                            <td>Detaches the event handler from the service.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Events</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Object</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>move</td>
+                            <td>
+                                <div>
+                                    data : <a href="#ICoordinate_9360730390494372">ICoordinate</a>
+                                </div>
+                            </td>
+                            <td>Fired when the user moves their pointer anywhere over the map. Contains the
+                                pointer's
+                                position on the map.</td>
+                        </tr>
+                        <tr>
+                            <td>over</td>
+                            <td>
+                                <div>
+                                    data: <a href="#TEventData_17548217952829526">TEventData</a>
+                                </div>
+                            </td>
+                            <td>Fired when the user moves their pointer over an object (device, zone, route, etc.)
+                                on
+                                the map. Contains various data points about the entity.</td>
+                        </tr>
+                        <tr>
+                            <td>out</td>
+                            <td>
+                                <div>
+                                    data: <a href="#TEventData_17548217952829526">TEventData</a>
+                                </div>
+                            </td>
+                            <td>Fired when the user moves their pointer out of an object (device, zone, route, etc.)
+                                on
+                                the map. Contains various data points about the entity.</td>
+                        </tr>
+                        <tr>
+                            <td>click</td>
+                            <td>
+                                <div>
+                                    data: <a href="#TEventData_17548217952829526">TEventData</a>
+                                </div>
+                            </td>
+                            <td>Fired when the user clicks on an obejct (device, zone, route, etc.) on the map.
+                                Contains
+                                various data points about the entity.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IZoneEvent_41586038932589475">Interface IZoneEvent</h4>
+                    <p>The Event object called when the user interacts with a Zone.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>&quot;zone&quot;</td>
+
+                            </tr>
+                            <tr>
+                                <td>entity</td>
+                                <td><a href="#IZoneEventData_44042843256501873">IZoneEventData</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IZoneEventData_44042843256501873">Interface IZoneEventData</h4>
+                    <p>The Zone object placed into the IZoneEvent object when the user interacts with a Zone.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IDeviceEvent_30163573678461186">Interface IDeviceEvent</h4>
+                    <p>The Event object called when the user interacts with a Device.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>&quot;device&quot;</td>
+
+                            </tr>
+                            <tr>
+                                <td>entity</td>
+                                <td><a href="#IDeviceEventData_2923566451586521">IDeviceEventData</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IDeviceEventData_2923566451586521">Interface IDeviceEventData</h4>
+                    <p>The Device object placed into the IDeviceEvent object when the user interacts with a Device.
+                    </p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IRouteEvent_24176276971063237">Interface IRouteEvent</h4>
+                    <p>The Event object called when the user interacts with a Route.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>&quot;route&quot;</td>
+
+                            </tr>
+                            <tr>
+                                <td>entity</td>
+                                <td><a href="#IRouteEventData_8248259915560439">IRouteEventData</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IRouteEventData_8248259915560439">Interface IRouteEventData</h4>
+                    <p>The Route object placed into the IRouteEvent object when the user interacts with a Route.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITripEvent_1095796138370515">Interface ITripEvent</h4>
+                    <p>The Event object called when the user interacts with a Trip.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>&quot;trip&quot;</td>
+
+                            </tr>
+                            <tr>
+                                <td>entity</td>
+                                <td><a href="#ITripEventData_5051625304962382">ITripEventData</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITripEventData_5051625304962382">Interface ITripEventData</h4>
+                    <p>The Trip object placed into the ITripEvent object when the user interacts with a Trip.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+                                <td>Id of the trip.</td>
+                            </tr>
+                            <tr>
+                                <td>device</td>
+                                <td>{ id: string; }</td>
+                                <td>Device id object that drove this trip</td>
+                            </tr>
+                            <tr>
+                                <td>dateTime</td>
+                                <td>string</td>
+                                <td>Date and time of the trip point</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IExceptionsEvent_03095104080644484">Interface IExceptionsEvent</h4>
+                    <p>Event object that is sent to add-in when user interacts with device exceptions</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>&quot;exceptions&quot;</td>
+
+                            </tr>
+                            <tr>
+                                <td>entity</td>
+                                <td><a href="#IExceptionsEventData_7157557693392491">IExceptionsEventData</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IExceptionsEventData_7157557693392491">Interface IExceptionsEventData</h4>
+                    <p>Exceptions object that is sent to add-in when user interacts with exception icon on the map
+                    </p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>exceptions</td>
+                                <td><a href="#IExceptionEventData_6444035965958528">IExceptionEventData</a>[]</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IExceptionEventData_6444035965958528">Interface IExceptionEventData</h4>
+                    <p>Exception object that is sent to add-in when user interacts with exception icon on the map
+                    </p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>to</td>
+                                <td>string</td>
+                                <td>Date and time when this exception ends</td>
+                            </tr>
+                            <tr>
+                                <td>from</td>
+                                <td>string</td>
+                                <td>Date and time when this exception starts</td>
+                            </tr>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+                                <td>Id of the exception</td>
+                            </tr>
+                            <tr>
+                                <td>rule</td>
+                                <td>{ id: string; }</td>
+                                <td>Rule id object of this exception</td>
+                            </tr>
+                            <tr>
+                                <td>device</td>
+                                <td>{ id: string; }</td>
+                                <td>Device id object where this exception happen</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TEventData_17548217952829526">Type TEventData</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js"><a href="#IZoneEvent_41586038932589475">IZoneEvent</a> | <a href="#IDeviceEvent_30163573678461186">IDeviceEvent</a> | <a href="#IRouteEvent_24176276971063237">IRouteEvent</a> | <a href="#ITripEvent_1095796138370515">ITripEvent</a> | <a href="#IExceptionsEvent_03095104080644484">IExceptionsEvent</a></code></pre>
+                    </p>
+                    <p>Event object that is sent to add-in when user interacts with different types of entitis on
+                        the
+                        map</p>
+                </div>
+            </div>
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">map</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for manipulating viewport of the map and getting updates about changed map viewport</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>setBounds (bounds: <a href="#IMapBounds_023731171390437567">IMapBounds</a>):
+                                Promise&lt;boolean&gt;</td>
+                            <td>Sets map bounds</td>
+                        </tr>
+                        <tr>
+                            <td>getBounds (): Promise&lt;<a href="#IMapBounds_023731171390437567">IMapBounds</a>&gt;
+                            </td>
+                            <td>Gets current map bounds</td>
+                        </tr>
+                        <tr>
+                            <td>setZoom (zoom: number): Promise&lt;boolean&gt;</td>
+                            <td>Sets map zoom level</td>
+                        </tr>
+                        <tr>
+                            <td>getZoom (): Promise&lt;number&gt;</td>
+                            <td>Gets current map zoom level</td>
+                        </tr>
+                        <tr>
+                            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
+                            <td>Attaches event handler to service</td>
+                        </tr>
+                        <tr>
+                            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
+                            <td>Detaches event handler to service</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Events</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Object</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>change</td>
+                            <td>Empty object</td>
+                            <td>Event is fired when viewport of map is changed. This event fires each time when use
+                                drags or zooms map</td>
+                        </tr>
+                        <tr>
+                            <td>changed</td>
+                            <td>
+                                <div>
+                                    viewport: (<a href="#IChangedViewport_9940525146327717">IChangedViewport</a>) -
+                                    Current map zoom and bounds
+                                </div>
+                            </td>
+                            <td>Event is fired when user finished dragging and zooming map</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IChangedViewport_9940525146327717">Interface IChangedViewport</h4>
+                    <p>Current map viewport</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>zoom</td>
+                                <td>number</td>
+                                <td>Current map zoom</td>
+                            </tr>
+                            <tr>
+                                <td>bounds</td>
+                                <td><a href="#IMapBounds_023731171390437567">IMapBounds</a></td>
+                                <td>Current map bounds</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMapBounds_023731171390437567">Interface IMapBounds</h4>
+                    <p>Object that represents a map bounding box.</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sw</td>
+                                <td><a href="#IMapLatLng_8914788191107179">IMapLatLng</a></td>
+                                <td>The southwest corner of the bounding box.</td>
+                            </tr>
+                            <tr>
+                                <td>ne</td>
+                                <td><a href="#IMapLatLng_8914788191107179">IMapLatLng</a></td>
+                                <td>The northeast corner of the bounding box.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMapLatLng_8914788191107179">Interface IMapLatLng</h4>
+                    <p>An object that represents longitude and latitude</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>lat</td>
+                                <td>number</td>
+                                <td>Latitude, measured in degrees.</td>
+                            </tr>
+                            <tr>
+                                <td>lng</td>
+                                <td>number</td>
+                                <td>Longitude, measured in degrees.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">tooltip</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for showing additional information in entities tooltip</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>showAt (position: <a href="#TPosition_7366708519730412">TPosition</a>, pattern: <a
+                                    href="#ITooltip_9063177280037997">ITooltip</a>, sequence: number): void</td>
+                            <td>Shows custom tooltip at certain position on the map</td>
+                        </tr>
+                        <tr>
+                            <td>show (pattern: <a href="#ITooltip_9063177280037997">ITooltip</a>, sequence: number):
+                                void</td>
+                            <td>Adds additional information to already shown tooltip on the map</td>
+                        </tr>
+                        <tr>
+                            <td>hide (): void</td>
+                            <td>Hids additional information from already shown and custom tooltip</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITooltip_9063177280037997">Interface ITooltip</h4>
+                    <p>Custom map add-in tooltip options. It can be either a text information or an image</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>icon</td>
+                                <td>string</td>
+                                <td>Icon image for custom tooltip part.</td>
+                            </tr>
+                            <tr>
+                                <td>image</td>
+                                <td><a href="#ITooltipImage_43880809372053853">ITooltipImage</a></td>
+                                <td>Image options that should be shown instead of text in tooltip</td>
+                            </tr>
+                            <tr>
+                                <td>main</td>
+                                <td>string</td>
+                                <td>Main tooltip text</td>
+                            </tr>
+                            <tr>
+                                <td>secondary</td>
+                                <td>string[]</td>
+                                <td>Secondary information that will be written with smaller font</td>
+                            </tr>
+                            <tr>
+                                <td>additional</td>
+                                <td>string[]</td>
+                                <td>Some additional tooltip information</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITooltipImage_43880809372053853">Interface ITooltipImage</h4>
+                    <p>Custom tooltip image options. It can be either link to external image, base64 image or image
+                        stored in ArrayBuffer</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>url</td>
+                                <td>string</td>
+                                <td>Either link to external image or serialized base64 image or stringified SVG
+                                    image
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>buffer</td>
+                                <td>ArrayBuffer</td>
+                                <td>Image stored in ArrayBuffer</td>
+                            </tr>
+                            <tr>
+                                <td>width</td>
+                                <td>number</td>
+                                <td>Width of the image</td>
+                            </tr>
+                            <tr>
+                                <td>height</td>
+                                <td>number</td>
+                                <td>Height of the image</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">actionList</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for showing a custom action list instead of the existing one, or adding custom buttons to
+                    existing action lists.</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>show (position: <a href="#TPosition_7366708519730412">TPosition</a>, title: string,
+                                items: <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]): void
+                            </td>
+                            <td>Shows custom action menu on certain position</td>
+                        </tr>
+                        <tr>
+                            <td>attachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>, handler:
+                                <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
+                            <td>Subscribes on event when one of the MyGeotab map menus is shown to add new action
+                                button
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>detachMenu (menuName: <a href="#TMenuType_23233765865529943">TMenuType</a>,
+                                handler?: <a href="#TMenuHandler_1651454077367045">TMenuHandler</a>): void</td>
+                            <td>Unsubscribes on event when one of the MyGeotab map menus is shown</td>
+                        </tr>
+                        <tr>
+                            <td>attach (eventName: string, eventHandler: (serviceData: any) => void): void</td>
+                            <td>Attaches event handler to service</td>
+                        </tr>
+                        <tr>
+                            <td>detach (eventName: string, eventHandler?: (serviceData: any) => void): void</td>
+                            <td>Detaches event handler to service</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Events</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Object</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CustomEvent</td>
+                            <td>
+                                <div>
+                                    data: (object) - Data from `IAddinActionItem.data` for the current button
+                                </div>
+                            </td>
+                            <td>Event is fired when user clicks on custom button in action list. Event name is
+                                defined
+                                by "clickEvent" property in custom button object.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMenuActionItem_029612845099294516">Interface IMenuActionItem</h4>
+                    <p>Custom action button options</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>title</td>
+                                <td>string</td>
+                                <td>Button title</td>
+                            </tr>
+                            <tr>
+                                <td>icon</td>
+                                <td>string</td>
+                                <td>Button icon image</td>
+                            </tr>
+                            <tr>
+                                <td>url</td>
+                                <td>string</td>
+                                <td>URL to external page. If this property is used than button will be an anchor
+                                    element
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>clickEvent</td>
+                                <td>string</td>
+                                <td>Name of the event that will be fired when user clicks on this button</td>
+                            </tr>
+                            <tr>
+                                <td>zIndex</td>
+                                <td>number</td>
+                                <td>Number that defined position of the custom action button in menu</td>
+                            </tr>
+                            <tr>
+                                <td>data</td>
+                                <td>object</td>
+                                <td>Custom data that will be send with `clickEvent` when user clicks on this button
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMenuEventData_6809985707913828">Interface IMenuEventData</h4>
+                    <p>Data that is passed to add-in when all types of map action menus are about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>x</td>
+                                <td>number</td>
+
+                            </tr>
+                            <tr>
+                                <td>y</td>
+                                <td>number</td>
+
+                            </tr>
+                            <tr>
+                                <td>menuName</td>
+                                <td>string</td>
+
+                            </tr>
+                            <tr>
+                                <td>location</td>
+                                <td><a href="#ILocation_47443820316200935">ILocation</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMapMenuEventData_5465331585004432">Interface IMapMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when map action menu is about to be shown</p>
+
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IZoneMenuEventData_09090521325190326">Interface IZoneMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when zone action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>zone</td>
+                                <td>{ id: string; }</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IRouteMenuEventData_37133845860864345">Interface IRouteMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when route action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>route</td>
+                                <td>{ id: string; }</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IMarkerMenuEventData_33955682754560623">Interface IMarkerMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when location marker action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>title</td>
+                                <td>string</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IDeviceMenuEventData_8833740855806305">Interface IDeviceMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when device action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>device</td>
+                                <td>{ id: string; }</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITripMenuEventData_23882461194470617">Interface ITripMenuEventData extends <a
+                            href="#IMenuEventData_6809985707913828">IMenuEventData</a></h4>
+                    <p>Data that is passed to add-in when trip action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>dateTime</td>
+                                <td>string</td>
+
+                            </tr>
+                            <tr>
+                                <td>device</td>
+                                <td>{ id: string; }</td>
+
+                            </tr>
+                            <tr>
+                                <td>trip</td>
+                                <td><a href="#ITripData_8276889804597649">ITripData</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ITripData_8276889804597649">Interface ITripData</h4>
+                    <p>Trip data that is passed to add-in when trip action menu is about to be shown</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>start</td>
+                                <td>string</td>
+
+                            </tr>
+                            <tr>
+                                <td>stop</td>
+                                <td>string</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TMenuType_23233765865529943">Type TMenuType</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">&quot;zone&quot; | &quot;map&quot; | &quot;device&quot; | &quot;route&quot; | &quot;marker&quot; | &quot;trip&quot;</code></pre>
+                    </p>
+                    <p>Types of menus where custom action buttons can be added</p>
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TMenuHandler_1651454077367045">Type TMenuHandler</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">(menuName: string, data: <a href="#TMenuEventData_711554926312495">TMenuEventData</a>) =&gt; <a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[] | Promise&lt;<a href="#IMenuActionItem_029612845099294516">IMenuActionItem</a>[]&gt;</code></pre>
+                    </p>
+                    <p>Function that will be called when certain action menu is about to be opened</p>
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TMenuEventData_711554926312495">Type TMenuEventData</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js"><a href="#IMapMenuEventData_5465331585004432">IMapMenuEventData</a> | <a href="#IZoneMenuEventData_09090521325190326">IZoneMenuEventData</a> | <a href="#IRouteMenuEventData_37133845860864345">IRouteMenuEventData</a> | <a href="#IMarkerMenuEventData_33955682754560623">IMarkerMenuEventData</a> | <a href="#IDeviceMenuEventData_8833740855806305">IDeviceMenuEventData</a> | <a href="#ITripMenuEventData_23882461194470617">ITripMenuEventData</a></code></pre>
+                    </p>
+                    <p>Data that is passed to add-in based on type of menu that is shown</p>
+                </div>
+            </div>
+        </div>
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">canvas</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for drawing custom shapes on the map</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>path (path: <a href="#IPathSeg_3333674895364078">IPathSeg</a>[], zIndex: number): <a
+                                    href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                            <td>Draws SVG path element on the map</td>
+                        </tr>
+                        <tr>
+                            <td>rect (coords: <a href="#TPosition_7366708519730412">TPosition</a>, width: number,
+                                height: number, radius: number, zIndex: number): <a
+                                    href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                            <td>Draws SVG rect element on the map</td>
+                        </tr>
+                        <tr>
+                            <td>circle (coords: <a href="#TPosition_7366708519730412">TPosition</a>, radius: number,
+                                zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                            <td>Draws SVG circle element on the map</td>
+                        </tr>
+                        <tr>
+                            <td>text (coords: <a href="#TPosition_7366708519730412">TPosition</a>, text: string,
+                                zIndex:
+                                number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                            <td>Draws SVG text element on the map</td>
+                        </tr>
+                        <tr>
+                            <td>marker (coords: <a href="#TPosition_7366708519730412">TPosition</a>, width: number,
+                                height: number, source: <a href="#TMarkerSource_46512197559650414">TMarkerSource</a>,
+                                zIndex: number): <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                            <td>Draws custom image element on the map</td>
+                        </tr>
+                        <tr>
+                            <td>clear (): void</td>
+                            <td>Clears all drawn elements on the map</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IPathSeg_3333674895364078">Interface IPathSeg</h4>
+                    <p>Segment of the path element that will be added in `d` attribute</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type</td>
+                                <td>string</td>
+                                <td>Type of the segment. Supported types `M`, `m`, `L`, `l`, `Z`, `C`, `c`, `S`, `s`
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>points</td>
+                                <td><a href="#TPathSegPoint_7092445778380438">TPathSegPoint</a>[]</td>
+                                <td>Locations or coordinates that should be used in current segment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ICanvasElement_8459057171879436">Interface ICanvasElement</h4>
+                    <p>New map element object</p>
+
+                    <table>
+                        <thead>
+                            <th>Method</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>change (attrs: <a
+                                        href="#IFrameCanvasElementStyleAttributes_46279222035579015">IFrameCanvasElementStyleAttributes</a>):
+                                    <a href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                                <td>Changes style attributes of the current map element</td>
+                            </tr>
+                            <tr>
+                                <td>remove (): void</td>
+                                <td>Removes current map element</td>
+                            </tr>
+                            <tr>
+                                <td>isRemoved (): boolean</td>
+                                <td>Returns true if element was removed</td>
+                            </tr>
+                            <tr>
+                                <td>attach (event: <a
+                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>,
+                                    handler:
+                                    (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a
+                                        href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                                <td>Attaches event handler to current element event</td>
+                            </tr>
+                            <tr>
+                                <td>detach (event: <a
+                                        href="#TCanvasElementEvent_8500628213537043">TCanvasElementEvent</a>,
+                                    handler?:
+                                    (data: <a href="#ICoordinate_9360730390494372">ICoordinate</a>) =&gt; void): <a
+                                        href="#ICanvasElement_8459057171879436">ICanvasElement</a></td>
+                                <td>Detaches event handler from current element event</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="IFrameCanvasElementStyleAttributes_46279222035579015">Interface
+                        IFrameCanvasElementStyleAttributes</h4>
+                    <p>Style properties that can be changed for every custom element</p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>fill</td>
+                                <td>string</td>
+                                <td>Background color of the element</td>
+                            </tr>
+                            <tr>
+                                <td>stroke</td>
+                                <td>string</td>
+                                <td>Border color of the element</td>
+                            </tr>
+                            <tr>
+                                <td>stroke-width</td>
+                                <td>number</td>
+                                <td>Border width of the element</td>
+                            </tr>
+                            <tr>
+                                <td>fill-opacity</td>
+                                <td>number</td>
+                                <td>Opacity of the element</td>
+                            </tr>
+                            <tr>
+                                <td>font-size</td>
+                                <td>number</td>
+                                <td>Text element font size</td>
+                            </tr>
+                            <tr>
+                                <td>font-weight</td>
+                                <td>number</td>
+                                <td>Text element font weight</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TPathSegPoint_7092445778380438">Type TPathSegPoint</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js"><a href="#ILocation_47443820316200935">ILocation</a> | <a href="#ICoordinate_9360730390494372">ICoordinate</a> | number</code></pre>
+                    </p>
+                    <p>Location or coordinate of the next point</p>
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TCanvasElementEvent_8500628213537043">Type TCanvasElementEvent</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">&quot;click&quot; | &quot;over&quot; | &quot;out&quot;</code></pre>
+                    </p>
+                    <p>Supported custom map element event types</p>
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TMarkerSource_46512197559650414">Type TMarkerSource</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">string | ArrayBuffer</code></pre>
+                    </p>
+                    <p>Marker can be presented as a encoded SVG or base64 string or URL to third party resource or
+                        binary array in ArrayBuffer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="deps-list">
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ICoordinate_9360730390494372">Interface ICoordinate</h4>
+                    <p></p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>x</td>
+                                <td>number</td>
+
+                            </tr>
+                            <tr>
+                                <td>y</td>
+                                <td>number</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-interface">
+                    <h4 id="ILocation_47443820316200935">Interface ILocation</h4>
+                    <p></p>
+                    <table>
+                        <thead>
+                            <th>Property</th>
+                            <th>Type</th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>lat</td>
+                                <td>number</td>
+
+                            </tr>
+                            <tr>
+                                <td>lng</td>
+                                <td>number</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TPosition_7366708519730412">Type TPosition</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js"><a href="#ILocation_47443820316200935">ILocation</a> | <a href="#ICoordinate_9360730390494372">ICoordinate</a></code></pre>
+                    </p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Sample Add-Ins</h2>
+    <p><a href="https://github.com/Geotab/sdk-map-addin-samples" target="_blank">Here are some examples</a> and <a
+            href="https://github.com/Geotab/map-addins-definitions/" target="_blank">types definition file</a> that
+        can
+        help developers understand how to work with the new Add-Ins. Please download them, extract the files, then
+        follow the instructions in the ReadMe document. Remember to have Feature Preview enabled in your MyGeotab
+        User
+        Options so you can see the Map Add-ins.</p>
+</div>
