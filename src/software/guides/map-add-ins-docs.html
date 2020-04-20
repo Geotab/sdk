@@ -39,15 +39,14 @@ title: Geotab Map Add-In Overview
 
 <div>
     <p> Map Add-ins are embed third-party integrations that exist within the native Map and Trip History pages of
-        the MyGeotab portal. A panel will appear on the right-side of the page, containing the UI of
-        the Map Add-in. The Add-in may also manipulate the map, allowing data from the integration to be displayed
+        the MyGeotab portal. Once installed, a panel will appear on the right-side of the page, containing the UI of
+        the Map Add-in. These Add-ins can manipulate the map, allowing data from the integration to be displayed
         alongside Geotab Go Device data. This document outlines the installation process and APIs available for Map
         Add-In development.
     </p>
 
     <p>Below is an example of a Map Add-In installed within the Maps page of MyGeotab. When a user clicks a vehicle on
-        the Map,
-        this integration displays the relevant data for that vehicle.</p>
+        the Map, this integration displays the relevant data for that vehicle.</p>
     <figure>
         <!-- put an img of Justin's addin -->
         <img src="../map-add-ins-docs-1.PNG"
@@ -56,10 +55,11 @@ title: Geotab Map Add-In Overview
     </figure>
 
     <h2>Installation</h2>
-    <p>Map Add-Ins are installed by uploading an Add-In Configuration File into MyGeotab.
-        Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In. When the Add-in window opens,
-        upload your files and fill in the Configuration tab.
-        <!-- Replace this with steps on the https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files page -->
+    <p>Map Add-Ins are installed by uploading an <a
+            href="https://geotab.github.io/sdk/software/guides/developing-addins/#add-in-configuration-files">Add-In
+            Configuration File</a> into MyGeotab.
+        Click on Administration -> System... -> System Settings -> Add-Ins -> New Add-In, and upload the Add-in
+        Configuration File along with any other dependencies.
         The following is an example of a Map Add-in Configuration File:</p>
     <div>
         <pre class="code-example">
@@ -90,7 +90,7 @@ title: Geotab Map Add-In Overview
         </li>
         <li>
             <strong>title</strong> - This is a heading displayed at the top of the panel when there are multiple Map
-            Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" paramter.
+            Add-Ins installed. If a "title" is not provided, the Add-In defaults to the "name" parameter.
         </li>
         <li>
             <strong>src</strong> - The JavaScript file reference for this Add-In. This can be an externally hosted file
@@ -120,12 +120,13 @@ title: Geotab Map Add-In Overview
         on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save
         Changes</p>
 
-    <h3>Iframe Setup</h3>
+    <h4>Iframe Setup</h4>
     <p>In the MyGeotab portal, Map Add-Ins are automatically loaded when the user visits the native MyGeotab page
-        containing the Add-In. For example, the Add-In in Figure 1 loads when the user visits the Map page.</p>
+        containing that Add-In. For example, the Add-In in Figure #1 loads when the user visits the Map page.</p>
 
     <p>Map Add-Ins are loaded inside an iframe with its sandbox attribute set to “allow-scripts”. This allows the
-        Map Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Config File.</p>
+        Map Add-In to run custom scripts, such as the JavaScript file from the “src” paramter in the Add-in
+        Configuration File.</p>
 
     <p>Notes:</p>
     <ul>
@@ -140,11 +141,11 @@ title: Geotab Map Add-In Overview
         interacting with a page outside the iframe.</p>
 
 
-    <h3>Panel Size</h3>
+    <h4>Panel Size</h4>
     <p>The iframe panel has a fixed width of 450 pixels. The panel width shrinks only to accomodate screens with widths
         below 600 pixels.</p>
 
-    <p>The iframe panel height is responsive to always reach the bottom of the page.</p>
+    <p>The panel height is responsive, always reaching the bottom of the page.</p>
 
     <p>If multiple Map Add-Ins are installed, each is accessible by selecting a tab at the top
         of the panel. Three add-ins exist on the panel in Figure #2, denoted by the three tabs titled: Live Trip
@@ -155,7 +156,7 @@ title: Geotab Map Add-In Overview
     </figure>
 
     <h3>Structure</h3>
-    <p>The starting point for the Map Add-In JS script will be the function that is added as a method to
+    <p>The starting point for the Map Add-In JS script is the function that is added as a method to
         “window.geotab.addin”. For example:</p>
     <div class="highlights">
         <pre>
@@ -174,19 +175,72 @@ geotab.addin.request = (elt, service) => {
             Nothing will be removed or changed.
         </li>
         <li>
-            <strong><a href="#services-list">services</a></strong> - JavaScript file reference for this Add-In.
+            <strong><a href="#services-list">service</a></strong> - JavaScript file reference for this Add-In.
         </li>
     </ol>
-    <!--
-           <p>Each Map Add-In exists within its own tab on the right-side panel. Each Add-In has its own HTMLElement where it can append content. The Add-In function will be called when a user visits the Add-In by clicking on its tab. After that, the “focus” and “blur” events will be fired when the user opens or leaves the Add-In tab, respectively (See services.page).</p>
-            <p>The screenshot below displays the tabs for different Map Add-Ins. The different Add-Ins are named “Canvas”, “Hello from the other side of the frame”, and “Tooltip for map”.</p>
-            <figure>
-                <img src="../map-add-ins-docs-4.jpg" alt="Example of how tabs looks like if multiple map add-ins are installed">
-                <figcaption>Pic 4 - Multiple add-ins on the map page.</figcaption>
-            </figure> -->
 
     <h2 id="services-list">Services</h2>
     <div class="services-list">
+        <div class="docs-service">
+            <div class="docs-service__part">
+                <h3 class="docs-service__title">
+                    <span class="docs-service__name">API</span> service (<a
+                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request"
+                        target="_blank">Example</a>)
+                </h3>
+                <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API
+                        calls</a>.</p>
+                <h4>Methods</h4>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>call (method, parameters): Promise&lt;any[]&gt;
+                                Variable types:
+                                method: string
+                                parameters: object containing call parameters
+                            </td>
+                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on
+                                the
+                                <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK
+                                    Reference</a> page.</td>
+                        </tr>
+                        <tr>
+                            <td>multiCall (calls): Promise&lt;any[][]&gt;
+                                Variable types:
+                                calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
+                            </td> <!-- Need this in the example -->
+                            <td>Sends multiple requests to Geotab server as one batch. Read the <a
+                                    href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall"
+                                    section of the Concepts page</a> for more details on MultiCalls.</td>
+                        </tr>
+                        <tr>
+                            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
+                            <td>When executed in the Map Add-In, it gets the active user's database, username,
+                                session id (token), and the server path of their database (Examle:
+                                my123.geotab.com).
+                                This information is used to make API calls against MyGeotab from outside the Map
+                                Add-In, such as a web application.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-service__part">
+                <div class="docs-type">
+                    <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
+                    <p>
+                        <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
+                    </p>
+                    <p>Variable types:
+                        method : string
+                        parameters : object
+                        An array containing the API call details to be sent in the MultiCall.</p>
+                </div>
+            </div>
+        </div>
         <div class="docs-service">
             <div class="docs-service__part">
                 <h3 class="docs-service__title">
@@ -390,69 +444,6 @@ geotab.addin.request = (elt, service) => {
             </div>
 
 
-        </div>
-        <div class="docs-service">
-            <div class="docs-service__part">
-                <h3 class="docs-service__title">
-                    <span class="docs-service__name">API</span> service (<a
-                        href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request"
-                        target="_blank">Example</a>)
-                </h3>
-                <p>Service for making <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab API
-                        calls</a>.</p>
-                <h4>Methods</h4>
-                <table>
-                    <thead>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>call (method, parameters): Promise&lt;any[]&gt;
-                                Variable types:
-                                method: string
-                                parameters: object containing call parameters
-                            </td>
-                            <td>Sends a web request to the MyGeotab server. Method and Parameter names are found on
-                                the
-                                <a hred="https://geotab.github.io/sdk/software/api/reference/"> MyGeotab SDK
-                                    Reference</a> page.</td>
-                        </tr>
-                        <tr>
-                            <td>multiCall (calls): Promise&lt;any[][]&gt;
-                                Variable types:
-                                calls: Array containing <a href="#TApiCall_5345683199380336">TApiCall</a> arrays.
-                            </td> <!-- Need this in the example -->
-                            <td>Sends multiple requests to Geotab server as one batch. Read the <a
-                                    href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall"
-                                    section of the Concepts page</a> for more details on MultiCalls.</td>
-                        </tr>
-                        <tr>
-                            <td>getSession (): Promise&lt;ISessionInfo&gt;</td> <!-- Need this in the example -->
-                            <td>When executed in the Map Add-In, it gets the active user's database, username,
-                                session id (token), and the server path of their database (Examle:
-                                my123.geotab.com).
-                                This information is used to make API calls against MyGeotab from outside the Map
-                                Add-In, such as a web application.</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-            </div>
-
-            <div class="docs-service__part">
-                <div class="docs-type">
-                    <h4 id="TApiCall_5345683199380336">Type TApiCall</h4>
-                    <p>
-                        <pre><code class="language-js" data-lang="js">[method, parameters]</code></pre>
-                    </p>
-                    <p>Variable types:
-                        method : string
-                        parameters : object
-                        An array containing the API call details to be sent in the MultiCall.</p>
-                </div>
-            </div>
         </div>
         <div class="docs-service">
             <div class="docs-service__part">
