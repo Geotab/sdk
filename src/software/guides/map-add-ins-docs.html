@@ -192,6 +192,9 @@ geotab.addin.request = (elt, service) => {
                 <h4>Methods</h4>
                 <h5>service.api.call(...)</h5>
                 <p>Sends an API call to the MyGeotab server, using the <a href="https://geotab.github.io/sdk/software/api/reference">MyGeotab SDK</a>. A Promise (.then()) is used to capture the results and work with them, as shown in the example above.</p>
+                <h6>Returns</h6>
+                <p>The same result expected from the corresponding MyGeotab API call, detailed on the MyGeotab SDK Reference page.</p>
+                <!--Note to Justin, the Promises describe the results of the calls, so put those details in a section like the one above.-->
                 <h6>Parameters:</h6>
                 <table>
                     <thead>
@@ -215,6 +218,9 @@ geotab.addin.request = (elt, service) => {
                 
                 <h5>service.api.multiCall(...)</h5>
                 <p>Bundles multiple MyGeotab API calls into a single request, and sends it to the MyGeotab server. A Promise (.then()) is used to capture the results and work with them. Read the <a href="https://geotab.github.io/sdk/software/guides/concepts/#multicall">"MultiCall" documentation</a> for more details on MultiCalls.</p>
+                <h6>Returns</h6>
+                <p>The same result expected from the corresponding MyGeotab API calls that were made, detailed on the MyGeotab SDK Reference page.</p>
+                <!-- We need to give more details; for example, is this returned as an array? -->
                 <h6>Parameters:</h6>
                 <table>
                     <thead>
@@ -233,6 +239,9 @@ geotab.addin.request = (elt, service) => {
                 
                 <h5>service.api.getSession(...)</h5>
                 <p>When executed within the Map Add-In, it retrieves the active user's database name, username, session id (token), and the server path of their database (Example: my123.geotab.com). This information is used to authenticate the user into external applications, similar to Single Sign On (SSO).</p>
+                <h6>Returns</h6>
+                <p>The active user's database name, username, session id (token), and the server path of their database.</p>
+                <!-- What format will the result be in? Need to add a section like the TApiCall below, to show the format of getSession's result. -->
                 <h6>Parameters:</h6>
                 <h6>None</h6>
             </div>
