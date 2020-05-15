@@ -67,3 +67,6 @@ dist
 # hide the AWS and Rsync credentials file
 aws-credentials.json
 rsync-credentials.json
+
+# ignore the result of running Gemfile
+Gemfile.lock
