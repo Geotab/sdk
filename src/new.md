@@ -3,6 +3,111 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2002
+
+##### NuGet
+
+<span style="color:red">! IMPORTANT</span>: A bug has been identified with Geotab.Checkmate.Objectmodel NuGet packages older than version 5.7.2002, which can lead to serialization errors when a previous version received a new device plan value. Please update to the latest NuGet package to establish compatibility.
+
+##### Map Add-In
+
+Users can now create a [Map Add-In]({{site.baseurl}}/software/guides/map-add-ins-docs/) without using the view panel on the right. For quick tasks such as adding icons or text to the Map, simply use the `"noView":true` parameter in your configuration file.
+
+```json
+{
+    "page": "map",
+    "noView": true,
+    "title": "Some title",
+    "mapScript": {
+        "script": "..."
+    }
+}
+```
+
+You can now hide Vehicle State and Groups information from the tooltip when hovering or selecting vehicles on the Map. See the example below.
+
+```js
+service.tooltip.setConfig({
+    device: {
+        state: false,
+        groups: false
+    }
+});
+```
+
+##### Interpolation
+
+- [Get]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Get1): [StatusData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.StatusData), [LogRecord]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LogRecord) - In the v5.7.2001 release and earlier, we interpolate between points when using `StatusData` and `LogRecord` API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the _first/last_ value with the _correct_ dateTime.
+
+##### Users
+
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added the `IsExemptHOSEnabled` property to indicate whether the user is allowed to use HOS Personal Conveyance.
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CompanyName`, `CompanyAddress`, and `CarrierNumber` properties to store company and carrier information.
+- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CountryCode`, `PhoneNumber`, and `PhoneNumberExtension` properties to assign a phone number to a selected user.
+
+##### Drivers
+
+- [Driver]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Driver) - Added `LicenseProvince` and `LicenseNumber` properties.
+- [DriverRegulation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverRegulation) - Added `RestBreakNeeded`, `OffDutyNeeded`, `DaySummaries`, `WorkdaySummaries` and `CycleSummaries` properties to DriverRegulation.
+
+##### DutyStatuLog
+
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog) - Added `DeferralStatus`, and `DeferralMinutes` properties to define the duty status deferral and deferral minutes.
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType) - Added the `PC_Exempted` property to indicate the status of a driver.
+
+##### DVIRLog
+
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `LogType` and `DefectList` properties.
+- [DVIRLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLogType) - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new `Intrip` inspection type.
+
+##### Rules
+
+- [RecipientType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.RecipientType) - Added `HosEnabled` and `HosDisabled` to `RecipientType` to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `NoPreDVIRCheck` and `NoPostDVIRCheck` to `ConditionType` when no Pre or Post-trip DVIR is performed between work days.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `SpeedLimitAsMeasurement` property to the `ConditionType` to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - The `NoDVIRCheck` `ConditionType` is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
+
+##### Zones
+
+- [Zone]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Zone) - Added the `ZoneTypes` property for enumeration of zone types for a given zone.
+
+##### Devices
+
+- [GO9]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Go9) - Added the `ObdAlertEnabled` property to allow users to enable/disable OBD alerts on their vehicles.
+- [GoDevice]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GoDevice) - Added the `ParameterVersionOnDevice` property to track the current parameter version on the device. The current `ParameterVersion` property communicates the parameter version to the device; however, parameter updates are not always immediate.
+- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - To prevent mismatches based on system clock settings, we have prevented `ActiveFrom` from being greater than `ActiveTo` when adding a device.
+
+##### generator-addin version 3.0
+
+We have modernized the Add-In scaffolding, development and packaging tool to use more current techniques and features:
+
+- Now using webpack.
+- Now using Puppeteer for browser testing.
+- UI now shows a collapsible navbar.
+- Can now toggle multi-language support.
+- Can now toggle blur and focus events to simulate leaving and re-visiting the Add-In page.
+- For more information visit GitHub: <https://github.com/Geotab/generator-addin>{:target="_blank"}
+
+##### mg-api-js version 2.0
+
+This major release merges the API wrappers mg-api-js (previously browser only version) and mg-api-node (previously Nodejs only version) into a single project:
+
+- Uses single js library for nodejs or browser.
+- Supports Async promises and legacy callback behavior.
+- Simplifies authentication process, no more hard-to-understand callbacks.
+- Optional lower-level control over http response.
+- For more information visit GitHub: <https://github.com/Geotab/mg-api-js>{:target="_blank"}
+
+##### Other SDK Updates
+
+- [BinaryDataSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryDataSearch) - Search by `DeviceSearch.Groups` property using `BinaryDataSearch`.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - Added `SystemSettings` value to `SecurityIdentifier`.
+- Removed the `DiagnosticCategory` object from the [SDK reference]({{site.baseurl}}/software/api/reference) page. This is a legacy object that is no longer in use.
+- Updated the ExternalDeviceShutdownDelay documentation to clarify values in minutes rather than seconds.
+- Added a sample for getting fuel tax details using the [API runner]({{site.baseurl}}/software/api/runner.html#sample:get-fuel-tax-details).
+- Feature preview items now marked as Beta in [SDK reference]({{site.baseurl}}/software/api/reference).
+- Added a hardware [Add-On Data Types]({{site.baseurl}}//hardware/hardware-add-on-data-types) section to the SDK.
+
 ## 5.7.2001
 
 - AddInData (Feature Preview) - Remove requirement of `AddInDataId` for search by `Id`.
