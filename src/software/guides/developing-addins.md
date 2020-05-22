@@ -14,7 +14,7 @@ A custom page Add-In can be thought of as a complete web application inside your
 
 #### Buttons
 
-Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).
+Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functions for automation of routine tasks, such as report generation (see Image 3).
 
 ## Use cases
 
