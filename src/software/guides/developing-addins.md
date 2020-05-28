@@ -24,7 +24,7 @@ Another example is to quickly navigate between different areas of Geotab. A simp
 
 ### Requirements
 
-The Add-Ins created can either have their source code embedded and stored on Geotab's servers or can be stored externally using your own hosting provider or your own servers.
+The Add-Ins created must have their source code stored externally using your own hosting provider or your own servers.
 
 > Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.
 
