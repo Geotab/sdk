@@ -379,16 +379,16 @@ Third-Party Data Acknowledge from GO device
 0x02, 0x02, 0x00, 0x04, 0x0A, 0x03
 ```
 
-#### <a name="appendixB"></a> Appendix B: Sample Message Flow for IOX-USB & IOX-RS232
+#### Appendix B: Sample Message Flow for IOX-USB & IOX-RS232
 
  ![]({{site.baseurl}}/hardware/addon-protocols/rs232-usb_0.png)
 
 #### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
-MIME-type data can be transferred from an external device to the server via the GO device. The Message Flow is similar to that outlined in [Appendix B](#appendixB), with the following variations:
-1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#mimeDataPacket)
+MIME-type data can be transferred from an external device to the server via the GO device. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
-3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#mimeDataAck). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
+3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
 
 MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
 
@@ -403,7 +403,7 @@ MIME-type data will be saved as a MIME-type blob on the server. The blob can be 
 
 The MIME protocol will be an inner protocol within the binary data packet messages. The MIME data will be broken into 250 byte chunks and sent within binary data packet messages. The first byte within the message will be a sequence counter; all remaining bytes will contain the MIME data.
 
-#### <a name="mimeDataPacket"></a> Binary Data Packets Containing MIME Type Data
+#### Binary Data Packets Containing MIME Type Data
 
 This is an example of binary data packets for image data transferred using the MIME type "image/jpeg". The image size is 83000 bytes.
 
@@ -434,7 +434,7 @@ This is an example of binary data packets for image data transferred using the M
 | Checksum | 2 | 253 |
 | ETX (0x03) | 1 | 255 |
 
-#### <a name="mimeDataAck"></a> Binary Data Packet Containing MIME Type Acknowledge
+#### Binary Data Packet Containing MIME Type Acknowledge
 
 |   | Bytes | Position |
 | --- | --- | --- |
