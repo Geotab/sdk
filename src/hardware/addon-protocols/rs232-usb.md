@@ -385,7 +385,12 @@ Third-Party Data Acknowledge from GO device
 
 #### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
-MIME-type data can be transferred from an external device to the server via the GO device. It will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
+MIME-type data can be transferred from an external device to the server via the GO device. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
+2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
+3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
+
+MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
 
 #### The MIME Type Protocol:
 
@@ -428,3 +433,18 @@ This is an example of binary data packets for image data transferred using the M
 | **Binary Payload (the next 249 bytes)** | **249** | **4** |
 | Checksum | 2 | 253 |
 | ETX (0x03) | 1 | 255 |
+
+#### Binary Data Packet Containing MIME Type Acknowledge
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x23 | 1 | 1 |
+| Message Body Length = 9+x | 1 | 2 |
+| Sequence Number = 0 | 1 | 3 |
+| MIME type length = 3 | 1 | 4 |
+| MIME type in ASCII = 'ACK' | 3 | 5 |
+| Payload Length = x | 4 | 8 |
+| Total Number of Payload Bytes Received | x | 12 |
+| Checksum | 2 | 12+x |
+| ETX (0x03) | 1 | 14+x |
