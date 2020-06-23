@@ -4,49 +4,66 @@
     <head>
 
         <meta charset="utf-8" />
-
         <title>Geotab SDK | Import users</title>
-
-        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
+		<!-- <link href="css/geotab.css" rel="stylesheet" type="text/css" /> -->
+		<link href="css/importusers.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     </head>
 
     <body>
 
         <header>
-            <div class="container">
-                <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="template">Template</button>&nbsp;&nbsp;
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Import users</h1>
-                <h3>Creates new users from a comma separated list</h3>
-            </div>
+			<article class="container">
+				<div class="row">
+					<div class="col geotab-logo">
+						<img src="https://gogwebp01.geotab.com/webimages/header/geotablogo.png" alt="" />
+					</div>
+					<nav class="col text-right">
+						<button id="dialog" onclick="openDialog('dialog1', this)">Template</button>
+						<button id="help" onclick="openDialog('dialog2', this)">Help</button>
+						<button id="signout">Sign out</button>
+					</nav> 
+				</div>
+				</div>
+				<div class="row bottom">
+					<div class="col">
+							<h1>Import users</h1>
+							<h3>Creates new users from a comma separated list</h3>
+					</div>
+				</div>				
+			</article>
         </header>
 
         <div class="container bordered">
 
             <div id="signin-content"></div>
 
-            <div id="example-content">
+            <div id="example-content">	
                 <form>
-                    <h3>Import users</h3>
                     <p>
-                        <label for="import-userName">Email or user name</label>
+                        <label for="import-userName"><br>Email or username</label>
                         <input id="import-userName" type="text" placeholder="user@geotab.com" maxlength="255" />
                     </p>
                     <p>
-                        <label for="import-firstName">Full name</label>
-                        <input id="import-firstName" type="text" placeholder="John" maxlength="255" />
+                        <label for="import-firstName">First name</label>
+						<input id="import-firstName" type="text" placeholder="John" maxlength="255" />
+					</p>
+					<p>
+						<label for="import-lastName">Last name</label>
                         <input id="import-lastName" type="text" placeholder="Smith" maxlength="255" />
                     </p>
                     <p>
                         <label for="import-password">Password</label>
 						<input id="import-password" type="password" placeholder="Minimum of 8 characters" maxlength="255" />
-						<label style="font-size: 14px; margin-top: 10px;"><input id="import-password-reset" style="float:none" type="checkbox" title="This user will need to enter a new password the first time they log in to the database.">Force password change on next login</label>
+					</p>
+					<p>
+						<label id="pwd-text"><input id="import-password-reset" type="checkbox" title="This user will need to enter a new password the first time they log in to the database.">&nbsp;&nbsp;Force password change on next login</label>
 					</p>
                     <p>
 						<label for="import-groups">Groups</label>
@@ -59,6 +76,8 @@
 					<p>
 						<label for="import-nfcKey">Driver key (optional)</label>
 						<input id="import-nfcKey" type="text" placeholder="NFC key number" />
+					</p>
+					<p>
 						<input id="import-customNFC" type="text" placeholder="Custom NFC key number" />
 					</p>
 					<p>
@@ -88,7 +107,7 @@
 					<p>
 						<div class="checkmateField">
 							<label class="label">Feature preview:</label>
-							<div><input type="radio" name="featurePreviewRadioButton" value="On" id="idFeaturePreviewOn">
+							<div id="options_featurePreviewSelect"><input type="radio" name="featurePreviewRadioButton" value="On" id="idFeaturePreviewOn">
 								<label>On</label>
 								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff">
 								<label>Off</label></div>
@@ -105,37 +124,37 @@
 					<p>
 						<div class="checkmateField">
 							<label for="options_AuthorityName">Authority name: </label>
-							<input id="options_AuthorityName" class="checkmateFormEditField" title="The motor carrier that the driver works for.">
+							<input id="options_AuthorityName" type="text" class="checkmateFormEditField" title="The motor carrier that the driver works for.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label for="options_AuthorityAddress">Authority address: </label>
-							<input id="options_AuthorityAddress" class="checkmateFormEditField" title="The motor carrier's main office address.">
+							<input id="options_AuthorityAddress" type="text" class="checkmateFormEditField" title="The motor carrier's main office address.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label for="options_CarrierNumber">Carrier number:</label>
-							<input id="options_CarrierNumber" class="checkmateFormEditField" title="In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.">
+							<input id="options_CarrierNumber" type="text" class="checkmateFormEditField" title="In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label for="options_Name">Home terminal:</label>
-							<input id="options_Name" class="checkmateFormEditField" title="The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.">
+							<input id="options_Name" type="text" class="checkmateFormEditField" title="The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label for="options_Address">Home terminal address:</label>
-							<input id="options_Address" class="checkmateFormEditField" title="The motor carrier's address where the driver ordinarily reports for work.">
+							<input id="options_Address" type="text" class="checkmateFormEditField" title="The motor carrier's address where the driver ordinarily reports for work.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label for="options_LicenseNumber">Driver license number:</label>
-							<input id="options_LicenseNumber" class="checkmateFormEditField" maxlength="1000" title="Driver's license number and License state/province must be set at the same time.">
+							<input id="options_LicenseNumber" type="text" class="checkmateFormEditField" maxlength="1000" title="Driver's license number and License state/province must be set at the same time.">
 						</div>
 					</p>
 					<p>
@@ -266,7 +285,7 @@
 						<div class="checkmateField">
 							<label for="options_hosRuleSet">Ruleset:</label>
 							<select id="options_hosRuleSet" class="checkmateFormEditField" title="This is the ruleset the user will follow when using hours of service.">
-								<option disabled selected value> -- select an ruleset -- </option>
+								<option value=null></option>"Please select a ruleset"</option>
 								<option value="HosRuleSetAlaskaPassenger7Day">Alaska Passenger 70-hour/7-day</option>
 								<option value="HosRuleSetAlaskaPassenger8Day">Alaska Passenger 80-hour/8-day</option>
 								<option value="HosRuleSetAlaskaProperty7Day">Alaska Property 70-hour/7-day</option>
@@ -376,6 +395,7 @@
 						</div>
 					</p>
 					</ul>
+					<p></p>
 					<p>
 						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>
 					</p>
@@ -389,30 +409,31 @@
 
         <footer>
             <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 10/03/2019</p>
+                <p><br>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
+                <p>Last updated on June 22, 2020</p>
 
             </div>
         </footer>
         
-        <div id="template-content">
-            <h2>Template</h2>
-            <p>
-                An excel template is in the works and will be made available shortly.<br /><br />
-                <a href="templates/import-user.xls" target="_blank">Click here to download</a> the ruleset lookup table.<br />
+        <div role="dialog" id="dialog1" class="hidden" aria-labelledby="dialog1_label" aria-modal="true">
+			<button id="close-out" class="close-button" style="float: right;" onclick="closeDialog(this)">Close</button>
+			<h2 class="dialog_label">Template</h2>
+            <p class="label_text">
+                To make things easier, we've provided you with an <a class="label_text" href="templates/import-user.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br>
             </p>
-			<div class="code">
+			<div class="code label_text">
 				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
 			</div>
         </div>
 
-        <div id="help-content">
+        <div role="dialog" class="hidden" id="dialog2" aria-labelledby="dialog2_label" aria-modal="true">
+			<button id="close-out" class="close-button" style="float: right;" onclick="closeDialog(this)">Close</button>
             <h2>Help</h2>
             <p>
-                This utility helps you import users to your account using comma separated values (CSV).
+                This SDK example assists with importing users to your database using comma separated values (CSV).
             </p>
             <p>
-				Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.
+				Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source.
 				<table>
 					<thead>
 						<tr>
@@ -547,7 +568,9 @@
         </div>
 
         <script src="js/api.js"></script>
-        <script src="js/login.js"></script>
+		<script src="js/login.js"></script>
+		<script src="js/dialog.js"></script>
+		<script src="js/utils.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
@@ -1108,7 +1131,27 @@
                 });
             }
 
-        </script>
+		</script>
+		
+		<!-- <script>
+			var modal = document.getElementById("dialog1");
+
+			
+			var btnClose = document.getElementById("close-out");
+
+
+			// When the user clicks on <span> (x), close the modal
+			btnClose.onclick = function() {
+			  modal.style.display = "none";
+			}
+			
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+				modal.style.display = "none";
+			  }
+			}
+		</script> -->
 
     </body>
 
