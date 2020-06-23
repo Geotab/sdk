@@ -26,7 +26,7 @@
 					</div>
 					<nav class="col text-right">
 						<button id="dialog" onclick="openDialog('dialog1', this)">Template</button>
-						<button id="help" onclick="openDialog('dialog2', this)">Help</button>
+						<button id="help-dialog" onclick="openDialog('dialog2', this)">Help</button>
 						<button id="signout">Sign out</button>
 					</nav> 
 				</div>
@@ -285,7 +285,7 @@
 						<div class="checkmateField">
 							<label for="options_hosRuleSet">Ruleset:</label>
 							<select id="options_hosRuleSet" class="checkmateFormEditField" title="This is the ruleset the user will follow when using hours of service.">
-								<option value=null></option>"Please select a ruleset"</option>
+								<option value=""></option>"Please select a ruleset"</option>
 								<option value="HosRuleSetAlaskaPassenger7Day">Alaska Passenger 70-hour/7-day</option>
 								<option value="HosRuleSetAlaskaPassenger8Day">Alaska Passenger 80-hour/8-day</option>
 								<option value="HosRuleSetAlaskaProperty7Day">Alaska Property 70-hour/7-day</option>
@@ -397,7 +397,8 @@
 					</ul>
 					<p></p>
 					<p>
-						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>
+						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" id="clear" onclick="ClearFields();">Clear</button>
+
 					</p>
                     <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
@@ -857,12 +858,19 @@
 									user: {"id": userIds[i]}
 								};
 
-								moreCalls.push([
-									"Add", {
-										typeName: "UserHosRuleSet",
-										entity: anotherUser
-									}
-								]);
+								
+								//if no ruleset is selected, do not push one to user
+								if (hosRulesetArray[i] != "") {
+
+									moreCalls.push([
+										"Add", {
+											typeName: "UserHosRuleSet",
+											entity: anotherUser
+										}
+									]);
+
+									console.log("pushed");
+								}
 							}
 						}
                     }
@@ -1130,6 +1138,11 @@
                     console.log(error);
                 });
             }
+
+			function ClearFields() {
+
+			document.getElementById("content").value = "";
+			}
 
 		</script>
 

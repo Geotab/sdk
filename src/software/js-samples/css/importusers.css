@@ -134,7 +134,7 @@ label {
     margin-bottom: 0!important;
 }
 
-#dialog, #help, #signout, #signin, .clickable-heading, #addUser, #importUsers {
+#dialog, #help-dialog, #signout, #signin, .clickable-heading, #addUser, #importUsers, #clear {
 
     padding: 8px 10px;
 
