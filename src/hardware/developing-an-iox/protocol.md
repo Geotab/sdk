@@ -15,9 +15,9 @@ Third party IOX Add-ons rely on the messages and protocol defined in this docume
 Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.
 
 ### Serial Number
-Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Destination ID, and is included in bits 15 - 0 of the Arbitration ID.
+Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
 
-Integrators are free to leverage any mechanism to assign a Serial Number to each of their IOXs. For new serial number creation, we recommend the following steps:
+Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:
 1. Generate a random 4 byte value.
 2. Make sure that the 2 LSBs are not equal to '0000'.
 3. Make sure that you do not already have this value stored in your database of existing serial numbers.
@@ -30,7 +30,7 @@ The Arbitration ID Field for IOX Messages:
 
 | Bits | 28 to 22 | 21 to 16 | 15 to 0 |
 | --- | --- | --- | --- |
-| Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX Destination ID: 1–65535 |
+| Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX Address ID: 1–65535 |
 
 0x1FC00000 IO\_EXPANDER\_RESERVED\_MASK
 
@@ -38,9 +38,9 @@ The Arbitration ID Field for IOX Messages:
 
 0x0000FFFF IO\_EXPANDER\_ID\_MASK
 
-### Destination ID
+### Address ID
 
-The last 2 bytes of the IOX Serial Number (MSB first) are used as the Destination ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.
+The last 2 bytes of the IOX Serial Number (MSB first) are used as the Address ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.
 
 The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID between 0x0001 and 0xFFFF when it is targeted at a specific IOX.
 
