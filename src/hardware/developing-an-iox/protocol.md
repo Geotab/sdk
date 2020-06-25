@@ -14,6 +14,14 @@ Third party IOX Add-ons rely on the messages and protocol defined in this docume
 
 Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.
 
+### Serial Number
+Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
+
+Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:
+1. Generate a random 4 byte value.
+2. Make sure that the 2 LSBs are not equal to '0000'.
+3. Make sure that you do not already have this value stored in your database of existing serial numbers.
+
 ### Message Structure
 
 Message identification is done with an arbitration ID.
@@ -22,7 +30,7 @@ The Arbitration ID Field for IOX Messages:
 
 | Bits | 28 to 22 | 21 to 16 | 15 to 0 |
 | --- | --- | --- | --- |
-| Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX ID: 1–65535 |
+| Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX Address ID: 1–65535 |
 
 0x1FC00000 IO\_EXPANDER\_RESERVED\_MASK
 
@@ -30,19 +38,22 @@ The Arbitration ID Field for IOX Messages:
 
 0x0000FFFF IO\_EXPANDER\_ID\_MASK
 
-### Identifier
+### Address ID
 
-The last 2 bytes of the IOX serial number (MSB first) are used as the ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.
+The last 2 bytes of the IOX Serial Number (MSB first) are used as the Address ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.
 
 The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID between 0x0001 and 0xFFFF when it is targeted at a specific IOX.
 
-IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with serial numbers ending in 0x0000.
+IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.
+
+### IOX ID
+Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrator shall report the IOX ID in byte 7 of the Poll Response (0x02).
 
 ### Acknowledge Process
 
 1. Each IOX should receive an ACK from the GO device for every message sent. If an ACK is not received within 100 ms, the IOX should repeat the message before sending anything else.
 2. The first poll after reset allows up to 1 second for the acknowledge to come in before repeating.
-3. When a global message (addressed to 0x0000) requiring a response is received by an IOX, the IOX should respond with a delay of up to 70 ms in order to prevent all IOXs from trying to respond at the same time. This delay should be random and the seed for the randomizer must be based on the IOX&#39;s serial number.
+3. When a global message (addressed to 0x0000) requiring a response is received by an IOX, the IOX should respond with a delay of up to 70 ms in order to prevent all IOXs from trying to respond at the same time. This delay should be random and the seed for the randomizer must be based on the IOX&#39;s Serial Number.
 
 ## Polling
 
@@ -85,10 +96,10 @@ Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The fi
 | | The following Bytes are sent only on first poll-response |
 | 1 | Firmware Version Major |
 | 2 | Firmware Version Minor |
-| 3-4 | 2 Most significant bytes of serial number |
+| 3-4 | 2 Most significant bytes of Serial Number |
 | 5 | Reset Reason <br> 0 =  Power On Reset <br> 1 =  Reset Command <br> 2 = New Firmware <br> All others reserved. |
 | 6 | Reserved |
-| 7 | 150 to 199 <br> Please contact Geotab to get an ID assigned. |
+| 7 | 150 to 199 <br> IOX ID. Please contact Geotab to get one assigned. |
 
 When the &quot;Go to Sleep&quot; command is received, and before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.
 
