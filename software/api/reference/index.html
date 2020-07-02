@@ -18,7 +18,7 @@
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "https://mypreview.geotab.com/sdk/SDK.xml");
+            xhr.open("GET", "https://my1.geotab.com/sdk/SDK.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
