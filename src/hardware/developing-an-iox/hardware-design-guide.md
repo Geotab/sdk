@@ -22,7 +22,7 @@ The GO Device provides a mini-B USB receptacle for connecting IOXs and third-par
 
 Multiple IOXs can be connected to the GO Device through a daisy chain configuration. The IOX device itself has a mini-B USB receptacle that can provide CAN bus and power from the vehicle to the next device in the chain.
 
-A mini-B USB receptacle needs to be added to a third-party device if this third-party device is not meant to be the last device in a daisy chain or if more than one third-party device will be used in the chain.
+**A mini-B USB receptacle needs to be added to a third-party device if this third-party device is not meant to be the last device in a daisy chain or if more than one third-party device will be used in the chain.**
 
 ### Mini-B USB Plug Input
 
