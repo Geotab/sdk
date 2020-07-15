@@ -162,6 +162,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Duration | 4 | 31 |
 | GO Device ID | 4 | 35 |
 | Driver ID [5] | 4 | 39 |
+| GO Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
 | Reply: Device Data Ack ([Msg Type 0x84](#msg-type-0x84-device-data-ack)) |   |   |
