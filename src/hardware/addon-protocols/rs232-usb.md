@@ -149,7 +149,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x21 | 1 | 1 |
-| Message Body Length >= 40 [1] | 1 | 2 |
+| Message Body Length >= 52 [1] | 1 | 2 |
 | Date / Time [2] | 4 | 3 |
 | Latitude | 4 | 7 |
 | Longitude | 4 | 11 |
