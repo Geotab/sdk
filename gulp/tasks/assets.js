@@ -30,7 +30,7 @@ gulp.task('scripts', () =>
     .pipe(newer('.tmp/assets/javascript/index.js', {dest: '.tmp/assets/javascript', ext: '.js'}))
     .pipe(when(!argv.prod, sourcemaps.init()))
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['@babel/preset-env']
     }))
     .pipe(concat('index.js'))
     .pipe(size({
@@ -63,7 +63,7 @@ gulp.task('styles', () =>
       precision: 10
     }).on('error', sass.logError))
     .pipe(postcss([
-      autoprefixer({browsers: 'last 1 version'})
+      autoprefixer()
     ]))
     .pipe(size({
       showFiles: true
