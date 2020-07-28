@@ -109,7 +109,7 @@ This example demonstrates how you can embed MyGeotab functionality into your exi
 
 [Demo](./singleSignOn.html) / [Source](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/singleSignOn.html)
 
-## Status Data Samlper
+## Status Data Sampler
 
 Shows how to retrieve the status data (engine data) for a vehicle.
 

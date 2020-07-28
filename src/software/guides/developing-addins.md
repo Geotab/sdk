@@ -14,7 +14,7 @@ A custom page Add-In can be thought of as a complete web application inside your
 
 #### Buttons
 
-Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functionsfor automation of routine tasks, such as report generation (see Image 3).
+Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functions for automation of routine tasks, such as report generation (see Image 3).
 
 ## Use cases
 
@@ -24,7 +24,7 @@ Another example is to quickly navigate between different areas of Geotab. A simp
 
 ### Requirements
 
-The Add-Ins created can either have their source code embedded and stored on Geotab's servers or can be stored externally using your own hosting provider or your own servers.
+The Add-Ins created must have their source code stored externally using your own hosting provider or your own servers.
 
 > Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.
 
@@ -67,9 +67,7 @@ The Add-In configuration file below demonstrates how to define a simple Add-In w
                         "fr": "French Menu Text"
                 }
         }],
-        "files": { },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        "files": { }
 }
 ```
 
@@ -142,9 +140,7 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
         },
         "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
     }],
- "isSigned": false,
- "signature": "12345-MYSIGNATURE",
- "key": "12345-MYAPIKEY"
+ "isSigned": false
 }
 ```
 
@@ -226,9 +222,7 @@ When developing a custom page or button Add-In, you have the option to embed the
                 "css": {
                         "customStyles.css": "#customDiv{color:#ff0;}"
                 }
-        },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        }
 }
 ```
 
@@ -416,9 +410,7 @@ Almost any page is available to have a custom button Add-In added to it. Use a w
                         "fr": "French Button"
                 }
         }],
-        "files": { },
-        "key": "12345-MYAPIKEY",
-        "signature": "12345-MYSIGNATURE"
+        "files": { }
 }
 ```
 
