@@ -3,6 +3,85 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2003
+
+##### General improvements
+
+JSON serialization improvements have been made to increase the efficiency of API calls. This is especially noticeable on API calls with large response payload. For example, calling `GetFeed` of `StatusData` with full payload (50,000 results), the average end to end time decreased from 1800 ms to 800 ms.
+
+##### TextMessage and TextMessageSearch
+
+- [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - Added `Recipient`. This property is used to send a text message to a user.
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - Added searching by `IsDelivered`, `IsRead`, `UserSearch`.
+  - `IsDelivered`, when set to true, returns all text messages that were delivered to the recipient/device.
+  - `IsRead`, when set to true, returns all text messages that were read by the recipient/device.
+  - `UserSearch` searches TextMessages from a user, and users in the specified `CompanyGroups` or `DriverGroups`.
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - Added searching by `ContentTypes` and `IsDirectionToVehicle`.
+  - `ContentTypes` searches for TextMessages based on their MessageContentType.
+  - `IsDirectionToVehicle`, when set to true, will return all text messages that were sent to the device. If set to false, it will return all text messages that were not sent to the device.
+
+##### SecurityIdentifier
+
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - `PerformanceReport` has been removed.
+
+##### Exception Messages
+
+Some exception messages contained escaped Unicode characters. We have fixed these to exclude escaped characters. See the example message change below:
+
+```text
+The method \u0022NotAMethod\u0022 could not be found. Verify the method name and ensure all method parameters are included
+```
+
+```text
+The method 'NotAMethod' could not be found. Verify the method name and ensure all method parameters are included
+```
+
+This fix applies to messages of exception types `MissingMethodException`, `AmbiguousMatchException`, `MissingMemberException` and `JsonSerializationException`.
+
+##### DiagnosticType
+
+- [DiagnosticType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DiagnosticType) - Added `GmcccFault` and `BrpFault`
+
+##### KnownId
+
+- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `ControllerGmcccFaultId`, `SourceGmcccId`, `SourceGmcccObsoleteId`, `ControllerBrpFaultId`, `SourceBrpId`, `SourceBrpObsoleteId`
+- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `NoExceptionEventId`, `NoRuleId`
+
+##### Device
+
+- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - Added `AutoHos`. This property is a toggle that represents automatic generation of DutyStatusLogs for a `GoDevice` and/or a `CustomVehicleDevice`.
+
+##### DutyStatusViolation
+
+- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Added `HoursLimit` and `DaysLimit`. These properties show the maximum or minimum hours and/or days limit for duty status violations.
+- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Deprecated `Reason` property. This will be removed in a future version. The data in the Reason property string is now provided as `DaysLimit` and `HoursLimit` for better programmatic access.
+
+##### UserSearch
+
+- [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch) - Added searching by `LicenseNumber`, `EmployeeNumber`, `HosRuleSet` and `UserAuthenticationType`.
+
+##### GetFeed DebugData
+
+- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1): [DebugData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DebugData) - Fixed sort order issue leading to possible missed records.
+
+##### FuelTransaction
+
+- [FuelTransaction]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransaction) - Added `Device` and `Driver`. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's `Device` and `Driver` properties defaults to NoDevice and UnknownDriver.
+
+##### DVIRLog
+
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `AuthorityName`, `AuthorityAddress`, `Odometer`, `LoadHeight`, `LoadWidth` and `IsInspectedByDriver`. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered `Hubometer` value for Trailer DVIRs.
+
+##### ConditionType
+
+- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `IsValueLessThanPercent` and `IsValueMoreThanPercent`. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
+
+##### WebServerInvoker (Nuget only)
+
+This method has been changed to use generics instead of passing type in, and returning an object, that needs  to be cast. For example, `var version = (string)(await invoker.InvokeAsync("GetVersion", typeof(string)));` is now `var version = await invoker.InvokeAsync<string>("GetVersion");`
+
+> While not an officially supported component, it's possible `WebServerInvoker` is being used by some integrations. For this reason we thought it worth mentioning this change.
+
 ## 5.7.2002
 
 ##### NuGet
