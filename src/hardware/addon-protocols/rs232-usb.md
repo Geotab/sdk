@@ -26,6 +26,12 @@ The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rat
 1. The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
 2. USB-CDC (Communications Device Class)
 
+#### Powering a device using the IOX-RS232 and IOX-USB
+Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
+
+- The IOX-USB can provide 5V/1.5A as a power output. 
+- The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
+
 ## Integration Process
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
