@@ -17,7 +17,7 @@
         <header>
             <div class="container">
                 <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <img src="https://gogwebp01.geotab.com/webimages/header/geotablogo.png" alt="" />
                     <button id="template">Template</button>&nbsp;&nbsp;
                     <button id="help">Help</button>
                     <button id="signout">Sign out</button>
@@ -35,7 +35,7 @@
                 <form>
                     <h3>Import users</h3>
                     <p>
-                        <label for="import-userName">Email or user name</label>
+                        <label for="import-userName">Email or username</label>
                         <input id="import-userName" type="text" placeholder="user@geotab.com" maxlength="255" />
                     </p>
                     <p>
@@ -266,7 +266,7 @@
 						<div class="checkmateField">
 							<label for="options_hosRuleSet">Ruleset:</label>
 							<select id="options_hosRuleSet" class="checkmateFormEditField" title="This is the ruleset the user will follow when using hours of service.">
-								<option value=null></option>"Please select a ruleset"</option>
+								<option value=""></option>"Please select a ruleset"</option>
 								<option value="HosRuleSetAlaskaPassenger7Day">Alaska Passenger 70-hour/7-day</option>
 								<option value="HosRuleSetAlaskaPassenger8Day">Alaska Passenger 80-hour/8-day</option>
 								<option value="HosRuleSetAlaskaProperty7Day">Alaska Property 70-hour/7-day</option>
@@ -377,7 +377,7 @@
 					</p>
 					</ul>
 					<p>
-						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>
+						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" id="clear" onclick="ClearFields();">Clear</button>
 					</p>
                     <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
@@ -390,7 +390,9 @@
         <footer>
             <div class="container footernotes">
                 <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 10/17/2019</p>
+
+                <p>Last updated on 07/16/2020</p>
+
 
             </div>
         </footer>
@@ -398,8 +400,9 @@
         <div id="template-content">
             <h2>Template</h2>
             <p>
-                We provide an excel template to simplify the user data creation process. Please ensure that you abide by the input requirements as outlined under the Help menu. Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required if a license plate is inputted, and you may enter a state other than those provided in the dropdown. NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br /><br />
-                <a href="templates/import-user.xlsx" target="_blank">Click here to download</a> the excel template.<br />
+
+                To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br>
+
             </p>
 			<div class="code">
 				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
@@ -409,10 +412,10 @@
         <div id="help-content">
             <h2>Help</h2>
             <p>
-                This utility helps you import users to your account using comma separated values (CSV).
+                This SDK example assists with importing users to your database using comma separated values (CSV).
             </p>
             <p>
-				Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.
+				Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source.
 				<table>
 					<thead>
 						<tr>
@@ -834,12 +837,16 @@
 									user: {"id": userIds[i]}
 								};
 
+								//if no ruleset is selected, do not push one to user
+								if (hosRulesetArray[i] !== "") {
+
 								moreCalls.push([
 									"Add", {
 										typeName: "UserHosRuleSet",
 										entity: anotherUser
 									}
 								]);
+								}
 							}
 						}
                     }
@@ -1107,6 +1114,11 @@
                     console.log(error);
                 });
             }
+
+			function ClearFields() {
+
+			document.getElementById("content").value = "";
+			}
 
         </script>
 

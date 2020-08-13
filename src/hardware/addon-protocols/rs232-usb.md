@@ -319,14 +319,7 @@ Sent by the external device when sending binary data directly to the server. The
 | ETX (0x03) | 1 | 5+x |
 | Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |   |   |
 
-The payload of the binary data would need to adhere to a protocol understood by the server. The MIME data transfer protocol is under review and will be linked to from here when ready. The proposed implementation includes:
-
-- Length of MIME type (1 byte)
-- MIME type in ASCII
-- Length of body (4 bytes)
-- Body (raw bytes of MIME-type specified)
-
-The MIME data message would need to be broken into 250 byte (or less) chunks and sent using the binary data packet (Msg Type 0x86). The server would stitch together the binary bytes and make then available via the MyGeotab SDK once the full amount of bytes was received. See Appendix C.
+The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
 
 #### Msg Type 0x87: Third-Party Data as Priority Status Data
 
