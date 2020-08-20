@@ -33,7 +33,7 @@ Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
 - The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
 
 #### Grounding a device
-It's recommended to connect the Hardware Add-On to the vehicle ground. This could be done via the IOX-RS232 ground wire, or an wire from the Add-On. This improves the signal integrity.
+It's recommended to connect the Hardware Add-On to the vehicle ground. This could be done via the IOX-RS232 ground wire, or an wire from the Add-On itself. This improves signal integrity.
 
 ## Integration Process
 
