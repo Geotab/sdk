@@ -405,7 +405,7 @@
             <h2>Template</h2>
             <p>
 
-                To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br>
+                To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
 
             </p>
 			<div class="code">
@@ -453,6 +453,11 @@
 							<td>Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of groups separated by the | character.</td>
+                        </tr>
+                        <tr>
+							<td>Reporting Groups</td>
+							<td>Drivers|West|Garmin</td>
+							<td>Names of reporting groups separated by the | character.</td>
 						</tr>
 						<tr>
 							<td>Security clearance ID</td>
