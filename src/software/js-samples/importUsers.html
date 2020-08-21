@@ -754,7 +754,7 @@
                             var lastName = split[2];
                             var password = split[3];
                             var groups = parseGroups(split[4]);
-                            var reportGroups = parseGroups(split[5]);
+                            var reportGroups = parseReportingGroups(split[5]);
                             var securityGroups = parseSecurityClearanceName(split[6]);
 							var keys = parseKeys(split[7], split[8]);
 							var employeeNo = split[9];
@@ -817,7 +817,7 @@
                             }
                             
 							hosRulesetArray.push(hosRuleSet);
-							
+
 							calls.push([
 								"Add", {
 									typeName: "User",
@@ -995,6 +995,18 @@
                 }
                 if (result.length <= 0) {
                     result.push(groupCache["GroupCompanyId"]);
+                }
+                return result;
+            }
+
+            
+            function parseReportingGroups(text) {
+                var result = [];
+                var split = text.split("|");
+                for (var i = 0; i < split.length; i++) {
+                    if (groupCache.hasOwnProperty(split[i].trim())) {
+                        result.push({"id": groupCache[split[i].trim()].id});
+                    }
                 }
                 return result;
             }
