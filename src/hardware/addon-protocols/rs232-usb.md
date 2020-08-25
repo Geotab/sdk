@@ -29,11 +29,11 @@ The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rat
 #### Powering a device using the IOX-RS232 and IOX-USB
 Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
 
-- The IOX-USB can provide 5V/1.5A as a power output. 
+- The IOX-USB can provide 1.5A at 5V as a power output. 
 - The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
 
 #### Grounding a device
-While Hardware Add-On already connects to vehicle power and ground to sustain its power, we recommend that you connect the Add-On ground to the ground wire of the IOX-RS232 too. This has proven to improve signal integrity.
+Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
 
 ## Integration Process
 
