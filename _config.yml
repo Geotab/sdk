@@ -50,5 +50,3 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
   - jekyll-octicons
-
-theme: jekyll-theme-cayman
