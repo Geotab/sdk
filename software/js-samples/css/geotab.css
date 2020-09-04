@@ -1,0 +1,322 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #f7f7f7;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: #0099cc;
+}
+
+a:active, a:hover {
+    color: #33b5e5;
+}
+
+iframe {
+    width: 940px;
+    height: 422px;
+    border: none;
+    overflow: hidden;
+    padding: 0 10px 10px 10px;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+h3, h4, h5 {
+    font-weight: normal;
+    color: #888;
+}
+
+ol > li {
+    margin-bottom: 20px;
+}
+
+ol ul {
+    margin-top: 10px;
+}
+
+ol ul > li {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 20px;
+    margin: 0 0 0 -1px;
+}
+
+label {
+    display: block;
+    color: #888;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="range"], input[type="date"] {
+    line-height: 20px;
+    padding: 5px;
+    width: 280px;
+}
+
+select, #groups {
+	padding: 3px;
+	width: 295px;
+}
+
+input[type="date"] {
+    padding: 2px 0 2px 5px;
+    width: 270px;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    padding: 5px 20px 5px 0;
+}
+
+input[type="checkbox"] {
+    float: left;
+    margin-right: 10px;
+}
+
+textarea {
+    font-family: Arial;
+    width: 914px;
+}
+
+table {
+    border: none;
+    font-size: 0.8em;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+table th {
+    background-color: #f7f7f7;
+    border-top: none;
+}
+
+table th:first-child, table td:first-child {
+    border-left: none;
+}
+
+table th:last-child, table td:last-child {
+    border-right: none;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+header {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    height: 130px;
+}
+
+nav {
+    float: right;
+    text-align: right;
+    margin-left: 20px;
+}
+
+nav img {
+    display: block;
+    padding: 20px 0 10px 0;
+}
+
+nav + h1 {
+    padding-top: 20px;
+}
+
+
+form {
+    margin: 20px;
+}
+
+form > button {
+    margin-right: 10px;
+}
+
+legend {
+    margin-bottom: 20px;
+    padding: 0;
+    font-weight: bold;
+}
+
+pre {
+    margin: 0;
+}
+
+p {
+	line-height: 150%;
+}
+
+.code {
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    padding: 10px;
+    overflow: auto;
+}
+
+.highlight {
+    background-color: #fcf8e3;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.bordered {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.spaced {
+    margin-top: 20px;
+}
+
+.padded {
+    padding: 0 20px 20px 20px;
+}
+
+.description {
+    padding: 0 20px 0 20px;
+}
+
+.description h3 {
+    margin: 20px 0 20px 0;
+    color: #888;
+    font-size: 1.5em;
+}
+
+.footernotes {
+    text-align: right;
+    padding: 10px;
+    font-size: 0.8em;
+}
+
+.footernotes p {
+    margin: 5px 0 0 0;
+}
+
+.invisible {
+    display: none;
+}
+
+.blanket {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.6;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+    width: 800px;
+    height: 500px;
+    overflow: auto;
+    color: #666;
+    z-index: 999;
+    display: block;
+}
+
+.modal .code {
+    width: 765px;
+    height: 90px;
+    margin-left: 15px;
+    padding: 0;
+}
+
+.modal strong {
+    color: #333;
+}
+
+.modal h2 {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+}
+
+.modal p {
+    padding: 15px;
+    margin: 0;
+}
+
+.modal table {
+    width: 755px;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+}
+
+.modal thead tr th {
+    text-align: left;
+}
+
+.modal thead tr th:first-child {
+    width: 140px;
+}
+
+.modalClose {
+    position: absolute;
+    top: 14px;
+    right: 15px;
+}
+
+.chart {
+    height: 450px;
+}
+
+.morris-hover.morris-default-style {
+    z-index: 998;
+}
+
+#example-content {
+    display: block;
+}
+
+#map {
+    height: 500px;
+}
+
+#signin-content {
+    display: none;
+}
+
+#example-content {
+    display: block;
+}
+
+#example-content-details {
+    display: block;
+    margin-top: 20px;
+}
+
+#help-content {
+    display: none;
+}
+
+#template-content {
+	display: none;
+}
