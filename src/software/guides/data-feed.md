@@ -83,7 +83,7 @@ There are two types of data that can be retrieved using a data feed: active data
 
 * DriverChange
 
-* Audit.
+* Audit
 
 ## Invalidated Data
 
