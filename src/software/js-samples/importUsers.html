@@ -692,14 +692,18 @@
 							newContent += user.groups[i] + ",";
 						}
 					}
-                    //Reporting groups
-                    for (var i = 0; i < user.reportGroups.length; i++) {
-						if (i < user.reportGroups.length - 1) {
-							newContent += user.reportGroups[i] + "|";
-						} else {
-							newContent += user.reportGroups[i] + ",";
-						}
-					}
+                    // Reporting groups, can be emtpy
+                    if (user.reportGroups.length !== 0){
+                        for (var i = 0; i < user.reportGroups.length; i++) {
+                            if (i < user.reportGroups.length - 1) {
+                                newContent += user.reportGroups[i] + "|";
+                            } else {
+                                newContent += user.reportGroups[i] + ",";
+                            }
+                        }
+                    } else {
+                        newContent += ',';
+                    }
 					newContent += user.securityClearance + ",";
 					newContent += user.nfcKey + ",";
 					newContent += user.customNfcKey + ",";
