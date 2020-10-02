@@ -32,7 +32,6 @@ toc:
             url: /software/guides/drive-addins/
           - page: Map Add-ins
             url: /software/guides/map-add-ins-docs/
-            beta: true
       - title: API
         subfolderitems:
           - page: Reference
