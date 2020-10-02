@@ -43,47 +43,56 @@ There are two types of data that can be retrieved using a data feed: active data
 
 **Active Data Feeds** (Only new data.)
 
-* Log Record
-
-* Status Data
-
-* Fault Data
-
-* DutyStatusLog
-
-* DVIRLog
-
 * AnnotationLog
-
-* ShipmentLog
-
-* TrailerAttachment
-
-* IoxAddOn
-
-* CustomData
-
-* Device
-
-* TextMessage
 
 * Audit
 
-* Zone
+* CustomData
 
-* User
+* DVIRLog
 
-* Rule
+* DebugData
 
-* Route
+* Device
+
+* Diagnostic
 
 * DriverChange
 
+* DutyStatusLog
+
+* Fault Data
+
+* IoxAddOn
+
+* Log Record
+
+* Route
+
+* Rule
+
+* ShipmentLog
+
+* Status Data
+
+* TextMessage
+
+* Trailer
+
+* TrailerAttachment
+
+* User
+
+* Zone
+
+
 **Calculated data feeds** (New data and updated data from the past.)
 
-* Trip
+* ExceptionEvent
 
-* Exception Event
+* FuelTaxDetail
+
+* Trip
 
 
 ## Invalidated Data
