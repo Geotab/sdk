@@ -17,7 +17,7 @@
         <header>
             <div class="container">
                 <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
+                    <img src="https://gogwebp01.geotab.com/webimages/header/geotablogo.png" alt="" />
                     <button id="template">Template</button>&nbsp;&nbsp;
                     <button id="help">Help</button>
                     <button id="signout">Sign out</button>
@@ -35,7 +35,7 @@
                 <form>
                     <h3>Import users</h3>
                     <p>
-                        <label for="import-userName">Email or user name</label>
+                        <label for="import-userName">Email or username</label>
                         <input id="import-userName" type="text" placeholder="user@geotab.com" maxlength="255" />
                     </p>
                     <p>
@@ -51,6 +51,10 @@
                     <p>
 						<label for="import-groups">Groups</label>
                         <select id="import-groups" multiple data-placeholder="Select groups"></select>
+                    </p>
+					<p>
+						<label for="import-reporting-groups">Reporting Groups</label>
+                        <select id="import-reporting-groups" multiple data-placeholder="Select reporting groups"></select>
                     </p>
 					<p>
 						<label for="import-securityClearance">Security clearance</label>
@@ -266,7 +270,7 @@
 						<div class="checkmateField">
 							<label for="options_hosRuleSet">Ruleset:</label>
 							<select id="options_hosRuleSet" class="checkmateFormEditField" title="This is the ruleset the user will follow when using hours of service.">
-								<option value=null></option>"Please select a ruleset"</option>
+								<option value=""></option>"Please select a ruleset"</option>
 								<option value="HosRuleSetAlaskaPassenger7Day">Alaska Passenger 70-hour/7-day</option>
 								<option value="HosRuleSetAlaskaPassenger8Day">Alaska Passenger 80-hour/8-day</option>
 								<option value="HosRuleSetAlaskaProperty7Day">Alaska Property 70-hour/7-day</option>
@@ -377,7 +381,7 @@
 					</p>
 					</ul>
 					<p>
-						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>
+						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" id="clear" onclick="ClearFields();">Clear</button>
 					</p>
                     <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
@@ -390,7 +394,9 @@
         <footer>
             <div class="container footernotes">
                 <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 10/17/2019</p>
+
+                <p>Last updated on 08/21/2020</p>
+
 
             </div>
         </footer>
@@ -398,21 +404,22 @@
         <div id="template-content">
             <h2>Template</h2>
             <p>
-                We provide an excel template to simplify the user data creation process. Please ensure that you abide by the input requirements as outlined under the Help menu. Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required if a license plate is inputted, and you may enter a state other than those provided in the dropdown. NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br /><br />
-                <a href="templates/import-user.xlsx" target="_blank">Click here to download</a> the excel template.<br />
+
+                To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
+
             </p>
 			<div class="code">
-				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
+				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
 			</div>
         </div>
 
         <div id="help-content">
             <h2>Help</h2>
             <p>
-                This utility helps you import users to your account using comma separated values (CSV).
+                This SDK example assists with importing users to your database using comma separated values (CSV).
             </p>
             <p>
-				Use the form to add new users with optional NFC or GO driver keys. You may also use the text box to paste in users from another source such as Excel, Numbers or Google Drive.
+				Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source.
 				<table>
 					<thead>
 						<tr>
@@ -446,6 +453,11 @@
 							<td>Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of groups separated by the | character.</td>
+                        </tr>
+                        <tr>
+							<td>Reporting Groups</td>
+							<td>Drivers|West|Garmin</td>
+							<td>Names of reporting groups separated by the | character.</td>
 						</tr>
 						<tr>
 							<td>Security clearance ID</td>
@@ -556,6 +568,7 @@
             var groupCache = {};
             var securityClearanceCache = {};
 			var selectedGroups = [];
+            var selectedReportGroups = [];
 			var passwordResetCheckbox = document.getElementById("import-password-reset");
 			var hosRulesetArray = [];
 			var moreCalls = [];
@@ -609,6 +622,17 @@
 						var index = selectedGroups.indexOf(parameters.deselected);
 						if (index > -1) {
 							selectedGroups.splice(index, 1);
+						}
+					}
+				});
+
+                $("#import-reporting-groups").on("change", function(event, parameters) {
+					if (parameters.selected) {
+						selectedReportGroups.push(parameters.selected);
+					} else {
+						var index = selectedReportGroups.indexOf(parameters.deselected);
+						if (index > -1) {
+							selectedReportGroups.splice(index, 1);
 						}
 					}
 				});
@@ -668,6 +692,14 @@
 							newContent += user.groups[i] + ",";
 						}
 					}
+                    //Reporting groups
+                    for (var i = 0; i < user.reportGroups.length; i++) {
+						if (i < user.reportGroups.length - 1) {
+							newContent += user.reportGroups[i] + "|";
+						} else {
+							newContent += user.reportGroups[i] + ",";
+						}
+					}
 					newContent += user.securityClearance + ",";
 					newContent += user.nfcKey + ",";
 					newContent += user.customNfcKey + ",";
@@ -717,7 +749,7 @@
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
 
-                            if (split.length !== 23) {
+                            if (split.length !== 24) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -727,25 +759,24 @@
                             var lastName = split[2];
                             var password = split[3];
                             var groups = parseGroups(split[4]);
-                            var securityGroups = parseSecurityClearanceName(split[5]);
-							var keys = parseKeys(split[6], split[7]);
-							var employeeNo = split[8];
-							var fuelEconomyUnit = split[9];
-							var isMetric = split[10];
-							var isLabsEnabled = split[11];
-                            var timeZoneId = split[12];
-                            var authorityName = split[13];
-                            var authorityAddress = split[14];
-                            var carrierNumber = split[15];
-                            var companyName = split[16];
-                            var companyAddress = split[17];
-                            var licenseNumber = split[18];
-                            var licenseProvince = split[19];    
-                            var hosRuleSet = split[20];
-							var isYardMoveEnabled = split[21];
-							var isPersonalConveyanceEnabled = split[22]; 
-
-   
+                            var reportGroups = parseReportingGroups(split[5]);
+                            var securityGroups = parseSecurityClearanceName(split[6]);
+							var keys = parseKeys(split[7], split[8]);
+							var employeeNo = split[9];
+							var fuelEconomyUnit = split[10];
+							var isMetric = split[11];
+							var isLabsEnabled = split[12];
+                            var timeZoneId = split[13];
+                            var authorityName = split[14];
+                            var authorityAddress = split[15];
+                            var carrierNumber = split[16];
+                            var companyName = split[17];
+                            var companyAddress = split[18];
+                            var licenseNumber = split[19];
+                            var licenseProvince = split[20];    
+                            var hosRuleSet = split[21];
+							var isYardMoveEnabled = split[22];
+							var isPersonalConveyanceEnabled = split[23];    
 							
 							var newUser = {
 										name: userName,
@@ -753,6 +784,7 @@
 										lastName: lastName,
 										password: password,
 										companyGroups: groups,
+                                        reportGroups: reportGroups,
 										securityGroups: securityGroups,
 										userAuthenticationType: "BasicAuthentication",
 										activeFrom: new Date().toISOString(),
@@ -790,7 +822,7 @@
                             }
                             
 							hosRulesetArray.push(hosRuleSet);
-							
+
 							calls.push([
 								"Add", {
 									typeName: "User",
@@ -834,12 +866,16 @@
 									user: {"id": userIds[i]}
 								};
 
+								//if no ruleset is selected, do not push one to user
+								if (hosRulesetArray[i] !== "") {
+
 								moreCalls.push([
 									"Add", {
 										typeName: "UserHosRuleSet",
 										entity: anotherUser
 									}
 								]);
+								}
 							}
 						}
                     }
@@ -854,6 +890,16 @@
 					for (var key in groupCache) {
 						if (groupCache[key].id == selectedGroups[i]) {
 							groups.push(groupCache[key].name);
+							break;
+						}
+					}
+				}
+				
+                var reportGroups = [];
+                for (var i = 0; i < selectedReportGroups.length; i++) {
+					for (var key in groupCache) {
+						if (groupCache[key].id == selectedReportGroups[i]) {
+							reportGroups.push(groupCache[key].name);
 							break;
 						}
 					}
@@ -922,6 +968,7 @@
 					lastName: document.getElementById("import-lastName").value,
 					password: document.getElementById("import-password").value,
 					groups: groups,
+                    reportGroups: reportGroups,
 					securityClearance: securityClearanceId,
 					nfcKey: document.getElementById("import-nfcKey").value,
 					customNfcKey: document.getElementById("import-customNFC").value,
@@ -953,6 +1000,18 @@
                 }
                 if (result.length <= 0) {
                     result.push(groupCache["GroupCompanyId"]);
+                }
+                return result;
+            }
+
+            
+            function parseReportingGroups(text) {
+                var result = [];
+                var split = text.split("|");
+                for (var i = 0; i < split.length; i++) {
+                    if (groupCache.hasOwnProperty(split[i].trim())) {
+                        result.push({"id": groupCache[split[i].trim()].id});
+                    }
                 }
                 return result;
             }
@@ -1028,6 +1087,7 @@
 
             function refreshGroupCache(callback) {
 				var select = document.getElementById("import-groups");
+                var selectR = document.getElementById("import-reporting-groups");
 			
                 api.call("Get", {
                     typeName: "Group"
@@ -1054,9 +1114,16 @@
 							option.text = result[i].name;
 							option.value = result[i].id;
 							select.add(option);
+                            var optionR = new Option();
+							optionR.text = result[i].name;
+							optionR.value = result[i].id;
+                            selectR.add(optionR);
 						}
                     }
 					$("#import-groups").chosen({
+						search_contains: true
+					});
+                    $("#import-reporting-groups").chosen({
 						search_contains: true
 					});
                     if (callback) {
@@ -1107,6 +1174,11 @@
                     console.log(error);
                 });
             }
+
+			function ClearFields() {
+
+			document.getElementById("content").value = "";
+			}
 
         </script>
 

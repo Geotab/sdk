@@ -12,11 +12,11 @@ The following process should be followed when attempting to integrate a third-pa
 
 ### 1 - Request External Device ID
 
-Contact Geotab Support to obtain an External Device ID for your third-party device. This will allow us to uniquely identify your device when it connects to a GO device. Thereafter, any connection established by that type of external device will be recorded as Status Data in MyGeotab under the naming format &quot;[External device name] device connected&quot;.
+Contact [Geotab Solution Engineering team](mailto:soleng@geotab.com) to obtain an External Device ID for your third-party device. This will allow us to uniquely identify your device when it connects to a GO device. Thereafter, any connection established by that type of external device will be recorded as Status Data in MyGeotab under the naming format &quot;[External device name] device connected&quot;.
 
 ### 2 - Request Status Data IDs
 
-Contact Geotab Support to obtain Status Data IDs for every individual piece of information you wish to send to the GO device. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the examples below:
+Contact [Geotab Solution Engineering team](mailto:soleng@geotab.com) to obtain Status Data IDs for every individual piece of information you wish to send to the GO device. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the examples below:
 
 | Status Data ID | Description | Multiplier | Offset | Unit |
 | --- | --- | --- | --- | --- |

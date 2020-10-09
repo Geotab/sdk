@@ -4,7 +4,7 @@ const autoprefixer = require('autoprefixer');
 const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
-const cssnano = require('gulp-cssnano');
+const gulpcleancss = require('gulp-clean-css');
 const gulp = require('gulp');
 const gzip = require('gulp-gzip');
 const newer = require('gulp-newer');
@@ -30,7 +30,7 @@ gulp.task('scripts', () =>
     .pipe(newer('.tmp/assets/javascript/index.js', {dest: '.tmp/assets/javascript', ext: '.js'}))
     .pipe(when(!argv.prod, sourcemaps.init()))
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['@babel/preset-env']
     }))
     .pipe(concat('index.js'))
     .pipe(size({
@@ -63,13 +63,13 @@ gulp.task('styles', () =>
       precision: 10
     }).on('error', sass.logError))
     .pipe(postcss([
-      autoprefixer({browsers: 'last 1 version'})
+      autoprefixer()
     ]))
     .pipe(size({
       showFiles: true
     }))
     .pipe(when(argv.prod, rename({suffix: '.min'})))
-    .pipe(when(argv.prod, when('*.css', cssnano({autoprefixer: false}))))
+    .pipe(when(argv.prod, when('*.css', gulpcleancss())))
     .pipe(when(argv.prod, size({
       showFiles: true
     })))
