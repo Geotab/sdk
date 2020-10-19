@@ -25,7 +25,7 @@ There are many different types of data that can be requested from the API. For e
 
 > See the full list of supported data feed types [here](../api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1)
 
-The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the a database (see [here](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed)).
+The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the database (see [here for .Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed) or [here for Java](https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed)).
 
 ## Importing, exporting and synchronizing
 
@@ -37,7 +37,7 @@ Geotab has a set of pre-made applications (which include full source code) for s
 * Synchronize your vehicle groups based on the vehicle’s role in the company
 * Track Hours of Service (HOS) for regulations compliance
 
-You can start using these tools right now by trying the .Net [here](https://github.com/Geotab/sdk-dotnet-samples) and JavaScript examples [here](../js-samples/).
+You can start using these tools right now by trying the .Net examples [here](https://github.com/Geotab/sdk-dotnet-samples) , JavaScript examples [here](../js-samples/) and Java examples [here](https://github.com/Geotab/sdk-java-samples).
 
 ## Automating tasks
 
