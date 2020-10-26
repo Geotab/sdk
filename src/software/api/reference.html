@@ -65,7 +65,7 @@ permalink: /software/api/reference/
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "https://my1.geotab.com/sdk/SDK.xml");
+            xhr.open("GET", "https://mypreview.geotab.com/sdk/SDK.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
@@ -706,7 +706,10 @@ permalink: /software/api/reference/
                             }),
                             getItemData = function (member, attribute) {
                                 var value = member.getElementsByTagName(attribute);
-                                return value.length ? pullTextWithLinked(value[0].childNodes) : "";
+                                if (value.length && !value[0].hasAttribute("jsHide")) {
+                                    return pullTextWithLinked(value[0].childNodes);
+                                }
+                                return "";
                             },
                             removeGetAndSet = function (type, text) {
                                 var slicedText;
@@ -1176,6 +1179,7 @@ permalink: /software/api/reference/
                     memberDictionary["Checkmate"]["ObjectModel"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Engine"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Exceptions"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Files"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Fuel"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Geographical"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Captcha"],

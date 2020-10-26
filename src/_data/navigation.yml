@@ -18,6 +18,7 @@ toc:
             url: /software/guides/using-in-dotnet/
           - page: Using in Java
             url: /software/guides/using-in-java/
+            beta: true
           - page: Data Feed
             url: /software/guides/data-feed
           - page: Using MyGeotab URLs
@@ -34,6 +35,10 @@ toc:
             url: /software/guides/drive-addins/
           - page: Map Add-ins
             url: /software/guides/map-add-ins-docs/
+            beta: true
+          - page: Media Files
+            url: https://github.com/Geotab/mg-media-files
+            external: true
             beta: true
       - title: API
         subfolderitems:
@@ -53,6 +58,7 @@ toc:
           - page: Java Examples
             url: https://github.com/Geotab/sdk-java-samples
             external: true
+            beta: true
           - page: Add-in Examples
             url: https://github.com/Geotab/sdk-addin-samples
             external: true
