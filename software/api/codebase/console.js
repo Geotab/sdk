@@ -88,8 +88,15 @@ var ConsoleManager = (function() {
                             children = createElement("span", "data-object-children-hidden", "");
 
                         if (isEmpty) {
-                            title.appendChild(value);
-                            title.appendChild(preview);
+                            if (isChildProperty) {
+                                title.appendChild(marker);
+                                title.appendChild(keyElement);
+                            }
+                            if (preview !== null) {
+                                title.appendChild(preview);
+                            } else {
+                                title.appendChild(value);
+                            }
                             parent.appendChild(title);
                             parent.appendChild(children);
                         } else if (!isChildProperty) {

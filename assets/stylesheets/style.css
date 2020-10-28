@@ -7568,6 +7568,9 @@ body {
   height: 100%; }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: #56A1D5;
   color: white;
   font-size: 0.8em;
@@ -7599,6 +7602,8 @@ main {
     text-transform: capitalize; }
   main ul ul {
     margin-bottom: 1em; }
+  main article {
+    margin-bottom: 5rem; }
 
 code {
   overflow-wrap: break-word;
@@ -7632,6 +7637,9 @@ blockquote {
 .jumbotron img {
   width: 1em;
   height: 1em; }
+
+.jumbotron {
+  margin-bottom: 0; }
 
 .welcome {
   max-height: 350px; }
