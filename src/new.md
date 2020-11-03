@@ -3,6 +3,223 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2004
+
+### New Media File API
+
+Geotab is happy to announce a new set of APIs related to Media Files. This new API can be used to store images or video clips related to a device or driver.
+
+[MediaFile]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaFile): MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found [here](https://github.com/Geotab/mg-media-files).
+
+[MediaType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaType): The type of Media.
+
+[Status]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.Status): The status of an uploaded file.
+
+[MediaFileSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaFileSearch): The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.
+
+[Tag]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.Tag): A named tag to provide context to an entity.
+
+[DownloadMediaFile]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.DownloadMediaFileAsync): Download a file for the given MediaFile. The Content type is determined by the file extension. Range headers are supported.
+
+[UploadMediaFile]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.UploadMediaFileAsync): Upload a file for the corresponding MediaFile using multipart/form-data POST request.
+
+[SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added ViewMedia and ManageMedia.
+
+### General SDK updates
+
+#### BinaryDataType
+
+Added `ThirdPartyData` type to allow flexible length binary data format records to be stored.
+
+#### Methods
+
+[GetCountOf]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.GetCountOf) method now accounts for user scope. It previously did not account for user scope, which was a bug.
+
+#### ZoneSearch
+
+`Viewport` is obsolete and no longer officially supported. It is replaced with `SearchArea` property. This will be better represented by the type `BoundingBox`. Providing a bounding box is simpler to use because map libraries provide viewport/map bounds in this way already. Backwards compatibility will be maintained with the `Viewport` property, though no longer documented.
+
+#### BoundingBox
+
+Added `BoundingBox` which represents a geographic area defined by the top-left and bottom-right coordinates.
+
+#### DiagnosticSearch
+
+Added searching by diagnostic name.
+
+#### FaultDataSearch
+
+Added searching by Diagnostic Code, Diagnostic Name, Diagnostic Source Name, Diagnostic Source Id, FaultState and Controller Id.
+
+#### Generator-addin
+
+Added groups filter to [generator-addin](https://github.com/Geotab/generator-addin).
+
+#### HOSRuleSet
+
+**Added**: `America7DaySleeper`, `America7DayBigSleeper`, `America8DaySleeper`, `America8DayBigSleeper`, `OilTransport7DaySleeper`, `OilTransport7DayBigSleeper`, `OilTransport8DaySleeper`, `OilTransport8DayBigSleeper`, `America7DayNo34hSleeper`, `America8DayNo34hSleeper`, `AmericaNoRestRequirement7DaySleeper`, `AmericaNoRestRequirement7DayBigSleeper`, `AmericaNoRestRequirement8DaySleeper`, `AmericaNoRestRequirement8DayBigSleeper`, `OilWell7DaySleeper`, `OilWell7DayBigSleeper`, `OilWell8DaySleeper`, `OilWell8DayBigSleeper`, `OilTransportNoRestRequirement7DaySleeper`, `OilTransportNoRestRequirement7DayBigSleeper`, `OilTransportNoRestRequirement8DaySleeper`, `OilTransportNoRestRequirement8DayBigSleeper`, `OilWellNoRestRequirement7DaySleeper`, `OilWellNoRestRequirement7DayBigSleeper`, `OilWellNoRestRequirement8DaySleeper`, `OilWellNoRestRequirement8DayBigSleeper`, `AlaskaProperty7DaySleeper`, `AlaskaProperty8DaySleeper`
+
+#### Removed BETA attribute on the following
+
+- AnnotationLog
+- AnnotationLogSearch
+- ApplicationVersionInformation
+- DefectRemark
+- DefectSeverity
+- DutyStatusAvailability
+- DutyStatusAvailabilitySearch
+- DutyStatusLog
+- DutyStatusLogSearch
+- DutyStatusLogType
+- DutyStatusMalfunctionTypes
+- DutyStatusOrigin
+- DutyStatusState
+- DutyStatusViolation
+- DutyStatusViolationSearch
+- DutyStatusViolationType
+- DVIRDefect
+- DVIRDefectSearch
+- DVIRLog
+- DVIRLogSearch
+- DVIRLogType
+- DtcClass
+- DtcSeverity
+- ElectricEnergyEconomyUnit
+- ElectricEnergyUnit
+- HosRuleSet
+- InvalidMyAdminUserException
+- RepairStatusType
+- ShipmentLog
+- ShipmentLogSearch
+- TextMessageContentType
+- Trailer
+- TrailerAttachment
+- TrailerAttachmentSearch
+- TrailerSearch
+- VersionInformation
+- GetVersionInformation
+- GetFeed:Audit
+- GetFeed:Device
+- GetFeed:Diagnostic
+- GetFeed:DriverChange
+- GetFeed:Route
+- GetFeed:Rule
+- GetFeed:TextMessage
+- GetFeed:TrailerAttachment
+- GetFeed:Driver
+- GetFeed:Zone
+
+### Java SDK (Feature Preview)
+
+We work hard to create fast and flexible tools that make sense for your business, and your feedback is an essential part of that process. With this in mind, we are previewing our new Java SDK, and we want you to tell us how we did! So go ahead – test the kit, join our Community Developer Discussions to help us improve our product, and get to know our users.
+
+The Java SDK offers an easy way to integrate MyGeotab into Java software. All communication with Geotab services is accomplished using HTTPS with serialized data in JSON format. The Java library provides Java objects representing MyGeotab entities and automatically handles their JSON serialization and deserialization.
+
+The Java SDK is available as a Maven Dependency Library from the Maven Central Repository and includes documentation with information and usage samples for your new kit.
+
+You can find Java-based API usage samples at https://github.com/Geotab/sdk-java-samples
+
+Samples include:
+
+Get Logs for a given vehicle between a range of dates.
+Send Text Messages to and from a GO device
+Import Groups includes a console example that is also a Group import tool. The sample enables a one-time import of groups to a database from a CSV file.
+Import Devices includes console example that imports devices from a CSV file.
+Import Users includes a console example that imports users from a CSV file.
+Get Data Feed includes an example for retrieving GPS, StatusData and FaultData as a feed, and for exporting to CSV file.
+
+Supported Methods include:
+
+- Authenticate
+- Get
+- Add
+- Set
+- Remove
+- GetFeed (LogRecord, StatusData, FaultData, Trip)
+- GetCountOf
+- Supported Objects include:
+
+- Id
+- Entity
+- EntityWithVersion
+- NameEntity
+- NameEtityWithVersion
+- LoginResult
+- Credentials
+- Coordinate
+- Color
+- Controller
+- ControllerSearch
+- Device (all types)
+- DeviceSearch
+- Diagnostic
+- DiagnosticSearch
+- DataDiagnostic
+- DiagnosticType
+- EngineType
+- EngineTypeSearch
+- FailureMode
+- FailureModeSearch
+- FaultData
+- FaultDataSearch
+- FlashCode
+- Group
+- GroupSearch
+- IoxAddOn
+- IoxAddOnSearch
+- LogRecord
+- LogRecordSearch
+- ParameterGroup
+- ParameterGroupSearch
+- Source
+- SourceSearch
+- StatusData
+- StatusDataSearch
+- TextMessage
+- TextMessageSearch
+- TextMessageContentType
+- Trip
+- TripSearch
+- UnitOfMeasure
+- UnitOfMeasureSearch
+- User
+- Driver
+- UserSearch
+- WorkTime
+- WorkTimeDetail
+- WorkTimeHolidayGroupId
+- WorkTimeSearch
+- DefectSeverity
+- DeviceType
+- DiagnosticType
+- DtcClass
+- DtcSeverity
+- ElectricEnergyEconomyUnit
+- FaultLampState
+- FaultResetMode
+- FaultState
+- FuelEconomyUnit
+- GoogleMapStyle
+- GoTalkLanguage
+- HosOption
+- HosRuleSet
+- MessageContentType
+- OpenStreetMapStyle
+- SecurityIdentifier
+- SecurityFilter
+- ZoneDisplayMode
+- MapView
+- FeedResult
+- DbUnavailableException
+- DuplicateException
+- GroupRelationViolatedException
+- InvalidMyAdminUserException
+- InvalidUserException
+- OverLimitException
+- RegistrationException
+- JsonRpcError
+- JsonRpcErrorData
+
 ## 5.7.2003
 
 ##### General improvements
