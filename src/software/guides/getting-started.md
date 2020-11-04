@@ -34,6 +34,8 @@ There are several other items in the SDK to help you get started:
 
 * [Using in .NET](../using-in-dotnet/)
 
+* [Using in Java](../using-in-java/)
+
 * [Support Alerts](https://www.geotab.com/support-alert/) — To view our support notification page and to sign up for the Geotab Newsletter
 
 * [API Reference](../../api/reference) — the reference documentation that explains what each API call does and documents the parameters and results for each call

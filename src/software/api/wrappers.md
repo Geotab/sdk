@@ -24,6 +24,36 @@ await api.AuthenticateAsync();
 var devices = await api.CallAsync<List<Device>>("Get", typeof(Device), new { resultsLimit = 1 });
 ```
 
+## Java
+
+#### Quick Start
+
+Add the [maven dependency](https://mvnrepository.com/artifact/com.geotab/java-sdk)
+
+**Using it in code**
+
+```java
+Credentials credentials = Credentials.builder()
+  .database("database")
+  .userName("user@example.com")
+  .password("password")
+  .build();
+
+GeotabApi api = new GeotabApi(credentials);
+
+LoginResult loginResult = api.authenticate();
+
+AuthenticatedRequest<?> request = AuthenticatedRequest.authRequestBuilder()
+    .method("Get")
+    .params(SearchParameters.searchParamsBuilder()
+      .credentials(loginResult.getCredentials()) 
+      .typeName("Device")
+      .build())
+    .build();
+
+Optional<List<Device>> result = api.call(request, DeviceListResponse.class);
+```
+
 ## Javascript
 
 #### Quick Start
