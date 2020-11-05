@@ -17,6 +17,9 @@ table {
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #56A1D5;
     color: white;
     font-size: 0.8em;
@@ -64,6 +67,10 @@ main {
             margin-bottom: 1em;
         }
     }
+
+    article {
+        margin-bottom: 5rem;
+    }
 }
 
 code {
@@ -106,6 +113,10 @@ blockquote {
 .jumbotron img {
     width: 1em;
     height: 1em;
+}
+
+.jumbotron {
+    margin-bottom: 0;
 }
 
 .welcome {
