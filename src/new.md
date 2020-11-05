@@ -137,7 +137,8 @@ Supported Methods include:
 - Remove
 - GetFeed (LogRecord, StatusData, FaultData, Trip)
 - GetCountOf
-- Supported Objects include:
+
+Supported Objects include:
 
 - Id
 - Entity
