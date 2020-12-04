@@ -31,6 +31,8 @@ toc:
             url: /software/guides/third-party-devices/
           - page: Developing Add-Ins
             url: /software/guides/developing-addins/
+          - page: Using Add-Ins for data storage
+            url: /software/guides/addin-storage/
           - page: Geotab Drive Add-Ins
             url: /software/guides/drive-addins/
           - page: Map Add-ins
