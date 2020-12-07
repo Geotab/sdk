@@ -45,7 +45,7 @@ An AddInData object must first be created in a database. The properties of AddIn
 | [Groups]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group): Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity. Refer to the MyGeotab SDK [What&#39;s New](https://geotab.github.io/sdk/resources/new/) page for more information regarding the transition of this property from being required to optional. |
 | Details (String): The JSON data. May be whole or partial depending on the action (Add vs. Set) or the filtering provided when calling Get.|
 
-As an example, you can use the [API Runner tool](https://my.geotab.com/sdk/api/apiRunner.html) to create an AddInData object using the following operation:
+As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to create an AddInData object using the following operation:
 
 ```javascript
 api.call("Add",
@@ -58,7 +58,25 @@ api.call("Add",
         "id": "GroupCompanyId"
       }
     ],
-    "details": "{\"date\":\"2016-01-01T00:00:00.000Z\",\"items\":[{\"name\":\"bottles\",\"price\":12},{\"name\":\"caps\",\"price\":20}],\"customer\":{\"name\":\"joesmith\",\"email\":\"joe@smith.com\"}}"
+    "details": 
+    {
+        "date": "2016-01-01T00:00:00.000Z",
+        "items": [
+          {
+              "name": "bottles",
+              "price": 12
+          },
+          {
+              "name": "caps",
+              "price": 20
+          }
+        ],
+        "customer": 
+        {
+            "name": "joesmith",
+            "email": "joe@smith.com"
+        }
+    }
   }
 });
 ```
@@ -66,8 +84,6 @@ api.call("Add",
 **Important Notes**
 
 Each invocation of the Add operation will create a new AddInData object with a unique Id bound to the entered AddInData GUID. The Id of the AddInData object is required to remove the object with the **Remove** method. See below for an example.
-
-The value of the Data property is a JSON object converted to a JSON String or a string containing the JSON format with escaped quotes (\"). This JSON string does not support single quotes or newlines. A convenient way to create the escaped string from a JSON object is to use the [JSON.stringify()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) method.
 
 **Example 1** : This method call will correctly save the sample JSON and associate it to the Add-In with the GUID of a2C4ABQuLFkepPVf6-4OKAQ.
 
@@ -80,13 +96,21 @@ api.call("Add",
     "groups": [{
         "id": "GroupCompanyId"
     }],
-    "details": JSON.stringify({
+    "details": 
+    {
         "date": "2016-01-01T00:00:00.000Z",
         "items": [
-          {"name": "bottles", "price": 12},
+          {
+              "name": "bottles",
+              "price": 12
+          },
         ],
-        "customer": {"name": "joesmith", "email": "joe@smith.com"}
-    })
+        "customer": 
+        {
+            "name": "joesmith",
+            "email": "joe@smith.com"
+        }
+    }
   }
 });
 ```
@@ -100,12 +124,12 @@ The AddInDataSearch properties are as follows:
 | **Properties** |
 | --- |
 | [Id]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id): The standard Id for any Entity. |
-| [AddInId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id): Must be provided when searching for anything other than Id. |
+| [AddInId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id): Can be optionally provided when searching for AddInData that belongs to a specific AddInData GUID. |
 | [Groups]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group): Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity. |
 | SelectClause (String): Used to filter the resulting rows based on the JSON content of the row. Works with the object path notation described in usage. Independent of WhereClause. |
 | WhereClause (String): Used to filter the resulting rows based on the JSON content of the row. Works with the object path and operator notation described in usage. Independent of SelectClause. |
 
-As an example, you can use the [API Runner tool](https://my.geotab.com/sdk/api/apiRunner.html) to perform GET operations that return one or more AddInData objects:
+As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to perform GET operations that return one or more AddInData objects:
 
 **Example**  **2** : Get the emails of all customers who have an item with a price less than 15
 
@@ -129,7 +153,7 @@ This method call will return an array with a single AddInData object:
     "addInId": "a2C4ABQuLFkepPVf6-4OKAQ",
     "id": "afLvRdUtXrE2D-XLwvqAgZQ"
     "groups": [{"children": [], "id": "GroupCompanyId"}],
-    "details": "\"joe@smith.com\"",
+    "details": "joe@smith.com",
   }
 ]
 ```
@@ -181,25 +205,16 @@ api.call("Get",
 
 This method call will return an array with an AddInData object containing all the data stored in the AddInData object with the Id of a2C4ABQuLFkepPVf6-4OKAQ.
 
-```javascript
+```json
 "result": [
   {
     "addInId": "a2C4ABQuLFkepPVf6-4OKAQ",
     "id": "afLvRdUtXrE2D-XLwvqAgZQ",
     "groups": [{"children": [], "id": "GroupCompanyId"}],
-    "details":Object  { ... }
-        date: "2016-01-01T00:00:00.000Z"
-        -customer: Object
-            email: "joe@smith.com"
-            name: "joesmith"
-        -items: Array[2]
-            -0: Object
-                name: "bottles"
-                price: 12
-            -1: Object
-                name: "caps"
-                price: 20
-            length: 2
+    "details":
+        "date": "2016-01-01T00:00:00.000Z"
+        "customer": {"email": "joe@smith.com", "name": "joesmith"}
+        "items":[{"name": "bottles", "price": 12}, {"name": "caps", "price": 20}]
   }
 ]
 ```
@@ -241,7 +256,7 @@ api.call("Get",
 });
 ```
 
-The same notation is used for theWHERE clause. This notation can be used to drill down to as many objects as you want.
+The same notation is used for the WHERE clause. This notation can be used to drill down to as many objects as you want.
 
 ### **Operators and Arguments**
 
@@ -277,7 +292,7 @@ To get all customers with the name "joesmith", the appropriate WHERE clause will
 
 To update stored content, use the SET method on a AddInData object while specifying its GUID and ID. The return value is always null.
 
-As an example, use the [API Runner tool](https://my.geotab.com/sdk/api/apiRunner.html) to perform the following operation:
+As an example, use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to perform the following operation:
 
 ```javascript
 api.call("Set",
@@ -289,13 +304,21 @@ api.call("Set",
     "groups": [{
         "id": "GroupCompanyId"
     }],
-    "details": JSON.stringify({
-            "date": "2016-01-01T00:00:00.000Z",
-            "items": [
-              {"name": "bottles", "price": 12},
-            ],
-            "customer": {"name": "joesmith", "email": "joe@smith.com"}
-    })
+    "details": 
+    {
+        "date": "2016-01-01T00:00:00.000Z",
+        "items": [
+          {
+              "name": "bottles",
+              "price": 12
+          },
+        ],
+        "customer": 
+        {
+            "name": "joesmith",
+            "email": "joe@smith.com"
+        }
+    }
   }
 });
 ```
@@ -307,7 +330,7 @@ var myAddInObj = getMyAddInDataFunction();
 var myData = myAddInObj.data;
 myData.customer.name = "john";
 myData.customer.email = "johndoe@company.com";
-myAddInObj.data = JSON.stringify(myData);
+myAddInObj.data = myData;
 
 api.call("Set",
 {
@@ -322,14 +345,13 @@ function (result) {
 
 ## Deleting an AddInData Object
 
-An AddInData object is deleted when you specify its ID and the GUID of its related Add-In. The return value is always null.
+An AddInData object is deleted when you specify its ID. The return value is always null.
 
 ```javascript
 api.call("Remove",
 {
   "typeName": "AddInData",
   "entity": {
-    "addInId": "a2C4ABQuLFkepPVf6-4OKAQ",
     "id": "a6tClQu4iFkuroNPqOQsydg"
   }
 });
@@ -349,27 +371,30 @@ The following are the only restrictions on the JSON stored within AddInData obje
     All objects properties stored in the JSON can be modified but not deleted.
     Example:
         Replacing
+        <br><br>
         ```
         "customer": {"name": "joe", "email": "joe@smith.com"}
         ```
+        <br><br>
         With
+        <br><br>
         ```
         "customer": {"apple": "fruit", "salmon": "meat"}
         ```
+        <br><br>
         Results in a merged dataset instead of a deletion of the previous content
+        <br><br>
         ```
         "customer": {"name": "joe", "email": "joe@smith.com", "apple": "fruit", "salmon": "meat"}
         ```
 
-    Workarounds to this issue would be to:
-    1. Arrays as a property of an object can be modified and resized without issue. So make the properties to be modified part of an array of objects.
-
+    Workarounds to this issue would be to either:
+    1. Use arrays as a property of an object as they can be modified and resized without issue.
         ```javascript
-            -Object { ... }
-                -settings: Array[1]
-                    -0: Object
-                        allowFeatureFor: "mySecurityGroup"
-                        length: 1
+            "customer":[
+                {"apple": "fruit"}, 
+                {"salmon": "meat"}
+            ]
         ```
     2. Make two calls: first to change the "customer" value to an empty string, then a second call to set new data.
 
