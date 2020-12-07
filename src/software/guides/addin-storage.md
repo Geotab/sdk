@@ -327,10 +327,10 @@ An efficient way to perform an update in your Add-In&#39;s Javascript code would
 ```javascript
 var myAddInObj = getMyAddInDataFunction();
 
-var myData = myAddInObj.data;
+var myData = myAddInObj.details;
 myData.customer.name = "john";
 myData.customer.email = "johndoe@company.com";
-myAddInObj.data = myData;
+myAddInObj.details = myData;
 
 api.call("Set",
 {
