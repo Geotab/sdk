@@ -82,7 +82,8 @@ var SamplesApi = function() {
             "filter-out-non-valid-position-log-records",
             "calculate-fuel-usage",
             "import-usa-states-as-zones",
-            "get-fuel-tax-details"
+            "get-fuel-tax-details",
+            "generate-addin-guid"
         ],
         createXHR = ((typeof (window) !== 'undefined' && window.XMLHttpRequest) ?
                 function () {
