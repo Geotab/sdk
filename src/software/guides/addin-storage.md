@@ -1,7 +1,8 @@
- ---
+---
 layout: page
 permalink: /software/guides/addin-storage/
 ---
+
 # Storage API
 
 This page provides an overview of the storage (AddInData) API and describes its use within Add-Ins.
