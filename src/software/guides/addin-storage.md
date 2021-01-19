@@ -50,7 +50,7 @@ An AddInData object must first be created in a database. The properties of AddIn
 | [Groups]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) | Used to define the scope required to interact with the Add-In data. |
 | Details | The JSON data. May be whole or partial depending on the action (Add vs. Set) or the filtering provided when calling `Get`. |
 
-As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to create an AddInData object using the following operation:
+As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/software/api/runner.html) to create an AddInData object using the following operation:
 
 ```javascript
 api.call("Add",
@@ -143,7 +143,7 @@ The AddInDataSearch properties are as follows:
 | SelectClause (String) | Used to filter the resulting rows based on the JSON content of the row. Works with the object path notation described in usage. Independent of WhereClause. |
 | WhereClause (String) | Used to filter the resulting rows based on the JSON content of the row. Works with the object path and operator notation described in usage. Independent of SelectClause. |
 
-As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to perform GET operations that return one or more AddInData objects:
+As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/software/api/runner.html) to perform GET operations that return one or more AddInData objects:
 
 ### Example 2
 
@@ -324,7 +324,7 @@ To get all customers with the name "joesmith", the appropriate `WHERE` clause wi
 
 To update stored content, use the SET method on an AddInData object while specifying its AddInId ID. The return value is always `null`.
 
-As an example, use the [API Runner tool](https://geotab.github.io/sdk/api/apiRunner.html) to perform the following operation:
+As an example, use the [API Runner tool](https://geotab.github.io/sdk/software/api/runner.html) to perform the following operation:
 
 ```javascript
 api.call("Set",
