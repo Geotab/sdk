@@ -27,8 +27,8 @@ toc:
             url: /software/guides/using-go-devices/
           - page: GO Device Logging
             url: /software/guides/go-device-logging/
-          - page: Using Third-Party Devices
-            url: /software/guides/third-party-devices/
+          - page: Using Custom Telematics Devices
+            url: /software/guides/custom-telematics-devices/
           - page: Developing Add-Ins
             url: /software/guides/developing-addins/
           - page: Using Add-Ins for data storage

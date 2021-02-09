@@ -66,10 +66,10 @@ By using single sign-on authentication with the Geotab API, you have the ability
 
 Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to. This is a great way to leverage MyGeotab and make it part of your services. See [here](../guides/mygeotab-urls/) for more details.
 
-## Integrating third-party tracking devices into MyGeotab
+## Integrating custom telematics tracking devices into MyGeotab
 
-Third-party tracking devices can have their data added into the MyGeotab database. The Geotab API is used to provision and upload the devices data. Additionally, data from these devices can be used in conjunction with data collected by Geotab GO devices. Contact Geotab support to have your third-party device added (each device type will receive a unique prefix code) and contact your reseller to handle billing.
+Custom telematics devices can have their data added into the MyGeotab database. The Geotab API is used to provision and upload the devices data. Additionally, data from these devices can be used in conjunction with data collected by Geotab GO devices. Contact Geotab support to have your custom telematics device added (each device type will receive a unique prefix code) and contact your reseller to handle billing.
 
-Note: There may be differences in how devices from third-party manufacturers record the data; frequency of data collection and accuracy of the device record may vary. The rich information contained in the MyGeotab reports may not be fully available. Testing of these tracking device will be required to properly integrate the data into MyGeotab.
+Note: There may be differences in how devices from custom telematics manufacturers record the data; frequency of data collection and accuracy of the device record may vary. The rich information contained in the MyGeotab reports may not be fully available. Testing of these tracking device will be required to properly integrate the data into MyGeotab.
 
-Please refer to [Using third-party devices in MyGeotab](../guides/third-party-devices/) for further details on using your own devices with MyGeotab.
+Please refer to [Using custom telematics devices in MyGeotab](../guides/custom-telematics-devices/) for further details on using your own devices with MyGeotab.
