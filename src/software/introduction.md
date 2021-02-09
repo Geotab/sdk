@@ -72,4 +72,4 @@ Custom telematics devices can have their data added into the MyGeotab database. 
 
 Note: There may be differences in how devices from custom telematics manufacturers record the data; frequency of data collection and accuracy of the device record may vary. The rich information contained in the MyGeotab reports may not be fully available. Testing of these tracking device will be required to properly integrate the data into MyGeotab.
 
-Please refer to [Using custom telematics devices in MyGeotab](../guides/custom-telematics-devices/) for further details on using your own devices with MyGeotab.
+Please refer to [Using Custom Telematics Devices](../guides/custom-telematics-devices/) for further details on using your own devices with MyGeotab.
