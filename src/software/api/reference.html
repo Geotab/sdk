@@ -738,19 +738,23 @@ permalink: /software/api/reference/
                         }
 
                         //If the method/object is not supported we will not add it
+
                         supported = node.getElementsByTagName("isSupported");
                         memberPropMeth.isBeta = supported && supported.length && !!supported[0].getAttribute("beta");
 
                         // for Java we look for methods starting with get
                         isPropertyMethod = memberPropMeth.type === memberTypes.method && isMethodRegex.test(name);
 
+                        // hiding abstract base clase that needs to be supported show inherited properties but is confising in docs.
+                        let shouldHide = name.indexOf('MimeContentBase') > -1;
+
                         //In the case of properties/enums there are much more supported than not so we only note the unsupported ones
                         if (memberPropMeth.type === memberTypes.property || memberPropMeth.type === memberTypes.enumeration || isPropertyMethod) {
-                            memberPropMeth.supported = supported.length && supported[0].textContent.indexOf("true") > -1 || !supported.length;
+                            memberPropMeth.supported = !shouldHide && supported.length && supported[0].textContent.indexOf("true") > -1 || !supported.length;
                         } else {
                             // potential partial classes, if any part is true, use true
                             for (i = 0; i < supported.length; i++) {
-                                if (supported[i].textContent.indexOf("true") > -1) {
+                                if (supported[i].textContent.indexOf("true") > -1 && !shouldHide) {
                                     memberPropMeth.supported = true;
                                 }
                             }
