@@ -158,7 +158,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x21 | 1 | 1 |
-| Message Body Length >= 40 [1] | 1 | 2 |
+| Message Body Length >= 52 [1] | 1 | 2 |
 | Date / Time [2] | 4 | 3 |
 | Latitude | 4 | 7 |
 | Longitude | 4 | 11 |
@@ -169,8 +169,9 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration | 4 | 31 |
-| GO Device ID | 4 | 35 |
-| Driver ID [5] | 4 | 39 |
+| GO Device ID [5] | 4 | 35 |
+| Driver ID [6] | 4 | 39 |
+| GO Device Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
 | Reply: Device Data Ack ([Msg Type 0x84](#msg-type-0x84-device-data-ack)) |   |   |
@@ -179,7 +180,8 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
 3. If Road Speed from the engine is not available, GPS speed is used.
 4. If Odometer is not available, GPS device distance is used.
-5. Driver ID only available when using the IOX-NFC.
+5. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
+6. Driver ID only available when using the IOX-NFC.
 
 ##### *Conversions*
 
