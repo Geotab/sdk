@@ -3,6 +3,103 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2101
+
+### Map Add-In
+
+Map Add-ins are now fully supported, and no longer in Feature Preview. [Click here]({{site.baseurl}}/software/guides/map-add-ins-docs/) to learn more about Map Add-ins
+
+### Storage API
+
+Storage APIs are now fully supported, and no longer in Feature Preview. [Click here]({{site.baseurl}}/software/guides/addin-storage/) to learn more about Storage APIs.
+
+### General SDK updates
+
+#### DeviceStatusInfo
+
+The dates of GPS, status and fault records are compared and uses the latest recorded data point as the `DateTime`.
+
+#### AddInData
+
+The `Set` method will now allow modifying a value with no groups assigned.
+
+#### CreateDatabase
+
+Added a rate limit to the `CreateDatabase` method: 15/1m, 100/1h, 800/1d.
+
+#### Device
+
+Added support for Untracked Assets. This allows adding devices that do not have a serial number.
+
+#### DutyStatusLog
+
+- Added the `IsTransitioning` property indicating whether an HOS log is in transition after the first driver accepts it.
+- Added the `IsHidden` property.
+
+#### DutyStatusLogType
+
+- Added `CanadaCycleOne`, `CanadaCycleTwo`, `OperatingZoneCanadaSouthOf60`, `OperatingZoneCanadaNorthOf60`, `OperatingZoneAmerica` and `INT_CoDriver`.
+
+#### DutyStatusViolationSearch
+
+The `DutyStatusViolationSearch` method can now search by user company or driver groups.
+
+#### DVIRLog
+
+Updated the documentation for Canada-specific fields on DVIRLogs (`LoadHeight`, `LoadWidth`, and `Odometer`) to better describe how they are populated.
+
+#### FaultState
+
+Added `Inactive`, `PendingOff`, `ActiveOff`, `InactiveOff,` and `Cleared`.
+
+#### Get:DutyStatusLog
+
+Fixed bug getting latest log for all users.
+
+#### Get:StatusData
+
+Users can now extrapolate the status date for diagnostics using the unit of measure `None` when `Get` is used with search (device, diagnostic, from and to date).
+
+#### GetFeed:DeviceStatusInfo
+
+Added `GetFeed` for `DeviceStatusInfo`.
+
+#### MessageContentType
+
+Added `MimeContent` to `MessageContentType`.
+
+#### MimeContent
+
+Fixed documentation of maximum size.
+
+#### RuleSearch
+
+Fixed a bug getting zone stop rules.
+
+#### SDK Runner
+
+Fixed a UI bug rendering JSON, causing it to fail on an empty object.
+
+#### sdk-addin-samples:proximity
+
+- Removed ResultsLimit of 1000 for the `Get<Device>` request.
+- `Get<Device>` request now accepts wildcard searches.
+- Added a Run, Select All and Deselect All button.
+- Updated warning messages if an input is missing or invalid when a user clicks Run.
+- Updated minor UI aesthetics.
+
+#### sdk-map-addin-samples
+
+Added a new sample illustrating tooltip which displays the odometer, fuel level, and battery charge level (if applicable) of a vehicle.
+
+#### SecurityIdentifier
+
+Added `ViewDeviceShare`, `ViewDeviceShare`, `InstallRecord`, `ViewDeviceShare`, `ViewDeviceShare`, `ViewUserDeviceLink`, and `ViewUserDeviceLink`.
+
+#### VersionInformation
+
+Added the `ServerId` property, a unique identifier for a server/cluster.
+
 ## 5.7.2004
 
 ### New Media File API
@@ -137,7 +234,8 @@ Supported Methods include:
 - Remove
 - GetFeed (LogRecord, StatusData, FaultData, Trip)
 - GetCountOf
-- Supported Objects include:
+
+Supported Objects include:
 
 - Id
 - Entity
