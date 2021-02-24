@@ -21,12 +21,12 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: #56A1D5;
-    color: white;
+    color: #222222;
     font-size: 0.8em;
     padding-left: 1rem;
 
     a {
-        color: #25477B;
+        color: #222222 !important;
     }
 }
 
@@ -96,8 +96,8 @@ blockquote {
 }
 
 .btn-primary {
-    background-color: #56A1D5;
-    border-color: #3983c3;
+    background-color: #0275D8;
+    border-color: #3983c3;    
 }
 
 .btn-primary:hover {
@@ -141,6 +141,7 @@ blockquote {
     @extend .badge-info;
     font-size: 0.8rem;
     font-weight: normal;
+    background-color: #0275D8;
 }
 
 .member {
@@ -296,10 +297,6 @@ blockquote {
     padding-left: 16px;
 }
 
-.sidebar .nav {
-    margin-bottom: 20px;
-}
-
 .sidebar .nav-item {
     width: 100%;
 }
@@ -310,6 +307,10 @@ blockquote {
 
 .sidebar .nav-link {
     border-radius: 0;
+}
+
+.sidebar h5:first-of-type {
+    margin-top: 10px;
 }
 
 @media (max-width:767px) {
@@ -328,4 +329,8 @@ blockquote {
         width: 250px;
         transition: all 0.4s ease 0s;
     }
+}
+
+a {
+    color: #006FE6;    
 }

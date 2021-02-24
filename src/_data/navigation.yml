@@ -1,7 +1,7 @@
 toc:
   - title: Software
     folderitems:
-    - page: Introduction
+    - page: Software Introduction
       url: /software/introduction/
     - page: What's New
       url: /resources/new/
@@ -65,7 +65,7 @@ toc:
             external: true
   - title: Hardware
     folderitems:
-      - page: Introduction
+      - page: Hardware Introduction
         url: /hardware/introduction/
       - page: Hardware Add-On data types
         url: /hardware/hardware-add-on-data-types/

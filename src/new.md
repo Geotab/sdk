@@ -7,11 +7,11 @@ title: What's New
 
 ### Map Add-In
 
-Map Add-ins are now fully supported, and no longer in Feature Preview. [Click here]({{site.baseurl}}/software/guides/map-add-ins-docs/) to learn more about Map Add-ins
+Map Add-ins are now fully supported, and no longer in Feature Preview. [Click here to learn more about Map Add-ins]({{site.baseurl}}/software/guides/map-add-ins-docs/)
 
 ### Storage API
 
-Storage APIs are now fully supported, and no longer in Feature Preview. [Click here]({{site.baseurl}}/software/guides/addin-storage/) to learn more about Storage APIs.
+Storage APIs are now fully supported, and no longer in Feature Preview. [Click here to learn more about Storage APIs]({{site.baseurl}}/software/guides/addin-storage/)
 
 ### General SDK updates
 
@@ -320,11 +320,11 @@ Supported Objects include:
 
 ## 5.7.2003
 
-##### General improvements
+### General improvements
 
 JSON serialization improvements have been made to increase the efficiency of API calls. This is especially noticeable on API calls with large response payload. For example, calling `GetFeed` of `StatusData` with full payload (50,000 results), the average end to end time decreased from 1800 ms to 800 ms.
 
-##### TextMessage and TextMessageSearch
+### TextMessage and TextMessageSearch
 
 - [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - Added `Recipient`. This property is used to send a text message to a user.
 - [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - Added searching by `IsDelivered`, `IsRead`, `UserSearch`.
@@ -335,11 +335,11 @@ JSON serialization improvements have been made to increase the efficiency of API
   - `ContentTypes` searches for TextMessages based on their MessageContentType.
   - `IsDirectionToVehicle`, when set to true, will return all text messages that were sent to the device. If set to false, it will return all text messages that were not sent to the device.
 
-##### SecurityIdentifier
+### SecurityIdentifier
 
 - [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - `PerformanceReport` has been removed.
 
-##### Exception Messages
+### Exception Messages
 
 Some exception messages contained escaped Unicode characters. We have fixed these to exclude escaped characters. See the example message change below:
 
@@ -353,45 +353,45 @@ The method 'NotAMethod' could not be found. Verify the method name and ensure al
 
 This fix applies to messages of exception types `MissingMethodException`, `AmbiguousMatchException`, `MissingMemberException` and `JsonSerializationException`.
 
-##### DiagnosticType
+### DiagnosticType
 
 - [DiagnosticType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DiagnosticType) - Added `GmcccFault` and `BrpFault`
 
-##### KnownId
+### KnownId
 
 - [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `ControllerGmcccFaultId`, `SourceGmcccId`, `SourceGmcccObsoleteId`, `ControllerBrpFaultId`, `SourceBrpId`, `SourceBrpObsoleteId`
 - [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `NoExceptionEventId`, `NoRuleId`
 
-##### Device
+### Device
 
 - [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - Added `AutoHos`. This property is a toggle that represents automatic generation of DutyStatusLogs for a `GoDevice` and/or a `CustomVehicleDevice`.
 
-##### DutyStatusViolation
+### DutyStatusViolation
 
 - [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Added `HoursLimit` and `DaysLimit`. These properties show the maximum or minimum hours and/or days limit for duty status violations.
 - [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Deprecated `Reason` property. This will be removed in a future version. The data in the Reason property string is now provided as `DaysLimit` and `HoursLimit` for better programmatic access.
 
-##### UserSearch
+### UserSearch
 
 - [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch) - Added searching by `LicenseNumber`, `EmployeeNumber`, `HosRuleSet` and `UserAuthenticationType`.
 
-##### GetFeed DebugData
+### GetFeed DebugData
 
 - [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1): [DebugData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DebugData) - Fixed sort order issue leading to possible missed records.
 
-##### FuelTransaction
+### FuelTransaction
 
 - [FuelTransaction]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransaction) - Added `Device` and `Driver`. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's `Device` and `Driver` properties defaults to NoDevice and UnknownDriver.
 
-##### DVIRLog
+### DVIRLog
 
 - [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `AuthorityName`, `AuthorityAddress`, `Odometer`, `LoadHeight`, `LoadWidth` and `IsInspectedByDriver`. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered `Hubometer` value for Trailer DVIRs.
 
-##### ConditionType
+### ConditionType
 
 - [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `IsValueLessThanPercent` and `IsValueMoreThanPercent`. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
 
-##### WebServerInvoker (Nuget only)
+### WebServerInvoker (Nuget only)
 
 This method has been changed to use generics instead of passing type in, and returning an object, that needs  to be cast. For example, `var version = (string)(await invoker.InvokeAsync("GetVersion", typeof(string)));` is now `var version = await invoker.InvokeAsync<string>("GetVersion");`
 
@@ -399,11 +399,11 @@ This method has been changed to use generics instead of passing type in, and ret
 
 ## 5.7.2002
 
-##### NuGet
+### NuGet
 
-<span style="color:red">! IMPORTANT</span>: A bug has been identified with Geotab.Checkmate.Objectmodel NuGet packages older than version 5.7.2002, which can lead to serialization errors when a previous version received a new device plan value. Please update to the latest NuGet package to establish compatibility.
+<span style="color:#EE0700">! IMPORTANT</span>: A bug has been identified with Geotab.Checkmate.Objectmodel NuGet packages older than version 5.7.2002, which can lead to serialization errors when a previous version received a new device plan value. Please update to the latest NuGet package to establish compatibility.
 
-##### Map Add-In
+### Map Add-In
 
 Users can now create a [Map Add-In]({{site.baseurl}}/software/guides/map-add-ins-docs/) without using the view panel on the right. For quick tasks such as adding icons or text to the Map, simply use the `"noView":true` parameter in your configuration file.
 
@@ -429,49 +429,49 @@ service.tooltip.setConfig({
 });
 ```
 
-##### Interpolation
+### Interpolation
 
 - [Get]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Get1): [StatusData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.StatusData), [LogRecord]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LogRecord) - In the v5.7.2001 release and earlier, we interpolate between points when using `StatusData` and `LogRecord` API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the _first/last_ value with the _correct_ dateTime.
 
-##### Users
+### Users
 
 - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added the `IsExemptHOSEnabled` property to indicate whether the user is allowed to use HOS Personal Conveyance.
 - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CompanyName`, `CompanyAddress`, and `CarrierNumber` properties to store company and carrier information.
 - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CountryCode`, `PhoneNumber`, and `PhoneNumberExtension` properties to assign a phone number to a selected user.
 
-##### Drivers
+### Drivers
 
 - [Driver]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Driver) - Added `LicenseProvince` and `LicenseNumber` properties.
 - [DriverRegulation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverRegulation) - Added `RestBreakNeeded`, `OffDutyNeeded`, `DaySummaries`, `WorkdaySummaries` and `CycleSummaries` properties to DriverRegulation.
 
-##### DutyStatuLog
+### DutyStatuLog
 
 - [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog) - Added `DeferralStatus`, and `DeferralMinutes` properties to define the duty status deferral and deferral minutes.
 - [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType) - Added the `PC_Exempted` property to indicate the status of a driver.
 
-##### DVIRLog
+### DVIRLog
 
 - [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `LogType` and `DefectList` properties.
 - [DVIRLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLogType) - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new `Intrip` inspection type.
 
-##### Rules
+### Rules
 
 - [RecipientType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.RecipientType) - Added `HosEnabled` and `HosDisabled` to `RecipientType` to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
 - [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `NoPreDVIRCheck` and `NoPostDVIRCheck` to `ConditionType` when no Pre or Post-trip DVIR is performed between work days.
 - [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `SpeedLimitAsMeasurement` property to the `ConditionType` to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
 - [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - The `NoDVIRCheck` `ConditionType` is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
 
-##### Zones
+### Zones
 
 - [Zone]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Zone) - Added the `ZoneTypes` property for enumeration of zone types for a given zone.
 
-##### Devices
+### Devices
 
 - [GO9]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Go9) - Added the `ObdAlertEnabled` property to allow users to enable/disable OBD alerts on their vehicles.
 - [GoDevice]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GoDevice) - Added the `ParameterVersionOnDevice` property to track the current parameter version on the device. The current `ParameterVersion` property communicates the parameter version to the device; however, parameter updates are not always immediate.
 - [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - To prevent mismatches based on system clock settings, we have prevented `ActiveFrom` from being greater than `ActiveTo` when adding a device.
 
-##### generator-addin version 3.0
+### generator-addin version 3.0
 
 We have modernized the Add-In scaffolding, development and packaging tool to use more current techniques and features:
 
@@ -482,7 +482,7 @@ We have modernized the Add-In scaffolding, development and packaging tool to use
 - Can now toggle blur and focus events to simulate leaving and re-visiting the Add-In page.
 - For more information visit GitHub: <https://github.com/Geotab/generator-addin>{:target="_blank"}
 
-##### mg-api-js version 2.0
+### mg-api-js version 2.0
 
 This major release merges the API wrappers mg-api-js (previously browser only version) and mg-api-node (previously Nodejs only version) into a single project:
 
@@ -492,7 +492,7 @@ This major release merges the API wrappers mg-api-js (previously browser only ve
 - Optional lower-level control over http response.
 - For more information visit GitHub: <https://github.com/Geotab/mg-api-js>{:target="_blank"}
 
-##### Other SDK Updates
+### Other SDK Updates
 
 - [BinaryDataSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryDataSearch) - Search by `DeviceSearch.Groups` property using `BinaryDataSearch`.
 - [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - Added `SystemSettings` value to `SecurityIdentifier`.
@@ -861,7 +861,7 @@ In early 2018 the following legacy properties will be removed:
 * GetFeed of Trip now includes stop point (woohoo!)
 ***requires server running 5.7.1706.x**
 
-* [API Clients](https://my112.geotab.com/sdk/#/apiWrappers) section added to SDK documentation
+* <a href="https://my112.geotab.com/sdk/#/apiWrappers" aria-label="API clients section in SDK document">API Clients</a> section added to SDK documentation
 
 * Geotab.Reflection package no longer a dependency of Geotab.Checkmate.Objectmodel nuget package
 
@@ -938,7 +938,7 @@ ImmobilizeArming: A value mainly used for enable or disable driver identificatio
 
 ## 5.7.1611
 
-* Authentication rate limiting being phased in. See this [Blog Post](https://www.geotab.com/blog/api-call-limits/) for more details. Added "Rate Limiting" section to SDK [Concepts](https://my.geotab.com/sdk/default.html#/concepts).
+* Authentication rate limiting being phased in. See this [Blog Post](https://www.geotab.com/blog/api-call-limits/) for more details. Added "Rate Limiting" section to [SDK Concepts]({{site.baseurl}}/software/guides/concepts/).
 
 * KnownId - Added: "DiagnosticDieselExhaustFluidId", ”DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”
 
@@ -1096,7 +1096,7 @@ For detailed information on new features please review the API Reference.
 
 ## 5.7.1509
 
-* New SDK.  Featuring the new [SDK Runner](https://geotab.github.io/sdk/software/api/runner.html), new methods and objects (click [here](https://geotab.github.io/sdk/software/api/reference/) to see the preview items)
+* New SDK.  Featuring the new [SDK Runner](https://geotab.github.io/sdk/software/api/runner.html), new methods and objects ([click here to see the preview items](https://geotab.github.io/sdk/software/api/reference/))
 
 * Code snippets in the reference documentation.  Now you can see working examples of the methods as they are used in the runner.
 
@@ -1216,13 +1216,13 @@ For detailed information on new features please review the API Reference.
 
 ## 5.7.1508
 
-* DriverChangeSearch received new search points including: DeviceSearch, DriverSearch, FromDate and ToDate. Checkout the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details
+* DriverChangeSearch received new search points including: DeviceSearch, DriverSearch, FromDate and ToDate. Checkout the [API Reference]({{site.baseurl}}/software/api/reference/) for more details
 
-* DistributionList is now supported by the API. Checkout the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details. Some related objects are still pending support (Notification, NotificationTemplate, BinaryData)
+* DistributionList is now supported by the API. Checkout the [API Reference]({{site.baseurl}}/software/api/reference/) for more details. Some related objects are still pending support (Notification, NotificationTemplate, BinaryData)
 
-* [Add-In examples](https://my.geotab.com/sdk/default.html#/addinExamples) have been added to SDK documentation
+* <a href="https://github.com/Geotab/sdk-addin-samples" aria-label="Add-In examples in SDK documentation">Add-In examples</a> have been added to SDK documentation
 
-* When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendents, or both ancestors and descendents. See the ZoneSearch object in the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details
+* When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendents, or both ancestors and descendents. See the ZoneSearch object in the [API Reference]({{site.baseurl}}/software/api/reference/) for more details
 
 * Fix documentation for object properties
 
@@ -1230,13 +1230,13 @@ For detailed information on new features please review the API Reference.
 
 * Added FuelTransaction API (*Beta*)
 
-* HOS/DVIR objects supported in API. Key objects are AnnotationLog, DVIRLog, DutyStatusAvailability, DutyStatusLog, DutyStatusViolation, and ShipmentLog. Check out the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details
+* HOS/DVIR objects supported in API. Key objects are AnnotationLog, DVIRLog, DutyStatusAvailability, DutyStatusLog, DutyStatusViolation, and ShipmentLog. Check out the [API Reference]({{site.baseurl}}/software/api/reference/) for more details
 
 * Added Groups property to StatusDataSearch. This allows searching for status data for devices in the supplied groups. This does not return interpolated results
 
-* Added from/to date search to UserSearch object. Checkout the [API Reference](https://my.geotab.com/sdk/default.html#/api) for more details
+* Added from/to date search to UserSearch object. Checkout the [API Reference]({{site.baseurl}}/software/api/reference/) for more details
 
-* [API Reference](https://www.geotab.com/dev-channel/), objects now show properties of from inherited classes. For example GoDevice extends Device and will show properties of GoDevice and Device in the documentation
+* [API Reference]({{site.baseurl}}/software/api/reference/), objects now show properties from inherited classes. For example GoDevice extends Device and will show properties of GoDevice and Device in the documentation
 
 * Geotab Announces New [DEV Channel](https://www.geotab.com/dev-channel/) for Developers
 
@@ -1250,14 +1250,14 @@ For detailed information on new features please review the API Reference.
 
 ## 5.7.1502
 
-* Get *all* zones now populating points correctly ([see forum post](https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points))
+* Get *all* zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)
 
 * Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API client
 
-* Units of measure have been converted to use Known Id’s ([see forum post](https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId))
+* Units of measure have been converted to use Known Id’s (<a href="https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId" aria-label="forum post about using known Ids">see forum post</a>)
 
 * Adding, setting and removing of some entities has been disabled via the API. Exception Event, Trip, Status Data, Fault Data, Log Record with exceptions for adding odometer and engine hours adjustments and dismissing faults
 
-* Clearer documentation of date and long values in [API Reference](https://my.geotab.com/sdk/default.html#/api)
+* Clearer documentation of date and long values in [API Reference]({{site.baseurl}}/software/api/reference/)
 
 * Data Feed section added to Guides portion of SDK ([see document](https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit))

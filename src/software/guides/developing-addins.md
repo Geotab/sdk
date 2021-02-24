@@ -8,7 +8,7 @@ Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Dri
 
 ## Geotab Add-Ins can be of two types:
 
-#### Pages
+### Pages
 
 A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.
 
