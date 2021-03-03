@@ -37,7 +37,7 @@ Geotab has a set of pre-made applications (which include full source code) for s
 * Synchronize your vehicle groups based on the vehicle’s role in the company
 * Track Hours of Service (HOS) for regulations compliance
 
-You can start using these tools right now by trying the .Net examples [here](https://github.com/Geotab/sdk-dotnet-samples) , JavaScript examples [here](../js-samples/) and Java examples [here](https://github.com/Geotab/sdk-java-samples).
+You can start using these tools right now by trying the [.Net examples](https://github.com/Geotab/sdk-dotnet-samples) , [JavaScript examples](../js-samples/) and [Java examples](https://github.com/Geotab/sdk-java-samples).
 
 ## Automating tasks
 
@@ -64,7 +64,7 @@ By using single sign-on authentication with the Geotab API, you have the ability
 * Updating a user’s password
 * Adding and removing a user
 
-Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to. This is a great way to leverage MyGeotab and make it part of your services. See [here](../guides/mygeotab-urls/) for more details.
+Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to. This is a great way to leverage MyGeotab and make it part of your services. See [mygeotab-urls](../guides/mygeotab-urls/) for more details.
 
 ## Integrating custom telematics tracking devices into MyGeotab
 

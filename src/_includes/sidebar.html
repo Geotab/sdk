@@ -13,6 +13,7 @@
             </li>
             {% endfor %}
         {% for entry in item.subfolders %}
+        <li>
         <h5>{{ entry.title }}</h5>
         <ul class="nav flex-column">
             {% for entry in entry.subfolderitems %}
@@ -27,9 +28,11 @@
                 {% endif %}
             </li>
             {% endfor %}
-        </ul>
+        </ul>        
+        </li>        
         {% endfor %} 
         </ul>
+        <hr/>
     {% endfor %}
     </nav>
-</div>
+</div>  

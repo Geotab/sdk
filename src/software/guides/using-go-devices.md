@@ -8,7 +8,7 @@ Geotab offers an option where the GO device hardware can be used without using t
 
 ## Overview
 
-Data flows from the GO device to the MyGeotab hosted solution automatically. The first step is to create a database to receive the device’s data (as outlined in [Getting Started](../concepts/). Once that is complete, the device can be accessed using the APIs defined below.
+Data flows from the GO device to the MyGeotab hosted solution automatically. The first step is to create a database to receive the device’s data (as outlined in [Getting Started](../getting-started/). Once that is complete, the device can be accessed using the APIs defined below.
 
 ## Device hierarchy
 

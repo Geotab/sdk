@@ -9,7 +9,7 @@ There are a number of language specific API clients that roll-up some common fun
 
 ## .Net
 
-#### Quick Start
+### Quick Start
 
 Install the [NuGet package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/) from the package manager console:
 
@@ -26,7 +26,7 @@ var devices = await api.CallAsync<List<Device>>("Get", typeof(Device), new { res
 
 ## Java
 
-#### Quick Start
+### Quick Start
 
 Add the [maven dependency](https://mvnrepository.com/artifact/com.geotab/java-sdk)
 
@@ -56,13 +56,13 @@ Optional<List<Device>> result = api.call(request, DeviceListResponse.class);
 
 ## Javascript
 
-#### Quick Start
+### Quick Start
 
 Install the Bower package from the command line:
 
 $ `bower install --save mg-api-js`
 
-**Using it in code** (more on [github](https://github.com/Geotab/mg-api-js))
+**Using it in code** (more on [github - MyGeotab API wrapper for both clientside JavaScript and NodeJS](https://github.com/Geotab/mg-api-js))
 
 ```js
 var api = GeotabApi(function (authenticateCallback) {
@@ -85,13 +85,13 @@ api.call('Get', {
 
 ## Nodejs
 
-#### Quick Start
+### Quick Start
 
 Install the [NPM package](https://www.npmjs.com/package/mg-api-node#getting-started) from the command line:
 
 `$ npm install mg-api-node --save`
 
-**Using it in code** (more on [github](https://github.com/Geotab/mg-api-node))
+**Using it in code** (more on [github - nodejs client for the MyGeotab API](https://github.com/Geotab/mg-api-node))
 
 ```js
 var api = new API('user@example.com', 'password', 'database');
@@ -116,13 +116,13 @@ api.authenticate(function(err, result) {
 
 ## Python
 
-#### Quick Start
+### Quick Start
 
 Install the library and command line tool:
 
 `$ pip install mygeotab`
 
-**Using it in code**  (more on [github](https://github.com/Geotab/mygeotab-python))
+**Using it in code**  (more on [github - Python client for the MyGeotab SDK](https://github.com/Geotab/mygeotab-python))
 
 ```py
 >> import mygeotab
@@ -134,13 +134,13 @@ Install the library and command line tool:
 
 ## PHP
 
-#### Quick Start
+### Quick Start
 
 Install the composer package from the command line:
 
 `$ composer require geotab/mygeotab-php`
 
-**Using it in code**  (more on [github](https://github.com/Geotab/mygeotab-php))
+**Using it in code**  (more on [github - Php client for the MyGeotab SDK](https://github.com/Geotab/mygeotab-php))
 
 ```php
 $api = new Geotab\API("user@example.com", "password", "database", "my.geotab.com");

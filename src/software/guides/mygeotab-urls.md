@@ -21,7 +21,7 @@ To create a link to a page, the following URL structure is used:
 | page | The MyGeotab web application page name |
 | parameters | Additional arguments to apply to the request. For example, `currentSortMode:deviceName` will sort the devices on the device list page by name. Note: each additional parameter is separated by a comma |
 
-#### Example
+### Example
 
 Browse to your database using this URL format
 
@@ -43,7 +43,7 @@ To create a link to a page, the following URL structure is used:
 
 Parameters are added at the end of the URL and each is separated by a comma. They work the same for both the normal and standalone page types. It is also important to note when no parameters are requested, the page will load with the default settings. The parameter and its value are always separated by a colon (":").
 
-#### Example
+### Example
 
 These links will navigate to the map pages showing the live position of a device with id `b21`, and with the group `b1234` highlighted.
 
@@ -257,7 +257,7 @@ By using the sessionId, a valid login is created for that account. Another user 
 
 ## Embedding MyGeotab inside an iFrame
 
-#### Trusted domains only
+### Trusted domains only
 
 Due to the risk of [ClickJacking](https://en.wikipedia.org/wiki/Clickjacking), MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.
 
