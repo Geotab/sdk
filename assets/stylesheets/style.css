@@ -7572,11 +7572,11 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: #56A1D5;
-  color: white;
+  color: #222222;
   font-size: 0.8em;
   padding-left: 1rem; }
   footer a {
-    color: #25477B; }
+    color: #222222 !important; }
 
 main {
   width: 100%;
@@ -7619,12 +7619,10 @@ blockquote {
     margin: 0; }
 
 .bg-dark {
-  background-color: #0B4B77 !important;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #0B4B77), color-stop(20%, #0B4B77), color-stop(50%, #1179B6), color-stop(80%, #0B4B77), to(#0B4B77));
-  background: linear-gradient(to right, #0B4B77 0, #0B4B77 20%, #1179B6 50%, #0B4B77 80%, #0B4B77 100%); }
+  background-color: #0B4B77 !important; }
 
 .btn-primary, .member-runner-link {
-  background-color: #56A1D5;
+  background-color: #0275D8;
   border-color: #3983c3; }
 
 .btn-primary:hover, .member-runner-link:hover {
@@ -7655,7 +7653,8 @@ blockquote {
 
 .beta {
   font-size: 0.8rem;
-  font-weight: normal; }
+  font-weight: normal;
+  background-color: #0275D8; }
 
 .member {
   margin: 1rem 0; }
@@ -7774,9 +7773,6 @@ blockquote {
 .sidebar h5 {
   padding-left: 16px; }
 
-.sidebar .nav {
-  margin-bottom: 20px; }
-
 .sidebar .nav-item {
   width: 100%; }
 
@@ -7785,6 +7781,9 @@ blockquote {
 
 .sidebar .nav-link {
   border-radius: 0; }
+
+.sidebar h5:first-of-type {
+  margin-top: 10px; }
 
 @media (max-width: 767px) {
   #wrapper {
@@ -7799,5 +7798,8 @@ blockquote {
     width: 250px;
     -webkit-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s; } }
+
+a {
+  color: #006FE6; }
 
 /*# sourceMappingURL=style.css.map */
