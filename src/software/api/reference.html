@@ -17,13 +17,13 @@ permalink: /software/api/reference/
 <div role="main" id="main" style="display:none;">
     <div id="main-inner">
         <artical id="reference">
-            <h2 id="methods">Methods</h1>
+            <h2 id="methods">Methods</h2>
 
             <div id="dataStoreMembers"></div>
 
             <hr>
 
-            <h2 id="objects">Objects</h1>
+            <h2 id="objects">Objects</h2>
 
             <div id="objectMembers"></div>
         </artical>
@@ -1202,7 +1202,7 @@ permalink: /software/api/reference/
             setUpAccordions = function (parentSelector) {
                 var parent = document.getElementById(parentSelector);
 
-                Array.prototype.forEach.call(parent ? parent.querySelectorAll(".member-parameters h6") : [], function (el) {
+                Array.prototype.forEach.call(parent ? parent.querySelectorAll(".member-parameters h4") : [], function (el) {
                     el.addEventListener("click", function (e) {
                         var options = this.nextElementSibling;
                         options.style.display = (options.style.display === "none" ? "block" : "none");
