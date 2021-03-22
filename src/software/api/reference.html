@@ -974,25 +974,25 @@ permalink: /software/api/reference/
                     case dataTypes.long:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "64bit integer is represented by a hex string in JSON because some languages do not support 64bit number type"
                         };
                     case dataTypes.date:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "Date time is represented by an ISO string in UTC time (\"2000-01-01T01:00:00.000Z\")"
                         };
                     case dataTypes.timespan:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "An time span interval represented in the format [-][d.]hh:mm:ss[.fffffff]. For example: \"2.05:02:44.928\""
                         };
                     case dataTypes.byteArray:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "A byte array represented by a base64 encoded string"
                         };
                     default:

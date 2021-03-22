@@ -39,5 +39,8 @@
   "browserslist": [
     "last 2 version",
     "> 2%"
-  ]
+  ],
+  "dependencies": {
+    "postcss": "^8.2.8"
+  }
 }
