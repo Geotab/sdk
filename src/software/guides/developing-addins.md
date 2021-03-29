@@ -177,7 +177,7 @@ A parent menu item defines a new menu item and where it should reside within the
 | buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
 | icon | Reference to the image for placing it in the button label | String |
 
-At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`), Indonesian (`"id"`), Czech (CS) and Swedish (SV).
+At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`), Indonesian (`"id"`), Czech (`"cs"`) and Swedish (`"sv"`).
 
 > Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
 
