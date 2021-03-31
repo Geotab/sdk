@@ -320,7 +320,7 @@ Table 5 — Add-In lifecycle methods
 
 Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the _focus_ method will be called. Finally, when the user is navigating away from your custom page Add-In, the _blur_ method will be called, completing the Add-In lifecycle.
 
-> It's impportant to call the `callback` passed into `intialize` _after_ all work is complete. Keep in mind the asynchrosous nature of JavaScript.
+> It's important to call the `callback` passed into `intialize` _after_ all work is complete. Keep in mind the asynchronous nature of JavaScript.
 
 ![]({{site.baseurl}}/software/guides/developing-addins_2.png)
 Image 2 — Add-In lifecycle workflow diagram
