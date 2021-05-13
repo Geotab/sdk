@@ -95,7 +95,7 @@ title: Geotab Map Add-In Overview
                     <strong>style</strong> - The CSS file reference for this Add-In. This can be externally hosted or uploaded to MyGeotab.
                 </li>
                 <li>
-                    <strong>url</strong> - The HTML file reference for this Add-In. This option can be used instead of <strong>src</strong> and <strong>style</strong>. Links to CSS and JavaScript files can be made within this HTML file. All content within the &lt;body&gt; tags will be added to the Map Add-in UI ((<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html" target="_blank">Example</a>).
+                    <strong>url</strong> - The HTML file reference for this Add-In. This option can be used instead of <strong>src</strong> and <strong>style</strong>. Links to CSS and JavaScript files can be made within this HTML file. All content within the &lt;body&gt; tags will be added to the Map Add-in UI ((<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html" target="_blank" aria-label="url example">Example</a>).
                 </li>
             </ol>
             <p>
@@ -106,7 +106,7 @@ title: Geotab Map Add-In Overview
             <p>
                   To view the Map Add-ins in a database, it is necessary to enable Feature Preview. In the MyGeotab portal, click on Administration -> Users -> select your user account -> UI Settings -> Feature Preview -> set to On -> Save Changes.
             </p>
-            <h4>Iframe Setup</h4>
+            <h3>Iframe Setup</h3>
             <p>
                 In the MyGeotab portal, Map Add-ins are loaded when the user visits the MyGeotab page containing the Add-in. For example, the Add-in in Figure #1 loads when the user visits the Map page.
             </p>
@@ -130,7 +130,7 @@ title: Geotab Map Add-In Overview
                 Do not access elements or APIs outside the iframe panel; they can be changed without notice in future versions of MyGeotab, which might break your Add-In. Use only the services and methods documented here and on the API Reference page when interacting with a page outside the iframe.
             </p>
         
-            <h4>Panel Size</h4>
+            <h3>Panel Size</h3>
                 <p>
                     The iframe panel has a fixed width of 450 pixels; the width shrinks to accomodate screens with widths below 600 pixels. The panel height is responsive, always reaching the bottom of the page.
                 </p>
@@ -153,7 +153,7 @@ title: Geotab Map Add-In Overview
                     <figcaption>Figure #4 - Multiple Add-ins on the Map page.</figcaption>
                 </figure>
         
-                <h4>Structure</h4>
+                <h3>Structure</h3>
                 <p>
                     The starting point for the Map Add-in JavaScript code is the function that is added as a method to "window.geotab.addin". For example:
                 </p>
@@ -182,11 +182,11 @@ geotab.addin.request = (elt, service) => {
             <h2 id="services-list">Map Add-In Services</h2>
             <div class="services-list"><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">page</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">page</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page" target="_blank" aria-label="Page service example">Example</a>)
+            </h2>
             <p>Service for getting/setting page state and moving between MyGeotab page</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -217,7 +217,7 @@ geotab.addin.request = (elt, service) => {
         </tr>
             </tbody>
         </table>
-            <h4>Properties</h4>
+            <h3>Properties</h3>
         <table>
             <thead>
                 <th>Service property name</th>
@@ -232,7 +232,7 @@ geotab.addin.request = (elt, service) => {
         </tr>
             </tbody>
         </table>
-            <h4>Events</h4>
+            <h3>Events</h3>
         <table>
             <thead>
                 <th>Event name</th>
@@ -265,7 +265,7 @@ geotab.addin.request = (elt, service) => {
         </table>
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IGroupFilterId_6738371814545805">Interface IGroupFilterId</h4>
+            <h4 id="IGroupFilterId_6738371814545805">Interface IGroupFilterId</h3>
             <p>Group id object that is selected by user in company filter</p>
             <table>
             <thead>
@@ -286,11 +286,11 @@ geotab.addin.request = (elt, service) => {
         
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">localStorage</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">localStorage</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage" target="_blank" aria-label="local storage service example">Example</a>)
+            </h2>
             <p>Service to request information stored in browser LocalStorage</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -316,11 +316,11 @@ geotab.addin.request = (elt, service) => {
         
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">api</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">api</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request" target="_blank" aria-label="api service example">Example</a>)
+            </h2>
             <p>Service for requesting data from Geotab server</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -343,7 +343,7 @@ geotab.addin.request = (elt, service) => {
             
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ISessionInfo_21172432221526716">Interface ISessionInfo</h4>
+            <h4 id="ISessionInfo_21172432221526716">Interface ISessionInfo</h3>
             <p>Current user session information</p>
             <table>
             <thead>
@@ -374,7 +374,7 @@ geotab.addin.request = (elt, service) => {
             
         </div></div>
         <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TApiCall_9222282930422152">Type TApiCall</h4>
+            <h4 id="TApiCall_9222282930422152">Type TApiCall</h3>
             <p>
                 <pre><code class="language-js" data-lang="js">[string, object]</code></pre>
             </p>
@@ -382,11 +382,11 @@ geotab.addin.request = (elt, service) => {
         </div></div>
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">events</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">events</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events" target="_blank" aria-label="events service example">Example</a>)
+            </h2>
             <p>Service for catching events that happens when user interact with different entities on the map</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -403,7 +403,7 @@ geotab.addin.request = (elt, service) => {
             </tbody>
         </table>
             
-            <h4>Events</h4>
+            <h3>Events</h3>
         <table>
             <thead>
                 <th>Event name</th>
@@ -446,7 +446,7 @@ geotab.addin.request = (elt, service) => {
         </table>
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneEvent_5628074791384126">Interface IZoneEvent</h4>
+            <h4 id="IZoneEvent_5628074791384126">Interface IZoneEvent</h3>
             <p>Event object that is sent to add-in when user interacts with zone</p>
             <table>
             <thead>
@@ -468,7 +468,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneEventData_4986307042482321">Interface IZoneEventData</h4>
+            <h4 id="IZoneEventData_4986307042482321">Interface IZoneEventData</h3>
             <p>Zone object that is sent to add-in when user interacts with zone</p>
             <table>
             <thead>
@@ -486,7 +486,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceEvent_2296851980526009">Interface IDeviceEvent</h4>
+            <h4 id="IDeviceEvent_2296851980526009">Interface IDeviceEvent</h3>
             <p>Event object that is sent to add-in when user interacts with device</p>
             <table>
             <thead>
@@ -508,7 +508,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceEventData_46524687032941836">Interface IDeviceEventData</h4>
+            <h4 id="IDeviceEventData_46524687032941836">Interface IDeviceEventData</h3>
             <p>Device object that is sent to add-in when user interacts with device</p>
             <table>
             <thead>
@@ -526,7 +526,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteEvent_2514406342647548">Interface IRouteEvent</h4>
+            <h4 id="IRouteEvent_2514406342647548">Interface IRouteEvent</h3>
             <p>Event object that is sent to add-in when user interacts with route</p>
             <table>
             <thead>
@@ -548,7 +548,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteEventData_7416072736483916">Interface IRouteEventData</h4>
+            <h4 id="IRouteEventData_7416072736483916">Interface IRouteEventData</h3>
             <p>Route object that is sent to add-in when user interacts with route</p>
             <table>
             <thead>
@@ -566,7 +566,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripEvent_45752359167584244">Interface ITripEvent</h4>
+            <h4 id="ITripEvent_45752359167584244">Interface ITripEvent</h3>
             <p>Event object that is sent to add-in when user interacts with trip</p>
             <table>
             <thead>
@@ -588,7 +588,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripEventData_5823825824970319">Interface ITripEventData</h4>
+            <h4 id="ITripEventData_5823825824970319">Interface ITripEventData</h3>
             <p>Trip object that is sent to add-in when user interacts with trip</p>
             <table>
             <thead>
@@ -614,7 +614,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionsEvent_5307836172275417">Interface IExceptionsEvent</h4>
+            <h4 id="IExceptionsEvent_5307836172275417">Interface IExceptionsEvent</h3>
             <p>Event object that is sent to add-in when user interacts with device exceptions</p>
             <table>
             <thead>
@@ -636,7 +636,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionsEventData_5042572438828359">Interface IExceptionsEventData</h4>
+            <h4 id="IExceptionsEventData_5042572438828359">Interface IExceptionsEventData</h3>
             <p>Exceptions object that is sent to add-in when user interacts with exception icon on the map</p>
             <table>
             <thead>
@@ -654,7 +654,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IExceptionEventData_30321984938642355">Interface IExceptionEventData</h4>
+            <h4 id="IExceptionEventData_30321984938642355">Interface IExceptionEventData</h3>
             <p>Exception object that is sent to add-in when user interacts with exception icon on the map</p>
             <table>
             <thead>
@@ -688,7 +688,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceChangeEvent_12603948382694052">Interface IDeviceChangeEvent</h4>
+            <h4 id="IDeviceChangeEvent_12603948382694052">Interface IDeviceChangeEvent</h3>
             <p>Event object that is sent to add-in when vehicle location on the map changes</p>
             <table>
             <thead>
@@ -719,13 +719,13 @@ geotab.addin.request = (elt, service) => {
             
         </div></div>
         <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TEventData_31142352899099124">Type TEventData</h4>
+            <h4 id="TEventData_31142352899099124">Type TEventData</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#IZoneEvent_5628074791384126">IZoneEvent</a> | <a href="#IDeviceEvent_2296851980526009">IDeviceEvent</a> | <a href="#IRouteEvent_2514406342647548">IRouteEvent</a> | <a href="#ITripEvent_45752359167584244">ITripEvent</a> | <a href="#IExceptionsEvent_5307836172275417">IExceptionsEvent</a></code></pre>
             </p>
             <p>Event object that is sent to add-in when user interacts with different types of entitis on the map</p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TEntityEventData_22932902969493218">Type TEntityEventData</h4>
+            <h4 id="TEntityEventData_22932902969493218">Type TEntityEventData</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#IDeviceChangeEvent_12603948382694052">IDeviceChangeEvent</a></code></pre>
             </p>
@@ -733,11 +733,11 @@ geotab.addin.request = (elt, service) => {
         </div></div>
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">map</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">map</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map" target="_blank" aria-label="map service example">Example</a>)
+            </h2>
             <p>Service for manipulating viewport of the map and getting updates about changed map viewport</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -766,7 +766,7 @@ geotab.addin.request = (elt, service) => {
             </tbody>
         </table>
             
-            <h4>Events</h4>
+            <h3>Events</h3>
         <table>
             <thead>
                 <th>Event name</th>
@@ -789,7 +789,7 @@ geotab.addin.request = (elt, service) => {
         </table>
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IChangedViewport_25883856190750576">Interface IChangedViewport</h4>
+            <h4 id="IChangedViewport_25883856190750576">Interface IChangedViewport</h3>
             <p>Current map viewport</p>
             <table>
             <thead>
@@ -811,7 +811,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapBounds_6809339450241565">Interface IMapBounds</h4>
+            <h4 id="IMapBounds_6809339450241565">Interface IMapBounds</h3>
             <p>Object that represents a map bounding box.</p>
             <table>
             <thead>
@@ -833,7 +833,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapLatLng_21765840131830494">Interface IMapLatLng</h4>
+            <h4 id="IMapLatLng_21765840131830494">Interface IMapLatLng</h3>
             <p>An object that represents longitude and latitude</p>
             <table>
             <thead>
@@ -858,11 +858,11 @@ geotab.addin.request = (elt, service) => {
         
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">tooltip</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">tooltip</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip" target="_blank" aria-label="tooltip service example">Example</a>)
+            </h2>
             <p>Service for showing additional information in entities tooltip</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -891,7 +891,7 @@ geotab.addin.request = (elt, service) => {
             
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITooltip_19241812859555196">Interface ITooltip</h4>
+            <h4 id="ITooltip_19241812859555196">Interface ITooltip</h3>
             <p>Custom map add-in tooltip options. It can be either a text information or an image</p>
             <table>
             <thead>
@@ -925,7 +925,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITooltipImage_12510348054327536">Interface ITooltipImage</h4>
+            <h4 id="ITooltipImage_12510348054327536">Interface ITooltipImage</h3>
             <p>Custom tooltip image options. It can be either link to external image, base64 image or image stored in ArrayBuffer</p>
             <table>
             <thead>
@@ -955,7 +955,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITooltipConfig_005607970137291307">Interface ITooltipConfig</h4>
+            <h4 id="ITooltipConfig_005607970137291307">Interface ITooltipConfig</h3>
             <p>Application tooltip config. Based on this config application desides what parts of tooltip should be rendered</p>
             <table>
             <thead>
@@ -973,7 +973,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceTooltipConfig_6978511226108259">Interface IDeviceTooltipConfig</h4>
+            <h4 id="IDeviceTooltipConfig_6978511226108259">Interface IDeviceTooltipConfig</h3>
             <p>Device tooltip config to control amount of information that is shown in tooltip.</p>
             <table>
             <thead>
@@ -998,11 +998,11 @@ geotab.addin.request = (elt, service) => {
         
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
+            <h2 class="docs-service__title">
                 <span class="docs-service__name">actionList</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action" target="_blank">Example</a>)
-            </h3>
+            </h2>
             <p>Service for showing a custom action list instead of the existing one, or adding custom buttons to existing action lists.</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -1028,7 +1028,7 @@ geotab.addin.request = (elt, service) => {
             </tbody>
         </table>
             
-            <h4>Events</h4>
+            <h3>Events</h3>
         <table>
             <thead>
                 <th>Event name</th>
@@ -1047,7 +1047,7 @@ geotab.addin.request = (elt, service) => {
         </table>
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMenuActionItem_4783193308694993">Interface IMenuActionItem</h4>
+            <h4 id="IMenuActionItem_4783193308694993">Interface IMenuActionItem</h3>
             <p>Custom action button options</p>
             <table>
             <thead>
@@ -1085,7 +1085,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMenuEventData_851292153483612">Interface IMenuEventData</h4>
+            <h4 id="IMenuEventData_851292153483612">Interface IMenuEventData</h3>
             <p>Data that is passed to add-in when all types of map action menus are about to be shown</p>
             <table>
             <thead>
@@ -1115,12 +1115,12 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMapMenuEventData_24356897535149513">Interface IMapMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="IMapMenuEventData_24356897535149513">Interface IMapMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when map action menu is about to be shown</p>
             
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IZoneMenuEventData_4672500566394">Interface IZoneMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="IZoneMenuEventData_4672500566394">Interface IZoneMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when zone action menu is about to be shown</p>
             <table>
             <thead>
@@ -1138,7 +1138,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IRouteMenuEventData_9403032927960586">Interface IRouteMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="IRouteMenuEventData_9403032927960586">Interface IRouteMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when route action menu is about to be shown</p>
             <table>
             <thead>
@@ -1156,7 +1156,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IMarkerMenuEventData_490591523581543">Interface IMarkerMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="IMarkerMenuEventData_490591523581543">Interface IMarkerMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when location marker action menu is about to be shown</p>
             <table>
             <thead>
@@ -1174,7 +1174,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IDeviceMenuEventData_08642871445163691">Interface IDeviceMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="IDeviceMenuEventData_08642871445163691">Interface IDeviceMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when device action menu is about to be shown</p>
             <table>
             <thead>
@@ -1192,7 +1192,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripMenuEventData_3804169527088357">Interface ITripMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h4>
+            <h4 id="ITripMenuEventData_3804169527088357">Interface ITripMenuEventData extends <a href="#IMenuEventData_851292153483612">IMenuEventData</a></h3>
             <p>Data that is passed to add-in when trip action menu is about to be shown</p>
             <table>
             <thead>
@@ -1218,7 +1218,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ITripData_7739013050032089">Interface ITripData</h4>
+            <h4 id="ITripData_7739013050032089">Interface ITripData</h3>
             <p>Trip data that is passed to add-in when trip action menu is about to be shown</p>
             <table>
             <thead>
@@ -1241,19 +1241,19 @@ geotab.addin.request = (elt, service) => {
             
         </div></div>
         <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuType_5476942457483802">Type TMenuType</h4>
+            <h4 id="TMenuType_5476942457483802">Type TMenuType</h3>
             <p>
                 <pre><code class="language-js" data-lang="js">&quot;zone&quot; | &quot;map&quot; | &quot;device&quot; | &quot;route&quot; | &quot;marker&quot; | &quot;trip&quot;</code></pre>
             </p>
             <p>Types of menus where custom action buttons can be added</p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuHandler_4714842508362269">Type TMenuHandler</h4>
+            <h4 id="TMenuHandler_4714842508362269">Type TMenuHandler</h3>
             <p>
                 <pre><code class="language-js" data-lang="js">(menuName: string, data: <a href="#TMenuEventData_1566779089066337">TMenuEventData</a>) =&gt; <a href="#IMenuActionItem_4783193308694993">IMenuActionItem</a>[] | Promise&lt;<a href="#IMenuActionItem_4783193308694993">IMenuActionItem</a>[]&gt;</code></pre>
             </p>
             <p>Function that will be called when certain action menu is about to be opened</p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMenuEventData_1566779089066337">Type TMenuEventData</h4>
+            <h4 id="TMenuEventData_1566779089066337">Type TMenuEventData</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#IMapMenuEventData_24356897535149513">IMapMenuEventData</a> | <a href="#IZoneMenuEventData_4672500566394">IZoneMenuEventData</a> | <a href="#IRouteMenuEventData_9403032927960586">IRouteMenuEventData</a> | <a href="#IMarkerMenuEventData_490591523581543">IMarkerMenuEventData</a> | <a href="#IDeviceMenuEventData_08642871445163691">IDeviceMenuEventData</a> | <a href="#ITripMenuEventData_3804169527088357">ITripMenuEventData</a></code></pre>
             </p>
@@ -1261,11 +1261,11 @@ geotab.addin.request = (elt, service) => {
         </div></div>
     </div><div class="docs-service">
         <div class="docs-service__part">
-            <h3 class="docs-service__title">
-                <span class="docs-service__name">canvas</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements" target="_blank">Example</a>)
-            </h3>
+            <h2 class="docs-service__title">
+                <span class="docs-service__name">canvas</span> service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements" target="_blank" aria-label="canvas service example">Example</a>)
+            </h2>
             <p>Service for drawing custom shapes on the map</p>
-            <h4>Methods</h4>
+            <h3>Methods</h3>
         <table>
             <thead>
                 <th>Service methods</th>
@@ -1297,7 +1297,7 @@ geotab.addin.request = (elt, service) => {
             
         </div>
         <div class="docs-service__part"><div class="docs-interface">
-            <h4 id="IPathSeg_17730033837595904">Interface IPathSeg</h4>
+            <h4 id="IPathSeg_17730033837595904">Interface IPathSeg</h3>
             <p>Segment of the path element that will be added in `d` attribute</p>
             <table>
             <thead>
@@ -1319,7 +1319,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasElement_6459595766487005">Interface ICanvasElement&lt;T extends <a href="#TCanvasElementAttributes_5122011616287052">TCanvasElementAttributes</a>&gt;</h4>
+            <h4 id="ICanvasElement_6459595766487005">Interface ICanvasElement&lt;T extends <a href="#TCanvasElementAttributes_5122011616287052">TCanvasElementAttributes</a>&gt;</h3>
             <p>New map element object</p>
             
             <table>
@@ -1347,7 +1347,7 @@ geotab.addin.request = (elt, service) => {
             </tbody>
         </table>
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasElementStyleAttributes_7918630799407658">Interface ICanvasElementStyleAttributes</h4>
+            <h4 id="ICanvasElementStyleAttributes_7918630799407658">Interface ICanvasElementStyleAttributes</h3>
             <p>Style properties that can be changed for every custom element</p>
             <table>
             <thead>
@@ -1385,7 +1385,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasRectAttributes_9460810613546908">Interface ICanvasRectAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h4>
+            <h4 id="ICanvasRectAttributes_9460810613546908">Interface ICanvasRectAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h3>
             <p>Attribute of rect that can be changed for every custom element</p>
             <table>
             <thead>
@@ -1419,7 +1419,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasTextAttributes_919903973108549">Interface ICanvasTextAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h4>
+            <h4 id="ICanvasTextAttributes_919903973108549">Interface ICanvasTextAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h3>
             <p>Text element attributes that can be changed for every custom text element</p>
             <table>
             <thead>
@@ -1449,7 +1449,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasCircleAttributes_8903090928939335">Interface ICanvasCircleAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h4>
+            <h4 id="ICanvasCircleAttributes_8903090928939335">Interface ICanvasCircleAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h3>
             <p>Attribute of circle that can be changed for every custom element</p>
             <table>
             <thead>
@@ -1471,7 +1471,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasPathAttributes_7903966618522675">Interface ICanvasPathAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h4>
+            <h4 id="ICanvasPathAttributes_7903966618522675">Interface ICanvasPathAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h3>
             <p>Attribute of path that can be changed for every custom element</p>
             <table>
             <thead>
@@ -1489,7 +1489,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICanvasMarkerAttributes_5404855776022532">Interface ICanvasMarkerAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h4>
+            <h4 id="ICanvasMarkerAttributes_5404855776022532">Interface ICanvasMarkerAttributes extends <a href="#ICanvasElementStyleAttributes_7918630799407658">ICanvasElementStyleAttributes</a></h3>
             <p>Attribute of marker that can be changed for every custom element</p>
             <table>
             <thead>
@@ -1540,25 +1540,25 @@ geotab.addin.request = (elt, service) => {
             
         </div></div>
         <div class="docs-service__part"><div class="docs-type">
-            <h4 id="TPathSegPoint_36185951910039704">Type TPathSegPoint</h4>
+            <h4 id="TPathSegPoint_36185951910039704">Type TPathSegPoint</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#ILocation_8963072152506912">ILocation</a> | <a href="#ICoordinate_5317711472027584">ICoordinate</a> | number</code></pre>
             </p>
             <p>Location or coordinate of the next point</p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TCanvasElementAttributes_5122011616287052">Type TCanvasElementAttributes</h4>
+            <h4 id="TCanvasElementAttributes_5122011616287052">Type TCanvasElementAttributes</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#ICanvasRectAttributes_9460810613546908">ICanvasRectAttributes</a> | <a href="#ICanvasTextAttributes_919903973108549">ICanvasTextAttributes</a> | <a href="#ICanvasCircleAttributes_8903090928939335">ICanvasCircleAttributes</a> | <a href="#ICanvasPathAttributes_7903966618522675">ICanvasPathAttributes</a> | <a href="#ICanvasMarkerAttributes_5404855776022532">ICanvasMarkerAttributes</a></code></pre>
             </p>
             <p></p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TCanvasElementEvent_06428007861141372">Type TCanvasElementEvent</h4>
+            <h4 id="TCanvasElementEvent_06428007861141372">Type TCanvasElementEvent</h3>
             <p>
                 <pre><code class="language-js" data-lang="js">&quot;click&quot; | &quot;over&quot; | &quot;out&quot;</code></pre>
             </p>
             <p>Supported custom map element event types</p>
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TMarkerSource_7275018139374292">Type TMarkerSource</h4>
+            <h4 id="TMarkerSource_7275018139374292">Type TMarkerSource</h3>
             <p>
                 <pre><code class="language-js" data-lang="js">string | ArrayBuffer</code></pre>
             </p>
@@ -1566,7 +1566,7 @@ geotab.addin.request = (elt, service) => {
         </div></div>
     </div></div>
             <div class="deps-list"><div class="docs-service"><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ILocation_8963072152506912">Interface ILocation</h4>
+            <h4 id="ILocation_8963072152506912">Interface ILocation</h3>
             <p></p>
             <table>
             <thead>
@@ -1588,7 +1588,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-interface">
-            <h4 id="ICoordinate_5317711472027584">Interface ICoordinate</h4>
+            <h4 id="ICoordinate_5317711472027584">Interface ICoordinate</h3>
             <p></p>
             <table>
             <thead>
@@ -1610,7 +1610,7 @@ geotab.addin.request = (elt, service) => {
         </table>
             
         </div></div><div class="docs-service__part"><div class="docs-type">
-            <h4 id="TPosition_3201977562385554">Type TPosition</h4>
+            <h4 id="TPosition_3201977562385554">Type TPosition</h3>
             <p>
                 <pre><code class="language-js" data-lang="js"><a href="#ILocation_8963072152506912">ILocation</a> | <a href="#ICoordinate_5317711472027584">ICoordinate</a></code></pre>
             </p>

@@ -17,13 +17,13 @@ permalink: /software/api/reference/
 <div role="main" id="main" style="display:none;">
     <div id="main-inner">
         <artical id="reference">
-            <h1 id="methods">Methods</h1>
+            <h2 id="methods">Methods</h2>
 
             <div id="dataStoreMembers"></div>
 
             <hr>
 
-            <h1 id="objects">Objects</h1>
+            <h2 id="objects">Objects</h2>
 
             <div id="objectMembers"></div>
         </artical>
@@ -974,25 +974,25 @@ permalink: /software/api/reference/
                     case dataTypes.long:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "64bit integer is represented by a hex string in JSON because some languages do not support 64bit number type"
                         };
                     case dataTypes.date:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "Date time is represented by an ISO string in UTC time (\"2000-01-01T01:00:00.000Z\")"
                         };
                     case dataTypes.timespan:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "An time span interval represented in the format [-][d.]hh:mm:ss[.fffffff]. For example: \"2.05:02:44.928\""
                         };
                     case dataTypes.byteArray:
                         return {
                             class: type,
-                            dataType: dataTypes.string + ' {% octicon plus-small %}',
+                            dataType: dataTypes.string + ' {% octicon plus %}',
                             description: "A byte array represented by a base64 encoded string"
                         };
                     default:
@@ -1081,7 +1081,7 @@ permalink: /software/api/reference/
                             memberParameters[j].dataType = member.args[j];
                         }
                         memberParameters = sortMethodParams(memberParameters);
-                        memberHtmlString += '<div class="member-parameters"><h6><a href="#">Parameters</a></h6><div class="slideContainer"><table class="member-parameters-list">';
+                        memberHtmlString += '<div class="member-parameters"><h4><a href="#">Parameters</a></h4><div class="slideContainer"><table class="member-parameters-list">';
                         for (j = 0; j < jj; j += 1) {
                             parameter = memberParameters[j];
                             argument = memberParameters[j].dataType;
@@ -1100,9 +1100,9 @@ permalink: /software/api/reference/
                     getMemberPropertiesRecursive(member, {});
                     // If there is properties to add then add them
                     if (propertiesHtmlString.length > 0) {
-                        memberHtmlString += '<div class="member-parameters"><h6><a href="#">';
+                        memberHtmlString += '<div class="member-parameters"><h4><a href="#">';
                         memberHtmlString += isEnum ? "Values" : "Properties";
-                        memberHtmlString += '</a></h6><div style="display:none;" class="slideContainer"><table class="member-parameters-list">';
+                        memberHtmlString += '</a></h4><div style="display:none;" class="slideContainer"><table class="member-parameters-list">';
                         memberHtmlString += propertiesHtmlString;
                         memberHtmlString += '</table></div></div>';
                     }
@@ -1202,7 +1202,7 @@ permalink: /software/api/reference/
             setUpAccordions = function (parentSelector) {
                 var parent = document.getElementById(parentSelector);
 
-                Array.prototype.forEach.call(parent ? parent.querySelectorAll(".member-parameters h6") : [], function (el) {
+                Array.prototype.forEach.call(parent ? parent.querySelectorAll(".member-parameters h4") : [], function (el) {
                     el.addEventListener("click", function (e) {
                         var options = this.nextElementSibling;
                         options.style.display = (options.style.display === "none" ? "block" : "none");

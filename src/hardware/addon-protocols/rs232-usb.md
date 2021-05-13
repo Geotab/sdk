@@ -10,7 +10,7 @@ External devices can communicate with the Geotab GO device through the Third-Par
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
 
 ## Special Requirements
-#### Enabling IOX-USB Data Transfer
+### Enabling IOX-USB Data Transfer
 
 To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through MyGeotab.
 
@@ -19,27 +19,27 @@ To enable third-party data communication on the IOX-USB, apply the following cus
 ```
 
 \* *Note* \- The GO device will automatically upgrade to the ProPlus rate plan once third-party data transfer begins.
-#### IOX-USB Communication Consideration
+### IOX-USB Communication Consideration
  
 The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rate is 12 Mbit/s. The IOX-USB can use two methods to enumerate a USB device:
 
 1. The [Android Open Accessory protocol (*AOA*)](https://source.android.com/devices/accessories/protocol.html). This [sample project](https://github.com/Geotab/android-external-device-example "Android Open Accessory Sample") can be used as a framework.
 2. USB-CDC (Communications Device Class)
 
-#### Powering a device using the IOX-RS232 and IOX-USB
+### Powering a device using the IOX-RS232 and IOX-USB
 Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
 
 - The IOX-USB can provide 1.5A at 5V as a power output. 
 - The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
 
-#### Grounding a device
+### Grounding a device
 Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
 
 ## Integration Process
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
 
-#### Contact Solutions Engineering
+### Contact Solutions Engineering
 
 Contact the [Geotab Solutions Engineering team](mailto:soleng@geotab.com) with a detailed integration proposal, this should include:
 
@@ -54,7 +54,7 @@ The Solutions Engineering team will respond with follow up questions to define t
 
 An additional resource is the [Hardware Integration Toolkit](https://docs.google.com/presentation/d/1nkmDYw2tscZxKaezFm5sR3jLItI3IRJTS6JIhgg0rFU/edit#slide=id.g625282e7fc_0_0) with integration walkthrough.
 
-#### Using Status Data IDs
+### Using Status Data IDs
 
 There is an extensively defined Status Data ID list which can be found at MyGeotab >  **Engine & Maintenance** > **Engine & Device…** > **Diagnostics**. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
 
@@ -85,7 +85,7 @@ The unit refers to the unit of measurement that you wish to see in MyGeotab afte
 
 <!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
 
-#### Handshake
+### Handshake
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
 
@@ -98,7 +98,7 @@ An initial Handshake **is required** in order for the GO device to accept third-
   - If the external device receives no response to a Third-Party Data message, it must restart the handshake process — returning to step 1 above.
 5. The GO device may send a Handshake Request message at any time after the initial handshake. The external device must respond with a Handshake Confirmation message. If the external device does not respond, it must restart the handshake process — returning to step 1 above.
 
-#### Checksum
+### Checksum
 
 Each message will contain a 2-byte Fletcher's Checksum calculated across all the bytes of the message except the checksum itself. The checksum values are bytes, and as such overflow from 255 (0xFF) to 0 (0x00). The bytes used for the checksum calculation are all the bytes up to the checksum byte, including STX, LEN, TYPE, but not including ETX.
 
@@ -117,12 +117,12 @@ ChkB = ChkB + ChkA;
 // ChkA precedes ChkB in the message
 ```
 
-#### Data Endianness
+### Data Endianness
 
 All values must be sent using Little Endian Byte Order, meaning the least significant byte first.
 
 ## Messages from the GO device
-#### Msg Type 0x01: Handshake Request
+### Msg Type 0x01: Handshake Request
 
 Issued by GO device on receipt of the Handshake Sync and periodically re-sent to confirm that the external device is still attached.
 
@@ -135,7 +135,7 @@ Issued by GO device on receipt of the Handshake Sync and periodically re-sent to
 | ETX (0x03) | 1 | 5 |
 | Reply: Handshake Confirmation ([Msg Type 0x81](#msg-type-0x81-handshake-confirmation)) |
 
-#### Msg Type 0x02: Third-Party Data Acknowledge
+### Msg Type 0x02: Third-Party Data Acknowledge
 
 Issued by GO device on receipt of Third-Party Data from the External Device.
 
@@ -147,7 +147,7 @@ Issued by GO device on receipt of Third-Party Data from the External Device.
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 
-#### Msg Type 0x21: GO Device Data
+### Msg Type 0x21: GO Device Data
 
 Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141) or periodically when a 0x85 request message is received.
 
@@ -158,7 +158,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x21 | 1 | 1 |
-| Message Body Length >= 40 [1] | 1 | 2 |
+| Message Body Length >= 52 [1] | 1 | 2 |
 | Date / Time [2] | 4 | 3 |
 | Latitude | 4 | 7 |
 | Longitude | 4 | 11 |
@@ -169,8 +169,9 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration | 4 | 31 |
-| GO Device ID | 4 | 35 |
-| Driver ID [5] | 4 | 39 |
+| GO Device ID [5] | 4 | 35 |
+| Driver ID [6] | 4 | 39 |
+| GO Device Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
 | Reply: Device Data Ack ([Msg Type 0x84](#msg-type-0x84-device-data-ack)) |   |   |
@@ -179,9 +180,10 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
 3. If Road Speed from the engine is not available, GPS speed is used.
 4. If Odometer is not available, GPS device distance is used.
-5. Driver ID only available when using the IOX-NFC.
+5. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
+6. Driver ID only available when using the IOX-NFC.
 
-##### *Conversions*
+#### *Conversions*
 
 | **Data** | **Conversion** | **Units** |
 | --- | --- | --- |
@@ -192,7 +194,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Engine Hours | 0.1 | h |
 | Trip Duration | 1 | s |
 
-#### Msg Type 0x22: Binary Data Response
+### Msg Type 0x22: Binary Data Response
 
 Issued by the GO device on successful/unsuccessful transmission of Binary Data (via Msg Type 0x86) to the server.
 
@@ -206,7 +208,7 @@ Issued by the GO device on successful/unsuccessful transmission of Binary Data (
 | Checksum | 2 | 7 |
 | ETX (0x03) | 1 | 9 |
 
-#### Msg Type 0x23: Binary Data Packet
+### Msg Type 0x23: Binary Data Packet
 
 Issued by the GO device on receipt of Binary Data from the server destined for the external device. This message format will only be used if the corresponding "Binary Data Packet Wrapping" flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from the server.
 
@@ -221,7 +223,7 @@ Issued by the GO device on receipt of Binary Data from the server destined for t
 
 ## Messages from External Device
 
-#### Handshake Sync (Auto-BAUD detect for RS232)
+### Handshake Sync (Auto-BAUD detect for RS232)
 
 Issued by External Device every second until the Handshake Request is received.
 
@@ -230,7 +232,7 @@ Issued by External Device every second until the Handshake Request is received.
 | Sync Char (0x55) | 1 | 0 |
 | Reply: Handshake Request ([Msg Type 0x01](#msg-type-0x01-handshake-request)) |
 
-#### Msg Type 0x81: Handshake Confirmation
+### Msg Type 0x81: Handshake Confirmation
 
 Issued by the External Device when it receives the Handshake Request.
 
@@ -254,7 +256,7 @@ Binary Data Packet Wrapping:
 - 0: The passthrough data from the server will be passed to the external device without modification.
 - 1: The passthrough data from the server will be wrapped in a Binary Data Packet message before being sent to the external device.
 
-#### Msg Type 0x80: Third-Party Data as Status Data
+### Msg Type 0x80: Third-Party Data as Status Data
 
 Issued by the external device whenever it requires Third-Party Data to be saved on the GO device as Status Data.
 
@@ -269,7 +271,7 @@ Issued by the external device whenever it requires Third-Party Data to be saved 
 | ETX (0x03) | 1 | 11 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
-#### Msg Type 0x82: Free Format Third-Party Data
+### Msg Type 0x82: Free Format Third-Party Data
 
 Issued by the external device whenever it wants Third-Party Data to be saved on the GO device in a free format (1 to 27 bytes) that will be saved into MyGeotab as Custom Data.
 
@@ -283,7 +285,7 @@ Issued by the external device whenever it wants Third-Party Data to be saved on 
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
-#### Msg Type 0x84: Device Data ACK
+### Msg Type 0x84: Device Data ACK
 
 Issued by the External Device on receipt of the GO Device Data message.
 
@@ -301,7 +303,7 @@ For the purpose of acknowledging the GO Device Data message when connected as an
 - If no ACK is received in that time frame the GO Device will send an External Device Disconnected record to the server and will wait for a new Handshake Sync request from the External Device.
 - If the ACK message is received within the 30 seconds the counter will be re-initialized.
 
-#### Msg Type 0x85: Request Device Data Message
+### Msg Type 0x85: Request Device Data Message
 
 This is a request-response message. It can be issued by the External Device whenever it wishes to receive the Device Data Info Message (Msg Type 0x21).
 
@@ -314,7 +316,7 @@ This is a request-response message. It can be issued by the External Device when
 | ETX (0x03) | 1 | 5 |
 | Reply: GO Device Data ([Msg Type 0x21](#msg-type-0x21-go-device-data)) |   |   |
 
-#### Msg Type 0x86: Binary Data Packet
+### Msg Type 0x86: Binary Data Packet
 
 Sent by the external device when sending binary data directly to the server. The contents of the message will be ignored by the GO device and simply sent on to the server for processing. The GO device will respond with the Binary Data Response message indicating whether the data was successfully sent via the modem.
 
@@ -330,7 +332,7 @@ Sent by the external device when sending binary data directly to the server. The
 
 The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
 
-#### Msg Type 0x87: Third-Party Data as Priority Status Data
+### Msg Type 0x87: Third-Party Data as Priority Status Data
 
 Priority Status Data will be treated the same as the 0x80 Status Data message, but will also be logged using an Iridium modem connection if available.
 
@@ -345,7 +347,7 @@ Priority Status Data will be treated the same as the 0x80 Status Data message, b
 | ETX (0x03) | 1 | 11 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
-#### Msg Type 0x89: Ping
+### Msg Type 0x89: Ping
 
 After handshaking, this message can be issued periodically by the External Device to check that the GO device is active and ready. The GO device will normally reply with the Third-Party Data Ack (Msg Type 0x02). If this reply is not received, the External Device should reset and begin sending the Handshake Sync (0x55).
 
@@ -360,7 +362,7 @@ After handshaking, this message can be issued periodically by the External Devic
 
 ## Appendices
 
-#### Appendix A: Raw Message Data Example for IOX-USB & IOX-RS232
+### Appendix A: Raw Message Data Example for IOX-USB & IOX-RS232
 
 ```js
 Handshake Sync from External Device
@@ -381,11 +383,11 @@ Third-Party Data Acknowledge from GO device
 0x02, 0x02, 0x00, 0x04, 0x0A, 0x03
 ```
 
-#### Appendix B: Sample Message Flow for IOX-USB & IOX-RS232
+### Appendix B: Sample Message Flow for IOX-USB & IOX-RS232
 
  ![]({{site.baseurl}}/hardware/addon-protocols/rs232-usb_0.png)
 
-#### Appendix C: Using Binary Data Messages to Transfer MIME Data
+### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
 MIME-type data can be transferred from an external device to the server via the GO device. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
@@ -394,7 +396,7 @@ MIME-type data can be transferred from an external device to the server via the 
 
 MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
 
-#### The MIME Type Protocol:
+### The MIME Type Protocol:
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -405,7 +407,7 @@ MIME-type data will be saved as a MIME-type blob on the server. The blob can be 
 
 The MIME protocol will be an inner protocol within the binary data packet messages. The MIME data will be broken into 250 byte chunks and sent within binary data packet messages. The first byte within the message will be a sequence counter; all remaining bytes will contain the MIME data.
 
-#### Binary Data Packets Containing MIME Type Data
+### Binary Data Packets Containing MIME Type Data
 
 This is an example of binary data packets for image data transferred using the MIME type "image/jpeg". The image size is 83000 bytes.
 
@@ -436,7 +438,7 @@ This is an example of binary data packets for image data transferred using the M
 | Checksum | 2 | 253 |
 | ETX (0x03) | 1 | 255 |
 
-#### Binary Data Packet Containing MIME Type Acknowledge
+### Binary Data Packet Containing MIME Type Acknowledge
 
 |   | Bytes | Position |
 | --- | --- | --- |

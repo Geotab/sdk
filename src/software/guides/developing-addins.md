@@ -8,7 +8,7 @@ Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Dri
 
 ## Geotab Add-Ins can be of two types:
 
-#### Pages
+### Pages
 
 A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.
 
@@ -177,7 +177,7 @@ A parent menu item defines a new menu item and where it should reside within the
 | buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
 | icon | Reference to the image for placing it in the button label | String |
 
-At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`) and Indonesian (`"id"`).
+At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`), Indonesian (`"id"`), Czech (`"cs"`) and Swedish (`"sv"`).
 
 > Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
 
@@ -320,7 +320,7 @@ Table 5 — Add-In lifecycle methods
 
 Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the _focus_ method will be called. Finally, when the user is navigating away from your custom page Add-In, the _blur_ method will be called, completing the Add-In lifecycle.
 
-> It's impportant to call the `callback` passed into `intialize` _after_ all work is complete. Keep in mind the asynchrosous nature of JavaScript.
+> It's important to call the `callback` passed into `intialize` _after_ all work is complete. Keep in mind the asynchronous nature of JavaScript.
 
 ![]({{site.baseurl}}/software/guides/developing-addins_2.png)
 Image 2 — Add-In lifecycle workflow diagram
