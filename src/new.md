@@ -3,6 +3,102 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2102
+
+### Data Intake Gateway (DIG)
+
+DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, [click here]]({{site.baseurl}}/software/guides/custom-telematics-devices/).
+
+### APIv1 JSON Serialization
+
+To reduce the duration of process-intensive requests with large JSON payloads, the MyGeotab JSON-RPC API now uses System.Text.Json instead of Newtonsoft.JSON to serialize JSON data sent using the API. This change includes backward compatibility with Newtonsoft.JSON, with the following exception: Numbers with decimals will no longer be serialized using the decimal followed by a zero, if it is a whole number.
+
+### Nuget Package
+
+The Nuget Package now targets .NET Standard 2.0,.NET Standard 2.1 and .NET 5.0. To improve serialization and deserialization performance, the Geotab.Checkmate.Objectmodel Nuget Package version 5.7.2102 replaced the JSON serialization library from Newtonsoft.JSON, with System.Text.Json.
+
+> Due to the performance improvement with System.Text.Json, the existing rate limit OverLimitException may be surpassed when calling the GetFeed API in a tight loop.
+
+### SDK Site
+
+SDK site adjusted for AODA compliance.
+
+### Generator Add-in
+
+New Geotab Drive Add-in features start/stop, hook and notifications added to generator-addin.
+
+### General SDK updates
+
+#### DeviceSearch
+
+Keywords property expanded to include `EngineVehicleIdentificationNumber`, `VehicleIdentificationNumber` and `SerialNumber` properties.
+
+#### DeviceShare, DeviceShareSearch, DeviceShareType, DeviceShareSearch
+
+Beta support for `DeviceShare` functionality added. This object is used for Extendable Services billing purposes.
+
+#### DutyStatusLogType
+
+Added `Work`, `Rest`, and `WorkExemption` properties.
+
+#### ExceptionRuleBaseType
+
+Route Completion displays the completion status of custom routes and roads to help users maintain compliance with service level agreements. A route is completed based on the rule and conditions set by the user. Route completion exceptions represent servicing activity for a set of previously defined routes, within a service group.
+
+A new `RouteCompletion` category is used to classify a rule in the Route Completion Report. Route completion rules are returned with unfiltered requests to the `Get<Rule>` API, or with the category filter `UserExceptionRules`. They can also be searched by `RouteCompletion`.
+
+#### FaultData
+
+Added `FaultStates`. This allows faults to represent more precise and potentially multiple fault states. In the future, FaultState will be deprecated, though still available for backwards compatibility.
+
+#### FaultState
+
+Removed `PendingOff`, `ActiveOff`, `InactiveOff`, as more accurately represented in `FaultStatus`.
+
+#### FaultStateProvider
+
+Describes the current `FaultState` when a single fault is present.
+
+#### FaultStatus
+
+Complements the `FaultStates` property of `FaultData`. Describes the status of a fault.
+
+#### GetFeed<TextMessage>
+
+To comply with the GetFeed contract and avoid performance loss, fixed a bug that applies both fromDate and fromVersion when both are supplied in the API request. When fromVersion is supplied, fromVersion will be ignored.
+
+> This fix may return more records when both fromDate and fromVersion are supplied with before the given dateTime is returned.
+
+Also, fixed a bug where toVersion is returned as 0, when a search returns no results. Now, when no results are returned, ToVersion is returned as the latest Feed version.
+
+#### HosRuleSet
+
+Added `StandardHoursSoloExemptionHours`.
+
+#### RoutePlanItem
+
+Added `PassCount`. The expected number of passes through the Zone.
+
+#### RouteSearch
+
+Added `Groups` search option to allow searches for Route Completion routes (`RouteType.Service`) that are members of `GroupSearch`(s). Only returns routes that are members of a service group hierarchy.
+
+#### RouteType
+
+Added `Service` route type.
+
+#### SecurityIdentifier
+
+Added `RouteCompletionReport`.
+
+#### UserSearch
+
+Added `UserSearchType` property to address IsDriver search limitation for Driver or Drivers, and Users. UserSearch allows searching for drivers and users, users who are not drivers, and only users who are drivers. `IsDriver` will be deprecated but remain backwards compatible.
+
+#### UserSearchType
+
+Added values to the `UserSearch`, `UserSearchType` properties.
+
 ## 5.7.2101
 
 ### Map Add-In
