@@ -48,7 +48,7 @@ def createMessage(message):
  if len(readback) == 6 and readback[1] == 1:
   print("handshake request received")
   #send the handshake response
-  deviceID = 4108 #device id of Geotab app launcher device
+  deviceID = 4208 #device id of Geotab app launcher device
   handshakeResponse = createMessage(bytes([0x81, 4, deviceID%256, (deviceID >> 8)%256, 0, 0]))
   print("sending handshake response")
   print([hex(b) for b in handshakeResponse])
@@ -85,7 +85,7 @@ If the script executes successfully against an awake (ideally with Ignition On) 
 
 # handshake request received
 # sending handshake response
-['0x2', '0x81', '0x4', '0xc', '0x10', '0x0', '0x0', '0xa3', '0x88', '0x3']
+['0x2', '0x81', '0x4', '0x70', '0x10', '0x0', '0x0', '0xa3', '0x88', '0x3']
 
 # sending status data
 ['0x2', '0x80', '0x6', '0x35', '0x0', '0x3c', '0x0', '0x0', '0x0', '0xf9', '0x6a', '0x3']
