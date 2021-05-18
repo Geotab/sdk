@@ -7,7 +7,7 @@ title: What's New
 
 ### Data Intake Gateway (DIG)
 
-DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, [click here]]({{site.baseurl}}/software/guides/custom-telematics-devices/).
+DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, [click here]({{site.baseurl}}/software/guides/custom-telematics-devices/).
 
 ### APIv1 JSON Serialization
 
