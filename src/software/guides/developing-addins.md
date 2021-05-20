@@ -158,7 +158,7 @@ A parent menu item defines a new menu item and where it should reside within the
 | path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
 | menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
 | icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 
 ### Table 3 — Menu item
 
@@ -168,7 +168,7 @@ A parent menu item defines a new menu item and where it should reside within the
 | path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
 | menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
 | icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 
 ### Table 4 — Button item
 
@@ -178,7 +178,7 @@ A parent menu item defines a new menu item and where it should reside within the
 | click | A URL to a JavaScript file which is executed when the button is clicked | String |
 | buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
 | icon | (To be deprecated June 04 2021) for placing it in the button label. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL Reference to the svg image for placing it in the button label. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
+| svgIcon | A URL Reference to the svg image for placing it in the button label. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 
 
 
