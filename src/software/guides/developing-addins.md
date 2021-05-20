@@ -61,7 +61,7 @@ The Add-In configuration file below demonstrates how to define a simple Add-In w
         "items": [{
                 "url":"https://my3.geotab.com/g560/customerPage1.html",
                 "path": "ActivityLink",
-                "icon":"https://www.geotab.com/geoimages/home/icon-solutions.png",
+                "svgIcon":"https://www.geotab.com/geoimages/home/icon-solutions.svg",
                 "menuName": {
                         "en": "English Menu Text",
                         "fr": "French Menu Text"
@@ -128,7 +128,7 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
         "menuName": {
             "en": "Heat Map"
         },
-        "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
+        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
     }, {
         "page": "device",
         "click": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/scripts/engineDataButton.js",
@@ -138,7 +138,7 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
             "es": "Perfil de datos de motor",
             "ja": "エンジンデータプロフィール"
         },
-        "icon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
+        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
     }],
  "isSigned": false
 }
@@ -157,7 +157,8 @@ A parent menu item defines a new menu item and where it should reside within the
 | menuId | A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above `"GettingStartedLink"`, `"ActivityLink"`, etc. | String |
 | path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
 | menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
-| icon | A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. | String |
+| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
 
 ### Table 3 — Menu item
 
@@ -166,7 +167,8 @@ A parent menu item defines a new menu item and where it should reside within the
 | URL | A URL to the HTML page to load when clicking on this menu item. | String |
 | path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
 | menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
-| icon | A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. | String |
+| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
 
 ### Table 4 — Button item
 
@@ -175,7 +177,11 @@ A parent menu item defines a new menu item and where it should reside within the
 | page | Which built-in page to place the button on | String |
 | click | A URL to a JavaScript file which is executed when the button is clicked | String |
 | buttonName | An object containing key value pairs for the text that appears on the button. The key is the language and the value is the text, for example `{"EN", "New menu item"}` | Object |
-| icon | Reference to the image for placing it in the button label | String |
+| icon | (To be deprecated June 04 2021) for placing it in the button label. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL Reference to the svg image for placing it in the button label. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) )   | String |
+
+
+
 
 At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"bp"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`), Indonesian (`"id"`), Czech (`"cs"`) and Swedish (`"sv"`).
 
