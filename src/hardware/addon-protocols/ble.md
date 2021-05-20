@@ -103,7 +103,7 @@ The Generic Timer allows keeping track of an elapsed time. The Units Of Time are
 
 ### Wakeup Event
 
-A custom parameter is used to configure the IOX-BT to wakeup periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This periodic wakeup can be enabled using the following custom parameter:
+A custom parameter is used to configure the IOX-BT to wakeup periodically to check for any wakeup events from beacons within range. Bluetooth beacon in range = 1 is reported only when the IoX-BLE sees the beacon for the first time. Bluetooth beacon in range = 0 is reported when the beacon is no longer 'visible' for 30 seconds. The wakeup duration is 1s every 30s while sleeping. This periodic wakeup can be enabled using the following custom parameter:
 
 <Parameter Description='Enable Periodic Bluetooth Wakeup' Offset='167' Bytes='80' IsEnabled='true'/>
 
