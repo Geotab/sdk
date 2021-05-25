@@ -334,7 +334,7 @@ The payload of the binary data needs to adhere to protocols understood by the Ge
 
 ### Msg Type 0x87: Third-Party Data as Priority Status Data
 
-Priority Status Data will be treated the same as the 0x80 Status Data message, but will also be logged using an Iridium modem connection if available.
+Priority Status Data will follow an expedited processing workflow on the GoDevice but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection if available.
 
 |   | Bytes | Position |
 | --- | --- | --- |
