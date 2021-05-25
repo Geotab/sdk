@@ -116,6 +116,9 @@ title: Geotab Map Add-In Overview
             <p>Important Notes:</p>
             <ul>
                 <li>
+                    All Map Add-ins installed in a database are active at the same time, when the user is on the Map or Trips History page. If different Add-ins use the same variable name, it will cause an error and will lead to a non-working Add-in. You should name your variables according to your solution name - e.g. for "ABC Add-in" you should use "abc" as a prefix for all your variables. 
+                </li>
+                <li>
                     When the user leaves the page, the content of the iframe is cleared by the browser.
                 </li>
                 <li>
