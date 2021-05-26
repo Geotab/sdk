@@ -140,15 +140,15 @@ Priority Status Data will be treated the same as the 0x80 Status Data message, b
 
 ### Appendix A: Raw Message Data Example for IOX-CAN
 
-Third-Party Device ID from External Device
+Third-Party Device ID from External Device (4208 is a test Device ID).
 
-(Device ID: 4108 = 0x100C)
+(Device ID: 4208 = 0x1070)
 
 CAN ID: 0x000FDB81
 
 DLC: 02
 
-Data: 0x0C, 0x10
+Data: 0x70, 0x10
 
 Third-Party Device ID Acknowledge from GO device
 
