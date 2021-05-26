@@ -48,7 +48,7 @@ def createMessage(message):
  if len(readback) == 6 and readback[1] == 1:
   print("handshake request received")
   #send the handshake response
-  deviceID = 4208 #device id of Geotab app launcher device
+  deviceID = 4208 #4208 is a test Device ID
   handshakeResponse = createMessage(bytes([0x81, 4, deviceID%256, (deviceID >> 8)%256, 0, 0]))
   print("sending handshake response")
   print([hex(b) for b in handshakeResponse])
