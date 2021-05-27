@@ -132,7 +132,7 @@
                     var marker = L.marker(location).bindPopup(
                         "<strong>" + device.name + "</strong><br />" +
                         location.lat + ", " + location.lng);
-                    
+
                     layerGroup.clearLayers().addLayer(marker);
                     map.setView(location, 15);
                 }, function (error) {
