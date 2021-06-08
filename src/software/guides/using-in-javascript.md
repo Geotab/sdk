@@ -85,7 +85,7 @@ callbackError | The function that will be called back should the API call fail. 
 
 ## MultiCall
 
-A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging Multicall as much as possible - you may read further documentation on multicall here  https://geotab.github.io/sdk/software/guides/concepts/#multicall additionally, you can find a JS example of multicall here  https://geotab.github.io/sdk/software/guides/concepts/#api-client-support  
+A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging Multicalls as much as possible - you may read further documentation on multicalls here  https://geotab.github.io/sdk/software/guides/concepts/#multicall Additionally, you can find a JS example of multicall here  https://geotab.github.io/sdk/software/guides/concepts/#api-client-support  
 
 ## A note about state
 
