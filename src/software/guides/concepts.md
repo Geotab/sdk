@@ -12,9 +12,9 @@ Note: The portions of the examples noted with `[` and `]` (e.g. `[myserver]`) in
 
 API request parameters and the results are transported in the lightweight [JSON](http://www.json.org/) format. The [API reference](../../api/reference) contains a listing of the methods that can be invoked, the parameters they expect and the results they return. Below are examples to illustrate the capabilities of the Geotab API.
 
-Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests uses the JSON-RPC standard. 
+Requests to the API can be invoked using HTTP GET or POST. HTTP POST requests use the JSON-RPC standard. 
 
-The following sections explain how to construct HTTP GET and POST requests to the Geotab API. When making requests which contain MyGeotab credentials to the Geotab API only POST requests should be used. This will help minimize the potential for credentials being leaked into browser histories or in web server logs.
+The following sections explain how to construct HTTP GET and POST requests to the Geotab API. When making requests which contain MyGeotab credentials to the Geotab API, only POST requests should be used. This will help minimize the potential for credentials being leaked into browser histories or in web server logs.
 
 The MyGeotab API only allows making requests over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
 
