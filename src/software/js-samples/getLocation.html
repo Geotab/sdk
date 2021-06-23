@@ -7,7 +7,7 @@
 
         <title>Geotab SDK | Get device location example</title>
 
-        <link href="js/mapbox/mapbox.css" rel="stylesheet" type="text/css" />
+        <link href="js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
         <link href="css/geotab.css" rel="stylesheet" type="text/css" />
 
     </head>
@@ -73,7 +73,7 @@
             </p>
         </div>
 
-        <script src="js/mapbox/mapbox.js"></script>
+        <script src="js/leaflet/leaflet.js"></script>
         <script src="js/api.js"></script>
         <script src="js/login.js"></script>
 
@@ -83,10 +83,12 @@
             var layerGroup;
 
             document.addEventListener("DOMContentLoaded", function () {
-                // Initialize MapBox engine (http://www.mapbox.com)
-                L.mapbox.accessToken = "pk.eyJ1IjoiZ2VvdGFiIiwiYSI6ImNpd2Nlam5tajA2cHIyenBmdDQyZG9mMGYifQ.I7NikOui41_ka1TbbFGkFw";
-                map = L.mapbox.map("map").setView([43.437111,-79.712756], 13);
-                L.mapbox.styleLayer("mapbox://styles/mapbox/streets-v10").addTo(map);
+                // Set up Leaflet map (https://leafletjs.com)
+                map = new L.Map("map").setView([43.437111,-79.712756], 13);
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: ['a','b','c']
+                }).addTo(map);
                 layerGroup = L.layerGroup().addTo(map);
 
                 document.getElementById("search").addEventListener("click", function (event) {
@@ -116,7 +118,7 @@
                 });
             });
 
-            // Retrieves the current location of a device and displays it on MapBox
+            // Retrieves the current location of a device and displays it on Leaflet
             function showDeviceLocation(device) {
                 api.call("Get", {
                     typeName: "DeviceStatusInfo",

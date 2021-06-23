@@ -140,15 +140,15 @@ Priority Status Data will follow an expedited processing workflow on the GoDevic
 
 ### Appendix A: Raw Message Data Example for IOX-CAN
 
-Third-Party Device ID from External Device
+Third-Party Device ID from External Device (4208 is a test Device ID).
 
-(Device ID: 4108 = 0x100C)
+(Device ID: 4208 = 0x1070)
 
 CAN ID: 0x000FDB81
 
 DLC: 02
 
-Data: 0x0C, 0x10
+Data: 0x70, 0x10
 
 Third-Party Device ID Acknowledge from GO device
 
