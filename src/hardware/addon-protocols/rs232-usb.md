@@ -35,6 +35,15 @@ Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
 ### Grounding a device
 Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
 
+### Serial Port Settings For Add-Ons
+
+Geotab recommends that RS232/USB serial ports are programmed in accordance with the following specifications:
+
+- Baud Rate: 9600 or 115200
+- Parity: None
+- Stop Bits: 1
+- Flow Control: None
+
 ## Integration Process
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
