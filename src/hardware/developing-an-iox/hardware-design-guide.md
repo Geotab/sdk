@@ -62,7 +62,7 @@ A 120-ohm differential impedance must be implemented for the CAN bus in the desi
 
 ## Mechanical Design
 
-Below is mechanical size for USB mini-B plug of the IOX device.
+Below is the mechanical size for a USB mini-B plug of the IOX device.
 
  ![]({{site.baseurl}}/hardware/developing-an-iox/hardware-design-guide_3.png)
 
