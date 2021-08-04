@@ -785,7 +785,7 @@ permalink: /software/api/reference/
                             }
 
                             //Don't Display hidden or httpContext
-                            if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context") {
+                            if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context" && param.getAttribute("name") !== "cancellationToken") {
                                 memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required")));
                             } else {
                                 indexesToHide.push(i);
@@ -1187,6 +1187,7 @@ permalink: /software/api/reference/
                     memberDictionary["Checkmate"]["ObjectModel"]["Fuel"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Geographical"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Captcha"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Jurisdictional"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Registration"],
                     memberDictionary["Checkmate"]["ObjectModel"]["Web"],
                     memberDictionary["Checkmate"]["Settings"],
