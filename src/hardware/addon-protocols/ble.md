@@ -104,9 +104,9 @@ The Generic Timer allows keeping track of an elapsed time. The Units Of Time are
 ### Wakeup Event
 
 A custom parameter is used to configure the IOX-BT to wakeup periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This periodic wakeup can be enabled using the following custom parameter:
-
+```
 <Parameter Description='Enable Periodic Bluetooth Wakeup' Offset='167' Bytes='80' IsEnabled='true'/>
-
+```
 The implementor of this protocol should increase the frequency of advertisements sent during an attempted wakeup event. A 100ms advertisement interval that persists for a minimum of 1 minute is recommended.
 
 When sending the wakeup event as part of the advertisement data a value of 0x00 means "no event". Anything greater than 0 that has not already been reported on will cause the GO to wakeup and report on the beacon advertisements. The event is only used as an indication for reporting the changes in the rest of the advertisement data. The actual contents of the alert event byte will not be sent/reported.
