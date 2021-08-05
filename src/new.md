@@ -3,6 +3,103 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2103
+
+### Add/Set FuelTransaction
+
+Fuel transactions must be unique when comparing all fields (excluding sourceData) for existing transactions.
+
+### CompanyDetails
+
+Added jurisdiction property.
+
+### CreateDatabase
+
+The CreateDatabase API now requires user-selected jurisdiction. The jurisdiction is the place of residency for Customer data, maintenance hours, and other information (e.g.U.S., EU). This was previously inferred from the selected timezone. To maintain backwards compatibility, timezone can still be used to infer jurisdiction. However, all users are encouraged to provide a jurisdiction as part of the CompanyDetails provided to the CreateDatabase API.
+
+### CustomVehicleDevice
+
+Added property `fuelTankCapacity`.
+
+### DeviceType — MYG-22097
+
+Added GO10 device type.
+
+### DiagnosticType
+
+Added `LevcFault`.
+
+### takePicture
+
+The Drive App Add-in can now access the device camera to take a photo. Users can also upload photos from the mobile device.
+
+### DriverRegulation
+
+Added `CurrentDutyStatus` representing the latest `DutyStatusLogType` affecting availability or violations.
+
+### DutyStatusViolationType
+
+Added `EwdRest`, `EwdWork`, and `EwdWorkExemption` (formerly `Work` and `WorkExemption`).
+
+### DVIRLogSearch
+
+Added `LogTypes` property for searching by list of DVIRLogType.
+
+### ExceptionEvent
+
+Exception events can be deleted when new data arrives from a device that, when evaluated against the same rule conditions, invalidates the previous state of the exception. For example, a speeding exception is generated for a street with a 40mph speed limit beside a highway. As more GPS data arrives, it becomes clear the vehicle is on the highway, not the service road, so the exception is invalidated. This is a problem for users who continuously request ExceptionEvent data because they are unaware when an exception is invalidated, and deleted at a later date.
+To resolve this issue, two new properties have been added to ExceptionEvent; `lastModifiedDate` and `state`. These properties determine if the exception event is invalidated instead of deleted. This means that when a new GetFeed request is made, the user sees the updated record and can adjust their records accordingly. Invalidated exceptions will no longer be removed immediately.
+> NOTE: This feature is not enabled by default. You must pass the search parameter `includeInvalidated` in the request to Get or GetFeed to return invalidated exception events. The `state` of these exceptions will be `Invalid`.
+
+### ExceptionEventSearch
+
+Added `includeInvalidated` property.
+
+### ExceptionEventState
+
+New object representing the state of the exception event. Possible states are `Valid` and `Invalid`.
+
+### Generator Add-in
+
+Generator-addin updated to mock drive add-in camera API features.
+
+### GO10
+
+New object representing GO10 device.
+
+### Group
+
+Group objects in some instances had `color` and `children` properties partially populated when nested in another object (ex device.groups). This is fixed, so they are no longer populated when groups are nested in group linked entities.
+
+### HosRuleSet
+
+Added `CaliforniaPropertyShortHaul` and `CaliforniaPropertyShortHaulWithRest`.
+
+### Jurisdiction
+
+New enumeration representing the Jurisdiction of a database.
+
+### MediaType
+
+Added `Application` media file type. This is to support PDF file types in MediaFiles.
+
+### RadioDownloader, RadioData and related objects are removed
+
+All Radio Downloader related objects are removed as Geotab deprecates all RF functionality.
+
+### SecurityIdentifier
+
+Added `ViewDeviceDataPrivacyChangeData` and `EditDeviceDataPrivacyChangeData`
+Added `ViewSharedDevice`
+Added `AdministerPropertySet`, `ViewPropertySet`, `AdministerProperty`, and `ViewProperty`
+Added `ViewActiveInsights`
+Added `IgnoreHOSLogs`
+Added `ViewShareableLink`, `CreateShareableLink`, and `DeleteShareableLink`
+
+### TripSearch
+
+Added `SearchArea` property to allow searching for trips within a rectangular BoundingBox geographic area.
+
 ## 5.7.2102
 
 ### Data Intake Gateway (DIG)
