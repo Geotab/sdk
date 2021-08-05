@@ -7,11 +7,11 @@ title: What's New
 
 ### Add/Set FuelTransaction
 
-Fuel transactions must be unique when comparing all fields (excluding sourceData) for existing transactions.
+Fuel transactions must be unique when comparing all fields (excluding sourceData) against existing transactions.
 
 ### CompanyDetails
 
-Added jurisdiction property.
+Added `jurisdiction` property.
 
 ### CreateDatabase
 
@@ -19,9 +19,9 @@ The CreateDatabase API now requires user-selected jurisdiction. The jurisdiction
 
 ### CustomVehicleDevice
 
-Added property `fuelTankCapacity`.
+Added `fuelTankCapacity` property.
 
-### DeviceType — MYG-22097
+### DeviceType
 
 Added GO10 device type.
 
@@ -29,9 +29,9 @@ Added GO10 device type.
 
 Added `LevcFault`.
 
-### takePicture
+### Drive Add-In Photos
 
-The Drive App Add-in can now access the device camera to take a photo. Users can also upload photos from the mobile device.
+A new API was added to Drive add-ins to access the device camera to take a photo or select an exiting photo from the mobile device using `api.mobile.camera.takePicture()`.
 
 ### DriverRegulation
 
@@ -49,7 +49,8 @@ Added `LogTypes` property for searching by list of DVIRLogType.
 
 Exception events can be deleted when new data arrives from a device that, when evaluated against the same rule conditions, invalidates the previous state of the exception. For example, a speeding exception is generated for a street with a 40mph speed limit beside a highway. As more GPS data arrives, it becomes clear the vehicle is on the highway, not the service road, so the exception is invalidated. This is a problem for users who continuously request ExceptionEvent data because they are unaware when an exception is invalidated, and deleted at a later date.
 To resolve this issue, two new properties have been added to ExceptionEvent; `lastModifiedDate` and `state`. These properties determine if the exception event is invalidated instead of deleted. This means that when a new GetFeed request is made, the user sees the updated record and can adjust their records accordingly. Invalidated exceptions will no longer be removed immediately.
-> NOTE: This feature is not enabled by default. You must pass the search parameter `includeInvalidated` in the request to Get or GetFeed to return invalidated exception events. The `state` of these exceptions will be `Invalid`.
+
+> NOTE: Invalidtated exceptions will not be returned by default. You must pass the search parameter `includeInvalidated` in the request to Get or GetFeed to return invalidated exception events. The `state` of these exceptions will be `Invalid`.
 
 ### ExceptionEventSearch
 
@@ -61,11 +62,11 @@ New object representing the state of the exception event. Possible states are `V
 
 ### Generator Add-in
 
-Generator-addin updated to mock drive add-in camera API features.
+[Generator-addin](https://github.com/Geotab/generator-addin) updated to mock drive add-in camera API features.
 
 ### GO10
 
-New object representing GO10 device.
+New object representing `GO10` device.
 
 ### Group
 
@@ -98,7 +99,7 @@ Added `ViewShareableLink`, `CreateShareableLink`, and `DeleteShareableLink`
 
 ### TripSearch
 
-Added `SearchArea` property to allow searching for trips within a rectangular BoundingBox geographic area.
+Added `SearchArea` property to allow searching for trips within a rectangular `BoundingBox` geographic area.
 
 ## 5.7.2102
 
