@@ -21,10 +21,6 @@ The CreateDatabase API now requires user-selected jurisdiction. The jurisdiction
 
 Added `fuelTankCapacity` property.
 
-### DeviceType
-
-Added GO10 device type.
-
 ### DiagnosticType
 
 Added `LevcFault`.
@@ -63,10 +59,6 @@ New object representing the state of the exception event. Possible states are `V
 ### Generator Add-in
 
 [Generator-addin](https://github.com/Geotab/generator-addin) updated to mock drive add-in camera API features.
-
-### GO10
-
-New object representing `GO10` device.
 
 ### Group
 
