@@ -37,7 +37,7 @@ The unit refers to the unit of measurement that you wish to see in MyGeotab afte
 
 ### 3 - Implement the Third-Party CAN Protocol
 
-Implement the Third-Party CAN Protocol in the external device as detailed below. The CAN speed to be used will be 500K and the external device should have its CAN transceiver set to normal mode.
+Implement the Third-Party CAN Protocol in the external device as detailed below. The CAN speed to be used will be 250K or 500K and the external device should have its CAN transceiver set to normal mode. The IOX CAN will auto-baud between 250K and 500K.
 
 ### CAN ID
 
