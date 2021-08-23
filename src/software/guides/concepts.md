@@ -24,7 +24,7 @@ Methods can be invoked via HTTPS GET request as follows:
 
 `https://[myserver]/apiv1/[methodname]?[parameters]`
 
-When using methods which require MyGeotab Credentials to be passed as parameters the HTTP GET requests should be avioded and HTTP POST requests should be used instead.   
+When using methods that require MyGeotab credentials to be passed as parameters, avoid HTTP GET requests, and use HTTP POST requests instead.   
 
 Here is a simple example of invoking the method GetVersion. This method does not require any parameters.
 
