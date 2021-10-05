@@ -3,6 +3,41 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 5.7.2104
+
+### Device
+
+- `FuelTankCapacity` will now throw an `ArgumentOutOfRangeException` if the value is less than 0.
+- The `DevicePlans` property will be removed from the object model in a future version. DevicePlans does not encapsulate billing information, so please use the `DevicePlanBillingInfo` property from this version forward.
+- Added the `DevicePlanBillingInfo` property to replace the `DevicePlans` property. `DevicePlanBillingInfo` contains more billing information than `DevicePlans`.
+
+### DeviceStatusInfoSearch
+
+Fixed a bug that omitted the `cosestAssetLimit` property when applying `closestAssetLimit` and `resultsLimit` together.
+
+### UserHosRuleSetSearch
+
+Fixed bug that applied the wrong date when searching for `UserHosRuleSet` using both `fromDate` and `userSearch.fromDate`.
+
+### FuelTransaction
+
+Added the `ProviderProductDescription` property. This property requests the non-generic product description as described by the fuel card provider.
+
+### DutyStatusViolationType
+
+Added `EwdRest`, `EwdWork`, and `EwdWorkExemption`.
+
+### Errors
+
+Removed provider-specific details from exception messages when a relation violation exception occurs. The exception types returned have not changed.
+
+### Defect
+
+Added `IsHidden` and `IsRequired` properties.
+
+- `IsHidden` is a boolean value indicating whether a defect is hidden in the UI. Used to determine if “other” should be shown or not.
+- `IsRequired` is a boolean value indicating whether a defect must be signed off. Used to determine if the part must be explicitly marked as having defect(s) or not.
+
 ## 5.7.2103
 
 ### Add/Set FuelTransaction
