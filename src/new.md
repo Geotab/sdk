@@ -13,7 +13,7 @@ title: What's New
 
 ### DeviceStatusInfoSearch
 
-Fixed a bug that omitted the `cosestAssetLimit` property when applying `closestAssetLimit` and `resultsLimit` together.
+Fixed a bug that omitted the `closestAssetLimit` property when applying `closestAssetLimit` and `resultsLimit` together.
 
 ### UserHosRuleSetSearch
 
