@@ -32,9 +32,9 @@ The Arbitration ID Field for IOX Messages:
 | --- | --- | --- | --- |
 | Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX Address ID: 1–65535 |
 
-0x1FC00000 IO\_EXPANDER\_RESERVED\_MASK
+0x1F800000 IO\_EXPANDER\_RESERVED\_MASK
 
-0x003F0000 IO\_EXPANDER\_COMMAND\_MASK
+0x007F0000 IO\_EXPANDER\_COMMAND\_MASK
 
 0x0000FFFF IO\_EXPANDER\_ID\_MASK
 
