@@ -83,6 +83,10 @@ params | The parameter object that the API method expects. For example: `{ typeN
 callbackSuccess | The function that will be called back when the API call succeeds. The callback function has a single argument called “result” that will contain any results returned by the API call.
 callbackError | The function that will be called back should the API call fail. The callback function has a single argument that will contain error information.
 
+## MultiCall
+
+A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging Multicalls as much as possible - you may read further documentation on multicalls here  https://geotab.github.io/sdk/software/guides/concepts/#multicall Additionally, you can find a JS example of multicall here  https://geotab.github.io/sdk/software/guides/concepts/#api-client-support  
+
 ## A note about state
 
 The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “out” of the server.
