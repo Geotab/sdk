@@ -261,3 +261,8 @@ By using the sessionId, a valid login is created for that account. Another user 
 
 Due to the risk of [ClickJacking](https://en.wikipedia.org/wiki/Clickjacking), MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.
 
+#### Info for resellers
+If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.
+
+This process can take some time as the domains need to be reviewed by Geotab's security team before being added to the approved list by the development team.
+
