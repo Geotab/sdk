@@ -503,7 +503,7 @@ Using all the concepts outlined in this document, the following is a complete in
                 };
 
             return {
-                initialize: (api, state, callback) {
+                initialize: function(api, state, callback) {
                     document.getElementById("vehiclesButton")
                         .addEventListener("click", function() {
                             state.gotoPage("devices");
