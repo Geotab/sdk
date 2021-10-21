@@ -83,7 +83,12 @@ As calculated data is processed in real time, the state of the data can change c
 
 Trips are calculated data. As new data arrives for a trip currently in progress, the older data for the trip is dropped from the database. The dropped data is then replaced with the newer, more current trip data. The updated trip data will have a different trip ID than the previous record of the trip. Thus the "unique trip ID" cannot be used to match an updated trip to an earlier state.
 
-The unique "key" that is used to associate the earlier "version" of the trip in progress to the updated trip is the pairing of the deviceId and the trip stop date. Most of the time, a trip which is in progress will have its stop date continuously updated until the trip has actually ceased (ignition off). If there is no trip in the trip history that matches the combination of deviceId and trip stop date of the updated trip data, and the updated trip has a stop time of zero, then the historical trip which matches the updated trip data will be replaced with the newer trip data.
+The unique “key” (used to associate the earlier “version” of the trip in progress to the updated trip) consists of the deviceId and the trip's stop date. Most of the time, a trip which is in progress will have its stop date continuously updated until the trip has actually ceased (ignition off). An old trip will be replaced with a new trip if:
+
+* the trips' deviceId are the same AND
+* the start dates are the same AND
+* the stop dates are different AND
+* the new trip's stop duration is 0
 
 ## Exception Events
 
