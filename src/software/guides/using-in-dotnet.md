@@ -118,3 +118,16 @@ G80000000003    43.4620934      -79.6879883
 ## Next steps
 
 Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created [here](https://github.com/Geotab/sdk-dotnet-samples).
+
+
+## MyGeotab API Adapter
+
+Streaming of data from the MyGeotab platform into external systems via the [Geotab API](https://geotab.github.io/sdk/software/introduction/) is accomplished using the [data feed](https://geotab.github.io/sdk/software/guides/data-feed/) - a lightweight and highly-scalable incremental polling mechanism. Building a full-scale integration typically involves utilizing numerous data feeds to pull various types of data from a MyGeotab database. There are many complexities inherent in developing a solid integration.
+
+The MyGeotab API Adapter solution serves as both an example of proper integration via data feeds and the potential foundation for those seeking to develop new integrations with the Geotab platform. Essentially, it uses data feeds to pull the most common data sets from a MyGeotab database and stream the data into tables within a PostgreSQL, SQL Server, Oracle or SQLite database; this could account for half the work in terms of a unidirectional integration where the data from the database is further processed for integration into an external system.
+
+Available as an open source solution on [GitHub](https://github.com/Geotab/mygeotab-api-adapter), the MyGeotab API Adapter can be downloaded, deployed and configured to run in your environment. Alternatively, the source code can be used as the foundation for your own Geotab integration or as a source of how-to examples. In any case, the following links provide a wealth of information related to the adapter solution:
+
+* [MyGeotab API Adapter](https://docs.google.com/presentation/d/1PhsDhZwj23i2oWXrqZozf4h0svUEHZLnFXtzMYyk4kQ/edit#slide=id.g4f9a252ef2_1_94) (presentation): This presentation provides a good overview of the MyGeotab API Adapter solution.
+* [MyGeotab API Adapter - Solution and Implementation Guide](https://docs.google.com/document/d/12TIgTCuWVF_AYc3evsIms9VOecc1NT4P9Kn-eVg-H7k/edit): This is the main guide containing all information needed to use and/or modify the adapter solution.
+* [Quick Start: Step-By-Step Demo Video](https://docs.google.com/document/d/12TIgTCuWVF_AYc3evsIms9VOecc1NT4P9Kn-eVg-H7k/edit#heading=h.rvbwf6m7ca0i): For those who are visual learners, this section of the guide provides the start times of various segments of a video recording that demonstrates how to download and deploy a published release of the adapter (with SQL Server). The video also demonstrates how to clone the source code repository and provides a code walk-through for developers.
