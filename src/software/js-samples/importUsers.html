@@ -83,7 +83,7 @@
 						<div class="checkmateField">
 							<label class="label">Distance measurement system:</label>
 							<div id="options_measurementSelect">
-								<input type="radio" name="distanceunits" value="Metric" id="metricUnit">
+								<input type="radio" name="distanceunits" value="Metric" id="metricUnit" checked>
 								<label>Metric</label>
 								<input type="radio" name="distanceunits" value="US" id="usUnit">
 								<label>US/Imperial</label></div>
@@ -94,7 +94,7 @@
 							<label class="label">Feature preview:</label>
 							<div><input type="radio" name="featurePreviewRadioButton" value="On" id="idFeaturePreviewOn">
 								<label>On</label>
-								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff">
+								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff" checked>
 								<label>Off</label></div>
 						</div>
 					</p>
@@ -367,7 +367,7 @@
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_yardModeSelect" title="Toggling this setting to ON allows the driver to apply the yard move exemption."><input
 								 type="radio" name="yardMoveRadioButton" value="On"  id="idYardMoveOn"><label
 								 class="geotabButton switcherItem_Metric" for="idYardMoveOn">On</label><input type="radio" name="yardMoveRadioButton"
-								 value="Off"  id="idYardMoveOff"><label class="geotabButton switcherItem_US" for="idYardMoveOff">Off</label></div>
+								 value="Off"  id="idYardMoveOff" checked><label class="geotabButton switcherItem_US" for="idYardMoveOff">Off</label></div>
 						</div>
 					</p>
 					<p>
@@ -376,7 +376,7 @@
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_personalConveyanceSelect" title="Toggling this setting to ON allows the driver to apply the personal conveyance exemption."><input
 								 type="radio" name="personalConveyanceRadioButton" value="On"  id="idPersonalConveyanceOn"><label
 								 class="geotabButton switcherItem_Metric" for="idPersonalConveyanceOn">On</label><input type="radio" name="personalConveyanceRadioButton"
-								 value="Off"  id="idPersonalConveyanceOff"><label class="geotabButton switcherItem_US" for="idPersonalConveyanceOff">Off</label></div>
+								 value="Off"  id="idPersonalConveyanceOff" checked><label class="geotabButton switcherItem_US" for="idPersonalConveyanceOff">Off</label></div>
 						</div>
 					</p>
 					</ul>
@@ -926,18 +926,14 @@
 
 				if (document.getElementById("metricUnit").checked) {
 					var isMetric = true;
-				} else if (document.getElementById("usUnit").checked) {
-					var isMetric = false;
 				} else {
-					var isMetric = "";
+					var isMetric = false;
 				}
 
 				if (document.getElementById("idFeaturePreviewOn").checked) {
 					var isLabsEnabled = true;
-				} else if (document.getElementById("idFeaturePreviewOff").checked) {
-					var isLabsEnabled = false;
 				} else {
-					var isLabsEnabled = "";
+					var isLabsEnabled = false;
 				}
 
 				var timeZoneId = document.getElementById("options_userTimeZoneOffset").value;
@@ -952,18 +948,14 @@
 
 				if (document.getElementById("idYardMoveOn").checked) {
 					var isYardMoveEnabled = true;
-				} else if (document.getElementById("idYardMoveOff").checked) {
-					var isYardMoveEnabled = false;
 				} else {
-					var isYardMoveEnabled = "";
+					var isYardMoveEnabled = false;
 				}
 
 				if (document.getElementById("idPersonalConveyanceOn").checked) {
 					var isPersonalConveyanceEnabled = true;
-				} else if (document.getElementById("idPersonalConveyanceOff").checked) {
-					var isPersonalConveyanceEnabled = false;
 				} else {
-					var isPersonalConveyanceEnabled = "";
+					var isPersonalConveyanceEnabled = false;
 				}       
 
                 return {
