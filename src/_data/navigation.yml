@@ -102,10 +102,8 @@ toc:
             url: /myadmin-sdk/guides/getting-started/
           - page: Concepts
             url: /myadmin-sdk/guides/concepts/
-          - page: Using with .NET Core
-            url: /myadmin-sdk/guides/using-with-dotnet-core/
-          - page: Using with .NET Framework
-            url: /myadmin-sdk/guides/using-with-dotnet-framework/
+          - page: Using with .NET
+            url: /myadmin-sdk/guides/using-with-dotnet/
           - page: Using with JavaScript
             url: /myadmin-sdk/guides/using-with-javascript/
       - title: API
@@ -114,10 +112,8 @@ toc:
             url: /myadmin-sdk/api/reference/
       - title: Code Samples
         subfolderitems:
-          - page: .NET Core Examples
-            url: /myadmin-sdk/code-samples/dotnet-core-examples/
-          - page: .NET Framework Examples
-            url: /myadmin-sdk/code-samples/dotnet-framework-examples/
+          - page: .NET Examples
+            url: /myadmin-sdk/code-samples/dotnet-examples/
           - page: JavaScript Examples
             url: /myadmin-sdk/code-samples/javascript-examples/
   - title: Resources
