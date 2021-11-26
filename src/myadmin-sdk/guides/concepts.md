@@ -9,7 +9,7 @@ Requests made to the MyAdmin API are performed using HTTPS. The URL your web app
 https://myadminapi.geotab.com/v2/MyAdminApi.ashx
 ```
 
-API request parameters and the results are transported in the lightweight [JSON](https://www.json.org/) format. The [Reference](../api/reference.md) contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
+API request parameters and the results are transported in the lightweight [JSON](https://www.json.org/) format. The [Reference](../../api/reference) contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
 
 ## HTTP POST Request
 
