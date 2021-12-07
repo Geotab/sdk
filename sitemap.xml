@@ -28,10 +28,7 @@
 <loc>https://geotab.github.io/sdk/software/guides/developing-addins/</loc>
 </url>
 <url>
-<loc>https://geotab.github.io/sdk/myadmin-sdk/code-samples/dotnet-core-examples/</loc>
-</url>
-<url>
-<loc>https://geotab.github.io/sdk/myadmin-sdk/code-samples/dotnet-framework-examples/</loc>
+<loc>https://geotab.github.io/sdk/myadmin-sdk/code-samples/dotnet-examples/</loc>
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/guides/drive-addins/</loc>
@@ -109,10 +106,7 @@
 <loc>https://geotab.github.io/sdk/software/guides/using-in-javascript/</loc>
 </url>
 <url>
-<loc>https://geotab.github.io/sdk/myadmin-sdk/guides/using-with-dotnet-core/</loc>
-</url>
-<url>
-<loc>https://geotab.github.io/sdk/myadmin-sdk/guides/using-with-dotnet-framework/</loc>
+<loc>https://geotab.github.io/sdk/myadmin-sdk/guides/using-with-dotnet/</loc>
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/myadmin-sdk/guides/using-with-javascript/</loc>
@@ -266,7 +260,7 @@
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/js-samples/importUsers.html</loc>
-<lastmod>2021-01-17T20:54:22-05:00</lastmod>
+<lastmod>2021-12-07T10:59:33-05:00</lastmod>
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/js-samples/importZones.html</loc>
