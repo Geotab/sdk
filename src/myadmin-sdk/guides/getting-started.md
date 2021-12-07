@@ -35,7 +35,7 @@ A successful response is a JSON object where the result property is information 
 
 `{"result":{"userId":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx","sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133","lastLogonDate":"2013-11-04T15:01:00.000Z","roles":[{"comments":"Third Party Integrator role","name":"Third-Party-Integrator"}],"name":"user@geotab.com"}}`
 
-The API key is found in the `userId` property and the session ID is found in the `sessionId` property. Both of these properties must be included on all other API calls. If the session ID has expired, the API will return a `SessionExpiredException` which requires a call to Authenticate to get the new session ID. For more information, see the [Reference](../../api/reference) section. [JavaScript](../../code-samples/javascript-examples) and [.NET](../../code-samples/dotnet-framework-examples) examples have been provided to help you get started.
+The API key is found in the `userId` property and the session ID is found in the `sessionId` property. Both of these properties must be included on all other API calls. If the session ID has expired, the API will return a `SessionExpiredException` which requires a call to Authenticate to get the new session ID. For more information, see the [Reference](../../api/reference) section. [JavaScript](../../code-samples/javascript-examples) and [.NET](../../code-samples/dotnet-examples) examples have been provided to help you get started.
 
 ## What’s next?
 There are several other items in the SDK to help you get started:
@@ -44,6 +44,6 @@ There are several other items in the SDK to help you get started:
 
 [Using with JavaScript](../using-with-javascript)
 
-[Using with .NET](../using-with-dotnet-framework/dotnet-framework-examples)
+[Using with .NET](../using-with-dotnet)
 
 [API Reference](../../api/reference) — The reference documentation that explains what each API call does and documents the parameters and results for each call.
