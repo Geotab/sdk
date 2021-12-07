@@ -65,7 +65,6 @@
 						<label for="import-countryCode">Country Code / Phone Number / Ext</label>
 
 						<select name="country" id="import-countryCode" style="height: 33px;">
-							<option>Select country</option>
 							<option value="CA">Canada +1</option>
 							<option value="US">United States +1</option>
 							<option value="AL">Albania +355</option>
@@ -220,15 +219,10 @@
 							<option value="">Other</option>
 						</select>
 
-
-<!-- 
-                        <input style="width: 5%;" id="import-countryCode" type="text"  placeholder="CA" maxlength="2"  /> -->
 					<!-- Phone Number -->
-                        <!-- <label style="display: inline;" for="import-phoneNumber">Phone number</label> -->
                         <input id="import-phoneNumber" type="text" placeholder="+1 5555555555" maxlength="20" />
 					<!-- Phone Number Extension -->
-						<!-- <label style="display: inline;" for="import-phoneNumberExtension">Ext.</label> -->
-                        <input id="import-phoneNumberExtension" type="text" placeholder="1234" maxlength="5" />
+	                     <input id="import-phoneNumberExtension" type="text" placeholder="1234" maxlength="5" />
 					</p>
 					<!-- Designation -->
 					<p>
@@ -571,8 +565,6 @@
             </div>
         </footer>
         
-		<!-- Does Excel Template need to be updated to include phone number and designation?; Update Excel sheet-->
-
         <div id="template-content">
             <h2>Template</h2>
             <p>
@@ -584,8 +576,6 @@
 				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
 			</div>
         </div>
-
-		<!-- Update this with phone number and designation; the Help button -->
 
         <div id="help-content">
             <h2>Help</h2>
@@ -911,8 +901,6 @@
                         newContent += ',';
                     }
 
-					// Add Content here for designation and phone number; added
-
 					newContent += user.securityClearance + ",";
 					newContent += user.nfcKey + ",";
 					newContent += user.customNfcKey + ",";
@@ -971,8 +959,6 @@
                                 continue;
                             }
 
-							// Split Phone number and designation
-
                             var userName = split[0];
                             var firstName = split[1];
                             var lastName = split[2];
@@ -1001,8 +987,6 @@
 							var isYardMoveEnabled = split[26];
 							var isPersonalConveyanceEnabled = split[27];    
 							
-							// Add Phone number and designation here
-
 							var newUser = {
 										name: userName,
 										firstName: firstName,
@@ -1152,9 +1136,6 @@
 				if (document.getElementById("metricUnit").checked) {
 					var isMetric = true;
 				} 
-				// else if (document.getElementById("usUnit").checked) {
-				// 	var isMetric = false;
-				// } 
 				else {
 					var isMetric = false;
 				}
@@ -1162,9 +1143,6 @@
 				if (document.getElementById("idFeaturePreviewOn").checked) {
 					var isLabsEnabled = true;
 				} 
-				// else if (document.getElementById("idFeaturePreviewOff").checked) {
-				// 	var isLabsEnabled = false;
-				// } 
 				else {
 					var isLabsEnabled = false;
 				}
@@ -1182,9 +1160,6 @@
 				if (document.getElementById("idYardMoveOn").checked) {
 					var isYardMoveEnabled = true;
 				} 
-				// else if (document.getElementById("idYardMoveOff").checked) {
-				// 	var isYardMoveEnabled = false;
-				// } 
 				else {
 					var isYardMoveEnabled = false;
 				}
@@ -1192,15 +1167,9 @@
 				if (document.getElementById("idPersonalConveyanceOn").checked) {
 					var isPersonalConveyanceEnabled = true;
 				} 
-				// else if (document.getElementById("idPersonalConveyanceOff").checked) {
-				// 	var isPersonalConveyanceEnabled = false;
-				// } 
 				else {
 					var isPersonalConveyanceEnabled = false;
 				}       
-
-
-				// return phone number and designation
 
                 return {
 					userName: document.getElementById("import-userName").value,
