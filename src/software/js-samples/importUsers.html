@@ -62,7 +62,7 @@
 
 					<!-- Phone Code takes priority over country code (e.g. if the countryCode for Algeria is selected but the phone number code is +1 then the country will be Canada)  -->
 					<!-- Country Code/Flag  -->
-						<label for="import-countryCode">Country Code / Phone Number / Ext</label>
+						<label for="import-countryCode">Country Code / Phone Number / Ext (optional)</label>
 
 						<select name="country" id="import-countryCode" style="height: 33px;">
 							<option value="CA">Canada +1</option>
@@ -226,11 +226,11 @@
 					</p>
 					<!-- Designation -->
 					<p>
-                        <label for="import-designation">Designation</label>
+                        <label for="import-designation">Designation (optional)</label>
                         <input id="import-designation" type="text" maxlength="50" />
 					</p>
 					<p>
-                        <label for="import-employeeNumber">Employee number</label>
+                        <label for="import-employeeNumber">Employee number (optional)</label>
                         <input id="import-employeeNumber" type="text" maxlength="255" />
 					</p>
 					<p>
@@ -988,35 +988,35 @@
 							var isPersonalConveyanceEnabled = split[27];    
 							
 							var newUser = {
-										name: userName,
-										firstName: firstName,
-										lastName: lastName,
-										password: password,
-										companyGroups: groups,
-                                        reportGroups: reportGroups,
-										securityGroups: securityGroups,
-										userAuthenticationType: "BasicAuthentication",
-										activeFrom: new Date().toISOString(),
-										activeTo: "2050-01-01T00:00:00.000Z",
-										countryCode: countryCode,
-										phoneNumber: phoneNumber,
-										phoneNumberExtension: phoneNumberExtension,
-										designation: designation,
-										employeeNo: employeeNo,
-										fuelEconomyUnit: fuelEconomyUnit,
-										isMetric: isMetric,
-										isLabsEnabled: isLabsEnabled,
-                                        timeZoneId: timeZoneId,
-                                        authorityName: authorityName,
-                                        authorityAddress: authorityAddress,
-                                        carrierNumber: carrierNumber,
-                                        companyName: companyName,
-                                        companyAddress: companyAddress,
-                                        licenseNumber: licenseNumber,
-                                        licenseProvince: licenseProvince,
-										isYardMoveEnabled: isYardMoveEnabled,
-										isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
-									};
+								name: userName,
+								firstName: firstName,
+								lastName: lastName,
+								password: password,
+								companyGroups: groups,
+                                reportGroups: reportGroups,
+								securityGroups: securityGroups,
+								userAuthenticationType: "BasicAuthentication",
+								activeFrom: new Date().toISOString(),
+								activeTo: "2050-01-01T00:00:00.000Z",
+								countryCode: countryCode,
+								phoneNumber: phoneNumber,
+								phoneNumberExtension: phoneNumberExtension,
+								designation: designation,
+								employeeNo: employeeNo,
+								fuelEconomyUnit: fuelEconomyUnit,
+								isMetric: isMetric,
+								isLabsEnabled: isLabsEnabled,
+                                timeZoneId: timeZoneId,
+                                authorityName: authorityName,
+                                authorityAddress: authorityAddress,
+                                carrierNumber: carrierNumber,
+                                companyName: companyName,
+                                companyAddress: companyAddress,
+                                licenseNumber: licenseNumber,
+                                licenseProvince: licenseProvince,
+								isYardMoveEnabled: isYardMoveEnabled,
+								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
+							};
 
 							if (keys.length > 0){
 								newUser.driverGroups =  groups;
