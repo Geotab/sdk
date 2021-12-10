@@ -233,19 +233,7 @@ Standalone Page Example
 
 `https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:(database:<databaseName>,userName:'<userName>')`
 
-We do not support passing the password credential through the URL because it is unsafe. The way around this is to use a session Id.
-
-### Links that include username, database and session id
-
-It is also possible to include a session id in the URL. This will not prompt the user to login if the session id is valid.
-
-MyGeotab Page Example
-
-`https://<serverName>/<databaseName>/#<page>,token:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
-
-Standalone Page Example
-
-`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
+We do not support passing the password credential through the URL because it is unsafe. 
 
 ## Getting the session Id using the API
 
