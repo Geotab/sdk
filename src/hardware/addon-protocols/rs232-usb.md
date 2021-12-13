@@ -39,7 +39,7 @@ Even if the Hardware Add-On has a separate connection to vehicle power and groun
 
 Geotab recommends that RS232/USB serial ports are programmed in accordance with the following specifications:
 
-- Baud Rate: 9600 or 115200, Note: the Device is equipped with autobaud Detection so other standard rates are acceptable
+- Baud Rate: 9600 or 115200, Note: the device is equipped with autobaud detection so other standard rates are acceptable
 - Parity: None
 - Stop Bits: 1
 - Flow Control: None
