@@ -160,7 +160,7 @@ Sent by the GO to indicate that a message is being acknowledged. The ACK to an R
 
 Sent by the GO device after a packet wrapped passthrough message attempt to the server. A 'rejected' response from the modem typically means it is not connected. If the message is 'accepted' this means it was added to the modem's TCP socket buffer. It is not a confirmation the message was successfully sent.
 
-#### Type 0 Modem Transmission Result
+#### Type 0: Modem Transmission Result
 
 | **Byte #** | **Byte Description** |
 | --- | --- |
