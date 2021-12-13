@@ -147,7 +147,7 @@ Data sent from an IOX to the GO device. The GO will reply with an ACK.
 
 ### Acknowledge (0x14)
 
-Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchangethe streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.
+Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchange the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.
 
 #### Payload
 
