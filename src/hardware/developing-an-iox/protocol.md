@@ -147,15 +147,13 @@ Data sent from an IOX to the GO device. The GO will reply with an ACK.
 
 ### Acknowledge (0x14)
 
-Sent by the GO device to indicate that a message has been acknowledged.
-
-The ACK to most messages contains 0 bytes of data. One exception is the ACK to an RX Data frame which includes 1 byte of data. This data is used as a flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending messages for 50 ms. The IOX will send the next frame at the end of these 50 ms and, depending on the flow control bit of the ACK, it will either keep on sending messages or will delay for another 50 ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark.
+Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% water mark. If transferring data as part of a [wrapped packet exchange](#information-type-1---packet-wrapper) the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the [#modem-result](#type-0:-modem-transmission-result) are honored. This byte is only sent when needed.
 
 #### Payload
 
 | Byte #     | Byte Description |
 | --- | --- |
-| 0 - Bit 0 | 0 = Clear to send more UART Data. <br> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
+| 0 - Bit 0 | 0 = Clear to send more Rx Data. <br> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
 | 1 - Bit 1-7 | Reserved |
 
 ### Application Specific Data (0x1C)
