@@ -3,6 +3,28 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 6.0
+
+- Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
+
+- Added [WifiHotspot]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.WifiHotspot) capability, with Interface to configure hotspot settings on telematics devices.
+
+- The MyAdmin SDK is now available from [the SDK]({{site.baseurl}}/myadmin-sdk/introduction/). All pages are in the process of being converted to Markdown format.
+
+### HOS
+
+Added `CanadaNorthOf60CycleOneTeam` and `CanadaNorthOf60CycleTwoTeam` to the rulesets.
+
+### Limits
+
+Increased media file size limits to 50 MB for video and 10 MB for images.
+
+### NuGet
+
+- Fixed an issue in which the NuGet package `API.SessionId` property generates an `InvalidOperationException`, if accessed before it is assigned.
+
+- The MyGeotab NuGet package no longer includes a reference to `Newtonsoft.json`.
+
 ## 5.7.2104
 
 ### Device
