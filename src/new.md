@@ -7,7 +7,7 @@ title: What's New
 
 ### JSON Serializer Change in 5.7.2103
 
-Apologies for the late announcement on this topic as it was recently uncovered within our development team. As of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:
+Post-release update: it was recently uncovered within our development team that as of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:
 
 ```json
 {
