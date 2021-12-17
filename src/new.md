@@ -27,6 +27,34 @@ Increased media file size limits to 50 MB for video and 10 MB for images.
 
 ## 5.7.2104
 
+### JSON Serializer Change in 5.7.2103
+
+Post-release update: it was recently uncovered within our development team that as of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:
+
+```json
+{
+   "error":{
+      "message":"Exception of type 'Geotab.Serialization.JsonSerializerException' was thrown.",
+      "code":-32700,
+      "data":{
+         "id":"5b161301-f931-43e0-ba2a-46d6bb54d898",
+         "type":"JsonSerializerException",
+         "requestIndex":0
+      },
+      "name":"JSONRPCError",
+      "errors":[
+         {
+            "message":"Exception of type 'Geotab.Serialization.JsonSerializerException' was thrown.",
+            "name":"JsonSerializerException"
+         }
+      ]
+   },
+   "jsonrpc":"2.0",
+   "requestIndex":0
+}
+```
+The new Serializer logic only accepts property names and string values in double quotes because that format is required by the [RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) specification and is the only format considered to be valid JSON.
+
 ### Device
 
 - `FuelTankCapacity` will now throw an `ArgumentOutOfRangeException` if the value is less than 0.
@@ -61,6 +89,34 @@ Added `IsHidden` and `IsRequired` properties.
 - `IsRequired` is a boolean value indicating whether a defect must be signed off. Used to determine if the part must be explicitly marked as having defect(s) or not.
 
 ## 5.7.2103
+
+### JSON Serializer Change
+
+The JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:
+
+```json
+{
+   "error":{
+      "message":"Exception of type 'Geotab.Serialization.JsonSerializerException' was thrown.",
+      "code":-32700,
+      "data":{
+         "id":"5b161301-f931-43e0-ba2a-46d6bb54d898",
+         "type":"JsonSerializerException",
+         "requestIndex":0
+      },
+      "name":"JSONRPCError",
+      "errors":[
+         {
+            "message":"Exception of type 'Geotab.Serialization.JsonSerializerException' was thrown.",
+            "name":"JsonSerializerException"
+         }
+      ]
+   },
+   "jsonrpc":"2.0",
+   "requestIndex":0
+}
+```
+The new Serializer logic only accepts property names and string values in double quotes because that format is required by the [RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) specification and is the only format considered to be valid JSON.
 
 ### Add/Set FuelTransaction
 
