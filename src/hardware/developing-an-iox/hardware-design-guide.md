@@ -62,7 +62,7 @@ A 120-ohm differential impedance must be implemented for the CAN bus in the desi
 
 ## Mechanical Design
 
-Below is the mechanical size for a USB mini-B plug of the IOX device.
+Below is the mechanical size for a USB mini-B plug of the IOX device. All dimensions are given in mm.
 
  ![]({{site.baseurl}}/hardware/developing-an-iox/hardware-design-guide_4.png)
 
@@ -70,7 +70,7 @@ The suggested cable length is between 30 cm to 100 cm, which is based on the mul
 
 It is suggested that you shield the whole wires and that you short the drain wires of both shields (the shield for whole wires and the shield for the CAN bus) to the metal body of the USB plug.
 
-Below is the mechanical size for a USB mini-B socket of the IOX device.
+Below is the mechanical size for a USB mini-B socket of the IOX device. All dimensions are given in mm.
 
  ![]({{site.baseurl}}/hardware/developing-an-iox/hardware-design-guide_5.png)
 
