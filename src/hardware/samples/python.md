@@ -55,8 +55,8 @@ def createMessage(message):
   tester.write(handshakeResponse)
   time.sleep(1)
   # send some status data
-  statusDataID = 34801 #status data id of Air Temperature
-  dataValue = 200 #temperature value of 20C (because of the conversion factor of 0.1)
+  statusDataID = 35349 #status data id of "Test engine measurement / fake data"
+  dataValue = 200 #data value of 10 will show on MyGeotab (because of the conversion factor of 0.1 and offset of -10)
 
   dataMessage = createMessage(bytes([0x80, 6, statusDataID%256, (statusDataID >> 8)%256, dataValue%256, (dataValue >> 8)%256, 0, 0]))
 
@@ -88,7 +88,7 @@ If the script executes successfully against an awake (ideally with Ignition On) 
 ['0x2', '0x81', '0x4', '0x70', '0x10', '0x0', '0x0', '0xa3', '0x88', '0x3']
 
 # sending status data
-['0x2', '0x80', '0x6', '0x35', '0x0', '0x3c', '0x0', '0x0', '0x0', '0xf9', '0x6a', '0x3']
+['0x2', '0x80', '0x6', '0x15', '0x8a', '0xc8', '0x0', '0x0', '0x0', '0xf9', '0x6a', '0x3']
 
 # waiting for data ACK…
 ['0x2', '0x2', '0x0', '0x4', '0xa', '0x3']
