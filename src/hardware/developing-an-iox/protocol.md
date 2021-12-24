@@ -195,7 +195,7 @@ Sent from the IOX to the GO device when the IOX wants to create a log that can f
 | --- | --- |
 | 1 | Connected = 1, Disconnected = 0 |
 | 2-3 | Data ID |
-| 4-5 | Connection flags |
+| 4-5 | Connection flags: <br> **1st bit:** Handshake Confirmation ACK <br> 0 means no Ack to Handshake Confirmation message will be sent by the GO device. <br> 1 means the Handshake Confirmation is to be ACKed with a Third Party Data Acknowledge message. <br> **2nd bit:** Binary Data Packet Wrapping <br> 0 means the passthrough data from the server will be passed to the external device without modification. <br> 1 means the passthrough data from the server will be wrapped in a Binary Data Packet message before being sent to the external device. <br> **All other bits:** Reserved for future implementation, must be set to 0 <br>  |
 
 #### Log Type: 2 (GenericFaultRecord)
 
