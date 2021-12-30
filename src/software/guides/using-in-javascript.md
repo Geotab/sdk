@@ -91,32 +91,6 @@ A MultiCall is a way to make several API calls against a server with a single HT
 
 The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “out” of the server.
 
-# Working with JSONP
-
-Creating a [JSONP](http://en.wikipedia.org/wiki/JSONP) request is similar to creating a HTTP GET request — but with one minor change. An additional parameter that specifies the callback in the requested URL will be required to be passed as follows:
-
-`https://my.geotab.com/apiv1/GetVersion?JSONP=jsonpCallback`
-
-The response will be in the following format with your current version number:
-
-```json
-{"result":"5.7.1508.414"}
-```
-
-In a JavaScript application a function to handle the JSONP callback will need to be set up.
-
-```javascript
-window.jsonpCallback = function(data) {
-    if (data.result) {
-        alert(data.result);
-    } else {
-        alert(data.error);
-    }
-};
-```
-
-When the examples are downloaded, the GeotabApi object has an option to use JSONP requests. In this way the examples can be run without placing them on a Web server.
-
 # Next steps
 
 Once you have a basic understanding of how *api.js* and the JavaScript API work and want to learn more, you can take a look at our examples [here](../../js-samples).
