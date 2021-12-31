@@ -123,3 +123,16 @@ Vehicles will not necessarily return all of the above information; the list is b
 Seat belt and odometer requests are proprietary on most passenger cars. It is Geotab's goal to support seat belt and odometer across all the major vehicle manufacturers. If you are unable to obtain seatbelt or odometer requests for your vehicle, please contact Geotab Support. You can query the percentage of seat belt, odometer and other engine based data is supported for different vehicle types via MyAdmin.
 
 Seat belt use is logged on status change: a value of 1 represents the seat belt unbuckled, while a value of 0 represents the seat belt buckled. Odometer is logged both on ignition on and ignition off and every hour.
+
+#### Engine Hours
+It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. This means it is important to distinguish between our two engine hours types of StatusData in order to utilize them appropriately.
+
+DiagnosticEngineHoursId:
+This is the raw engine hours provided by the ECU in the vehicle as read by the GoDevice.
+
+DiagnosticEngineHoursAdjustmentId:
+Records the ignition ON time for vehicles which do not report engine hours from their ECU. An engine hours offset can also be manually added which will then report as total Ignition ON time plus the engine hours offset. When the manual engine hours entry is updated, the total ignition time used in the calculation is reset to zero before continuing to increment.
+
+Add<StatusData><DiagnosticEngineHoursAdjustmentId> is used to add manual entries (becomes the new engine hours offset).
+Get<StatusData><DIagnosticEngineHoursAdjustmentId> returns the engine hours as engine hours offset plus total ignition time since the offset was set.
+
