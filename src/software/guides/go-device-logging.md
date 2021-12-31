@@ -131,8 +131,8 @@ DiagnosticEngineHoursId:
 This is the raw engine hours provided by the ECU in the vehicle as read by the GoDevice.
 
 DiagnosticEngineHoursAdjustmentId:
-Records the ignition ON time for vehicles which do not report engine hours from their ECU. An engine hours offset can also be manually added which will then report as total Ignition ON time plus the engine hours offset. When the manual engine hours entry is updated, the total ignition time used in the calculation is reset to zero before continuing to increment.
+Records the GPS travel time for vehicles which do not report engine hours from their ECU. An engine hours offset can also be manually added which will then report as total GPS travel time plus the engine hours offset. When the manual engine hours entry is updated, the total GPS travel time used in the calculation is reset to zero before continuing to increment.
 
 Add<StatusData><DiagnosticEngineHoursAdjustmentId> is used to add manual entries (becomes the new engine hours offset).
-Get<StatusData><DIagnosticEngineHoursAdjustmentId> returns the engine hours as engine hours offset plus total ignition time since the offset was set.
+Get<StatusData><DIagnosticEngineHoursAdjustmentId> returns the engine hours as engine hours offset plus total GPS travel time since the offset was set.
 
