@@ -125,14 +125,13 @@ Seat belt and odometer requests are proprietary on most passenger cars. It is Ge
 Seat belt use is logged on status change: a value of 1 represents the seat belt unbuckled, while a value of 0 represents the seat belt buckled. Odometer is logged both on ignition on and ignition off and every hour.
 
 #### Engine Hours
-It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. This means it is important to distinguish between our two engine hours types of StatusData in order to utilize them appropriately.
+It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. As a workaround, Geotab provides two types of engine hours StatusData. it is important to distinguish between the two in order to utilize them appropriately.
 
 DiagnosticEngineHoursId:
-This is the raw engine hours provided by the ECU in the vehicle as read by the GoDevice.
+This is the raw engine hours provided by the ECU in the vehicle as read by the GoDevice. Reports at the end of each trip. 
 
 DiagnosticEngineHoursAdjustmentId:
-Records the GPS travel time for vehicles which do not report engine hours from their ECU. An engine hours offset can also be manually added which will then report as total GPS travel time plus the engine hours offset. When the manual engine hours entry is updated, the total GPS travel time used in the calculation is reset to zero before continuing to increment.
+Records the GPS travel time for vehicles which do not report engine hours from their ECU. An engine hours record can also be manually added which will then report as total GPS travel time added to the manually entered value. When the manual engine hours entry is updated, the total GPS travel time used in the calculation is reset to zero before continuing to increment.
 
-Add<StatusData><DiagnosticEngineHoursAdjustmentId> is used to add manual entries (becomes the new engine hours offset).
-Get<StatusData><DIagnosticEngineHoursAdjustmentId> returns the engine hours as engine hours offset plus total GPS travel time since the offset was set.
-
+Add\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> is used to add manual engine hours entries.
+Get\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> returns a calculated engine hours value based on GPS Travel time and the last reported engine hours value (either reported by the GoDevice or manually entered).
