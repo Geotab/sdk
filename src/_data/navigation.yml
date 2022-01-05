@@ -20,7 +20,7 @@ toc:
             url: /software/guides/using-in-java/
             beta: true
           - page: Data Feed
-            url: /software/guides/data-feed
+            url: /software/guides/data-feed/
           - page: Using MyGeotab URLs
             url: /software/guides/mygeotab-urls/
           - page: Using GO Devices
