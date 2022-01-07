@@ -55,6 +55,12 @@ Post-release update: it was recently uncovered within our development team that 
 ```
 The new Serializer logic only accepts property names and string values in double quotes because that format is required by the [RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) specification and is the only format considered to be valid JSON.
 
+### New Stock Groups Available
+ 
+- GroupDriverActivityGroupId
+- GroupPersonalGroupId
+- GroupBusinessGroupId
+
 ### Device
 
 - `FuelTankCapacity` will now throw an `ArgumentOutOfRangeException` if the value is less than 0.
