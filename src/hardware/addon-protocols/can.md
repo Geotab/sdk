@@ -6,6 +6,8 @@ title: Add-On Protocol - CAN
 
 External devices can communicate with the Geotab GO device through the revised Third-Party Data CAN protocol. No initial handshake is required to communicate through the IOX-CAN. The GO device will start processing third-party data if it is in the correct format. Once processed, the third-party data will be saved and sent to MyGeotab as Status Data.
 
+The IOX-CAN messaging system is not meant to serve real time applications. For rapid consecutive messages, a 2 second delay between messages is ideal.
+
 ## Integration Process
 
 The following process should be followed when attempting to integrate a third-party device with the GO device using our Third-Party Data CAN Protocol:
