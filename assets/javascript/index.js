@@ -53,6 +53,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   setupSidebarToggle();
+  scrollSidebar();
 });
 
 (function (document, history, location) {
@@ -126,4 +127,28 @@ window.addEventListener("DOMContentLoaded", function () {
   };
   window.addEventListener("DOMContentLoaded", anchorScrolls.init.bind(anchorScrolls));
 })(window.document, window.history, window.location);
+
+function scrollSidebar() {
+  /**
+   * Scroll the sidebar link to top, depending which one was clicked 
+   */
+  var pathName = window.location.pathname;
+  document.querySelectorAll("a[href=\"".concat(pathName, "\"]"))[0].scrollIntoView();
+  /**
+   * Alternatively, scroll the sidebar to positions, depending on the path of
+   * the active page
+   */
+  //     let pathName = window.location.pathname;
+  //     let softwareApiPosition = 810;
+  //     let hardwarePosition = 1210;
+  //     let myadminPosition = 1760;
+  //     if (pathName.includes("/software/api")||pathName.includes("/software/js-samples")) {
+  //         //TODO: consider different browsers
+  //         document.getElementById("sidebar-wrapper").scrollTop = softwareApiPosition;
+  //     } else if (pathName.includes("/hardware/")) {
+  //         document.getElementById("sidebar-wrapper").scrollTop = hardwarePosition;
+  //     } else if (pathName.includes("/myadmin-sdk/")) {
+  //         document.getElementById("sidebar-wrapper").scrollTop = myadminPosition;
+  //     } else {}
+}
 //# sourceMappingURL=index.js.map
