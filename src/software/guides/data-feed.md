@@ -133,7 +133,7 @@ The HOS and DVIR related objects under the "Active data feeds" (DutyStatusLog, D
 Each time one of these data records is manipulated, it will retain its original unique GUID "Id" but will receive an incremented “version”. This way you can match new feed records to existing data you obtained from an earlier feed request.
 
 ## Next Steps
-Once you have a basic understanding of how the Data Feed works you can read more about the GetFeed method and it's parameters in the [API Reference](../../api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) or try out the [JavaScript](../../js-samples/#data-feed) and [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) data feed examples.
+Once you have a basic understanding of how the Data Feed works you can read more about the GetFeed method and it's parameters in the [API Reference](../../api/reference/#GetFeedAsync1) or try out the [JavaScript](../../js-samples/#data-feed) and [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) data feed examples.
 
 ## FAQ
 
