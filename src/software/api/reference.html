@@ -33,11 +33,11 @@ permalink: /software/api/reference/
 <ul id="strings" style="display: none;">
     <li id="typeName">typeName</li>
     <li id="typeNameDescription">Identifies the type of entity that is being passed to the next parameter. For example,
-        <a class="cref" href="#T:Geotab.Checkmate.ObjectModel.Device">Device</a>.
+        <a class="cref" href="#Device">Device</a>.
     </li>
     <li id="credentials">credentials</li>
     <li id="credentialsDescription">The user's Geotab login
-        <a class="cref" href="#T:Geotab.Checkmate.ObjectModel.Credentials">Credentials</a>.
+        <a class="cref" href="#Credentials">Credentials</a>.
     </li>
 </ul>
 
@@ -440,7 +440,7 @@ permalink: /software/api/reference/
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push("<a href='#" + attrTextNoParents.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -709,7 +709,7 @@ permalink: /software/api/reference/
                                 if (value.length && !value[0].hasAttribute("jsHide")) {
                                     return pullTextWithLinked(value[0].childNodes);
                                 }
-                                return "";
+                                return "";                                
                             },
                             removeGetAndSet = function (type, text) {
                                 var slicedText;
@@ -1014,6 +1014,9 @@ permalink: /software/api/reference/
                     propertiesHtmlString = "",
                     isMethod,
                     isEnum,
+                    pos,
+                    anchorText,
+                    anchorTextNoParents = "",
                     memberParameters,
                     getMemberPropertiesRecursive = function (member, processedProperties) {
                         var baseTypeLookupValues, baseTypeMember, i,
@@ -1063,11 +1066,17 @@ permalink: /software/api/reference/
                 jj = memberParameters.length;
                 isMethod = member.type === memberTypes.method;
 
+                anchorText = member.anchor;
+
+                pos = anchorText.lastIndexOf(".");
+                anchorTextNoParents = pos > 0 ? anchorText.substr(pos + 1, anchorText.length) : "";
+                anchorTextNoParents = removeGenericsSymbols(anchorTextNoParents);
+
                 memberHtmlString += "<span class='member-type'>" + (isEnum ? "Enum" : (member.type === memberTypes.object ? "Object" : (isMethod ? "Method" : ""))) + "</span>";
 
                 // Runner Args - only do for methods of DataStore and WebMethods. Do it here so we can do an enum and object lookup on the completed member dictionary.
                 memberHtmlString += !isObject && (member.parent === "DataStore" || member.parent === "WebMethods") ? getRunnerLink(member) : "";
-                memberHtmlString += '<h3 class="member-name" id="' + member.anchor + '">' + member.name + (member.isBeta ? ' <span class="beta">Beta</span> ' : '') + '</h3>';
+                memberHtmlString += '<h3 class="member-name" id="' + anchorTextNoParents + '">' + member.name + (member.isBeta ? ' <span class="beta">Beta</span> ' : '') + '</h3>';
                 // memberHtmlString += '<p class="member-namespace">' + (!isMethod ? member.nameSpace : '') + '</p>';
                 memberHtmlString += '<p class="member-description">' + member.summary + '</p>';
                 memberHtmlString += member.remarks ? ('<p class="member-remarks"><span class="warnIcon"></span>' + member.remarks + '</p>') : "";
