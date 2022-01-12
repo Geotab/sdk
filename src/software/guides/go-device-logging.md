@@ -116,7 +116,7 @@ Vehicles will not necessarily return all of the above information; the list is b
 
 #### Total Fuel Used
 
-"Total fuel used (since telematics device install)" is generic status data. No matter how fuel information is received from a particular vehicle, be it OBD2, J1708, J1939 or another diagnostic standard, a generic Total Fuel Used record will be saved after ignition off. An additional record, "Total fuel used while idling (since telematics device install)", which is the fuel used while road speed is 0, is also saved on ignition off. "Total fuel used (since telematics device install)" ([KnownId](../../api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) `DiagnosticDeviceTotalFuelId`) and "Total fuel used while idling (since telematics device install)" `DiagnosticDeviceTotalIdleFuelId` are the diagnostics used to track fuel consumption.
+"Total fuel used (since telematics device install)" is generic status data. No matter how fuel information is received from a particular vehicle, be it OBD2, J1708, J1939 or another diagnostic standard, a generic Total Fuel Used record will be saved after ignition off. An additional record, "Total fuel used while idling (since telematics device install)", which is the fuel used while road speed is 0, is also saved on ignition off. "Total fuel used (since telematics device install)" ([KnownId](../../api/reference/#KnownId) `DiagnosticDeviceTotalFuelId`) and "Total fuel used while idling (since telematics device install)" `DiagnosticDeviceTotalIdleFuelId` are the diagnostics used to track fuel consumption.
 
 #### Seat Belt and Odometer
 
