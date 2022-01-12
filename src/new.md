@@ -3,6 +3,10 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+## 7.0
+
+- JSONP support will be removed in v8.0 and should no longer be used.
+
 ## 6.0
 
 - Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
