@@ -7,7 +7,7 @@ title: What's New
 
 - Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
 
-- Added [WifiHotspot]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.WifiHotspot) capability, with Interface to configure hotspot settings on telematics devices.
+- Added [WifiHotspot]({{site.baseurl}}/software/api/reference/#WifiHotspot) capability, with Interface to configure hotspot settings on telematics devices.
 
 - The MyAdmin SDK is now available from [the SDK]({{site.baseurl}}/myadmin-sdk/introduction/). All pages are in the process of being converted to Markdown format.
 
@@ -405,21 +405,21 @@ Added the `ServerId` property, a unique identifier for a server/cluster.
 
 Geotab is happy to announce a new set of APIs related to Media Files. This new API can be used to store images or video clips related to a device or driver.
 
-[MediaFile]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaFile): MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found [here](https://github.com/Geotab/mg-media-files).
+[MediaFile]({{site.baseurl}}/software/api/reference/#MediaFile): MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found [here](https://github.com/Geotab/mg-media-files).
 
-[MediaType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaType): The type of Media.
+[MediaType]({{site.baseurl}}/software/api/reference/#MediaType): The type of Media.
 
-[Status]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.Status): The status of an uploaded file.
+[Status]({{site.baseurl}}/software/api/reference/#Status): The status of an uploaded file.
 
-[MediaFileSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.MediaFileSearch): The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.
+[MediaFileSearch]({{site.baseurl}}/software/api/reference/#MediaFileSearch): The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.
 
-[Tag]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Files.Tag): A named tag to provide context to an entity.
+[Tag]({{site.baseurl}}/software/api/reference/#Tag): A named tag to provide context to an entity.
 
-[DownloadMediaFile]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.DownloadMediaFileAsync): Download a file for the given MediaFile. The Content type is determined by the file extension. Range headers are supported.
+[DownloadMediaFile]({{site.baseurl}}/software/api/reference/#DownloadMediaFileAsync): Download a file for the given MediaFile. The Content type is determined by the file extension. Range headers are supported.
 
-[UploadMediaFile]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.UploadMediaFileAsync): Upload a file for the corresponding MediaFile using multipart/form-data POST request.
+[UploadMediaFile]({{site.baseurl}}/software/api/reference/#UploadMediaFileAsync): Upload a file for the corresponding MediaFile using multipart/form-data POST request.
 
-[SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added ViewMedia and ManageMedia.
+[SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added ViewMedia and ManageMedia.
 
 ### General SDK updates
 
@@ -429,7 +429,7 @@ Added `ThirdPartyData` type to allow flexible length binary data format records 
 
 #### Methods
 
-[GetCountOf]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.GetCountOf) method now accounts for user scope. It previously did not account for user scope, which was a bug.
+[GetCountOf]({{site.baseurl}}/software/api/reference/#GetCountOf1) method now accounts for user scope. It previously did not account for user scope, which was a bug.
 
 #### ZoneSearch
 
@@ -625,18 +625,18 @@ JSON serialization improvements have been made to increase the efficiency of API
 
 ### TextMessage and TextMessageSearch
 
-- [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - Added `Recipient`. This property is used to send a text message to a user.
-- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - Added searching by `IsDelivered`, `IsRead`, `UserSearch`.
+- [TextMessage]({{site.baseurl}}/software/api/reference/#TextMessage) - Added `Recipient`. This property is used to send a text message to a user.
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#TextMessageSearch) - Added searching by `IsDelivered`, `IsRead`, `UserSearch`.
   - `IsDelivered`, when set to true, returns all text messages that were delivered to the recipient/device.
   - `IsRead`, when set to true, returns all text messages that were read by the recipient/device.
   - `UserSearch` searches TextMessages from a user, and users in the specified `CompanyGroups` or `DriverGroups`.
-- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - Added searching by `ContentTypes` and `IsDirectionToVehicle`.
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#TextMessageSearch) - Added searching by `ContentTypes` and `IsDirectionToVehicle`.
   - `ContentTypes` searches for TextMessages based on their MessageContentType.
   - `IsDirectionToVehicle`, when set to true, will return all text messages that were sent to the device. If set to false, it will return all text messages that were not sent to the device.
 
 ### SecurityIdentifier
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - `PerformanceReport` has been removed.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier) - `PerformanceReport` has been removed.
 
 ### Exception Messages
 
@@ -654,41 +654,41 @@ This fix applies to messages of exception types `MissingMethodException`, `Ambig
 
 ### DiagnosticType
 
-- [DiagnosticType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DiagnosticType) - Added `GmcccFault` and `BrpFault`
+- [DiagnosticType]({{site.baseurl}}/software/api/reference/#DiagnosticType) - Added `GmcccFault` and `BrpFault`
 
 ### KnownId
 
-- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `ControllerGmcccFaultId`, `SourceGmcccId`, `SourceGmcccObsoleteId`, `ControllerBrpFaultId`, `SourceBrpId`, `SourceBrpObsoleteId`
-- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) - Added `NoExceptionEventId`, `NoRuleId`
+- [KnownId]({{site.baseurl}}/software/api/reference/#KnownId) - Added `ControllerGmcccFaultId`, `SourceGmcccId`, `SourceGmcccObsoleteId`, `ControllerBrpFaultId`, `SourceBrpId`, `SourceBrpObsoleteId`
+- [KnownId]({{site.baseurl}}/software/api/reference/#KnownId) - Added `NoExceptionEventId`, `NoRuleId`
 
 ### Device
 
-- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - Added `AutoHos`. This property is a toggle that represents automatic generation of DutyStatusLogs for a `GoDevice` and/or a `CustomVehicleDevice`.
+- [Device]({{site.baseurl}}/software/api/reference/#Device) - Added `AutoHos`. This property is a toggle that represents automatic generation of DutyStatusLogs for a `GoDevice` and/or a `CustomVehicleDevice`.
 
 ### DutyStatusViolation
 
-- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Added `HoursLimit` and `DaysLimit`. These properties show the maximum or minimum hours and/or days limit for duty status violations.
-- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolation) - Deprecated `Reason` property. This will be removed in a future version. The data in the Reason property string is now provided as `DaysLimit` and `HoursLimit` for better programmatic access.
+- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#DutyStatusViolation) - Added `HoursLimit` and `DaysLimit`. These properties show the maximum or minimum hours and/or days limit for duty status violations.
+- [DutyStatusViolation]({{site.baseurl}}/software/api/reference/#DutyStatusViolation) - Deprecated `Reason` property. This will be removed in a future version. The data in the Reason property string is now provided as `DaysLimit` and `HoursLimit` for better programmatic access.
 
 ### UserSearch
 
-- [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch) - Added searching by `LicenseNumber`, `EmployeeNumber`, `HosRuleSet` and `UserAuthenticationType`.
+- [UserSearch]({{site.baseurl}}/software/api/reference/#UserSearch) - Added searching by `LicenseNumber`, `EmployeeNumber`, `HosRuleSet` and `UserAuthenticationType`.
 
 ### GetFeed DebugData
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1): [DebugData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DebugData) - Fixed sort order issue leading to possible missed records.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1): [DebugData]({{site.baseurl}}/software/api/reference/#DebugData) - Fixed sort order issue leading to possible missed records.
 
 ### FuelTransaction
 
-- [FuelTransaction]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransaction) - Added `Device` and `Driver`. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's `Device` and `Driver` properties defaults to NoDevice and UnknownDriver.
+- [FuelTransaction]({{site.baseurl}}/software/api/reference/#FuelTransaction) - Added `Device` and `Driver`. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's `Device` and `Driver` properties defaults to NoDevice and UnknownDriver.
 
 ### DVIRLog
 
-- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `AuthorityName`, `AuthorityAddress`, `Odometer`, `LoadHeight`, `LoadWidth` and `IsInspectedByDriver`. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered `Hubometer` value for Trailer DVIRs.
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog) - Added `AuthorityName`, `AuthorityAddress`, `Odometer`, `LoadHeight`, `LoadWidth` and `IsInspectedByDriver`. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered `Hubometer` value for Trailer DVIRs.
 
 ### ConditionType
 
-- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `IsValueLessThanPercent` and `IsValueMoreThanPercent`. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#ConditionType) - Added `IsValueLessThanPercent` and `IsValueMoreThanPercent`. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
 
 ### WebServerInvoker (Nuget only)
 
@@ -730,45 +730,45 @@ service.tooltip.setConfig({
 
 ### Interpolation
 
-- [Get]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Get1): [StatusData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.StatusData), [LogRecord]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LogRecord) - In the v5.7.2001 release and earlier, we interpolate between points when using `StatusData` and `LogRecord` API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the _first/last_ value with the _correct_ dateTime.
+- [Get]({{site.baseurl}}/software/api/reference/#Get1): [StatusData]({{site.baseurl}}/software/api/reference/#StatusData), [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) - In the v5.7.2001 release and earlier, we interpolate between points when using `StatusData` and `LogRecord` API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the _first/last_ value with the _correct_ dateTime.
 
 ### Users
 
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added the `IsExemptHOSEnabled` property to indicate whether the user is allowed to use HOS Personal Conveyance.
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CompanyName`, `CompanyAddress`, and `CarrierNumber` properties to store company and carrier information.
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `CountryCode`, `PhoneNumber`, and `PhoneNumberExtension` properties to assign a phone number to a selected user.
+- [User]({{site.baseurl}}/software/api/reference/#User) - Added the `IsExemptHOSEnabled` property to indicate whether the user is allowed to use HOS Personal Conveyance.
+- [User]({{site.baseurl}}/software/api/reference/#User) - Added `CompanyName`, `CompanyAddress`, and `CarrierNumber` properties to store company and carrier information.
+- [User]({{site.baseurl}}/software/api/reference/#User) - Added `CountryCode`, `PhoneNumber`, and `PhoneNumberExtension` properties to assign a phone number to a selected user.
 
 ### Drivers
 
-- [Driver]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Driver) - Added `LicenseProvince` and `LicenseNumber` properties.
-- [DriverRegulation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverRegulation) - Added `RestBreakNeeded`, `OffDutyNeeded`, `DaySummaries`, `WorkdaySummaries` and `CycleSummaries` properties to DriverRegulation.
+- [Driver]({{site.baseurl}}/software/api/reference/#Driver) - Added `LicenseProvince` and `LicenseNumber` properties.
+- [DriverRegulation]({{site.baseurl}}/software/api/reference/#DriverRegulation) - Added `RestBreakNeeded`, `OffDutyNeeded`, `DaySummaries`, `WorkdaySummaries` and `CycleSummaries` properties to DriverRegulation.
 
 ### DutyStatuLog
 
-- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog) - Added `DeferralStatus`, and `DeferralMinutes` properties to define the duty status deferral and deferral minutes.
-- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType) - Added the `PC_Exempted` property to indicate the status of a driver.
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#DutyStatusLog) - Added `DeferralStatus`, and `DeferralMinutes` properties to define the duty status deferral and deferral minutes.
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#DutyStatusLogType) - Added the `PC_Exempted` property to indicate the status of a driver.
 
 ### DVIRLog
 
-- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - Added `LogType` and `DefectList` properties.
-- [DVIRLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLogType) - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new `Intrip` inspection type.
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog) - Added `LogType` and `DefectList` properties.
+- [DVIRLogType]({{site.baseurl}}/software/api/reference/#DVIRLogType) - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new `Intrip` inspection type.
 
 ### Rules
 
-- [RecipientType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.RecipientType) - Added `HosEnabled` and `HosDisabled` to `RecipientType` to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
-- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `NoPreDVIRCheck` and `NoPostDVIRCheck` to `ConditionType` when no Pre or Post-trip DVIR is performed between work days.
-- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - Added `SpeedLimitAsMeasurement` property to the `ConditionType` to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
-- [ConditionType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.ConditionType) - The `NoDVIRCheck` `ConditionType` is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
+- [RecipientType]({{site.baseurl}}/software/api/reference/#RecipientType) - Added `HosEnabled` and `HosDisabled` to `RecipientType` to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#ConditionType) - Added `NoPreDVIRCheck` and `NoPostDVIRCheck` to `ConditionType` when no Pre or Post-trip DVIR is performed between work days.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#ConditionType) - Added `SpeedLimitAsMeasurement` property to the `ConditionType` to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
+- [ConditionType]({{site.baseurl}}/software/api/reference/#ConditionType) - The `NoDVIRCheck` `ConditionType` is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
 
 ### Zones
 
-- [Zone]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Zone) - Added the `ZoneTypes` property for enumeration of zone types for a given zone.
+- [Zone]({{site.baseurl}}/software/api/reference/#Zone) - Added the `ZoneTypes` property for enumeration of zone types for a given zone.
 
 ### Devices
 
-- [GO9]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Go9) - Added the `ObdAlertEnabled` property to allow users to enable/disable OBD alerts on their vehicles.
-- [GoDevice]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GoDevice) - Added the `ParameterVersionOnDevice` property to track the current parameter version on the device. The current `ParameterVersion` property communicates the parameter version to the device; however, parameter updates are not always immediate.
-- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - To prevent mismatches based on system clock settings, we have prevented `ActiveFrom` from being greater than `ActiveTo` when adding a device.
+- [GO9]({{site.baseurl}}/software/api/reference/#Go9) - Added the `ObdAlertEnabled` property to allow users to enable/disable OBD alerts on their vehicles.
+- [GoDevice]({{site.baseurl}}/software/api/reference/#GoDevice) - Added the `ParameterVersionOnDevice` property to track the current parameter version on the device. The current `ParameterVersion` property communicates the parameter version to the device; however, parameter updates are not always immediate.
+- [Device]({{site.baseurl}}/software/api/reference/#Device) - To prevent mismatches based on system clock settings, we have prevented `ActiveFrom` from being greater than `ActiveTo` when adding a device.
 
 ### generator-addin version 3.0
 
@@ -793,8 +793,8 @@ This major release merges the API wrappers mg-api-js (previously browser only ve
 
 ### Other SDK Updates
 
-- [BinaryDataSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryDataSearch) - Search by `DeviceSearch.Groups` property using `BinaryDataSearch`.
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - Added `SystemSettings` value to `SecurityIdentifier`.
+- [BinaryDataSearch]({{site.baseurl}}/software/api/reference/#BinaryDataSearch) - Search by `DeviceSearch.Groups` property using `BinaryDataSearch`.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier) - Added `SystemSettings` value to `SecurityIdentifier`.
 - Removed the `DiagnosticCategory` object from the [SDK reference]({{site.baseurl}}/software/api/reference) page. This is a legacy object that is no longer in use.
 - Updated the ExternalDeviceShutdownDelay documentation to clarify values in minutes rather than seconds.
 - Added a sample for getting fuel tax details using the [API runner]({{site.baseurl}}/software/api/runner.html#sample:get-fuel-tax-details).
@@ -805,43 +805,43 @@ This major release merges the API wrappers mg-api-js (previously browser only ve
 
 - AddInData (Feature Preview) - Remove requirement of `AddInDataId` for search by `Id`.
 
-- [AuditSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.AuditSearch), [DeviceSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceSearch), [ShipmentLogSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ShipmentLogSearch), [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch), [ZoneSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ZoneSearch) - Added new search by list of `Keywords`. This allows searching "or" across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against `Comment`, `LicensePlate`, `Name`, `SerialNumber` and `VehicleIdentificationNumber` matching the provided keywords. Keywords strings support wildcard character (`%`).
+- [AuditSearch]({{site.baseurl}}/software/api/reference/#AuditSearch), [DeviceSearch]({{site.baseurl}}/software/api/reference/#DeviceSearch), [ShipmentLogSearch]({{site.baseurl}}/software/api/reference/#ShipmentLogSearch), [UserSearch]({{site.baseurl}}/software/api/reference/#UserSearch), [ZoneSearch]({{site.baseurl}}/software/api/reference/#ZoneSearch) - Added new search by list of `Keywords`. This allows searching "or" across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against `Comment`, `LicensePlate`, `Name`, `SerialNumber` and `VehicleIdentificationNumber` matching the provided keywords. Keywords strings support wildcard character (`%`).
 
-- [BinaryData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryData) (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.
+- [BinaryData]({{site.baseurl}}/software/api/reference/#BinaryData) (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.
 
 - Calculated Engine Hours Search - As mentioned in 5.7.1904 What’s New, `DiagnosticEngineHoursAdjustmentId` is now interpolated using trips and `DiagnosticIgnitionId` values when a search includes a from/toDate value(s) to provide exact values by default.
 
-- [CompanyDetails]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Registration.CompanyDetails) - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from `CreateDatabase` method.
+- [CompanyDetails]({{site.baseurl}}/software/api/reference/#CompanyDetails) - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from `CreateDatabase` method.
 
-- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - `HardwareId` is no longer returned as part of Device object. For more information regarding this change, please refer to this [community post](https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property).
+- [Device]({{site.baseurl}}/software/api/reference/#Device) - `HardwareId` is no longer returned as part of Device object. For more information regarding this change, please refer to this [community post](https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property).
 
-- [DVIRDefect]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRDefect) - Providing `RepairUser` and `RepairDateTime` are no longer supported for unrepaired `DVIRDefect`.
+- [DVIRDefect]({{site.baseurl}}/software/api/reference/#DVIRDefect) - Providing `RepairUser` and `RepairDateTime` are no longer supported for unrepaired `DVIRDefect`.
 
-- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog) - `DefectList` must be provided with `DVIRLog`.
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog) - `DefectList` must be provided with `DVIRLog`.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) - Fixed corner case where it was possible to miss data in feed due to concurrency issue.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) - Fixed corner case where it was possible to miss data in feed due to concurrency issue.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) `StatusData` - Fix, providing a search to GetFeed `StatusData` containing a `DiagnosticSearch` which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) `StatusData` - Fix, providing a search to GetFeed `StatusData` containing a `DiagnosticSearch` which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.
 
-- [Get]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Get1) `Diagnostic` - Fix issue searching by `DiagnosticType.ProprietaryFault` or `DiagnosticType.LegacyFault` causing error result.
+- [Get]({{site.baseurl}}/software/api/reference/#Get1) `Diagnostic` - Fix issue searching by `DiagnosticType.ProprietaryFault` or `DiagnosticType.LegacyFault` causing error result.
 
-- [GoCurve]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GoCurve) - Added `IsIoxConnectionEnabled`. (Adds to `GO4v3`, `GO5`, `GO6`, `GO7`, `GO8`, `GO9`)
+- [GoCurve]({{site.baseurl}}/software/api/reference/#GoCurve) - Added `IsIoxConnectionEnabled`. (Adds to `GO4v3`, `GO5`, `GO6`, `GO7`, `GO8`, `GO9`)
 
-- [Group]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) (nuget only) - Removed `left` and `right` parameters from constructor and `Group.Get` method.
+- [Group]({{site.baseurl}}/software/api/reference/#Group) (nuget only) - Removed `left` and `right` parameters from constructor and `Group.Get` method.
 
-- [GroupRelations]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupRelations) - Added `AddInDatas` property. When `Group` linked `AddInData` (Feature Preview) is blocking a `Group` remove, a list blocking `AddInData` `Id`s will be returned in the `GroupRelations` property of `GroupRelationViolatedException`.
+- [GroupRelations]({{site.baseurl}}/software/api/reference/#GroupRelations) - Added `AddInDatas` property. When `Group` linked `AddInData` (Feature Preview) is blocking a `Group` remove, a list blocking `AddInData` `Id`s will be returned in the `GroupRelations` property of `GroupRelationViolatedException`.
 
-- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet) - Added `WashingtonIntrastate7Day`, `WashingtonIntrastate8Day`, `NoneCanada`, `HosRuleSetCanadaNorthOf60CycleOne`, `HosRuleSetCanadaNorthOf60CycleTwo`
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#HosRuleSet) - Added `WashingtonIntrastate7Day`, `WashingtonIntrastate8Day`, `NoneCanada`, `HosRuleSetCanadaNorthOf60CycleOne`, `HosRuleSetCanadaNorthOf60CycleTwo`
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) -  Added `ViewGroups`, `AdministerWiFiHotspotSettings`, `ViewWiFiHotspotSettings` 
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier) -  Added `ViewGroups`, `AdministerWiFiHotspotSettings`, `ViewWiFiHotspotSettings` 
 
-- [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - Proper support of active from/to dates. *Messages that have not been sent by active to date will not be sent.
+- [TextMessage]({{site.baseurl}}/software/api/reference/#TextMessage) - Proper support of active from/to dates. *Messages that have not been sent by active to date will not be sent.
 
-- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessageSearch) - `ParentTextMessageId` (long) is obsolete. Usage should be replaced with `ParentMessageId` (Id).
+- [TextMessageSearch]({{site.baseurl}}/software/api/reference/#TextMessageSearch) - `ParentTextMessageId` (long) is obsolete. Usage should be replaced with `ParentMessageId` (Id).
 
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - Added `MaxPCDistancePerDay`
+- [User]({{site.baseurl}}/software/api/reference/#User) - Added `MaxPCDistancePerDay`
 
-- [UserSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.UserSearch) - Added "negatable" search of `FistName`, `LastName` and `Name` properties. If the first character of this search property is '!', then the API will know to negate the search logic. For example: `field = "!John%"`, is equivalent to: `WHERE NOT LIKE 'John%'`.
+- [UserSearch]({{site.baseurl}}/software/api/reference/#UserSearch) - Added "negatable" search of `FistName`, `LastName` and `Name` properties. If the first character of this search property is '!', then the API will know to negate the search logic. For example: `field = "!John%"`, is equivalent to: `WHERE NOT LIKE 'John%'`.
 
 ## 5.7.1904
 
@@ -849,122 +849,122 @@ This major release merges the API wrappers mg-api-js (previously browser only ve
 
 - API.cs (nuget only) - Now implements IApi interface. This allows for simpler unit testing of integration code using mocks.
 
-- [BinaryDataType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryData) - Added `SoftwareVersionFull`
+- [BinaryDataType]({{site.baseurl}}/software/api/reference/#BinaryData) - Added `SoftwareVersionFull`
 
 - Calculated Engine Hours Search - With a custom setting (`ENABLEENGINEHOURSINTERPOLATION`) applied to your database, DiagnosticEngineHoursAdjustmentId will now be interpolated using trips and DiagnosticIgnitionId values when a search includes a from/toDate value(s) to provide exact values. To apply this custom setting to your database, please reach out to Geotab support. This will become the default behavior in v5.7.2001.
 
-- [DatabaseExists]({{site.baseurl}}/software/api/reference/#M:CheckmateServer.Web.WebMethods.DatabaseExistsAsync) fixed to include databases existing in other federations.
+- [DatabaseExists]({{site.baseurl}}/software/api/reference/#DatabaseExistsAsync) fixed to include databases existing in other federations.
 
-- [FuelTransactionProductType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransactionProductType) - Added `Hydrogen` and `DieselExhaustFluid`.
+- [FuelTransactionProductType]({{site.baseurl}}/software/api/reference/#FuelTransactionProductType) - Added `Hydrogen` and `DieselExhaustFluid`.
 
-- [FuelTransactionProvider]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Fuel.FuelTransactionProvider) - Added `GFN`.
+- [FuelTransactionProvider]({{site.baseurl}}/software/api/reference/#FuelTransactionProvider) - Added `GFN`.
 
-- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet) - Added `HosRuleSetCanadaCycleOneTeam` and `HosRuleSetCanadaCycleTwoTeam`.
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#HosRuleSet) - Added `HosRuleSetCanadaCycleOneTeam` and `HosRuleSetCanadaCycleTwoTeam`.
 
-- [LoginResult]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LoginResult) - Removed unsupported legacy property `SecurityToken`. This property duplicated the supported property `Credentials`. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.
+- [LoginResult]({{site.baseurl}}/software/api/reference/#LoginResult) - Removed unsupported legacy property `SecurityToken`. This property duplicated the supported property `Credentials`. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.
 
-- [Rule]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.Rule) - Fix, don't allow adding Rules without Conditions.
+- [Rule]({{site.baseurl}}/software/api/reference/#Rule) - Fix, don't allow adding Rules without Conditions.
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier) - Added `ViewGroups`.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier) - Added `ViewGroups`.
 
 ## 5.7.1903
 
-- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added `EditRequestedByUser`.
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#DutyStatusLog): Added `EditRequestedByUser`.
 
-- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Locations will not be included with DutyStatusLog by default. To include locations must use `dutyStatusLogSearch.IncludeLocations: true`.
+- [DutyStatusLog]({{site.baseurl}}/software/api/reference/#DutyStatusLog): Locations will not be included with DutyStatusLog by default. To include locations must use `dutyStatusLogSearch.IncludeLocations: true`.
 
-- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `HosEnabled`, `HosDisabled`.
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#DutyStatusLogType): Added `HosEnabled`, `HosDisabled`.
 
-- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog): Added `RepairDate`.
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog): Added `RepairDate`.
 
-- [IoxAddOn]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.IoxAddOn): Added `DateTime` representing when the channel was set to the given value.
+- [IoxAddOn]({{site.baseurl}}/software/api/reference/#IoxAddOn): Added `DateTime` representing when the channel was set to the given value.
 
 - Serialization: ISO date time at zero hour will now have full ISO time ex `1986-01-01` -> `1986-01-01T00:00:00.000Z`.
 
-- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet): Added `AmericaShortHaul14hrWorkday`, `AmericaShortHaul8Day14hrWorkday`, `OilTransportShortHaul14hrWorkday`, `OilTransportShortHaul8Day14hrWorkday`, `CaliforniaFlammableLiquidWithRestRequirement`, `CaliforniaSchoolPupilWithRestRequirement`, `CaliforniaFarmProductWithRestRequirement`, `OilTransportCaliforniaProperty`, `OilWellCaliforniaProperty`, `AmericaSalespersonNonCdlShortHaul`
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#HosRuleSet): Added `AmericaShortHaul14hrWorkday`, `AmericaShortHaul8Day14hrWorkday`, `OilTransportShortHaul14hrWorkday`, `OilTransportShortHaul8Day14hrWorkday`, `CaliforniaFlammableLiquidWithRestRequirement`, `CaliforniaSchoolPupilWithRestRequirement`, `CaliforniaFarmProductWithRestRequirement`, `OilTransportCaliforniaProperty`, `OilWellCaliforniaProperty`, `AmericaSalespersonNonCdlShortHaul`
 
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Active from/to: The user property `ActiveTo` will automatically be set to max date (2050-01-01) to denote that it is active.
+- [User]({{site.baseurl}}/software/api/reference/#User): Active from/to: The user property `ActiveTo` will automatically be set to max date (2050-01-01) to denote that it is active.
 To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of `ActiveTo` to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.
 
-- [CustomData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.CustomData): Incomplete custom data is no longer returned via GetFeed API.
+- [CustomData]({{site.baseurl}}/software/api/reference/#CustomData): Incomplete custom data is no longer returned via GetFeed API.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1): Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1): Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.
 
-    - [Audit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Audit) - 50,000 record limit
+    - [Audit]({{site.baseurl}}/software/api/reference/#Audit) - 50,000 record limit
 
-    - [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device) - 5,000 record limit
+    - [Device]({{site.baseurl}}/software/api/reference/#Device) - 5,000 record limit
 
-    - [Diagnostic]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.Diagnostic) - 50,000 record limit
+    - [Diagnostic]({{site.baseurl}}/software/api/reference/#Diagnostic) - 50,000 record limit
 
-    - [DriverChange]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChange) - 50,000 record limit
+    - [DriverChange]({{site.baseurl}}/software/api/reference/#DriverChange) - 50,000 record limit
 
-    - [Route]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Route) - 10,000 record limit
+    - [Route]({{site.baseurl}}/software/api/reference/#Route) - 10,000 record limit
 
-    - [Rule]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Exceptions.Rule) - 10,000 record limit
+    - [Rule]({{site.baseurl}}/software/api/reference/#Rule) - 10,000 record limit
 
-    - [TextMessage]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage) - 50,000 record limit
+    - [TextMessage]({{site.baseurl}}/software/api/reference/#TextMessage) - 50,000 record limit
 
-    - [Trailer]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Trailer) - 50,000 record limit
+    - [Trailer]({{site.baseurl}}/software/api/reference/#Trailer) - 50,000 record limit
 
-    - [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User) - 5,000 record limit
+    - [User]({{site.baseurl}}/software/api/reference/#User) - 5,000 record limit
 
-    - [Zone]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Zone) - 10,000 record limit
+    - [Zone]({{site.baseurl}}/software/api/reference/#Zone) - 10,000 record limit
 
 ## 5.7.1902
 
-- [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation): Added beta support
+- [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#ApplicationVersionInformation): Added beta support
 
-- [BinaryDataType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.BinaryDataType): Added `SoftwareVersionSection1`, `SoftwareVersionSection2`, `SoftwareVersionSection3`
+- [BinaryDataType]({{site.baseurl}}/software/api/reference/#BinaryDataType): Added `SoftwareVersionSection1`, `SoftwareVersionSection2`, `SoftwareVersionSection3`
 
-- [DefectRemark]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DefectRemark): Added beta support
+- [DefectRemark]({{site.baseurl}}/software/api/reference/#DefectRemark): Added beta support
 
-- [DefectSeverity]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DefectSeverity): Added `Unregulated`
+- [DefectSeverity]({{site.baseurl}}/software/api/reference/#DefectSeverity): Added `Unregulated`
 
-- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.
+- [Device]({{site.baseurl}}/software/api/reference/#Device): Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.
 
-- [DeviceType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceType): Added `GO9`
+- [DeviceType]({{site.baseurl}}/software/api/reference/#DeviceType): Added `GO9`
 
-- [DiagnosticType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DiagnosticType): Added `ProprietaryFault`, `LegacyFault`
+- [DiagnosticType]({{site.baseurl}}/software/api/reference/#DiagnosticType): Added `ProprietaryFault`, `LegacyFault`
 
-- [DriverRegulation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverRegulation): Added beta support
+- [DriverRegulation]({{site.baseurl}}/software/api/reference/#DriverRegulation): Added beta support
 
-- [DtcClass]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DtcClass): Added beta support
+- [DtcClass]({{site.baseurl}}/software/api/reference/#DtcClass): Added beta support
 
-- [DtcSeverity]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.DtcSeverity): Added beta support
+- [DtcSeverity]({{site.baseurl}}/software/api/reference/#DtcSeverity): Added beta support
 
-- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Added properties `CycleRest`, `DutySinceCycleRest`, `Is16HourExemptionAvailable`, `IsAdverseDrivingExemptionAvailable`, `IsOffDutyDeferralExemptionAvailable`
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#DutyStatusAvailability): Added properties `CycleRest`, `DutySinceCycleRest`, `Is16HourExemptionAvailable`, `IsAdverseDrivingExemptionAvailable`, `IsOffDutyDeferralExemptionAvailable`
 
 - DutyStatusAvailabilityDuration: Removed from documentionation, will be obsoleted in future
 
-- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolationType): Added `CycleRest` and `DutySinceCycleRest`
+- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#DutyStatusViolationType): Added `CycleRest` and `DutySinceCycleRest`
 
-- [DVIRDefect]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRDefect): Added beta support
+- [DVIRDefect]({{site.baseurl}}/software/api/reference/#DVIRDefect): Added beta support
 
-- [ElectricEnergyUnit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.ElectricEnergyUnit): Added beta support
+- [ElectricEnergyUnit]({{site.baseurl}}/software/api/reference/#ElectricEnergyUnit): Added beta support
 
-- [ElectricEnergyEconomyUnit]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.ElectricEnergyEconomyUnit): Added beta support
+- [ElectricEnergyEconomyUnit]({{site.baseurl}}/software/api/reference/#ElectricEnergyEconomyUnit): Added beta support
 
-- [FaultData]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Engine.FaultData): Added `ClassCode`, `Severity` and `SourceAddress` properties
+- [FaultData]({{site.baseurl}}/software/api/reference/#FaultData): Added `ClassCode`, `Severity` and `SourceAddress` properties
 
-- [GO9]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Go9): Added support
+- [GO9]({{site.baseurl}}/software/api/reference/#Go9): Added support
 
-- [GroupSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.GroupSearch): Added search by `Reference`
+- [GroupSearch]({{site.baseurl}}/software/api/reference/#GroupSearch): Added search by `Reference`
 
-- [HosRuleSet]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.Settings.HosRuleSet): Added `CaliforniaFlammableLiquid`, `CaliforniaSchoolPupil`, `CaliforniaFarmProduct`, `OilTransportCalifornia8day`, `OilWellCalifornia8day`
+- [HosRuleSet]({{site.baseurl}}/software/api/reference/#HosRuleSet): Added `CaliforniaFlammableLiquid`, `CaliforniaSchoolPupil`, `CaliforniaFarmProduct`, `OilTransportCalifornia8day`, `OilWellCalifornia8day`
 
-- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId): Added `UnitOfMeasureLitersPerTonneId`, `DiagnosticStateOfChargeId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringACChargingId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringDCChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyOutDuringACChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyInDuringACChargingInId`, `DiagnosticOnBoardChargerAcInputVoltageId`, `DiagnosticElectricVehicleChargingStateId`, `DiagnosticElectricVehicleBatteryPowerId`,  `DiagnosticOnBoardChargerACInputPowerId`, `DiagnosticOnBoardChargerDCOutputPowerId`, `DiagnosticElectricEnergyInId,DiagnosticElectricEnergyOutId`, `HosRuleSetCaliforniaFlammableLiquid`, `HosRuleSetCaliforniaSchoolPupil`, `HosRuleSetCaliforniaFarmProduct`, `HosRuleSetOilTransportCalifornia8day`, `HosRuleSetOilWellCalifornia8day`, `ControllerProprietaryFaultId`, `ControllerLegacyFaultId`, `SourceProprietaryId`, `SourceLegacyId`, `DiagnosticBluetoothNitricOxideConcentrationId`, `DiagnosticBluetoothNitrogenDioxideConcentrationId`, `DiagnosticBluetoothCarbonMonoxideConcentrationId`, `DiagnosticBluetoothAmmoniaConcentrationId`, `DiagnosticBluetoothMethaneConcentrationId`, `DiagnosticBluetoothEthanolConcentrationId`, `DiagnosticBluetoothHydrogenConcentrationId`, `DiagnosticBluetoothCarbonDioxideConcentrationId`
+- [KnownId]({{site.baseurl}}/software/api/reference/#KnownId): Added `UnitOfMeasureLitersPerTonneId`, `DiagnosticStateOfChargeId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringACChargingId`, `DiagnosticTotalLifetimeBatteryEnergyInDuringDCChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyOutDuringACChargingId`, `DiagnosticTotalLifetimeOnBoardChargerEnergyInDuringACChargingInId`, `DiagnosticOnBoardChargerAcInputVoltageId`, `DiagnosticElectricVehicleChargingStateId`, `DiagnosticElectricVehicleBatteryPowerId`,  `DiagnosticOnBoardChargerACInputPowerId`, `DiagnosticOnBoardChargerDCOutputPowerId`, `DiagnosticElectricEnergyInId,DiagnosticElectricEnergyOutId`, `HosRuleSetCaliforniaFlammableLiquid`, `HosRuleSetCaliforniaSchoolPupil`, `HosRuleSetCaliforniaFarmProduct`, `HosRuleSetOilTransportCalifornia8day`, `HosRuleSetOilWellCalifornia8day`, `ControllerProprietaryFaultId`, `ControllerLegacyFaultId`, `SourceProprietaryId`, `SourceLegacyId`, `DiagnosticBluetoothNitricOxideConcentrationId`, `DiagnosticBluetoothNitrogenDioxideConcentrationId`, `DiagnosticBluetoothCarbonMonoxideConcentrationId`, `DiagnosticBluetoothAmmoniaConcentrationId`, `DiagnosticBluetoothMethaneConcentrationId`, `DiagnosticBluetoothEthanolConcentrationId`, `DiagnosticBluetoothHydrogenConcentrationId`, `DiagnosticBluetoothCarbonDioxideConcentrationId`
 
-- [MimeContent]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.MimeContent): Added `ChannelNumber` property
+- [MimeContent]({{site.baseurl}}/software/api/reference/#MimeContent): Added `ChannelNumber` property
 
-- [RepairStatusType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.RepairStatusType): Added beta support
+- [RepairStatusType]({{site.baseurl}}/software/api/reference/#RepairStatusType): Added beta support
 
-- [SecurityIdentifierPermalink]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifierPermalink): Added `InspectDVIR`, `CertifyDVIR` - Removed `DailyUsageReport`
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added `InspectDVIR`, `CertifyDVIR` - Removed `DailyUsageReport`
 
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Added `ElectricEnergyEconomyUnit` and `isEmailReportEnabled` properties
+- [User]({{site.baseurl}}/software/api/reference/#User): Added `ElectricEnergyEconomyUnit` and `isEmailReportEnabled` properties
 
-- [User]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.User): Fixed bug where `isDriver` property would be included with `id` in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.
+- [User]({{site.baseurl}}/software/api/reference/#User): Fixed bug where `isDriver` property would be included with `id` in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.
 
-- [VersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.VersionInformation): `Server` is obsolete and replaced with more detailed `Application` property (see [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ApplicationVersionInformation))
+- [VersionInformation]({{site.baseurl}}/software/api/reference/#VersionInformation): `Server` is obsolete and replaced with more detailed `Application` property (see [ApplicationVersionInformation]({{site.baseurl}}/software/api/reference/#ApplicationVersionInformation))
 
 - .Net nuget package: Group constructor with only ID has been removed.
 
@@ -982,27 +982,27 @@ For an in-depth description of the result in rate limit changes in 5.7.1902 and 
 
 - Sun-setting support for SendEmail API. No longer available in API documentation.
 
-- [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): Active from/to:
+- [Device]({{site.baseurl}}/software/api/reference/#Device): Active from/to:
   - The device property `ActiveTo` will automatically be set to max date (2050-01-01) to denote that it is active.
   - To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of `ActiveTo` to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.
 
-- [DVIRLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DVIRLog): Added `Location` property.
+- [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog): Added `Location` property.
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewBusinessIntelligence`, `ActiveTrackingClearance`.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added `ViewBusinessIntelligence`, `ActiveTrackingClearance`.
 
 - SecurityRole: Added `EmailSent`, `SkipHosVerify`, `SkipHosClaimUnassigned`, `SkipDvirInspect`.
 
 ## 5.7.1804.1
 
-- [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): Fix bug, Windows 10 using IIS Express possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804.
+- [API.cs]({{site.baseurl}}/software/api/reference/#API) (.Net only): Fix bug, Windows 10 using IIS Express possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804.
 
 ## 5.7.1804
 
-- [Add]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Add1)/[Set]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.Set1) [Device]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Device): `ParameterVersion` will auto increment server side when device parameters property changed. Server must see that  `ParameterVersion` has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, `ParameterVersion` required manual increment.
+- [Add]({{site.baseurl}}/software/api/reference/#Add1)/[Set]({{site.baseurl}}/software/api/reference/#Set1) [Device]({{site.baseurl}}/software/api/reference/#Device): `ParameterVersion` will auto increment server side when device parameters property changed. Server must see that  `ParameterVersion` has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, `ParameterVersion` required manual increment.
 
-- [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): Fix bug, in certian senario changing `Timeout` property could abort the action on timeout and not cancel underlying request.
+- [API.cs]({{site.baseurl}}/software/api/reference/#API) (.Net only): Fix bug, in certian senario changing `Timeout` property could abort the action on timeout and not cancel underlying request.
 
-- [CustomVehicleDevice]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.CustomVehicleDevice): Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.
+- [CustomVehicleDevice]({{site.baseurl}}/software/api/reference/#CustomVehicleDevice): Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.
 
   - Improved support for calculated odometer and raw odometer with third-party diagnostic KnownId `DiagnosticThirdPartyOdometerId` and `OdometerAdjusmentId`
 
@@ -1012,53 +1012,53 @@ For an in-depth description of the result in rate limit changes in 5.7.1902 and 
 
   - Added `LicencePlate` and `LicenceState` properties
 
-- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Added BETA support for `Recap` and `CycleAvailabilities` properties
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#DutyStatusAvailability): Added BETA support for `Recap` and `CycleAvailabilities` properties
 
-- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusAvailability): Replaced `Availabilities` list with separate properties: `Driving`, `Cycle`, `Rest`, `Duty`, `Workday`
+- [DutyStatusAvailability]({{site.baseurl}}/software/api/reference/#DutyStatusAvailability): Replaced `Availabilities` list with separate properties: `Driving`, `Cycle`, `Rest`, `Duty`, `Workday`
 
-- [DeviceType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DeviceType): Added `CustomVehicleDevice`.
+- [DeviceType]({{site.baseurl}}/software/api/reference/#DeviceType): Added `CustomVehicleDevice`.
 
-- [DriverChange]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChange): DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.
+- [DriverChange]({{site.baseurl}}/software/api/reference/#DriverChange): DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.
 
-- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `ExemptionOffDutyDeferral`.
+- [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#DutyStatusLogType): Added `ExemptionOffDutyDeferral`.
 
-- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusViolationType): Added `DailyDriving`, `DailyRest`, `DailyDuty`, `DailyOff`.
+- [DutyStatusViolationType]({{site.baseurl}}/software/api/reference/#DutyStatusViolationType): Added `DailyDriving`, `DailyRest`, `DailyDuty`, `DailyOff`.
 
-- [KnownId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId): Added `DiagnosticThirdPartyEngineRunTimeId`,  `DiagnosticThirdPartyOdometerId`.
+- [KnownId]({{site.baseurl}}/software/api/reference/#KnownId): Added `DiagnosticThirdPartyEngineRunTimeId`,  `DiagnosticThirdPartyOdometerId`.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1) [LogRecord]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.LogRecord): Fixed bug with inconstant results limit.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord): Fixed bug with inconstant results limit.
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `DirectSupportAdmin`, `UserLoginStatusRead`, `UserLoginStatusSet`.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added `DirectSupportAdmin`, `UserLoginStatusRead`, `UserLoginStatusSet`.
 
-- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Values `AlarmSoundList`, `Tracking`, `CreateNewSqlDatabase`, `EngineControllerList`, `PurgeSettings`, `SendImmobilizationInstruction` are obsolete and will be removed in version 1806+.
+- [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Values `AlarmSoundList`, `Tracking`, `CreateNewSqlDatabase`, `EngineControllerList`, `PurgeSettings`, `SendImmobilizationInstruction` are obsolete and will be removed in version 1806+.
 
-- [SecurityRole]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityRole): Added `SupportTicketInsert`, `TrainingTicketInser`, `SupportTicketSet`, `TrainingTicketSetUser`, `LoginFailure`, `UserLockout`, `UserUnlocked`, `ShipmentLogInsert`, `ShipmentLogSet`, `ShipmentLogRemove`, `TrailerAttachmentInsert`, `TrailerAttachmentSet`, `TrailerAttachmentRemove`.
+- [SecurityRole]({{site.baseurl}}/software/api/reference/#SecurityRole): Added `SupportTicketInsert`, `TrainingTicketInser`, `SupportTicketSet`, `TrainingTicketSetUser`, `LoginFailure`, `UserLockout`, `UserUnlocked`, `ShipmentLogInsert`, `ShipmentLogSet`, `ShipmentLogRemove`, `TrailerAttachmentInsert`, `TrailerAttachmentSet`, `TrailerAttachmentRemove`.
 
-- [ZoneSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.ZoneSearch): Added `FromDate` and `ToDate` search properties providing ability to filter zones by their active dates.
+- [ZoneSearch]({{site.baseurl}}/software/api/reference/#ZoneSearch): Added `FromDate` and `ToDate` search properties providing ability to filter zones by their active dates.
 
-> [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
+> [API.cs]({{site.baseurl}}/software/api/reference/#API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
 
 ## 5.7.1803
 
 * SecurityRole: Added `CertificateSet` permission
 
-* [DriverChangeSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DriverChangeSearch): Added property `Type` indicating the DriverChangeType to search for exclusively.
+* [DriverChangeSearch]({{site.baseurl}}/software/api/reference/#DriverChangeSearch): Added property `Type` indicating the DriverChangeType to search for exclusively.
 
-> [API.cs]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
+> [API.cs]({{site.baseurl}}/software/api/reference/#API) (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging *synchronous* requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.
 
 ## 5.7.1802
 
-* [DutyStatusLog]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLog): Added properties `Odometer`, `EngineHours`, `EventRecordStatus`, `EventCode`, `EventType`
+* [DutyStatusLog]({{site.baseurl}}/software/api/reference/#DutyStatusLog): Added properties `Odometer`, `EngineHours`, `EventRecordStatus`, `EventCode`, `EventType`
 
-* [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.DutyStatusLogType): Added `SituationalDrivingClear`
+* [DutyStatusLogType]({{site.baseurl}}/software/api/reference/#DutyStatusLogType): Added `SituationalDrivingClear`
 
-* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Added properties `HourlyIsOdometerInterpolated`, `IsEnterOdometerInterpolated`, `IsExitOdometerInterpolated`
+* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#FuelTaxDetail): Added properties `HourlyIsOdometerInterpolated`, `IsEnterOdometerInterpolated`, `IsExitOdometerInterpolated`
 
-* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetail): Obsolete `IsClusterOdometer` - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.
+* [FuelTaxDetail]({{site.baseurl}}/software/api/reference/#FuelTaxDetail): Obsolete `IsClusterOdometer` - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.
 
-* [FuelTaxDetailSearch]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
+* [FuelTaxDetailSearch]({{site.baseurl}}/software/api/reference/#FuelTaxDetailSearch): Added properties `IncludeBoundaries`, `IncludeHourlyData`
 
-* [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
+* [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added `ViewTripTypeChangeData`, `EditTripTypeChangeData`
 
 ### Notice
 
