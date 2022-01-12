@@ -138,7 +138,7 @@ However, if the request is incorrect, or an error is triggered on the server, th
 }
 ```
 
-The properties of the error object are [JsonRpcError](../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcError), and [JsonRpcErrorData](../../api/reference/#T:Geotab.Checkmate.ObjectModel.Web.JsonRpcErrorData). Objects are documented in the API Reference.
+The properties of the error object are [JsonRpcError](../../api/reference/#JsonRpcError), and [JsonRpcErrorData](../../api/reference/#JsonRpcErrorData). Objects are documented in the API Reference.
 
 See [Example 3](#example-3-requests-to-missing-databases-or-with-expiring credentials): Handling a database move or credential expiry to show how it can be useful to identify and handle errors.
 
