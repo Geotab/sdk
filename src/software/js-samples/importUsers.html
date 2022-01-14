@@ -252,7 +252,7 @@
 						<div class="checkmateField">
 							<label class="label">Distance measurement system:</label>
 							<div id="options_measurementSelect">
-								<input type="radio" name="distanceunits" value="Metric" id="metricUnit"  checked>
+								<input type="radio" name="distanceunits" value="Metric" id="metricUnit" checked>
 								<label>Metric</label>
 								<input type="radio" name="distanceunits" value="US" id="usUnit">
 								<label>US/Imperial</label></div>
@@ -1140,15 +1140,13 @@
 
 				if (document.getElementById("metricUnit").checked) {
 					var isMetric = true;
-				} 
 				else {
 					var isMetric = false;
 				}
-
+          
 				if (document.getElementById("idFeaturePreviewOn").checked) {
 					var isLabsEnabled = true;
-				} 
-				else {
+				} else {
 					var isLabsEnabled = false;
 				}
 
@@ -1164,15 +1162,13 @@
 
 				if (document.getElementById("idYardMoveOn").checked) {
 					var isYardMoveEnabled = true;
-				} 
-				else {
+				} else {
 					var isYardMoveEnabled = false;
 				}
 
 				if (document.getElementById("idPersonalConveyanceOn").checked) {
 					var isPersonalConveyanceEnabled = true;
-				} 
-				else {
+				} else {
 					var isPersonalConveyanceEnabled = false;
 				}       
 

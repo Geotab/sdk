@@ -35,6 +35,15 @@ Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
 ### Grounding a device
 Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
 
+### Serial Port Settings For Add-Ons
+
+Geotab recommends that RS232/USB serial ports are programmed in accordance with the following specifications:
+
+- Baud Rate: 9600 or 115200, Note: the device is equipped with autobaud detection so other standard rates are acceptable
+- Parity: None
+- Stop Bits: 1
+- Flow Control: None
+
 ## Integration Process
 
 The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol.
@@ -168,9 +177,9 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Status Flags (from LSB): <br> 1st bit: 1 = GPS Valid <br> 2nd bit: 1 = Ignition On <br> 3rd bit: 1 = Engine Bus Activity <br> 4th bit: 1 = Date/Time Valid <br> 5th bit: 1 = Speed From Engine <br> 6th bit: 1 = Odometer From Engine | 1 | 22 |
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
-| Trip Duration | 4 | 31 |
-| GO Device ID [5] | 4 | 35 |
-| Driver ID [6] | 4 | 39 |
+| Trip Duration [5] | 4 | 31 |
+| GO Device ID [6] | 4 | 35 |
+| Driver ID [7] | 4 | 39 |
 | GO Device Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
@@ -179,9 +188,10 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 1. All implementations of this message must cater for the message length increasing in the future.
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
 3. If Road Speed from the engine is not available, GPS speed is used.
-4. If Odometer is not available, GPS device distance is used.
-5. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
-6. Driver ID only available when using the IOX-NFC.
+4. Increase of odometer since the most recent ignition on. If Odometer is not available, GPS device distance is used.
+5. Time passed since the most recent ignition on.
+6. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
+7. Driver ID only available when using the IOX-NFC.
 
 #### *Conversions*
 

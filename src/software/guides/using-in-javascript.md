@@ -83,35 +83,13 @@ params | The parameter object that the API method expects. For example: `{ typeN
 callbackSuccess | The function that will be called back when the API call succeeds. The callback function has a single argument called “result” that will contain any results returned by the API call.
 callbackError | The function that will be called back should the API call fail. The callback function has a single argument that will contain error information.
 
+## MultiCall
+
+A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging Multicalls as much as possible - you may read further documentation on multicalls here  https://geotab.github.io/sdk/software/guides/concepts/#multicall Additionally, you can find a JS example of multicall here  https://geotab.github.io/sdk/software/guides/concepts/#api-client-support  
+
 ## A note about state
 
 The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “out” of the server.
-
-# Working with JSONP
-
-Creating a [JSONP](http://en.wikipedia.org/wiki/JSONP) request is similar to creating a HTTP GET request — but with one minor change. An additional parameter that specifies the callback in the requested URL will be required to be passed as follows:
-
-`https://my.geotab.com/apiv1/GetVersion?JSONP=jsonpCallback`
-
-The response will be in the following format with your current version number:
-
-```json
-{"result":"5.7.1508.414"}
-```
-
-In a JavaScript application a function to handle the JSONP callback will need to be set up.
-
-```javascript
-window.jsonpCallback = function(data) {
-    if (data.result) {
-        alert(data.result);
-    } else {
-        alert(data.error);
-    }
-};
-```
-
-When the examples are downloaded, the GeotabApi object has an option to use JSONP requests. In this way the examples can be run without placing them on a Web server.
 
 # Next steps
 

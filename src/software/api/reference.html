@@ -1047,7 +1047,9 @@ permalink: /software/api/reference/
                             for (i++; i < baseTypeLookupValues.length; i++) {
                                 baseTypeMember = baseTypeMember[baseTypeLookupValues[i]];
                             }
-                            getMemberPropertiesRecursive(baseTypeMember, processedProperties);
+                            if (baseTypeMember) {
+                                getMemberPropertiesRecursive(baseTypeMember, processedProperties);
+                            }
                         }
                     };
 
