@@ -992,7 +992,13 @@
 							var isYardMoveEnabled = split[26];
 							var isPersonalConveyanceEnabled = split[27];  
 							
-
+							// when pasting in ',' seperated string make sure values aren't empty
+							if (isYardMoveEnabled === '') {
+								var isYardMoveEnabled = false;
+							} 
+							if (isPersonalConveyanceEnabled === '') {
+								var isPersonalConveyanceEnabled = false;
+							}
 							
 							var newUser = {
 								name: userName,
