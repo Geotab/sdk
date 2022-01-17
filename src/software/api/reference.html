@@ -440,7 +440,7 @@ permalink: /software/api/reference/
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push("<a href='#" + attrTextNoParents.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push("<a href='#" + (attrTextNoParents.length > 0 ? attrTextNoParents.replace('`', '') : attrText.replace('`', '')) + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -1071,6 +1071,7 @@ permalink: /software/api/reference/
                 pos = anchorText.lastIndexOf(".");
                 anchorTextNoParents = pos > 0 ? anchorText.substr(pos + 1, anchorText.length) : "";
                 anchorTextNoParents = removeGenericsSymbols(anchorTextNoParents);
+                anchorTextNoParents = anchorTextNoParents.length > 0 ? anchorTextNoParents : anchorText;
 
                 memberHtmlString += "<span class='member-type'>" + (isEnum ? "Enum" : (member.type === memberTypes.object ? "Object" : (isMethod ? "Method" : ""))) + "</span>";
 
