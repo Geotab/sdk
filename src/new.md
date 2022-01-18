@@ -676,7 +676,7 @@ This fix applies to messages of exception types `MissingMethodException`, `Ambig
 
 ### GetFeed DebugData
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1): [DebugData]({{site.baseurl}}/software/api/reference/#DebugData) - Fixed sort order issue leading to possible missed records.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1): [DebugData]({{site.baseurl}}/software/api/reference/#DebugData) - Fixed sort order issue leading to possible missed records.
 
 ### FuelTransaction
 
@@ -819,9 +819,9 @@ This major release merges the API wrappers mg-api-js (previously browser only ve
 
 - [DVIRLog]({{site.baseurl}}/software/api/reference/#DVIRLog) - `DefectList` must be provided with `DVIRLog`.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) - Fixed corner case where it was possible to miss data in feed due to concurrency issue.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1) - Fixed corner case where it was possible to miss data in feed due to concurrency issue.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) `StatusData` - Fix, providing a search to GetFeed `StatusData` containing a `DiagnosticSearch` which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1) `StatusData` - Fix, providing a search to GetFeed `StatusData` containing a `DiagnosticSearch` which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.
 
 - [Get]({{site.baseurl}}/software/api/reference/#Get1) `Diagnostic` - Fix issue searching by `DiagnosticType.ProprietaryFault` or `DiagnosticType.LegacyFault` causing error result.
 
@@ -888,7 +888,7 @@ To account for differences in Client machine time vs Server machine time, we are
 
 - [CustomData]({{site.baseurl}}/software/api/reference/#CustomData): Incomplete custom data is no longer returned via GetFeed API.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1): Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1): Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.
 
     - [Audit]({{site.baseurl}}/software/api/reference/#Audit) - 50,000 record limit
 
@@ -1026,7 +1026,7 @@ For an in-depth description of the result in rate limit changes in 5.7.1902 and 
 
 - [KnownId]({{site.baseurl}}/software/api/reference/#KnownId): Added `DiagnosticThirdPartyEngineRunTimeId`,  `DiagnosticThirdPartyOdometerId`.
 
-- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeedAsync1) [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord): Fixed bug with inconstant results limit.
+- [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1) [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord): Fixed bug with inconstant results limit.
 
 - [SecurityIdentifier]({{site.baseurl}}/software/api/reference/#SecurityIdentifier): Added `DirectSupportAdmin`, `UserLoginStatusRead`, `UserLoginStatusSet`.
 

@@ -434,13 +434,12 @@ permalink: /software/api/reference/
                                         break;
                                     case "cref":
                                         attrText = attrText.replace("T:Geotab.", "");
-                                        pos = attrText.lastIndexOf(".");
-                                        attrTextNoParents = pos > 0 ? attrText.substr(pos + 1, attrText.length) : "";
-                                        attrTextNoParents = removeGenericsSymbols(attrTextNoParents);
+                                        uniqueName = GetNameWithoutCheckmateReference(attrText); //we don't want to remove the appended numbers from href
+                                        attrTextNoParents = removeGenericsSymbols(uniqueName);
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push("<a href='#" + (attrTextNoParents.length > 0 ? attrTextNoParents.replace('`', '') : attrText.replace('`', '')) + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -1065,13 +1064,7 @@ permalink: /software/api/reference/
                 memberParameters = member.parameters;
                 jj = memberParameters.length;
                 isMethod = member.type === memberTypes.method;
-
-                anchorText = member.anchor;
-
-                pos = anchorText.lastIndexOf(".");
-                anchorTextNoParents = pos > 0 ? anchorText.substr(pos + 1, anchorText.length) : "";
-                anchorTextNoParents = removeGenericsSymbols(anchorTextNoParents);
-                anchorTextNoParents = anchorTextNoParents.length > 0 ? anchorTextNoParents : anchorText;
+                anchorTextNoParents = GetNameWithoutCheckmateReference(member.anchor);
 
                 memberHtmlString += "<span class='member-type'>" + (isEnum ? "Enum" : (member.type === memberTypes.object ? "Object" : (isMethod ? "Method" : ""))) + "</span>";
 
@@ -1125,7 +1118,7 @@ permalink: /software/api/reference/
             addSearchTag = function (searchTagsArray, member) {
                 searchTagsArray.push({
                     label: member.name,
-                    anchor: member.anchor,
+                    anchor: GetNameWithoutCheckmateReference(member.anchor),
                     category: getMemberTypeString(member.type) + "s",
                     isBeta: member.isBeta
                 });
@@ -1222,6 +1215,13 @@ permalink: /software/api/reference/
                         e.preventDefault();
                     }, false);
                 });
+            },
+            GetNameWithoutCheckmateReference = function (name){
+                var pos = name.lastIndexOf(".");
+                var anchorTextNoParents = pos > 0 ? name.substr(pos + 1, name.length) : "";
+                anchorTextNoParents = anchorTextNoParents.length > 0 ? anchorTextNoParents : name;
+                anchorTextNoParents = anchorTextNoParents.replace("Async1", "1").replace("Async","");
+                return anchorTextNoParents;
             },
             loading = document.getElementById("loading-content"),
             main = document.getElementById("main"),
