@@ -320,3 +320,46 @@ p {
 #template-content {
 	display: none;
 }
+
+#disclaimer {
+    background-color: #E5F7FD;
+    border: 1px solid #E5F7FD;
+    color: #25477B;
+    fill: #25477B;
+    margin: 20px;
+    align-items: center;
+    width: fit-content;
+    border-radius: 6px;
+    padding: 4px 6px;
+    position: relative;
+    display: block;
+  
+  
+}
+
+#disclaimerLabel {
+    font-size: 14px;
+    line-height: 16px;
+    padding-right: 5px;
+
+    color: #25477B;
+    fill: #25477B;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-right: 0px;
+    text-transform: uppercase;
+
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  
+}
