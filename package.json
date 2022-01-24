@@ -33,7 +33,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "require-dir": "^1.2.0",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "yargs": "^16.2.0"
   },
   "browserslist": [
