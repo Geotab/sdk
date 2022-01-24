@@ -41,6 +41,6 @@
     "> 2%"
   ],
   "dependencies": {
-    "postcss": "^8.2.10"
+    "postcss": "^8.2.13"
   }
 }
