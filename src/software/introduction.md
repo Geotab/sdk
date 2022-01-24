@@ -23,7 +23,7 @@ There are many different types of data that can be requested from the API. For e
 * StatusData (readings of vehicle measurements e.g. oil temperature or accelerometer)
 * FaultData (fault codes reported by the engine)
 
-> See the full list of supported data feed types [here](../api/reference/#M:Geotab.Checkmate.Database.DataStore.GetFeed1)
+> See the full list of supported data feed types [here](../api/reference/#GetFeed1)
 
 The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the database (see [here for .Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed) or [here for Java](https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed)).
 

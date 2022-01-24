@@ -404,7 +404,7 @@ MIME-type data can be transferred from an external device to the server via the 
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
 3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
 
-MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
+MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](/software/api/reference/#TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
 
 ### The MIME Type Protocol:
 
