@@ -125,7 +125,7 @@ Seat belt and odometer requests are proprietary on most passenger cars. It is Ge
 Seat belt use is logged on status change: a value of 1 represents the seat belt unbuckled, while a value of 0 represents the seat belt buckled. Odometer is logged both on ignition on and ignition off and every hour.
 
 #### Engine Hours
-It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. As a workaround, Geotab provides two types of engine hours StatusData. it is important to distinguish between the two in order to utilize them appropriately.
+It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. As a workaround, Geotab provides two types of engine hours StatusData. It is important to distinguish between the two in order to utilize them appropriately.
 
 DiagnosticEngineHoursId:<br>
 This is the engine hours provided by the ECU in the vehicle as read by the GoDevice. This is reported every hour and at ignition OFF. 
