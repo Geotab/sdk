@@ -3,6 +3,32 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+<style>
+#updates {
+   border-radius: 0.25rem;
+   font-family: inherit; 
+   color: rgb(0, 120, 211); 
+   border-color: #e6e6e6;
+   background-color: white;
+   font-size: 14px;
+   font-weight: bold;
+   letter-spacing: .25px;
+   cursor: pointer;
+   border-width: 0.5px;
+   border-style: solid;
+   padding: 0.3%;
+   display: inline-block;
+}
+
+#updates:hover{
+   background-color: #f2f8fd;
+   color: #005ba0;
+}
+</style>
+
+<span id="updates" onclick="window.open('https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743','_blank');">Click here to subscribe for Updates
+</span>
+
 ## 6.0
 
 - Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
