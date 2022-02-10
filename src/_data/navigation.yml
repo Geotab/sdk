@@ -41,6 +41,8 @@ toc:
             url: https://github.com/Geotab/mg-media-files
             external: true
             beta: true
+          - page: Connect to Power BI
+            url: /software/guides/power-bi/
       - title: API
         subfolderitems:
           - page: Reference
