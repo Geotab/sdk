@@ -370,6 +370,56 @@ After handshaking, this message can be issued periodically by the External Devic
 | ETX (0x03) | 1 | 5 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
+## Messages from MyGeotab
+
+To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](/software/api/runner.html).
+```javascript
+    api.call("Add", {
+            "typeName": "TextMessage",
+            "entity": {
+              "user": {
+                "id": user.id               //Replace with user id of interest
+              },
+              "device": {
+                "id": device.id             //Replace with device id of interest
+              },
+              "messageContent": {
+                "contentType": "SerialIox",
+                "channel": 1,               //Taken from Get<IoxAddOn> call
+                "data": base64_encoded_byte //Replace with your data encoded in base64
+              },
+              "isDirectionToVehicle": true
+            }
+          }, function(result) {
+              console.log("Done: ", result);
+          }, function(e) {
+              console.error("Failed:", e);
+          });)
+```
+To send MIME messages from MyGeotab to the external device, please use the following script instead:
+```javascript
+    api.call("Add", {
+    "typeName": "TextMessage",
+    "entity":{
+        "user":{"id":user.id},                    //Replace with user id of interest
+        "device":{"id":device.id},                //Replace with device id of interest
+        "messageContent":{
+            "contentType":"MimeContent",
+            "channelNumber":1,
+            "mimeType":"text",                    //Can be changed to any free format text value
+			      "binaryDataPacketDelay":"00:00:03.0000000", //applies a 
+            //configurable delay of up to 5 seconds in between each sequenced message
+            // of a multimessage MIME payload
+            "data":base64_encoded_byte //Replace with your data encoded in base64
+        },
+        "isDirectionToVehicle":true},
+      }, function(result) {
+          console.log("Done: ", result);
+      }, function(e) {
+          console.error("Failed:", e);
+      });
+```
+
 ## Appendices
 
 ### Appendix A: Raw Message Data Example for IOX-USB & IOX-RS232

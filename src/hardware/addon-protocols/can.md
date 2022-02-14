@@ -80,8 +80,6 @@ Issued by the GO device on receipt of Third-Party Data from the External Device.
 
 ## Messages from External Device
 
-Only one-way messaging (from the external device to MyGeotab) is supported at this time.
-
 ### Msg Type 0x81: Third-Party Device ID
 
 Issued by the external device on power-up every second until the Acknowledge message (Msg Type 0x02) is received.
@@ -135,6 +133,35 @@ Priority Status Data will follow an expedited processing workflow on the GoDevic
 | Byte 1–2 | Status Data ID |
 | Byte 3–6 | Status Data |
 | Reply: Third-Party Data Ack (Msg Type 0x02) |
+
+## Messages from MyGeotab
+
+To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](/software/api/runner.html).
+```javascript
+    api.call("Add", {
+                "typeName": "TextMessage",
+                "entity": {
+                  "isDirectionToVehicle": true,
+                  "activeFrom": "1986-01-01T00:00:00.000Z",
+                  "activeTo": "2050-01-01T00:00:00.000Z",
+                  "messageContent": {
+                    "contentType": "CAN",  
+                    "channel": 1,                   //Taken from Get<IoxAddOn> call
+                    "arbitrationId":  217055107,    //Fixed value do not change
+                    "isAcknowledgeRequired": true,
+                    "extendedFrameFlag": true,
+                    "data": base64_encoded_byte     //Replace with your data encoded in base64
+                  },
+                  "device": {
+                    "id": device.id                 //Replace with device id of interest
+                  }
+                }
+              }, function(result) {
+                  console.log("Done: ", result);
+              }, function(e) {
+                  console.error("Failed:", e);
+              });
+```
 
 ## Appendix
 
