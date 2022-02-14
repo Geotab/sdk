@@ -153,9 +153,13 @@ To send messages from MyGeotab to the external device, please download the sourc
                     "data": base64_encoded_byte     //Replace with your data encoded in base64
                   },
                   "device": {
-                    "id": device.id
+                    "id": device.id                 //Replace with device id of interest
                   }
                 }
+              }, function(result) {
+                  console.log("Done: ", result);
+              }, function(e) {
+                  console.error("Failed:", e);
               });
 ```
 
