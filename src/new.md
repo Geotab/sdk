@@ -3,31 +3,7 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
-<style>
-#updates {
-   border-radius: 0.25rem;
-   font-family: inherit; 
-   color: rgb(0, 120, 211); 
-   border-color: #e6e6e6;
-   background-color: white;
-   font-size: 14px;
-   font-weight: bold;
-   letter-spacing: .25px;
-   cursor: pointer;
-   border-width: 0.5px;
-   border-style: solid;
-   padding: 0.3%;
-   display: inline-block;
-}
-
-#updates:hover{
-   background-color: #f2f8fd;
-   color: #005ba0;
-}
-</style>
-
-<span id="updates" onclick="window.open('https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743','_blank');">Click here to subscribe for Updates
-</span>
+<a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Click here to subscribe for Updates </a>
 
 ## 6.0
 
