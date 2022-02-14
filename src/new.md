@@ -3,6 +3,8 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
+<a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Click here to subscribe for Updates </a>
+
 ## 6.0
 
 - Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
