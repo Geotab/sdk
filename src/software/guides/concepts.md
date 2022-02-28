@@ -10,7 +10,7 @@ Requests made to the Geotab API are performed over HTTPS. The current API is ver
 
 NOTE: Sample text inside `[` and `]` (e.g. `[myserver]`) are placeholders to indicate where the user enters information unique to their requirements.
 
-API request parameters, and their results are transported using the lightweight [JSON](http://www.json.org/) format. The [API reference](../../api/reference) contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
+API request parameters and their results are transported using the lightweight [JSON](http://www.json.org/) format. The [API reference](../../api/reference) contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
 
 Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST requests use the JSON-RPC standard. When making requests that contain MyGeotab credentials, use the POST request only. This helps to minimize potential leaks into browser histories, or web server logs. 
 
@@ -39,7 +39,7 @@ The HTTP response is returned as JSON. For example:
 Where the version is the current version installed on the server.
 
 ### Make your first API call
-A more complex request requires parameters. While both GET and POST requests are supported, we strongly recommended that only POST requests are used for requests that include MyGeotab credentials as parameters. 
+A more complex request requires parameters. While both GET and POST requests are supported, we strongly recommend that only POST requests are used for requests that include MyGeotab credentials as parameters. 
 
 The endpoint shown below is used to invoke an API method when an HTTP POST request is used. The example that follows illustrates a POST request that returns all devices (vehicles) and their properties.
 
@@ -362,7 +362,7 @@ When exchanging dates as parameters to API methods, you must ensure that they ar
 
 As a general rule, MyGeotab uses the metric system for values such as speed (km/h) and distance (m). For example, if you queried the odometer reading for a vehicle, the value would be returned in meters or if you retrieved the current speed of a vehicle it would be in km/h. It does not matter in which region in the world the vehicle or user of MyGeotab system is located — we always return the values in metric.A simple conversion can be applied to these values should you wish to work in imperial units or other customized units instead.
 
-Please note that MyGeotab also records various other status data (i.e. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable [SAE](http://standards.sae.org/automotive/) standard of the specific code for the associated unit of measure.
+Please note that MyGeotab also records various other status data (e.g. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable [SAE](http://standards.sae.org/automotive/) standard of the specific code for the associated unit of measure.
 
 ## Entities
 
@@ -415,7 +415,7 @@ There are certain IDs that are predefined for system entities. For example the g
 }
 ```
 
-If the system entities do not have any properties then they are specified as strings with their ID's name.  For example the source "Obd" will be identified as "SourceObdId".
+If the system entities do not have any properties then they are specified as strings with their ID's name. For example the source "Obd" will be identified as "SourceObdId".
 
 ```json
 {
@@ -469,7 +469,7 @@ var deviceLookup = {
 
 statusDatas[i].device = deviceLookup[statusDatas[i].device.id];
 
-Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call.This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) and [JavaScript DataFeed](../../js-samples/dataFeed.html) examples.
+Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call. This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) and [JavaScript DataFeed](../../js-samples/dataFeed.html) examples.
 
 ## MultiCall
 
@@ -504,7 +504,7 @@ Response:
 }
 ```
 
-Making the assumption that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), 40 milliseconds to send the request, 20 ms to process the data on the server and 40 ms for the response to be returned. [Google's SPDY research project](http://dev.chromium.org/spdy/spdy-whitepaper) [white paper](http://dev.chromium.org/spdy/spdy-whitepaper) states that "_typical header sizes of 700-800 bytes is common_". Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the "cost of doing business" when making a request over a network.
+Let's assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. [Google's SPDY research project](http://dev.chromium.org/spdy/spdy-whitepaper) [white paper](http://dev.chromium.org/spdy/spdy-whitepaper) states that "_typical header sizes of 700-800 bytes is common_". Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the "cost of doing business" when making a request over a network.
 
 Taking the previous assumptions, what would the overhead be for making 1000 requests for road max speeds? When individual calls are made to the server for 1000 addresses; the base (minimum) HTTP and Network overhead is required for each of these calls. This would result in 80 seconds (80,000 milliseconds) of network overhead and 0.72 MB (750,000 bytes) in headers just going to and from the server. It can be clearly seen that a great deal of overhead can be generated by making small but repeated requests.
 
@@ -648,8 +648,8 @@ Yes, it is possible to use a search in a multicall.
 
 **When shouldn't I use a multicall?**
 
-1. If you need to make a few requests that are long running and return a large amount of data. In these cases it may be preferable to make the requests singularly instead of running one multicall request that continues for a very long time before completion. When the connection is held open for a long period of time, you become increasingly susceptible to network interference that can terminate the request.
-2. Manipulating data (Add, Set, Remove) is not recommended via a multicall. A multicall is not transactional. Therefore, if call 1 of 3 to Add succeeds and call 2 of 3 fails, call 3 of 3 will not be executed and call 1 would not be rolled back.
+1. If you need to make a few requests that are long running and return a large amount of data, it may be preferable to make the requests singularly instead of running one multicall request that continues for a very long time before completion. When the connection is held open for a long period of time, you become increasingly susceptible to network interference that can terminate the request.
+2. Manipulating data (Add, Set, Remove) via a multicall is not recommended. A multicall is not transactional. Therefore, if call 1 of 3 to Add succeeds and call 2 of 3 fails, call 3 of 3 will not be executed and call 1 would not be rolled back.
 
 **How many request can I put in a multicall?**
 
