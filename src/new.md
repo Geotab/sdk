@@ -5,6 +5,53 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Click here to subscribe for Updates </a>
 
+## 7.0
+
+### Security updates
+
+In an effort to increase application and API security, exception types that expose database provider or platform-specific error messages have been removed and are now represented as one of the exceptions below. Most exceptions and error messages have not changed. Exception types that were previously documented remain unchanged; however, some new exception types include non-specific, generalized messages to avoid sharing information about the underlying infrastructure. The following common exceptions are still supported.
+
+- `ArgumentException`
+- `ArgumentNullException`
+- `ArgumentOutOfRangeException`
+- `CaptchaException`
+- `DatabaseMaintenanceException`
+- `DbUnavailableException`
+- `DuplicateException`
+- `ExpiredPasswordException`
+- `GenericException` *new*
+- `GroupRelationViolatedException`
+- `InvalidApiOperationException` *new* (fromerly `InvalidOperationException`)
+- `InvalidCastException`
+- `InvalidMyAdminUserException`
+- `InvalidPermissionsException`
+- `InvalidUserException`
+- `JsonSerializerException`
+- `MissingMemberException`
+- `MissingMethodException`
+- `PasswordPolicyViolationException`
+
+### Password policies
+
+- User passwords will now be validated against a list of common passwords. If it is a common password, a `PasswordPolicyViolationException` is returned.
+- User passwords will now be validated against username, first name, and last name. If it contains a username, first name, last name, a `PasswordPolicyViolationException` is returned. This method can no longer be disabled.
+
+### User policies
+
+- The maximum number of active sessions for a user on a single database has been lowered to 100. Active sessions are a rolling list sorted by date and time. When the number of active sessions reaches 100, a new session is added, and the oldest session is removed from the list (expired).
+
+### General updates
+
+- Added `ModifyGroupFilter` and `ViewGroupFilter` to `SecurityIdentifier`.
+- Added `CaliforniaPropertyShortHaulWithRest`, `CanadaOil`, `CanadaNorthOf60Oil`, `CanadaOilTeam`, and `CanadaNorthOf60OilTeam` properties.
+- Added support for fuel transaction provider, `WexCanada`.
+- Minor bug fixes and package updates.
+
+### Coming soon
+
+- The `AddInData` legacy property `Data` will be removed in the coming 9.0 release. Please update your integration requests to use the `Details` property instead
+- JSONP support will be removed from the API in the coming 8.0 release, and should no longer be used.
+
 ## 6.0
 
 - Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, [click here](https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US).
