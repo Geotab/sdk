@@ -28,7 +28,7 @@ Geotab offers a wide range of IOXs, some of which are stand-alone solutions. IOX
 
 ## Technical Hardware Toolkit
 
-The toolkit provides helpful inte gration resources and context in addition to the existing documentation and make it easier for partners to get up and running. 
+The toolkit provides helpful integration resources and context in addition to the existing documentation and make it easier for partners to get up and running. 
 
 We have also moved to the new DIG platform for Custom Telematics Device integrations and included DIG documentation linked from the toolkit as well (while slating the MyAdmin documentation for deprecation).
 
