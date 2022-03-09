@@ -126,3 +126,5 @@ toc:
       - page: Dev Channel
         url: https://www.geotab.com/dev-channel/
         external: true
+      - page: Toolkits
+        url: /resources/toolkits/
