@@ -135,3 +135,30 @@ Records the GPS travel time for vehicles which do not report engine hours from t
 
 Add\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> is used to add manual engine hours entries.<br>
 Get\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> returns a calculated engine hours value based on GPS Travel time and the last reported engine hours value (either reported by the GoDevice or manually entered).
+
+#### Odometer
+It is often important in fleet management to track a vehicle's Odometer. While Geotab strives to report data as frequently as feasible and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately.
+
+##### Odometer Manipulators:<br>
+Odometer Factor:<br>
+Used as a multiplier to correct raw odometer. As default this is set to 1 and can only be changed via the API. This variable is rarely used. 
+
+Odometer Offset:<br>
+Value added to the last read raw odometer to correct the odometer value at time of API call, or as displayed in MyGeotab. Odometer Offset = Odometer Adjustment - Last odometer reading on the Vehicle Edit page.
+
+##### Odometer Status Data: <br>
+DiagnosticOdometerAdjustmentId:<br>
+This is calculated 2 ways based on whether the vehicle is reporting ECM Odometer or not.<br>
+* ECM Based Odometer:<br>
++ Calculated as the ECM odometer reading, plus the GPS distance recorded since ECM odometer was last reported. 
+* GPS Based Odometer:<br>
++ When no ECM odometer data is being recorded, Odometer Adjustment will be reported as the GPS odometer reading. 
+
+DiagnosticRawOdometerId:<br>
+This is the raw value of odometer as reported by the vehicles ECU. When possible, this is reported every Ignition ON, Ignition OFF, and every 8km in between.
+
+DiagnosticOdometerId:<br>
+This is a corrected odometer reading based on the raw odometer value. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
+
+Add\<StatusData\>\<DiagnosticOdometerAdjustmentId\> is used to add manual Odometer entries.<br>
+Get\<StatusData\>\<DiagnosticOdometerAdjustmentId\> returns a calculated Odometer value based on GPS Travel distance and the last reported odometer value (either reported by the GoDevice or manually entered).
