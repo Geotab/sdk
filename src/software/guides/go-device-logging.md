@@ -139,13 +139,6 @@ Get\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> returns a calculated engi
 #### Odometer
 It is often important in fleet management to track a vehicle's odometer. While Geotab strives to report data as frequently and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately.
 
-###### Odometer Manipulators:<br>
-Odometer Factor:<br>
-Used as a multiplier to correct raw odometer. As default this is set to 1 and can only be changed via the API. This variable is rarely used. 
-
-Odometer Offset:<br>
-Value added to the last read raw odometer to correct the odometer value at time of API call, or as displayed in MyGeotab. Odometer Offset = Odometer Adjustment - Last odometer reading on the Vehicle Edit page.
-
 ###### Odometer Status Data: <br>
 DiagnosticOdometerAdjustmentId:<br>
 This is calculated 2 ways based on whether the vehicle is reporting ECM Odometer or not.
@@ -155,10 +148,20 @@ Calculated as the ECM odometer reading, plus the GPS distance recorded since ECM
 When no ECM odometer data is being recorded, Odometer Adjustment will be reported as the GPS odometer reading. 
 
 Add\<StatusData\>\<DiagnosticOdometerAdjustmentId\> is used to add manual Odometer entries.<br>
-Get\<StatusData\>\<DiagnosticOdometerAdjustmentId\> returns a calculated Odometer value based on GPS Travel distance and the last reported odometer value (either reported by the GoDevice or manually entered).
+Get\<StatusData\>\<DiagnosticOdometerAdjustmentId\> Is used as shown below: <br>
+* If an individual device Id is provided, this returns a calculated Odometer value based on the last known DiagnosticOdometerId or Diagnostic OdometerAdjustmentId + GPS Distance.
+* If no device Id is specified, this returns all DiagnosticOdometerAdjustmentId records in the date range (if provided).
 
 DiagnosticRawOdometerId:<br>
 This is the raw value of odometer as reported by the vehicles ECU. When possible, this is reported every Ignition ON, Ignition OFF, and every 8km in between.
 
 DiagnosticOdometerId:<br>
 This is a corrected odometer reading based on the raw odometer value. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
+
+###### Odometer Manipulators:<br>
+Note: If applied, these manipulators will only affect future DiagnosticOdometerId records. They cannot correct existing records.<br>
+Odometer Factor:<br>
+Used as a multiplier to correct raw odometer. As default this is set to 1 and can only be changed via the API. This variable is rarely used. 
+
+Odometer Offset:<br>
+This value gets added to Raw Odometer before it is saved as a DiagnosticOdometerId record. It can be set directly via the API, or MyGeotab can calculate it automatically if an odometer value is entered on the Vehicle Edit page.
