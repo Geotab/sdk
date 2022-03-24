@@ -560,3 +560,8 @@ It is also recommended to read Google's extensive learning resources available o
 
 **Note**: Add-In's that were locally added to a database in the past (recommended approach is to host on a server externally ) might throw the error message **"add-in threw an error. please contact your administrator"**. To further confirm, the following error will appear the browser console (found by hitting CTRL+SHIFT+I): **Error: Add-In files: `<add-in file name>` couldn't be loaded. Probably they were moved to another location or removed.** 
 This could be linked to a server maintenance/migration event. The workaround would be to re-upload the files for the Add-Ins back to the database, while the resolution would be to externally host the source code as per the requirements listed [here](https://geotab.github.io/sdk/software/guides/developing-addins/#requirements)
+
+## Add-In Icon Validator
+
+The Add-in Icon validator tests uploaded SVG files against [Geotab's requirements](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) and displays them in the reformatted colors and style that will be displayed in MyGeotab. 
+[Launch the validator](../developing-addins/addin-icon-validator.html).
