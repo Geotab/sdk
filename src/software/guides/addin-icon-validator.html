@@ -153,7 +153,7 @@ permalink: /software/guides/developing-addins/addin-icon-validator.html
 
     <body>
         <div class="banner">
-            <h1>MyGeotab SVG Icon Tester</h1>
+            <h1>MyGeotab SVG Icon Validator</h1>
             <a href="https://www.geotab.com/blog/mygeotab-add-in-icons-specs/" id="specificationsLink" target="_blank">Link to Add-In Icon Specifications</a>
         </div>    
         
@@ -289,6 +289,8 @@ permalink: /software/guides/developing-addins/addin-icon-validator.html
                         if(errors != ""){
                             //PRINTING THE ERRORS ON THE SCREEN
                             document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Errors:</h2>" + errors + "<br></div>"); 
+                        } else {
+                            document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Success, SVG icon valid</h2><br></div>");
                         }
 
                         text += "</p>";
