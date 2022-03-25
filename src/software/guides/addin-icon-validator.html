@@ -286,14 +286,12 @@ permalink: /software/guides/developing-addins/addin-icon-validator.html
                             }
                         }
 
-                        if(errors == ""){
-                            errors += "There are no issues with the uploaded file. <br>";
+                        if(errors != ""){
+                            //PRINTING THE ERRORS ON THE SCREEN
+                            document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Errors:</h2>" + errors + "<br></div>"); 
                         }
 
                         text += "</p>";
-
-                        //PRINTING THE ERRORS ON THE SCREEN
-                        document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Errors:</h2>" + errors + "<br></div>"); 
 
                         var neutralIcon = rawLog;
                         var selectedIcon = rawLog;
