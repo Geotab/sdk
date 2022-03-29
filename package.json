@@ -8,12 +8,14 @@
     "email": "stevehansen@geotab.com"
   },
   "overrides": {
-    "set-value": "4.1.0",
+    "set-value": "^4.1.0",
     "glob-parent": "5.1.2",
-    "semver-regex": "4.0.2",
-    "nth-check": "2.0.1",
-    "trim-newlines": "4.0.2",
-    "anymatch": "3.1.2"
+    "semver-regex": "^4.0.2",
+    "nth-check": "^2.0.1",
+    "trim-newlines": "^4.0.2",
+    "anymatch": "^3.1.2",
+    "qs": "^6.10.3",
+    "yargs":"^17.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -43,7 +45,7 @@
     "require-dir": "^1.2.0",
     "sass": "^1.49.9",
     "shelljs": "^0.8.5",
-    "yargs": "^16.2.0"
+    "yargs": "^17.4.0"
   },
   "browserslist": [
     "last 2 version",
