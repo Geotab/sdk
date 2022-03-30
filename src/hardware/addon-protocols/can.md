@@ -136,7 +136,7 @@ Priority Status Data will follow an expedited processing workflow on the GoDevic
 
 ## Messages from MyGeotab
 
-To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](/software/api/runner.html).
+To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](https://geotab.github.io/sdk/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](https://geotab.github.io/sdk/software/api/runner.html).
 ```javascript
     api.call("Add", {
                 "typeName": "TextMessage",
