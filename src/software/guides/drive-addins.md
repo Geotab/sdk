@@ -82,7 +82,7 @@ window.open("https://google.com", "_blank")
 > `_blank` is important, especially for iOS devices
 
 
-## Opening Drive add-in from third-party applications
+## Opening Geotab Drive from third-party applications
 
 On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:
 
