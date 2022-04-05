@@ -153,10 +153,10 @@ Get\<StatusData\>\<DiagnosticOdometerAdjustmentId\> Is used as shown below: <br>
 * If no device Id is specified, this returns all DiagnosticOdometerAdjustmentId records in the date range (if provided).
 
 DiagnosticRawOdometerId:<br>
-This is the raw value of odometer as reported by the vehicles ECU. When possible, this is reported every Ignition ON, Ignition OFF, and every 8km in between.
+This is the raw value of odometer as reported by the vehicles ECU. When possible, this is reported every Ignition ON, Ignition OFF, and every 2km in between.
 
 DiagnosticOdometerId:<br>
-This is a corrected odometer reading based on the raw odometer value. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
+This is a corrected odometer reading based on the raw odometer value and the odometer manipulators. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
 
 ###### Odometer Manipulators:<br>
 Note: If applied, these manipulators will only affect future DiagnosticOdometerId records. They cannot correct existing records.<br>
