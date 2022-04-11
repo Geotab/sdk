@@ -66,25 +66,13 @@ title: Reference
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPI.xml");
+            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPIOriginal.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
-            //test
-            // var startpos = xhr.responseText.search("\<member\>");
-            // console.log(startpos);
-            // var endpos = xhr.responseText.search("\</member\>");
-            // console.log(endpos);
-            //end test
             xhr.onreadystatechange = function () {
                 var doc;
                 if (xhr.readyState == 4) {
                     if (xhr.status === 200) {
                         doc = new DOMParser();
-                        //obtain substring of xhr.responseText to only parse <member> elements
-                        // var startpos = xhr.responseText.search("<members>");
-                        // console.log(startpos);
-                        // var endpos = xhr.responseText.search("</members>");
-                        // console.log(endpos);
-                        // renderSDK(doc.parseFromString(xhr.responseText.substring(startpos+10,endpos), "text/xml"));
                         renderSDK(doc.parseFromString(xhr.responseText, "text/xml"));
                         document.querySelector("footer").style.display = "block";
                     } else {
@@ -345,8 +333,8 @@ title: Reference
             RUNNER_URL = "../runner.html",
             CONSTRUCTOR_IDENTIFIER = "#ctor",
             entityIdentifierNameSpace = "Geotab.Checkmate.ObjectModel.Id",
-            xml = $(xmlDoc),
-            members = $($(xml.children()).children()),
+            // Accommodate MyAdmin's xml structure
+            members = $(xmlDoc.getElementsByTagName("member")),
             memberDictionary = {},
             membersHtml = document.getElementById("dataStoreMembers"),
             objectMembersHtml = document.getElementById("objectMembers"),
@@ -784,6 +772,8 @@ title: Reference
                         code = node.querySelector("code");
                         memberPropMeth.code = (code ? code.textContent : "").trim();
                         memberPropMeth.returns = getItemData(node, "returns");
+                        //Create MyAdmin Required Roles property in the member object
+                        memberPropMeth.roles = getItemData(node, "roles");
 
                         name = name.slice(2, name.length + 1);
                         memberName = name.replace(replaceGeotabRegex, "");
@@ -1087,6 +1077,9 @@ title: Reference
                 // memberHtmlString += '<p class="member-namespace">' + (!isMethod ? member.nameSpace : '') + '</p>';
                 memberHtmlString += '<p class="member-description">' + member.summary + '</p>';
                 memberHtmlString += member.remarks ? ('<p class="member-remarks"><span class="warnIcon"></span>' + member.remarks + '</p>') : "";
+                //Add MyAdmin Required Roles to DOM
+                memberHtmlString += member.roles? ("<dl class='member-parameters-list'><dt class='member-parameters-list-roles'>Required Roles</dt>" + 
+                    "<dd class='member-parameters-list-description-roles'>" + member.roles + "</dd></dl>") : "";
                 //Parameters
                 if (!isObject) {
                     //Returns
