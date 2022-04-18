@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /myadmin-sdk/api/reference/
+permalink: /myadmin-sdk/api/reference-test/
 title: Reference
 ---
 <style>
@@ -66,7 +66,7 @@ title: Reference
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPIOriginal.xml");
+            xhr.open("GET", "https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
