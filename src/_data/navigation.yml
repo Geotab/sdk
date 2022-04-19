@@ -97,6 +97,8 @@ toc:
     folderitems:
     - page: MyAdmin SDK Introduction
       url: /myadmin-sdk/introduction/
+    - page: What's New
+      url: /myadmin-sdk/new/
     subfolders:
       - title: Guides
         subfolderitems:
