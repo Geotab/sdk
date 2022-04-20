@@ -4,6 +4,12 @@ permalink: /hardware/addon-protocols/ble/
 title: Add-On Protocol - BLE
 --- 
 
+External devices can communicate with the Geotab GO device through the Third-Party Bluetooth Low Energy (BLE) protocol below. The hardware interface will be the [IOX-BT](https://www.geotab.com/documentation/iox-bt/).
+
+The IOX-BT is a read-only BLE sensor hub that supports up to 200 in-range beacons and will detect in/out of range for any Bluetooth beacon with a public MAC Address. However, sending any other data points requires the beacon to conform to the below specified Geotab BLE protocol.
+
+Because it can only read packets, no handshake is required. Two way communication and device pairing are not possible.
+
 ## Advertising Packet
 
 | Offset | Value | Description |
