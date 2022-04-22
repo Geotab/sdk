@@ -1,0 +1,324 @@
+--- 
+permalink: /software/guides/developing-addins/addin-icon-validator.html
+---
+    <head>
+        
+        <link rel="stylesheet" type="text/css" href="https://app.geotab.com/geotabapps/add-in-css-style-guide/styleguide.css">
+        <link rel="stylesheet" type="text/css" href="https://app.geotab.com/geotabapps/add-in-css-style-guide/intgr-styles.css">
+        
+
+        <style>
+
+        div.icons {
+          height: 15%;
+          width: 15%;
+        } 
+
+        .inline-buttons {
+            display: inline-flex;
+            margin-block-end: 1%;
+        }
+
+        #specificationsLink {
+            color: #e7e7e7;
+            text-decoration: none;
+        }
+        
+        h1 {
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        #icon{
+
+            background-size: auto 100%;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        div.logo-wrapper-neutral-circle{
+            width: 36px;
+            min-width: 36px;
+            min-height: 36px;
+            height: 36px;
+            background-color: #eff2f7;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-left: 10%;
+        }
+
+        div.logo-wrapper-selected-circle{
+            width: 36px;
+            min-width: 36px;
+            height: 36px;
+            background-color: #0078D3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-left: 10%;
+        }   
+
+        /* NEUTRAL */
+        .logo-wrapper-neutral svg circle{
+            fill: #66788C !important;
+            stroke: none !important;
+        }     
+
+        .logo-wrapper-neutral svg ellipse{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg line{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg path{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg polygon{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg polyline{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg rect{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        .logo-wrapper-neutral svg text{
+            fill: #66788C !important;
+            stroke: none !important;
+        }
+
+        /* SELECTED */
+        .logo-wrapper-selected svg circle{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        } 
+
+        .logo-wrapper-selected svg ellipse{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        } 
+
+        .logo-wrapper-selected svg line{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+        
+        .logo-wrapper-selected svg path{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+        
+        .logo-wrapper-selected svg polygon{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+    
+        .logo-wrapper-selected svg polyline{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+        
+        .logo-wrapper-selected svg rect{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+        
+        .logo-wrapper-selected svg text{
+            fill: #FFFFFF !important;
+            stroke: none !important;
+        }  
+        </style>
+        
+    </head>
+
+    <body>
+        <div class="banner">
+            <h1>MyGeotab SVG Icon Validator</h1>
+            <a href="https://www.geotab.com/blog/mygeotab-add-in-icons-specs/" id="specificationsLink" target="_blank">Link to Add-In Icon Specifications</a>
+        </div>    
+        
+        <br>
+
+        <form name="uploadForm">
+          
+          <div id="parent" class="container">
+            <div class="item">
+
+                <div class="inline-buttons">
+                    <label for="svgUpload">
+                        <span class="intgr-button intgr-button--primary" aria-hidden="true">Choose File</span>
+                        <input id="svgUpload" onChange="handleFiles()" type="file" name="svgUpload" style="display:none"><br>
+                    </label>
+                    
+                </div>
+
+                <div class="intgr-button-switcher intgr-button-switcher--horizontal intgr-button-switcher--short-list">
+                    <input type="radio" name="displayed" class="" id="neutral" checked onChange="handleFiles()">
+                    <label class="" for="neutral">Neutral</label>
+                    <input type="radio" name="displayed" id="selected" class="" onChange="handleFiles()">
+                    <label class="" for="selected">Selected</label>
+                </div>
+
+            </div>
+
+        </form>
+        
+            <script>
+
+                document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"noFile\"><h3>Upload an icon to validate</h3></div>");
+
+                function clearScreen(){
+
+                    //CLEAR CURRENT SVG ON RELOAD
+                    var svgTag = document.getElementsByTagName("svg");
+                    if(svgTag.length > 0){
+                        svgTag[0].parentNode.removeChild(svgTag[0]);
+                    }
+
+                    var errorTag = document.getElementById("errors");
+                    if(errorTag != null){
+                        document.getElementById("errors").remove();
+                    }
+
+                    var iconTag = document.getElementById("icon");
+                    if(iconTag != null){
+                        document.getElementById("icon").remove();
+                    }
+
+                    var circleTag = document.getElementById("circle");
+                    if(circleTag != null){
+                        document.getElementById("circle").remove();
+                    }
+
+                    var noFileTag = document.getElementById("noFile");
+                    if(noFileTag != null){
+                        document.getElementById("noFile").remove();
+                    }
+                }
+
+                function handleFiles() {
+
+                    clearScreen();
+
+                    var fileList = document.getElementById("svgUpload").files;
+
+                    var file = fileList[0];
+
+                    var reader = new FileReader();
+                    reader.readAsText(file);
+                    
+                    var selected = false;
+                    var errors = "";
+
+                    //CHECKING FILE SIZE
+                    if(file.size > 1024000){
+                        errors += "Exceeds the limit of 1024 kb <br>";
+                    }
+
+                    //DECLARING SVG FOR FILE TYPE CHECK
+                    var svgName = "image/svg+xml";
+
+                    //CHECKING FILE TYPE
+                    if(file.type != svgName){
+                        errors += "Not an SVG file<br>";
+                    }
+
+                    //CHOOSING DISPLAY TYPE
+                    if(document.getElementById('selected').checked){
+                        selected = true;
+                    }else if(document.getElementById('neutral').checked){
+                        selected = false;
+                    }
+
+                    reader.onload = function(e) {
+
+                        var rawLog = reader.result;
+                        
+                        //CHECKING SVG PROPERTIES FOR ERRORS
+                        if(rawLog.includes("viewBox=\"0 0 24 24\"") || (rawLog.includes("height=24") && rawLog.includes("width=24"))){
+                            errors += "";
+                        }else{
+                            errors += "Improper aspect ratio or dimensions. Must be 24 px square.<br>";
+                        }
+
+                        var preArray1 = rawLog.replace("<style>", ";");
+                        var preArray2 = preArray1.replace("</style>", ";");
+                        var preArray3 = preArray2.split("{");
+
+                        var array = preArray3.join(";").split(";");
+                        var text = "<p>";
+                        var i;
+
+                        for(i = 0; i < array.length; i++){
+                            text += array[i] + "<br>" ;
+
+                            var attr = array[i].split(":");
+
+                            if (attr.length > 1){
+                                var k = attr[0];
+                                var v = attr[1];
+                            }
+                            if (k == "stroke-width" && v != "2px"){
+                                errors += "The stroke width is " + v + "px, while it should be 2px. <br>";
+                            }
+                            if (k == "fill"){
+                                break;
+                            }
+                        }
+
+                        if(errors != ""){
+                            //PRINTING THE ERRORS ON THE SCREEN
+                            document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Errors:</h2>" + errors + "<br></div>"); 
+                        } else {
+                            document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"errors\"><h2>Success, SVG icon valid</h2><br></div>");
+                        }
+
+                        text += "</p>";
+
+                        var neutralIcon = rawLog;
+                        var selectedIcon = rawLog;
+
+                        //ADDING BACKGROUND COLOR
+                        if(rawLog.includes("<style>")){
+                            neutralIcon = neutralIcon.replace("<svg", "<svg style=\"background-color:#EFF2F7\"");
+                            selectedIcon = selectedIcon.replace("<svg", "<svg style=\"background-color:#0078D3\"");
+                        }else{
+                            neutralIcon = neutralIcon.replace("<svg", "<svg style=\"background-color:#EFF2F7;\" ");
+                            selectedIcon = selectedIcon.replace("<svg", "<svg style=\"background-color:#0078D3;\" ");
+                        }
+                                 
+
+                        if(file.type == svgName){
+                            //DISPLAYING THE ICON CHOICE
+                            if(selected){
+                                document.body.insertAdjacentHTML("beforeend", "<div class=\"logo-wrapper-selected-circle\" id=\"circle\"><div class=\"logo-wrapper-selected\" id=\"icon\">" + selectedIcon + "</div></div>");
+                            }else if(!selected){
+                                document.body.insertAdjacentHTML("beforeend", "<div class=\"logo-wrapper-neutral-circle\" id=\"circle\"><div class=\"logo-wrapper-neutral\" id=\"icon\">" + neutralIcon + "</div></div>");
+                            }
+                        }
+                    }
+
+                }   
+            </script>
+    </body>
+
