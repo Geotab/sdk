@@ -46,6 +46,16 @@
 						<label style="font-size: 14px; margin-top: 10px;"><input id="import-password-reset" style="float:none" type="checkbox" title="This user will need to enter a new password the first time they log in to the database.">Force password change on next login</label>
 					</p>
                     <p>
+                    
+                    	<label for="import-authType">Authentication Type</label>
+
+						<select name="authType" id="import-authType" style="height: 33px;">
+							<option value="BasicAuthentication">Basic Authentication</option>
+                        </select>
+                        <select id="import-authType-certificate" data-placeholder="Select user certificate" style="height: 33px; display:none;"></select>
+                    </p>
+                    
+                    <p>
 						<label for="import-groups">Groups</label>
                         <select id="import-groups" multiple data-placeholder="Select groups"></select>
                     </p>
@@ -765,6 +775,7 @@
 			var passwordResetCheckbox = document.getElementById("import-password-reset");
 			var hosRulesetArray = [];
 			var moreCalls = [];
+            var certificates = {};
 
 			function toggleDocs(event) {
 
@@ -800,8 +811,8 @@
                 groupCache = refreshGroupCache(null);
 				securityClearanceCache = refreshSecurityClearanceCache(null);
 				timeZoneCache = refreshTimeZoneCache(null);
-				
-				
+                getCertificates(null);
+                
 				document.getElementById("content").addEventListener("keyup", function(event) {
 					event.preventDefault();
 					
@@ -914,10 +925,10 @@
 					newContent += user.phoneNumberExtension + ",";
 					newContent += user.designation + ",";
 					newContent += user.employeeNo + ",";
-					newContent += user.fuelEconomyUnit + ",";
+					newContent += user.fuelEconomyUnit + ","; //16
 					newContent += user.isMetric + ",";
 					newContent += user.isLabsEnabled + ",";
-                    newContent += user.timeZoneId + ",";
+                    newContent += user.timeZoneId + ","; // 19
                     newContent += user.authorityName + ",";
                     newContent += user.authorityAddress + ",";
                     newContent += user.carrierNumber + ",";
@@ -927,7 +938,9 @@
                     newContent += user.licenseProvince + ",";
                     newContent += user.hosRuleSet + ",";
 					newContent += user.isYardMoveEnabled + ",";
-					newContent += user.isPersonalConveyanceEnabled;
+					newContent += user.isPersonalConveyanceEnabled + ",";
+                    newContent += user.userAuthenticationType + ","; 
+                    newContent += user.userSelectedCertificate; 
 					
 					document.getElementById("content").value = newContent;
 					document.getElementById("importUsers").disabled = false;
@@ -958,8 +971,8 @@
 						
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
-
-                            if (split.length !== 28) {
+                            
+                            if (split.length !== 30) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -990,7 +1003,9 @@
                             var licenseProvince = split[24];    
                             var hosRuleSet = split[25];
 							var isYardMoveEnabled = split[26];
-							var isPersonalConveyanceEnabled = split[27];  
+							var isPersonalConveyanceEnabled = split[27];
+                            var userAuthenticationType = split[28]; 
+                            var userSelectedCertificate = split[29]; 
 							
 							// when pasting in ',' seperated string make sure values aren't empty
 							if (isYardMoveEnabled === '') {
@@ -1008,7 +1023,7 @@
 								companyGroups: groups,
                                 reportGroups: reportGroups,
 								securityGroups: securityGroups,
-								userAuthenticationType: "BasicAuthentication",
+								userAuthenticationType: userAuthenticationType,
 								activeFrom: new Date().toISOString(),
 								activeTo: "2050-01-01T00:00:00.000Z",
 								countryCode: countryCode,
@@ -1030,6 +1045,14 @@
 								isYardMoveEnabled: isYardMoveEnabled,
 								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
 							};
+                            
+                            if (newUser.userAuthenticationType == 'SAML') {
+                                
+                                newUser.issuerCertificate = {
+                                    id: userSelectedCertificate,
+                                    isRoot: certificates[userSelectedCertificate].isRoot
+                                };
+                            }
 
 							if (keys.length > 0){
 								newUser.driverGroups =  groups;
@@ -1056,7 +1079,7 @@
 								}
 							]);                            
                         }
-						
+
 						api.multiCall(calls, function(results) {
                             var userIds = results;
 							pushRulesets(userIds);
@@ -1104,6 +1127,7 @@
 								}
 							}
 						}
+                        
                     }
                 });
 
@@ -1179,8 +1203,16 @@
 					var isPersonalConveyanceEnabled = true;
 				} else {
 					var isPersonalConveyanceEnabled = false;
-				}       
+				}   
 
+                var selectedAuthType = document.getElementById("import-authType").value;
+
+				if (selectedAuthType == 'SAML') {
+					var selectedCertificate = document.getElementById("import-authType-certificate").value;
+				} else {
+                    var selectedCertificate = null;
+                }
+                
                 return {
 					userName: document.getElementById("import-userName").value,
 					firstName: document.getElementById("import-firstName").value,
@@ -1209,7 +1241,9 @@
                     licenseProvince: plateState,
                     hosRuleSet: document.getElementById("options_hosRuleSet").value,
 					isYardMoveEnabled: isYardMoveEnabled,
-					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
+					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled,
+                    userAuthenticationType: selectedAuthType,
+                    userSelectedCertificate: selectedCertificate
 				}
 			}
 
@@ -1307,6 +1341,58 @@
                     console.log(error);
                 });
             }
+            
+            
+            function getCertificates(callback) {
+				var selectAuthType = document.getElementById("import-authType");
+                var select = document.getElementById("import-authType-certificate");
+                
+                document.getElementById("import-authType").addEventListener('change', function(event) {
+                    
+                    if (event.target.value == 'SAML'){
+                        select.style.display = '';
+                    } else {
+                        select.style.display = 'none';
+                    }
+                    
+                });
+			
+                api.call("Get", {
+                    "typeName":"Certificate"
+                }, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        
+                        for (i = 0; i < result.length; i++) {
+						
+							var option = new Option();
+							option.text = result[i].issuer;
+							option.value = result[i].id;
+							select.add(option);
+                            
+                            certificates[result[i].id] = {
+                                name: result[i].issuer,
+                                id : result[i].id,
+                                isRoot: result[i].isRoot
+                            };
+						}
+                        
+                        var option = new Option();
+                        option.text = "SAML";
+                        option.value = "SAML";
+                        selectAuthType.add(option);
+                        
+                        select.style.display = 'none';
+                        //return certificates;
+                    
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+            
 
             function refreshGroupCache(callback) {
 				var select = document.getElementById("import-groups");
