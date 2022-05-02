@@ -184,7 +184,7 @@ The result object will include keyset pagination information:
 
 ```javascript    
     {
-        "result" : [...],
+    ...
         "pagination" : {
            "perPage" : 10,
            "nextCursor" : "KFbsifjSKfj9"
