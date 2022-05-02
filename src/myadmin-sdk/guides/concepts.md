@@ -114,3 +114,100 @@ Session expiry is an example of a case where it is useful to catch and handle er
 ## Working with dates
 
 When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string. In addition, all dates will have to first be converted to [UTC](https://en.wikipedia.org/wiki/Coordinated_Universal_Time) in order to ensure timezone information and daylight savings times are accounted for correctly.
+
+## Pagination
+
+Version 3 of the API, e.g., `/v3/MyAdminApi.ashx`, introduces Pagination. Any method returning an array will be paginated, i.e., a limited number of results will be returned, along with other pagination information.
+
+v3 versions of endpoints/methods that do not yet support pagination **will return an error when called**. Please use the v1 version of those endpoints until they can be updated to support pagination. Please contact your account manager to indicate the endpoint for which you would like pagination supported, and they will queue the work with our development team.
+
+Two kinds of pagination are supported:
+
+* Offset-based pagination. This is the default method.
+* Keyset-based pagination. Supported on some endpoints. This is faster and more effecient than offset-based pagination, and as such is recommended, where available.
+
+### Offset-based pagination
+
+This type of pagination breaks the result set into indexed pages, starting at 1. Specify the desired page and results per page by passing them in the request object, like so:
+
+```javascript
+    
+    var apiMethod = {
+       "id" : -1,
+       "method" : "GetDevicePlans",
+       "params" : {
+          "apiKey":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx",
+          "sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133"
+       },
+       "pagination" : {
+          "page": 2,
+          "perPage": 10
+       }
+    };
+```                
+
+**Defaults and limits** for each property are listed here: TODO.
+
+The result object will include pagination information, where `total` is the total number of records matched by the query:
+
+```javascript    
+    {
+    ...
+        "pagination" : {
+           "page" : 2,
+           "perPage" : 10,
+           "total" : 1234
+        }
+    };
+```                
+
+### Keyset-based pagination
+
+Keyset-pagination allows for more efficient retrieval of pages, and runtime is independent of the size of the collection, in contrast to offset-based pagination. Use keyset pagination, on the methods that support it, like so:
+
+```javascript    
+    var apiMethod = {
+       "id" : -1,
+       "method" : "GetDevicePlans",
+       "params" : {
+          "apiKey":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx",
+          "sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133"
+       },
+       "pagination" : {
+          "type": "keyset",
+          "perPage": 10
+       }
+    };
+```                
+
+The result object will include keyset pagination information:
+
+```javascript    
+    {
+        "result" : [...],
+        "pagination" : {
+           "perPage" : 10,
+           "nextCursor" : "KFbsifjSKfj9"
+        }
+    };
+```                
+
+Note that no information about total records or total pages will be returned for keyset pagination.
+
+To get the next page, pass in the cursor returned in the result object of the previous page:
+
+```javascript    
+    var apiMethod = {
+       "id" : -1,
+       "method" : "GetDevicePlans",
+       "params" : {
+          "apiKey":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx",
+          "sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133"
+       },
+       "pagination" : {
+          "type": "keyset",
+          "perPage": 10,
+          "cursor": "KFbsifjSKfj9"
+       }
+    };
+```    
