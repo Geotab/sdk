@@ -40,7 +40,7 @@ Each Add-In created will have one configuration file. The configuration file is 
 | supportEmail | Email address for support related to this Add-In | String |
 | items | Array of custom pages and/or buttons (External references) | Array |
 | files | Custom pages and/or buttons (Embedded code) | Object |
-| key | Unique MyGeotab Add-In key assigned by Geotab | String |
+| key | Unique MyGeotab Marketplace Add-In key assigned by Geotab. If there's no plan to get your Add-In to the Marketplace, you can leave out the key/value pair from the Configuration File | String |
 | signature | Digital signature of the Add-In | String |
 | version | Which Geotab API version to use | String |
 
