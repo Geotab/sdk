@@ -1,7 +1,7 @@
 toc:
-  - title: Software
+  - title: MyGetoab SDK
     folderitems:
-    - page: Software Introduction
+    - page: MyGeotab SDK Introduction
       url: /software/introduction/
     - page: What's New
       url: /resources/new/

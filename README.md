@@ -1,4 +1,4 @@
-# MyGeotab SDK
+# Geotab SDK
 
 > This project serves as the online SDK or the MyGeotab Hardware and Software API hosted via Github pages.
 
