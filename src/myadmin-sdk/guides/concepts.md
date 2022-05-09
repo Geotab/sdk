@@ -119,7 +119,7 @@ When exchanging dates as parameters to API methods, you must ensure that they ar
 
 Version 3 of the API, e.g., `/v3/MyAdminApi.ashx`, introduces Pagination. Any method returning an array will be paginated, i.e., a limited number of results will be returned, along with other pagination information.
 
-v3 versions of endpoints/methods that do not yet support pagination **will return an error when called**. Please use the v1 version of those endpoints until they can be updated to support pagination. Please contact your account manager to indicate the endpoint for which you would like pagination supported, and they will queue the work with our development team.
+v3 versions of endpoints/methods that do not yet support pagination **will return an error when called**. Pagination support will be indicated in the method's docs, for those methods that support it. Please use the v1 version of those endpoints until they can be updated to support pagination. Please contact your account manager to indicate the endpoint for which you would like pagination supported, and they will queue the work with our development team.
 
 Two kinds of pagination are supported:
 
@@ -146,7 +146,9 @@ This type of pagination breaks the result set into indexed pages, starting at 1.
     };
 ```                
 
-**Defaults and limits** for each property are listed here: TODO.
+Default page size is **20**. Maximum page size is **100**.
+
+For `GET` requests, use the query parameters `page` and `per_page`.
 
 The result object will include pagination information, where `total` is the total number of records matched by the query:
 
@@ -160,6 +162,8 @@ The result object will include pagination information, where `total` is the tota
         }
     };
 ```                
+
+For `GET` requests, these values will be returned in the HTTP headers `Page`, `PerPage` and `Total`. Also for `GET` requests, a `Link` header will be returned that can be used to access the next page.
 
 ### Keyset-based pagination
 
@@ -180,6 +184,8 @@ Keyset-pagination allows for more efficient retrieval of pages, and runtime is i
     };
 ```                
 
+For `GET` requests, use the query parameter `pagination` set to `keyset` to enable keyset pagination (on those methods that support it).
+
 The result object will include keyset pagination information:
 
 ```javascript    
@@ -191,6 +197,8 @@ The result object will include keyset pagination information:
         }
     };
 ```                
+
+For `GET` requests, these values will be returned in the HTTP headers `PerPage` and `NextCursor`. Also for `GET` requests, a `Link` header will be returned that can be used to access the next page.
 
 Note that no information about total records or total pages will be returned for keyset pagination.
 
@@ -211,3 +219,5 @@ To get the next page, pass in the cursor returned in the result object of the pr
        }
     };
 ```    
+
+For `GET` requests, use the query parameter `cursor`.
