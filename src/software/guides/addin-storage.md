@@ -297,7 +297,7 @@ The `WHERE` clause of the AddInDataSearch object supports the following operator
 | --- | --- |
 | = | Equal to |
 | < | Less than |
-| < | Greater than |
+| > | Greater than |
 | <= | Less than or equal to |
 | >= | Greater than or equal to |
 
