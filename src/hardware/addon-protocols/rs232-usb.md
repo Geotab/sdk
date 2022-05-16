@@ -4,7 +4,7 @@ permalink: /hardware/addon-protocols/rs232-usb/
 title: Add-On Protocol - RS232 & USB
 ---
 
-External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. Two-way communication is supported, allowing messages to be produced by the IOX device through a MyGeotab API call. The hardware interface will be one of the following:
+External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. Two-way communication is supported, allowing a MyGeotab API call to produce messages from the IOX device to reach the external device. The hardware interface will be one of the following:
 
  - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")

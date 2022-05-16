@@ -4,7 +4,7 @@ permalink: /hardware/addon-protocols/can/
 title: Add-On Protocol - CAN
 --- 
 
-External devices can communicate with the Geotab GO device through the revised Third-Party Data CAN protocol. The hardware interface will be the [IOX-CAN](https://www.geotab.com/documentation/iox-can/). Two-way communication is supported, allowing messages to be produced by the IOX device through a MyGeotab API call.
+External devices can communicate with the Geotab GO device through the revised Third-Party Data CAN protocol. The hardware interface will be the [IOX-CAN](https://www.geotab.com/documentation/iox-can/). Two-way communication is supported, allowing a MyGeotab API call to produce messages from the IOX device on the connected CAN network.
 
 No initial handshake is required to communicate through the IOX-CAN. The GO device will start processing third-party data if it is in the correct format. Once processed, the third-party data will be saved and sent to MyGeotab as Status Data.
 
