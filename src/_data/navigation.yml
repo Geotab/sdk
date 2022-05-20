@@ -43,6 +43,9 @@ toc:
             beta: true
           - page: Connect to Power BI
             url: /software/guides/power-bi/
+          - page: Using PropertySelector for lightweight entity retrieval 
+            url: /software/guides/propertyselector/
+            beta: true
       - title: API
         subfolderitems:
           - page: Reference
