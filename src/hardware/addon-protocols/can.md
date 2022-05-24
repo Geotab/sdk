@@ -6,7 +6,7 @@ title: Add-On Protocol - CAN
 
 External devices can communicate with the Geotab GO device through the revised Third-Party Data CAN protocol. The hardware interface will be the [IOX-CAN](https://www.geotab.com/documentation/iox-can/). Two-way communication is supported, allowing a MyGeotab API call to produce messages on the connected CAN network using the IOX-CAN. An initial handshake is required before messages can be produced using the IOX-CAN.
 
-No initial handshake is required to communicate third-party data to the IOX-CAN. The GO device will start processing third-party data if it is in the correct format. Once processed, the third-party data will be saved and sent to MyGeotab as Status Data.
+The GO device will start processing third-party data if it is in the correct format. Once processed, the third-party data will be saved and sent to MyGeotab as Status Data.
 
 ## Integration Process
 
@@ -64,7 +64,7 @@ Each piece of information related to the third-party device must be sent individ
 Note: See [Appendix A](#appendix-a-raw-message-data-example-for-iox-can) for an example of raw message data.
 
 #### Handshake
-An initial Handshake **is required** in order for the GO device to accept MyGeotab API calls to produce CAN messages from the IOX-CAN. If this functionality is not required, the handshake can be skipped. Ignition must be on for the handshake process.
+An initial Handshake **is required** in order for the GO device to accept MyGeotab API calls to produce CAN messages from the IOX-CAN. Ignition must be on for the handshake process.
 
 1. After powering up, the GO device will enter an external device detection cycle. The GO device will listen for a [Msg Type 0x81](#msg-type-0x81-third-party-device-id) from the external device. This message is used to indicate that an external device is present.
   - The external device must send this message once per second.
