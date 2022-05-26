@@ -47,11 +47,11 @@ var api = GeotabApi(function (authenticationCallback) {
 });
 ```
 
-When the GeotabApi object has been set up, the first call to a method will trigger the callback to get the credentials. Once the credentials have been entered by the user, the authenticationCallback will be called with the entered credentials. Then the original method result will then be retrieved. After this method has been called, the server, database, username, and session are stored in localStorage.
+When the GeotabApi object has been set up, the first call to a method triggers the callback to get the credentials. Once the credentials have been entered by the user, authenticationCallback is called with the provided credentials, and then the original method result is retrieved. After this method has been called, the server, database, username, and session are all stored in localStorage.
 
 ## Using the GeotabApi object
 
-The following example demonstrates how to use the GeotabApi object to request the location of a vehicle.
+The following example shows how to use the GeotabApi object to request the location of a vehicle:
 
 ```javascript
 // Sample API invocation retrieves all "Device" objects
@@ -80,16 +80,16 @@ The Call method is used to "Call" any of the APIs that the MyGeotab SDK provides
 --- | ---
 method | The API method that is being called. For example, "Get" or “GetCountOf”. See the API reference for the full set of methods.
 params | The parameter object that the API method expects. For example: `{ typeName: "DeviceStatusInfo", search { deviceSearch: { id: deviceId } }`
-callbackSuccess | The function that will be called back when the API call succeeds. The callback function has a single argument called “result” that will contain any results returned by the API call.
-callbackError | The function that will be called back should the API call fail. The callback function has a single argument that will contain error information.
+callbackSuccess | The function that will be called back if the API call succeeds. The callback function has a single argument called “result” that contains any results returned by the API call.
+callbackError | The function that will be called back if the API call fails. The callback function has a single argument that contains error information.
 
 ## MultiCall
 
-A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging Multicalls as much as possible - you may read further documentation on multicalls here  https://geotab.github.io/sdk/software/guides/concepts/#multicall Additionally, you can find a JS example of multicall here  https://geotab.github.io/sdk/software/guides/concepts/#api-client-support  
+A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about multicalls, see https://geotab.github.io/sdk/software/guides/concepts/#multicall. Additionally, you can find a JS MultiCall example here: https://geotab.github.io/sdk/software/guides/concepts/#api-client-support.  
 
 ## A note about state
 
-The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “out” of the server.
+The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “logged out” of the server.
 
 # Next steps
 
