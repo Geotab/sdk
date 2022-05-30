@@ -6,7 +6,7 @@ title: Getting Started
 
 The Geotab API (Application Program Interface) is fully available to MyGeotab customers. Geotab provides helper libraries for C# and JavaScript; however, any language or application capable of making HTTP (HyperText Transfer Protocol) requests can access its full functionality. Only valid MyGeotab user credentials are required; special API keys or tokens are not necessary. Nonetheless, we recommend that the API be accessed with a dedicated user.
 
-Note: The examples and source code presented in the Geotab SDK (Software Development Kit) require a modern browser. We recommend using the latest versions of Chrome, Firefox, Internet Explorer or Safari.
+Note: The examples and source code presented in the MyGeotab SDK (Software Development Kit) require a modern browser. We recommend using the latest versions of Chrome, Firefox, Internet Explorer or Safari.
 
 ## Steps to get started
 
