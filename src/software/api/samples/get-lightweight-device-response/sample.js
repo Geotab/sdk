@@ -1,9 +1,9 @@
 api.call("Get", {
   "typeName": "Device",
-  "propertySelector": 
+  "propertySelector":
   {
-      fields:["Id", "ActiveTo"],
-      isIncluded:true
+      fields: ["id", "name"],
+      isIncluded: true
   },
   "resultsLimit": 10
 }, function(result) {

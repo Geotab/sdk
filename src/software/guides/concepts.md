@@ -659,49 +659,88 @@ There is no limit on the number of requests that can be made in a multicall. Whe
 
 The index in the array of results will have a **null** value.
 
+## PropertySelector BETA
 
-# PropertySelector BETA
+`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
 
-`PropertySelector` is a new optional property that can be set in the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively return specified properties for entities in a result set for lightweight object retrieval. 
+### Supported Types
 
-## Creating a PropertySelector Object
+A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
 
 | **Property** | **Description** |
 | --- | --- |
-| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of a inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
+| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
 | IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
 
-> In the [sample]({{site.baseurl}}/software/api/runner.html#sample:get-lightweight-device-response) API call for getting a result set of lightweight `Device` objects, we only want our `Device` objects to have the properties `ActiveTo` and `Id`, so we set our `PropertySelector` object like so: 
-```json
-"propertySelector": 
-    {
-        "fields": ["ActiveTo", "Id"],
-        "isIncluded": true
-    }
+### Examples
+
+A simple [example]({{site.baseurl}}/software/api/runner.html#sample:get-lightweight-device-response) of this can be illustrated by using the property selector with `Device`. The `Device` object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our `Device` objects to have the properties `Name` and `Id`, so we set our `PropertySelector` object like so:
+
+#### Javascript
+
+##### Request
+
+```javascript
+api.call("Get", {
+  "typeName": "Device",
+  "propertySelector":
+  {
+      fields: ["id", "name"],
+      isIncluded: true
+  },
+  "resultsLimit": 500
+}, function(result) {
+  console.log("Done: ", result);
+}, function(e) {
+  console.error("Failed:", e);
+});
 ```
 
-**Response**
+##### Response
+
 ```json
 [
     {
-        "activeTo": "2050-01-01T00:00:00.000Z",
+        "name": "Work Truck 10",
         "id": "b1"
     },
     {
-        "activeTo": "2050-01-01T00:00:00.000Z",
+        "name": "Delivery Van 6",
         "id": "b2"
     }
 ]
 ```
 
-**C# Example**
+In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
+
+Making the same call, without property selector (returning all properties) results in 41.8 kB of JSON sent over the wire and a round trip time of 320 ms.
+
+| using property selector |device count| size | time |
+|--|--|--|--|
+|false|500|41.8 kB|320 ms|
+|true|500|5.4 kB|45 ms|
+|--|--|--|--|
+|Improvement||**-36.4 kB**|**-275 ms**|
+
+#### C# Example
+
 ```csharp
-    var propertySelector = new PropertySelector
+var results = await api.CallAsync<List<Device>>(
+  "Get",
+  typeof(Device),
+  new
+  {
+    propertySelector = new PropertySelector
     {
-        Fields = new List<string> { nameof(Device.ActiveTo), nameof(Device.Id) },
+        Fields = new List<string>
+        {
+          nameof(Device.Name),
+          nameof(Device.Id)
+        },
         IsIncluded = true
-    };
-    var results = await api.CallAsync<List<Device>>("Get", typeof(Device), new { propertySelector });
+    },
+    resultsLimit = 500
+  });
 ```
 
 ## List of Supported Entities
@@ -712,7 +751,13 @@ Below is a list of entities that are support the PropertySelector functionality.
 | --- | --- | -- |
 | [Device]({{site.baseurl}}/software/api/reference/#Device) | 8.0 | The following properties are not supported: `IsExternalDevicePowerControlSupported`, `DevicePlans`, `EngineHours`, `CustomFeatures`, `DeviceFlags`, `IsAuxInverted`, `IsAuxIgnTrigger`, `IsHarshBrakeWarningOn`, `Channel`, `DeviceType`, `ProductId`, `RegisterDeviceResultLite`, `Autogroups`, `AuxWarningSpeed`, `EnableAuxWarning`, `FrequencyOffset`, `TrailerId`
 | [User]({{site.baseurl}}/software/api/reference/#User) | 8.0 | `IsEULAAccepted` and `AcceptedEULA` are tied to each other, so if either property is set to be returned based on the `PropertySelector` logic, both properties will be returned.
-| [Group]({{site.baseurl}}/software/api/reference/#Group) | 8.0 | The following properties are not supported: `IsDefectList`, `IsGlobalReportingGroup`, `Parent`
-| [Rule]({{site.baseurl}}/software/api/reference/#Rule) | 8.0 | N/A 
-| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `DateTime` must be a part of the PropertySelector object and must be included. 
-| [Trip]({{site.baseurl}}/software/api/reference/#Trip) | 9.0 | N/A 
+| [Group]({{site.baseurl}}/software/api/reference/#Group) | 8.0 | N/A
+| [Rule]({{site.baseurl}}/software/api/reference/#Rule) | 8.0 | N/A
+| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `DateTime` must be included.
+| [Trip]({{site.baseurl}}/software/api/reference/#Trip) | 9.0 | N/A
+
+### PropertySelector FAQ
+
+**Can I combine property selector and search?**
+
+Yes. PropertySelector and Search work independently of each other and can be used together in the same request.
