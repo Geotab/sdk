@@ -45,12 +45,42 @@ An AddInData object must first be created in a database. The properties of AddIn
 
 | **Property** | **Description** |
 | --- | --- |
-| [Id]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id) | The standard Id for any Entity. |
-| [AddInId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id) | Used to identify the Add-In Solution to which this AddInData belongs. Add-Ins cannot see data from other Add-Ins. Must be provided when searching for or adding AddInData. Consider this a Serial Number for the solution that uses the Storage API. |
-| [Groups]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) | Used to define the scope required to interact with the Add-In data. |
+| [Id]({{site.baseurl}}/software/api/reference/#Id) | The standard Id for any Entity. |
+| [AddInId]({{site.baseurl}}/software/api/reference/#Id) | Used to identify the Add-In Solution to which this AddInData belongs. Add-Ins cannot see data from other Add-Ins. Must be provided when searching for or adding AddInData. Consider this a Serial Number for the solution that uses the Storage API. |
+| [Groups]({{site.baseurl}}/software/api/reference/#Group) | Used to define the scope required to interact with the Add-In data. (***Optional***) |
 | Details | The JSON data. May be whole or partial depending on the action (Add vs. Set) or the filtering provided when calling `Get`. |
 
-As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/software/api/runner.html) to create an AddInData object using the following operation:
+As an example, you can use the [API Runner tool](https://geotab.github.io/sdk/software/api/runner.html) to create an AddInData object that's not limited to any groups using the following operation:
+
+```javascript
+api.call("Add",
+{
+  "typeName": "AddInData",
+  "entity": {
+    "addInId": "a2C4ABQuLFkepPVf6-4OKAQ",
+    "details": 
+    {
+        "date": "2016-01-01T00:00:00.000Z",
+        "items": [
+          {
+              "name": "bottles",
+              "price": 12
+          },
+          {
+              "name": "caps",
+              "price": 20
+          }
+        ],
+        "customer": 
+        {
+            "name": "joesmith",
+            "email": "joe@smith.com"
+        }
+    }
+  }
+});
+```
+The same example with the addition of the **Groups** parameter, would result in limiting the data to the specified groups, in this case the driver activity group:
 
 ```javascript
 api.call("Add",
@@ -60,7 +90,7 @@ api.call("Add",
     "addInId": "a2C4ABQuLFkepPVf6-4OKAQ",
     "groups": [
       {
-        "id": "GroupCompanyId"
+        "id": "GroupDriverActivityGroupId"
       }
     ],
     "details": 
@@ -137,9 +167,9 @@ The AddInDataSearch properties are as follows:
 
 | **Property** | **Description** |
 | --- | --- |
-| [Id]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id) | The standard Id for any Entity. |
-| [AddInId]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Id) | Can be optionally provided when searching for AddInData that belongs to a specific AddInData. |
-| [Groups]({{site.baseurl}}/software/api/reference/#T:Geotab.Checkmate.ObjectModel.Group) | Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity. |
+| [Id]({{site.baseurl}}/software/api/reference/#Id) | The standard Id for any Entity. |
+| [AddInId]({{site.baseurl}}/software/api/reference/#Id) | Can be optionally provided when searching for AddInData that belongs to a specific AddInData. |
+| [Groups]({{site.baseurl}}/software/api/reference/#Group) | Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity. |
 | SelectClause (String) | Used to filter the resulting rows based on the JSON content of the row. Works with the object path notation described in usage. Independent of WhereClause. |
 | WhereClause (String) | Used to filter the resulting rows based on the JSON content of the row. Works with the object path and operator notation described in usage. Independent of SelectClause. |
 
@@ -297,7 +327,7 @@ The `WHERE` clause of the AddInDataSearch object supports the following operator
 | --- | --- |
 | = | Equal to |
 | < | Less than |
-| < | Greater than |
+| > | Greater than |
 | <= | Less than or equal to |
 | >= | Greater than or equal to |
 

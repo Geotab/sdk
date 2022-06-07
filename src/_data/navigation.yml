@@ -20,7 +20,7 @@ toc:
             url: /software/guides/using-in-java/
             beta: true
           - page: Data Feed
-            url: /software/guides/data-feed
+            url: /software/guides/data-feed/
           - page: Using MyGeotab URLs
             url: /software/guides/mygeotab-urls/
           - page: Using GO Devices
@@ -41,6 +41,8 @@ toc:
             url: https://github.com/Geotab/mg-media-files
             external: true
             beta: true
+          - page: Connect to Power BI
+            url: /software/guides/power-bi/
       - title: API
         subfolderitems:
           - page: Reference
@@ -91,6 +93,33 @@ toc:
             url: /hardware/developing-an-iox/hardware-design-guide/
           - page: Messaging Protocol
             url: /hardware/developing-an-iox/messaging-protocol/
+  - title: MyAdmin SDK
+    folderitems:
+    - page: MyAdmin SDK Introduction
+      url: /myadmin-sdk/introduction/
+    - page: What's New
+      url: /myadmin-sdk/new/
+    subfolders:
+      - title: Guides
+        subfolderitems:
+          - page: Getting Started
+            url: /myadmin-sdk/guides/getting-started/
+          - page: Concepts
+            url: /myadmin-sdk/guides/concepts/
+          - page: Using with .NET
+            url: /myadmin-sdk/guides/using-with-dotnet/
+          - page: Using with JavaScript
+            url: /myadmin-sdk/guides/using-with-javascript/
+      - title: API
+        subfolderitems:
+          - page: Reference
+            url: /myadmin-sdk/api/reference/
+      - title: Code Samples
+        subfolderitems:
+          - page: .NET Examples
+            url: /myadmin-sdk/code-samples/dotnet-examples/
+          - page: JavaScript Examples
+            url: /myadmin-sdk/code-samples/javascript-examples/
   - title: Resources
     folderitems:
       - page: Forums
@@ -99,3 +128,5 @@ toc:
       - page: Dev Channel
         url: https://www.geotab.com/dev-channel/
         external: true
+      - page: Toolkits
+        url: /resources/toolkits/

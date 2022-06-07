@@ -116,10 +116,52 @@ Vehicles will not necessarily return all of the above information; the list is b
 
 #### Total Fuel Used
 
-"Total fuel used (since telematics device install)" is generic status data. No matter how fuel information is received from a particular vehicle, be it OBD2, J1708, J1939 or another diagnostic standard, a generic Total Fuel Used record will be saved after ignition off. An additional record, "Total fuel used while idling (since telematics device install)", which is the fuel used while road speed is 0, is also saved on ignition off. "Total fuel used (since telematics device install)" ([KnownId](../../api/reference/#T:Geotab.Checkmate.ObjectModel.KnownId) `DiagnosticDeviceTotalFuelId`) and "Total fuel used while idling (since telematics device install)" `DiagnosticDeviceTotalIdleFuelId` are the diagnostics used to track fuel consumption.
+"Total fuel used (since telematics device install)" is generic status data. No matter how fuel information is received from a particular vehicle, be it OBD2, J1708, J1939 or another diagnostic standard, a generic Total Fuel Used record will be saved after ignition off. An additional record, "Total fuel used while idling (since telematics device install)", which is the fuel used while road speed is 0, is also saved on ignition off. "Total fuel used (since telematics device install)" ([KnownId](../../api/reference/#KnownId) `DiagnosticDeviceTotalFuelId`) and "Total fuel used while idling (since telematics device install)" `DiagnosticDeviceTotalIdleFuelId` are the diagnostics used to track fuel consumption.
 
 #### Seat Belt and Odometer
 
 Seat belt and odometer requests are proprietary on most passenger cars. It is Geotab's goal to support seat belt and odometer across all the major vehicle manufacturers. If you are unable to obtain seatbelt or odometer requests for your vehicle, please contact Geotab Support. You can query the percentage of seat belt, odometer and other engine based data is supported for different vehicle types via MyAdmin.
 
 Seat belt use is logged on status change: a value of 1 represents the seat belt unbuckled, while a value of 0 represents the seat belt buckled. Odometer is logged both on ignition on and ignition off and every hour.
+
+#### Engine Hours
+It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. As a workaround, Geotab provides two types of engine hours StatusData. It is important to distinguish between the two in order to utilize them appropriately.
+
+DiagnosticEngineHoursId:<br>
+This is the engine hours provided by the ECU in the vehicle as read by the GoDevice. This is reported every hour and at ignition OFF. 
+
+DiagnosticEngineHoursAdjustmentId:<br>
+Records the GPS travel time for vehicles which do not report engine hours from their ECU. An engine hours record can also be manually added which will then report as total GPS travel time added to the manually entered value. When the manual engine hours entry is updated, the total GPS travel time used in the calculation is reset to zero before continuing to increment.
+
+Add\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> is used to add manual engine hours entries.<br>
+Get\<StatusData\>\<DiagnosticEngineHoursAdjustmentId\> returns a calculated engine hours value based on GPS Travel time and the last reported engine hours value (either reported by the GoDevice or manually entered).
+
+#### Odometer
+It is often important in fleet management to track a vehicle's odometer. While Geotab strives to report data as frequently and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately.
+
+###### Odometer Status Data: <br>
+DiagnosticOdometerAdjustmentId:<br>
+This is calculated 2 ways based on whether the vehicle is reporting ECM Odometer or not.
+* ECM Based Odometer:<br>
+Calculated as the ECM odometer reading, plus the GPS distance recorded since ECM odometer was last reported. 
+* GPS Based Odometer:<br>
+When no ECM odometer data is being recorded, Odometer Adjustment will be reported as the GPS odometer reading. 
+
+Add\<StatusData\>\<DiagnosticOdometerAdjustmentId\> is used to add manual Odometer entries.<br>
+Get\<StatusData\>\<DiagnosticOdometerAdjustmentId\> Is used as shown below: <br>
+* If an individual device Id is provided, this returns a calculated Odometer value based on the last known DiagnosticOdometerId or Diagnostic OdometerAdjustmentId + GPS Distance.
+* If no device Id is specified, this returns all DiagnosticOdometerAdjustmentId records in the date range (if provided).
+
+DiagnosticRawOdometerId:<br>
+This is the raw value of odometer as reported by the vehicles ECU. When possible, this is reported every Ignition ON, Ignition OFF, and every 2km in between.
+
+DiagnosticOdometerId:<br>
+This is a corrected odometer reading based on the raw odometer value and the odometer manipulators. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
+
+###### Odometer Manipulators:<br>
+Note: If applied, these manipulators will only affect future DiagnosticOdometerId records. They cannot correct existing records.<br>
+Odometer Factor:<br>
+Used as a multiplier to correct raw odometer. As default this is set to 1 and can only be changed via the API. This variable is rarely used. 
+
+Odometer Offset:<br>
+This value gets added to Raw Odometer before it is saved as a DiagnosticOdometerId record. It can be set directly via the API, or MyGeotab can calculate it automatically if an odometer value is entered on the Vehicle Edit page.

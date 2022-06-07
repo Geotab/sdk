@@ -1,19 +1,12 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8" />
-
         <title>Geotab SDK | Import users</title>
-
         <link href="css/geotab.css" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
-
     </head>
-
     <body>
-
         <header>
             <div class="container">
                 <nav>
@@ -24,11 +17,15 @@
                 </nav>
                 <h1>Import users</h1>
                 <h3>Creates new users from a comma separated list</h3>
+				
+				
             </div>
         </header>
-
         <div class="container bordered">
 
+			<div id="disclaimer">
+				<label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+			</div>
             <div id="signin-content"></div>
 
             <div id="example-content">
@@ -65,14 +62,186 @@
 						<input id="import-nfcKey" type="text" placeholder="NFC key number" />
 						<input id="import-customNFC" type="text" placeholder="Custom NFC key number" />
 					</p>
+			
 					<p>
-                        <label for="import-employeeNumber">Employee number</label>
+
+					<!-- Phone Code takes priority over country code (e.g. if the countryCode for Algeria is selected but the phone number code is +1 then the country will be Canada)  -->
+					<!-- Country Code/Flag  -->
+						<label for="import-countryCode">Country Code / Phone Number / Ext (optional)</label>
+
+						<select name="country" id="import-countryCode" style="height: 33px;">
+							<option value="CA">Canada +1</option>
+							<option value="US">United States +1</option>
+							<option value="AL">Albania +355</option>
+							<option value="AD">Andorra +376</option>
+							<option value="AO">Angola +244</option>
+							<option value="AR">Argentina +54</option>
+							<option value="AM">Armenia +374</option>
+							<option value="AU">Australia +61</option>
+							<option value="AT">Austria +43</option>
+							<option value="AZ">Azerbaijan +994</option>
+							<option value="BS">Bahamas +1-242</option>
+							<option value="BH">Bahrain +973</option>
+							<option value="BD">Bangladesh +880</option>
+							<option value="BY">Belarus +375</option>
+							<option value="BE">Belgium +32</option>
+							<option value="BZ">Belize +501</option>
+							<option value="BT">Bhutan +975</option>
+							<option value="BO">Bolivia +591</option>
+							<option value="BA">Bosnia and Herzegovina +387</option>
+							<option value="BW">Botswana +267</option>
+							<option value="BR">Brazil +55</option>
+							<option value="BG">Bulgaria +359</option>
+							<option value="BF">Burkina Faso +226</option>
+							<option value="KH">Cambodia +855</option>
+							<option value="CM">Cameroon +237</option>
+							<option value="CF">Central African Republic +236</option>
+							<option value="TD">Chad +235</option>
+							<option value="CL">Chile +56</option>
+							<option value="CN">China +86</option>
+							<option value="CO">Colombia +57</option>
+							<option value="CR">Costa Rica +506</option>
+							<option value="HR">Croatia +385</option>
+							<option value="CU">Cuba +53</option>
+							<option value="CY">Cyprus +357</option>
+							<option value="CZ">Czech Republic +420</option>
+							<option value="CD">Democratic Republic of the Congo +243</option>							
+							<option value="DK">Denmark +45</option>
+							<option value="DO">Dominican Republic +1</option>
+							<option value="EC">Ecuador +593</option>
+							<option value="EG">Egypt +20</option>
+							<option value="SV">El Salvador +503</option>
+							<option value="EE">Estonia +372</option>
+							<option value="ET">Ethiopia +251</option>
+							<option value="FI">Finland +358</option>
+							<option value="FR">France +33</option>
+							<option value="GA">Gabon +241</option>
+							<option value="GE">Georgia +995</option>
+							<option value="DE">Germany +49</option>
+							<option value="GH">Ghana +233</option>
+							<option value="GR">Greece +30</option>
+							<option value="GT">Guatemala +502</option>
+							<option value="GN">Guinea +224</option>
+							<option value="GW">Guinea-Bissau +245</option>
+							<option value="GY">Guyana +592</option>
+							<option value="HN">Honduras +504</option>
+							<option value="HK">Hong Kong +852</option>
+							<option value="HU">Hungary +36</option>
+							<option value="IS">Iceland +354</option>
+							<option value="IN">India +91</option>
+							<option value="ID">Indonesia +62</option>
+							<option value="IE">Ireland +353</option>
+							<option value="IL">Israel +972</option>
+							<option value="IT">Italy +39</option>
+							<option value="CI">Ivory Coast +225</option>
+							<option value="JM">Jamaica +1</option>
+							<option value="JP">Japan +81</option>
+							<option value="JO">Jordan +962</option>
+							<option value="KZ">Kazakhstan +7</option>
+							<option value="KE">Kenya +254</option>
+							<option value="XK">Kosovo +383</option>
+							<option value="LA">Laos +856</option>
+							<option value="LV">Latvia +371</option>
+							<option value="LB">Lebanon +961</option>
+							<option value="LS">Lesotho +266</option>
+							<option value="LR">Liberia +231</option>
+							<option value="LY">Libya +218</option>
+							<option value="LI">Liechtenstein +423</option>
+							<option value="LT">Lithuania +370</option>
+							<option value="LU">Luxembourg +352</option>
+							<option value="MK">Macedonia +389</option>
+							<option value="MG">Madagascar +261</option>
+							<option value="MW">Malawi +265</option>
+							<option value="MY">Malaysia +60</option>
+							<option value="ML">Mali +223</option>
+							<option value="MT">Malta +356</option>
+							<option value="MR">Mauritania +222</option>
+							<option value="MX">Mexico +52</option>
+							<option value="MD">Moldova +373</option>
+							<option value="MC">Monaco +377</option>
+							<option value="MN">Mongolia +976</option>
+							<option value="ME">Montenegro +382</option>
+							<option value="MA">Morocco +212</option>
+							<option value="MZ">Mozambique +258</option>
+							<option value="MM">Myanmar +95</option>
+							<option value="NA">Namibia +264</option>
+							<option value="NP">Nepal +977</option>
+							<option value="NL">Netherlands +31</option>
+							<option value="NZ">New Zealand +64</option>
+							<option value="NI">Nicaragua +505</option>
+							<option value="NE">Niger +227</option>
+							<option value="NG">Nigeria +234</option>
+							<option value="NO">Norway +47</option>
+							<option value="OM">Oman +968</option>
+							<option value="PA">Panama +507</option>
+							<option value="PG">Papua New Guinea +675</option>
+							<option value="PY">Paraguay +595</option>
+							<option value="PE">Peru +51</option>
+							<option value="PH">Philippines +63</option>
+							<option value="PL">Poland +48</option>
+							<option value="PT">Portugal +351</option>
+							<option value="PR">Puerto Rico +1</option>
+							<option value="QA">Qatar +947</option>
+							<option value="CG">Republic of the Congo +242</option>
+							<option value="RO">Romania +40</option>
+							<option value="RU">Russia +7</option>
+							<option value="RW">Rwanda +250</option>
+							<option value="SM">San Marino +378</option>
+							<option value="SA">Saudi Arabia +966</option>
+							<option value="SN">Senegal +221</option>
+							<option value="RS">Serbia +381</option>
+							<option value="SL">Sierra Leone +232</option>
+							<option value="SG">Singapore +65</option>
+							<option value="SK">Slovakia +421</option>
+							<option value="SI">Slovenia +386</option>
+							<option value="ZA">South Africa +27</option>
+							<option value="KR">South Korea +82</option>
+							<option value="SS">South Sudan +211</option>
+							<option value="ES">Spain +34</option>
+							<option value="LK">Sri Lanka +94</option>
+							<option value="SD">Sudan +249</option>
+							<option value="SR">Suriname +597</option>
+							<option value="SZ">Swaziland +268</option>
+							<option value="SE">Sweden +46</option>
+							<option value="CH">Switzerland +41</option>
+							<option value="TW">Taiwan +886</option>
+							<option value="TJ">Tajikistan +992</option>
+							<option value="TZ">Tanzania +255</option>
+							<option value="TH">Thailand +66</option>
+							<option value="TN">Tunisia +216</option>
+							<option value="TR">Turkey +90</option>
+							<option value="TM">Turkmenistan +993</option>
+							<option value="UG">Uganda +256</option>
+							<option value="UA">Ukraine +380</option>
+							<option value="AE">United Arab Emirates +971</option>
+							<option value="GB">United Kingdom +44</option>
+							<option value="UY">Uruguay +598</option>
+							<option value="UZ">Uzbekistan +998</option>
+							<option value="VE">Venezuela +58</option>
+							<option value="VN">Vietnam +84</option>
+							<option value="ZM">Zambia +260</option>
+							<option value="ZW">Zimbabwe +263</option>
+							<option value="">Other</option>
+						</select>
+
+					<!-- Phone Number -->
+                        <input id="import-phoneNumber" type="text" placeholder="+1 5555555555" maxlength="20" />
+					<!-- Phone Number Extension -->
+	                     <input id="import-phoneNumberExtension" type="text" placeholder="1234" maxlength="5" />
+					</p>
+					<!-- Designation -->
+					<p>
+                        <label for="import-designation">Designation (optional)</label>
+                        <input id="import-designation" type="text" maxlength="50" />
+					</p>
+					<p>
+                        <label for="import-employeeNumber">Employee number (optional)</label>
                         <input id="import-employeeNumber" type="text" maxlength="255" />
 					</p>
 					<p>
 						<div class="checkmateField">
 							<label class="label">Fuel economy measurement:</label>
-							<div id="options_fuelEconomySelect"><input type="radio" name="fuelButton" value="LitersPer100Km" id="Lper100km">
+							<div id="options_fuelEconomySelect"><input type="radio" name="fuelButton" value="LitersPer100Km" id="Lper100km" checked>
 								<label>L/100 km</label><input type="radio" name="fuelButton" value="KmPerLiter" id="kmperL">
 								<label>km/L</label><input type="radio" name="fuelButton" value="MPGUS" id="mpgUS">
 								<label>MPG (US)</label><input type="radio" name="fuelButton" value="MPGImperial" id="mpgImp">
@@ -83,7 +252,7 @@
 						<div class="checkmateField">
 							<label class="label">Distance measurement system:</label>
 							<div id="options_measurementSelect">
-								<input type="radio" name="distanceunits" value="Metric" id="metricUnit">
+								<input type="radio" name="distanceunits" value="Metric" id="metricUnit" checked>
 								<label>Metric</label>
 								<input type="radio" name="distanceunits" value="US" id="usUnit">
 								<label>US/Imperial</label></div>
@@ -94,7 +263,7 @@
 							<label class="label">Feature preview:</label>
 							<div><input type="radio" name="featurePreviewRadioButton" value="On" id="idFeaturePreviewOn">
 								<label>On</label>
-								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff">
+								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff" checked>
 								<label>Off</label></div>
 						</div>
 					</p>
@@ -367,7 +536,7 @@
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_yardModeSelect" title="Toggling this setting to ON allows the driver to apply the yard move exemption."><input
 								 type="radio" name="yardMoveRadioButton" value="On"  id="idYardMoveOn"><label
 								 class="geotabButton switcherItem_Metric" for="idYardMoveOn">On</label><input type="radio" name="yardMoveRadioButton"
-								 value="Off"  id="idYardMoveOff"><label class="geotabButton switcherItem_US" for="idYardMoveOff">Off</label></div>
+								 value="Off"  id="idYardMoveOff" checked><label class="geotabButton switcherItem_US" for="idYardMoveOff">Off</label></div>
 						</div>
 					</p>
 					<p>
@@ -376,7 +545,7 @@
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_personalConveyanceSelect" title="Toggling this setting to ON allows the driver to apply the personal conveyance exemption."><input
 								 type="radio" name="personalConveyanceRadioButton" value="On"  id="idPersonalConveyanceOn"><label
 								 class="geotabButton switcherItem_Metric" for="idPersonalConveyanceOn">On</label><input type="radio" name="personalConveyanceRadioButton"
-								 value="Off"  id="idPersonalConveyanceOff"><label class="geotabButton switcherItem_US" for="idPersonalConveyanceOff">Off</label></div>
+								 value="Off"  id="idPersonalConveyanceOff" checked><label class="geotabButton switcherItem_US" for="idPersonalConveyanceOff">Off</label></div>
 						</div>
 					</p>
 					</ul>
@@ -477,6 +646,30 @@
 							<td>Custom NFC key number</td>
 							<td>12345678</td>
 							<td><i>Optional</i>. Found on the Custom NFC key fob.</td>
+						</tr>
+						<!-- Country Code -->
+						<tr>
+							<td>Country Code</td>
+							<td>CA</td>
+							<td><i>Optional</i>. The user two symbols country ISO code (https://www.iso.org/iso-3166-country-codes.html)</td>
+						</tr>
+						<!-- Phone number -->
+						<tr>
+							<td>Phone number</td>
+							<td>+1 5555555555</td>
+							<td><i>Optional</i>. The user's phone number with space separated country phone code.</td>
+						</tr>
+						<!-- Phone number Extension-->
+						<tr>
+							<td>Phone number extension</td>
+							<td>1234</td>
+							<td><i>Optional</i>. The user's phone number extension.</td>
+						</tr>
+						<!-- Designation -->
+						<tr>
+							<td>Designation</td>
+							<td>""</td>
+							<td><i>Optional</i>. The user's designation</td>
 						</tr>
 						<tr>
 							<td>Employee number</td>
@@ -675,6 +868,14 @@
 						alert("Custom NFC Key Serial Number must be between 0 and 72057594037927940");
 						return;
 					}
+					if (user.phoneNumber !== "" && ( !(user.phoneNumber.indexOf(" ") >= 0) || user.phoneNumber.charAt(0) !== "+" )) {
+						alert("Invalid PhoneNumber. Phone number should start with '+' and the country phone code, followed by the phone number without formatting separated by a space. Example: +1 5555555555");
+						return;
+					}
+					if ( user.phoneNumberExtension !== "" &&  (isNaN(user.phoneNumberExtension))) {
+						alert("Phone number extensions cannot exceed five characters and must contain only digits.")
+						return;
+					}
 					
 					var newContent = document.getElementById("content").value;
 					
@@ -704,9 +905,14 @@
                     } else {
                         newContent += ',';
                     }
+
 					newContent += user.securityClearance + ",";
 					newContent += user.nfcKey + ",";
 					newContent += user.customNfcKey + ",";
+					newContent += user.countryCode + ",";
+					newContent += user.phoneNumber + ",";
+					newContent += user.phoneNumberExtension + ",";
+					newContent += user.designation + ",";
 					newContent += user.employeeNo + ",";
 					newContent += user.fuelEconomyUnit + ",";
 					newContent += user.isMetric + ",";
@@ -753,7 +959,7 @@
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
 
-                            if (split.length !== 24) {
+                            if (split.length !== 28) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -766,48 +972,64 @@
                             var reportGroups = parseReportingGroups(split[5]);
                             var securityGroups = parseSecurityClearanceName(split[6]);
 							var keys = parseKeys(split[7], split[8]);
-							var employeeNo = split[9];
-							var fuelEconomyUnit = split[10];
-							var isMetric = split[11];
-							var isLabsEnabled = split[12];
-                            var timeZoneId = split[13];
-                            var authorityName = split[14];
-                            var authorityAddress = split[15];
-                            var carrierNumber = split[16];
-                            var companyName = split[17];
-                            var companyAddress = split[18];
-                            var licenseNumber = split[19];
-                            var licenseProvince = split[20];    
-                            var hosRuleSet = split[21];
-							var isYardMoveEnabled = split[22];
-							var isPersonalConveyanceEnabled = split[23];    
+							var countryCode = split[9].toLowerCase();
+							var phoneNumber = split[10]; 
+							var phoneNumberExtension = split[11];
+							var designation = split[12];
+							var employeeNo = split[13];
+							var fuelEconomyUnit = split[14];
+							var isMetric = split[15];
+							var isLabsEnabled = split[16];
+                            var timeZoneId = split[17];
+                            var authorityName = split[18];
+                            var authorityAddress = split[19];
+                            var carrierNumber = split[20];
+                            var companyName = split[21];
+                            var companyAddress = split[22];
+                            var licenseNumber = split[23];
+                            var licenseProvince = split[24];    
+                            var hosRuleSet = split[25];
+							var isYardMoveEnabled = split[26];
+							var isPersonalConveyanceEnabled = split[27];  
+							
+							// when pasting in ',' seperated string make sure values aren't empty
+							if (isYardMoveEnabled === '') {
+								var isYardMoveEnabled = false;
+							} 
+							if (isPersonalConveyanceEnabled === '') {
+								var isPersonalConveyanceEnabled = false;
+							}
 							
 							var newUser = {
-										name: userName,
-										firstName: firstName,
-										lastName: lastName,
-										password: password,
-										companyGroups: groups,
-                                        reportGroups: reportGroups,
-										securityGroups: securityGroups,
-										userAuthenticationType: "BasicAuthentication",
-										activeFrom: new Date().toISOString(),
-										activeTo: "2050-01-01T00:00:00.000Z",
-										employeeNo: employeeNo,
-										fuelEconomyUnit: fuelEconomyUnit,
-										isMetric: isMetric,
-										isLabsEnabled: isLabsEnabled,
-                                        timeZoneId: timeZoneId,
-                                        authorityName: authorityName,
-                                        authorityAddress: authorityAddress,
-                                        carrierNumber: carrierNumber,
-                                        companyName: companyName,
-                                        companyAddress: companyAddress,
-                                        licenseNumber: licenseNumber,
-                                        licenseProvince: licenseProvince,
-										isYardMoveEnabled: isYardMoveEnabled,
-										isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
-									};
+								name: userName,
+								firstName: firstName,
+								lastName: lastName,
+								password: password,
+								companyGroups: groups,
+                                reportGroups: reportGroups,
+								securityGroups: securityGroups,
+								userAuthenticationType: "BasicAuthentication",
+								activeFrom: new Date().toISOString(),
+								activeTo: "2050-01-01T00:00:00.000Z",
+								countryCode: countryCode,
+								phoneNumber: phoneNumber,
+								phoneNumberExtension: phoneNumberExtension,
+								designation: designation,
+								employeeNo: employeeNo,
+								fuelEconomyUnit: fuelEconomyUnit,
+								isMetric: isMetric,
+								isLabsEnabled: isLabsEnabled,
+                                timeZoneId: timeZoneId,
+                                authorityName: authorityName,
+                                authorityAddress: authorityAddress,
+                                carrierNumber: carrierNumber,
+                                companyName: companyName,
+                                companyAddress: companyAddress,
+                                licenseNumber: licenseNumber,
+                                licenseProvince: licenseProvince,
+								isYardMoveEnabled: isYardMoveEnabled,
+								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
+							};
 
 							if (keys.length > 0){
 								newUser.driverGroups =  groups;
@@ -926,18 +1148,15 @@
 
 				if (document.getElementById("metricUnit").checked) {
 					var isMetric = true;
-				} else if (document.getElementById("usUnit").checked) {
-					var isMetric = false;
-				} else {
-					var isMetric = "";
 				}
-
+				else {
+					var isMetric = false;
+				}
+          
 				if (document.getElementById("idFeaturePreviewOn").checked) {
 					var isLabsEnabled = true;
-				} else if (document.getElementById("idFeaturePreviewOff").checked) {
-					var isLabsEnabled = false;
 				} else {
-					var isLabsEnabled = "";
+					var isLabsEnabled = false;
 				}
 
 				var timeZoneId = document.getElementById("options_userTimeZoneOffset").value;
@@ -952,18 +1171,14 @@
 
 				if (document.getElementById("idYardMoveOn").checked) {
 					var isYardMoveEnabled = true;
-				} else if (document.getElementById("idYardMoveOff").checked) {
-					var isYardMoveEnabled = false;
 				} else {
-					var isYardMoveEnabled = "";
+					var isYardMoveEnabled = false;
 				}
 
 				if (document.getElementById("idPersonalConveyanceOn").checked) {
 					var isPersonalConveyanceEnabled = true;
-				} else if (document.getElementById("idPersonalConveyanceOff").checked) {
-					var isPersonalConveyanceEnabled = false;
 				} else {
-					var isPersonalConveyanceEnabled = "";
+					var isPersonalConveyanceEnabled = false;
 				}       
 
                 return {
@@ -976,6 +1191,10 @@
 					securityClearance: securityClearanceId,
 					nfcKey: document.getElementById("import-nfcKey").value,
 					customNfcKey: document.getElementById("import-customNFC").value,
+					countryCode: document.getElementById("import-countryCode").value,
+					phoneNumber: document.getElementById("import-phoneNumber").value,
+					phoneNumberExtension: document.getElementById("import-phoneNumberExtension").value,
+					designation: document.getElementById("import-designation").value,
 					employeeNo: document.getElementById("import-employeeNumber").value,
 					fuelEconomyUnit: fuelEconomySelect,
 					isMetric: isMetric,

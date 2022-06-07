@@ -233,19 +233,7 @@ Standalone Page Example
 
 `https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:(database:<databaseName>,userName:'<userName>')`
 
-We do not support passing the password credential through the URL because it is unsafe. The way around this is to use a session Id.
-
-### Links that include username, database and session id
-
-It is also possible to include a session id in the URL. This will not prompt the user to login if the session id is valid.
-
-MyGeotab Page Example
-
-`https://<serverName>/<databaseName>/#<page>,token:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
-
-Standalone Page Example
-
-`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:('userName':'<userName>','sessionId':'<sessionId>','database':'<databaseName>')`
+We do not support passing the password credential through the URL because it is unsafe. 
 
 ## Getting the session Id using the API
 
@@ -260,4 +248,9 @@ By using the sessionId, a valid login is created for that account. Another user 
 ### Trusted domains only
 
 Due to the risk of [ClickJacking](https://en.wikipedia.org/wiki/Clickjacking), MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.
+
+#### Info for resellers
+If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.
+
+This process can take some time as the domains need to be reviewed by Geotab's security team before being added to the approved list by the development team.
 
