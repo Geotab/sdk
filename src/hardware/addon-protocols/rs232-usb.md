@@ -4,7 +4,7 @@ permalink: /hardware/addon-protocols/rs232-usb/
 title: Add-On Protocol - RS232 & USB
 ---
 
-External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. The hardware interface will be one of the following:
+External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. Two-way communication is supported, allowing a MyGeotab API call to produce messages from the IOX device to reach the external device. The hardware interface will be one of the following:
 
  - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
@@ -34,6 +34,15 @@ Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
 
 ### Grounding a device
 Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
+
+### Serial Port Settings For Add-Ons
+
+Geotab recommends that RS232/USB serial ports are programmed in accordance with the following specifications:
+
+- Baud Rate: 9600 or 115200, Note: the device is equipped with autobaud detection so other standard rates are acceptable
+- Parity: None
+- Stop Bits: 1
+- Flow Control: None
 
 ## Integration Process
 
@@ -168,9 +177,9 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Status Flags (from LSB): <br> 1st bit: 1 = GPS Valid <br> 2nd bit: 1 = Ignition On <br> 3rd bit: 1 = Engine Bus Activity <br> 4th bit: 1 = Date/Time Valid <br> 5th bit: 1 = Speed From Engine <br> 6th bit: 1 = Odometer From Engine | 1 | 22 |
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
-| Trip Duration | 4 | 31 |
-| GO Device ID [5] | 4 | 35 |
-| Driver ID [6] | 4 | 39 |
+| Trip Duration [5] | 4 | 31 |
+| GO Device ID [6] | 4 | 35 |
+| Driver ID [7] | 4 | 39 |
 | GO Device Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
@@ -179,9 +188,10 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 1. All implementations of this message must cater for the message length increasing in the future.
 2. "Date/Time" is a 'seconds' counter starting from 1st of January 2002.
 3. If Road Speed from the engine is not available, GPS speed is used.
-4. If Odometer is not available, GPS device distance is used.
-5. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
-6. Driver ID only available when using the IOX-NFC.
+4. Increase of odometer since the most recent ignition on. If Odometer is not available, GPS device distance is used.
+5. Time passed since the most recent ignition on.
+6. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
+7. Driver ID only available when using the IOX-NFC.
 
 #### *Conversions*
 
@@ -334,7 +344,7 @@ The payload of the binary data needs to adhere to protocols understood by the Ge
 
 ### Msg Type 0x87: Third-Party Data as Priority Status Data
 
-Priority Status Data will be treated the same as the 0x80 Status Data message, but will also be logged using an Iridium modem connection if available.
+Priority Status Data will follow an expedited processing workflow on the GoDevice but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection if available.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -359,6 +369,56 @@ After handshaking, this message can be issued periodically by the External Devic
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
+
+## Messages from MyGeotab
+
+To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](https://geotab.github.io/sdk/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](https://geotab.github.io/sdk/software/api/runner.html).
+```javascript
+    api.call("Add", {
+            "typeName": "TextMessage",
+            "entity": {
+              "user": {
+                "id": user.id               //Replace with user id of interest
+              },
+              "device": {
+                "id": device.id             //Replace with device id of interest
+              },
+              "messageContent": {
+                "contentType": "SerialIox",
+                "channel": 1,               //Taken from Get<IoxAddOn> call
+                "data": base64_encoded_byte //Replace with your data encoded in base64
+              },
+              "isDirectionToVehicle": true
+            }
+          }, function(result) {
+              console.log("Done: ", result);
+          }, function(e) {
+              console.error("Failed:", e);
+          });)
+```
+To send MIME messages from MyGeotab to the external device, please use the following script instead:
+```javascript
+    api.call("Add", {
+    "typeName": "TextMessage",
+    "entity":{
+        "user":{"id":user.id},                    //Replace with user id of interest
+        "device":{"id":device.id},                //Replace with device id of interest
+        "messageContent":{
+            "contentType":"MimeContent",
+            "channelNumber":1,
+            "mimeType":"text",                    //Can be changed to any free format text value
+			      "binaryDataPacketDelay":"00:00:03.0000000", //applies a 
+            //configurable delay of up to 5 seconds in between each sequenced message
+            // of a multimessage MIME payload
+            "data":base64_encoded_byte //Replace with your data encoded in base64
+        },
+        "isDirectionToVehicle":true},
+      }, function(result) {
+          console.log("Done: ", result);
+      }, function(e) {
+          console.error("Failed:", e);
+      });
+```
 
 ## Appendices
 
@@ -394,7 +454,7 @@ MIME-type data can be transferred from an external device to the server via the 
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
 3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
 
-MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](https://geotab.github.io/sdk/software/api/reference/#T:Geotab.Checkmate.ObjectModel.TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
+MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](/software/api/reference/#TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
 
 ### The MIME Type Protocol:
 

@@ -29,7 +29,7 @@ api.call("Get", {
                     fromDate : now,
                     toDate : now,
                     diagnosticSearch : diagnostic,
-                    deviceSearch : device
+                    deviceSearch : { id: device.id }
                 }
             }
         });
