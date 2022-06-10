@@ -65,7 +65,7 @@ An additional resource is the [Hardware Integration Toolkit](https://docs.google
 
 ### Using Status Data IDs
 
-There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1405610761). For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
+There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
 
 | Status Data ID | Description | Multiplier | Offset | Unit |
 | --- | --- | --- | --- | --- |
