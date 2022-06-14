@@ -56,8 +56,7 @@ toc:
           - page: Javascript Examples
             url: /software/js-samples/
           - page: .Net Examples
-            url: https://github.com/Geotab/sdk-dotnet-samples
-            external: true
+            url: /software/dotnet-samples/
           - page: Java Examples
             url: https://github.com/Geotab/sdk-java-samples
             external: true
