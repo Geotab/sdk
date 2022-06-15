@@ -98,4 +98,4 @@ On the most basic level, launching Geotab Drive to the main screen, can be execu
 
 From there, it’s possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.
 
-For more information on how to **Automatic Login, Single Sign-on** and **Navigate to Desired Page** on Geotab Drive app, please refer to [Geotab Drive Single Sign-on and Deep Linking](https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA){:target="_blank"}
+For more information on how to **Automatic Login, Single Sign-on** and **Navigate to Desired Page** on Geotab Drive app, please refer to [Geotab Drive Single Sign-on and Deep Linking](https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA)
