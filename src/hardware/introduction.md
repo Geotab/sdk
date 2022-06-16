@@ -24,12 +24,12 @@ Hardware Add-Ons communicate with the GO device using an IOX corresponding to th
 
 Hardware Add-On data can be sent via any of these IOX and will be be transmitted to the Geotab server in several formats, namely "Status Data", "Custom Data", and "Binary Data". Data in all three formats may be retrieved via [API](../../software/introduction). However, only Status Data can be queried within MyGeotab by navigating to **Engine &amp; Maintenance** > **Engine &amp; Device…** > **Measurements**. Only with Status Data, it is possible to create meaningful reports or leverage the rules engine via MyGeotab.
 
-Geotab offers a wide range of IOXs, some of which are stand-alone solutions. IOXs such as IOX-CAN, IOX-USB, and IOX-RS232 serve to connect a GO device with a Hardware Add-On, while others like IOX-GARMIN, IOX-GOTALK, etc. are readily available solutions. Check out our full [IOX offerings](https://www.geotab.com/blog/iox-expansion/).
+Geotab offers a wide range of IOXs, some of which are stand-alone solutions. IOXs such as IOX-CAN, IOX-USB, and IOX-RS232 connect GO devices with Hardware Add-Ons, while others like IOX-GOTALK, etc. are readily available solutions. Check out our full [IOX offerings](https://www.geotab.com/blog/iox-expansion/).
 
 ## Technical Hardware Toolkit
 
-The toolkit provides helpful integration resources and context which are not directly included in the existing documentation and make it easier for partners to getup and running. 
+The toolkit provides helpful integration resources and context in addition to the existing documentation and make it easier for partners to get up and running. 
 
-We are also moving to the new DIG platform for Custom Telematics Device integrations and including DIG documentation linked from the toolkit as well (while slating the MyAdmin documentation for deprecation).
+We have also moved to the new DIG platform for Custom Telematics Device integrations and included DIG documentation linked from the toolkit as well (while slating the MyAdmin documentation for deprecation).
 
-Please refer to [Technical Hardware Toolkit](https://docs.google.com/presentation/d/1nkmDYw2tscZxKaezFm5sR3jLItI3IRJTS6JIhgg0rFU) for further details.
+Please refer to [Geotab Integrations: Hardware Technical Toolkit](https://docs.google.com/presentation/d/1SH-VX9GeVImHUyaqJgCzZ28fMa0-sVqh4ue-sNRTO9M/) for further details.

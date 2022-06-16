@@ -56,8 +56,7 @@ toc:
           - page: Javascript Examples
             url: /software/js-samples/
           - page: .Net Examples
-            url: https://github.com/Geotab/sdk-dotnet-samples
-            external: true
+            url: /software/dotnet-samples/
           - page: Java Examples
             url: https://github.com/Geotab/sdk-java-samples
             external: true
@@ -97,6 +96,8 @@ toc:
     folderitems:
     - page: MyAdmin SDK Introduction
       url: /myadmin-sdk/introduction/
+    - page: What's New
+      url: /myadmin-sdk/new/
     subfolders:
       - title: Guides
         subfolderitems:
@@ -126,3 +127,5 @@ toc:
       - page: Dev Channel
         url: https://www.geotab.com/dev-channel/
         external: true
+      - page: Toolkits
+        url: /resources/toolkits/

@@ -7,7 +7,7 @@
 Make sure you have installed:
 
 * **Ruby**: `>2.0` with Bundler `>1.10`
-* **Node**: `>4.2`
+* **Node**: `>17.3.1`
 * **Gulp:** `4.0` : `npm install gulp-cli -g`
 
 If you have cloned this repo or want to reinstall, make sure there's no `node_modules` or `Gemfile.lock` folder/file and then run:

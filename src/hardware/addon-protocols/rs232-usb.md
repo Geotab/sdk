@@ -4,7 +4,7 @@ permalink: /hardware/addon-protocols/rs232-usb/
 title: Add-On Protocol - RS232 & USB
 ---
 
-External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. The hardware interface will be one of the following:
+External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. Two-way communication is supported, allowing a MyGeotab API call to produce messages from the IOX device to reach the external device. The hardware interface will be one of the following:
 
  - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
  - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
@@ -372,7 +372,7 @@ After handshaking, this message can be issued periodically by the External Devic
 
 ## Messages from MyGeotab
 
-To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](/software/api/runner.html).
+To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](https://geotab.github.io/sdk/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](https://geotab.github.io/sdk/software/api/runner.html).
 ```javascript
     api.call("Add", {
             "typeName": "TextMessage",

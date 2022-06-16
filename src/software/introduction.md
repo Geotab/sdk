@@ -76,6 +76,6 @@ Please refer to [Using Custom Telematics Devices](../guides/custom-telematics-de
 
 ## Technical Software Toolkit
 
-The toolkit provides helpful integration resources and context which are not directly included in the existing documentation and make it easier for partners to getup and running.
+The toolkit provides helpful integration resources and context which are in addition to the existing documentation and make it easier for partners to get up and running.
 
-Please refer to [Technical Software Toolkit](https://docs.google.com/presentation/d/1Xm5TqRbSDAskrXB1fk04MUoO5ewHiPK1Yfa5U1egTXE) for further details.
+Please refer to [Geotab Integrations: Software Technical Toolkit](https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/) for further details.
