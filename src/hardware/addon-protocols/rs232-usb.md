@@ -84,16 +84,6 @@ Final Value = (Initial Value × Multiplier) + Offset
 
 The unit refers to the unit of measurement that you wish to see in MyGeotab after all the conversions are complete. Geotab uses metric units and all predefined status IDs currently used by Geotab are in metric units.
 
-**Example:**
-
-- If you are reporting a temperature range from -40 °C to 215 °C, the third-party device would send values from 0 to 255 (can&#39;t send negative values). The offset would be set to -40 so that MyGeotab would know to subtract 40 from the value obtained from the GO device. So a reported value of 0 by the third-party device would show up as -40 °C in MyGeotab.
-
-- The third-party device is sending a distance in 0.1 km increments, such that a value of 1223 represents a distance of 122.3 km. A multiplier of 0.1 should be applied so that the value is properly converted to kilometers on MyGeotab.
-
-<!-- The below note will be added once the Status ID link is available -->
-
-<!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
-
 ### Handshake
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
