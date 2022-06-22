@@ -65,25 +65,15 @@ An additional resource is the [Hardware Integration Toolkit](https://docs.google
 
 ### Using Status Data IDs
 
-There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
+There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). Specifics regarding Status Data ID implementations can be found on the README sheet. 
 
-| Status Data ID | Description | Multiplier | Offset | Unit |
-| --- | --- | --- | --- | --- |
-| 5 (assigned by Geotab) | Odometer | 0.1 | 0 | km |
-| 53 (assigned by Geotab) | Outside Temperature | 1 | −40 | degrees C |
+<<<<<<< Updated upstream
+=======
+<!-- The below note will be added once the Status ID link is available -->
 
-A multiplier and offset must be supplied by the third-party vendor when requesting Status Data IDs so that MyGeotab can convert the data.
+<!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
 
-
-
-The GO device will relay the raw data sent by the external device to MyGeotab. MyGeotab will then take the raw value received from the GO device and adjust by the multiplier and the offset, as per the formula:
-
-<b><center><i>
-Final Value = (Initial Value × Multiplier) + Offset
-</i></center></b>
-
-The unit refers to the unit of measurement that you wish to see in MyGeotab after all the conversions are complete. Geotab uses metric units and all predefined status IDs currently used by Geotab are in metric units.
-
+>>>>>>> Stashed changes
 ### Handshake
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
