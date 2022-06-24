@@ -67,13 +67,6 @@ An additional resource is the [Hardware Integration Toolkit](https://docs.google
 
 There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). Specifics regarding Status Data ID implementations can be found on the README sheet. 
 
-<<<<<<< Updated upstream
-=======
-<!-- The below note will be added once the Status ID link is available -->
-
-<!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
-
->>>>>>> Stashed changes
 ### Handshake
 
 An initial Handshake **is required** in order for the GO device to accept third-party data. Ignition must be on for the handshake process.
