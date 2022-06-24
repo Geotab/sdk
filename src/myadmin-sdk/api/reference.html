@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /myadmin-sdk/api/reference-test/
+permalink: /myadmin-sdk/api/reference/
 title: Reference
 ---
 <style>
@@ -66,7 +66,8 @@ title: Reference
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml");
+            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPI_MYA13028_June22.xml");
+            // xhr.open("GET", "https://myadminrelease.geotab.com/sdk-xml/MyAdminAPI.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
@@ -612,10 +613,10 @@ title: Reference
                         memberName = args !== "" ? memberName.substr(0, memberName.indexOf("(")) : memberName;
                         // Generics
                         memberName = removeGenericsSymbols(memberName);
-
-                        if (!memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
-                            memberName = memberName.substring(0, memberName.length - async.length);
-                        }
+                        // MyAdmin API keeps the async at the end, therefore no need of the following script
+                        // if (!memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
+                        //     memberName = memberName.substring(0, memberName.length - async.length);
+                        // }
 
                         // Split member path into array
                         return {
@@ -1179,7 +1180,7 @@ title: Reference
                 return res;
             },
             renderMethods = function () {
-                var allMethods = extend(true, {}, memberDictionary["MyAdminAPI"]["MyAdminApiStore"]["methods"]);
+                var allMethods = extend(true, {}, memberDictionary["Internal"]["MyAdmin"]["Api"]["Handlers"]["Legacy"]["MyAdminApiService"]["methods"]);
                 methodsArray = [];
                 sortAndAddMembersToPage(allMethods, methodsArray);
                 membersHtml.innerHTML = methodsArray.join("");
@@ -1188,7 +1189,7 @@ title: Reference
             renderObjects = function () {
                 // For sorting by name independent of namespacing
                 var allObjects = extend(true, {},
-                    memberDictionary["MyAdminAPI"]["MyAdminApiStore"]["Authenticate(System.String,System.String)"]);
+                    memberDictionary["MyAdminApiLib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"]);
 
                 objectsArray = [];
                 sortAndAddMembersToPage(allObjects, objectsArray);
