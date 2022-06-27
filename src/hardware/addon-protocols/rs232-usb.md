@@ -65,34 +65,7 @@ An additional resource is the [Hardware Integration Toolkit](https://docs.google
 
 ### Using Status Data IDs
 
-There is an extensively defined Status Data ID list which can be found at MyGeotab >  **Engine & Maintenance** > **Engine & Device…** > **Diagnostics**. For each piece of information, conversion parameters are also required. Conversions must be in the form as per the table below:
-
-| Status Data ID | Description | Multiplier | Offset | Unit |
-| --- | --- | --- | --- | --- |
-| 5 (assigned by Geotab) | Odometer | 0.1 | 0 | km |
-| 53 (assigned by Geotab) | Outside Temperature | 1 | −40 | degrees C |
-
-A multiplier and offset must be supplied by the third-party vendor when requesting Status Data IDs so that MyGeotab can convert the data.
-
-
-
-The GO device will relay the raw data sent by the external device to MyGeotab. MyGeotab will then take the raw value received from the GO device and adjust by the multiplier and the offset, as per the formula:
-
-<b><center><i>
-Final Value = (Initial Value × Multiplier) + Offset
-</i></center></b>
-
-The unit refers to the unit of measurement that you wish to see in MyGeotab after all the conversions are complete. Geotab uses metric units and all predefined status IDs currently used by Geotab are in metric units.
-
-**Example:**
-
-- If you are reporting a temperature range from -40 °C to 215 °C, the third-party device would send values from 0 to 255 (can&#39;t send negative values). The offset would be set to -40 so that MyGeotab would know to subtract 40 from the value obtained from the GO device. So a reported value of 0 by the third-party device would show up as -40 °C in MyGeotab.
-
-- The third-party device is sending a distance in 0.1 km increments, such that a value of 1223 represents a distance of 122.3 km. A multiplier of 0.1 should be applied so that the value is properly converted to kilometers on MyGeotab.
-
-<!-- The below note will be added once the Status ID link is available -->
-
-<!-- *Note* : There are some Status Data IDs that are restricted to coming from the Go Device, an extensive list of the Add-On device range can be found *linked here* -->
+There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). Specifics regarding Status Data ID implementations can be found on the README sheet. 
 
 ### Handshake
 
