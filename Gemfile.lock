@@ -8,6 +8,7 @@ GEM
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
+    eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
     faraday (1.10.0)
       faraday-em_http (~> 1.0)
@@ -32,6 +33,7 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
+    ffi (1.15.5-x64-mingw-ucrt)
     ffi (1.15.5-x64-mingw32)
     forwardable-extended (2.6.0)
     http_parser.rb (0.8.0)
@@ -93,6 +95,8 @@ GEM
     rouge (3.28.0)
     ruby2_keywords (0.0.5)
     safe_yaml (1.0.5)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sawyer (0.8.2)
@@ -103,6 +107,7 @@ GEM
     unicode-display_width (1.8.0)
 
 PLATFORMS
+  x64-mingw-ucrt
   x64-mingw32
 
 DEPENDENCIES
