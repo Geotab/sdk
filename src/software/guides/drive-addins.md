@@ -80,3 +80,22 @@ window.open("https://google.com", "_blank")
 ```
 
 > `_blank` is important, especially for iOS devices
+
+
+## Opening Geotab Drive from third-party applications
+
+On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:
+
+* Launch Drive,
+* Navigate to a specified page in Drive, and
+* Automatically log into Drive with a token (session ID, user name, and database name) retrieved by authenticating against MyGeotab’s API in a third-party app
+
+Deep linking is used to provide a seamless link from a third-party app into the Geotab Drive app.
+
+On the most basic level, launching Geotab Drive to the main screen, can be executed by creating a link to:
+
+    geotabdrive://
+
+From there, it’s possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.
+
+For more information on how to **Automatic Login, Single Sign-on** and **Navigate to Desired Page** on Geotab Drive app, please refer to [Geotab Drive Single Sign-on and Deep Linking](https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA)

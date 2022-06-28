@@ -23,11 +23,13 @@ The request-response approach also allows for incremental processing. For exampl
 
 The API can be consumed by small and large customers alike. Larger customers can consume tens of millions of records per day via the API.
 
-## Searching by Date
+## Searching
 
 The data feed was designed to be an efficient means of getting a continuous feed of new data from a given token. When a feed is first started it is possible to provide search criteria with a "from date" argument. This specifies the token that will be used to start the feed. This will guarantee that the feed will start at a point that will include any data that is at or after the “from date” argument, but may also include data timestamped before the “from date” argument. For example when performing a "TripSearch" and setting "IncludeOverlappedTrips" to True.
 
 While "from date" is supported, "to date" is not. The feed is not designed to return data within discrete dates. If you wish to obtain data in a particular date range, then use the standard Get methods associated with the entity search objects. If a version is specified, then the argument "from date" is ignored.
+
+Do not pass a search to any feed unless it specifically is mentioned in the [GetFeed method]({{site.baseurl}}/software/api/reference/#GetFeed1) documentation.
 
 ## Caching to Improve Performance
 

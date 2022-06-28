@@ -3,7 +3,122 @@ layout: page
 permalink: /resources/new/
 title: What's New
 ---
-<a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Click here to subscribe for Updates </a>
+<a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
+
+## 8.0
+
+### Special note about Trailer and Device
+
+We have migrated all Trailers to be Devices in all customer databases. As a result, you will see the following changes:
+
+- `GroupAssetTypeId`, `GroupTrailerId`, and `GroupVehicleId` built-in groups are added under CompanyGroup.
+
+- A `GroupVehicleId` built-in group is added to all Devices.
+
+- Calling Add Trailer and Add Device with the `GroupTrailerId` built-in group now performs the same action. Both create a Device in the system that is in the `GroupTrailerId` group.
+
+- Trailer APIs have been marked as obsolete but will continue to be supported (for now).
+
+- Calling Get Device now returns devices that are in the `GroupTrailerId` built-in group as part of the response.
+
+- If the Customer wants only vehicles to be returned when calling Get Device, and not trailers, they should specify groupSearch: `{“id”:”GroupVehicleId”}`.
+
+- Calling Add Trailer with the `GroupTrailerId` or `GroupVehicleId` built-in groups will throw an error.
+
+> **! IMPORTANT**: Calling Set Device and removing the `GroupVehicleId` or `GroupTrailerId` built-in groups will prevent the vehicle or trailer from being shown on the relevant selection screens on the Drive App. Calling Set Device and switching the group from `GroupTrailerId` built-in group to `GroupVehicleId` built-in group or vice versa will not be allowed. This is a temporary restriction in the 8.0 release, and we intend to remove this check in a future release.
+
+See [this slide deck](https://docs.google.com/presentation/d/1C0CBY4qaJKHx3J-fdB-YZzxbilQoleqjv8WsyFIZhEE/edit#slide=id.gdb284aa95f_0_61) to understand more about why this change was made, and how this may impact you.
+
+### Special note about EV Powertrain Groups
+
+This new built-in group structure automatically classifies electric vehicles (EV) based on their unique powertrain types: Plug-in Hybrid (PHEV), Battery Electric Vehicle (BEV), or Fuel Cell Electric Vehicle (FCEV). [See MyGeotab Version 8.0 SDK Announcement - New built-in groups for EV powertrain identification for additional details.](https://docs.google.com/document/d/1W9_Y1XukkaRKQDfJ-RH2YsUptSkUPazx_E4UjfOcKoU/edit)
+
+### Updates
+
+#### AddInData
+
+- Removed the obsolete alpha `Data` property.
+
+#### Audit
+
+- Fix: The Audit API is inconsistent in what it returns. Most ways of getting audit (Get - from ID or search, GetFeed) do not return a populated User property. However, the GetAll (Get with no search) returns records with the user fully populated. This is not consistent with the API philosophy. A nested entity will only have its ID populated. User will now never be returned in the Audit object (only userName).
+
+#### Device
+
+- Fix: Searching for `CustomDevice` type could also return `CustomVehicleDevice` devices in some cases. It has been fixed to return only devices of `CustomDevice` type.
+
+#### DutyStatusAvailability
+
+- Added `IsAdverseDrivingApplied` and `IsRailroadExemptionAvailable`.
+
+#### DutyStatusLogType
+
+- Added `RailroadExemption`.
+
+#### DVIRLog
+
+- `RepairStatus` / `RepairUser` / `RepairDate` cannot be changed once set. A repair cannot be completed without the `RepairUser`, `RepairDate`, and `RepairStatus`.
+
+#### GroupRelations
+
+- Improved description of `GroupRelations` in [API Reference]({{site.baseurl}}/software/api/reference/).
+
+#### Group
+
+- Added the following system groups:
+  - `GroupAssetTypeId`
+  - `GroupVehicleId`
+  - `GroupTrailerId`
+  - `PowertrainAndFuelTypeId`
+  - `GroupElectricHybridPluginId`
+  - `GroupBatteryElectricVehicleId`
+  - `GroupPluginHybridElectricVehicleId`
+  - `GroupFuelCellElectricVehicleId`
+  - `GroupInternalCombustionEngineId`
+  - `GroupBiodieselId`
+  - `GroupCompressedNaturalGasId`
+  - `GroupDieselId`
+  - `GroupEthanolId`
+  - `GroupGasolinePetrolId`
+  - `GroupLiquifiedNaturalGasId`
+  - `GroupPropaneLiquifiedPetroleumGasId`
+  - `GroupManuallyClassifiedPowertrainId`
+
+#### HosRuleSet
+
+- Added `America7DayRailroad` and `America8DayRailroad`.
+
+#### KnownIoxAddOnTypes
+
+- Added `NFC`, `Bluetooth`, and `UReader` add-on types.
+
+#### Nuget Package
+
+- Nuget package uses `HttpClient.VersionPolicy` `RequestVersionOrHigher`. Allowing client to use HTTP/2 and above. HttpClient default is HTTP/1.1.
+
+#### SecurityIdentifier
+
+- Added `EVBatteryHealthReport`.
+
+#### Trailer
+
+- Marked obsolete, but can still be used for this release.
+
+#### TrailerAttachment
+
+- Marked obsolete, but can still be used for this release.
+
+#### User
+
+- Added `IsAdverseDrivingEnabled`.
+
+#### Zone
+
+- When adding and setting zones, points are validated to be latitude and longitude bounds. Valid Latitude -90 to 90. Valid Longitude -180 to 180.
+
+#### ZoneSearch
+
+- `Viewport` property which was made obsolete in v5.7.2004 will be **removed and no longer supported in v9.0**. Please switch your application to use `searchArea` and `BoundingBox` objects as soon as possible.
 
 ## 7.0
 
