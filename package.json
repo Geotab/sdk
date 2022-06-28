@@ -15,15 +15,17 @@
     "trim-newlines": "^4.0.2",
     "anymatch": "^3.1.2",
     "qs": "^6.10.3",
-    "yargs":"^17.4.0"
+    "yargs":"^17.4.0",
+    "axios":"^0.27.2",
+    "got":"^12.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "autoprefixer": "^10.4.2",
-    "browser-sync": "^2.27.7",
+    "browser-sync": "^2.27.10",
     "del": "^6.0.0",
-    "gh-pages": "^3.2.3",
+    "gh-pages": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cache": "^1.1.3",
