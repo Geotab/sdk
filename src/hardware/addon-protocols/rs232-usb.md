@@ -466,10 +466,12 @@ This is an example of binary data packets for image data transferred using the M
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x86 | 1 | 1 |
 | Message Body Length = 250 | 1 | 2 |
-| **Sequence number = 1** | **1** | **3** |
+| **Sequence number = 1**\* | **1** | **3** |
 | **Binary Payload (the next 249 bytes)** | **249** | **4** |
 | Checksum | 2 | 253 |
 | ETX (0x03) | 1 | 255 |
+
+\* If the sequence number reaches 255 (0xFF) and more packets need to be sent, the sequence number must reset to a value of 1 and continue counting. **A sequence number of 0 must only be used for the first packet.**
 
 ### Binary Data Packet Containing MIME Type Acknowledge
 
