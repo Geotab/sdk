@@ -110,6 +110,9 @@ toc:
             url: /myadmin-sdk/guides/using-with-dotnet/
           - page: Using with JavaScript
             url: /myadmin-sdk/guides/using-with-javascript/
+          - page: Using Third-Party Devices with MyGeotab
+            url:  /myadmin-sdk/guides/using-third-party-devices/
+            legacy: true
       - title: API
         subfolderitems:
           - page: Reference
