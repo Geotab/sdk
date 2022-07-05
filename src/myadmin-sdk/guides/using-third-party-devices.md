@@ -393,7 +393,7 @@ On the Geotab Live Map, the only Iconography for vehicles states are as follows:
 ## Third-Party Device Integration Using .NET
 All Third-Party Devices API calls are executed through the [MyAdmin API]({{site.baseurl}}/myadmin-sdk/api/reference/).
 
-The .NET DLLs for MyAdmin can be downloaded [here](https://raw.githubusercontent.com/Geotab/sdk/master/src/myadmin-sdk/myAdminApi.js).
+The .NET DLLs for MyAdmin can be downloaded [here](https://raw.githubusercontent.com/Geotab/sdk/master/src/myadmin-sdk/MyAdminApiLib.zip).
 
 To call the Third-Party Devices APIs using the MyAdmin .NET DLL, use the WebServerInvoker object to specify your intended MyAdmin method along with its dependent parameters.
 
