@@ -144,6 +144,22 @@ blockquote {
     background-color: #0275D8;
 }
 
+.legacy {
+    @extend .badge;
+    @extend .badge-pill;
+    @extend .badge-info;
+    font-size: 0.8rem;
+    font-weight: normal;
+    background-color: #ea1f56;
+}
+
+.sticky-warning {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1031;
+}
+
 .member {
     @extend .card;
     margin: 1rem 0;
