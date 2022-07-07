@@ -34,6 +34,40 @@ To make an Add-In on the Geotab Drive app, the **item** in your configuration fi
 
 > The array of **items** also allows you to have one link item in MyGeotab, and another link item to Geotab Drive
 
+There are also 2 additional properties that are optional for the configuration file that control the availability to additional page lifecycle methods, *onStartup* and *onShutdown*. These configuration properties are boolean, they can be set to *true* if they are to be used and *false* when not in use. By default these 2 properties will be set to false if not included in the configuration file.
+
+1. **onStartup:** Startup Add-Ins are executed when a driver logs in to the Drive App for the first time.
+2. **onShutdown:** The onShutdown property must be set to true to execute an Add-In when logging out of Geotab Drive.
+
+> More information about these 2 methods can be found in this [document](https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing).
+
+e.g.
+```json
+{
+  "name": "addin-name",
+  "supportEmail": "mysupport@support.com",
+  "version": "1.0.0",
+  "items": [{
+    "url": "index.html",
+    "path": "DriveAppLink/",
+    "menuName": {
+      "en": "Add-in"
+    },
+    "icon": "images/icon.svg"
+  },
+{
+    "url": "myGeotabConfigurationPage.html",
+    "path": "AdministrationLink/",
+    "menuName": {
+      "en": "Add-in Configurations"
+    },
+    "icon": "images/icon.svg"
+  }],
+  "onStartup": true,
+  "onShutdown": true
+}
+```
+
 ## API and State Documentation
 
 Inside the Geotab Drive app, we provide the same _api_ and _state_ properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
@@ -55,6 +89,10 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | state.online | Mobile device has internet access | None | Boolean |
 | state.deviceCommunicating | Telematics device is communicating to the server | None | Boolean |
 | state.gpsConnected | Mobile device has GPS enabled | None | Boolean |
+
+## GEOTAB Drive Page Lifecycle Methods
+There are 2 additional methods available for GEOTAB Drive add-in development, **startup** and **shutdown**.
+
 
 ## Opening third-party applications using URI schema
 
