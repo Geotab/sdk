@@ -67,6 +67,32 @@ e.g.
   "onShutdown": true
 }
 ```
+## GEOTAB Drive Page Lifecycle Methods
+The onStartup and onShutdown properties respectively enable the **startup** and **shutdown** lifecycle methods.
+
+### Startup
+When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.
+
+```javascript
+startup: function (freshApi, freshState, initializeCallback) {
+    // Code that needs to be executed on dashboard should go here
+    initializeCallback();
+}
+```
+
+### Shutdown
+Shutdown Add-Ins are executed when the final driver logs out of the Drive App. If there are co-drivers, and one of the co-drivers logs out (while other drivers remain logged in to the Drive App), the shutdown Add-In is not executed.
+
+Additionally, the Add-In is expected to return a promise since shutdown Add-Ins have a 15-second time limit to perform their function before the Add-Ins time out and the logout process is completed. The time limit prevents the application from freezing in the middle of the logout process as a result of faulty Add-Ins.
+
+```javascript
+shutdown: function (api, state, callback) {
+    return new Promise(resolve => {
+        // Do work, make any api calls etc
+        resolve() // eventually need to call this somewhere so the promise resolves
+    });
+}
+```
 
 ## API and State Documentation
 
@@ -89,10 +115,6 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | state.online | Mobile device has internet access | None | Boolean |
 | state.deviceCommunicating | Telematics device is communicating to the server | None | Boolean |
 | state.gpsConnected | Mobile device has GPS enabled | None | Boolean |
-
-## GEOTAB Drive Page Lifecycle Methods
-There are 2 additional methods available for GEOTAB Drive add-in development, **startup** and **shutdown**.
-
 
 ## Opening third-party applications using URI schema
 
