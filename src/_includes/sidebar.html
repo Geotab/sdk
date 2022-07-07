@@ -26,6 +26,9 @@
                 {% if entry.beta %}
                 <span class="beta">Beta</span>
                 {% endif %}
+                {% if entry.legacy %}
+                <span class="legacy">Legacy</span>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>        
