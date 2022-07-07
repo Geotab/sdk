@@ -47,6 +47,7 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.speak() | If `api.mobile.exists()`, uses the text to speech functionality on the mobile device | String | Void |
 | api.mobile.notify() | If `api.mobile.exists()`, will add a notification to the top bar of a native operating system Example: `api.mobile.notify("Fill up your vehicle", "Low on gas")` | String[Message], String[Title], String[Id], [String[JsonData]], [Boolean[Permanent]] | Void |
 | api.mobile.geolocation | A navigator object that is similar to HTML5 `navigator.geolocation` Example: `api.mobile.geolocation.getCurrentPosition(function (position) { }, function (error) { }, { enableHighAccuracy: true })` | None | None |
+| api.mobile.camera.takePicture() | If `api.mobile.exists()`, will open up a modal with the following options `New Picture` and `Upload`. | None | Promise&lt;octet-stream&gt; |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
