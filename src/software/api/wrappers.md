@@ -15,6 +15,8 @@ Install the [NuGet package](https://www.nuget.org/packages/Geotab.Checkmate.Obje
 
 `Install-Package Geotab.Checkmate.ObjectModel`
 
+Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version as the one that your database is on. 
+
 **Using it in code**
 
 ```csharp
