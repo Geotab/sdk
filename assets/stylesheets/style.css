@@ -92,7 +92,7 @@ h3 {
     display: none;
   }
 
-  .badge, .beta {
+  .badge, .legacy, .beta {
     border: 1px solid #000;
   }
 
@@ -5072,7 +5072,7 @@ tbody.collapse.show {
   border-bottom-right-radius: 0.2rem;
 }
 
-.badge, .beta {
+.badge, .legacy, .beta {
   display: inline-block;
   padding: 0.25em 0.4em;
   font-size: 75%;
@@ -5084,16 +5084,16 @@ tbody.collapse.show {
   border-radius: 0.25rem;
 }
 
-.badge:empty, .beta:empty {
+.badge:empty, .legacy:empty, .beta:empty {
   display: none;
 }
 
-.btn .badge, .member-runner-link .badge, .btn .beta, .member-runner-link .beta {
+.btn .badge, .member-runner-link .badge, .btn .legacy, .member-runner-link .legacy, .btn .beta, .member-runner-link .beta {
   position: relative;
   top: -1px;
 }
 
-.badge-pill, .beta {
+.badge-pill, .legacy, .beta {
   padding-right: 0.6em;
   padding-left: 0.6em;
   border-radius: 10rem;
@@ -5132,12 +5132,12 @@ tbody.collapse.show {
   background-color: #1e7e34;
 }
 
-.badge-info, .beta {
+.badge-info, .legacy, .beta {
   color: #fff;
   background-color: #17a2b8;
 }
 
-.badge-info[href]:focus, [href].beta:focus, .badge-info[href]:hover, [href].beta:hover {
+.badge-info[href]:focus, [href].legacy:focus, [href].beta:focus, .badge-info[href]:hover, [href].legacy:hover, [href].beta:hover {
   color: #fff;
   text-decoration: none;
   background-color: #117a8b;
@@ -10089,6 +10089,19 @@ blockquote p {
   font-size: 0.8rem;
   font-weight: normal;
   background-color: #0275D8;
+}
+
+.legacy {
+  font-size: 0.8rem;
+  font-weight: normal;
+  background-color: #ea1f56;
+}
+
+.sticky-warning {
+  /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1031;
 }
 
 .member {
