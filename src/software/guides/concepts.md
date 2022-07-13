@@ -749,11 +749,11 @@ Below is a list of entities that are support the PropertySelector functionality.
 
 | **Entity** | **Supported in Release** | **Notes**
 | --- | --- | -- |
-| [Device]({{site.baseurl}}/software/api/reference/#Device) | 8.0 | The following properties are not supported: `IsExternalDevicePowerControlSupported`, `DevicePlans`, `EngineHours`, `CustomFeatures`, `DeviceFlags`, `IsAuxInverted`, `IsAuxIgnTrigger`, `IsHarshBrakeWarningOn`, `Channel`, `DeviceType`, `ProductId`, `RegisterDeviceResultLite`, `Autogroups`, `AuxWarningSpeed`, `EnableAuxWarning`, `FrequencyOffset`, `TrailerId`
-| [User]({{site.baseurl}}/software/api/reference/#User) | 8.0 | `IsEULAAccepted` and `AcceptedEULA` are tied to each other, so if either property is set to be returned based on the `PropertySelector` logic, both properties will be returned.
+| [Device]({{site.baseurl}}/software/api/reference/#Device) | 8.0 | The following properties are not supported: `deviceFlags`, `isAuxInverted`, `deviceType`, `productId`, `autogroups`, `auxWarningSpeed`, `enableAuxWarning`
+| [User]({{site.baseurl}}/software/api/reference/#User) | 8.0 | `isEULAAccepted` and `acceptedEULA` are tied to each other, so if either property is set to be returned based on the `PropertySelector` logic, both properties will be returned.
 | [Group]({{site.baseurl}}/software/api/reference/#Group) | 8.0 | N/A
 | [Rule]({{site.baseurl}}/software/api/reference/#Rule) | 8.0 | N/A
-| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `DateTime` must be included.
+| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `dateTime` must be included.
 | [Trip]({{site.baseurl}}/software/api/reference/#Trip) | 9.0 | N/A
 
 ### PropertySelector FAQ
