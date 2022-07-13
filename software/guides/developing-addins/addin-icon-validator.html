@@ -1,12 +1,4 @@
-    <head>
-        
-        <link rel="stylesheet" type="text/css" href="https://app.geotab.com/geotabapps/add-in-css-style-guide/styleguide.css">
-        <link rel="stylesheet" type="text/css" href="https://app.geotab.com/geotabapps/add-in-css-style-guide/intgr-styles.css">
-        
-
-        <style>
-
-        div.icons {
+<head><link rel=stylesheet type=text/css href=https://app.geotab.com/geotabapps/add-in-css-style-guide/styleguide.css><link rel=stylesheet type=text/css href=https://app.geotab.com/geotabapps/add-in-css-style-guide/intgr-styles.css><style>div.icons {
           height: 15%;
           width: 15%;
         } 
@@ -143,46 +135,7 @@
         .logo-wrapper-selected svg text{
             fill: #FFFFFF !important;
             stroke: none !important;
-        }  
-        </style>
-        
-    </head>
-
-    <body>
-        <div class="banner">
-            <h1>MyGeotab SVG Icon Validator</h1>
-            <a href="https://www.geotab.com/blog/mygeotab-add-in-icons-specs/" id="specificationsLink" target="_blank">Link to Add-In Icon Specifications</a>
-        </div>    
-        
-        <br>
-
-        <form name="uploadForm">
-          
-          <div id="parent" class="container">
-            <div class="item">
-
-                <div class="inline-buttons">
-                    <label for="svgUpload">
-                        <span class="intgr-button intgr-button--primary" aria-hidden="true">Choose File</span>
-                        <input id="svgUpload" onChange="handleFiles()" type="file" name="svgUpload" style="display:none"><br>
-                    </label>
-                    
-                </div>
-
-                <div class="intgr-button-switcher intgr-button-switcher--horizontal intgr-button-switcher--short-list">
-                    <input type="radio" name="displayed" class="" id="neutral" checked onChange="handleFiles()">
-                    <label class="" for="neutral">Neutral</label>
-                    <input type="radio" name="displayed" id="selected" class="" onChange="handleFiles()">
-                    <label class="" for="selected">Selected</label>
-                </div>
-
-            </div>
-
-        </form>
-        
-            <script>
-
-                document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"noFile\"><h3>Upload an icon to validate</h3></div>");
+        }</style></head><body><div class=banner><h1>MyGeotab SVG Icon Validator</h1><a href=https://www.geotab.com/blog/mygeotab-add-in-icons-specs/ id=specificationsLink target=_blank>Link to Add-In Icon Specifications</a></div><br><form name=uploadForm><div id=parent class=container><div class=item><div class=inline-buttons><label for=svgUpload><span class="intgr-button intgr-button--primary" aria-hidden=true>Choose File</span> <input id=svgUpload onchange=handleFiles() type=file name=svgUpload style=display:none><br></label></div><div class="intgr-button-switcher intgr-button-switcher--horizontal intgr-button-switcher--short-list"><input type=radio name=displayed class="" id=neutral checked onchange=handleFiles()> <label class="" for=neutral>Neutral</label> <input type=radio name=displayed id=selected class="" onchange=handleFiles()> <label class="" for=selected>Selected</label></div></div></div></form><script>document.body.insertAdjacentHTML("beforeend", "<div class=\"container\" id=\"noFile\"><h3>Upload an icon to validate</h3></div>");
 
                 function clearScreen(){
 
@@ -315,7 +268,4 @@
                         }
                     }
 
-                }   
-            </script>
-    </body>
-
+                }</script></body>
