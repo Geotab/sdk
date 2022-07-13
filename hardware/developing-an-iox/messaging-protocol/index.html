@@ -1,1 +1,1290 @@
-<!DOCTYPE html><html lang=En><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>IO Expander Protocol | MyGeotab SDK</title><meta name=generator content="Jekyll v4.2.2"><meta property=og:title content="IO Expander Protocol"><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><meta property=og:description content="The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems."><link rel=canonical href=https://geotab.github.io/sdk/hardware/developing-an-iox/messaging-protocol/ ><meta property=og:url content=https://geotab.github.io/sdk/hardware/developing-an-iox/messaging-protocol/ ><meta property=og:site_name content="MyGeotab SDK"><meta property=og:type content=website><meta name=twitter:card content=summary><meta property=twitter:title content="IO Expander Protocol"><script type=application/ld+json>{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"The Geotab Team"},"description":"The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.","headline":"IO Expander Protocol","url":"https://geotab.github.io/sdk/hardware/developing-an-iox/messaging-protocol/"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-382de543d5.min.css><link rel=stylesheet href=/sdk/assets/stylesheets/style-8cd50b82f2.min.css><link rel=stylesheet href=/sdk/assets/stylesheets/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" title=navigationBar><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> MyGeotab SDK </a><button class="navbar-toggler d-lg-none" id=toggler type=button aria-label="navigation bar toggler"><span class=navbar-toggler-icon></span></button></nav></header><div id=wrapper><div id=sidebar-wrapper class=bg-light><nav id=sidebar class=sidebar><h4>Software</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/introduction/ >Software Introduction</a></li><li class=nav-link><a href=/sdk/resources/new/ >What's New</a></li><li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/guides/getting-started/ >Getting Started</a></li><li class=nav-link><a href=/sdk/software/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-javascript/ >Using in Javascript</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-dotnet/ >Using in .Net</a></li><li class=nav-link><a href=/sdk/software/guides/using-in-java/ >Using in Java</a> <span class=beta>Beta</span></li><li class=nav-link><a href=/sdk/software/guides/data-feed/ >Data Feed</a></li><li class=nav-link><a href=/sdk/software/guides/mygeotab-urls/ >Using MyGeotab URLs</a></li><li class=nav-link><a href=/sdk/software/guides/using-go-devices/ >Using GO Devices</a></li><li class=nav-link><a href=/sdk/software/guides/go-device-logging/ >GO Device Logging</a></li><li class=nav-link><a href=/sdk/software/guides/custom-telematics-devices/ >Using Custom Telematics Devices</a></li><li class=nav-link><a href=/sdk/software/guides/developing-addins/ >Developing Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/addin-storage/ >Using Add-Ins for data storage</a></li><li class=nav-link><a href=/sdk/software/guides/drive-addins/ >Geotab Drive Add-Ins</a></li><li class=nav-link><a href=/sdk/software/guides/map-add-ins-docs/ >Map Add-ins</a></li><li class=nav-link><a href=https://github.com/Geotab/mg-media-files>Media Files</a> <span class=beta>Beta</span></li><li class=nav-link><a href=/sdk/software/guides/power-bi/ >Connect to Power BI</a></li></ul></li><li><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/api/reference/ >Reference</a></li><li class=nav-link><a href=/sdk/software/api/runner.html>Runner</a></li><li class=nav-link><a href=/sdk/software/api/clients/ >API Clients</a></li></ul></li><li><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/software/js-samples/ >Javascript Examples</a></li><li class=nav-link><a href=/sdk/software/dotnet-samples/ >.Net Examples</a></li><li class=nav-link><a href=https://github.com/Geotab/sdk-java-samples>Java Examples</a> <span class=beta>Beta</span></li><li class=nav-link><a href=https://github.com/Geotab/sdk-addin-samples>Add-in Examples</a></li></ul></li></ul><hr><h4>Hardware</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/introduction/ >Hardware Introduction</a></li><li><h5>Add-on Protocols</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/addon-protocols/rs232-usb/ >RS232 & USB</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/can/ >CAN</a></li><li class=nav-link><a href=/sdk/hardware/addon-protocols/ble/ >BLE</a></li></ul></li><li><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/samples/python/ >Python</a></li><li class=nav-link><a href=https://github.com/Geotab/android-external-device-example>Android</a></li></ul></li><li><h5>Developing an IOX</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/hardware/developing-an-iox/hardware-design-guide/ >Hardware Design Guide</a></li><li class="nav-link active"><a href=/sdk/hardware/developing-an-iox/messaging-protocol/ >Messaging Protocol</a></li></ul></li></ul><hr><h4>MyAdmin SDK</h4><ul class="nav flex-column"><li class=nav-link><a href=/sdk/myadmin-sdk/introduction/ >MyAdmin SDK Introduction</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/new/ >What's New</a></li><li><h5>Guides</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/myadmin-sdk/guides/getting-started/ >Getting Started</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/guides/concepts/ >Concepts</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/guides/using-with-dotnet/ >Using with .NET</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/guides/using-with-javascript/ >Using with JavaScript</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/guides/using-third-party-devices/ >Using Third-Party Devices with MyGeotab</a> <span class=legacy>Legacy</span></li></ul></li><li><h5>API</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/myadmin-sdk/api/reference/ >Reference</a></li></ul></li><li><h5>Code Samples</h5><ul class="nav flex-column"><li class=nav-link><a href=/sdk/myadmin-sdk/code-samples/dotnet-examples/ >.NET Examples</a></li><li class=nav-link><a href=/sdk/myadmin-sdk/code-samples/javascript-examples/ >JavaScript Examples</a></li></ul></li></ul><hr><h4>Resources</h4><ul class="nav flex-column"><li class=nav-link><a href=https://community.geotab.com/s/ >Forums</a></li><li class=nav-link><a href=https://www.geotab.com/dev-channel/ >Dev Channel</a></li><li class=nav-link><a href=/sdk/resources/toolkits/ >Toolkits</a></li></ul><hr></nav></div><main role=main><div class=container-fluid><div class=row><article class=col-md-12><header><a href=https://github.com/Geotab/sdk/blob/master/src/hardware/developing-an-iox/protocol.md class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version=1.1 width=16 height=16 aria-hidden=true><path fill-rule=evenodd d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> Edit on GitHub</a><h1>IO Expander Protocol</h1></header><div><h2 id=general-description>General Description</h2><p>The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device. Readers are recommended to find examples from <a href="https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing">CAN IOX Sample Communication Session</a> as they read through the rest of this page.</p><h3 id=interoperability>Interoperability</h3><p>Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.</p><p>Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.</p><h3 id=serial-number>Serial Number</h3><p>Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.</p><p>Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:</p><ol><li>Generate a random 4 byte value.</li><li>Make sure that the 2 LSBs are not equal to ‘0000’.</li><li>Make sure that you do not already have this value stored in your database of existing serial numbers.</li></ol><h3 id=message-structure>Message Structure</h3><p>Message identification is done with an arbitration ID.</p><p>The Arbitration ID Field for IOX Messages:</p><table><thead><tr><th>Bits</th><th>28 to 22</th><th>21 to 16</th><th>15 to 0</th></tr></thead><tbody><tr><td>Contents</td><td>Reserved: 0</td><td>Message: 0–63</td><td>All IOXs: 0<br>Individual IOX Address ID: 1–65535</td></tr></tbody></table><p>0x1F800000 IO_EXPANDER_RESERVED_MASK</p><p>0x007F0000 IO_EXPANDER_COMMAND_MASK</p><p>0x0000FFFF IO_EXPANDER_ID_MASK</p><h3 id=address-id>Address ID</h3><p>The last 2 bytes of the IOX Serial Number (MSB first) are used as the Address ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.</p><p>The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID between 0x0001 and 0xFFFF when it is targeted at a specific IOX.</p><p>IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.</p><h3 id=iox-id>IOX ID</h3><p>Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrator shall report the IOX ID in byte 7 of the Poll Response (0x02).</p><h3 id=acknowledge-process>Acknowledge Process</h3><ol><li>Each IOX should receive an ACK from the GO device for every message sent. If an ACK is not received within 100 ms, the IOX should repeat the message before sending anything else.</li><li>The first poll after reset allows up to 1 second for the acknowledge to come in before repeating.</li><li>When a global message (addressed to 0x0000) requiring a response is received by an IOX, the IOX should respond with a delay of up to 70 ms in order to prevent all IOXs from trying to respond at the same time. This delay should be random and the seed for the randomizer must be based on the IOX's Serial Number.</li></ol><h2 id=polling>Polling</h2><p>After powering up, the GO device will poll all IOXs every 7 seconds. Each IOX must respond to this poll by obeying the ACK rules.</p><h3 id=device-removed>Device Removed</h3><p>If the GO device fails to see an IOX that used to be connected (i.e. the IOX was disconnected), the GO device will remove the IOX from its internal database after 5 attempts (35 seconds) and will make the slot available for a new IOX that can be connected at any time.</p><h3 id=new-device>New Device</h3><p>Any IOX that is connected to the GO device must respond to the poll request. The GO device will notice the new IOXs and add them to its internal database.</p><h3 id=undocumented-messages>Undocumented messages</h3><p>An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.</p><h2 id=commands>Commands</h2><h3 id=reset-0x00>Reset (0x00)</h3><p>Directed to all devices. Instructs all devices to reset and behave as if they have just powered up. IOXs should throw out any setup information they might have received, de-assert hardware control lines, and open their relays.</p><h3 id=poll-0x01>Poll (0x01)</h3><p>Sent by the GO device in a broadcast fashion to all units to check if they are there.</p><h3 id=poll-response-0x02>Poll Response (0x02)</h3><p>Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The first poll-response after power up (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll-responses (when Byte 0 Bit 0 is 0) only contain the first byte.</p><h4 id=payload--poll-response>Payload — Poll Response</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0 - Bit 0</td><td>0 = Have been polled before.<br>1 = First poll after power up.</td></tr><tr><td>0 - Bit 1</td><td>0 = Not Going to Sleep.<br>1 = Going to Sleep.</td></tr><tr><td>0 - Bit 2</td><td>0 = Normal reply.<br>1 = First poll response after wake up.</td></tr><tr><td>0 - Bit 3-7</td><td>Reserved</td></tr><tr><td> </td><td>The following Bytes are sent only on first poll-response</td></tr><tr><td>1</td><td>Firmware Version Major</td></tr><tr><td>2</td><td>Firmware Version Minor</td></tr><tr><td>3-4</td><td>2 Most significant bytes of Serial Number</td></tr><tr><td>5</td><td>Reset Reason<br>0 = Power On Reset<br>1 = Reset Command<br>2 = New Firmware<br>All others reserved.</td></tr><tr><td>6</td><td>Reserved</td></tr><tr><td>7</td><td>150 to 199<br>IOX ID. Please contact Geotab to get one assigned.</td></tr></tbody></table><p>When the "Go to Sleep" command is received, and before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.</p><h3 id=additional-info-0x03>Additional Info (0x03)</h3><p>Sent by the IOX after an ACK for the first poll is received. This message is not strictly required for operation. However, sending of this message is required if any version information is to be reported, including: Product, Hardware, Firmware Major, Firmware Minor, or Version Control.</p><h4 id=payload--additional-info>Payload — Additional Info</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0-3</td><td>Software Version Control Number(Ex: SVN Version, Git SHA)</td></tr><tr><td>4</td><td>Product Version</td></tr><tr><td>5</td><td>Reserved</td></tr><tr><td>6</td><td>Error Condition<br>0 = No error<br>1 = Memory allocation error</td></tr><tr><td>7</td><td>Hardware Version</td></tr></tbody></table><h3 id=wakeup-0x04>Wakeup (0x04)</h3><p>Wakes up all the IOXs from Sleep Mode. Will be sent by the GO at least twice within a space of 10 ms.</p><h3 id=sleep-0x05>Sleep (0x05)</h3><p>Causes all IOXs to go into Sleep Mode. Devices will enter Sleep Mode no sooner than 2 seconds, and not more than 20 seconds, after receiving this command. In the meantime, they will report through the poll response that they are going to sleep.</p><h3 id=tx-data-0x0b>TX Data (0x0B)</h3><p>Data sent from the GO device to the addressed IOX.</p><h4 id=payload--tx-data>Payload — TX Data</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0-7</td><td>Data to transmit</td></tr></tbody></table><h3 id=rx-data-0x0c>RX Data (0x0C)</h3><p>Data sent from an IOX to the GO device. The GO will reply with an ACK.</p><h4 id=payload--rx-data>Payload — RX Data</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0-7</td><td>Received data</td></tr></tbody></table><h3 id=acknowledge-0x14>Acknowledge (0x14)</h3><p>Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchange the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.</p><h4 id=payload>Payload</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0 - Bit 0</td><td>0 = Clear to send more Rx Data.<br>1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms.</td></tr><tr><td>1 - Bit 1-7</td><td>Reserved</td></tr></tbody></table><h3 id=application-specific-data-0x1c>Application Specific Data (0x1C)</h3><p>Sent by the GO device after a packet wrapped passthrough message attempt to the server. A ‘rejected’ response from the modem typically means it is not connected. If the message is ‘accepted’ this means it was added to the modem’s TCP socket buffer. It is not a confirmation the message was successfully sent.</p><h4 id=type-0-modem-transmission-result>Type 0: Modem Transmission Result</h4><table><thead><tr><th><strong>Byte #</strong></th><th><strong>Byte Description</strong></th></tr></thead><tbody><tr><td>0</td><td>Log Type</td></tr><tr><td>1</td><td>0 = Rejected.<br>1 = Accepted.</td></tr></tbody></table><h3 id=iox-single-frame-log-data-0x1d>IOX Single Frame Log Data (0x1D)</h3><p>Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame.</p><h4 id=payload-1>Payload</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0</td><td>Log Type</td></tr><tr><td>1-7</td><td>Data</td></tr></tbody></table><h4 id=log-type-0-genericdatarecord>Log Type: 0 (GenericDataRecord)</h4><h4 id=log-type-3-prioritydatarecord>Log Type: 3 (PriorityDataRecord)</h4><table><thead><tr><th>Data</th><th>Description</th></tr></thead><tbody><tr><td>1-2</td><td>Data ID</td></tr><tr><td>3</td><td>Length</td></tr><tr><td>4-7</td><td>Data</td></tr></tbody></table><h4 id=log-type-1-externaldeviceconnectionstatus>Log Type: 1 (externalDeviceConnectionStatus)</h4><table><thead><tr><th>Data</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td>Connected = 1, Disconnected = 0</td></tr><tr><td>2-3</td><td>Data ID</td></tr><tr><td>4-5</td><td>Connection flags</td></tr></tbody></table><h4 id=log-type-2-genericfaultrecord>Log Type: 2 (GenericFaultRecord)</h4><table><thead><tr><th>Data</th><th>Description</th></tr></thead><tbody><tr><td>1-2</td><td>Fault code</td></tr><tr><td>3</td><td>Active / Inactive</td></tr><tr><td>4</td><td>Log Once Per Trip / Log Every Fault</td></tr></tbody></table><h3 id=iox-multi-frame-log-data-0x1e>IOX Multi-Frame Log Data (0x1E)</h3><p>Sent from the IOX to the GO device when the IOX wants create a log that cannot fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p><h4 id=payload-first-frame>Payload First Frame</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0</td><td>Frame Counter (0x00)</td></tr><tr><td>1</td><td>Log Type</td></tr><tr><td>2-3</td><td>Length</td></tr><tr><td>4-7</td><td>Data</td></tr></tbody></table><h4 id=payload-subsequent-frames>Payload Subsequent Frames</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0</td><td>Frame Counter</td></tr><tr><td>1-7</td><td>Data</td></tr></tbody></table><h4 id=log-types>Log Types</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0</td><td>Third Party Free Format Data</td></tr><tr><td>1</td><td>Reserved</td></tr><tr><td>2</td><td>Bluetooth Record</td></tr></tbody></table><h3 id=iox-requeststatus-0x25>IOX Request/Status (0x25)</h3><p>Sent from the IOX to the GO device to inform the GO device of events or status changes.</p><h4 id=payload-2>Payload</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0-1</td><td>Information Type</td></tr><tr><td>2-7</td><td>Optional bytes that depend on the type</td></tr></tbody></table><h4 id=information-type-0--busy>Information Type 0 — Busy</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0000</td></tr><tr><td>2</td><td>0 = Not busy<br>1 = Busy</td></tr></tbody></table><h4 id=information-type-1---packet-wrapper>Information Type 1 - Packet Wrapper</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0001</td></tr><tr><td>2</td><td>0 = Beginning of data packet<br>1 = End of data packet</td></tr></tbody></table><h4 id=information-type-2---request-go-device-data-message>Information Type 2 - Request GO Device Data Message</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0002</td></tr><tr><td>2</td><td>Message Version (1 or 2)</td></tr></tbody></table><h4 id=information-type-3---connect-and-send-records>Information Type 3 - Connect and Send Records</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0003</td></tr><tr><td>2</td><td>Unused</td></tr></tbody></table><h4 id=information-type-4---request-vin-message>Information Type 4 - Request VIN Message</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0004</td></tr><tr><td>2</td><td>Unused</td></tr></tbody></table><h3 id=go-status-information-0x26>GO Status Information (0x26)</h3><p>Sent from the GO to the IOX to pass information the IOX may need.</p><h4 id=payload-3>Payload</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0-1</td><td>Information Type</td></tr><tr><td>2-7</td><td>Optional bytes that depend on the type</td></tr></tbody></table><h4 id=information-type-0---ignition>Information Type 0 - Ignition</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0-1</td><td>0x0000</td></tr><tr><td>2</td><td>0 = Ignition Off<br>1 = Ignition On</td></tr></tbody></table><h3 id=go-multi-frame-data-0x27>GO Multi-Frame Data (0x27)</h3><p>Sent from the GO to the IOX when the GO wants to transfer data that can not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p><h4 id=payload-first-frame-1>Payload First Frame</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0</td><td>Frame Counter (0x00)</td></tr><tr><td>1</td><td>Log Type</td></tr><tr><td>2-3</td><td>Length</td></tr><tr><td>4-7</td><td>Data</td></tr></tbody></table><h4 id=payload-subsequent-frames-1>Payload Subsequent Frames</h4><table><thead><tr><th>Byte #</th><th>Byte Description</th></tr></thead><tbody><tr><td>0</td><td>Frame Counter</td></tr><tr><td>1-7</td><td>Data</td></tr></tbody></table><h4 id=log-types-1>Log Types</h4><table><thead><tr><th>Parameter Type</th><th>Description</th></tr></thead><tbody><tr><td>0</td><td>Reserved</td></tr><tr><td>1</td><td>Reserved</td></tr><tr><td>2</td><td>GO device status packet</td></tr><tr><td>3</td><td>VIN</td></tr></tbody></table></div></article></div></div><footer class="footer mt-auto py-3"><a href=https://www.geotab.com/security/ target=_blank>Security</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href=https://docs.google.com/document/d/1sVygLN02w2xNovFY4q5vw-oAzfYxCd7WLhyToElgDbs/pub rel=noopener target=_blank>Privacy Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href=/myadmin-sdk/introduction/ >MyAdmin SDK</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href=https://docs.google.com/document/d/1jA8Qc8WZMhmaqdjd8Ng8rY4iMI073xCfLNt_DSP72TQ/edit rel=noopener target=_blank>End User Agreement</a><div class="copyright-container copyright-white-text">Copyright &copy; 2017 Geotab</div></footer></main></div><script src=/sdk/assets/javascript/index.js></script></body></html>
+<!DOCTYPE html>
+<html lang="En">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>IO Expander Protocol | Geotab Developers</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="IO Expander Protocol" />
+<meta name="author" content="The Geotab Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This site provides tools for integrating with various types of Geotab products." />
+<meta property="og:description" content="This site provides tools for integrating with various types of Geotab products." />
+<link rel="canonical" href="https://geotab.github.io/hardware/developing-an-iox/messaging-protocol/" />
+<meta property="og:url" content="https://geotab.github.io/hardware/developing-an-iox/messaging-protocol/" />
+<meta property="og:site_name" content="Geotab Developers" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="IO Expander Protocol" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"The Geotab Team"},"description":"This site provides tools for integrating with various types of Geotab products.","headline":"IO Expander Protocol","url":"https://geotab.github.io/hardware/developing-an-iox/messaging-protocol/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/assets/stylesheets/style-382de543d5.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/style-8cd50b82f2.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <!-- endinject -->
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/touch/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+</head>
+
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" title="navigationBar">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/images/pillar.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Geotab Developers
+        </a>
+        <button class="navbar-toggler d-lg-none" id="toggler" type="button" aria-label="navigation bar toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+</header>
+
+
+  <div id="wrapper">
+<div id="sidebar-wrapper" class="bg-light">
+    <nav id="sidebar" class="sidebar">
+    
+        <h4>MyGeotab SDK</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/introduction/">MyGeotab SDK Introduction</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/resources/new/">What's New</a>
+                
+            </li>
+            
+        
+        <li>
+        <h5>Guides</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/getting-started/">Getting Started</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/concepts/">Concepts</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-javascript/">Using in Javascript</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-dotnet/">Using in .Net</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-in-java/">Using in Java</a>
+                
+                
+                <span class="beta">Beta</span>
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/data-feed/">Data Feed</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/mygeotab-urls/">Using MyGeotab URLs</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/using-go-devices/">Using GO Devices</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/go-device-logging/">GO Device Logging</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/custom-telematics-devices/">Using Custom Telematics Devices</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/developing-addins/">Developing Add-Ins</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/addin-storage/">Using Add-Ins for data storage</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/drive-addins/">Geotab Drive Add-Ins</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/map-add-ins-docs/">Map Add-ins</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/mg-media-files">Media Files</a>
+                
+                
+                <span class="beta">Beta</span>
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/guides/power-bi/">Connect to Power BI</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>API</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/reference/">Reference</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/runner.html">Runner</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/api/clients/">API Clients</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/software/js-samples/">Javascript Examples</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/software/dotnet-samples/">.Net Examples</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-java-samples">Java Examples</a>
+                
+                
+                <span class="beta">Beta</span>
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/sdk-addin-samples">Add-in Examples</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+         
+        </ul>
+        <hr/>
+    
+        <h4>Hardware</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/introduction/">Hardware Introduction</a>
+                
+            </li>
+            
+        
+        <li>
+        <h5>Add-on Protocols</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/rs232-usb/">RS232 & USB</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/can/">CAN</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/addon-protocols/ble/">BLE</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/samples/python/">Python</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://github.com/Geotab/android-external-device-example">Android</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>Developing an IOX</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/hardware/developing-an-iox/hardware-design-guide/">Hardware Design Guide</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link active">
+                
+                <a href="/hardware/developing-an-iox/messaging-protocol/">Messaging Protocol</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+         
+        </ul>
+        <hr/>
+    
+        <h4>MyAdmin SDK</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/introduction/">MyAdmin SDK Introduction</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/new/">What's New</a>
+                
+            </li>
+            
+        
+        <li>
+        <h5>Guides</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/guides/getting-started/">Getting Started</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/guides/concepts/">Concepts</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/guides/using-with-dotnet/">Using with .NET</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/guides/using-with-javascript/">Using with JavaScript</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/guides/using-third-party-devices/">Using Third-Party Devices with MyGeotab</a>
+                
+                
+                
+                <span class="legacy">Legacy</span>
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>API</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/api/reference/">Reference</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+        
+        <li>
+        <h5>Code Samples</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/code-samples/dotnet-examples/">.NET Examples</a>
+                
+                
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/myadmin-sdk/code-samples/javascript-examples/">JavaScript Examples</a>
+                
+                
+                
+            </li>
+            
+        </ul>        
+        </li>        
+         
+        </ul>
+        <hr/>
+    
+        <h4>Resources</h4>
+        <ul class="nav flex-column">
+            
+            <li class="nav-link">
+                
+                <a href="https://community.geotab.com/s/">Forums</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="https://www.geotab.com/dev-channel/">Dev Channel</a>
+                
+            </li>
+            
+            <li class="nav-link">
+                
+                <a href="/resources/toolkits/">Toolkits</a>
+                
+            </li>
+            
+         
+        </ul>
+        <hr/>
+    
+    </nav>
+</div>  
+<main role="main">
+  <div class="container-fluid">
+    <div class="row">
+
+      <article class="col-md-12">
+        <header>
+          <a href="https://github.com/Geotab/sdk/blob/master/src/hardware/developing-an-iox/protocol.md" class="float-right small"><svg class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> Edit on GitHub</a>
+          
+            <h1>IO Expander Protocol</h1>
+                    
+        </header>
+
+        <div>
+          <h2 id="general-description">General Description</h2>
+
+<p>The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device. Readers are recommended to find examples from <a href="https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing">CAN IOX Sample Communication Session</a> as they read through the rest of this page.</p>
+
+<h3 id="interoperability">Interoperability</h3>
+
+<p>Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.</p>
+
+<p>Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.</p>
+
+<h3 id="serial-number">Serial Number</h3>
+<p>Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.</p>
+
+<p>Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:</p>
+<ol>
+  <li>Generate a random 4 byte value.</li>
+  <li>Make sure that the 2 LSBs are not equal to ‘0000’.</li>
+  <li>Make sure that you do not already have this value stored in your database of existing serial numbers.</li>
+</ol>
+
+<h3 id="message-structure">Message Structure</h3>
+
+<p>Message identification is done with an arbitration ID.</p>
+
+<p>The Arbitration ID Field for IOX Messages:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bits</th>
+      <th>28 to 22</th>
+      <th>21 to 16</th>
+      <th>15 to 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Contents</td>
+      <td>Reserved: 0</td>
+      <td>Message: 0–63</td>
+      <td>All IOXs: 0 <br /> Individual IOX Address ID: 1–65535</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>0x1F800000 IO_EXPANDER_RESERVED_MASK</p>
+
+<p>0x007F0000 IO_EXPANDER_COMMAND_MASK</p>
+
+<p>0x0000FFFF IO_EXPANDER_ID_MASK</p>
+
+<h3 id="address-id">Address ID</h3>
+
+<p>The last 2 bytes of the IOX Serial Number (MSB first) are used as the Address ID. This allows the GO device to identify the source of a message or, when the message is sent from the GO device, to identify the destination IOX.</p>
+
+<p>The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID between 0x0001 and 0xFFFF when it is targeted at a specific IOX.</p>
+
+<p>IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.</p>
+
+<h3 id="iox-id">IOX ID</h3>
+<p>Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrator shall report the IOX ID in byte 7 of the Poll Response (0x02).</p>
+
+<h3 id="acknowledge-process">Acknowledge Process</h3>
+
+<ol>
+  <li>Each IOX should receive an ACK from the GO device for every message sent. If an ACK is not received within 100 ms, the IOX should repeat the message before sending anything else.</li>
+  <li>The first poll after reset allows up to 1 second for the acknowledge to come in before repeating.</li>
+  <li>When a global message (addressed to 0x0000) requiring a response is received by an IOX, the IOX should respond with a delay of up to 70 ms in order to prevent all IOXs from trying to respond at the same time. This delay should be random and the seed for the randomizer must be based on the IOX's Serial Number.</li>
+</ol>
+
+<h2 id="polling">Polling</h2>
+
+<p>After powering up, the GO device will poll all IOXs every 7 seconds. Each IOX must respond to this poll by obeying the ACK rules.</p>
+
+<h3 id="device-removed">Device Removed</h3>
+
+<p>If the GO device fails to see an IOX that used to be connected (i.e. the IOX was disconnected), the GO device will remove the IOX from its internal database after 5 attempts (35 seconds) and will make the slot available for a new IOX that can be connected at any time.</p>
+
+<h3 id="new-device">New Device</h3>
+
+<p>Any IOX that is connected to the GO device must respond to the poll request. The GO device will notice the new IOXs and add them to its internal database.</p>
+
+<h3 id="undocumented-messages">Undocumented messages</h3>
+
+<p>An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.</p>
+
+<h2 id="commands">Commands</h2>
+
+<h3 id="reset-0x00">Reset (0x00)</h3>
+
+<p>Directed to all devices. Instructs all devices to reset and behave as if they have just powered up. IOXs should throw out any setup information they might have received, de-assert hardware control lines, and open their relays.</p>
+
+<h3 id="poll-0x01">Poll (0x01)</h3>
+
+<p>Sent by the GO device in a broadcast fashion to all units to check if they are there.</p>
+
+<h3 id="poll-response-0x02">Poll Response (0x02)</h3>
+
+<p>Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The first poll-response after power up (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll-responses (when Byte 0 Bit 0 is 0) only contain the first byte.</p>
+
+<h4 id="payload--poll-response">Payload — Poll Response</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 - Bit 0</td>
+      <td>0 = Have been polled before. <br /> 1 = First poll after power up.</td>
+    </tr>
+    <tr>
+      <td>0 - Bit 1</td>
+      <td>0 = Not Going to Sleep. <br /> 1 = Going to Sleep.</td>
+    </tr>
+    <tr>
+      <td>0 - Bit 2</td>
+      <td>0 = Normal reply. <br /> 1 = First poll response after wake up.</td>
+    </tr>
+    <tr>
+      <td>0 - Bit 3-7</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>The following Bytes are sent only on first poll-response</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Firmware Version Major</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Firmware Version Minor</td>
+    </tr>
+    <tr>
+      <td>3-4</td>
+      <td>2 Most significant bytes of Serial Number</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Reset Reason <br /> 0 =  Power On Reset <br /> 1 =  Reset Command <br /> 2 = New Firmware <br /> All others reserved.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>150 to 199 <br /> IOX ID. Please contact Geotab to get one assigned.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When the "Go to Sleep" command is received, and before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.</p>
+
+<h3 id="additional-info-0x03">Additional Info (0x03)</h3>
+
+<p>Sent by the IOX after an ACK for the first poll is received. This message is not strictly required for operation. However, sending of this message is required if any version information is to be reported, including: Product, Hardware, Firmware Major, Firmware Minor, or Version Control.</p>
+
+<h4 id="payload--additional-info">Payload — Additional Info</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-3</td>
+      <td>Software Version Control Number(Ex: SVN Version, Git SHA)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Product Version</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Error Condition <br /> 0 = No error <br /> 1 = Memory allocation error</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Hardware Version</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="wakeup-0x04">Wakeup (0x04)</h3>
+
+<p>Wakes up all the IOXs from Sleep Mode. Will be sent by the GO at least twice within a space of 10 ms.</p>
+
+<h3 id="sleep-0x05">Sleep (0x05)</h3>
+
+<p>Causes all IOXs to go into Sleep Mode. Devices will enter Sleep Mode no sooner than 2 seconds, and not more than 20 seconds, after receiving this command. In the meantime, they will report through the poll response that they are going to sleep.</p>
+
+<h3 id="tx-data-0x0b">TX Data (0x0B)</h3>
+
+<p>Data sent from the GO device to the addressed IOX.</p>
+
+<h4 id="payload--tx-data">Payload — TX Data</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-7</td>
+      <td>Data to transmit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rx-data-0x0c">RX Data (0x0C)</h3>
+
+<p>Data sent from an IOX to the GO device. The GO will reply with an ACK.</p>
+
+<h4 id="payload--rx-data">Payload — RX Data</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-7</td>
+      <td>Received data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="acknowledge-0x14">Acknowledge (0x14)</h3>
+
+<p>Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchange the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.</p>
+
+<h4 id="payload">Payload</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 - Bit 0</td>
+      <td>0 = Clear to send more Rx Data. <br /> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms.</td>
+    </tr>
+    <tr>
+      <td>1 - Bit 1-7</td>
+      <td>Reserved</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-specific-data-0x1c">Application Specific Data (0x1C)</h3>
+
+<p>Sent by the GO device after a packet wrapped passthrough message attempt to the server. A ‘rejected’ response from the modem typically means it is not connected. If the message is ‘accepted’ this means it was added to the modem’s TCP socket buffer. It is not a confirmation the message was successfully sent.</p>
+
+<h4 id="type-0-modem-transmission-result">Type 0: Modem Transmission Result</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Byte #</strong></th>
+      <th><strong>Byte Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Log Type</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0 = Rejected. <br /> 1 = Accepted.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="iox-single-frame-log-data-0x1d">IOX Single Frame Log Data (0x1D)</h3>
+
+<p>Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame.</p>
+
+<h4 id="payload-1">Payload</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Log Type</td>
+    </tr>
+    <tr>
+      <td>1-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="log-type-0-genericdatarecord">Log Type: 0 (GenericDataRecord)</h4>
+
+<h4 id="log-type-3-prioritydatarecord">Log Type: 3 (PriorityDataRecord)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>Data ID</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Length</td>
+    </tr>
+    <tr>
+      <td>4-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="log-type-1-externaldeviceconnectionstatus">Log Type: 1 (externalDeviceConnectionStatus)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Connected = 1, Disconnected = 0</td>
+    </tr>
+    <tr>
+      <td>2-3</td>
+      <td>Data ID</td>
+    </tr>
+    <tr>
+      <td>4-5</td>
+      <td>Connection flags</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="log-type-2-genericfaultrecord">Log Type: 2 (GenericFaultRecord)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>Fault code</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Active / Inactive</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Log Once Per Trip / Log Every Fault</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="iox-multi-frame-log-data-0x1e">IOX Multi-Frame Log Data (0x1E)</h3>
+
+<p>Sent from the IOX to the GO device when the IOX wants create a log that cannot fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p>
+
+<h4 id="payload-first-frame">Payload First Frame</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Frame Counter (0x00)</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Log Type</td>
+    </tr>
+    <tr>
+      <td>2-3</td>
+      <td>Length</td>
+    </tr>
+    <tr>
+      <td>4-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="payload-subsequent-frames">Payload Subsequent Frames</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Frame Counter</td>
+    </tr>
+    <tr>
+      <td>1-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="log-types">Log Types</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Third Party Free Format Data</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Bluetooth Record</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="iox-requeststatus-0x25">IOX Request/Status (0x25)</h3>
+
+<p>Sent from the IOX to the GO device to inform the GO device of events or status changes.</p>
+
+<h4 id="payload-2">Payload</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>Information Type</td>
+    </tr>
+    <tr>
+      <td>2-7</td>
+      <td>Optional bytes that depend on the type</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-0--busy">Information Type 0 — Busy</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0 = Not busy <br /> 1 = Busy</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-1---packet-wrapper">Information Type 1 - Packet Wrapper</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0001</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0 = Beginning of data packet <br /> 1 = End of data packet</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-2---request-go-device-data-message">Information Type 2 - Request GO Device Data Message</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0002</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Message Version (1 or 2)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-3---connect-and-send-records">Information Type 3 - Connect and Send Records</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0003</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Unused</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-4---request-vin-message">Information Type 4 - Request VIN Message</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0004</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Unused</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="go-status-information-0x26">GO Status Information (0x26)</h3>
+
+<p>Sent from the GO to the IOX to pass information the IOX may need.</p>
+
+<h4 id="payload-3">Payload</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>Information Type</td>
+    </tr>
+    <tr>
+      <td>2-7</td>
+      <td>Optional bytes that depend on the type</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="information-type-0---ignition">Information Type 0 - Ignition</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>0x0000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0 = Ignition Off <br /> 1 = Ignition On</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="go-multi-frame-data-0x27">GO Multi-Frame Data (0x27)</h3>
+
+<p>Sent from the GO to the IOX when the GO wants to transfer data that can not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p>
+
+<h4 id="payload-first-frame-1">Payload First Frame</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Frame Counter (0x00)</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Log Type</td>
+    </tr>
+    <tr>
+      <td>2-3</td>
+      <td>Length</td>
+    </tr>
+    <tr>
+      <td>4-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="payload-subsequent-frames-1">Payload Subsequent Frames</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Byte #</th>
+      <th>Byte Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Frame Counter</td>
+    </tr>
+    <tr>
+      <td>1-7</td>
+      <td>Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="log-types-1">Log Types</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Reserved</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>GO device status packet</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>VIN</td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <footer class="footer mt-auto py-3">
+    <!-- <div class=" col-sm-12 h-100"> -->
+        <a href="https://www.geotab.com/security/" target="_blank">Security</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://docs.google.com/document/d/1sVygLN02w2xNovFY4q5vw-oAzfYxCd7WLhyToElgDbs/pub" rel="noopener"
+            target="_blank">Privacy Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/myadmin-sdk/introduction/">MyAdmin SDK</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://docs.google.com/document/d/1jA8Qc8WZMhmaqdjd8Ng8rY4iMI073xCfLNt_DSP72TQ/edit" rel="noopener"
+            target="_blank">End User Agreement</a>
+        <div class="copyright-container copyright-white-text">Copyright &copy; 2017 Geotab</div>
+    <!-- </div> -->
+</footer>
+</main>
+</div>
+
+  <!-- JS -->
+  <!-- inject:js -->
+  <script src="/assets/javascript/index.js"></script>
+  <!-- endinject -->
+
+</body>
+
+</html>
