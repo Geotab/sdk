@@ -66,7 +66,7 @@ title: Reference
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/");
 
-            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPI_MYA13028_June22.xml");
+            xhr.open("GET", "/myadmin-sdk/api/MyAdminAPI_MYA13028_July15.xml");
             // xhr.open("GET", "https://myadminrelease.geotab.com/sdk-xml/MyAdminAPI.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
@@ -1189,7 +1189,10 @@ title: Reference
             renderObjects = function () {
                 // For sorting by name independent of namespacing
                 var allObjects = extend(true, {},
-                    memberDictionary["MyAdminApiLib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"]);
+                    memberDictionary["MyAdminApiLib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"], 
+                    memberDictionary["Checkmate"]["ObjectModel"],
+                    memberDictionary["Internal"]["MyAdmin"]["APILib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"],
+                    memberDictionary["Internal"]["ObjectModel"]["Engines"]);
 
                 objectsArray = [];
                 sortAndAddMembersToPage(allObjects, objectsArray);

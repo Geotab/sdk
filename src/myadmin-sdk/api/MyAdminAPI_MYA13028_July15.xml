@@ -42,6 +42,22 @@
       <param name="serialNo" required="required">A serial number of a Geotab GO device.</param>
       <returns>Returns an <see cref="T:MyAdminApiLib.Geotab.MyAdmin.MyAdminApi.ObjectModel.ApiDeviceInstallResult" /> object that contains current, relevant information pertaining to the device.</returns>
     </member>
+    <member name="M:Geotab.Internal.MyAdmin.Api.Handlers.Legacy.MyAdminApiService.LogInstall(System.Guid,System.Nullable{System.Guid},System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.String)">
+      <isSupported>true</isSupported>
+      <roles>MyAdminApiUser or MyAdminApiInstaller</roles>
+      <group>Devices and Contracts</group>
+      <groupSummary>This group of methods allows the user to access information about devices and their associated contracts.</groupSummary>
+      <summary>            Logs a device installation and returns the status of the device.            </summary>
+      <param name="apiKey" required="required">The active API Key.</param>
+      <param name="sessionId" required="required">The active session ID.</param>
+      <param name="installerName" required="required">Name of the installer logging the request.</param>
+      <param name="installerCompany" required="required">Name of the installer\'s company.</param>
+      <param name="serialNo" required="required">A serial number of a Geotab GO device which has been installed.</param>
+      <param name="odometer">Vehicle\'s current odometer reading.</param>
+      <param name="assetNumber">Customer\'s asset number for the vehicle.</param>
+      <param name="comments">Any comments related to the installation.</param>
+      <returns>Returns an <see cref="T:MyAdminApiLib.Geotab.MyAdmin.MyAdminApi.ObjectModel.ApiDeviceInstallResult" /> object that contains current, relevant information pertaining to the device.</returns>
+    </member>
     <member name="M:Geotab.Internal.MyAdmin.Api.Handlers.Legacy.MyAdminApiService.GetAvailableProducts(System.Guid,System.Guid,System.String,System.String)">
       <isSupported>true</isSupported>
       <roles>MyAdminApiUser, Order_Admin</roles>
@@ -5760,6 +5776,100 @@
             Converts the record into binary data to be inserted into the database.
             </summary>
       <returns>The binary data array.</returns>
+    </member>
+    <member name="T:Geotab.Internal.ObjectModel.Engines.MinedVehicleData">
+      <isSupported>true</isSupported>
+      <summary>            Contains details of an vehicle.            </summary>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Vin">
+      <summary>Vin</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.HardwareId">
+      <summary>HardwareId</summary>
+      <value>
+        <see cref="T:System.Int32" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Make">
+      <summary>Make</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Model">
+      <summary>Model</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Year">
+      <summary>Year</summary>
+      <value>
+        <see cref="T:System.Int32" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.FuelType">
+      <summary>FuelType</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.EngineType">
+      <summary>EngineType</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.TrimLevel">
+      <summary>TrimLevel</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Alert">
+      <summary>Alert</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.TotalVehiclesFound">
+      <summary>TotalVehiclesFound</summary>
+      <value>
+        <see cref="T:System.Int32" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.DisplayProtocolName">
+      <summary>DisplayProtocolName</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.DisplayHarnessName">
+      <summary>DisplayHarnessName</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.StandardHarness">
+      <summary>StandardHarness</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.THarness">
+      <summary>THarness</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
+    </member>
+    <member name="P:Geotab.Internal.ObjectModel.Engines.MinedVehicleData.Notes">
+      <summary>Notes</summary>
+      <value>
+        <see cref="T:System.String" />
+      </value>
     </member>
   </members>
 </doc>
