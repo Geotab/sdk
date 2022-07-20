@@ -54,6 +54,7 @@ permalink: /software/api/reference/
         document.getElementById("loading-content").style.display = "visible";
     },
         request = function () {
+            var referenceType = new URLSearchParams(window.location.search).get('type');
             var xhr = ((typeof (window) !== 'undefined' && window.XMLHttpRequest) ?
                 function () {
                     return new XMLHttpRequest();
@@ -63,9 +64,10 @@ permalink: /software/api/reference/
                 }
             )(),
                 parts = location.pathname.split("/"), path;
-            path = parts.splice(0, parts.length - 2).join("/");
+            path = parts.splice(0, parts.length - 2).join("/"),
+            url = referenceType === 'MyAdmin' ?  '' : 'https://mypreview.geotab.com/sdk/SDK.xml';
 
-            xhr.open("GET", "https://mypreview.geotab.com/sdk/SDK.xml");
+            xhr.open("GET", url);
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;

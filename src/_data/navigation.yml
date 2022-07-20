@@ -46,7 +46,7 @@ toc:
       - title: API
         subfolderitems:
           - page: Reference
-            url: /software/api/reference/
+            url: /software/api/reference?type=MyGeotab
           - page: Runner
             url: /software/api/runner.html
           - page: API Clients
@@ -113,7 +113,7 @@ toc:
       - title: API
         subfolderitems:
           - page: Reference
-            url: /myadmin-sdk/api/reference/
+            url: /software/api/reference?type=MyAdmin
       - title: Code Samples
         subfolderitems:
           - page: .NET Examples
