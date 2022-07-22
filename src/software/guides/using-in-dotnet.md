@@ -10,7 +10,7 @@ The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software.
 
 The [nuget package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/) is an SDK library for accessing MyGeotab customer databases. It is a convenient "wrapper" around Geotab’s HTTP/JSON API to allow developers focus on writing code instead of moving data over the wire. It includes tools to assist authenticating against Geotab’s servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.
 
-Please remember to regularly check for updates to the Checkmate DLL. Ideally, your integration should use the same Checkmate DLL version as the one that your database is on. 
+Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version as the one that your database is on.
 
 > Quick start in [API Clients](../../api/clients)
 
