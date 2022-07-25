@@ -132,7 +132,7 @@ function scrollSidebar() {
     /**
      * Scroll the sidebar link to top, depending which one was clicked 
      */
-     let pathName = window.location.pathname;
+     let pathName = window.location.pathname + window.location.search;
      document.querySelectorAll(`a[href="${pathName}"]`)[0].scrollIntoView();
 
     /**

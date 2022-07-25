@@ -63,9 +63,11 @@ permalink: /software/api/reference/
                 }
             )(),
                 parts = location.pathname.split("/"), path;
-            path = parts.splice(0, parts.length - 2).join("/");
+            path = parts.splice(0, parts.length - 2).join("/"),
+            url = referenceType === 'MyAdmin' ?  '{{site.baseurl}}/myadmin-sdk/api/MyAdminAPI_MYA13028_July15.xml' : 'https://mypreview.geotab.com/sdk/SDK.xml';
 
-            xhr.open("GET", "https://mypreview.geotab.com/sdk/SDK.xml");
+            xhr.open("GET", url);
+            // xhr.open("GET", "https://myadminrelease.geotab.com/sdk-xml/MyAdminAPI.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
@@ -87,7 +89,10 @@ permalink: /software/api/reference/
             return xhr;
         };
 
+    // different variable will be defined & different function will be executed, based on referenceType, i.e. url path type
+    var referenceType = new URLSearchParams(window.location.search).get('type');
     request();
+    
     var renderSDK = function (xmlDoc) {
         'use strict';
         var autocomplete = (function (elem) {
@@ -332,8 +337,8 @@ permalink: /software/api/reference/
             RUNNER_URL = "../runner.html",
             CONSTRUCTOR_IDENTIFIER = "#ctor",
             entityIdentifierNameSpace = "Geotab.Checkmate.ObjectModel.Id",
-            xml = $(xmlDoc),
-            members = $($(xml.children()).children()),
+            // Accommodate MyAdmin's xml structure
+            members = referenceType === 'MyAdmin' ? $(xmlDoc.getElementsByTagName("member")): $($(($(xmlDoc)).children()).children()),
             memberDictionary = {},
             membersHtml = document.getElementById("dataStoreMembers"),
             objectMembersHtml = document.getElementById("objectMembers"),
@@ -611,8 +616,8 @@ permalink: /software/api/reference/
                         memberName = args !== "" ? memberName.substr(0, memberName.indexOf("(")) : memberName;
                         // Generics
                         memberName = removeGenericsSymbols(memberName);
-
-                        if (!memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
+                        // MyAdmin API keeps the async at the end, therefore no need of the following script
+                        if (referenceType === 'MyGeotab' && !memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
                             memberName = memberName.substring(0, memberName.length - async.length);
                         }
 
@@ -771,6 +776,10 @@ permalink: /software/api/reference/
                         code = node.querySelector("code");
                         memberPropMeth.code = (code ? code.textContent : "").trim();
                         memberPropMeth.returns = getItemData(node, "returns");
+                        //Create MyAdmin Required Roles property in the member object
+                        if (referenceType === 'MyAdmin') {
+                            memberPropMeth.roles = getItemData(node, "roles");
+                        }                       
 
                         name = name.slice(2, name.length + 1);
                         memberName = name.replace(replaceGeotabRegex, "");
@@ -1074,6 +1083,10 @@ permalink: /software/api/reference/
                 // memberHtmlString += '<p class="member-namespace">' + (!isMethod ? member.nameSpace : '') + '</p>';
                 memberHtmlString += '<p class="member-description">' + member.summary + '</p>';
                 memberHtmlString += member.remarks ? ('<p class="member-remarks"><span class="warnIcon"></span>' + member.remarks + '</p>') : "";
+                //Add MyAdmin Required Roles to DOM
+                if (referenceType === 'MyAdmin') {
+                    memberHtmlString += member.roles? ("<dl class='member-parameters-list'><dt class='member-parameters-list-roles'>Required Roles</dt>" + 
+                    "<dd class='member-parameters-list-description-roles'>" + member.roles + "</dd></dl>") : ""};
                 //Parameters
                 if (!isObject) {
                     //Returns
@@ -1173,7 +1186,11 @@ permalink: /software/api/reference/
                 return res;
             },
             renderMethods = function () {
-                var allMethods = extend(true, {}, memberDictionary["CheckmateServer"]["Web"]["WebMethods"]["methods"], memberDictionary["Checkmate"]["Database"]["DataStore"]["methods"]);
+                if (referenceType === 'MyAdmin') {
+                    var allMethods = extend(true, {}, memberDictionary["Internal"]["MyAdmin"]["Api"]["Handlers"]["Legacy"]["MyAdminApiService"]["methods"]);
+                } else {
+                    var allMethods = extend(true, {}, memberDictionary["CheckmateServer"]["Web"]["WebMethods"]["methods"], memberDictionary["Checkmate"]["Database"]["DataStore"]["methods"]);
+                }
                 methodsArray = [];
                 sortAndAddMembersToPage(allMethods, methodsArray);
                 membersHtml.innerHTML = methodsArray.join("");
@@ -1181,7 +1198,14 @@ permalink: /software/api/reference/
             },
             renderObjects = function () {
                 // For sorting by name independent of namespacing
-                var allObjects = extend(true, {}, {
+                if (referenceType === 'MyAdmin') {
+                    var allObjects = extend(true, {},
+                        memberDictionary["MyAdminApiLib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"], 
+                        memberDictionary["Checkmate"]["ObjectModel"],
+                        memberDictionary["Internal"]["MyAdmin"]["APILib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"],
+                        memberDictionary["Internal"]["ObjectModel"]["Engines"]);
+                } else {
+                    var allObjects = extend(true, {}, {
                     API: memberDictionary["Checkmate"]["API"]
                 },
                     memberDictionary["Checkmate"]["Database"],
@@ -1199,6 +1223,7 @@ permalink: /software/api/reference/
                     memberDictionary["Checkmate"]["Web"],
                     memberDictionary["Checkmate"]["Security"],
                     memberDictionary["Drawing"]);
+                }
 
                 objectsArray = [];
                 sortAndAddMembersToPage(allObjects, objectsArray);
