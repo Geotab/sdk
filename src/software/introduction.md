@@ -3,7 +3,7 @@ layout: page
 permalink: /software/introduction/
 title: Introduction
 ---
-The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
+The MyGeotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
 
 Various working examples are included in this SDK for use as a starting point with your own code e.g.:
 

@@ -1,6 +1,6 @@
-# MyGeotab SDK
+# Geotab Developers
 
-> This project serves as the online SDK or the MyGeotab Hardware and Software API hosted via Github pages.
+> This project serves as the online SDK for the MyGeotab, Geotab Drive, and MyAdmin. It also contains the guidelines and protocols to integrate IOX hardware add-ons with the GO device as well as Custom Telematics Devices using Geotab’s Data Intake Gateway (DIG). Everything is hosted via Github pages.
 
 ## Getting Started
 
