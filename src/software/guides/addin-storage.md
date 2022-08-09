@@ -5,7 +5,8 @@ permalink: /software/guides/addin-storage/
 
 # Storage API
 
-This page provides an overview of the storage (AddInData) API and describes its use within Add-Ins.
+This page provides an overview of the storage (AddInData) API and describes its use within Add-Ins. 
+> For a sample add-in that uses the storage API go to this [link](https://github.com/Geotab/sdk-addin-samples/tree/master/storage-api-sample).
 
 ## What is the Storage API?
 
@@ -459,3 +460,6 @@ Security Clearance limitations allow the following API methods:
 ### Small vs Large
 
 While it's possible to create a single AddInData object with an array of details, this approach is less scalable. First is contending with the mandatory limit of 10,000 characters. Second is that it can cause unduly large objects to deal with which can be less memory efficient. Third is that if there is an array of entries and you need to remove one, you will have to remove the whole object and add a new one with the updated list of details. In general, we have found it more useful to treat the AddInData as a simple object which there can be many of.
+
+## Additional Resources
+- [Storage API Add-in Sample](https://github.com/Geotab/sdk-addin-samples/tree/master/storage-api-sample)
