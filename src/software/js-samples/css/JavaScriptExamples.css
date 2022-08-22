@@ -457,6 +457,7 @@ p {
 .container {
     font-family: 'Roboto', sans-serif;
     font-style: normal;
+    margin-bottom: 1rem;
 }
 
 .example-header {
