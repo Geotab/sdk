@@ -1,7 +1,7 @@
 # Title, decription, tagline and URL for your site
 # Can be used in your theme by calling 'site.title' and so on
-title: MyGeotab SDK
-description: The Geotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab. Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
+title: Geotab Developers
+description: This site provides tools for integrating with various types of Geotab products.
 url: https://geotab.github.io
 baseurl:
 
