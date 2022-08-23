@@ -462,12 +462,12 @@ p {
 
 .example-header {
     display: grid;
-    grid-template-columns: 0.85fr 1fr 0.85fr;
+    grid-template-columns: auto 1fr 0.85fr;
     grid-template-rows: 0.6fr 0.6fr;
     grid-template-areas: 
     "title skill-level api-references"
     "description description api-references";
-    background-color: rgba(240, 246, 255, 0.4);
+    background-color: rgba(240, 246, 255);
     padding: 2rem;
 }
 
@@ -485,14 +485,9 @@ p {
     font-weight: 400;
     font-size: 14px;
     color: #575757;
-    padding-left: 3rem;
+    padding-left: 5rem;
     width: 115px;
 }
-
-/* .skill-level svg {
-    display: block;
-    padding-top: 0.8rem;
-} */
 
 .api-references {
     grid-area: api-references;
@@ -543,7 +538,7 @@ p {
     color: #575757;
 }
 
-.map-container, .feed-container {
+.map-container, .feed-container, .graph-container {
     width: 750px;
     float: right;
     margin: 3rem 2rem 0rem 0rem;
@@ -553,6 +548,10 @@ p {
     height: 450px;
     z-index: 1;
     margin-bottom: 4rem;
+}
+
+.chart {
+    height: 450px;
 }
 
 .bordered {
@@ -660,10 +659,6 @@ p {
     position: absolute;
     top: 14px;
     right: 15px;
-}
-
-.chart {
-    height: 450px;
 }
 
 .morris-hover.morris-default-style {
