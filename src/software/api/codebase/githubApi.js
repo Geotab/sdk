@@ -83,7 +83,8 @@ var SamplesApi = function() {
             "calculate-fuel-usage",
             "import-usa-states-as-zones",
             "get-fuel-tax-details",
-            "generate-addin-guid"
+            "generate-addin-guid",
+            "get-lightweight-device-response"
         ],
         createXHR = ((typeof (window) !== 'undefined' && window.XMLHttpRequest) ?
                 function () {
