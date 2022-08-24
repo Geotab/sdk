@@ -62,6 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             var modal = document.getElementById(id + "-modal"),
                 blanket = document.getElementById("blanket");
 
+            // Show the examples scroll-bar when the modal closed
+            document.body.style.overflow = 'auto';
+
             modal.parentNode.removeChild(modal);
             blanket.parentNode.removeChild(blanket);
         }
@@ -82,7 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
             modalClose.onclick = function () {
                 closeModal(id);
             };
-            modalClose.innerHTML = "OK";
+            modalClose.classList.add("material-icons");
+            modalClose.innerText = "close";
 
             modal.setAttribute("id", id + "-modal");
             modal.setAttribute("class", "modal bordered");
@@ -225,6 +229,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (templateButton) {
                 templateButton.addEventListener("click", function (event) {
                     event.preventDefault();
+
+                    // Hide the examples scroll-bar when the template open
+                    document.body.style.overflow = 'hidden';
+
                     showModal("template-content");
                 });
             }
