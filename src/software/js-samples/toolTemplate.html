@@ -30,6 +30,13 @@
 
                 <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
                 <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+
+                <!-- 
+                    Template button used to open the template modal (modal content is within this HTML file has the id="template-content", mostly used for importers).
+                    The buttons/modals JavaScript functionality is within loginUpdated.js.
+                    You can test the modal by uncommenting the 'Template' button below.
+                -->
+                <!-- <button class="secondary-btn template-btn" id="template">Template</button> -->
             <nav>
         </header>
             
@@ -114,6 +121,16 @@
             <div id="example-content">
 
             </div>
+        </div>
+
+        <!-- This is the template modals container in which HTML can be added to include a template which the user can copy and paste for the importers -->
+        <div id="template-content">
+            <h2>Template</h2>
+            <p>
+                <strong>Overview</strong><br/>
+                This is the template modal which can be used to show certains templates that the user can copy and paste
+                into the importers or any of the other examples.
+            </p>
         </div>
 
         <!-- JavaScript file containing the api functionality -->
