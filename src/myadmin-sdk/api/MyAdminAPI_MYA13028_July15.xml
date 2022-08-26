@@ -629,7 +629,7 @@
       <returns>A <see cref="T:Geotab.Checkmate.ObjectModel.ProvisionResult" /> if provision was successful, null if not.</returns>
     </member>
     <member name="M:Geotab.Internal.MyAdmin.Api.Handlers.Legacy.MyAdminApiService.AddData(System.Guid,System.Guid,System.Collections.Generic.List{System.Object},System.Boolean)">
-      <isSupported>true</isSupported>
+      <isSupported>false</isSupported>
       <requiredAccess>Third-Party-Integrator</requiredAccess>
       <roles>MyAdminApiUser, Third-Party-Integrator</roles>
       <group>Third Party Integration</group>
@@ -644,7 +644,7 @@
       <returns>List of <see cref="T:Geotab.Checkmate.ObjectModel.AddDataResult" />.</returns>
     </member>
     <member name="M:Geotab.Internal.MyAdmin.Api.Handlers.Legacy.MyAdminApiService.AddGps(System.Guid,System.Guid,System.Collections.Generic.List{System.Object},System.Boolean)">
-      <isSupported>true</isSupported>
+      <isSupported>false</isSupported>
       <requiredAccess>Third-Party-Integrator</requiredAccess>
       <roles>MyAdminApiUser, Third-Party-Integrator</roles>
       <group>Third Party Integration</group>

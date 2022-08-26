@@ -121,7 +121,7 @@ permalink: /software/api/reference/
                         a.className = "autocompleteLink";
                         li.appendChild(a);
                         a.textContent = item.label;
-                        a.href = "#" + item.anchor;
+                        a.href = referenceType === 'MyAdmin' ? ("?type=MyAdmin#" + item.anchor) : ("#" + item.anchor);
                         return li;
                     }
                 },
@@ -444,7 +444,7 @@ permalink: /software/api/reference/
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push(`<a href='${referenceType === 'MyAdmin' ? '?type=MyAdmin#' : '#'}` + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -617,7 +617,7 @@ permalink: /software/api/reference/
                         // Generics
                         memberName = removeGenericsSymbols(memberName);
                         // MyAdmin API keeps the async at the end, therefore no need of the following script
-                        if (referenceType === 'MyGeotab' && !memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
+                        if (referenceType !== 'MyAdmin' && !memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
                             memberName = memberName.substring(0, memberName.length - async.length);
                         }
 
