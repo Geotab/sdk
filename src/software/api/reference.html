@@ -1,4 +1,4 @@
-﻿--- 
+﻿---
 layout: pageNoEdit
 permalink: /software/api/reference/
 title: API Reference
@@ -64,9 +64,10 @@ title: API Reference
                 }
             )(),
                 parts = location.pathname.split("/"), path;
-            path = parts.splice(0, parts.length - 2).join("/");
+            path = parts.splice(0, parts.length - 2).join("/"),
+            url = "https://mypreview.geotab.com/sdk/sdk.xml";
 
-            xhr.open("GET", "https://mypreview.geotab.com/sdk/SDK.xml");
+            xhr.open("GET", url);
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
@@ -77,13 +78,17 @@ title: API Reference
                         document.querySelector("footer").style.display = "block";
                     } else {
                         handleError({
-                            message: "Fail to load a file " + url
+                            message: `Fail to load file ${url}. ${xhr.status}`
                         });
                     }
                     xhr.onreadystatechange = null
                 }
             };
-
+            xhr.onerror = function (xhr, err) {
+                handleError({
+                    message: `Fail to load file ${url}.`
+                });
+            };
             xhr.send(null);
             return xhr;
         };
@@ -623,11 +628,12 @@ title: API Reference
                             isGeneric: isGeneric
                         };
                     },
-                    argument = function (name, description, required) {
+                    argument = function (name, description, required, beta) {
                         return {
                             name: name,
                             description: description,
-                            required: required
+                            required: required,
+                            beta: beta
                         };
                     },
                     processNode = function (node) {
@@ -709,7 +715,7 @@ title: API Reference
                                 if (value.length && !value[0].hasAttribute("jsHide")) {
                                     return pullTextWithLinked(value[0].childNodes);
                                 }
-                                return "";                                
+                                return "";
                             },
                             removeGetAndSet = function (type, text) {
                                 var slicedText;
@@ -786,7 +792,7 @@ title: API Reference
 
                             //Don't Display hidden or httpContext
                             if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context" && param.getAttribute("name") !== "cancellationToken") {
-                                memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required")));
+                                memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required"), param.getAttribute("beta")));
                             } else {
                                 indexesToHide.push(i);
                             }
@@ -1041,7 +1047,9 @@ title: API Reference
                             processedProperties[property.name] = true;
                         }
                         if (member.baseType) {
-                            baseTypeLookupValues = member.baseType.replace("T:", "").split(".");
+                            let indexOf = member.baseType.indexOf("[");
+                            baseTypeLookupValues = member.baseType.substring(0, indexOf > 0 ? indexOf : member.baseType.length)
+.replace("T:", "").replace("`1", "").split(".");
                             i = 0;
                             if (baseTypeLookupValues[i] == "Geotab") {
                                 i++;
@@ -1093,6 +1101,9 @@ title: API Reference
                             argument = memberParameters[j].dataType;
                             title = (!!parameter.required ? "required" : "optional");
                             let icon = !!parameter.required ? ' *' : "";
+                            if (!!parameter.beta) {
+                                icon += " <span class='beta'>Beta</span>";
+                            }
                             memberHtmlString += "<tr>";
                             memberHtmlString += "<td nowrap class='member-parameters-list-param " + title + "' title='" + title + "'>" + parameter.name + icon + "</td>";
                             paramDataType = argument ? getDataType(argument) : {};
