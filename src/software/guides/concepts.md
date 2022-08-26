@@ -328,6 +328,8 @@ The entities listed below have `Get` limits of 50,000 results:
 - CustomData
 - BinaryData
 
+Other entities will have `Get` limits of 50,000 results in the future, along with a new parameter for pagination when the number of results exceed such limits. For easier transition to the future format, it's recommended that you pass in a 50,000 resultsLimit in the `Get` call, along with your own way to paginate (e.g. using timestamp).
+
 #### OverLimitException
 
 To ensure your application doesn't think it has every result that matches the search criteria, when in reality there are more, an error result (`OverLimitException`) may be returned in these scenarios:
