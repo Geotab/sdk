@@ -160,11 +160,8 @@
 
                     sendMessage(createMessage(device, lastSentMessageId), true);
                 });
-                
                 // Download devices to work with
                 populateDevices();
-                // start polling for new text messages
-                pollForTextMessages();
             });
 
             function pollForTextMessages() {
@@ -275,6 +272,8 @@
 
                             devicesLookup[result[i].id] = result[i];
                         }
+                        // start polling for new text messages
+                        pollForTextMessages();
                     } else {
                         alert("Could not retrieve devices");
                     }
