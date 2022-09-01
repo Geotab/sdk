@@ -138,7 +138,7 @@ Data sent from the GO device to the addressed IOX.
 ### RX Data (0x0C)
 
 Data sent from an IOX to the GO device. The GO will reply with an ACK.
-The communication between an IOX and GO device starts with a 0x25 message - IOX Request/Status (0x25) indicating the beginning of the 0x0C message, and also ends with one.
+The communication between an IOX and GO device starts with a 0x25 message - [IOX Request/Status (0x25)](#iox-requeststatus-0x25) indicating the beginning of the 0x0C message, and also ends with one.
 
 #### Payload — RX Data
 
@@ -238,6 +238,7 @@ Sent from the IOX to the GO device when the IOX wants create a log that cannot f
 ### IOX Request/Status (0x25)
 
 Sent from the IOX to the GO device to inform the GO device of events or status changes.
+which is then followed by [RX Data (0x0C)](#rx-data-0x0c).
 
 #### Payload
 
