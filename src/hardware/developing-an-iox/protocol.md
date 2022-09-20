@@ -138,6 +138,7 @@ Data sent from the GO device to the addressed IOX.
 ### RX Data (0x0C)
 
 Data sent from an IOX to the GO device. The GO will reply with an ACK.
+The 0x0C message series start with a Information Type 1 - Packet Wrapper [0x25 message](#iox-requeststatus-0x25), and also ends with one.
 
 #### Payload — RX Data
 
@@ -238,6 +239,7 @@ Sent from the IOX to the GO device when the IOX wants create a log that cannot f
 
 Sent from the IOX to the GO device to inform the GO device of events or status changes.
 
+
 #### Payload
 
 | Byte # | Byte Description |
@@ -254,6 +256,7 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 | 2 | 0 = Not busy <br> 1 = Busy |
 
 #### Information Type 1 - Packet Wrapper
+Note: A message of this type is to be added before the start of a [0x0C](#rx-data-0x0c) message series, and also after the end of it.
 
 | Parameter Type | Description |
 | --- | --- |
