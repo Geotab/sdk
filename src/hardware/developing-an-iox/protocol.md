@@ -256,12 +256,12 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 | 2 | 0 = Not busy <br> 1 = Busy |
 
 #### Information Type 1 - Packet Wrapper
+Note: A message of this type is to be added before the start of a [0x0C](#rx-data-0x0c) message series, and also after the end of it.
 
 | Parameter Type | Description |
 | --- | --- |
 | 0-1 | 0x0001 |
 | 2 | 0 = Beginning of data packet <br> 1 = End of data packet |
-Note: A message of this type is to be added before the start of a [0x0C](#rx-data-0x0c) message series, and also after the end of it.
 
 #### Information Type 2 - Request GO Device Data Message
 
