@@ -63,10 +63,9 @@ layout: pageNoEdit
             )(),
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/"),
-            url = referenceType === 'MyAdmin' ?  '{{site.baseurl}}/myadmin-sdk/api/MyAdminAPI_MYA13028_July15.xml' : 'https://mypreview.geotab.com/sdk.xml';
+            url = referenceType === 'MyAdmin' ?  'https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml' : 'https://mypreview.geotab.com/sdk.xml';
 
             xhr.open("GET", url);
-            // xhr.open("GET", "https://myadminrelease.geotab.com/sdk-xml/MyAdminAPI.xml");
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
                 var doc;
@@ -77,13 +76,17 @@ layout: pageNoEdit
                         document.querySelector("footer").style.display = "block";
                     } else {
                         handleError({
-                            message: "Fail to load a file " + url
+                            message: `Fail to load file ${url}. ${xhr.status}`
                         });
                     }
                     xhr.onreadystatechange = null
                 }
             };
-
+            xhr.onerror = function (xhr, err) {
+                handleError({
+                    message: `Fail to load file ${url}.`
+                });
+            };
             xhr.send(null);
             return xhr;
         };
@@ -120,7 +123,7 @@ layout: pageNoEdit
                         a.className = "autocompleteLink";
                         li.appendChild(a);
                         a.textContent = item.label;
-                        a.href = referenceType === 'MyAdmin' ? ("?type=MyAdmin#" + item.anchor) : ("#" + item.anchor);
+                        a.href = "#" + item.anchor;
                         return li;
                     }
                 },
@@ -443,7 +446,7 @@ layout: pageNoEdit
                                         if (attrText.indexOf("T:System") > -1) {
                                             returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
                                         } else {
-                                            returnText.push(`<a href='${referenceType === 'MyAdmin' ? '?type=MyAdmin#' : '#'}` + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
                                         }
                                         break;
                                     case "href":
@@ -626,11 +629,12 @@ layout: pageNoEdit
                             isGeneric: isGeneric
                         };
                     },
-                    argument = function (name, description, required) {
+                    argument = function (name, description, required, beta) {
                         return {
                             name: name,
                             description: description,
-                            required: required
+                            required: required,
+                            beta: beta
                         };
                     },
                     processNode = function (node) {
@@ -712,7 +716,7 @@ layout: pageNoEdit
                                 if (value.length && !value[0].hasAttribute("jsHide")) {
                                     return pullTextWithLinked(value[0].childNodes);
                                 }
-                                return "";                                
+                                return "";
                             },
                             removeGetAndSet = function (type, text) {
                                 var slicedText;
@@ -793,7 +797,7 @@ layout: pageNoEdit
 
                             //Don't Display hidden or httpContext
                             if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context" && param.getAttribute("name") !== "cancellationToken") {
-                                memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required")));
+                                memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required"), param.getAttribute("beta")));
                             } else {
                                 indexesToHide.push(i);
                             }
@@ -1048,7 +1052,9 @@ layout: pageNoEdit
                             processedProperties[property.name] = true;
                         }
                         if (member.baseType) {
-                            baseTypeLookupValues = member.baseType.replace("T:", "").split(".");
+                            let indexOf = member.baseType.indexOf("[");
+                            baseTypeLookupValues = member.baseType.substring(0, indexOf > 0 ? indexOf : member.baseType.length)
+.replace("T:", "").replace("`1", "").split(".");
                             i = 0;
                             if (baseTypeLookupValues[i] == "Geotab") {
                                 i++;
@@ -1104,6 +1110,9 @@ layout: pageNoEdit
                             argument = memberParameters[j].dataType;
                             title = (!!parameter.required ? "required" : "optional");
                             let icon = !!parameter.required ? ' *' : "";
+                            if (!!parameter.beta) {
+                                icon += " <span class='beta'>Beta</span>";
+                            }
                             memberHtmlString += "<tr>";
                             memberHtmlString += "<td nowrap class='member-parameters-list-param " + title + "' title='" + title + "'>" + parameter.name + icon + "</td>";
                             paramDataType = argument ? getDataType(argument) : {};
