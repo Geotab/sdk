@@ -1,6 +1,5 @@
----
-layout: page
+--- 
+layout: referenceScript
 permalink: /myadmin-sdk/api/reference/
-title: Reference
+title: MyAdmin API Reference
 ---
-Please see [Reference](https://myadmin.geotab.com/sdk/api/apiReference.html)
