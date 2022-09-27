@@ -63,7 +63,7 @@ layout: pageNoEdit
             )(),
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/"),
-            url = referenceType === 'MyAdmin' ?  'https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml' : 'https://mypreview.geotab.com/sdk.xml';
+            url = referenceType === 'MyAdmin' ?  '{{site.baseurl}}/myadmin-sdk/api/MyAdminAPI_Sep21.xml' : 'https://mypreview.geotab.com/sdk.xml';
 
             xhr.open("GET", url);
             xhr.setRequestHeader("Content-Type", "text/xml");
