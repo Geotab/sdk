@@ -570,8 +570,19 @@ p {
     padding-top: 1rem;
     color: #575757;
 }
+.feed-container {
+    overflow: hidden;
+    width: 70%; 
+    height: 500px;
+    float: right;
+    margin: 1.5rem 2rem 0rem 0rem;
+}
 
-.map-container, .feed-container, .graph-container {
+.feed-container:hover {
+    overflow: scroll;
+}
+
+.map-container, .graph-container {
     width: 750px;
     float: right;
     margin: 1.5rem 2rem 0rem 0rem;

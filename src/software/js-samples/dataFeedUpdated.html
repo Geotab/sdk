@@ -128,7 +128,7 @@
             var updateInterval = 5; // In seconds
             var update = null;
             var lastVersions = [ null, null, null ];
-            var startDate = new Date().toISOString();
+            var startDate = new Date(new Date(new Date().setUTCHours(4,0,0,1)) - 24*60*60*1000).toISOString();
 
             document.addEventListener("DOMContentLoaded", function() {
 
@@ -176,7 +176,8 @@
                         "fromVersion": lastVersions[0],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 
@@ -186,7 +187,8 @@
                         "fromVersion": lastVersions[1],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 
@@ -196,7 +198,8 @@
                         "fromVersion": lastVersions[2],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 
