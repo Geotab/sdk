@@ -111,39 +111,6 @@ Navigation entries cannot be set at the third level (sub-sub-menu) and below. If
 
 > A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
 
-## Listing 2 — Add-In configuration section for submenu
-
-To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
-
-To place buttons inside a new sub-menu, use subMenuPath property as illustrated in Listing 3. This sub-menu will be shown only if there are at least two items inside it. The sub-menu items appear in reverse order of the JSON entered below.
-
-```json
-{
- "name": "My First Geotab Add-In",
- "supportEmail": "myname@mycompany.com",
- "version": "1.0",
- "items": [{
-        "url": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/heatmap.html",
-        "path": "sdkAddinsLink/",
-        "menuName": {
-            "en": "Heat Map"
-        },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
-    }, {
-        "page": "device",
-        "click": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/scripts/engineDataButton.js",
-        "buttonName": {
-            "en": "Engine Data Profile",
-            "fr": "Profil des données-moteur",
-            "es": "Perfil de datos de motor",
-            "ja": "エンジンデータプロフィール"
-        },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
-    }],
- "isSigned": false
-}
-```
-
 ### Referencing source items
 
 Each Add-In can define zero or more _items_ as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
@@ -180,14 +147,45 @@ A parent menu item defines a new menu item and where it should reside within the
 | icon | (To be deprecated June 04 2021) for placing it in the button label. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 | svgIcon | A URL Reference to the svg image for placing it in the button label. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
 
-
-
-
 At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (`"en"`), French (`"fr"`), German (`"de"`), Spanish (`"es"`), Japanese (`"ja"`), Polish (`"pl"`) Brazilian Portuguese (`"pt-BR"`), Dutch (`"nl"`), Italian (`"it"`), Simplified Chinese (`"zh-Hans"`), Thai (`"th"`), Indonesian (`"id"`), Czech (`"cs"`), Swedish (`"sv"`) and Turkish (`"tr"`).
 
 > Reference to the image can be an external URL such as: `https://mysite.com/images/icon.png;` or a link to the image from the images folder of your Add-In_._
 
 When using the items property to include your source code exclusively, you can set the files property an empty object using `{ }` as seen in Listing 1.
+
+## Listing 2 — Creating submenu items
+
+To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
+
+The process consists in creating a [parent menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-2--parent-menu-item) with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (*GettingStartedLink, ActivityLink, EngineMaintenanceLink, ZoneAndMessagesLink, RuleAndGroupsLink, AdministrationLink*). 
+
+To place a [menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-3--menu-item) under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
+
+```json
+{
+ "name": "Submenu Add-In",
+ "supportEmail": "support@mycompany.com",
+ "version": "1.0",
+ "items": [
+        {
+            "path": "ActivityLink/",
+            "menuId": "SubmenuContainer1",
+            "menuName": {
+                "en": "Submenu"
+            },
+            "icon": "images/icon.svg"
+        },
+        {
+            "url": "submenu-addin/submenu-addin.html",
+            "path": "SubmenuContainer1/",
+            "menuName": {
+                "en": "Submenu Add-In"
+            },
+            "icon": "images/icon.svg"
+        }
+    ]
+}
+```
 
 Every Add-In has a JavaScript object which is set in your main.js file. For example, the Add-In class name "myaddin" is provided by the following JavaScript entry point:
 
