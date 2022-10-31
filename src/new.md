@@ -5,6 +5,63 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
 
+## 9.0
+
+### Custom security identifiers for Add-ins
+
+Custom security identifiers for MyGeotab Add-ins are now available. Identifiers can be defined in the configuration.json file of Add-ins, which will then add them to the list of permissions available when editing clearances. These definitions can support multiple languages.
+
+Administrator clearance will remain non-editable and have all custom clearances enabled by default. All other default/system clearance levels only allow editing of custom security identifiers, while keeping the system defined default identifiers non-editable.
+
+✱ **NOTE**: By default, once the `enableViewSecurityId` property in the configuration.json for an Add-in is set to True, a View “Add-in name” add-in identifier is created that must be enabled for users to be able to view the Add-in. More granular control needs to be set within the Add-in code for any custom identifiers added to the configuration.json.
+
+### IP Rate limits
+
+- Added new rate limits for API requests for endpoints that do not require authentication. See [this announcement](https://docs.google.com/document/d/1sUKaOKjVT23qvaCITMseIMqGUhQzlr7xDhq1EjrseYE/edit?usp=sharing) for more information.
+
+### Updates
+
+#### DatabaseExists
+- Removed the DatabaseExists API that was originally used for database registration purposes. If the database name exists, `CreateDatabase` throws a `RegistrationException`.
+
+#### RouteSearch
+
+- Removed the `RouteSearchGroups` property and replaced it with the `ServiceGroups` property.
+
+#### PropertySelector
+
+- Added the optional `PropertySelector` parameter that is used with the `Get` and `GetFeed` methods to include or exclude specific properties for entity types requested. Detailed information can be found on the [Geotab Developers](https://geotab.github.io/sdk/software/guides/concepts/#propertyselector-beta) site.
+
+#### DriverWhiteListContent / DriverAuthListContent
+
+- Removed the `DriverWhiteListContent` object and replaced it with the `DriverAuthListContent` object.
+
+#### Group
+
+- Improved system group objects to be returned with an English Name field. 
+
+#### DeviceShareStatus
+
+- Added `RequestPending` as an acceptable value of `DeviceShareStatus`. This value indicates when an outgoing device share request has been created by a user on the source database, and is waiting for confirmation it has been created successfully. 
+
+#### SecurityIdentifier
+
+- Added the following security identifiers: 
+   - `ResetPassword`
+   - `EditStockRules`
+   - `ContinuousConnectClearance`
+   - `ViewShipments`
+   - `ManageShipments`
+   - `ManageTachographInspection`
+   - `ViewTachographInspection`
+   - `ManageTachographCompanyCards`
+   - `ViewTachographCompanyCards`
+   - `TachographDownloadAndUploadFiles`
+   - `ViewTachographRemoteDownloadData`
+   - `ViewTachographDrivingTimeData`
+   - `ViewTachographInfringementData`
+   - `SendColdChainCommand`
+
 ## 8.0
 
 ### Special note about Trailer and Device
