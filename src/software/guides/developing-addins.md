@@ -50,6 +50,14 @@ Each Add-In created will have one configuration file. The configuration file is 
 
 The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab's servers.
 
+#### MyGeotab 9.0+ add-in configuration file keys/values
+> Note: These properties are exclusive to MyGeotab version 9.0+ databases
+
+| **Property** | **Description** | **Type** |
+| --- | --- | --- |
+| enableViewSecurityId | If true, a "View {ADDIN_NAME} add-in" security clearance feature is created that must be enabled for users to be able to view the Add-in. | Boolean |
+| securityIds | An array of custom security IDs that are added to the list of features available when editing clearances. These definitions can support multiple languages. *e.g. "securityIds": [{"name": "ExampleSecurityIdentifier1", "en": "Example Security Identifier 1"}, {"name": "ExampleSecurityIdentifier2", "en": "Example Security Identifier 2"}]* | Array |
+
 ## Example Add-In configuration file
 
 The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.
