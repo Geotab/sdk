@@ -36,8 +36,8 @@ Each Add-In created will have one configuration file. The configuration file is 
 
 ### Table 1 — Add-In configuration file keys/values
 
-| **Property** | **Description** | **Type** |
-| --- | --- | --- |
+| **Property** | **Description** | **Type** | **Required Version** |
+| --- | --- | --- | --- |
 | name | The name of this Add-In | String |
 | supportEmail | Email address for support related to this Add-In | String |
 | items | Array of custom pages and/or buttons (External references) | Array |
@@ -45,18 +45,12 @@ Each Add-In created will have one configuration file. The configuration file is 
 | key | Unique MyGeotab Marketplace Add-In key assigned by Geotab. If there's no plan to get your Add-In to the Marketplace, you can leave out the key/value pair from the Configuration File | String |
 | signature | Digital signature of the Add-In | String |
 | version | Which Geotab API version to use | String |
+| enableViewSecurityId | If true, a "View {ADDIN_NAME} add-in" security clearance feature is created that must be enabled for users to be able to view the Add-in. | Boolean | MyGeotab v9.0+ |
+| securityIds | An array of custom security IDs that are added to the list of features available when editing clearances. These definitions can support multiple languages. *e.g. "securityIds": [{"name": "ExampleSecurityIdentifier1", "en": "Example Security Identifier 1"}, {"name": "ExampleSecurityIdentifier2", "en": "Example Security Identifier 2"}]* | Array | MyGeotab v9.0+ |
 
 > If you do not know your MyGeotab Add-In key, please contact your authorized Geotab reseller for support.
 
 The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab's servers.
-
-#### MyGeotab 9.0+ add-in configuration file keys/values
-> Note: These properties are exclusive to MyGeotab version 9.0+ databases
-
-| **Property** | **Description** | **Type** |
-| --- | --- | --- |
-| enableViewSecurityId | If true, a "View {ADDIN_NAME} add-in" security clearance feature is created that must be enabled for users to be able to view the Add-in. | Boolean |
-| securityIds | An array of custom security IDs that are added to the list of features available when editing clearances. These definitions can support multiple languages. *e.g. "securityIds": [{"name": "ExampleSecurityIdentifier1", "en": "Example Security Identifier 1"}, {"name": "ExampleSecurityIdentifier2", "en": "Example Security Identifier 2"}]* | Array |
 
 ## Example Add-In configuration file
 
