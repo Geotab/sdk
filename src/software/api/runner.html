@@ -27,7 +27,7 @@ permalink: /software/api/runner.html
                     <button id="run" class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button>
                     <button id="share" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button>
                     <button id="clear" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button>
-            
+
                     <div class="mb-2 mr-sm-2 mb-sm-0" id="toggle">
                         <button type="button" id="toggle-js" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">JS</button>
                         <button type="button" id="toggle-css" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
@@ -35,7 +35,7 @@ permalink: /software/api/runner.html
                         <button type="button" id="toggle-console" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Console</button>
                         <button type="button" id="toggle-output" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Output</button>
                     </div>
-            
+
                     <small id="userLabel" class="ml-auto p-2"></small>
                     <button id="logoutButton" class="btn btn-secondary ml-auto p-2">Log out</button>
                 </div>
@@ -69,7 +69,7 @@ permalink: /software/api/runner.html
 </div>
 <div class="login" id="login" style="display: none;">
     <div class="overlay"></div>
-    <form class="dialog" id="loginDialog" autocomplete="off">
+    <form class="dialog" id="loginDialog" autocomplete="on">
         <div class="form-group">
             <label for="server">Server</label>
             <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="off" />
@@ -91,6 +91,7 @@ permalink: /software/api/runner.html
         </div>
         <div class="form-group">
             <button class="btn btn-primary" id="loginButton">Log in</button>
+            <img id="loginSpinner" src="../../assets/images/pulse2.svg" style="display: none;border: none"/>
         </div>
     </form>
 </div>
@@ -544,6 +545,7 @@ permalink: /software/api/runner.html
                                     geotabAPI.forget(getSessionCallback);
                                     userLabel.style.display = "none";
                                     logoutButton.style.display = "none";
+                                    loggedInDemo = true;
                                 };
 
                             logoutButton.addEventListener("click", logout, false);
@@ -672,7 +674,8 @@ permalink: /software/api/runner.html
 
                             return self;
                         })(),
-
+                    demoCredentials = null,
+                    loggedInDemo = false,
                         urlState = (function () {
                             var sampleNameRegexp = /sample:[\w\d-]+/i,
                                 localStorageSampleName = "geotabAPIRunner_sample",
@@ -685,6 +688,7 @@ permalink: /software/api/runner.html
                                     return null;
                                 },
                                 restoreState = function () {
+                                    console.log('restoreState');
                                     var state = window.location.hash.substr(1),
                                         parsedState = null,
                                         sampleName = getSampleNameFromURL(),
@@ -703,7 +707,6 @@ permalink: /software/api/runner.html
                                         load(sampleName);
                                     } else {
                                         parsedState = parseState(state);
-
                                         if (parsedState && !isSandboxSupported) {
                                             processors.security.showWarning();
                                             parsedState = null;
@@ -819,6 +822,7 @@ permalink: /software/api/runner.html
                                     databaseInput = document.getElementById("database"),
                                     userInput = document.getElementById("user"),
                                     passwordInput = document.getElementById("password"),
+                                    loginSpinner = document.getElementById("loginSpinner"),
                                     setForm = function (server, database, user, password) {
                                         serverInput.value = server;
                                         databaseInput.value = database;
@@ -832,11 +836,19 @@ permalink: /software/api/runner.html
                                     hide = function () {
                                         loginForm.style.display = "none";
                                     };
+                            if (demoCredentials) {
+                                setForm(...Object.values(demoCredentials));
+                                console.log('loggedInDemo ' + loggedInDemo)
+                                if (!loggedInDemo) {
+                                    loggedInDemo = true;
 
+                                    setTimeout(() => loginButton.click(), 1000);
+                                }
+                            } else {
+                                serverInput.value = "my.geotab.com";
+                                serverInput.focus();
+                            }
                             show();
-                            serverInput.value = "my.geotab.com";
-                            serverInput.focus();
-
                             loginDialog.addEventListener("submit", function (e) {
                                 e.preventDefault();
                             }, false);
@@ -846,16 +858,18 @@ permalink: /software/api/runner.html
                                     database = databaseInput.value,
                                     user = userInput.value,
                                     password = passwordInput.value;
-
+                                loginSpinner.style.display = 'inline'
                                 authenticateCallback(server, database, user, password, function () {
-                                    setForm("", "", "", "");
+                                    // setForm("", "", "", "");
                                     hide();
                                     loginFormHasBeenShown = true;
+                                    loginSpinner.style.display = 'none';
                                 }, function (error) {
                                     loginError.innerHTML = error;
                                     loginError.style.display = "block";
                                     userInput.select();
                                     userInput.focus();
+                                    loginSpinner.style.display = 'none';
                                 });
                             }, false);
                         };
@@ -865,6 +879,30 @@ permalink: /software/api/runner.html
                 processors.add("html", EditorManager("html", "html", resizeObserver, urlState));
 
                 layout.resize();
+
+                const queryString = window.location.search;
+                if (queryString) {
+                    const urlParams = new URLSearchParams(queryString);
+                    const requiredParams = ['database', 'username', 'server', 'password'];
+                    const hasRequiredKeys = requiredParams.reduce((result, param) => result && urlParams.has(param))
+
+                    window.location.hash = "";
+
+                    if (!hasRequiredKeys) {
+                        return;
+                    }
+
+                    const server = urlParams.get('server');
+                    const database = urlParams.get('database');
+                    const username = urlParams.get('username');
+                    const password = urlParams.get('password');
+                    if (database !== 'geotabdemo') {
+                        return;
+                    }
+                    // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
+                    demoCredentials = { server, database, username, password };
+
+                }
 
                 api = GeotabApi(authenticateManager);
 
