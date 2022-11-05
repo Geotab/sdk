@@ -824,6 +824,7 @@ permalink: /software/api/runner.html
                         errorHandler: errorHandler
                     },
                     authenticateManager = function (authenticateCallback) {
+                        // console.log('authenticateManager');
                         var loginForm = document.getElementById("login"),
                             loginDialog = document.getElementById("loginDialog"),
                             loginError = document.getElementById("loginError"),
@@ -899,7 +900,9 @@ permalink: /software/api/runner.html
                     try {
                         if (queryString?.startsWith('?')) {
                             // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
-                            const urlParams = new URLSearchParams(queryString);
+                            const decodedQueryString = atob(queryString.replace('?', '').replace('\n', ''))
+                            console.log(`decodedQueryString: ${decodedQueryString}`);
+                            const urlParams = new URLSearchParams(decodedQueryString);
                             const requiredParams = ['database', 'username', 'server', 'password'];
                             const hasRequiredKeys = requiredParams.reduce((result, param) => result && urlParams.has(param))
 
@@ -910,11 +913,11 @@ permalink: /software/api/runner.html
                                 const server = urlParams.get('server');
                                 const database = urlParams.get('database');
                                 const username = urlParams.get('username');
-                                const password = urlParams.get('password');
+                                const password = urlParams.get('password').replace('\n', '');
 
                                 if (database === 'geotabdemo') {
                                     demoCredentials = {server, database, username, password};
-                                    console.log(demoCredentials);
+                                    // console.log(demoCredentials);
                                 }
                             }
                         }
