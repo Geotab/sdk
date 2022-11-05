@@ -17,29 +17,29 @@ permalink: /software/api/runner.html
 <script src="./codebase/third-party/JSON-js/cycle.js" type="text/javascript" charset="utf-8"></script>
 
 <div class="api">
-        <div class="toolbar" id="toolbar">
-                <div class="form-inline d-flex">
-                    <div class="form-group mb-2 mr-sm-2 mb-sm-0" id="samplesControl">
-                        <label for="samples" class="sr-only">Samples</label>
-                        <select type="text" class="custom-select" id="samples"></select>
-                    </div>
+    <div class="toolbar" id="toolbar">
+        <div class="form-inline d-flex">
+            <div class="form-group mb-2 mr-sm-2 mb-sm-0" id="samplesControl">
+                <label for="samples" class="sr-only">Samples</label>
+                <select type="text" class="custom-select" id="samples"></select>
+            </div>
 
-                    <button id="run" class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button>
-                    <button id="share" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button>
-                    <button id="clear" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button>
+            <button id="run" class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button>
+            <button id="share" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button>
+            <button id="clear" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button>
 
-                    <div class="mb-2 mr-sm-2 mb-sm-0" id="toggle">
-                        <button type="button" id="toggle-js" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">JS</button>
-                        <button type="button" id="toggle-css" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
-                        <button type="button" id="toggle-html" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
-                        <button type="button" id="toggle-console" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Console</button>
-                        <button type="button" id="toggle-output" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Output</button>
-                    </div>
+            <div class="mb-2 mr-sm-2 mb-sm-0" id="toggle">
+                <button type="button" id="toggle-js" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">JS</button>
+                <button type="button" id="toggle-css" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
+                <button type="button" id="toggle-html" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
+                <button type="button" id="toggle-console" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Console</button>
+                <button type="button" id="toggle-output" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Output</button>
+            </div>
 
-                    <small id="userLabel" class="ml-auto p-2"></small>
-                    <button id="logoutButton" class="btn btn-secondary ml-auto p-2">Log out</button>
-                </div>
-                </div>
+            <small id="userLabel" class="ml-auto p-2"></small>
+            <button id="logoutButton" class="btn btn-secondary ml-auto p-2">Log out</button>
+        </div>
+    </div>
     <div class="content">
         <div id="pane-left" class="pane noborder">
             <div class="source">
@@ -72,26 +72,26 @@ permalink: /software/api/runner.html
     <form class="dialog" id="loginDialog" autocomplete="on">
         <div class="form-group">
             <label for="server">Server</label>
-            <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="off" />
+            <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="off"/>
         </div>
         <div class="form-group">
             <label for="database">Database</label>
-            <input type="text" class="form-control" id="database" placeholder="The database name" autocomplete="off" />
+            <input type="text" class="form-control" id="database" placeholder="The database name" autocomplete="off"/>
         </div>
         <div class="form-group">
             <label for="user">Email</label>
-            <input type="text" class="form-control" id="user" placeholder="Your email address" autocomplete="off" />
+            <input type="text" class="form-control" id="user" placeholder="Your email address" autocomplete="off"/>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off" />
+            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off"/>
         </div>
         <div class="invalid-feedback" id="loginError" style="display: none;">
             Invalid user name or password
         </div>
         <div class="form-group">
             <button class="btn btn-primary" id="loginButton">Log in</button>
-            <img id="loginSpinner" src="../../assets/images/pulse2.svg" style="display: none;border: none"/>
+            <img id="loginSpinner" src="../../assets/images/pulse2.svg" style="display: none;border: none" alt="login spinner"/>
         </div>
     </form>
 </div>
@@ -140,17 +140,18 @@ permalink: /software/api/runner.html
     </div>
 </div>
 <script>
-(function() {
-    var ResizeObserver = function () {
+    (function () {
+        let shouldAutoLoginDemo = true;
+        var ResizeObserver = function () {
                 var resizeHandlers = [],
-                        attachEvent = function (handler) {
-                            resizeHandlers.push(handler);
-                        },
-                        fireEvent = function () {
-                            resizeHandlers.forEach(function (resizeHandler) {
-                                resizeHandler();
-                            });
-                        };
+                    attachEvent = function (handler) {
+                        resizeHandlers.push(handler);
+                    },
+                    fireEvent = function () {
+                        resizeHandlers.forEach(function (resizeHandler) {
+                            resizeHandler();
+                        });
+                    };
                 window.addEventListener("resize", fireEvent, true);
                 return {
                     onResize: attachEvent,
@@ -167,52 +168,52 @@ permalink: /software/api/runner.html
             },
             EditorManager = function (container, language, resizeObserver, urlState) {
                 var editor,
-                        supportedLanguages = {
-                            "javascript": true,
-                            "html": true,
-                            "css": true
-                        },
-                        saveTimeout = 1000,
-                        timeoutId = null,
-                        silentMode = false,
-                        render = function () {
-                            language = !supportedLanguages[language] ? "javascript" : language;
-                            editor = ace.edit(container);
-                            editor.setTheme("ace/theme/chrome");
-                            if (!window.Worker) {
-                                editor.getSession().setOption("useWorker", false);
+                    supportedLanguages = {
+                        "javascript": true,
+                        "html": true,
+                        "css": true
+                    },
+                    saveTimeout = 1000,
+                    timeoutId = null,
+                    silentMode = false,
+                    render = function () {
+                        language = !supportedLanguages[language] ? "javascript" : language;
+                        editor = ace.edit(container);
+                        editor.setTheme("ace/theme/chrome");
+                        if (!window.Worker) {
+                            editor.getSession().setOption("useWorker", false);
+                        }
+                        editor.getSession().setMode("ace/mode/" + language);
+                        editor.$blockScrolling = Infinity;
+                        editor.resize();
+                        editor.on("change", function () {
+                            if (!timeoutId && !silentMode) {
+                                timeoutId = window.setTimeout(function () {
+                                    urlState.saveState();
+                                    timeoutId = null;
+                                }, saveTimeout);
                             }
-                            editor.getSession().setMode("ace/mode/" + language);
-                            editor.$blockScrolling = Infinity;
-                            editor.resize();
-                            editor.on("change", function () {
-                                if (!timeoutId && !silentMode) {
-                                    timeoutId = window.setTimeout(function () {
-                                        urlState.saveState();
-                                        timeoutId = null;
-                                    }, saveTimeout);
-                                }
-                            });
-                            urlState.addEditor(language, self);
-                        },
-                        process = function (value) {
-                            value[language] = editor.getValue();
-                            return value;
-                        },
-                        setValue = function (value) {
-                            silentMode = true;
-                            editor && editor.getSession().setValue(value);
-                            silentMode = false;
-                        },
-                        getValue = function () {
-                            return editor && editor.getSession().getValue();
-                        },
-                        self = {
-                            render: render,
-                            process: process,
-                            setValue: setValue,
-                            getValue: getValue
-                        };
+                        });
+                        urlState.addEditor(language, self);
+                    },
+                    process = function (value) {
+                        value[language] = editor.getValue();
+                        return value;
+                    },
+                    setValue = function (value) {
+                        silentMode = true;
+                        editor && editor.getSession().setValue(value);
+                        silentMode = false;
+                    },
+                    getValue = function () {
+                        return editor && editor.getSession().getValue();
+                    },
+                    self = {
+                        render: render,
+                        process: process,
+                        setValue: setValue,
+                        getValue: getValue
+                    };
 
                 resizeObserver.onResize(function () {
                     editor && editor.resize();
@@ -232,8 +233,8 @@ permalink: /software/api/runner.html
                         container.appendChild(iframe);
                         return iframe;
                     },
-                    getSendResponse = function(type, uid) {
-                        return function(data) {
+                    getSendResponse = function (type, uid) {
+                        return function (data) {
                             iframe.contentWindow.postMessage(JSON.stringify({
                                 uid: uid,
                                 type: type,
@@ -246,23 +247,23 @@ permalink: /software/api/runner.html
                         iframe = createIframe();
 
                         // listen to post messages from iframe
-                        postMessages.on("ready", function(data) {
+                        postMessages.on("ready", function (data) {
                             getSendResponse("success", data.uid)({
                                 javascript: value.javascript,
                                 html: value.html,
                                 css: value.css
                             });
                         });
-                        postMessages.on("call", function(data) {
+                        postMessages.on("call", function (data) {
                             api.call(data.method, data.params, getSendResponse("success", data.uid), getSendResponse("error", data.uid));
                         });
-                        postMessages.on("multiCall", function(data) {
+                        postMessages.on("multiCall", function (data) {
                             api.multiCall(data.calls, getSendResponse("success", data.uid), getSendResponse("error", data.uid));
                         });
-                        postMessages.on("log", function(data) {
+                        postMessages.on("log", function (data) {
                             consoleManager.log.apply(consoleManager.log, data.data);
                         });
-                        postMessages.on("error", function(data) {
+                        postMessages.on("error", function (data) {
                             consoleManager.error.apply(consoleManager.log, data.data);
                         });
 
@@ -290,27 +291,36 @@ permalink: /software/api/runner.html
                         }
                         handlers[type].push(callback);
                     },
-                    clear = function() {
+                    clear = function () {
                         handlers = {};
                     };
 
                 window.addEventListener("message", function (e) {
                     e.preventDefault();
-                    var data = JSON.retrocycle(JSON.parse(e.data)),
-                        type;
+                    try {
+                        if (!e.data)
+                            return;
+                        var data = JSON.retrocycle(JSON.parse(e.data)),
+                            type;
 
-                    if (data) {
-                        type = data.type;
-                        if (handlers[type]) {
-                            handlers[type].forEach(function (handler) {
-                                handler(data);
-                            });
+                        if (data) {
+                            type = data.type;
+                            if (handlers[type]) {
+                                handlers[type].forEach(function (handler) {
+                                    handler(data);
+                                });
+                            }
                         }
+                    } catch (e) {
+                        console.error(e);
                     }
                 });
                 return {
-                    render: function() {},
-                    process: function(value) { return value; },
+                    render: function () {
+                    },
+                    process: function (value) {
+                        return value;
+                    },
                     on: on,
                     clear: clear
                 };
@@ -318,11 +328,11 @@ permalink: /software/api/runner.html
             SecurityManager = function () {
                 var securityDialog = document.getElementById("securityDialog"),
                     securityOkButton = document.getElementById("securityOk"),
-                    showWarning = function() {
+                    showWarning = function () {
                         securityDialog.style.display = "block";
                     },
                     render = function () {
-                        securityOkButton.addEventListener("click", function(e) {
+                        securityOkButton.addEventListener("click", function (e) {
                             e.preventDefault();
                             securityDialog.style.display = "none";
                         }, false);
@@ -339,40 +349,40 @@ permalink: /software/api/runner.html
             },
             SelectWithLabel = function (container, template) {
                 var select = container.querySelector("select"),
-                        label = container.querySelector("label"),
-                        waitingValue = null,
-                        updateLabel = function () {
-                            label.innerHTML = template.replace("{option}", select.options[select.selectedIndex].text);
-                        },
-                        setOptions = function (options) {
-                            options.forEach(function (sample, index) {
-                                var option = document.createElement("option");
-                                option.value = sample.id;
-                                option.text = sample.name;
-                                (index === 0) && option.setAttribute("selected", "selected");
-                                select.options.add(option);
-                            });
-                            if (waitingValue !== null) {
-                                setValue(waitingValue);
-                                waitingValue = null;
-                            } else {
-                                updateLabel();
-                            }
-                        },
-                        getValue = function () {
-                            return select.value;
-                        },
-                        setValue = function (value) {
-                            if (select.options.length === 0) {
-                                waitingValue = value;
-                            } else {
-                                select.value = value;
-                                updateLabel();
-                            }
-                        },
-                        addEventListener = function (eventName, handler) {
-                            select.addEventListener(eventName, handler, false);
-                        };
+                    label = container.querySelector("label"),
+                    waitingValue = null,
+                    updateLabel = function () {
+                        label.innerHTML = template.replace("{option}", select.options[select.selectedIndex].text);
+                    },
+                    setOptions = function (options) {
+                        options.forEach(function (sample, index) {
+                            var option = document.createElement("option");
+                            option.value = sample.id;
+                            option.text = sample.name;
+                            (index === 0) && option.setAttribute("selected", "selected");
+                            select.options.add(option);
+                        });
+                        if (waitingValue !== null) {
+                            setValue(waitingValue);
+                            waitingValue = null;
+                        } else {
+                            updateLabel();
+                        }
+                    },
+                    getValue = function () {
+                        return select.value;
+                    },
+                    setValue = function (value) {
+                        if (select.options.length === 0) {
+                            waitingValue = value;
+                        } else {
+                            select.value = value;
+                            updateLabel();
+                        }
+                    },
+                    addEventListener = function (eventName, handler) {
+                        select.addEventListener(eventName, handler, false);
+                    };
 
                 select.addEventListener("change", updateLabel, false);
 
@@ -385,494 +395,497 @@ permalink: /software/api/runner.html
             },
             uiManager = function (github, geotabAPI, layout, urlState, APIRunner) {
                 var initToggle = function () {
-                            var toggleContainer = document.getElementById("toggle"),
-                                    buttons = toggleContainer.querySelectorAll(".btn"),
-                                    paneJS = document.getElementById("pane-js"),
-                                    paneCSS = document.getElementById("pane-css"),
-                                    paneHTML = document.getElementById("pane-html"),
-                                    paneLeft = document.getElementById("pane-left"),
-                                    addClass = function (element, className) {
-                                        if (!hasClass(element, className)) {
-                                            element.className += " " + className;
-                                        }
-                                    },
-                                    removeClass = function (element, className) {
-                                        var regexp = new RegExp(" " + className, "gi");
-                                        element.className = element.className.replace(regexp, "");
-                                    },
-                                    hasClass = function (element, className) {
-                                        return element.className.indexOf(className) > -1;
-                                    },
-                                    checkLeftPaneState = function () {
-                                        if (hasClass(paneJS, hiddenClassName) && hasClass(paneCSS, hiddenClassName) && hasClass(paneHTML, hiddenClassName)) {
-                                            addClass(paneLeft, hiddenClassName);
-                                        } else {
-                                            removeClass(paneLeft, hiddenClassName);
-                                        }
-                                    },
-                                    hiddenClassName = "hidden",
-                                    activeClassName = "active",
-                                    attribute = "aria-pressed",
-                                    getToggleState = function () {
-                                        return [].reduce.call(buttons, function (state, button) {
-                                            var id = button.id.replace("toggle-", ""),
-                                                    paneId = "pane-" + button.id.replace("toggle-", ""),
-                                                    pane = document.getElementById(paneId);
-
-                                            if (pane) {
-                                                state[id] = !hasClass(pane, hiddenClassName);
-                                            }
-                                            return state;
-                                        }, {});
-                                    },
-                                    setToggleState = function (options) {
-                                        Object.keys(options).forEach(function (id) {
-                                            var button = document.getElementById("toggle-" + id),
-                                                    pane = document.getElementById("pane-" + id),
-                                                    state = options[id];
-
-                                            if (pane) {
-                                                if (state) {
-                                                    addClass(button, activeClassName);
-                                                    button.setAttribute(attribute, true);
-                                                    removeClass(pane, hiddenClassName);
-                                                } else {
-                                                    removeClass(button, activeClassName);
-                                                    button.setAttribute(attribute, false);
-                                                    addClass(pane, hiddenClassName);
-                                                }
-                                            }
-                                        });
-                                        checkLeftPaneState();
-                                        layout.resize();
-                                    };
-
-                            [].forEach.call(buttons, function (button) {
-                                var paneId = "pane-" + button.id.replace("toggle-", ""),
+                        var toggleContainer = document.getElementById("toggle"),
+                            buttons = toggleContainer.querySelectorAll(".btn"),
+                            paneJS = document.getElementById("pane-js"),
+                            paneCSS = document.getElementById("pane-css"),
+                            paneHTML = document.getElementById("pane-html"),
+                            paneLeft = document.getElementById("pane-left"),
+                            addClass = function (element, className) {
+                                if (!hasClass(element, className)) {
+                                    element.className += " " + className;
+                                }
+                            },
+                            removeClass = function (element, className) {
+                                var regexp = new RegExp(" " + className, "gi");
+                                element.className = element.className.replace(regexp, "");
+                            },
+                            hasClass = function (element, className) {
+                                return element.className.indexOf(className) > -1;
+                            },
+                            checkLeftPaneState = function () {
+                                if (hasClass(paneJS, hiddenClassName) && hasClass(paneCSS, hiddenClassName) && hasClass(paneHTML, hiddenClassName)) {
+                                    addClass(paneLeft, hiddenClassName);
+                                } else {
+                                    removeClass(paneLeft, hiddenClassName);
+                                }
+                            },
+                            hiddenClassName = "hidden",
+                            activeClassName = "active",
+                            attribute = "aria-pressed",
+                            getToggleState = function () {
+                                return [].reduce.call(buttons, function (state, button) {
+                                    var id = button.id.replace("toggle-", ""),
+                                        paneId = "pane-" + button.id.replace("toggle-", ""),
                                         pane = document.getElementById(paneId);
 
-                                if (pane) {
-                                    button.addEventListener("click", function (e) {
-                                        e.preventDefault();
-                                        var isOpened = hasClass(button, activeClassName);
+                                    if (pane) {
+                                        state[id] = !hasClass(pane, hiddenClassName);
+                                    }
+                                    return state;
+                                }, {});
+                            },
+                            setToggleState = function (options) {
+                                Object.keys(options).forEach(function (id) {
+                                    var button = document.getElementById("toggle-" + id),
+                                        pane = document.getElementById("pane-" + id),
+                                        state = options[id];
 
-                                        if (isOpened) {
-                                            removeClass(button, activeClassName);
-                                            button.setAttribute(attribute, false);
-                                            addClass(pane, hiddenClassName);
-                                        } else {
+                                    if (pane) {
+                                        if (state) {
                                             addClass(button, activeClassName);
                                             button.setAttribute(attribute, true);
                                             removeClass(pane, hiddenClassName);
+                                        } else {
+                                            removeClass(button, activeClassName);
+                                            button.setAttribute(attribute, false);
+                                            addClass(pane, hiddenClassName);
                                         }
-                                        checkLeftPaneState();
-                                        layout.resize();
-                                        urlState.saveState();
-                                    }, false);
-                                }
-                            });
-                            urlState.addEditor("options", self);
-
-                            return {
-                                getToggleState: getToggleState,
-                                setToggleState: setToggleState
-                            };
-                        },
-                        toggleManager = null,
-                        samplesSelect = null,
-                        initSamples = function () {
-                            samplesSelect = SelectWithLabel(document.getElementById("samplesControl"), "Sample: {option}");
-                            github.getSamples(function (samples) {
-                                // TODO: sort samples to place "New" to the top
-                                samplesSelect.setOptions(samples);
-                                samplesSelect.addEventListener("change", function (e) {
-                                    e.preventDefault();
-                                    window.setTimeout(function () {
-                                        urlState.saveState(samplesSelect.getValue());
-                                    }, 1);
+                                    }
                                 });
-                            }, APIRunner.errorHandler);
-                        },
-                        selectSample = function (sample) {
-                            samplesSelect && samplesSelect.setValue(sample);
-                        },
-                        initUserLabel = function () {
-                            var logoutButton = document.getElementById("logoutButton"),
-                                userLabel = document.getElementById("userLabel"),
-                                session = null,
-                                getUserLabel = function (session) {
-                                    return htmlEscape(session.userName) + " (" + htmlEscape(session.database) + ")";
-                                },
-                                showUserInfo = function (session) {
-                                    userLabel.innerHTML = getUserLabel(session);
-                                    userLabel.style.display = "block";
-                                    logoutButton.style.display = "block";
-                                },
-                                getSessionCallback = function (currentSession) {
-                                    if (currentSession) {
-                                        session = currentSession;
-                                        showUserInfo(session);
+                                checkLeftPaneState();
+                                layout.resize();
+                            };
+
+                        [].forEach.call(buttons, function (button) {
+                            var paneId = "pane-" + button.id.replace("toggle-", ""),
+                                pane = document.getElementById(paneId);
+
+                            if (pane) {
+                                button.addEventListener("click", function (e) {
+                                    e.preventDefault();
+                                    var isOpened = hasClass(button, activeClassName);
+
+                                    if (isOpened) {
+                                        removeClass(button, activeClassName);
+                                        button.setAttribute(attribute, false);
+                                        addClass(pane, hiddenClassName);
                                     } else {
-                                        session = null;
-                                        userLabel.style.display = "none";
-                                        logoutButton.style.display = "none";
+                                        addClass(button, activeClassName);
+                                        button.setAttribute(attribute, true);
+                                        removeClass(pane, hiddenClassName);
                                     }
-                                },
-                                renderUserLabel = function () {
-                                    geotabAPI.getSession(getSessionCallback);
-                                },
-                                confirmUser = function (successCallback) {
-                                    if (session) {
-                                        var dialog = document.getElementById("loggedUser"),
-                                                dialogUserName = document.getElementById("loggedUserName"),
-                                                confirmButon = document.getElementById("confirm"),
-                                                cancelButton = document.getElementById("cancel");
+                                    checkLeftPaneState();
+                                    layout.resize();
+                                    urlState.saveState();
+                                }, false);
+                            }
+                        });
+                        urlState.addEditor("options", self);
 
-                                        dialogUserName.innerHTML = getUserLabel(session);
-                                        dialog.style.display = "block";
-
-                                        confirmButon.addEventListener("click", function () {
-                                            successCallback && successCallback();
-                                            dialog.style.display = "none";
-                                        }, false);
-                                        cancelButton.addEventListener("click", function () {
-                                            logout();
-                                            dialog.style.display = "none";
-                                        }, false);
-                                    }
-                                },
-                                logout = function () {
-                                    geotabAPI.forget(getSessionCallback);
+                        return {
+                            getToggleState: getToggleState,
+                            setToggleState: setToggleState
+                        };
+                    },
+                    toggleManager = null,
+                    samplesSelect = null,
+                    initSamples = function () {
+                        samplesSelect = SelectWithLabel(document.getElementById("samplesControl"), "Sample: {option}");
+                        github.getSamples(function (samples) {
+                            // TODO: sort samples to place "New" to the top
+                            samplesSelect.setOptions(samples);
+                            samplesSelect.addEventListener("change", function (e) {
+                                e.preventDefault();
+                                window.setTimeout(function () {
+                                    urlState.saveState(samplesSelect.getValue());
+                                }, 1);
+                            });
+                        }, APIRunner.errorHandler);
+                    },
+                    selectSample = function (sample) {
+                        samplesSelect && samplesSelect.setValue(sample);
+                    },
+                    initUserLabel = function () {
+                        var logoutButton = document.getElementById("logoutButton"),
+                            userLabel = document.getElementById("userLabel"),
+                            session = null,
+                            getUserLabel = function (session) {
+                                return htmlEscape(session.userName) + " (" + htmlEscape(session.database) + ")";
+                            },
+                            showUserInfo = function (session) {
+                                userLabel.innerHTML = getUserLabel(session);
+                                userLabel.style.display = "block";
+                                logoutButton.style.display = "block";
+                            },
+                            getSessionCallback = function (currentSession) {
+                                if (currentSession) {
+                                    shouldAutoLoginDemo = false;
+                                    session = currentSession;
+                                    showUserInfo(session);
+                                } else {
+                                    session = null;
                                     userLabel.style.display = "none";
                                     logoutButton.style.display = "none";
-                                    loggedInDemo = true;
-                                };
-
-                            logoutButton.addEventListener("click", logout, false);
-
-                            renderUserLabel();
-                            return confirmUser;
-                        },
-                        initHotKeys = function () {
-                            document.body.addEventListener("keydown", function (e) {
-                                var keyCode = e.which,
-                                        isCtrl = e.ctrlKey || false;
-
-                                // ignore Ctrl + S
-                                if (keyCode === 83 && isCtrl) {
-                                    e.preventDefault();
                                 }
-                            }, false);
-                        },
-                        initShare = function () {
-                            var shareButton = document.getElementById("share"),
-                                    shareDialog = document.getElementById("shareDialog"),
-                                    shareTextarea = document.getElementById("shareTextarea"),
-                                    shareDoneButton = document.getElementById("shareDone");
+                            },
+                            renderUserLabel = function () {
+                                geotabAPI.getSession(getSessionCallback);
+                            },
+                            confirmUser = function (successCallback) {
+                                if (session) {
+                                    var dialog = document.getElementById("loggedUser"),
+                                        dialogUserName = document.getElementById("loggedUserName"),
+                                        confirmButon = document.getElementById("confirm"),
+                                        cancelButton = document.getElementById("cancel");
 
-                            shareDoneButton.addEventListener("click", function () {
-                                shareDialog.style.display = "none";
-                                shareTextarea.value = "";
-                            }, false);
+                                    dialogUserName.innerHTML = getUserLabel(session);
+                                    dialog.style.display = "block";
 
-                            shareButton.addEventListener("click", function () {
-                                var url = window.location.href.split("#")[0];
-                                shareTextarea.value = url + "#" + urlState.getState();
-                                shareDialog.style.display = "block";
-                                shareTextarea.focus();
-                                shareTextarea.select();
-                            }, false);
-                        },
-                        render = function () {
-                            initSamples();
-                            toggleManager = initToggle();
-                            self.confirmUser = initUserLabel();
-                            initHotKeys();
-                            initShare();
-                        },
-                        process = function (value) {
-                            return value;
-                        },
-                        getValue = function () {
-                            return toggleManager ? toggleManager.getToggleState() : {};
-                        },
-                        setValue = function (value) {
-                            toggleManager && toggleManager.setToggleState(value || {});
-                        },
-                        self = {
-                            render: render,
-                            process: process,
-                            getValue: getValue,
-                            setValue: setValue,
-                            selectSample: selectSample
-                        };
+                                    confirmButon.addEventListener("click", function () {
+                                        successCallback && successCallback();
+                                        dialog.style.display = "none";
+                                    }, false);
+                                    cancelButton.addEventListener("click", function () {
+                                        logout();
+                                        dialog.style.display = "none";
+                                    }, false);
+                                }
+                            },
+                            logout = function () {
+                                geotabAPI.forget(getSessionCallback);
+                                userLabel.style.display = "none";
+                                logoutButton.style.display = "none";
+                                shouldAutoLoginDemo = false;
+                            };
+
+                        logoutButton.addEventListener("click", logout, false);
+
+                        renderUserLabel();
+                        return confirmUser;
+                    },
+                    initHotKeys = function () {
+                        document.body.addEventListener("keydown", function (e) {
+                            var keyCode = e.which,
+                                isCtrl = e.ctrlKey || false;
+
+                            // ignore Ctrl + S
+                            if (keyCode === 83 && isCtrl) {
+                                e.preventDefault();
+                            }
+                        }, false);
+                    },
+                    initShare = function () {
+                        var shareButton = document.getElementById("share"),
+                            shareDialog = document.getElementById("shareDialog"),
+                            shareTextarea = document.getElementById("shareTextarea"),
+                            shareDoneButton = document.getElementById("shareDone");
+
+                        shareDoneButton.addEventListener("click", function () {
+                            shareDialog.style.display = "none";
+                            shareTextarea.value = "";
+                        }, false);
+
+                        shareButton.addEventListener("click", function () {
+                            var url = window.location.href.split("#")[0];
+                            shareTextarea.value = url + "#" + urlState.getState();
+                            shareDialog.style.display = "block";
+                            shareTextarea.focus();
+                            shareTextarea.select();
+                        }, false);
+                    },
+                    render = function () {
+                        initSamples();
+                        toggleManager = initToggle();
+                        self.confirmUser = initUserLabel();
+                        initHotKeys();
+                        initShare();
+                    },
+                    process = function (value) {
+                        return value;
+                    },
+                    getValue = function () {
+                        return toggleManager ? toggleManager.getToggleState() : {};
+                    },
+                    setValue = function (value) {
+                        toggleManager && toggleManager.setToggleState(value || {});
+                    },
+                    self = {
+                        render: render,
+                        process: process,
+                        getValue: getValue,
+                        setValue: setValue,
+                        selectSample: selectSample
+                    };
                 return self;
             },
             layoutManager = function (resizeObserver) {
                 var jsPane = document.getElementById("pane-js"),
-                        cssPane = document.getElementById("pane-css"),
-                        htmlPane = document.getElementById("pane-html"),
-                        leftPane = document.getElementById("pane-left"),
-                        consolePane = document.getElementById("pane-console"),
-                        outputPane = document.getElementById("pane-output"),
+                    cssPane = document.getElementById("pane-css"),
+                    htmlPane = document.getElementById("pane-html"),
+                    leftPane = document.getElementById("pane-left"),
+                    consolePane = document.getElementById("pane-console"),
+                    outputPane = document.getElementById("pane-output"),
 
-                        resize = function () {
-                            var isJSVisible = (jsPane.className.indexOf("hidden") === -1) ? 1 : 0,
-                                    isCSSVisible = (cssPane.className.indexOf("hidden") === -1) ? 1 : 0,
-                                    isHTMLVisible = (htmlPane.className.indexOf("hidden") === -1) ? 1 : 0,
-                                    isLeftVisible = (isJSVisible || isCSSVisible || isHTMLVisible) ? 1 : 0,
-                                    isConsoleVisible = (consolePane.className.indexOf("hidden") === -1) ? 1 : 0,
-                                    isOutputVisible = (outputPane.className.indexOf("hidden") === -1) ? 1 : 0,
-                                    setIsLastVisible = function (element, isLastVisible) {
-                                        var lastVisibleClass = " last-visible";
-                                        if (isLastVisible) {
-                                            if (element.className.indexOf(lastVisibleClass) === -1) {
-                                                element.className += lastVisibleClass;
-                                            }
-                                        } else {
-                                            element.className = element.className.replace(lastVisibleClass, "");
-                                        }
-                                    },
-                                    colWidth = 100 / (isLeftVisible + isConsoleVisible + isOutputVisible),
-                                    styleWidth = "calc(" + colWidth + "% - 4px)",
-                                    rowHeight = 100 / (isJSVisible + isCSSVisible + isHTMLVisible),
-                                    styleHeight = "calc(" + rowHeight + "% - 4px)",
-                                    lastStyleHeight = rowHeight + "%";
+                    resize = function () {
+                        var isJSVisible = (jsPane.className.indexOf("hidden") === -1) ? 1 : 0,
+                            isCSSVisible = (cssPane.className.indexOf("hidden") === -1) ? 1 : 0,
+                            isHTMLVisible = (htmlPane.className.indexOf("hidden") === -1) ? 1 : 0,
+                            isLeftVisible = (isJSVisible || isCSSVisible || isHTMLVisible) ? 1 : 0,
+                            isConsoleVisible = (consolePane.className.indexOf("hidden") === -1) ? 1 : 0,
+                            isOutputVisible = (outputPane.className.indexOf("hidden") === -1) ? 1 : 0,
+                            setIsLastVisible = function (element, isLastVisible) {
+                                var lastVisibleClass = " last-visible";
+                                if (isLastVisible) {
+                                    if (element.className.indexOf(lastVisibleClass) === -1) {
+                                        element.className += lastVisibleClass;
+                                    }
+                                } else {
+                                    element.className = element.className.replace(lastVisibleClass, "");
+                                }
+                            },
+                            colWidth = 100 / (isLeftVisible + isConsoleVisible + isOutputVisible),
+                            styleWidth = "calc(" + colWidth + "% - 4px)",
+                            rowHeight = 100 / (isJSVisible + isCSSVisible + isHTMLVisible),
+                            styleHeight = "calc(" + rowHeight + "% - 4px)",
+                            lastStyleHeight = rowHeight + "%";
 
-                            jsPane.style.height = isCSSVisible || isHTMLVisible ? styleHeight : lastStyleHeight;
-                            cssPane.style.height = isHTMLVisible ? styleHeight : lastStyleHeight;
-                            htmlPane.style.height = lastStyleHeight;
-                            setIsLastVisible(jsPane, !isCSSVisible && !isHTMLVisible);
-                            setIsLastVisible(cssPane, !isHTMLVisible);
+                        jsPane.style.height = isCSSVisible || isHTMLVisible ? styleHeight : lastStyleHeight;
+                        cssPane.style.height = isHTMLVisible ? styleHeight : lastStyleHeight;
+                        htmlPane.style.height = lastStyleHeight;
+                        setIsLastVisible(jsPane, !isCSSVisible && !isHTMLVisible);
+                        setIsLastVisible(cssPane, !isHTMLVisible);
 
-                            leftPane.style.width = styleWidth;
-                            consolePane.style.width = styleWidth;
-                            outputPane.style.width = styleWidth;
-                            resizeObserver.resize();
-                        };
+                        leftPane.style.width = styleWidth;
+                        consolePane.style.width = styleWidth;
+                        outputPane.style.width = styleWidth;
+                        resizeObserver.resize();
+                    };
 
                 return {
                     resize: resize
                 };
             },
             APIRunner = function () {
-                var processors = (function () {
-                            var processors = [],
-                                    add = function (name, processor) {
-                                        self[name] = processor;
-                                        processors.push(processor);
-                                    },
-                                    self = {
-                                        add: add,
-                                        forEach: function (callback) {
-                                            processors.forEach(callback);
-                                        },
-                                        reduce: function (callback, value) {
-                                            processors.reduce(callback, value);
-                                        }
-                                    };
-
-                            return self;
-                        })(),
-                    demoCredentials = null,
-                    loggedInDemo = false,
-                        urlState = (function () {
-                            var sampleNameRegexp = /sample:[\w\d-]+/i,
-                                localStorageSampleName = "geotabAPIRunner_sample",
-                                isSandboxSupported = "sandbox" in document.createElement("iframe"),
-                                getSampleNameFromURL = function () {
-                                    var hash = window.location.hash.substr(1);
-                                    if (hash.match(sampleNameRegexp)) {
-                                        return hash.replace("sample:", "");
-                                    }
-                                    return null;
+                let demoCredentials = null;
+                let processors = (function () {
+                        var processors = [],
+                            add = function (name, processor) {
+                                self[name] = processor;
+                                processors.push(processor);
+                            },
+                            self = {
+                                add: add,
+                                forEach: function (callback) {
+                                    processors.forEach(callback);
                                 },
-                                restoreState = function () {
-                                    console.log('restoreState');
-                                    var state = window.location.hash.substr(1),
-                                        parsedState = null,
-                                        sampleName = getSampleNameFromURL(),
-                                        parseState = function (stateText) {
-                                            try {
-                                                state = decodeURIComponent(atob(stateText));
-                                                state = JSON.parse(state);
-                                            } catch (e) {
-                                                state = null;
-                                            }
-                                            return state;
-                                        };
-
-                                    if (sampleName) {
-                                        processors.ui.selectSample(sampleName);
-                                        load(sampleName);
-                                    } else {
-                                        parsedState = parseState(state);
-                                        if (parsedState && !isSandboxSupported) {
-                                            processors.security.showWarning();
-                                            parsedState = null;
-                                        } else {
-                                            parsedState && localStorage.setItem(localStorageSampleName, encodeState(state));
-                                        }
-                                        window.location.hash = "";
-
-                                        if (!parsedState) {
-                                            parsedState = localStorage.getItem(localStorageSampleName);
-                                            parsedState = parseState(parsedState);
-                                        }
-                                        if (parsedState) {
-                                            Object.keys(editors).forEach(function (name) {
-                                                if (typeof(parsedState[name]) !== "undefined" && editors[name].getValue() !== parsedState[name]) {
-                                                    editors[name].setValue(parsedState[name]);
-                                                }
-                                            });
-                                        }
-                                    }
-                                },
-                                editors = {},
-                                addEditor = function (name, editor) {
-                                    editors[name] = editor;
-                                },
-                                encodeState = function(state) {
-                                    return btoa(encodeURIComponent(JSON.stringify(state)));
-                                },
-                                getState = function (sampleName, ignoreURLSampleName) {
-                                    var state,
-                                            sampleNameFromURL = getSampleNameFromURL();
-                                    if (sampleName) {
-                                        state = "sample:" + sampleName;
-                                    } else if (!ignoreURLSampleName && sampleNameFromURL) {
-                                        state = "sample:" + sampleNameFromURL;
-                                    } else {
-                                        state = Object.keys(editors).reduce(function (state, name) {
-                                            state[name] = editors[name].getValue();
-                                            return state;
-                                        }, {});
-                                        state = encodeState(state);
-                                    }
-                                    return state;
-                                },
-                                saveState = function (sampleName) {
-                                    var state = getState(sampleName, true);
-                                    if (sampleName) {
-                                        window.location.hash = state;
-                                    } else {
-                                        localStorage.setItem(localStorageSampleName, state);
-                                        window.location.hash = "";
-                                    }
-                                };
-
-                            window.addEventListener("hashchange", restoreState, false);
-
-                            return {
-                                addEditor: addEditor,
-                                restoreState: restoreState,
-                                saveState: saveState,
-                                getState: getState
-                            };
-                        })(),
-
-                        render = function () {
-                            processors.forEach(function (processor) {
-                                processor.render();
-                            });
-                            urlState.restoreState();
-                        },
-                        errorHandler = function (error) {
-                            processors.console.error(error);
-                        },
-                        load = function (sampleName) {
-                            github.getSample(sampleName, function (sources) {
-                                processors.css.setValue(sources.css);
-                                processors.html.setValue(sources.html);
-                                processors.js.setValue(sources.js);
-                                processors.ui.setValue(sources.options);
-                            }, errorHandler);
-                        },
-                        run = function (e) {
-                            e.preventDefault();
-                            var iterateProcessors = function() {
-                                    processors.reduce(function (value, processor) {
-                                        return processor.process(value);
-                                    }, {});
-                                };
-
-                            if (!loginFormHasBeenShown) {
-                                processors.ui.confirmUser(iterateProcessors);
-                                loginFormHasBeenShown = true;
-                            } else {
-                                iterateProcessors();
-                            }
-                        },
-                        api,
-                        resizeObserver = ResizeObserver(),
-                        layout = layoutManager(resizeObserver),
-                        github = SamplesApi(),
-                        loginFormHasBeenShown = false,
-                        self = {
-                            run: run,
-                            load: load,
-                            errorHandler: errorHandler
-                        },
-                        authenticateManager = function (authenticateCallback) {
-                            var loginForm = document.getElementById("login"),
-                                    loginDialog = document.getElementById("loginDialog"),
-                                    loginError = document.getElementById("loginError"),
-                                    loginButton = document.getElementById("loginButton"),
-                                    serverInput = document.getElementById("server"),
-                                    databaseInput = document.getElementById("database"),
-                                    userInput = document.getElementById("user"),
-                                    passwordInput = document.getElementById("password"),
-                                    loginSpinner = document.getElementById("loginSpinner"),
-                                    setForm = function (server, database, user, password) {
-                                        serverInput.value = server;
-                                        databaseInput.value = database;
-                                        userInput.value = user;
-                                        passwordInput.value = password;
-                                    },
-                                    show = function () {
-                                        loginForm.style.display = "block";
-                                        loginError.style.display = "none";
-                                    },
-                                    hide = function () {
-                                        loginForm.style.display = "none";
-                                    };
-                            if (demoCredentials) {
-                                setForm(...Object.values(demoCredentials));
-                                console.log('loggedInDemo ' + loggedInDemo)
-                                if (!loggedInDemo) {
-                                    loggedInDemo = true;
-
-                                    setTimeout(() => loginButton.click(), 1000);
+                                reduce: function (callback, value) {
+                                    processors.reduce(callback, value);
                                 }
-                            } else {
+                            };
+
+                        return self;
+                    })(),
+                    urlState = (function () {
+                        var sampleNameRegexp = /sample:[\w\d-]+/i,
+                            localStorageSampleName = "geotabAPIRunner_sample",
+                            isSandboxSupported = "sandbox" in document.createElement("iframe"),
+                            getSampleNameFromURL = function () {
+                                var hash = window.location.hash.substr(1);
+                                if (hash.match(sampleNameRegexp)) {
+                                    return hash.replace("sample:", "");
+                                }
+                                return null;
+                            },
+                            restoreState = function () {
+                                console.log('restoreState');
+                                var state = window.location.hash.substr(1),
+                                    parsedState = null,
+                                    sampleName = getSampleNameFromURL(),
+                                    parseState = function (stateText) {
+                                        try {
+                                            state = decodeURIComponent(atob(stateText));
+                                            state = JSON.parse(state);
+                                        } catch (e) {
+                                            state = null;
+                                        }
+                                        return state;
+                                    };
+
+                                if (sampleName) {
+                                    processors.ui.selectSample(sampleName);
+                                    load(sampleName);
+                                } else {
+                                    parsedState = parseState(state);
+                                    if (parsedState && !isSandboxSupported) {
+                                        processors.security.showWarning();
+                                        parsedState = null;
+                                    } else {
+                                        parsedState && localStorage.setItem(localStorageSampleName, encodeState(state));
+                                    }
+                                    window.location.hash = "";
+
+                                    if (!parsedState) {
+                                        parsedState = localStorage.getItem(localStorageSampleName);
+                                        parsedState = parseState(parsedState);
+                                    }
+                                    if (parsedState) {
+                                        Object.keys(editors).forEach(function (name) {
+                                            if (typeof (parsedState[name]) !== "undefined" && editors[name].getValue() !== parsedState[name]) {
+                                                editors[name].setValue(parsedState[name]);
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            editors = {},
+                            addEditor = function (name, editor) {
+                                editors[name] = editor;
+                            },
+                            encodeState = function (state) {
+                                return btoa(encodeURIComponent(JSON.stringify(state)));
+                            },
+                            getState = function (sampleName, ignoreURLSampleName) {
+                                var state,
+                                    sampleNameFromURL = getSampleNameFromURL();
+                                if (sampleName) {
+                                    state = "sample:" + sampleName;
+                                } else if (!ignoreURLSampleName && sampleNameFromURL) {
+                                    state = "sample:" + sampleNameFromURL;
+                                } else {
+                                    state = Object.keys(editors).reduce(function (state, name) {
+                                        state[name] = editors[name].getValue();
+                                        return state;
+                                    }, {});
+                                    state = encodeState(state);
+                                }
+                                return state;
+                            },
+                            saveState = function (sampleName) {
+                                var state = getState(sampleName, true);
+                                if (sampleName) {
+                                    window.location.hash = state;
+                                } else {
+                                    localStorage.setItem(localStorageSampleName, state);
+                                    window.location.hash = "";
+                                }
+                            };
+
+                        window.addEventListener("hashchange", restoreState, false);
+
+                        return {
+                            addEditor: addEditor,
+                            restoreState: restoreState,
+                            saveState: saveState,
+                            getState: getState
+                        };
+                    })(),
+
+                    render = function () {
+                        processors.forEach(function (processor) {
+                            processor.render();
+                        });
+                        urlState.restoreState();
+                    },
+                    errorHandler = function (error) {
+                        processors.console.error(error);
+                    },
+                    load = function (sampleName) {
+                        github.getSample(sampleName, function (sources) {
+                            processors.css.setValue(sources.css);
+                            processors.html.setValue(sources.html);
+                            processors.js.setValue(sources.js);
+                            processors.ui.setValue(sources.options);
+                        }, errorHandler);
+                    },
+                    run = function (e) {
+                        e.preventDefault();
+                        var iterateProcessors = function () {
+                            processors.reduce(function (value, processor) {
+                                return processor.process(value);
+                            }, {});
+                        };
+
+                        if (!loginFormHasBeenShown) {
+                            processors.ui.confirmUser(iterateProcessors);
+                            loginFormHasBeenShown = true;
+                        } else {
+                            iterateProcessors();
+                        }
+                    },
+                    api,
+                    resizeObserver = ResizeObserver(),
+                    layout = layoutManager(resizeObserver),
+                    github = SamplesApi(),
+                    loginFormHasBeenShown = false,
+                    self = {
+                        run: run,
+                        load: load,
+                        errorHandler: errorHandler
+                    },
+                    authenticateManager = function (authenticateCallback) {
+                        var loginForm = document.getElementById("login"),
+                            loginDialog = document.getElementById("loginDialog"),
+                            loginError = document.getElementById("loginError"),
+                            loginButton = document.getElementById("loginButton"),
+                            serverInput = document.getElementById("server"),
+                            databaseInput = document.getElementById("database"),
+                            userInput = document.getElementById("user"),
+                            passwordInput = document.getElementById("password"),
+                            loginSpinner = document.getElementById("loginSpinner"),
+                            setForm = function (server, database, user, password) {
+                                serverInput.value = server;
+                                databaseInput.value = database;
+                                userInput.value = user;
+                                passwordInput.value = password;
+                            },
+                            show = function () {
+                                loginForm.style.display = "block";
+                                loginError.style.display = "none";
+                            },
+                            hide = function () {
+                                loginForm.style.display = "none";
+                            };
+                        if (demoCredentials) {
+                            if (!serverInput.value)
+                                setForm(...Object.values(demoCredentials));
+                            if (shouldAutoLoginDemo) {
+                                shouldAutoLoginDemo = false;
+                                setTimeout(() => loginButton.click(), 1000);
+                            }
+                        } else {
+                            if (!serverInput.value) {
                                 serverInput.value = "my.geotab.com";
                                 serverInput.focus();
                             }
-                            show();
-                            loginDialog.addEventListener("submit", function (e) {
-                                e.preventDefault();
-                            }, false);
-                            loginButton.addEventListener("click", function (e) {
-                                e.preventDefault();
-                                var server = serverInput.value,
-                                    database = databaseInput.value,
-                                    user = userInput.value,
-                                    password = passwordInput.value;
-                                loginSpinner.style.display = 'inline'
-                                authenticateCallback(server, database, user, password, function () {
-                                    // setForm("", "", "", "");
-                                    hide();
-                                    loginFormHasBeenShown = true;
-                                    loginSpinner.style.display = 'none';
-                                }, function (error) {
-                                    loginError.innerHTML = error;
-                                    loginError.style.display = "block";
-                                    userInput.select();
-                                    userInput.focus();
-                                    loginSpinner.style.display = 'none';
-                                });
-                            }, false);
-                        };
+                        }
+                        show();
+                        loginDialog.addEventListener("submit", function (e) {
+                            e.preventDefault();
+                        }, false);
+                        loginButton.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            var server = serverInput.value,
+                                database = databaseInput.value,
+                                user = userInput.value,
+                                password = passwordInput.value;
+                            loginSpinner.style.display = 'inline'
+                            authenticateCallback(server, database, user, password, function () {
+                                // setForm("", "", "", "");
+                                hide();
+                                loginFormHasBeenShown = true;
+                                loginSpinner.style.display = 'none';
+                                shouldAutoLoginDemo = false;
+                            }, function (error) {
+                                loginError.innerHTML = error;
+                                loginError.style.display = "block";
+                                userInput.select();
+                                userInput.focus();
+                                loginSpinner.style.display = 'none';
+                                shouldAutoLoginDemo = false;
+                            });
+                        }, false);
+                    };
 
                 processors.add("js", EditorManager("js", "javascript", resizeObserver, urlState));
                 processors.add("css", EditorManager("css", "css", resizeObserver, urlState));
@@ -881,27 +894,33 @@ permalink: /software/api/runner.html
                 layout.resize();
 
                 const queryString = window.location.search;
+                console.log(`queryString: ${queryString}`);
                 if (queryString) {
-                    const urlParams = new URLSearchParams(queryString);
-                    const requiredParams = ['database', 'username', 'server', 'password'];
-                    const hasRequiredKeys = requiredParams.reduce((result, param) => result && urlParams.has(param))
+                    try {
+                        if (queryString?.startsWith('?')) {
+                            // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
+                            const urlParams = new URLSearchParams(queryString);
+                            const requiredParams = ['database', 'username', 'server', 'password'];
+                            const hasRequiredKeys = requiredParams.reduce((result, param) => result && urlParams.has(param))
 
-                    window.location.hash = "";
+                            // window.location.search = "";
+                            console.log('hasRequiredKeys ' + hasRequiredKeys);
+                            if (hasRequiredKeys) {
 
-                    if (!hasRequiredKeys) {
-                        return;
+                                const server = urlParams.get('server');
+                                const database = urlParams.get('database');
+                                const username = urlParams.get('username');
+                                const password = urlParams.get('password');
+
+                                if (database === 'geotabdemo') {
+                                    demoCredentials = {server, database, username, password};
+                                    console.log(demoCredentials);
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        console.error(e.message);
                     }
-
-                    const server = urlParams.get('server');
-                    const database = urlParams.get('database');
-                    const username = urlParams.get('username');
-                    const password = urlParams.get('password');
-                    if (database !== 'geotabdemo') {
-                        return;
-                    }
-                    // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
-                    demoCredentials = { server, database, username, password };
-
                 }
 
                 api = GeotabApi(authenticateManager);
@@ -922,8 +941,8 @@ permalink: /software/api/runner.html
                 }, false);
             };
 
-    APIRunner();
-})();
+        APIRunner();
+    })();
 </script>
 </body>
 </html>
