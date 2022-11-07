@@ -33,8 +33,7 @@
  */
 var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialStore) {
     "use strict";
-    var
-        JSONP_REQUESTS_PROPERTY_STR = "geotabJSONP",
+    var JSONP_REQUESTS_PROPERTY_STR = "geotabJSONP",
         credentials,
         server,
         pendingCalls = [],
@@ -42,7 +41,7 @@ var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialSt
             // Use localStorage to store credentials automatically
             rememberMe: true,
             // Show debugging information (in Chrome dev tools, Firebug, etc.)
-            debug: false,
+            debug: true,
             // Use JSONP for all calls (for using the API without running a server)
             jsonp: false,
             // How long to wait for a response from the server (in seconds); 0 (or null) means no timeout.
@@ -218,7 +217,7 @@ var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialSt
         },
 
         /**
-         * Goes throw params and remove all sensitive information: user session, password etc
+         * Goes through params and remove all sensitive information: user session, password etc
          * @param {Object} params The API call parameters
          * @return {Object} Parameters object with remoted/replaced personal info.
          */
@@ -352,50 +351,51 @@ var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialSt
                     callbackSuccess(credentials);
                 }
             }, callbackError);
-        },
-        /**
-         *  Populates the authenticate callback with a function
-         *  @private
-         *  @param {successCallback} [callbackSuccess] Called when we have successfully authenticated
-         */
-        populateAuthenticationCallback = function (callbackSuccess) {
-            getCredentialsCallback(function (newServer, database, username, password, success, error) {
-                return authenticateWithServer(newServer, database, username, password, function (credentials) {
-                    success && success();
-                    if (callbackSuccess) {
-                        callbackSuccess(credentials);
-                    }
-                    // Try again
-                    pendingCalls.forEach(function (p) {
-                        call.apply(this, p);
-                    });
-                    pendingCalls = [];
-                }, error);
+        };
+
+    const populateAuthenticationCallbackInner = function (callbackSuccess) {
+        const authFunc = (newServer, database, username, password, success, error) => {
+            const innerSuccessCallback = function (credentials) {
+                success && success();
+                if (callbackSuccess) {
+                    callbackSuccess(credentials);
+                }
+                // Try again
+                pendingCalls.forEach(function (p) {
+                    call.apply(this, p);
+                });
+                pendingCalls = [];
+            };
+            return authenticateWithServer(newServer, database, username, password, innerSuccessCallback, error);
+        }
+        getCredentialsCallback(authFunc);
+    };
+
+    /**
+     *  Populates the authenticate callback with a function. Wrap in a debounce function because it seems to be called
+     *  multiple times.
+     *  @private
+     *  @param {successCallback} [callbackSuccess] Called when we have successfully authenticated
+     */
+    const populateAuthenticationCallback = debounce(populateAuthenticationCallbackInner);
+
+    const calls = (function () {
+        var calls = [], add = function (call) {
+            calls.push(call);
+        }, remove = function (call) {
+            calls = calls.filter(function (candidate) {
+                return candidate !== call;
             });
-        },
+        }, abort = function () {
+            calls.forEach(function (call) {
+                call && call.abort && call.abort();
+            });
+            calls = [];
+        };
 
-        calls = (function() {
-            var calls = [],
-                add = function(call) {
-                    calls.push(call);
-                },
-                remove = function(call) {
-                    calls = calls.filter(function(candidate) {
-                        return candidate !== call;
-                    });
-                },
-                abort = function() {
-                    calls.forEach(function(call) {
-                        call && call.abort && call.abort();
-                    });
-                    calls = [];
-                };
-
-            return {
-                add: add,
-                remove: remove,
-                abort: abort
-            }
+        return {
+            add: add, remove: remove, abort: abort
+        }
         })(),
         /**
          *  Calls a Geotab method. Handles cases where the credentials have expired or are invalid.
@@ -407,8 +407,7 @@ var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialSt
          *  @return {Object} An object with operations for the call. Supported operation(s): abort()
          */
         call = function (method, params, successCallback, errorCallback) {
-            var
-                needsLoginAndCall = function () {
+            var needsLoginAndCall = function () {
                     pendingCalls.push([method, params, successCallback, errorCallback]);
                     var storedCredentials = credentialsStore.get();
                     if (storedCredentials && options.rememberMe) {
@@ -606,6 +605,14 @@ if (typeof define !== 'undefined' && define.amd) {
         'use strict';
         return GeotabApi;
     });
+}
+
+function debounce(func) {
+    let timeoutId = -1;
+    return args => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(args), 200);
+    }
 }
 
 // JSDoc Addenda

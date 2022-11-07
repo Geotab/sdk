@@ -130,15 +130,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function scrollSidebar() {
     /**
-     * Scroll the sidebar link to top, depending which one was clicked 
+     * Scroll the sidebar link to top, depending which one was clicked
      */
      let pathName = window.location.pathname;
-     document.querySelectorAll(`a[href="${pathName}"]`)[0].scrollIntoView();
+     let links = document.querySelectorAll(`a[href="${pathName}"]`);
+     if (links && links.length > 0) {
+         links[0].scrollIntoView();
+     }
 
     /**
      * Alternatively, scroll the sidebar to positions, depending on the path of
      * the active page
-     */     
+     */
 //     let pathName = window.location.pathname;
 //     let softwareApiPosition = 810;
 //     let hardwarePosition = 1210;
