@@ -14,7 +14,7 @@ Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Dri
 
 A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.
 
-#### Buttons
+### Buttons
 
 Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functions for automation of routine tasks, such as report generation (see Image 3).
 
@@ -115,7 +115,29 @@ Navigation entries cannot be set at the third level (sub-sub-menu) and below. If
 
 > A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
 
-## Listing 2 — Add-In configuration section for submenu
+### Table 2 — Menu item
+
+| **Name** | **Description** | **Type** |
+| --- | --- | --- |
+| URL | A URL to the HTML page to load when clicking on this menu item. | String |
+| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
+| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
+
+### Table 3 — Parent menu item
+
+A parent menu item defines a new menu item and where it should reside within the menu hierarchy. It does not have a URL that activates a page and serves only as the container for sub-menu items.
+
+| **Name** | **Description** | **Type** |
+| --- | --- | --- |
+| menuId | A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above `"GettingStartedLink"`, `"ActivityLink"`, etc. | String |
+| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
+| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
+
+## Listing 2 — Add-In configuration section for submenu 
 
 To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
 
@@ -152,27 +174,7 @@ To place buttons inside a new sub-menu, use subMenuPath property as illustrated 
 
 Each Add-In can define zero or more _items_ as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
 
-### Table 2 — Parent menu item
 
-A parent menu item defines a new menu item and where it should reside within the menu hierarchy. It does not have a URL that activates a page and serves only as the container for sub-menu items.
-
-| **Name** | **Description** | **Type** |
-| --- | --- | --- |
-| menuId | A unique identifier for this menu. This string value of your choice but should be unique. See built-in ones above `"GettingStartedLink"`, `"ActivityLink"`, etc. | String |
-| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
-| menuName | An object containing key-value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
-| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
-
-### Table 3 — Menu item
-
-| **Name** | **Description** | **Type** |
-| --- | --- | --- |
-| URL | A URL to the HTML page to load when clicking on this menu item. | String |
-| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
-| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
-| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
 
 ### Table 4 — Button item
 
