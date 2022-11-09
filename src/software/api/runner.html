@@ -394,6 +394,7 @@ permalink: /software/api/runner.html
                     addEventListener: addEventListener
                 };
             },
+            session = null,
             uiManager = function (github, geotabAPI, layout, urlState, APIRunner) {
                 var initToggle = function () {
                         var toggleContainer = document.getElementById("toggle"),
@@ -507,10 +508,10 @@ permalink: /software/api/runner.html
                     selectSample = function (sample) {
                         samplesSelect && samplesSelect.setValue(sample);
                     },
+                    logout = () => {},
                     initUserLabel = function () {
-                        var logoutButton = document.getElementById("logoutButton"),
+                        const logoutButton = document.getElementById("logoutButton"),
                             userLabel = document.getElementById("userLabel"),
-                            session = null,
                             getUserLabel = function (session) {
                                 return htmlEscape(session.userName) + " (" + htmlEscape(session.database) + ")";
                             },
@@ -520,11 +521,14 @@ permalink: /software/api/runner.html
                                 logoutButton.style.display = "block";
                             },
                             getSessionCallback = function (currentSession) {
-                                if (currentSession) {
-                                    shouldAutoLoginDemo = false;
+                                if (currentSession && !shouldAutoLoginDemo) {
                                     session = currentSession;
                                     showUserInfo(session);
                                 } else {
+                                    // Logout of an existing session so that we can login to geotabdemo.
+                                    if (shouldAutoLoginDemo) {
+                                        logout();
+                                    }
                                     session = null;
                                     userLabel.style.display = "none";
                                     logoutButton.style.display = "none";
@@ -535,7 +539,7 @@ permalink: /software/api/runner.html
                             },
                             confirmUser = function (successCallback) {
                                 if (session) {
-                                    var dialog = document.getElementById("loggedUser"),
+                                    const dialog = document.getElementById("loggedUser"),
                                         dialogUserName = document.getElementById("loggedUserName"),
                                         confirmButton = document.getElementById("confirm"),
                                         cancelButton = document.getElementById("cancel");
@@ -552,14 +556,12 @@ permalink: /software/api/runner.html
                                         dialog.style.display = "none";
                                     }, false);
                                 }
-                            },
-                            logout = function () {
-                                geotabAPI.forget(getSessionCallback);
-                                userLabel.style.display = "none";
-                                logoutButton.style.display = "none";
-                                shouldAutoLoginDemo = false;
                             };
-
+                        logout = () => {
+                            geotabAPI.forget(getSessionCallback);
+                            userLabel.style.display = "none";
+                            logoutButton.style.display = "none";
+                        };
                         logoutButton.addEventListener("click", logout, false);
 
                         renderUserLabel();
@@ -602,26 +604,21 @@ permalink: /software/api/runner.html
                         initHotKeys();
                         initShare();
                     },
-                    process = function (value) {
-                        return value;
-                    },
-                    getValue = function () {
-                        return toggleManager ? toggleManager.getToggleState() : {};
-                    },
-                    setValue = function (value) {
-                        toggleManager && toggleManager.setToggleState(value || {});
-                    },
+                    process = value => value,
+                    getValue = () => toggleManager ? toggleManager.getToggleState() : {},
+                    setValue = value => toggleManager && toggleManager.setToggleState(value || {}),
                     self = {
-                        render: render,
-                        process: process,
-                        getValue: getValue,
-                        setValue: setValue,
-                        selectSample: selectSample
+                        render,
+                        process,
+                        getValue,
+                        setValue,
+                        selectSample,
+                        logout
                     };
                 return self;
             },
             layoutManager = function (resizeObserver) {
-                var jsPane = document.getElementById("pane-js"),
+                const jsPane = document.getElementById("pane-js"),
                     cssPane = document.getElementById("pane-css"),
                     htmlPane = document.getElementById("pane-html"),
                     leftPane = document.getElementById("pane-left"),
@@ -629,14 +626,14 @@ permalink: /software/api/runner.html
                     outputPane = document.getElementById("pane-output"),
 
                     resize = function () {
-                        var isJSVisible = (jsPane.className.indexOf("hidden") === -1) ? 1 : 0,
+                        const isJSVisible = (jsPane.className.indexOf("hidden") === -1) ? 1 : 0,
                             isCSSVisible = (cssPane.className.indexOf("hidden") === -1) ? 1 : 0,
                             isHTMLVisible = (htmlPane.className.indexOf("hidden") === -1) ? 1 : 0,
                             isLeftVisible = (isJSVisible || isCSSVisible || isHTMLVisible) ? 1 : 0,
                             isConsoleVisible = (consolePane.className.indexOf("hidden") === -1) ? 1 : 0,
                             isOutputVisible = (outputPane.className.indexOf("hidden") === -1) ? 1 : 0,
                             setIsLastVisible = function (element, isLastVisible) {
-                                var lastVisibleClass = " last-visible";
+                                const lastVisibleClass = " last-visible";
                                 if (isLastVisible) {
                                     if (element.className.indexOf(lastVisibleClass) === -1) {
                                         element.className += lastVisibleClass;
