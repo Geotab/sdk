@@ -14,7 +14,7 @@ Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Dri
 
 A custom page Add-In can be thought of as a complete web application inside your Geotab account. A custom page Add-In has access to the MyGeotab API and the current page state. With custom pages you can develop business-aware Add-Ins by combining MyGeotab data with your own APIs.
 
-#### Buttons
+### Buttons
 
 Custom button Add-Ins can be included to perform different functions.  Additional navigational buttons can be dynamically inserted inside certain areas of the MyGeotab user interface. This allows custom button Add-Ins to provide a simple way for users to reach your custom page Add-In (see Image 1).  Buttons can also be placed on pages to execute functions for automation of routine tasks, such as report generation (see Image 3).
 
@@ -115,44 +115,17 @@ Navigation entries cannot be set at the third level (sub-sub-menu) and below. If
 
 > A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
 
-## Listing 2 — Add-In configuration section for submenu
+### Table 2 — Menu item
 
-To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
+| **Name** | **Description** | **Type** |
+| --- | --- | --- |
+| URL | A URL to the HTML page to load when clicking on this menu item. | String |
+| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
+| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
+| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
 
-To place buttons inside a new sub-menu, use subMenuPath property as illustrated in Listing 3. This sub-menu will be shown only if there are at least two items inside it. The sub-menu items appear in reverse order of the JSON entered below.
-
-```json
-{
- "name": "My First Geotab Add-In",
- "supportEmail": "myname@mycompany.com",
- "version": "1.0",
- "items": [{
-        "url": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/heatmap.html",
-        "path": "sdkAddinsLink/",
-        "menuName": {
-            "en": "Heat Map"
-        },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
-    }, {
-        "page": "device",
-        "click": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/scripts/engineDataButton.js",
-        "buttonName": {
-            "en": "Engine Data Profile",
-            "fr": "Profil des données-moteur",
-            "es": "Perfil de datos de motor",
-            "ja": "エンジンデータプロフィール"
-        },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
-    }],
- "isSigned": false
-}
-```
-
-### Referencing source items
-
-Each Add-In can define zero or more _items_ as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
-
-### Table 2 — Parent menu item
+### Table 3 — Parent menu item
 
 A parent menu item defines a new menu item and where it should reside within the menu hierarchy. It does not have a URL that activates a page and serves only as the container for sub-menu items.
 
@@ -164,15 +137,45 @@ A parent menu item defines a new menu item and where it should reside within the
 | icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 | svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
 
-### Table 3 — Menu item
+## Listing 2 — Creating submenu items 
 
-| **Name** | **Description** | **Type** |
-| --- | --- | --- |
-| URL | A URL to the HTML page to load when clicking on this menu item. | String |
-| path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
-| menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
-| icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
-| svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
+To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
+
+The process consists in creating a [parent menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-2--parent-menu-item) with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (*GettingStartedLink, ActivityLink, EngineMaintenanceLink, ZoneAndMessagesLink, RuleAndGroupsLink, AdministrationLink*). 
+
+To place a [menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-3--menu-item) under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
+
+```json
+{
+ "name": "Submenu Add-In",
+ "supportEmail": "support@mycompany.com",
+ "version": "1.0",
+ "items": [
+        {
+            "path": "ActivityLink/",
+            "menuId": "SubmenuContainer1",
+            "menuName": {
+                "en": "Submenu"
+            },
+            "icon": "images/icon.svg"
+        },
+        {
+            "url": "submenu-addin/submenu-addin.html",
+            "path": "SubmenuContainer1/",
+            "menuName": {
+                "en": "Submenu Add-In"
+            },
+            "icon": "images/icon.svg"
+        }
+    ]
+}
+```
+
+### Referencing source items
+
+Each Add-In can define zero or more _items_ as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
+
+
 
 ### Table 4 — Button item
 
