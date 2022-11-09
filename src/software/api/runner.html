@@ -69,7 +69,7 @@ permalink: /software/api/runner.html
 </div>
 <div class="login" id="login" style="display: none;">
     <div class="overlay"></div>
-    <form class="dialog" id="loginDialog" autocomplete="on">
+    <form class="dialog " id="loginDialog" autocomplete="on" style="top: calc(50% - 264px);">
         <div class="form-group">
             <label for="server">Server</label>
             <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="on"/>
@@ -699,7 +699,6 @@ permalink: /software/api/runner.html
                                 return null;
                             },
                             restoreState = function () {
-                                console.log('restoreState');
                                 var state = window.location.hash.substr(1),
                                     parsedState = null,
                                     sampleName = getSampleNameFromURL(),
@@ -825,53 +824,88 @@ permalink: /software/api/runner.html
                         errorHandler: errorHandler
                     };
 
-                // Set up keypress handlers for login form.
-                const loginButton = document.getElementById("loginButton"),
+                // Set up login form handlers.
+                const loginForm = document.getElementById("login"),
+                    loginDialog = document.getElementById("loginDialog"),
+                    loginError = document.getElementById("loginError"),
+                    loginButton = document.getElementById("loginButton"),
                     serverInput = document.getElementById("server"),
                     databaseInput = document.getElementById("database"),
                     userInput = document.getElementById("user"),
-                    passwordInput = document.getElementById("password");
+                    passwordInput = document.getElementById("password"),
+                    loginSpinner = document.getElementById("loginSpinner");
 
+                const setLoginForm = (server, database, user, password) => {
+                        serverInput.value = server;
+                        databaseInput.value = database;
+                        userInput.value = user;
+                        passwordInput.value = password;
+                    },
+                    showLoginForm = () => {
+                        loginForm.style.display = "block";
+                        loginError.style.display = "none";
+                    },
+                    hideLoginForm = () => loginForm.style.display = "none";
+                
+                loginDialog.addEventListener("submit", e => e.preventDefault(), false);
+                
+                // Set up keypress handlers for login inputs. Pressing enter when an input is focused will set the focus
+                // to the next input. However, when the last input (password) is focused, pressing enter will submit the
+                // login form.
                 const defaultAction = elem => elem.focus();
-                const onEnter = (elem, action) => {
-                    return e => {
+                // Creates an event handler that runs when the enter key is pressed.
+                const onEnter = (elem, action) =>
+                    event => {
                         action = action || defaultAction;
                         if (event.key === "Enter") {
                             event.preventDefault();
                             action(elem);
                         }
                     }
-                }
+                
                 serverInput.addEventListener("keypress", onEnter(databaseInput));
                 databaseInput.addEventListener("keypress", onEnter(userInput));
                 userInput.addEventListener("keypress", onEnter(passwordInput));
                 passwordInput.addEventListener("keypress", onEnter(null, () => loginButton.click()));
-
-                let authenticateManager = function (authenticateCallback) {
-                    var loginForm = document.getElementById("login"),
-                        loginDialog = document.getElementById("loginDialog"),
-                        loginError = document.getElementById("loginError"),
-                        loginButton = document.getElementById("loginButton"),
-                        serverInput = document.getElementById("server"),
-                        databaseInput = document.getElementById("database"),
-                        userInput = document.getElementById("user"),
-                        passwordInput = document.getElementById("password"),
-                        loginSpinner = document.getElementById("loginSpinner"),
-                        setForm = function (server, database, user, password) {
-                            serverInput.value = server;
-                            databaseInput.value = database;
-                            userInput.value = user;
-                            passwordInput.value = password;
-                        },
-                        show = function () {
-                            loginForm.style.display = "block";
-                            loginError.style.display = "none";
-                        },
-                        hide = () => loginForm.style.display = "none";
-
+                
+                // This callback is updated everytime the authenticateManager function is called by the GeotabApi instance
+                // when there isn't an active session (when logging in for the first time or after logging out).
+                let authenticateCallback;
+                let loginClickHandler = e => {
+                    e.preventDefault();
+                    const server = serverInput.value,
+                        database = databaseInput.value,
+                        user = userInput.value,
+                        password = passwordInput.value;
+                    loginSpinner.style.display = 'inline'
+                    loginButton.setAttribute('disabled', 'true');
+                    const authSuccessCallback = () => {
+                        hideLoginForm();
+                        loginFormHasBeenShown = true;
+                        loginSpinner.style.display = 'none';
+                        shouldAutoLoginDemo = false;
+                        loginButton.removeAttribute('disabled');
+                    };
+                    const authErrorCallback = error => {
+                        loginError.innerHTML = error;
+                        loginError.style.display = "block";
+                        passwordInput.select();
+                        passwordInput.focus();
+                        loginSpinner.style.display = 'none';
+                        shouldAutoLoginDemo = false;
+                        loginButton.removeAttribute('disabled');
+                    };
+                    // Make the api auth call.
+                    authenticateCallback(server, database, user, password, authSuccessCallback, authErrorCallback);
+                }
+                loginClickHandler = debounce(loginClickHandler);
+                loginButton.addEventListener("click", loginClickHandler, false);
+                
+                let authenticateManager = function (authCallback) {
+                    authenticateCallback = authCallback
                     if (demoCredentials) {
                         if (!serverInput.value || serverInput.value === "my.geotab.com")
-                            setForm(...Object.values(demoCredentials));
+                            setLoginForm(...Object.values(demoCredentials));
                         if (shouldAutoLoginDemo) {
                             shouldAutoLoginDemo = false;
                             // Add small delay so that user can see that they are being logged in.
@@ -884,47 +918,8 @@ permalink: /software/api/runner.html
                         }
                     }
 
-                    show();
-
-                    // This function can be called multiple times, so remove the previous event handler before adding a
-                    // new one.
-                    loginDialog.removeEventListener("submit", preventDefault, false);
-                    loginDialog.addEventListener("submit", preventDefault, false);
-
-                    let loginClickHandler = e => {
-                        e.preventDefault();
-                        let server = serverInput.value,
-                            database = databaseInput.value,
-                            user = userInput.value,
-                            password = passwordInput.value;
-                        loginSpinner.style.display = 'inline'
-                        authenticateCallback(server, database, user, password, function () {
-                            console.log('authenticateCallback: successful');
-                            hide();
-                            loginFormHasBeenShown = true;
-                            loginSpinner.style.display = 'none';
-                            shouldAutoLoginDemo = false;
-                        }, function (error) {
-                            console.log('authenticateCallback: error');
-                            loginError.innerHTML = error;
-                            loginError.style.display = "block";
-                            passwordInput.select();
-                            passwordInput.focus();
-                            loginSpinner.style.display = 'none';
-                            shouldAutoLoginDemo = false;
-                        });
-                    }
-
-                    loginButton.removeEventListener("click", prevLoginClickHandler, false);
-                    loginClickHandler = debounce(loginClickHandler);
-                    prevLoginClickHandler = loginClickHandler;
-                    loginButton.addEventListener("click", loginClickHandler, false);
+                    showLoginForm();
                 };
-
-                const preventDefault = e => e.preventDefault();
-                let prevLoginClickHandler = null;
-
-                authenticateManager = debounce(authenticateManager);
 
                 processors.add("js", EditorManager("js", "javascript", resizeObserver, urlState));
                 processors.add("css", EditorManager("css", "css", resizeObserver, urlState));

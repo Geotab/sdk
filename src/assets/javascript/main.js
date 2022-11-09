@@ -134,7 +134,7 @@ function scrollSidebar() {
      */
      let pathName = window.location.pathname;
      let links = document.querySelectorAll(`a[href="${pathName}"]`);
-     if (links && links.length > 0) {
+     if (links?.length > 0) {
          links[0].scrollIntoView();
      }
 
