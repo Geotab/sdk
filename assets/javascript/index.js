@@ -130,10 +130,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
 function scrollSidebar() {
   /**
-   * Scroll the sidebar link to top, depending which one was clicked 
+   * Scroll the sidebar link to top, depending which one was clicked
    */
   var pathName = window.location.pathname;
-  document.querySelectorAll("a[href=\"".concat(pathName, "\"]"))[0].scrollIntoView();
+  var links = document.querySelectorAll("a[href=\"".concat(pathName, "\"]"));
+
+  if ((links === null || links === void 0 ? void 0 : links.length) > 0) {
+    links[0].scrollIntoView();
+  }
   /**
    * Alternatively, scroll the sidebar to positions, depending on the path of
    * the active page
@@ -150,5 +154,6 @@ function scrollSidebar() {
   //     } else if (pathName.includes("/myadmin-sdk/")) {
   //         document.getElementById("sidebar-wrapper").scrollTop = myadminPosition;
   //     } else {}
+
 }
 //# sourceMappingURL=index.js.map
