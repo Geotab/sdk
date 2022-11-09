@@ -137,36 +137,37 @@ A parent menu item defines a new menu item and where it should reside within the
 | icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 | svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
 
-## Listing 2 — Add-In configuration section for submenu 
+## Listing 2 — Creating submenu items 
 
 To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
 
-To place buttons inside a new sub-menu, use subMenuPath property as illustrated in Listing 3. This sub-menu will be shown only if there are at least two items inside it. The sub-menu items appear in reverse order of the JSON entered below.
+The process consists in creating a [parent menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-2--parent-menu-item) with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (*GettingStartedLink, ActivityLink, EngineMaintenanceLink, ZoneAndMessagesLink, RuleAndGroupsLink, AdministrationLink*). 
+
+To place a [menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-3--menu-item) under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
 
 ```json
 {
- "name": "My First Geotab Add-In",
- "supportEmail": "myname@mycompany.com",
+ "name": "Submenu Add-In",
+ "supportEmail": "support@mycompany.com",
  "version": "1.0",
- "items": [{
-        "url": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/heatmap.html",
-        "path": "sdkAddinsLink/",
-        "menuName": {
-            "en": "Heat Map"
+ "items": [
+        {
+            "path": "ActivityLink/",
+            "menuId": "SubmenuContainer1",
+            "menuName": {
+                "en": "Submenu"
+            },
+            "icon": "images/icon.svg"
         },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-heatmap/dist/images/icon.svg"
-    }, {
-        "page": "device",
-        "click": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/scripts/engineDataButton.js",
-        "buttonName": {
-            "en": "Engine Data Profile",
-            "fr": "Profil des données-moteur",
-            "es": "Perfil de datos de motor",
-            "ja": "エンジンデータプロフィール"
-        },
-        "svgIcon": "https://cdn.jsdelivr.net/gh/Geotab/sdk-addin-samples@master/addin-engine-data-button/dist/images/icon.svg"
-    }],
- "isSigned": false
+        {
+            "url": "submenu-addin/submenu-addin.html",
+            "path": "SubmenuContainer1/",
+            "menuName": {
+                "en": "Submenu Add-In"
+            },
+            "icon": "images/icon.svg"
+        }
+    ]
 }
 ```
 
