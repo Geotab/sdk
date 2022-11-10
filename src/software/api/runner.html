@@ -142,6 +142,7 @@ permalink: /software/api/runner.html
 <script>
     (function () {
         let shouldAutoLoginDemo = false;
+        let demoCredentials = null;
         var ResizeObserver = function () {
                 var resizeHandlers = [],
                     attachEvent = function (handler) {
@@ -563,6 +564,17 @@ permalink: /software/api/runner.html
                             geotabAPI.forget(getSessionCallback);
                             userLabel.style.display = "none";
                             logoutButton.style.display = "none";
+                            if (demoCredentials && !shouldAutoLoginDemo) {
+                                // Clearing window.location.search will reload the page, so save the demo credentials in
+                                // localStorage so that we can populate the login dialog with them afterwords. We are
+                                // clearing the search string because users may want to log out of geotabdemo and into 
+                                // a db on a real server using this page. If the search string remains, then their session
+                                // to another server will be logged out of (and then logged back into geotabdemo) if the
+                                // page reloads.
+                                localStorage.setItem('prevLoginInfo', JSON.stringify(demoCredentials));
+                                demoCredentials = null;
+                                window.location.search = '';
+                            }
                         };
                         logoutButton.addEventListener("click", logout, false);
 
@@ -667,7 +679,6 @@ permalink: /software/api/runner.html
                 };
             },
             APIRunner = function () {
-                let demoCredentials = null;
                 let processors = (function () {
                         var processors = [],
                             add = function (name, processor) {
@@ -896,11 +907,7 @@ permalink: /software/api/runner.html
                         shouldAutoLoginDemo = false;
                         loginButton.removeAttribute('disabled');
                     };
-
-                    if (demoCredentials && server !== demoCredentials?.server) {
-                        demoCredentials = null;
-                        window.location.search = '';
-                    }
+                    // Store previous login info for next time.
                     localStorage.setItem('prevLoginInfo', JSON.stringify({ server, database, user }))
                     // Make the api auth call.
                     authenticateCallback(server, database, user, password, authSuccessCallback, authErrorCallback);
