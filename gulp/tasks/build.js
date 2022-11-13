@@ -7,7 +7,7 @@ const argv = require('yargs').argv;
 // 'gulp jekyll:tmp' -- copies your Jekyll site to a temporary directory
 // to be processed
 gulp.task('site:tmp', () =>
-  gulp.src(['src/**/*', '!src/assets/**/*', '!src/assets'], {dot: true})
+  gulp.src(['src/**/*', '!src/assets/**/*', '!src/assets', '!src/**/*.jsx'], {dot: true})
     .pipe(gulp.dest('.tmp/src'))
     .pipe(size({title: 'Jekyll'}))
 );
