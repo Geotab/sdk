@@ -5,6 +5,7 @@ permalink: /software/api/runner.html
 <link rel="stylesheet" href="./codebase/main.css"/>
 
 <link rel="stylesheet" href="./codebase/console.css"/>
+<link rel="stylesheet" href="./runner.css"/>
 <script type="text/javascript" src="./codebase/console.js" charset="utf-8"></script>
 
 <script src="./codebase/third-party/github/underscore-min.js"></script>
@@ -26,138 +27,140 @@ permalink: /software/api/runner.html
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <!--<script defer type="module" src="./react-loader.js"></script>-->
-<script defer type="module" src="./runner-bundle.js"></script>
 
-<div class="api">
-    <div class="toolbar" id="toolbar">
-        <div class="form-inline d-flex">
-            <div class="form-group mb-2 mr-sm-2 mb-sm-0" id="samplesControl">
-                <label for="samples" class="sr-only">Samples</label>
-                <select type="text" class="custom-select" id="samples"></select>
-            </div>
 
-            <div class="btn-group mr-1">
-                <button id="run" class="btn btn-primary btn-large">Run</button>
-                <button id="share" class="btn btn-secondary">Share</button>
-                <button id="clear" class="btn btn-secondary">Clear output</button>
-<!--                <button id="run" class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button>-->
-<!--                <button id="share" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button>-->
-<!--                <button id="clear" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button>-->
-            </div>
-            <div class="btn-group mb-2 mr-sm-2 mb-sm-0" id="toggle">
-                <button type="button" id="toggle-js" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">JS</button>
-                <button type="button" id="toggle-css" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
-                <button type="button" id="toggle-html" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
-                <button type="button" id="toggle-console" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Console</button>
-                <button type="button" id="toggle-output" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Output</button>
-            </div>
+<div id="runnerRoot"></div>
 
-            <small id="userLabel" class="ml-auto p-2"></small>
-            
-            <div id="sessionSelector"></div>
-            
-            <button id="logoutButton" class="btn btn-secondary ml-auto p-2">Log out</button>
-        </div>
-    </div>
-    <div class="content">
-        <div id="pane-left" class="pane noborder">
-            <div class="source">
-                <div id="pane-js" class="editor">
-                    <small class="pane-header">JavaScript</small>
-                    <div class="pane-content" id="js"></div>
-                </div>
-                <div id="pane-css" class="editor">
-                    <small class="pane-header">CSS</small>
-                    <div class="pane-content" id="css"></div>
-                </div>
-                <div id="pane-html" class="editor last-visible">
-                    <small class="pane-header">HTML</small>
-                    <div class="pane-content" id="html"></div>
-                </div>
-            </div>
-        </div>
-        <div class="pane" id="pane-console">
-            <small class="pane-header">Console</small>
-            <div id="console" class="console"></div>
-        </div>
-        <div class="pane" id="pane-output">
-            <small class="pane-header">Output</small>
-            <div class="source" id="output"></div>
-        </div>
-    </div>
-</div>
-<div class="login" id="login" style="display: none;">
-    <div class="overlay"></div>
-    <form class="dialog " id="loginDialog" autocomplete="on" style="top: calc(50% - 264px);">
-        <div class="form-group">
-            <label for="server">Server</label>
-            <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="on"/>
-        </div>
-        <div class="form-group">
-            <label for="database">Database</label>
-            <input type="text" class="form-control" id="database" placeholder="The database name" autocomplete="on"/>
-        </div>
-        <div class="form-group">
-            <label for="user">Email</label>
-            <input type="text" class="form-control" id="user" placeholder="Your email address" autocomplete="on"/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off"/>
-        </div>
-        <div class="invalid-feedback" id="loginError" style="display: none; margin-bottom: 0.5rem;">
-            Invalid user name or password
-        </div>
-        <div class="form-group" style="display: flex; justify-content: space-between;">
-            <button class="btn btn-primary" id="loginButton">Log in</button>
-            <img id="loginSpinner" src="../../assets/images/pulse2.svg" style="display: none; border: none; width: 2.5rem;" alt="login spinner"/>
-        </div>
-    </form>
-</div>
-<div class="login" id="loggedUser" style="display: none;">
-    <div class="overlay"></div>
-    <div class="dialog">
-        <div class="line">
-      <span class="geotabLabel">You're logged in as <span class="username" id="loggedUserName">dmitry.radyno@gmail.com (geotabdemo)</span>.<br/>
-          Are you sure that you want to run samples using this account?</span>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0" id="cancel">No. Log out</button>
-            <button class="btn btn-primary mb-2 mr-sm-2 mb-sm-0" id="confirm">Yes</button>
-        </div>
-    </div>
-</div>
-<div class="login" id="shareDialog" style="display: none;">
-    <div class="overlay"></div>
-    <div class="dialog">
-        <div class="line">
-            <span class="geotabLabel">Here is a link to your sample:<br> <span class="gray">(Internet Explorer may face an issue with opening this link)</span></span>
-        </div>
-        <div class="line">
-            <textarea id="shareTextarea"></textarea>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-primary" id="shareDone">Done</button>
-        </div>
-    </div>
-</div>
-<div class="login" id="securityDialog" style="display: none;">
-    <div class="overlay"></div>
-    <div class="dialog">
-        <div class="line">
-            <span class="geotabLabel">Security warning!</span>
-        </div>
-        <div class="line">
-            <span class="geotabText">
-                External samples are disabled in your browser for security reasons.<br/>
-                Please, try to open the link in another browser.
-            </span>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-primary" id="securityOk">OK</button>
-        </div>
-    </div>
-</div>
+<!--<div class="api">-->
+<!--    <div class="toolbar" id="toolbar">-->
+<!--        <div class="form-inline d-flex">-->
+<!--            <div class="form-group mb-2 mr-sm-2 mb-sm-0" id="samplesControl">-->
+<!--                <label for="samples" class="sr-only">Samples</label>-->
+<!--                <select type="text" class="custom-select" id="samples"></select>-->
+<!--            </div>-->
+
+<!--            <div class="btn-group mr-1">-->
+<!--                <button id="run" class="btn btn-primary btn-large">Run</button>-->
+<!--                <button id="share" class="btn btn-secondary">Share</button>-->
+<!--                <button id="clear" class="btn btn-secondary">Clear output</button>-->
+<!--&lt;!&ndash;                <button id="run" class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button id="share" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button id="clear" class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="btn-group mb-2 mr-sm-2 mb-sm-0" id="toggle">-->
+<!--                <button type="button" id="toggle-js" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">JS</button>-->
+<!--                <button type="button" id="toggle-css" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>-->
+<!--                <button type="button" id="toggle-html" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>-->
+<!--                <button type="button" id="toggle-console" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Console</button>-->
+<!--                <button type="button" id="toggle-output" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">Output</button>-->
+<!--            </div>-->
+
+<!--            <small id="userLabel" class="ml-auto p-2"></small>-->
+<!--            -->
+<!--            <div id="sessionSelector"></div>-->
+<!--            -->
+<!--            <button id="logoutButton" class="btn btn-secondary ml-auto p-2">Log out</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <div id="pane-left" class="pane noborder">-->
+<!--            <div class="source">-->
+<!--                <div id="pane-js" class="editor">-->
+<!--                    <small class="pane-header">JavaScript</small>-->
+<!--                    <div class="pane-content" id="js"></div>-->
+<!--                </div>-->
+<!--                <div id="pane-css" class="editor">-->
+<!--                    <small class="pane-header">CSS</small>-->
+<!--                    <div class="pane-content" id="css"></div>-->
+<!--                </div>-->
+<!--                <div id="pane-html" class="editor last-visible">-->
+<!--                    <small class="pane-header">HTML</small>-->
+<!--                    <div class="pane-content" id="html"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="pane" id="pane-console">-->
+<!--            <small class="pane-header">Console</small>-->
+<!--            <div id="console" class="console"></div>-->
+<!--        </div>-->
+<!--        <div class="pane" id="pane-output">-->
+<!--            <small class="pane-header">Output</small>-->
+<!--            <div class="source" id="output"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="login" id="login" style="display: none;">-->
+<!--    <div class="overlay"></div>-->
+<!--    <form class="dialog " id="loginDialog" autocomplete="on" style="top: calc(50% - 264px);">-->
+<!--        <div class="form-group">-->
+<!--            <label for="server">Server</label>-->
+<!--            <input type="text" class="form-control" id="server" placeholder="Server name" autocomplete="on"/>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="database">Database</label>-->
+<!--            <input type="text" class="form-control" id="database" placeholder="The database name" autocomplete="on"/>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="user">Email</label>-->
+<!--            <input type="text" class="form-control" id="user" placeholder="Your email address" autocomplete="on"/>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="password">Password</label>-->
+<!--            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off"/>-->
+<!--        </div>-->
+<!--        <div class="invalid-feedback" id="loginError" style="display: none; margin-bottom: 0.5rem;">-->
+<!--            Invalid user name or password-->
+<!--        </div>-->
+<!--        <div class="form-group" style="display: flex; justify-content: space-between;">-->
+<!--            <button class="btn btn-primary" id="loginButton">Log in</button>-->
+<!--            <img id="loginSpinner" src="../../assets/images/pulse2.svg" style="display: none; border: none; width: 2.5rem;" alt="login spinner"/>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--<div class="login" id="loggedUser" style="display: none;">-->
+<!--    <div class="overlay"></div>-->
+<!--    <div class="dialog">-->
+<!--        <div class="line">-->
+<!--      <span class="geotabLabel">You're logged in as <span class="username" id="loggedUserName">dmitry.radyno@gmail.com (geotabdemo)</span>.<br/>-->
+<!--          Are you sure that you want to run samples using this account?</span>-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-end">-->
+<!--            <button class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0" id="cancel">No. Log out</button>-->
+<!--            <button class="btn btn-primary mb-2 mr-sm-2 mb-sm-0" id="confirm">Yes</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="login" id="shareDialog" style="display: none;">-->
+<!--    <div class="overlay"></div>-->
+<!--    <div class="dialog">-->
+<!--        <div class="line">-->
+<!--            <span class="geotabLabel">Here is a link to your sample:<br> <span class="gray">(Internet Explorer may face an issue with opening this link)</span></span>-->
+<!--        </div>-->
+<!--        <div class="line">-->
+<!--            <textarea id="shareTextarea"></textarea>-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-end">-->
+<!--            <button class="btn btn-primary" id="shareDone">Done</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="login" id="securityDialog" style="display: none;">-->
+<!--    <div class="overlay"></div>-->
+<!--    <div class="dialog">-->
+<!--        <div class="line">-->
+<!--            <span class="geotabLabel">Security warning!</span>-->
+<!--        </div>-->
+<!--        <div class="line">-->
+<!--            <span class="geotabText">-->
+<!--                External samples are disabled in your browser for security reasons.<br/>-->
+<!--                Please, try to open the link in another browser.-->
+<!--            </span>-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-end">-->
+<!--            <button class="btn btn-primary" id="securityOk">OK</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- Load our React component. -->
 <!--type="text/babel" -->
 
@@ -166,7 +169,8 @@ permalink: /software/api/runner.html
 <!--<script data-plugins="transform-modules-umd" type="text/babel" data-presets="react" data-type="module" src="./session-selector.js"></script>-->
 <!--<script data-plugins="transform-modules-umd" type="text/babel" data-presets="react" data-type="module" src="./session-selector.jsx"></script>-->
 <!--<script defer type="module" src="./session-selector.js"></script>-->
-<script type="module">
+<script type="module" src="./runner-bundle.js"></script>
+<script defer type="module">
     
     // import Logger from './logger.js'
     // import react from './session-selector.js'
@@ -1048,8 +1052,8 @@ permalink: /software/api/runner.html
                 timeoutId = setTimeout(() => func(args), 100);
             }
         }
-
-        APIRunner();
+        setTimeout(() => APIRunner(), 300)
+        // APIRunner();
     })();
 </script>
 </body>

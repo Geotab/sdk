@@ -1,6 +1,7 @@
 'use strict';
 console.log("SESSION_0");
 import React from 'react';
+import { } from 'react';
 import ReactDOM from 'react-dom';
 console.log("SESSION");
 
@@ -27,23 +28,11 @@ class SessionSelector extends React.Component {
                     {/*<div className="session-item">>*/}
                     {/*    <span className="session-text">Current Session</span>*/}
                     {/*</div>*/}
-                    <button type="button" className="btn btn-danger">Remove</button>
+                    <button id="logoutButton" type="button" className="btn btn-danger">Log out</button>
                 </div>
             </div>
-            // <button onClick={() => this.setState({ liked: true })}>
-            //     Like
-            // </button>
         );
-        // return (
-        //     <button onClick={() => this.setState({ liked: true })}>
-        //         Like
-        //     </button>
-        // );
     }
 }
 
-// const domContainer = document.querySelector('#sessionSelector');
-// const root = ReactDOM.createRoot(domContainer);
-// root.render(<SessionSelector />);
-// window.test = 'tttt';
 export default SessionSelector

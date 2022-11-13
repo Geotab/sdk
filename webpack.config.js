@@ -4,6 +4,10 @@ const path = require('path');
 const config = {
     entry: '/src/software/api/react-loader.jsx',
     devtool: 'source-map',
+    mode: 'development',
+    optimization: {
+        minimize: false
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'software/api/runner-bundle.js'
