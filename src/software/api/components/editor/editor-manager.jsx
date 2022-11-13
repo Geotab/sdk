@@ -1,4 +1,6 @@
 import React from 'react'
+import Console from './console/console'
+import EditorOutput from "./output/editor-output";
 
 export default function EditorManager() {
     return (
@@ -19,14 +21,8 @@ export default function EditorManager() {
                     </div>
                 </div>
             </div>
-            <div className="pane" id="pane-console">
-                <small className="pane-header">Console</small>
-                <div id="console" className="console" />
-            </div>
-            <div className="pane" id="pane-output">
-                <small className="pane-header">Output</small>
-                <div className="source" id="output" />
-            </div>
+            <Console/>
+            <EditorOutput/>
         </div>
 
     )
