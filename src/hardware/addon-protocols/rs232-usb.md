@@ -256,7 +256,7 @@ Issued by the external device whenever it requires Third-Party Data to be saved 
 
 ### Msg Type 0x82: Free Format Third-Party Data
 
-Issued by the external device whenever it wants Third-Party Data to be saved on the GO device in a free format (1 to 27 bytes) that will be saved into MyGeotab as Custom Data.
+Issued by the external device whenever it wants Third-Party Data to be saved on the GO device in a free format (1 to 27 bytes) that will be saved into MyGeotab as Custom Data. Rate limit is 500 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX
 
 |   | Bytes | Position |
 | --- | --- | --- |
