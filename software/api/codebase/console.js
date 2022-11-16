@@ -216,13 +216,10 @@ var ConsoleManager = (function() {
     return function(containerId) {
         var container = document.getElementById(containerId),
             render = function() {},
-            getConsoleRecord = function() {
+            getConsoleRecord = function(isError = false) {
                 var record = document.createElement("div");
-                record.className = "consoleRecord";
+                record.className = !isError ? "consoleRecord pulse" : "consoleRecord pulse-error";
                 return record;
-            },
-            scrollToTheEnd = function() {
-                container.scrollTop = container.scrollHeight;
             },
             views = [],
             consoleLog = function() {
@@ -235,10 +232,10 @@ var ConsoleManager = (function() {
                 });
                 container.appendChild(record);
                 console.log.apply(console, arguments);
-                scrollToTheEnd();
+                record.scrollIntoView();
             },
             consoleError = function() {
-                var record = getConsoleRecord();
+                var record = getConsoleRecord(true);
                 [].forEach.call(arguments, function(argument) {
                     var item = document.createElement("span");
                     item.className = "consoleItem consoleError";
@@ -250,7 +247,7 @@ var ConsoleManager = (function() {
                 });
                 container.appendChild(record);
                 console.error.apply(console, arguments);
-                scrollToTheEnd();
+                record.scrollIntoView();
             },
             process = function(value) {
                 return value;

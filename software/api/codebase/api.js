@@ -249,7 +249,14 @@ var GeotabApi = function (getCredentialsCallback, newOptions, customCredentialSt
          */
         callXHR = function (method, params, callbackSuccess, callbackError) {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", getCallUrl(), true);
+            try {
+                xhr.open("POST", getCallUrl(), true);
+            }
+            catch (e) {
+                handleError(e, callbackError);
+                return;
+            }
+            
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.addEventListener("abort", function (e) {
                 if (callbackError) {
