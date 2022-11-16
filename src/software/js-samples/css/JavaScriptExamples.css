@@ -94,6 +94,16 @@ select, #groups {
     outline-color: #0078D3;
 }
 
+
+.chosen-choices {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14.5px;
+    border-radius: 8px;
+    text-indent: 0;
+    height: 50px;
+    border: none;
+}
+
 input[type="range"] {
     padding: 11px 16px;
     width: 300px;
@@ -493,6 +503,7 @@ p {
     margin-bottom: 1rem;
 }
 
+
 .example-header {
     display: grid;
     grid-template-columns: auto 1fr 0.85fr;
@@ -601,6 +612,7 @@ p {
     border-radius: 8px;
     margin: 0.6rem 0rem;
 }
+
 
 .bordered {
     background-color: #fff;
