@@ -960,7 +960,7 @@ permalink: /software/api/runner.html
                             // Decode the query string if it is base64 encoded.
                             const decodedSearchString = searchString.includes('=') ? searchString : atob(searchString);
                             // The decoded search string should look like this:
-                            // server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
+                            // server=localhost:10001&database=geotabdemo&username=johndoe@geotab.com&password=passwordpassword
                             console.log(`decodedSearchString: ${decodedSearchString}`);
 
                             const urlParams = new URLSearchParams(decodedSearchString);
