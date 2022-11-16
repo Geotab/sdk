@@ -3,7 +3,8 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5V5GBX4');</script><title>Geotab Developers | This site provides tools for integrating with various types of Geotab products.</title><meta name=generator content="Jekyll v4.2.2"><meta property=og:title content="Geotab Developers"><meta name=author content="The Geotab Team"><meta property=og:locale content=en_US><meta name=description content="This site provides tools for integrating with various types of Geotab products."><meta property=og:description content="This site provides tools for integrating with various types of Geotab products."><link rel=canonical href=https://geotab.github.io/sdk/software/api/runner.html><meta property=og:url content=https://geotab.github.io/sdk/software/api/runner.html><meta property=og:site_name content="Geotab Developers"><meta property=og:type content=website><meta name=twitter:card content=summary><meta property=twitter:title content="Geotab Developers"><script type=application/ld+json>{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"The Geotab Team"},"description":"This site provides tools for integrating with various types of Geotab products.","headline":"Geotab Developers","url":"https://geotab.github.io/sdk/software/api/runner.html"}</script><link rel=stylesheet href=/sdk/assets/stylesheets/style-8cd50b82f2.min.css><link rel=stylesheet href=/sdk/assets/stylesheets/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/sdk/assets/images/touch/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/sdk/favicon.ico></head><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V5GBX4" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><header><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" title=navigationBar><a class=navbar-brand href=/sdk/ ><img src=/sdk/assets/images/pillar.svg width=30 height=30 class="d-inline-block align-top" alt=""> Geotab Developers </a><button class="navbar-toggler d-lg-none" id=toggler type=button aria-label="navigation bar toggler"><span class=navbar-toggler-icon></span></button></nav></header><main role=main class=col-sm-12><article style="height: calc(100% - 80px)"><link rel=stylesheet href=./codebase/main.css><link rel=stylesheet href=./codebase/console.css><script type=text/javascript src=./codebase/console.js charset=utf-8></script><script src=./codebase/third-party/github/underscore-min.js></script><script src=./codebase/third-party/github/github.js></script><script src=./codebase/githubApi.js></script><script src=./codebase/api.js type=text/javascript></script><script src=./codebase/third-party/ace/src-min/ace.js type=text/javascript charset=utf-8></script><script src=./codebase/third-party/Base64.js/base64.min.js type=text/javascript charset=utf-8></script><script src=./codebase/third-party/JSON-js/cycle.js type=text/javascript charset=utf-8></script><div class=api><div class=toolbar id=toolbar><div class="form-inline d-flex"><div class="form-group mb-2 mr-sm-2 mb-sm-0" id=samplesControl><label for=samples class=sr-only>Samples</label> <select type=text class=custom-select id=samples></select></div><button id=run class="btn btn-primary btn-large mb-2 mr-sm-2 mb-sm-0">Run</button> <button id=share class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Share</button> <button id=clear class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0">Clear output</button><div class="mb-2 mr-sm-2 mb-sm-0" id=toggle><button type=button id=toggle-js class="btn btn-light" data-toggle=button aria-pressed=false autocomplete=off>JS</button> <button type=button id=toggle-css class="btn btn-light" data-toggle=button aria-pressed=false autocomplete=off>CSS</button> <button type=button id=toggle-html class="btn btn-light" data-toggle=button aria-pressed=false autocomplete=off>HTML</button> <button type=button id=toggle-console class="btn btn-light" data-toggle=button aria-pressed=false autocomplete=off>Console</button> <button type=button id=toggle-output class="btn btn-light" data-toggle=button aria-pressed=false autocomplete=off>Output</button></div><small id=userLabel class="ml-auto p-2"></small> <button id=logoutButton class="btn btn-secondary ml-auto p-2">Log out</button></div></div><div class=content><div id=pane-left class="pane noborder"><div class=source><div id=pane-js class=editor><small class=pane-header>JavaScript</small><div class=pane-content id=js></div></div><div id=pane-css class=editor><small class=pane-header>CSS</small><div class=pane-content id=css></div></div><div id=pane-html class="editor last-visible"><small class=pane-header>HTML</small><div class=pane-content id=html></div></div></div></div><div class=pane id=pane-console><small class=pane-header>Console</small><div id=console class=console></div></div><div class=pane id=pane-output><small class=pane-header>Output</small><div class=source id=output></div></div></div></div><div class=login id=login style="display: none;"><div class=overlay></div><form class=dialog id=loginDialog autocomplete=on style="top: calc(50% - 264px);"><div class=form-group><label for=server>Server</label> <input class=form-control id=server placeholder="Server name" autocomplete=on></div><div class=form-group><label for=database>Database</label> <input class=form-control id=database placeholder="The database name" autocomplete=on></div><div class=form-group><label for=user>Email</label> <input class=form-control id=user placeholder="Your email address" autocomplete=on></div><div class=form-group><label for=password>Password</label> <input type=password class=form-control id=password placeholder=Password autocomplete=off></div><div class=invalid-feedback id=loginError style="display: none; margin-bottom: 0.5rem;">Invalid user name or password</div><div class=form-group style="display: flex; justify-content: space-between;"><button class="btn btn-primary" id=loginButton>Log in</button> <img id=loginSpinner src=../../assets/images/pulse2.svg style="display: none; border: none; width: 2.5rem;" alt="login spinner"></div></form></div><div class=login id=loggedUser style="display: none;"><div class=overlay></div><div class=dialog><div class=line><span class=geotabLabel>You're logged in as <span class=username id=loggedUserName>dmitry.radyno@gmail.com (geotabdemo)</span>.<br>Are you sure that you want to run samples using this account?</span></div><div class="d-flex justify-content-end"><button class="btn btn-secondary mb-2 mr-sm-2 mb-sm-0" id=cancel>No. Log out</button> <button class="btn btn-primary mb-2 mr-sm-2 mb-sm-0" id=confirm>Yes</button></div></div></div><div class=login id=shareDialog style="display: none;"><div class=overlay></div><div class=dialog><div class=line><span class=geotabLabel>Here is a link to your sample:<br><span class=gray>(Internet Explorer may face an issue with opening this link)</span></span></div><div class=line><textarea id=shareTextarea></textarea></div><div class="d-flex justify-content-end"><button class="btn btn-primary" id=shareDone>Done</button></div></div></div><div class=login id=securityDialog style="display: none;"><div class=overlay></div><div class=dialog><div class=line><span class=geotabLabel>Security warning!</span></div><div class=line><span class=geotabText>External samples are disabled in your browser for security reasons.<br>Please, try to open the link in another browser.</span></div><div class="d-flex justify-content-end"><button class="btn btn-primary" id=securityOk>OK</button></div></div></div><script>(function () {
-        let shouldAutoLoginDemo = true;
+        let shouldAutoLoginDemo = false;
+        let demoCredentials = null;
         var ResizeObserver = function () {
                 var resizeHandlers = [],
                     attachEvent = function (handler) {
@@ -387,8 +388,10 @@
                                     session = currentSession;
                                     showUserInfo(session);
                                 } else {
-                                    // Logout of an existing session so that we can login to geotabdemo.
-                                    if (shouldAutoLoginDemo) {
+                                    // Log out of an existing session so that we can log into geotabdemo. 
+                                    // If currentSession isn't null, then shouldAutoLoginDemo must be true. Which means
+                                    // that geo-cli has launched the runner and is going to log into geotabdemo.
+                                    if (currentSession) {
                                         logout();
                                     }
                                     session = null;
@@ -423,6 +426,17 @@
                             geotabAPI.forget(getSessionCallback);
                             userLabel.style.display = "none";
                             logoutButton.style.display = "none";
+                            if (demoCredentials && !shouldAutoLoginDemo) {
+                                // Clearing window.location.search will reload the page, so save the demo credentials in
+                                // localStorage so that we can populate the login dialog with them afterwords. We are
+                                // clearing the search string because users may want to log out of geotabdemo and into 
+                                // a db on a real server using this page. If the search string remains, then their session
+                                // to another server will be logged out of (and then logged back into geotabdemo) if the
+                                // page reloads.
+                                localStorage.setItem('prevLoginInfo', JSON.stringify(demoCredentials));
+                                demoCredentials = null;
+                                window.location.search = '';
+                            }
                         };
                         logoutButton.addEventListener("click", logout, false);
 
@@ -527,7 +541,6 @@
                 };
             },
             APIRunner = function () {
-                let demoCredentials = null;
                 let processors = (function () {
                         var processors = [],
                             add = function (name, processor) {
@@ -694,7 +707,7 @@
                     passwordInput = document.getElementById("password"),
                     loginSpinner = document.getElementById("loginSpinner");
 
-                const setLoginForm = (server, database, user, password) => {
+                const setLoginForm = (server = '', database = '', user = '', password = '') => {
                         serverInput.value = server;
                         databaseInput.value = database;
                         userInput.value = user;
@@ -703,6 +716,8 @@
                     showLoginForm = () => {
                         loginForm.style.display = "block";
                         loginError.style.display = "none";
+                        loginButton.removeAttribute("disabled");
+                        loginSpinner.style.display = "none";
                     },
                     hideLoginForm = () => loginForm.style.display = "none";
                 
@@ -754,6 +769,8 @@
                         shouldAutoLoginDemo = false;
                         loginButton.removeAttribute('disabled');
                     };
+                    // Store previous login info for next time.
+                    localStorage.setItem('prevLoginInfo', JSON.stringify({ server, database, user }))
                     // Make the api auth call.
                     authenticateCallback(server, database, user, password, authSuccessCallback, authErrorCallback);
                 }
@@ -762,19 +779,26 @@
                 
                 let authenticateManager = function (authCallback) {
                     authenticateCallback = authCallback
-                    if (demoCredentials) {
-                        if (!serverInput.value || serverInput.value === "my.geotab.com")
-                            setLoginForm(...Object.values(demoCredentials));
-                        if (shouldAutoLoginDemo) {
-                            shouldAutoLoginDemo = false;
-                            // Add small delay so that user can see that they are being logged in.
-                            setTimeout(() => loginButton.click(), 500);
-                        }
-                    } else {
-                        if (!serverInput.value) {
+                    if (demoCredentials && shouldAutoLoginDemo) {
+                        setLoginForm(...Object.values(demoCredentials));
+                        shouldAutoLoginDemo = false;
+                        // Add small delay so that user can see that they are being logged in.
+                        setTimeout(() => loginButton.click(), 500);
+                    } else if (!serverInput.value) {
+                        const prevLoginInfoStr = localStorage.getItem('prevLoginInfo');
+                        if (prevLoginInfoStr) {
+                            try {
+                                const prevLoginInfo = JSON.parse(prevLoginInfoStr);
+                                setLoginForm(...Object.values(prevLoginInfo));
+                            } catch (e) {
+                                console.error(`authenticateManager: Error parsing prevLoginInfoStr: ${prevLoginInfoStr}`)
+                            }
+                                
+                        } else {
                             serverInput.value = "my.geotab.com";
                             serverInput.focus();
                         }
+                        
                     }
 
                     showLoginForm();
@@ -786,18 +810,19 @@
 
                 layout.resize();
 
-                // Process a search string if there is one. The only use for the search string is to automatically login a user
+                // Process a search string if there is one. The only use for the search string is to automatically log in a user
                 // to a local geotabdemo db. This feature is used by geo-cli so that users can easily open up an api runner
                 // for their local geo-cli-managed dbs. It is for internal development uses only and will only work with local dbs.
                 let searchString = window.location.search;
                 if (searchString) {
                     try {
                         if (searchString?.startsWith('?')) {
-                            // The search string will look like this:
-                            // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
                             searchString = searchString.replaceAll('?', '').replaceAll('\n', '').replaceAll('\\n', '');
+                            
                             // Decode the query string if it is base64 encoded.
                             const decodedSearchString = searchString.includes('=') ? searchString : atob(searchString);
+                            // The decoded search string should look like this:
+                            // server=localhost:10001&database=geotabdemo&username=johndoe@geotab.com&password=passwordpassword
                             console.log(`decodedSearchString: ${decodedSearchString}`);
 
                             const urlParams = new URLSearchParams(decodedSearchString);
@@ -816,6 +841,7 @@
                                 // Only use the credentials if they are for local dbs.
                                 if (server.includes('localhost') || server.includes('127.0.0.1')) {
                                     demoCredentials = {server, database, username, password};
+                                    shouldAutoLoginDemo = true;
                                     console.log(demoCredentials);
                                 } else {
                                     console.error('Auto-login only works for dbs on the local machine.')

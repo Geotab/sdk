@@ -48,3 +48,35 @@
 .data-boolean-value {
     color: #523dd9;
 }
+
+/* Animations for new records added to the console */
+.pulse {
+    animation: pulse .3s;
+    animation-iteration-count: 1;
+}
+.pulse-error {
+    animation: pulse-error .3s;
+    animation-iteration-count: 1;
+}
+@keyframes pulse {
+    0% {
+        background-color: #faf8f8;
+    }
+    50% {
+        background-color: rgba(37, 220, 37, 0.09);
+    }
+    100% {
+        background-color: #faf8f8;
+    }
+}
+@keyframes pulse-error {
+    0% {
+        background-color: #faf8f8;
+    }
+    50% {
+        background-color: rgba(142, 2, 21, 0.13);
+    }
+    100% {
+        background-color: #faf8f8;
+    }
+}
