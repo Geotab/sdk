@@ -6,6 +6,8 @@ title: Developing Add-ins
 
 Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. [Click here](https://github.com/Geotab/sdk-addin-samples) to find the sample Add-Ins.
 
+> The add-in generator is a great developer tool that allows integrators to create scaffolded add-in projects. You can learn more about the generator and all of it's features by going into the [generator-addin repository](https://github.com/Geotab/generator-addin).
+
 ## Geotab Add-Ins can be of two types:
 
 ### Pages
@@ -34,8 +36,8 @@ Each Add-In created will have one configuration file. The configuration file is 
 
 ### Table 1 — Add-In configuration file keys/values
 
-| **Property** | **Description** | **Type** |
-| --- | --- | --- |
+| **Property** | **Description** | **Type** | **Required Version** |
+| --- | --- | --- | --- |
 | name | The name of this Add-In | String |
 | supportEmail | Email address for support related to this Add-In | String |
 | items | Array of custom pages and/or buttons (External references) | Array |
@@ -43,6 +45,8 @@ Each Add-In created will have one configuration file. The configuration file is 
 | key | Unique MyGeotab Marketplace Add-In key assigned by Geotab. If there's no plan to get your Add-In to the Marketplace, you can leave out the key/value pair from the Configuration File | String |
 | signature | Digital signature of the Add-In | String |
 | version | Which Geotab API version to use | String |
+| enableViewSecurityId | If true, a "View {ADDIN_NAME} add-in" security clearance feature is created that must be enabled for users to be able to view the Add-in. | Boolean | MyGeotab v9.0+ |
+| securityIds | An array of custom security IDs that are added to the list of features available when editing clearances. These definitions can support multiple languages. *e.g. "securityIds": [{"name": "ExampleSecurityIdentifier1", "en": "Example Security Identifier 1"}, {"name": "ExampleSecurityIdentifier2", "en": "Example Security Identifier 2"}]* | Array | MyGeotab v9.0+ |
 
 > If you do not know your MyGeotab Add-In key, please contact your authorized Geotab reseller for support.
 

@@ -230,9 +230,9 @@ Sent from the IOX to the GO device when the IOX wants create a log that cannot f
 
 | Parameter Type | Description |
 | --- | --- |
-| 0 | Third Party Free Format Data |
+| 0 | Third Party Free Format Data. Rate limit is 500 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX |
 | 1 | Reserved |
-| 2 | Bluetooth Record |
+| 2 | Bluetooth Record. Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX |
 
 
 ### IOX Request/Status (0x25)
