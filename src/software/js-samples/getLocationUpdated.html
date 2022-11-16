@@ -153,13 +153,16 @@
                         }
                     }
                 }, function (result) {
-                    var location = new L.LatLng(result[0].latitude, result[0].longitude);
-                    var marker = L.marker(location).bindPopup(
+                    if (result.length > 0) {
+                        var location = new L.LatLng(result[0].latitude, result[0].longitude);
+                        var marker = L.marker(location).bindPopup(
                         "<strong>" + device.name + "</strong><br />" +
                         location.lat + ", " + location.lng);
-
-                    layerGroup.clearLayers().addLayer(marker);
-                    map.setView(location, 15);
+                        layerGroup.clearLayers().addLayer(marker);
+                        map.setView(location, 15);
+                    } else {
+                        alert("Location information not available for the inputted device")
+                    }
                 }, function (error) {
                     alert(error);
                 });
