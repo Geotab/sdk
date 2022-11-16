@@ -141,7 +141,8 @@ permalink: /software/api/runner.html
 </div>
 <script>
     (function () {
-        let shouldAutoLoginDemo = true;
+        let shouldAutoLoginDemo = false;
+        let demoCredentials = null;
         var ResizeObserver = function () {
                 var resizeHandlers = [],
                     attachEvent = function (handler) {
@@ -525,8 +526,10 @@ permalink: /software/api/runner.html
                                     session = currentSession;
                                     showUserInfo(session);
                                 } else {
-                                    // Logout of an existing session so that we can login to geotabdemo.
-                                    if (shouldAutoLoginDemo) {
+                                    // Log out of an existing session so that we can log into geotabdemo. 
+                                    // If currentSession isn't null, then shouldAutoLoginDemo must be true. Which means
+                                    // that geo-cli has launched the runner and is going to log into geotabdemo.
+                                    if (currentSession) {
                                         logout();
                                     }
                                     session = null;
@@ -561,6 +564,17 @@ permalink: /software/api/runner.html
                             geotabAPI.forget(getSessionCallback);
                             userLabel.style.display = "none";
                             logoutButton.style.display = "none";
+                            if (demoCredentials && !shouldAutoLoginDemo) {
+                                // Clearing window.location.search will reload the page, so save the demo credentials in
+                                // localStorage so that we can populate the login dialog with them afterwords. We are
+                                // clearing the search string because users may want to log out of geotabdemo and into 
+                                // a db on a real server using this page. If the search string remains, then their session
+                                // to another server will be logged out of (and then logged back into geotabdemo) if the
+                                // page reloads.
+                                localStorage.setItem('prevLoginInfo', JSON.stringify(demoCredentials));
+                                demoCredentials = null;
+                                window.location.search = '';
+                            }
                         };
                         logoutButton.addEventListener("click", logout, false);
 
@@ -665,7 +679,6 @@ permalink: /software/api/runner.html
                 };
             },
             APIRunner = function () {
-                let demoCredentials = null;
                 let processors = (function () {
                         var processors = [],
                             add = function (name, processor) {
@@ -832,7 +845,7 @@ permalink: /software/api/runner.html
                     passwordInput = document.getElementById("password"),
                     loginSpinner = document.getElementById("loginSpinner");
 
-                const setLoginForm = (server, database, user, password) => {
+                const setLoginForm = (server = '', database = '', user = '', password = '') => {
                         serverInput.value = server;
                         databaseInput.value = database;
                         userInput.value = user;
@@ -841,6 +854,8 @@ permalink: /software/api/runner.html
                     showLoginForm = () => {
                         loginForm.style.display = "block";
                         loginError.style.display = "none";
+                        loginButton.removeAttribute("disabled");
+                        loginSpinner.style.display = "none";
                     },
                     hideLoginForm = () => loginForm.style.display = "none";
                 
@@ -892,6 +907,8 @@ permalink: /software/api/runner.html
                         shouldAutoLoginDemo = false;
                         loginButton.removeAttribute('disabled');
                     };
+                    // Store previous login info for next time.
+                    localStorage.setItem('prevLoginInfo', JSON.stringify({ server, database, user }))
                     // Make the api auth call.
                     authenticateCallback(server, database, user, password, authSuccessCallback, authErrorCallback);
                 }
@@ -900,19 +917,26 @@ permalink: /software/api/runner.html
                 
                 let authenticateManager = function (authCallback) {
                     authenticateCallback = authCallback
-                    if (demoCredentials) {
-                        if (!serverInput.value || serverInput.value === "my.geotab.com")
-                            setLoginForm(...Object.values(demoCredentials));
-                        if (shouldAutoLoginDemo) {
-                            shouldAutoLoginDemo = false;
-                            // Add small delay so that user can see that they are being logged in.
-                            setTimeout(() => loginButton.click(), 500);
-                        }
-                    } else {
-                        if (!serverInput.value) {
+                    if (demoCredentials && shouldAutoLoginDemo) {
+                        setLoginForm(...Object.values(demoCredentials));
+                        shouldAutoLoginDemo = false;
+                        // Add small delay so that user can see that they are being logged in.
+                        setTimeout(() => loginButton.click(), 500);
+                    } else if (!serverInput.value) {
+                        const prevLoginInfoStr = localStorage.getItem('prevLoginInfo');
+                        if (prevLoginInfoStr) {
+                            try {
+                                const prevLoginInfo = JSON.parse(prevLoginInfoStr);
+                                setLoginForm(...Object.values(prevLoginInfo));
+                            } catch (e) {
+                                console.error(`authenticateManager: Error parsing prevLoginInfoStr: ${prevLoginInfoStr}`)
+                            }
+                                
+                        } else {
                             serverInput.value = "my.geotab.com";
                             serverInput.focus();
                         }
+                        
                     }
 
                     showLoginForm();
@@ -924,18 +948,19 @@ permalink: /software/api/runner.html
 
                 layout.resize();
 
-                // Process a search string if there is one. The only use for the search string is to automatically login a user
+                // Process a search string if there is one. The only use for the search string is to automatically log in a user
                 // to a local geotabdemo db. This feature is used by geo-cli so that users can easily open up an api runner
                 // for their local geo-cli-managed dbs. It is for internal development uses only and will only work with local dbs.
                 let searchString = window.location.search;
                 if (searchString) {
                     try {
                         if (searchString?.startsWith('?')) {
-                            // The search string will look like this:
-                            // ?server=localhost:10001&database=geotabdemo&username=dawsonmyers@geotab.com&password=passwordpassword
                             searchString = searchString.replaceAll('?', '').replaceAll('\n', '').replaceAll('\\n', '');
+                            
                             // Decode the query string if it is base64 encoded.
                             const decodedSearchString = searchString.includes('=') ? searchString : atob(searchString);
+                            // The decoded search string should look like this:
+                            // server=localhost:10001&database=geotabdemo&username=johndoe@geotab.com&password=passwordpassword
                             console.log(`decodedSearchString: ${decodedSearchString}`);
 
                             const urlParams = new URLSearchParams(decodedSearchString);
@@ -954,6 +979,7 @@ permalink: /software/api/runner.html
                                 // Only use the credentials if they are for local dbs.
                                 if (server.includes('localhost') || server.includes('127.0.0.1')) {
                                     demoCredentials = {server, database, username, password};
+                                    shouldAutoLoginDemo = true;
                                     console.log(demoCredentials);
                                 } else {
                                     console.error('Auto-login only works for dbs on the local machine.')
