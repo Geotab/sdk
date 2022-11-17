@@ -95,14 +95,6 @@ select, #groups {
 }
 
 
-.chosen-choices {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14.5px;
-    border-radius: 8px;
-    text-indent: 0;
-    height: 50px;
-    border: none;
-}
 
 input[type="range"] {
     padding: 11px 16px;
