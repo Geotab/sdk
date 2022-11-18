@@ -141,9 +141,9 @@ A parent menu item defines a new menu item and where it should reside within the
 
 To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
 
-The process consists in creating a [parent menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-3-—-parent-menu-item) with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (*GettingStartedLink, ActivityLink, EngineMaintenanceLink, ZoneAndMessagesLink, RuleAndGroupsLink, AdministrationLink*). 
+The process consists in creating a [parent menu item](#table-3--parent-menu-item) with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (*GettingStartedLink, ActivityLink, EngineMaintenanceLink, ZoneAndMessagesLink, RuleAndGroupsLink, AdministrationLink*). 
 
-To place a [menu item](https://geotab.github.io/sdk/software/guides/developing-addins/#table-2-—-menu-item) under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
+To place a [menu item](#table-2--menu-item) under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
 
 ```json
 {
