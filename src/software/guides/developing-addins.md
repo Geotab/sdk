@@ -572,5 +572,3 @@ This could be linked to a server maintenance/migration event. The workaround wou
 
 The Add-in Icon validator tests uploaded SVG files against [Geotab's requirements](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/) and displays them in the reformatted colors and style that will be displayed in MyGeotab. 
 [Launch the validator](../developing-addins/addin-icon-validator.html).
-
-TEST
