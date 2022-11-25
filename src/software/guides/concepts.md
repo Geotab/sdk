@@ -128,9 +128,9 @@ See [Example 3](#example-3-requests-to-missing-databases-or-with-expiring creden
 
 ## Authentication
 
-Authentication is performed to obtain a session token (credentials). This token is then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
+Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
 
-Below you can see an example making a authentication request to "my.geotab.com" that completes successfully and then uses session to get a single device:
+Below you can see an example making an authentication request to "my.geotab.com" that completes successfully and then uses session to get a single device:
 
 ```js
 // Simple method to make calls to API
@@ -199,14 +199,14 @@ In this example, an authentication request is made to my.geotab.com to log in to
 
 The path will either contain the URL of a server, or the string value `ThisServer`. Since the _database_ is on my.geotab.com, it returns _ThisServer_. This means that the path is correct.
 
-The `credentials` object contains the username, database, and session ID. This object is required for all subsequent requests to the server.
+The `credentials` object contains the username, database and session ID. This object is required for all subsequent requests to the server.
 
 1. Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to `Get` devices from my.geotab.com. Pass the `credentials` object with the call to `Get` device.
 2. The `Get` result is returned with one device.
 
 ### Example 2: Requests with missing databases or with expiring credentials
 
-The examples above demonstrate how authentication to get a token and make a call to _Get_ devices. However, there are two additional scenarios to consider:
+The examples above demonstrate how to authenticate to get a token and make a call to _Get_ devices. However, there are two additional scenarios to consider:
 
 1. The credentials provided to `Authenticate` method are invalid.
 2. The token has eventually expired.
@@ -553,7 +553,7 @@ var results = await api.CallAsync<List<Device>>(
 
 ## List of Supported Entities
 
-Below is a list of entities that are support the PropertySelector functionality.
+Below is a list of entities that support the PropertySelector functionality.
 
 | **Entity** | **Supported in Release** | **Notes**
 | --- | --- | -- |
@@ -659,7 +659,7 @@ Response:
 
 ### Errors
 
-In a MultiCall, each request is run on the server in synchronously. If one fails, the error results are returned immediately and **unreached calls are not run**. The error results includes the index of the call in the array that the exception occurred.
+In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and **unreached calls are not run**. The error results includes the index of the call in the array that the exception occurred.
 
 To illustrate, let's assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.
 
