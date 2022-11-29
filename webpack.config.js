@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const argv = require('yargs').argv;
 
 const config = {
     entry: '/src/software/api/react-loader.jsx',
@@ -13,7 +14,7 @@ const config = {
         filename: 'software/api/runner-bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
     },
     module: {
         rules: [
@@ -23,12 +24,18 @@ const config = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react', '@babel/preset-env']
+                        presets: [ '@babel/preset-react', '@babel/preset-env' ]
                     }
                 }
             }
         ]
     }
 };
+
+if (argv?.prod || process.env.NODE_ENV === 'production') {
+    config.optimization.minimize = true;
+    config.mode = 'production';
+    delete config.devtool;
+}
 
 module.exports = config;

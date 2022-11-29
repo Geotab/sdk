@@ -1,5 +1,3 @@
-import Toolbar from './toolbar'
+import Toolbar from './Toolbar'
 
-export {
-    Toolbar,
-}
+export default Toolbar

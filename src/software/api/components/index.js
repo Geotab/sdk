@@ -1,8 +1,5 @@
-import SessionSelector from './session/session-selector';
-import ApiRunner from './api-runner';
-import ToolBar from './toolbar';
-export { 
+import ApiRunner from './ApiRunner';
+
+export {
     ApiRunner,
-    ToolBar,
-    SessionSelector,
 };
