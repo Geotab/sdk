@@ -43,14 +43,9 @@ footer {
     padding: 2px;
 }
 .content .pane {
-    /*height: calc(100% - 4px);*/
-    /*height: 100%;*/
-    /*float: left;*/
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: 1px solid #cccccc;
-    /*margin: 2px;*/
-    /*position: relative;*/
     overflow: auto;
 }
 .content .pane.noborder {
@@ -71,7 +66,6 @@ footer {
     width: fit-content;
     text-align: center;
     background-color: #ffffff;
-    /*cursor: pointer;*/
     transition: opacity 0.1s ease;
     border-bottom-left-radius: 3px;
     opacity: .8;
