@@ -19,7 +19,6 @@ gulp.task('serve', (done) => {
 
     // Watch various files for changes and do the needful
     gulp.watch(['src/**/*.md', 'src/**/*.html', 'src/**/*.yml', 'src/**/*.js', 'src/**/*.css', 'src/**/*.jsx'], gulp.series('webpack', 'build:site', reload));
-    // gulp.watch(['src/**/*.md', 'src/**/*.html', 'src/**/*.yml', 'src/**/*.js', 'src/**/*.css', 'src/**/*.jsx'], gulp.series('jsx', 'build:site', reload));
     gulp.watch(['src/**/*.xml', 'src/**/*.txt'], gulp.series('site', reload));
     gulp.watch('src/assets/javascript/**/*.js', gulp.series('scripts', reload));
     gulp.watch('src/assets/scss/**/*.scss', gulp.series('styles'));
