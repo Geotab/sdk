@@ -12,34 +12,15 @@ NOTE: Sample text inside `[` and `]` (e.g. `[myserver]`) are placeholders to ind
 
 API request parameters and their results are transported using the lightweight [JSON](http://www.json.org/) format. The [API reference](../../api/reference) contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
 
-Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST requests use the JSON-RPC standard. When making requests that contain MyGeotab credentials, use the POST request only. This helps to minimize potential leaks into browser histories, or web server logs. 
+Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST requests use the JSON-RPC standard. When making requests that contain MyGeotab credentials, use the POST request only. This helps to minimize potential leaks into browser histories, or web server logs.
 
-The following sections explain how to construct HTTP GET and POST requests to the Geotab API. 
+The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
 
 MyGeotab API requests can only be made over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
 
-## HTTP GET request
-
-Methods can be invoked using the HTTPS GET request as follows:
-
-`https://[myserver]/apiv1/[methodname]?[parameters]`
-
-When using methods that pass MyGeotab credentials as parameters, avoid HTTP GET requests, and use HTTP POST requests instead.   
-
-A simple GetVersion method does not require any parameters. For example:
-
-`https://my3.geotab.com/apiv1/GetVersion`
-
-The HTTP response is returned as JSON. For example:
-
-```json
-{"result":"5.7.1508.122"}
-```
-
-Where the version is the current version installed on the server.
-
 ### Make your first API call
-A more complex request requires parameters. While both GET and POST requests are supported, we strongly recommend that only POST requests are used for requests that include MyGeotab credentials as parameters. 
+
+While both GET and POST requests are supported, we strongly recommend that only POST requests are used for requests that include MyGeotab credentials as parameters.
 
 The endpoint shown below is used to invoke an API method when an HTTP POST request is used. The example that follows illustrates a POST request that returns all devices (vehicles) and their properties.
 
@@ -64,19 +45,22 @@ To understand how HTTP POST can be used to invoke a method, consider the followi
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://[myserver]/apiv1", true);
+
+request.open("POST", "https://my.geotab.com/apiv1", true);
+
 request.setRequestHeader("Content-Type", "application/json");
-request.onreadystatechange = function () {
- if (request.readyState === 4) {
-  if (request.status === 200) {
-   var json = JSON.parse(request.responseText);
-   if (json.result) {
-    // Work with your result
-    // Simple example just alerts its presence
-    alert("Received Data");
-   }
-  }
- }
+
+request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+        if (request.status === 200) {
+            var json = JSON.parse(request.responseText);
+            if (json.result) {
+                // Work with your result
+                // Simple example just alerts its presence
+                console.log(json.result);
+            }
+        }
+    }
 };
 
 // Send the HTTP BODY in the JSON-RPC format.
@@ -84,16 +68,16 @@ request.onreadystatechange = function () {
 // The "Get" method's parameters are then passed in the "params" property
 
 var data = {
- "id" : 0,
- "method" : "Get",
- "params" : {
-  "typeName" : "Device",
-  "credentials" : {
-   "database" : "demo",
-   "userName" : "bob@geotab.com",
-   "sessionId" : "xxx"
-  }
- }
+    "id": 0,
+    "method": "Get",
+    "params": {
+        "typeName": "Device",
+        "credentials": {
+            "database": "demo",
+            "userName": "example@geotab.com",
+            "sessionId": "xxx"
+        }
+    }
 };
 
 request.send(JSON.stringify(data));
@@ -142,91 +126,92 @@ The properties of the error object are [JsonRpcError](../../api/reference/#JsonR
 
 See [Example 3](#example-3-requests-to-missing-databases-or-with-expiring credentials): Handling a database move or credential expiry to show how it can be useful to identify and handle errors.
 
-## HTTP Compression
-
-The MyGeotab API supports _gzip_ and _deflate_ compression. To use either of these compression methods, include the HTTP header for "Accept-Encoding". For example:
-
-Accept-Encoding: gzip, deflate
-
-> If you are using an API client (.Net, JavaScript, Nodejs, etc.), the header is enabled automatically.
-
 ## Authentication
 
-Data is stored on one of many servers within our cloud environment. A group of servers is referred to as a _federation_. For example, the my.geotab.com federation consists of my1.geotab.com, my2.geotab.com, and so on.
+Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
 
-While it is tempting to "hard code" the application to point to a particular server (e.g. my20.geotab.com), this is not the correct approach. Over time, databases can be relocated as load balancing occurs, and resources are distributed from one server to another. They do not necessarily remain on the same server for the duration their lifecycle. To prevent the application from disconnecting from the database, authentication requests should not be made to a particular server; rather, they should be made to the root federation server.
-
-> Authentication can be avoided by using the **credentials** object that is returned from subsequent Authentication requests. The **credentials** object contains a token that confirms your identity for API operations. If the session expires, or a database is moved, a new Authentication request must be made. This approach encourages efficient use of Authentication requests, as shown in the Authentication section above.
-
-For example: an authentication request to "my.geotab.com" that completes successfully can be made as:
+Below you can see an example making an authentication request to "my.geotab.com" that completes successfully and then uses session to get a single device:
 
 ```js
-var data = JSON.stringify({
-  "method": "Authenticate",
-  "params": {
-    "database": "database",
-    "userName": "user@geotab.com",
-    "password": "password"
-  }
-});
+// Simple method to make calls to API
+async function call(host, method, data) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        const rpcData = JSON.stringify({
+            "method": method,
+            "params": data
+        });
 
-var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+                let jsonRpcResponse = JSON.parse(this.responseText);
+                if (jsonRpcResponse.error) {
+                    reject(new Error(`${jsonRpcResponse.error.data.type}: ${jsonRpcResponse.error.message}`));
+                } else {
+                    resolve(jsonRpcResponse.result);
+                }
+            }
+        });
 
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
+        xhr.open("POST", `https://${host}/apiv1`);
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("cache-control", "no-cache");
 
-xhr.open("POST", "https://my.geotab.com/apiv1");
-xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("cache-control", "no-cache");
+        xhr.send(rpcData);
+    })
+}
+(async () => {
+    const authenticateHost = "my.geotab.com";
 
-xhr.send(data);
+    // Authenticate to get a token
+    let loginResult = await call(
+        authenticateHost,
+        "Authenticate", {
+            "database": "[database]",
+            "userName": "[user@email.com]",
+            "password": "[password]"
+        });
+    console.log(loginResult);
+
+    // Use the correct host when making subsequent calls (for legacy compatibility)
+    let callHost = loginResult.path === "ThisServer" ? authenticateHost : loginResult.path;
+
+    // Call to get one device
+    let devices = await call(
+        callHost,
+        "Get", {
+            "typeName": "Device",
+            "resultsLimit": 1,
+            "credentials": loginResult.credentials
+        });
+    console.log(devices);
+})();
 ```
 
-Where the database, user and password are set by you.
+> Database, user and password must be set for successful authentication.
 
-If redirection is necessary, the application is notified, and the correct server targeted. The following are special cases for consideration when accessing the federation.
+### Example 1: Authenticate with valid credentials
 
-### Example 1: Request to the correct server
+In this example, an authentication request is made to my.geotab.com to log in to the database named _database_.
 
-In this example, an authentication request is made to my.geotab.com to log in to the database named _acme_. The server's response confirms that my.geotab.com is the correct server (i.e. no need to redirect).
+1. The `Authenticate` method is requested using the credentials provided.
+2. The response from the server contains two important properties — `path` and `credentials`.
 
-1. The **Authenticate** method is requested using the credentials provided.
-2. The response from the server contains two important properties — path and credentials.
+The path will either contain the URL of a server, or the string value `ThisServer`. Since the _database_ is on my.geotab.com, it returns _ThisServer_. This means that the path is correct.
 
-The path will either contain the URL of a server, or the string value _ThisServer_. Since the database _acme_ is on my.geotab.com, it returns _ThisServer_. This means that the path is correct and there is no need to redirect.
+The `credentials` object contains the username, database and session ID. This object is required for all subsequent requests to the server.
 
-The credentials object contains the username, database, and session ID. This object is required for all subsequent requests to the server (password not required when used).
+1. Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to `Get` devices from my.geotab.com. Pass the `credentials` object with the call to `Get` device.
+2. The `Get` result is returned with one device.
 
-1. Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can request _GetCountOf_ from my.geotab.com. Pass the _credentials_ property and send the contents of _credentials_ returned in step 2.
-2. The _GetCountOf_ result is returned, which in this case is 1234.
+### Example 2: Requests with missing databases or with expiring credentials
 
-### Example 2: Request redirected to correct server
+The examples above demonstrate how to authenticate to get a token and make a call to _Get_ devices. However, there are two additional scenarios to consider:
 
-In this example, an authentication request is made to my.geotab.com to log in to database "_acme"_. Here, the server's response confirms the database is on my23.geotab.com, and subsequent requests are redirected to my23.geotab.com.
+1. The credentials provided to `Authenticate` method are invalid.
+2. The token has eventually expired.
 
-1. The Authenticate method is requested using the credentials provided.
-2. The response from the server contains two properties — path and credentials.
-
-The path will either contain the URL of a server, or the string value _ThisServer_. Since the database _acme_ in this example is on my23.geotab.com, it returns "my23.geotab.com". This means that all subsequent requests should be directed to my23.geotab.com.
-
-The credentials object contains the username, database and session ID. This object is required in all subsequent requests to the server (password not required when used).
-
-1. Since the authentication method redirected the _acme_ log in request to the my23.geotab.com server, other methods can be used as well. For example, you can request _GetCountOf_ from my23.geotab.com. Pass the _credentials_ property, and send the contents of _credentials_ returned in step 2.
-2. The _GetCountOf_ result is returned, which in this case is 1234.
-
-![]({{site.baseurl}}/software/guides/concepts_0.png)
-
-### Example 3: Requests with missing databases or with expiring credentials
-
-The examples above demonstrate how to specify which server to request authentication from. However, there are two additional scenarios to consider:
-
-1. The database has moved to a different server.
-2. The credentials returned will eventually expire.
-
-In these scenarios, the next API request will fail using the error object below:
+In these scenarios, the API request will fail returning the JSON-RPC error similar to below:
 
 ```json
 {
@@ -243,7 +228,15 @@ In these scenarios, the next API request will fail using the error object below:
 }
 ```
 
-If the errors contain an object with name _"InvalidUserException"_, the authentication process must be repeated. This will indicate what the new server is and provide a new credentials object. If the authentication process returns an error, the user was likely changed, in this case another user will be required for the login.
+If the error contains an object with type `InvalidUserException`, the authentication failed or the authentication process must be repeated to obtain a fresh token.
+
+## HTTP Compression
+
+The MyGeotab API supports _brotli_, _gzip_ and _deflate_ compression. To use either of these compression methods, include the HTTP header for "Accept-Encoding". For example:
+
+Accept-Encoding: brotli, gzip, deflate
+
+> If you are using an API client (.Net, JavaScript, Nodejs, etc.), the header is enabled automatically.
 
 ## Limits
 
@@ -295,6 +288,7 @@ When a rate limit is exceeded, an OverLimitException error is returned. A header
 ```
 
 #### Headers
+
 If a rate limit is applied to an API, with a successful JSON-RPC response, headers are set with rate limit information:
 
 - `X-Rate-Limit-Limit`: the rate limit period (eg. 1s, 1m, 12h, 1d)
@@ -315,7 +309,7 @@ X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z
 
 `GetFeed` is limited to 50,000 records returned in a single request.
 
-> For legacy compatabilty, `GetFeed` does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.
+> For legacy compatibility, `GetFeed` does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.
 
 #### Get
 
@@ -473,6 +467,112 @@ statusDatas[i].device = deviceLookup[statusDatas[i].device.id];
 
 Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call. This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the [.Net](https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed) and [JavaScript DataFeed](../../js-samples/dataFeed.html) examples.
 
+## PropertySelector BETA
+
+`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+
+### Supported Types
+
+A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
+
+| **Property** | **Description** |
+| --- | --- |
+| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
+| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
+
+### Examples
+
+A simple [example]({{site.baseurl}}/software/api/runner.html#sample:get-lightweight-device-response) of this can be illustrated by using the property selector with `Device`. The `Device` object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our `Device` objects to have the properties `Name` and `Id`, so we set our `PropertySelector` object like so:
+
+#### Javascript
+
+##### Request
+
+```javascript
+api.call("Get", {
+  "typeName": "Device",
+  "propertySelector":
+  {
+      fields: ["id", "name"],
+      isIncluded: true
+  },
+  "resultsLimit": 500
+}, function(result) {
+  console.log("Done: ", result);
+}, function(e) {
+  console.error("Failed:", e);
+});
+```
+
+##### Response
+
+```json
+[
+    {
+        "name": "Work Truck 10",
+        "id": "b1"
+    },
+    {
+        "name": "Delivery Van 6",
+        "id": "b2"
+    }
+]
+```
+
+In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
+
+Making the same call, without property selector (returning all properties) results in 41.8 kB of JSON sent over the wire and a round trip time of 320 ms.
+
+| using property selector |device count| size | time |
+|--|--|--|--|
+|false|500|41.8 kB|320 ms|
+|true|500|5.4 kB|45 ms|
+|--|--|--|--|
+|Improvement||**-36.4 kB**|**-275 ms**|
+
+#### C# Example
+
+```csharp
+var results = await api.CallAsync<List<Device>>(
+  "Get",
+  typeof(Device),
+  new
+  {
+    propertySelector = new PropertySelector
+    {
+        Fields = new List<string>
+        {
+          nameof(Device.Name),
+          nameof(Device.Id)
+        },
+        IsIncluded = true
+    },
+    resultsLimit = 500
+  });
+```
+
+## List of Supported Entities
+
+Below is a list of entities that support the PropertySelector functionality.
+
+| **Entity** | **Supported in Release** | **Notes**
+| --- | --- | -- |
+| [Device]({{site.baseurl}}/software/api/reference/#Device) | 8.0 | The following properties are not supported: `deviceFlags`, `isAuxInverted`, `deviceType`, `productId`, `autogroups`, `auxWarningSpeed`, `enableAuxWarning`
+| [User]({{site.baseurl}}/software/api/reference/#User) | 8.0 | `isEULAAccepted` and `acceptedEULA` are tied to each other, so if either property is set to be returned based on the `PropertySelector` logic, both properties will be returned.
+| [Group]({{site.baseurl}}/software/api/reference/#Group) | 8.0 | N/A
+| [Rule]({{site.baseurl}}/software/api/reference/#Rule) | 8.0 | N/A
+| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `dateTime` must be included.
+| [Trip]({{site.baseurl}}/software/api/reference/#Trip) | 9.0 | N/A
+| [TextMessage]({{site.baseurl}}/software/api/reference/#TextMessage) | 10.0 | N/A
+| [IoxAddOn]({{site.baseurl}}/software/api/reference/#IoxAddOn) | 10.0 | N/A
+| [IoxAddOnStatus]({{site.baseurl}}/software/api/reference/#IoxAddOnStatus) | 10.0 | N/A
+
+### PropertySelector FAQ
+
+**Can I combine property selector and search?**
+
+Yes. PropertySelector and Search work independently of each other and can be used together in the same request.
+
 ## MultiCall
 
 A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.
@@ -558,7 +658,8 @@ Response:
 ```
 
 ### Errors
-In a MultiCall, each request is run on the server in syncronously. If one fails, the error results are returned immediately and **unreached calls are not run**. The error results includes the index of the call in the array that the exception occured.
+
+In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and **unreached calls are not run**. The error results includes the index of the call in the array that the exception occurred.
 
 To illustrate, let's assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.
 
@@ -660,106 +761,3 @@ There is no limit on the number of requests that can be made in a multicall. Whe
 **What if the call doesn't return a result?**
 
 The index in the array of results will have a **null** value.
-
-## PropertySelector BETA
-
-`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
-
-### Supported Types
-
-A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
-
-| **Property** | **Description** |
-| --- | --- |
-| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
-| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
-
-### Examples
-
-A simple [example]({{site.baseurl}}/software/api/runner.html#sample:get-lightweight-device-response) of this can be illustrated by using the property selector with `Device`. The `Device` object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our `Device` objects to have the properties `Name` and `Id`, so we set our `PropertySelector` object like so:
-
-#### Javascript
-
-##### Request
-
-```javascript
-api.call("Get", {
-  "typeName": "Device",
-  "propertySelector":
-  {
-      fields: ["id", "name"],
-      isIncluded: true
-  },
-  "resultsLimit": 500
-}, function(result) {
-  console.log("Done: ", result);
-}, function(e) {
-  console.error("Failed:", e);
-});
-```
-
-##### Response
-
-```json
-[
-    {
-        "name": "Work Truck 10",
-        "id": "b1"
-    },
-    {
-        "name": "Delivery Van 6",
-        "id": "b2"
-    }
-]
-```
-
-In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
-
-Making the same call, without property selector (returning all properties) results in 41.8 kB of JSON sent over the wire and a round trip time of 320 ms.
-
-| using property selector |device count| size | time |
-|--|--|--|--|
-|false|500|41.8 kB|320 ms|
-|true|500|5.4 kB|45 ms|
-|--|--|--|--|
-|Improvement||**-36.4 kB**|**-275 ms**|
-
-#### C# Example
-
-```csharp
-var results = await api.CallAsync<List<Device>>(
-  "Get",
-  typeof(Device),
-  new
-  {
-    propertySelector = new PropertySelector
-    {
-        Fields = new List<string>
-        {
-          nameof(Device.Name),
-          nameof(Device.Id)
-        },
-        IsIncluded = true
-    },
-    resultsLimit = 500
-  });
-```
-
-## List of Supported Entities
-
-Below is a list of entities that are support the PropertySelector functionality.
-
-| **Entity** | **Supported in Release** | **Notes**
-| --- | --- | -- |
-| [Device]({{site.baseurl}}/software/api/reference/#Device) | 8.0 | The following properties are not supported: `deviceFlags`, `isAuxInverted`, `deviceType`, `productId`, `autogroups`, `auxWarningSpeed`, `enableAuxWarning`
-| [User]({{site.baseurl}}/software/api/reference/#User) | 8.0 | `isEULAAccepted` and `acceptedEULA` are tied to each other, so if either property is set to be returned based on the `PropertySelector` logic, both properties will be returned.
-| [Group]({{site.baseurl}}/software/api/reference/#Group) | 8.0 | N/A
-| [Rule]({{site.baseurl}}/software/api/reference/#Rule) | 8.0 | N/A
-| [LogRecord]({{site.baseurl}}/software/api/reference/#LogRecord) | 8.0 | `dateTime` must be included.
-| [Trip]({{site.baseurl}}/software/api/reference/#Trip) | 9.0 | N/A
-
-### PropertySelector FAQ
-
-**Can I combine property selector and search?**
-
-Yes. PropertySelector and Search work independently of each other and can be used together in the same request.
