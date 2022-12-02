@@ -108,6 +108,9 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.notify() | If `api.mobile.exists()`, will add a notification to the top bar of a native operating system Example: `api.mobile.notify("Fill up your vehicle", "Low on gas")` | String[Message], String[Title], String[Id], [String[JsonData]], [Boolean[Permanent]] | Void |
 | api.mobile.geolocation | A navigator object that is similar to HTML5 `navigator.geolocation` Example: `api.mobile.geolocation.getCurrentPosition(function (position) { }, function (error) { }, { enableHighAccuracy: true })` | None | None |
 | api.mobile.camera.takePicture() | If `api.mobile.exists()`, will open up a modal with the following options `New Picture` and `Upload`. | None | Promise&lt;octet-stream&gt; |
+| api.mobile.dutyStatusLog.getCurrentDrivingLog() | Gets the current DutyStatusLog of the driver. | None | Promise that resolves with a [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object. |
+| api.mobile.dutyStatusLog.get() | Gets all of the DutyStatusLogs for the current user | None | Promise that resolves with an array of [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) objects. |
+| api.mobile.dutyStatusLog.add() | Adds a new DutyStatusLog. **Note:** The log will not be immediately added with this method, it will be synced during the next drive sync cycle. | DutyStatusLog: Object **Required properties**: dateTime: String, device: Object, driver: Object, status: String, origin: String | Promise that resolves with the newly added [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
