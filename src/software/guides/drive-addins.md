@@ -111,7 +111,11 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.dutyStatusLog.getCurrentDrivingLog() | Gets the current DutyStatusLog of the driver. | None | Promise that resolves with a [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object. |
 | api.mobile.dutyStatusLog.get() | Gets all of the DutyStatusLogs for the current user | None | Promise that resolves with an array of [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) objects. |
 | api.mobile.dutyStatusLog.add() | Adds a new DutyStatusLog. **Note:** The log will not be immediately added with this method, it will be synced during the next drive sync cycle. | DutyStatusLog: Object **Required properties**: dateTime: String, device: Object, driver: Object, status: String, origin: String | Promise that resolves with the newly added [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object |
-| api.mobile.navigate() | Navigates to default pages on Geotab Drive. | url: String (REQUIRED) String Valid page values: assets, hos, hos/logs, dvir, messaging, inspection, and settings. ***Note:** param will append the string at the end of the URL path with a comma ‘,’ as a delimeter* | Void |
+| api.mobile.navigate() | Navigates to default pages on Geotab Drive. | url: String (REQUIRED) String Valid page values: assets, hos, hos/logs, dvir, messaging, inspection, and settings. *Note: param will append the string at the end of the URL path with a comma ‘,’ as a delimeter* | Void |
+| api.mobile.store.getItem() | Retrieves an item that has been saved in the global store. | key: String (REQUIRED), jsonParse: boolean. *Note: if jsonParse is set to true it’ll execute a JSON.parse on the data* | Promise that resolves with the requested data as a string unless jsonParse is set to true, in which case it would resolve with a JSON object |
+| api.mobile.store.setItem() | Sets data to be stored in the global store. | key: String, data: Any | Void |
+| api.mobile.store.removeItem() | Removes the associated data | key: String | Void |
+| api.mobile.store.clear() | Clears all stored data | key: String | Void |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
