@@ -116,6 +116,7 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.store.setItem() | Sets data to be stored in the global store. | key: String, data: Any | Void |
 | api.mobile.store.removeItem() | Removes the associated data | key: String | Void |
 | api.mobile.store.clear() | Clears all stored data | key: String | Void |
+| api.mobile.listenTo() | Event listener that executes the specified callback function whenever a change on the state is detected | Callback Function e.g. listenTo((newState) => { console.log(JSON.stringify(newState)); }) | Void |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
