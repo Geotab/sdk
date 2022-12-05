@@ -122,6 +122,9 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.store.removeItem() | Removes the associated data | key: String | Void |
 | api.mobile.store.clear() | Clears all stored data | key: String | Void |
 | api.mobile.listenTo() | Event listener that executes the specified callback function whenever a change on the state is detected | Callback Function e.g. listenTo((newState) => { console.log(JSON.stringify(newState)); }) | Void |
+| api.mobile.shipment.get() | Gets the [ShipmentLogs](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog) for the device. | None | Returns an array of [ShipmentLogs](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog). *Note that the method will return all devices that have been added and removed during the current session. The list should be filtered by the activeTo property according to the requirement.* |
+| api.mobile.shipment.add() | Adds a new [ShipmentLog](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog) | ShipmentLog: Object `{ driver: { id: '' }, activeFrom: '', dateTime: '', shipperName: '', commodity: ''}` | Promise that resolves with the [ShipmentLog](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog) object that was added. |
+| api.mobile.shipment.remove() | Removes the specified [ShipmentLog](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog) by setting the activeTo datetime string to the current date. | shipmentId: String | Promise that resolves with the [ShipmentLog](https://geotab.github.io/sdk/software/api/reference/#ShipmentLog) object that was removed. |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
