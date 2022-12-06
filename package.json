@@ -15,9 +15,9 @@
     "trim-newlines": "^4.0.2",
     "anymatch": "^3.1.2",
     "qs": "^6.10.3",
-    "yargs":"^17.4.0",
-    "axios":"^0.27.2",
-    "got":"^12.1.0"
+    "yargs": "^17.4.0",
+    "axios": "^0.27.2",
+    "got": "^12.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -34,7 +34,6 @@
     "gulp-gzip": "^1.4.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^7.1.0",
     "gulp-inject": "^5.0.5",
     "gulp-newer": "^1.4.0",
     "gulp-postcss": "^9.0.1",
@@ -54,10 +53,11 @@
     "> 2%"
   ],
   "dependencies": {
+    "gulp-imagemin": "^7.1.0",
     "postcss": "^8.4.5"
   },
-  "engines" : {
-    "npm" : ">=8.3.0",
-    "node" : ">=17.3.1"
+  "engines": {
+    "npm": ">=8.3.0",
+    "node": ">=17.3.1"
   }
 }
