@@ -132,6 +132,7 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.user.getHosRuleSet() | Gets the [HosRuleSet](https://geotab.github.io/sdk/software/api/reference/#HosRuleSet) for the current driver | None | Promise that resolves with the [HosRuleSet](https://geotab.github.io/sdk/software/api/reference/#HosRuleSet) object |
 | api.mobile.user.getAvailability() | Gets driver availability | None | Promise that resolves with [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object |
 | api.mobile.user.getViolations() | Gets driver violations | None | Promise that resolves with an array of [DutyStatusViolation](https://geotab.github.io/sdk/software/api/reference/#DutyStatusViolation) objects |
+| api.mobile.vehicle.get() | Retrieves current vehicle information | None | Promise that resolves with an object with vehicle information. |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
