@@ -133,6 +133,8 @@ Inside the Geotab Drive app, we provide the same _api_ and _state_ properties fo
 | api.mobile.user.getAvailability() | Gets driver availability | None | Promise that resolves with [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object |
 | api.mobile.user.getViolations() | Gets driver violations | None | Promise that resolves with an array of [DutyStatusViolation](https://geotab.github.io/sdk/software/api/reference/#DutyStatusViolation) objects |
 | api.mobile.vehicle.get() | Retrieves current vehicle information | None | Promise that resolves with an object with vehicle information. |
+| api.mobile.trailer.get() | Retrieves trailer information | None | Promise that resolves with an array of trailer objects |
+| api.mobile.trailerAttachment.get() | Retrieves trailerAttachment data | None | Promise that resolves with an array of trailer attachment objects |
 | state.device | Get the current vehicle that is being connected to the mobile device | None | String |
 | state.driving | Mobile device is detected as driving with the current vehicle | None | Boolean |
 | state.charging | Mobile device is being powered | None | Boolean |
