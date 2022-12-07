@@ -74,18 +74,18 @@
                 to the map.
             </div>
 
-            <!-- Methods/objects used section containing the links to the specific SDK references used -->
-            <div class="api-references">In this example
-                <details open>
-                    <summary>API Methods:</summary>
-                    <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
-                </details>
-                <details open>
-                    <summary>API Entities:</summary>
-                    <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
-                    <a href="https://geotab.github.io/sdk/software/api/reference/#DeviceStatusInfo"
-                        target="_blank">DeviceStatusInfo</a>
-                </details>
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#DeviceStatusInfo" target="_blank">DeviceStatusInfo</a>
+                    </details>
+                </div>
             </div>
         </div>
 
@@ -164,24 +164,23 @@
                     deviceSearch: {
                         id: device.id
                     }
-                }
-            }, function (result) {
-                if (result.length > 0) {
-                    var location = new L.LatLng(result[0].latitude, result[0].longitude);
-                    var marker = L.marker(location).bindPopup(
-                        "<strong>" + device.name + "</strong><br />" +
-                        location.lat + ", " + location.lng);
-
-                    layerGroup.clearLayers().addLayer(marker);
-                    map.setView(location, 15);
-                } else {
-                    alert("Location information not available for the inputted Device")
-                }
-            }, function (error) {
-                alert(error);
-            });
-        }
-    </script>
+                }, function (result) {
+                    if (result.length > 0) {
+                        var location = new L.LatLng(result[0].latitude, result[0].longitude);
+                        var marker = L.marker(location).bindPopup(
+                            "<strong>" + device.name + "</strong><br />" +
+                            location.lat + ", " + location.lng);
+                            
+                        layerGroup.clearLayers().addLayer(marker);
+                        map.setView(location, 15);
+                    } else {
+                        alert("Location information not available for the inputted device")
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+        </script>
 
 </body>
 
