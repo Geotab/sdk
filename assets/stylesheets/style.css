@@ -9279,6 +9279,7 @@ footer a {
 }
 
 main {
+  height: calc(100% - 74px);
   width: 100%;
   -webkit-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
