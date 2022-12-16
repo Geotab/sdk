@@ -75,7 +75,7 @@
                     <details open>
                         <summary>API Entities:</summary>
                         <a href="https://geotab.github.io/sdk/software/api/reference/#Driver" target="_blank">Driver</a>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#HosRuleSet" target="_blank">UserHosRuleSet</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#HosRuleSet" target="_blank">HosRuleSet</a>
                     </details>
                 </div>
             </div>
@@ -626,6 +626,7 @@
 							<th>Value</th>
 							<th>Example</th>
 							<th>Notes</th>
+							<th>Required</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -633,31 +634,37 @@
 							<td>Email</td>
 							<td>john.smith@geotab.com</td>
 							<td>Can be email or user name. Spaces are not allowed.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>First name</td>
 							<td>John</td>
 							<td>Spaces are not allowed.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Last name</td>
 							<td>Smith</td>
 							<td></td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Password</td>
 							<td></td>
 							<td>Minimum of 6 characters.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of groups separated by the | character.</td>
+							<td><b>Yes</b></td>
                         </tr>
                         <tr>
 							<td>Reporting Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of reporting groups separated by the | character.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Security clearance ID</td>
@@ -667,115 +674,137 @@
 								Example:<br />
 								my.geotab.com/DATABASE/#clearance,id:<strong>b28A7</strong>
 							</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>NFC key number</td>
 							<td>T1234S</td>
-							<td><i>Optional</i>. Found on the NFC key fob.</td>
+							<td>Found on the NFC key fob.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Custom NFC key number</td>
 							<td>12345678</td>
-							<td><i>Optional</i>. Found on the Custom NFC key fob.</td>
+							<td>Found on the Custom NFC key fob.</td>
+							<td>No</td>
 						</tr>
 						<!-- Country Code -->
 						<tr>
 							<td>Country Code</td>
 							<td>CA</td>
-							<td><i>Optional</i>. The user two symbols country ISO code (https://www.iso.org/iso-3166-country-codes.html)</td>
+							<td>The user two symbols country ISO code (https://www.iso.org/iso-3166-country-codes.html)</td>
+							<td>No</td>
 						</tr>
 						<!-- Phone number -->
 						<tr>
 							<td>Phone number</td>
 							<td>+1 5555555555</td>
-							<td><i>Optional</i>. The user's phone number with space separated country phone code.</td>
+							<td>The user's phone number with space separated country phone code.</td>
+							<td>No</td>
 						</tr>
 						<!-- Phone number Extension-->
 						<tr>
 							<td>Phone number extension</td>
 							<td>1234</td>
-							<td><i>Optional</i>. The user's phone number extension.</td>
+							<td>The user's phone number extension.</td>
+							<td>No</td>
 						</tr>
 						<!-- Designation -->
 						<tr>
 							<td>Designation</td>
 							<td>""</td>
-							<td><i>Optional</i>. The user's designation</td>
+							<td>The user's designation</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Employee number</td>
 							<td>63-221-44</td>
-							<td><i>Optional</i>. The user's employee number.</td>
+							<td>The user's employee number.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Fuel economy measurement</td>
 							<td>LitersPer100Km</td>
-							<td><i>Optional</i>. Choose how to display fuel economy. There are four different measurements: liters per 100 kilometers, kilometers per liter, miles per US gallon, or miles per imperial gallon. You may need to refresh your browser for the change to take effect.</td>
+							<td>Choose how to display fuel economy. There are four different measurements: liters per 100 kilometers, kilometers per liter, miles per US gallon, or miles per imperial gallon. You may need to refresh your browser for the change to take effect.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Distance measurement system</td>
 							<td>Metric (true)</td>
-							<td><i>Optional</i>. Choose how to display speeds and distances. This can be Metric or US/Imperial. You may need to refresh your browser to see the change take effect.</td>
+							<td>Choose how to display speeds and distances. This can be Metric or US/Imperial. You may need to refresh your browser to see the change take effect.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Feature preview</td>
 							<td>On or Off (true or false)</td>
-							<td><i>Optional</i>. Toggle feature preview.</td>
+							<td>Toggle feature preview.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Time zone</td>
 							<td>America/New_York</td>
 							<td>The time zone offset from UTC for your location. All data will be displayed in this time zone.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Authority name</td>
 							<td>National Express</td>
-							<td><i>Optional</i>. The motor carrier that the driver works for.</td>
+							<td>The motor carrier that the driver works for.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Authority address</td>
 							<td>5000 Explorer Drive</td>
-							<td><i>Optional</i>. The motor carrier's main office address.</td>
+							<td>The motor carrier's main office address.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Carrier number</td>
 							<td>8Z88</td>
-							<td><i>Optional</i>. In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.</td>
+							<td>In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Home terminal</td>
 							<td>Stark Tower</td>
-							<td><i>Optional</i>. The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.</td>
+							<td>The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Home terminal address</td>
 							<td>200 Park Avenue</td>
-							<td><i>Optional</i>. The motor carrier's address where the driver ordinarily reports for work.</td>
+							<td>The motor carrier's address where the driver ordinarily reports for work.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Driver license number</td>
 							<td>YEET</td>
-							<td><i>Optional</i>. Driver's license number and License state/province must be set at the same time.</td>
+							<td>Driver's license number and License state/province must be set at the same time.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>License state/province</td>
 							<td>Ontario (ON)</td>
-							<td><i>Optional</i>. Selecting North America will show a dropdown menu; selecting Other will display a text box.</td>
+							<td>Selecting North America will show a dropdown menu; selecting Other will display a text box.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Ruleset</td>
 							<td>California Property Intrastate (HosRuleSetCaliforniaProperty)</td>
-							<td><i>Optional</i>. This is the ruleset the user will follow when using hours of service.</td>
+							<td>This is the ruleset the user will follow when using hours of service.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Yard move allowed</td>
 							<td>On or Off (true or false)</td>
-							<td><i>Optional</i>. Toggling this setting to ON allows the driver to apply the yard move exemption.</td>
+							<td>Toggling this setting to ON allows the driver to apply the yard move exemption.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Personal conveyance allowed</td>
 							<td>On of Off (true or false)</td>
-							<td><i>Optional</i>. Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
+							<td>Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
+							<td>No</td>
 						</tr>
 					</tbody>
 				</table>
