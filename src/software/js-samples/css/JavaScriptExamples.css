@@ -81,7 +81,7 @@ input[type="text"], input[type="password"]  {
     height: 30px;
 }
 
-select, #groups {
+select, #groups{
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 14.5px;
@@ -94,9 +94,35 @@ select, #groups {
     outline-color: #0078D3;
 }
 
+.chosen-container{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    zoom:1;
+    font-size: 15.5px;
+    padding: 11px 3px;
+    width: 34px;
+    height: fit-content;
+    border: 1px solid #D9DCE2;
+    border-radius: 8px;
+    margin-right: 1rem;
+    outline-color: #0091ff;
+    overflow:unset;
+}
 
 
-input[type="range"] {
+#example-content .chosen-choices{
+    border: 0px;
+    overflow:unset;
+    font-size: 14.5px;
+}
+
+
+
+
+#input[type="range"] {
     padding: 11px 16px;
     width: 300px;
     cursor: pointer;
