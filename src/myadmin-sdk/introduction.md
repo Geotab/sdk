@@ -6,7 +6,7 @@ title: Introduction
 
 The MyAdmin API provides an interface to Geotab’s MyAdmin system allowing Geotab Resellers and Partners to build their own applications to integrate with MyAdmin. Some tasks that can be accessed through the API include:
 
-  * Registering MyAdmin users; 
+  * Registering MyAdmin users1; 
 
   * Ordering Geotab products;
 
