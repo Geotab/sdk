@@ -1076,6 +1076,12 @@
 									alert("There was a problem importing users. You have attempted to import a user name which already exists on your database.");
 								} else if (error.indexOf("DuplicateException") > 0) {
 									alert("There was a problem importing users. You have attmepted to import a driver key which already exists on your database.");
+								} else if (error.indexOf("The password cannot contain the username") > 0) {
+									alert("The password cannot contain the username, first name or last name.");
+								} else if (error.indexOf("Password policy requires") > 0) {
+									alert("Password policy requires a minimum length of 8 characters.");
+								} else if (error.indexOf("Common passwords") > 0) {
+									alert("Common passwords are not allowed.");
 								} else {
 									console.error(error);
 									alert("There was a problem importing users. Please check that all fields are entered correctly, the groups and security clearances still exist on your account and that the email addresses or user names are not currently in use.");
