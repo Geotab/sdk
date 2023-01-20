@@ -469,7 +469,7 @@ Depending on the process, for some entities like diagnostics, it may be desirabl
 
 ## PropertySelector BETA
 
-`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
 
 ### Supported Types
 
