@@ -477,8 +477,8 @@ A limited set of objects have support for use with property selector in the beta
 
 | **Property** | **Description** |
 | --- | --- |
-| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
-| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
+| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
+| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
 
 ### Examples
 
