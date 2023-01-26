@@ -469,7 +469,7 @@ Depending on the process, for some entities like diagnostics, it may be desirabl
 
 ## PropertySelector BETA
 
-`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/sdk/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/sdk/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+`PropertySelector` is a new optional parameter that can be used with the [Get]({{site.baseurl}}/software/api/reference/#Get1) and [GetFeed]({{site.baseurl}}/software/api/reference/#GetFeed1) methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
 
 ### Supported Types
 
@@ -477,8 +477,8 @@ A limited set of objects have support for use with property selector in the beta
 
 | **Property** | **Description** |
 | --- | --- |
-| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/sdk/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/sdk/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/sdk/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
-| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/sdk/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
+| Fields | An array of string, consisting of the properties for a given [Entity]({{site.baseurl}}/software/api/reference/#Entity) type for which we want to include/exclude in the entities of the result set. Refer to the [reference]({{site.baseurl}}/software/api/reference/) page for all the properties supported for a given `Entity`. Note that the properties of an inheriting class will also be supported. (For example, [Go9]({{site.baseurl}}/software/api/reference/#Go9) is child of [Device]({{site.baseurl}}/software/api/reference/#Device), so the properties defined for `Go9` can be supplied to `Fields`.) |
+| IsIncluded | A boolean, which if `true`, will include the properties of a given [Entity]({{site.baseurl}}/software/api/reference/#Entity) type defined in `Fields` for the entities of the result set. Otherwise, if this boolean is false, the properties defined in `Fields` will be excluded.
 
 ### Examples
 

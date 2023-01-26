@@ -71,7 +71,7 @@
                     <details open>
                         <summary>API Entities:</summary>
                         <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#DeviceStatusInfo" target="_blank">Device Status Info</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#DeviceStatusInfo" target="_blank">DeviceStatusInfo</a>
                     </details>
                 </div>
             </div>
@@ -153,13 +153,17 @@
                         }
                     }
                 }, function (result) {
-                    var location = new L.LatLng(result[0].latitude, result[0].longitude);
-                    var marker = L.marker(location).bindPopup(
-                        "<strong>" + device.name + "</strong><br />" +
-                        location.lat + ", " + location.lng);
-
-                    layerGroup.clearLayers().addLayer(marker);
-                    map.setView(location, 15);
+                    if (result.length > 0) {
+                        var location = new L.LatLng(result[0].latitude, result[0].longitude);
+                        var marker = L.marker(location).bindPopup(
+                            "<strong>" + device.name + "</strong><br />" +
+                            location.lat + ", " + location.lng);
+                            
+                        layerGroup.clearLayers().addLayer(marker);
+                        map.setView(location, 15);
+                    } else {
+                        alert("Location information not available for the inputted device")
+                    }
                 }, function (error) {
                     alert(error);
                 });
