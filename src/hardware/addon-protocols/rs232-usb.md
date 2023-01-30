@@ -422,7 +422,7 @@ Third-Party Data Acknowledge from GO device
 
 ### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
-MIME-type data can be transferred from an external device to the server via the GO device. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+MIME-type data can be transferred from an external device to the server via the GO device. Readers are encouraged to read the [Geotab MIME Data Exchange Example IOX-RS232](https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing) to better understand the subsequent protocol. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
 3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
