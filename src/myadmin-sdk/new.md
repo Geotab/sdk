@@ -3,8 +3,18 @@ layout: page
 permalink: /myadmin-sdk/new/
 title: What's New
 ---
-New changes to the MyAdmin SDK.
 
+## February 13, 2023
+
+### Coming Soon
+
+#### GetPartnerDeviceContractsAsync
+
+- Currently, the **GetPartnerDeviceContractsAsync** method allows you to return a list of third-party devices under your account.
+- In a future release, we’ll enhance the **GetPartnerDeviceContractsAsync** method to return a list that includes all device types, including GO devices.   
+<br/>
+
+***
 ## January 23rd, 2023
 
 ### Updates
