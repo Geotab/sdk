@@ -44,7 +44,7 @@ Each Add-In created will have one configuration file. The configuration file is 
 | files | Custom pages and/or buttons (Embedded code) | Object |
 | key | Unique MyGeotab Marketplace Add-In key assigned by Geotab. If there's no plan to get your Add-In to the Marketplace, you can leave out the key/value pair from the Configuration File | String |
 | signature | Digital signature of the Add-In | String |
-| version | Which Geotab API version to use | String |
+| version | The version of the add-in | String |
 | enableViewSecurityId | If true, a "View {ADDIN_NAME} add-in" security clearance feature is created that must be enabled for users to be able to view the Add-in. | Boolean | MyGeotab v9.0+ |
 | securityIds | An array of custom security IDs that are added to the list of features available when editing clearances. These definitions can support multiple languages. *e.g. "securityIds": [{"name": "ExampleSecurityIdentifier1", "en": "Example Security Identifier 1"}, {"name": "ExampleSecurityIdentifier2", "en": "Example Security Identifier 2"}]* | Array | MyGeotab v9.0+ |
 
