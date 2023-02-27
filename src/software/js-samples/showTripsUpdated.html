@@ -88,6 +88,7 @@
                         <select id="trip">
                             <option disabled="disabled">Select a trip</option>
                         </select>
+                        <p id="noTripsAvailableInfo"></p>
                     </p>
                     <button class="primary-btn" id="showTrip">Show trip</button>
                 </form>
@@ -178,12 +179,19 @@
                             toDate: endOfDay
                         }
                     }, function (result) {
-                        for (var i = 0; i < result.length; i++) {
-                            var option = new Option();
-                            option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
-                            option.setAttribute("data-start", result[i].start);
-                            option.setAttribute("data-stop", result[i].stop);
-                            select.add(option);
+                        var infoText = document.getElementById("noTripsAvailableInfo")
+                        
+                        if (result.length == 0) {
+                            infoText.innerHTML = "No trips were found for this device within the last 24 hours. Please select another vehicle."
+                        } else {
+                            infoText.innerHTML = ""
+                            for (var i = 0; i < result.length; i++) {
+                                var option = new Option();
+                                option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
+                                option.setAttribute("data-start", result[i].start);
+                                option.setAttribute("data-stop", result[i].stop);
+                                select.add(option);
+                            }
                         }
                     }, function (error) {
                         alert(error);
