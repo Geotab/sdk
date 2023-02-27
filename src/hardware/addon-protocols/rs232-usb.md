@@ -330,6 +330,20 @@ Priority Status Data will follow an expedited processing workflow on the GoDevic
 | ETX (0x03) | 1 | 11 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
 
+### Msg Type 0x88: Extended application specific data from external device
+
+Extended application specific data from external device is sent by the external device to the GO device. Can be used for payloads larger than 1 byte. There must be an associated service running on the GO that is looking for these messages. Currently only used for carshare.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x88 | 1 | 1 |
+| Message Body Length = x (1 to 1024) | 0 | 1 | 2 |
+| extended_binary_data (message_body) = | 0 | 1 | 2 | 3 | ...| i |  (i is depend on the message body length, data content could be from 0 to 0xff)
+| Checksum | 2 | 9 |
+| ETX (0x03) | 1 | 11 |
+| Reply: Binary Data Response ([Msg Type 0x04](#msg-type-0x04-binary-data-response)) |
+
 ### Msg Type 0x89: Ping
 
 After handshaking, this message can be issued periodically by the External Device to check that the GO device is active and ready. The GO device will normally reply with the Third-Party Data Ack (Msg Type 0x02). If this reply is not received, the External Device should reset and begin sending the Handshake Sync (0x55).
