@@ -212,7 +212,7 @@ Sent by the GO device to the external device. Send data as multi-frame data to i
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x24 | 1 | 1 |
-| Message Body Length = x (0 - 120) | 1 | 2 |
+| Message Body Length = x (0 - 119) | 1 | 2 |
 | Extended_binary_data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
@@ -225,8 +225,8 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
-| Message Type = 0x24 | 1 | 1 |
-| Message Body Length = x (0 - 255) | 1 | 2 |
+| Message Type = 0x25 | 1 | 1 |
+| Message Body Length = x (256 - 1023) | 1 | 2 |
 | Extended_binary_data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
