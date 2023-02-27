@@ -204,6 +204,34 @@ Issued by the GO device on receipt of Binary Data from the server destined for t
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
+### Msg Type 0x24: Extended application specific data to external device
+
+Sent by the GO device to the external device. Send data as multi-frame data to iox. Once iox recieved the data, it will foward data to external device. Currently only used for carshare.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x24 | 1 | 1 |
+| Message Body Length = x (0 - 120) | 1 | 2 |
+| Extended_binary_data | x | 3 |
+| Checksum | 2 | 3+x |
+| ETX (0x03) | 1 | 5+x |
+
+
+### Msg Type 0x25: Extended binary data packet
+
+Issued by the GO device on receipt of Binary Data of 256 bytes or more from the server destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from the server.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x24 | 1 | 1 |
+| Message Body Length = x (0 - 255) | 1 | 2 |
+| Extended_binary_data | x | 3 |
+| Checksum | 2 | 3+x |
+| ETX (0x03) | 1 | 5+x |
+
+
 ## Messages from External Device
 
 ### Handshake Sync (Auto-BAUD detect for RS232)
@@ -338,7 +366,7 @@ Extended application specific data from external device is sent by the external 
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x88 | 1 | 1 |
-| Message Body Length = x (1 to 1024) | 0 | 1 | 2 |
+| Message Body Length = x (1 to 1024) | 1 | 2 |
 | extended_binary_data (message_body) = | 0 | 1 | 2 | 3 | ...| i |  (i is depend on the message body length, data content could be from 0 to 0xff)
 | Checksum | 2 | 9 |
 | ETX (0x03) | 1 | 11 |
