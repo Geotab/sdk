@@ -367,10 +367,10 @@ Extended application specific data from external device is sent by the external 
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x88 | 1 | 1 |
 | Message Body Length = x (1 to 1024) | 1 | 2 |
-| extended_binary_data (message_body) = | 0 | 1 | 2 | 3 | ...| i |  (i is depend on the message body length, data content could be from 0 to 0xff)
-| Checksum | 2 | 9 |
-| ETX (0x03) | 1 | 11 |
-| Reply: Binary Data Response ([Msg Type 0x04](#msg-type-0x04-binary-data-response)) |
+| extended_binary_data (message_body) = | 0 | 1 | 2 | 3 | ...| x-1 |  (data content could be from 0 to 0xff)
+| Checksum | 2 | 3+x |
+| ETX (0x03) | 1 | 5+x |
+| Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |
 
 ### Msg Type 0x89: Ping
 
