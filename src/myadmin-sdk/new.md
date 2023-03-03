@@ -6,7 +6,7 @@ title: What's New
 
 ## February 13, 2023
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### GetPartnerDeviceContractsAsync
 
@@ -17,7 +17,7 @@ title: What's New
 ***
 ## January 23rd, 2023
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### EditUserContact
 
@@ -28,7 +28,7 @@ title: What's New
 ***
 ## December 12th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### DeviceContractsByPage
 
@@ -39,7 +39,7 @@ title: What's New
 - A new `OrderSource` parameter has been added to the GetOnlineOrderStatus method.
 - The `OrderSource` parameter allows you to view a list of orders based on the channel used to place the order: MyAdmin, Marketplace, or API.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### EditUserContact
 
@@ -49,7 +49,7 @@ title: What's New
 ***
 ## December 5th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### DeviceContractTransactions
 
@@ -63,7 +63,7 @@ title: What's New
 - The **ForceChangePasswordForUsersAsync** method now allows you to toggle on 'Force Password Change' for user accounts so that you can decide how often users are resetting their passwords
 - The **ForceChangePasswordForUsersAysync** requires the `apikey`, `sessionID`, and a list of usernames `userNames`, and you must toggle `forceChangePassword` to True or False.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### EditUserContact
 
@@ -73,7 +73,7 @@ title: What's New
 ***
 ## November 14th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### ApiOnlineOrder
 
@@ -92,15 +92,9 @@ title: What's New
 <br/>
 
 ***
-## October 24th, 2022
-
-### No SDK Updates  
-<br/>
-
-***
 ## September 19th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### ApiDeviceContract
 
@@ -116,7 +110,7 @@ title: What's New
 - A new parameter, `poExactMatch`, has been added to **GetOnlineOrderStatus** to allow youto search for orders that match a specific PO number.
 - To search for orders that match an exact PO number, use double quotation marks.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### End of Life — MyAdmin APIs for Third-party Device Data Ingestion
 
@@ -128,14 +122,14 @@ title: What's New
 ***
 ## September 12th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### GetDeviceContracts
 
 - **GetDeviceContracts** has been updated for Partners that closely integrate their billing with MyAdmin
 - The API now identifies the Rate Plan of a specific device in real time, as opposed to only the deivce mode
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Moving the MyAdmin SDK Site
 
@@ -151,7 +145,7 @@ title: What's New
 ***
 ## August 17th, 2022
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Moving the MyAdmin SDK Site
 
@@ -167,7 +161,7 @@ title: What's New
 ***
 ## July 11th, 2022
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Moving the MyAdmin SDK Site
 
@@ -183,7 +177,7 @@ title: What's New
 ***
 ## June 20th, 2022
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Orders
 
@@ -194,7 +188,7 @@ title: What's New
 ***
 ## June 6th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### ApiOrderHeader 
 
@@ -205,7 +199,7 @@ title: What's New
 - We’ve added two new parameters — `ordersAddedFrom` and `ordersAddedTo` — to the **GetDeviceContracts** method, so you can retrieve a list of OEM Purchase Order (PO) numbers added during the specific date range. 
 - When using these parameters, the other two parameters — `fromDate` and `toDate` — are not required. 
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Monthly Billing
 
@@ -222,13 +216,13 @@ title: What's New
 ***
 ## May 16th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### OnlineOrderStatus
 
 - The **GetOnlineOrderStatus** API has been updated to include a new parameter, `includeCancelledOrders`, which allows you to include cancelled orders in the search results.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### ApiOrderHeader 
 
@@ -249,7 +243,7 @@ title: What's New
 ***
 ## April 11th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### PartnerDeviceContractsAsync
 
@@ -269,7 +263,7 @@ title: What's New
 ***
 ## March 25th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### Updated character limit for Reseller Reference
 
@@ -283,13 +277,13 @@ title: What's New
 ***
 ## February 28th, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### DeviceContracts
 
 - The **GetDeviceContracts** method search functionality has been updated to support searching for OEM devices based on full or partial Purchase Order (PO) numbers.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Disable GET Requests used for Authentication
 
@@ -300,7 +294,7 @@ title: What's New
 ***
 ## January 31st, 2022
 
-### Updates
+<h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### Generate Serial Numbaers in Bulk
 
@@ -311,7 +305,7 @@ title: What's New
 
 - The NuGet package now includes common elements from the MyGeotab SDK. We leverage .NET Core instructions, so in order to use the new package any integrations using the old .NET Framework instructions must be updated.
 
-### Coming Soon
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### Disable GET Requests used for Authentication
 
