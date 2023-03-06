@@ -4,6 +4,14 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## March 6, 2023
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### ApiDeviceContract
+
+- In an upcoming release, we will use the gateway’s activation date as the source for `FirstDeviceActivationDate` when returning an **ApiDeviceContract** object (for example, by calling **GetDeviceContractsByPage**) to align with the Device Admin page
+
 ## February 13, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
