@@ -4,7 +4,7 @@ permalink: /myadmin-sdk/guides/getting-started/
 title: Getting Started
 ---
 
-The MyAdmin API is available for Geotab Resellers and Partners. Geotab provides helper libraries for C# and JavaScript; however, any language or application capable of making HTTP requests can access the full functionality of the MyAdmin API. API users must have the **MyAdminApiUser** role. It is recommended that Resellers and Partners access the API with a new, dedicated account; however, any MyAdmin account may be used. A new account can be registered at <https://myadmin.geotab.com>, after which the Reseller or Partner contacts their Geotab Account Manager to add the MyAdminApiUser role to their account.
+The MyAdmin API is available for Geotab Resellers and Partners. Geotab provides helper libraries for C# and JavaScript; however, any language or application capable of making HTTP requests can access the full functionality of the MyAdmin API. It is recommended that Resellers and Partners access the API with a new, dedicated account; however, any MyAdmin account may be used. A new account can be registered at <https://myadmin.geotab.com>.
 
 <div class="alert alert-primary"><strong>NOTE</strong> The examples and source code presented in the MyAdmin SDK require a modern browser. We recommend using the latest Chrome, Firefox or Edge browser.</div>
 
