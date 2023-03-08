@@ -77,27 +77,30 @@
             </div>
 
             <!-- Components which make up the example are placed here -->
-            <div id="example-content">
-                <form>
-                    <p>
-                        <select id="device">
-                            <option disabled="disabled">Select a device</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select id="trip">
-                            <option disabled="disabled">Select a trip</option>
-                        </select>
+            <div id="example-content" >
+                <div style="display:flex;">
+                    <form style="width: 340px;">
+                        <p>
+                            <select id="device">
+                                <option disabled="disabled">Select a device</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select id="trip">
+                                <option disabled="disabled">Select a trip</option>
+                            </select>
+                        </p >
                         <p id="noTripsAvailableInfo"></p>
-                    </p>
-                    <button class="primary-btn" id="showTrip">Show trip</button>
-                </form>
+                        <button class="primary-btn" id="showTrip">Show trip</button>   
+                    </form>  
+                    <!-- Div which consists of the leaflet map -->
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Div which consists of the leaflet map -->
-            <div class="map-container">
-                <div id="map"></div>
-            </div>    
+             
+            
         </div>
 
         <!-- JavaScript file containing the map functionality -->
