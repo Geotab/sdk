@@ -32,20 +32,20 @@
                 <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
             <nav>
         </header>
-            
+
         <div class="container">
             <!-- Div used to append the sign in components too, created within loginUpdated.js -->
             <div id="signin-content"></div>
 
             <!-- Header used to display the name of the example and more information about the example -->
-            <div class="example-header"> 
+            <div class="example-header">
 
                 <!-- Name of the example-->
                 <div class="title">Embedded URLs Example</div>
 
                 <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
-                <div class="skill-level">Skill level:  
-                    <div class="skill-tooltip">   
+                <div class="skill-level">Skill level:
+                    <div class="skill-tooltip">
                         <img src="images/intermediate-pill.svg">
                         <div class="skill-text">
                             <p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
@@ -63,7 +63,7 @@
                     <details open>
                         <summary>API Methods:</summary>
                         <a href="https://geotab.github.io/sdk/software/api/reference/" target="_blank">N/A</a>
-                    </details>      
+                    </details>
                     <details open>
                         <summary>API Entities:</summary>
                         <a href="https://geotab.github.io/sdk/software/api/reference/" target="_blank">N/A</a>
@@ -164,7 +164,7 @@
             }
 
             function getLiveMapUrl() {
-                return "https://" + normalizeServerName(geotabSession.server) + "/geotab/checkmate/ui/map.html#credentials:(" +
+                return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/geotab/checkmate/ui/map.html#credentials:(" +
                     "database:" + escapeRison(geotabSession.credentials.database) + ",rememberMe:!t,sessionId:'" +
                     geotabSession.credentials.sessionId + "',userName:'" +
                         escapeRison(geotabSession.credentials.userName) + "')";
