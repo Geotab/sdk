@@ -5,6 +5,73 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
 
+## 10.0
+
+### MyGeotab Add-in Updates
+
+#### Drive Add-In
+Added the following Drive App Add-Ins:
+- onStartup – Add-in is executed when a driver logs in to the Drive App for the first time.
+- onShutdown – Must be set to true to execute an Add-in when logging out of the Drive App.
+
+These Add-ins execute code in the background when the application starts. Otherwise, the Add-in code only executes when it is clicked.
+
+### SDK Updates
+#### API Runner (SDK)
+The following improvements are added:
+- Added loading spinner to indicate to users that the login request is being processed.
+- Added a keypress handler for the login form that allows the cursor to move to the next field, and added functionality for an enter key press event to submit the form when inputting information in the last field.
+- Fixed an error message occurring in the main .js:scrollSidebar.
+- Fixed an issue that caused multiple click handlers to be added to the login button.
+
+#### SecurityIdentifier
+- Added the ImpersonateGpsTextMessage security identifier. When enabled, the security identifier does not validate the identity of the sender.
+- Added the ResetPassword security identifier that allows a user to reset another user's passwords.
+
+#### mg-api-js
+We’ve corrected the following errors:
+- Fixed UnhandledRejection exceptions.
+- Improved exception messages to include the type from the JSON-RPC error.
+- Fixed InvalidUserException retry authentication.
+- Updated CallBackError to be invoked as the last operation in the promise field.
+
+#### GetFeed\<FuelTaxDetail\>
+- Fixed issues with results sorting that led to missing results.
+
+#### Nuget
+- Enabled brotli compression in Nuget package API.cs requests.
+- Many ObjectModel classes are marked as “sealed”. Marking a class as “sealed” prevents tampering of important classes that can compromise security or impact performance.
+
+> **!IMPORTANT:** Updating your application to version 10.0 may not work if an ObjectModel class is inherited.
+
+#### TextMessage
+- Added PropertySelector (Beta) support for the TextMessage type.
+
+#### IoxAddOn
+- Added PropertySelector (Beta) support for the IoxAddOn type.
+
+#### IoxAddOnStatus
+- Added PropertySelector (Beta) support for the IoxAddOnStatus type.
+
+#### DriverChange
+- Updated the description of DriverChange DateTime to notify users that the DateTime must not be in the future when adding a DriverChange through API.
+
+#### DriverWhiteListContent
+- DriverWhiteListContent is replaced by **DriverAuthListContent**
+- Prior to the 10.0 release, DriverWhiteListContent and DriverAuthListContent were both available to  allow users to adjust to the transition.
+
+#### Condition and ConditionType
+- Added the Group exception rule condition. This separates conditions in a single rule when different groups require different conditions.
+
+#### Geotab Developers
+- Added a section to the [Developing Add-ins](https://geotab.github.io/sdk/software/guides/developing-addins/) page suggesting to use the generator-addin repository.
+
+#### SDK samples
+- Added JavaScript samples to refresh the user interface.
+
+#### SDK Add-In samples
+- Added Add-In samples for the AddInData API to the [Geotab/sdk-addin-samples](https://github.com/Geotab/sdk-addin-samples) Github repository.
+
 ## 9.0
 
 ### Custom security identifiers for Add-ins
