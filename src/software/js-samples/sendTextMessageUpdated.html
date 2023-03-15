@@ -9,7 +9,7 @@
         <!-- Materialize icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- CSS used for the map -->
-        <link href="js/mapbox/mapbox.css" rel="stylesheet" type="text/css" />
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css"  rel="stylesheet"/>
     </head>
 
     <body>
@@ -89,8 +89,8 @@
                         <input class="tab" id="tabCannedResponse" type="radio" name="rg1">
                         <label for="tabCannedResponse">Canned Response Message</label>
 
-                        <input class="tab" id="tabLocation" type="radio" name="rg1" style="display: none">
-                        <label for="tabLocation" style="display: none">Location Message</label>
+                        <input class="tab" id="tabLocation" type="radio" name="rg1">
+                        <label for="tabLocation">Location Message</label>
                     </p>
                     <p>
                         <select id="device">
@@ -129,7 +129,7 @@
         </div>
 
         <!-- JavaScript file containing the map functionality-->
-        <script src="js/mapbox/mapbox.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
 
         <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
@@ -304,7 +304,14 @@
                 if (tab === "tabLocation") {
                     if (!map) {
                         // Initialize MapBox engine (http://www.mapbox.com)
-                        map = L.mapbox.map("map", "examples.map-vyofok3q");
+                        // map = L.mapbox.map("map", "examples.map-vyofok3q");
+                        mapboxgl.accessToken = 'pk.eyJ1IjoieWFuZ2QiLCJhIjoiY2xmOTZuNTlqMG1ldDNybzFpdjFyZ2FnYSJ9.tGbn8bTg0eBCTyF3Q5M8Ew'
+                        map = new mapboxgl.Map({
+                            container: 'map', // container ID
+                            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                            center: [-74.5, 40], // starting position [lng, lat]
+                            zoom: 9, // starting zoom
+                        });
                         featureGroup = L.featureGroup().addTo(map);
 
                         map.on("click", onMapClicked);
