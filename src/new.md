@@ -7,15 +7,6 @@ title: What's New
 
 ## 10.0
 
-### MyGeotab Add-in Updates
-
-#### Drive Add-In
-Added the following Drive App Add-Ins:
-- onStartup – Add-in is executed when a driver logs in to the Drive App for the first time.
-- onShutdown – Must be set to true to execute an Add-in when logging out of the Drive App.
-
-These Add-ins execute code in the background when the application starts. Otherwise, the Add-in code only executes when it is clicked.
-
 ### SDK Updates
 #### API Runner (SDK)
 The following improvements are added:
