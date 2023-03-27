@@ -58,7 +58,7 @@
             }
 
             function getLiveMapUrl() {
-                return "https://" + normalizeServerName(geotabSession.server) + "/geotab/checkmate/ui/map.html#credentials:(" +
+                return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/geotab/checkmate/ui/map.html#credentials:(" +
                     "database:" + escapeRison(geotabSession.credentials.database) + ",rememberMe:!t,sessionId:'" +
                     geotabSession.credentials.sessionId + "',userName:'" +
                         escapeRison(geotabSession.credentials.userName) + "')";
