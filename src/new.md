@@ -43,8 +43,7 @@ title: What's New
    - Group
 
 ### Add-in Configuration Updates via SystemSettings
-> **Warning**
-> Add-in updates via the customerPages are **no longer supported**.
+> :exclamation::exclamation::exclamation: Add-in updates via the customerPages are **no longer supported**.
 
 ### Nuget Package
 - A fix has been issued for the nuget package where the name property for stock groups was not returned.
