@@ -5,6 +5,49 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
 
+## 11.0
+### Get and GetFeed for FuelUsed and FillUp
+- Get and GetFeed for [FuelUsed](https://geotab.github.io/sdk/software/api/reference/#FuelUsed) is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip’s ending date and time.
+- Get and GetFeed for [FillUp](https://geotab.github.io/sdk/software/api/reference/#FillUp) is now available. The query will return fill-ups detected by MyGeotab or matching fuel transaction records, if available. Each fill-up will also be matched to a MyGeotab trip — corresponding to the trip’s ending date and time.
+
+### New Transaction Provider
+- Car IQ is now available as a [fuel card provider](https://geotab.github.io/sdk/software/api/reference/#FuelTransactionProvider).
+
+### Added New MessageContentTypes
+- [ColdChainSetpointSetContent](https://geotab.github.io/sdk/software/api/reference/#ColdChainSetpointSetContent) and [ColdChainFaultClearContent](https://geotab.github.io/sdk/software/api/reference/#ColdChainFaultClearContent) have been added.
+
+### New ConditionType Property
+- [isValueThreshold](https://geotab.github.io/sdk/software/api/reference/#ConditionType) has been added.
+
+### New MediaFileSearch Options
+- MediaFile entries can now be [searched](https://geotab.github.io/sdk/software/api/reference/#MediaFileSearch) by the solutionId property.
+- MediaFile entries can now be searched by using the [TagSearch](https://geotab.github.io/sdk/software/api/reference/#TagSearch) object.
+
+### New TextMessageSearch Options
+- [mimeTypes and channelNumbers](https://geotab.github.io/sdk/software/api/reference/#TextMessageSearch) search options have been added
+
+### New Property for DutyStatusAvailability
+- A new property has been added for the [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object that details the duration of the driving break. Note: This new property is available for USA rulesets only. 
+> **Note**: This new property is available for USA rulesets only.
+
+### Added TachographDataFile Object
+- Added the [TachographDataFile](https://geotab.github.io/sdk/software/api/reference/#TachographDataFile) object that represents a tachograph data file.
+
+### New CaptchaAnswer Properties
+- Added the [greCaptchaToken and greCaptchaAction](https://geotab.github.io/sdk/software/api/reference/#CaptchaAnswer) properties when using google enterprise recaptcha.
+
+### PropertySelector fixes
+- Fixed the property selector not working without the search object for the following entities:
+   - Trip
+   - User
+   - Group
+
+### Add-in Configuration Updates via SystemSettings
+- Add-in updates via the customerPages are **no longer supported**.
+
+### Nuget Package
+- A fix has been issued for the nuget package where the name property for stock groups was not returned.
+
 ## 10.0
 
 ### SDK Updates
