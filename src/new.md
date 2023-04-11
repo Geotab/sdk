@@ -28,6 +28,7 @@ title: What's New
 
 ### New Property for DutyStatusAvailability
 - A new property has been added for the [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object that details the duration of the driving break. Note: This new property is available for USA rulesets only. 
+
 > **Note**: This new property is available for USA rulesets only.
 
 ### Added TachographDataFile Object
@@ -43,7 +44,7 @@ title: What's New
    - Group
 
 ### Add-in Configuration Updates via SystemSettings
-> :warning: Add-in updates via the customerPages are **no longer supported**.
+> ⚠ Add-in updates via the customerPages are **no longer supported**.
 
 ### Nuget Package
 - A fix has been issued for the nuget package where the name property for stock groups was not returned.
