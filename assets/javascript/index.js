@@ -8,60 +8,48 @@ var anchorForId = function anchorForId(id) {
   anchor.title = "Permalink";
   return anchor;
 };
-
 var linkifyAnchors = function linkifyAnchors(level, containingElement) {
   var headers = containingElement.getElementsByTagName("h" + level);
-
   for (var h = 0; h < headers.length; h++) {
     var header = headers[h];
-
     if (typeof header.id !== "undefined" && header.id !== "") {
       header.className += " header";
       header.appendChild(anchorForId(header.id));
     }
   }
 };
-
 var setupSidebarToggle = function setupSidebarToggle() {
   var toggleClass = " active";
   var toggler = document.querySelector("#toggler");
   var wrapper = document.querySelector("#wrapper");
   toggler.addEventListener("click", function (e) {
     e.preventDefault();
-
     if (wrapper.className.indexOf(toggleClass) > -1) {
       wrapper.className = wrapper.className.replace(toggleClass, "");
     } else {
       wrapper.className += toggleClass;
     }
   });
-
   if (window.location.pathname.indexOf("/software/api/runner.html") > -1) {
     toggler.style.display = 'none';
   }
 };
-
 window.addEventListener("DOMContentLoaded", function () {
   var contentBlock = document.querySelector("article");
-
   if (!contentBlock) {
     return;
   }
-
   for (var level = 2; level <= 3; level++) {
     linkifyAnchors(level, contentBlock);
   }
-
   setupSidebarToggle();
   scrollSidebar();
 });
-
 (function (document, history, location) {
   var HISTORY_SUPPORT = !!(history && history.pushState);
   var anchorScrolls = {
     ANCHOR_REGEX: /^#[^ ]+$/,
     OFFSET_HEIGHT_PX: 60,
-
     /**
      * Establish events, and fix initial scroll position if a hash is provided.
      */
@@ -70,7 +58,6 @@ window.addEventListener("DOMContentLoaded", function () {
       window.addEventListener("hashchange", this.scrollToCurrent.bind(this));
       document.body.addEventListener("click", this.delegateAnchors.bind(this));
     },
-
     /**
      * Return the offset amount to deduct from the normal scroll position.
      * Modify as appropriate to allow for dynamic calculations
@@ -78,7 +65,6 @@ window.addEventListener("DOMContentLoaded", function () {
     getFixedOffset: function getFixedOffset() {
       return this.OFFSET_HEIGHT_PX;
     },
-
     /**
      * If the provided href is an anchor which resolves to an element on the
      * page, scroll to it.
@@ -87,39 +73,33 @@ window.addEventListener("DOMContentLoaded", function () {
      */
     scrollIfAnchor: function scrollIfAnchor(href, pushToHistory) {
       var match, rect, anchorOffset;
-
       if (!this.ANCHOR_REGEX.test(href)) {
         return false;
       }
-
       match = document.getElementById(href.slice(1));
-
       if (match) {
         rect = match.getBoundingClientRect();
         anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
-        window.scrollTo(window.pageXOffset, anchorOffset); // Add the state to history as-per normal anchor links
+        window.scrollTo(window.pageXOffset, anchorOffset);
 
+        // Add the state to history as-per normal anchor links
         if (HISTORY_SUPPORT && pushToHistory) {
           history.pushState({}, document.title, location.pathname + href);
         }
       }
-
       return !!match;
     },
-
     /**
      * Attempt to scroll to the current location's hash.
      */
     scrollToCurrent: function scrollToCurrent() {
       this.scrollIfAnchor(window.location.hash);
     },
-
     /**
      * If the click event's target was an anchor, fix the scroll position.
      */
     delegateAnchors: function delegateAnchors(e) {
       var elem = e.target;
-
       if (elem.nodeName === "A" && this.scrollIfAnchor(elem.getAttribute("href"), true)) {
         e.preventDefault();
       }
@@ -127,17 +107,16 @@ window.addEventListener("DOMContentLoaded", function () {
   };
   window.addEventListener("DOMContentLoaded", anchorScrolls.init.bind(anchorScrolls));
 })(window.document, window.history, window.location);
-
 function scrollSidebar() {
   /**
    * Scroll the sidebar link to top, depending which one was clicked
    */
   var pathName = window.location.pathname;
   var links = document.querySelectorAll("a[href=\"".concat(pathName, "\"]"));
-
   if ((links === null || links === void 0 ? void 0 : links.length) > 0) {
     links[0].scrollIntoView();
   }
+
   /**
    * Alternatively, scroll the sidebar to positions, depending on the path of
    * the active page
@@ -154,6 +133,5 @@ function scrollSidebar() {
   //     } else if (pathName.includes("/myadmin-sdk/")) {
   //         document.getElementById("sidebar-wrapper").scrollTop = myadminPosition;
   //     } else {}
-
 }
 //# sourceMappingURL=index.js.map
