@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -39,7 +39,7 @@
                         on its own line as follows:
                     </p>
                     <div class="code">
-                        <pre>SerialNumber,Name1,GroupName<br />SerialNumber,Name2,GroupName<br />SerialNumber,Name3,GroupName</pre>
+                        <pre>SerialNumber,Name1,GroupName,VIN<br />SerialNumber,Name2,GroupName,VIN<br />SerialNumber,Name3,GroupName,VIN</pre>
                     </div>
                     <p>
                         <input id="createGroups" type="checkbox" checked="checked" /> <label for="createGroups">Automatically create new groups if needed</label>
@@ -109,8 +109,8 @@
                             // Split up the device properties
                             var split = devices[i].split(",");
 
-                            // Each imported device can only have 3 properties
-                            if (split.length !== 3) {
+                            // Each imported device can only have 4 properties
+                            if (split.length !== 4) {
                                 alert("There is an error on line " + (i + 1) + ": " + devices[i]);
                                 return;
                             }
@@ -124,7 +124,10 @@
                                 alert("Group name on line " + (i + 1) + " exceeds 255 characters");
                                 return;
                             }
-
+                            if (split[3].length > 255) {
+                                alert("Group name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
                             // If create groups is enabled, queue up the new groups to be created
 							if (!groupCache.hasOwnProperty(split[2])) {
 								if (createGroups) {
@@ -176,7 +179,7 @@
 
             });
 
-            function addDevice(serialNumber, name, groupId) {
+            function addDevice(serialNumber, name, groupId, vin) {
                 api.call("Add", {
                     typeName: "Device",
                     entity: {
@@ -184,8 +187,9 @@
                         name: name,
                         groups: [{
                             id: groupId
-                        }]
-                    }
+                        }],
+                        vin: vin
+                                            }
                 }, function (result) {
                     console.log("Successfully imported " + name + " (" + result + ")");
                 }, function (error) {
