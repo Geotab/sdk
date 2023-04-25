@@ -8,6 +8,9 @@ title: IO Expander Protocol
 
 The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device. Readers are recommended to find examples from [CAN IOX Sample Communication Session](https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing) as they read through the rest of this page.
 
+### Identification
+This document describes the <span style="color:red">IOX Expander Protocol version 1.0</span>.
+
 ### Interoperability
 
 Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
@@ -284,6 +287,13 @@ Note: A message of this type is to be added before the start of a [0x0C](#rx-dat
 | 0-1 | 0x0004 |
 | 2 | Unused |
 
+#### Information Type 12 - Request Identificaiton of Go device, versions
+
+| Parameter Type | Description |
+| --- | --- |
+| 0-1 | 0x000C |
+| 2 | Request info:  <br> 0 = GO serial number  <br> 1 = GO firmware version  <br> 2 = IOX protocol version |
+
 ### GO Status Information (0x26)
 
 Sent from the GO to the IOX to pass information the IOX may need.
@@ -332,3 +342,28 @@ Sent from the GO to the IOX when the GO wants to transfer data that can not fit 
 | 1 | Reserved |
 | 2 | GO device status packet |
 | 3 | VIN |
+| 12 | GO info |
+
+#### Type 12 Go info
+
+##### payload id = 0
+| Byte | Byte Description |
+| --- | --- |
+| 0  | =0 for payload is GO serial number. |
+| 1-12 | GO serial number |
+| 13 | 0 |
+
+##### payload id = 1
+| Byte | Byte Description |
+| --- | --- |
+| 0  | =1 for payload is GO firmware version number. |
+| 1-2 | GO firmware version: Product |
+| 3-4 | GO firmware version: Major |
+| 5-6 | GO firmware version: Minor |
+
+##### payload id = 2
+| Byte | Byte Description |
+| --- | --- |
+| 0  | =2 for payload is IOX protocol version number. |
+| 1-2 | GO firmware version: Major |
+| 3-4 | GO firmware version: Minor |
