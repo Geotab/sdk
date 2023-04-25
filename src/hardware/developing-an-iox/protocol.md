@@ -11,6 +11,8 @@ The GO device and the Input-Output Expander (IOX) are connected in a dedicated C
 ### Identification
 This document describes the <span style="color:red">IOX Expander Protocol version 1.1</span>.
 
+All messages are supported since IOX Expander Protocol version 1.0 unless stated otherwise.
+
 ### Interoperability
 
 Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
@@ -288,6 +290,7 @@ Note: A message of this type is to be added before the start of a [0x0C](#rx-dat
 | 2 | Unused |
 
 #### Information Type 12 - Request Identificaiton of Go device, versions
+This message type was introduced in IOX Protocol version 1.1.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -345,7 +348,7 @@ Sent from the GO to the IOX when the GO wants to transfer data that can not fit 
 | 12 | GO info |
 
 #### Type 12 Go info
-
+This message type was introduced in IOX Expander Protocol version 1.1.
 ##### payload id = 0
 | Byte | Byte Description |
 | --- | --- |
