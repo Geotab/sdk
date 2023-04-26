@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Geotab SDK | Send Text Message Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <style>
+        #map {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <p id="selectedLocation"></p>
+    <script type="text/javascript">
+
+        let map;
+        let marker;
+        
+        map = L.map('map', {
+            center: [40, -74.5],
+            zoom: 9
+        });
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        function onMapClick(e) {
+            if(marker)
+                marker.remove();
+            
+            marker = L.marker([e.latlng.lat, e.latlng.lng], {
+                    draggable: true
+                })
+                .bindPopup(`Location: ${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`)
+                .addTo(map)
+            let location = marker.getLatLng();
+            marker.on("moveend", () => {    
+                marker.bindPopup(`Location: ${location.lat.toFixed(5)}, ${location.lng.toFixed(5)}`)
+            });
+
+            document.getElementById("selectedLocation").innerText = `Lat = ${location.lat.toFixed(5)}, Long = ${location.lng.toFixed(5)}`
+        }
+
+        map.on('click', onMapClick);
+    </script>
+
+</body>
+
+</html>
