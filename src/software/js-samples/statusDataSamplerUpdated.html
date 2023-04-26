@@ -1,327 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Geotab SDK | Status Data Example</title>
-        <link rel="icon" href="../../favicon.ico">
-        <!-- Updated CSS file to reflect the UI refresh -->
-        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
-        <!-- Materialize icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    </head>
 
-    <body>
-        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
-        <header>
-            <nav>
-                <!-- MyGeotab SDK Logo -->
-                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
-                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
-                    <h1>MyGeotab SDK</h1>
-                </a>
+<head>
+    <meta charset="utf-8" />
+    <title>Geotab SDK | Status Data Example</title>
+    <link rel="icon" href="../../favicon.ico">
+    <!-- Updated CSS file to reflect the UI refresh -->
+    <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+    <!-- Materialize icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
-                <div class="sample-tooltip">
-                    <h1>DEVELOPER SAMPLE</h1>
-                    <div class="sample-tooltip-text">
-                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-                    </div>
-                </div>
+<body>
+    <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
+    <header>
+        <nav>
+            <!-- MyGeotab SDK Logo -->
+            <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                <h1>MyGeotab SDK</h1>
+            </a>
 
-                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
-                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
-            <nav>
-        </header>
-            
-        <div class="container">
-            <!-- Div used to append the sign in components too, created within loginUpdated.js -->
-            <div id="signin-content"></div>
-
-            <!-- Header used to display the name of the example and more information about the example -->
-            <div class="example-header"> 
-
-                <!-- Name of the example-->
-                <div class="title">Status Data Example</div>
-
-                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
-                <div class="skill-level">Skill level:  
-                    <div class="skill-tooltip">   
-                        <img src="images/intermediate-pill.svg">
-                        <div class="skill-text">
-                            <p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Description section of the example -->
-                <div class="description">
-                    This example demonstrates how to retrieve a vehicle's engine status data.
-                    Use the provided form to select a vehicle and then filter the type of engine status data you would like to retrieve. You can narrow your search even more by selecting a specific date range.
-                </div>
-
-                <!-- Methods/objects used section containing the links to the specific SDK references used -->
-                <div class="api-references">In this example
-                    <details open>
-                        <summary>API Methods:</summary>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
-                    </details>      
-                    <details open>
-                        <summary>API Entities:</summary>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#Diagnostic" target="_blank">Diagnostic</a>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#StatusData" target="_blank">StatusData</a>
-                    </details>
+            <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+            <div class="sample-tooltip">
+                <h1>DEVELOPER SAMPLE</h1>
+                <div class="sample-tooltip-text">
+                    <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the
+                        risks and costs associated with the use of the sample tool, including, without limitation, any
+                        damage to any equipment, software, information or data. In addition, we are not obligated to
+                        provide any maintenance, technical or other support for the sample tool. In order to improve our
+                        products, we may at any time, and without warning, change the design, presentation, or
+                        functionality of the software.</p>
                 </div>
             </div>
 
-            <!-- Components which make up the example are placed here -->
-            <div id="example-content">
-                <form>
-                    <p>
-                        Select a vehicle from the dropdown below and choose <br>
-                        the dates you want the readings for:
-                    </p>
-                    <p>
-                        <select id="device">
-                            <option disabled="disabled">Select a vehicle</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label for="engineType">Filter By:</label>
-                        <select id="engineType">
-                            <option>Any engine type</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select id="diagnosticCode">
-                            <option>Any diagnostic code</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select id="diagnosticSource">
-                            <option>Any diagnostic source</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label for="startDate">Start Date:</label>
-                        <input type="date" id="startDate" />
-                    </p>
-                    <p>
-                        <label for="endDate">End Date:</label>
-                        <input type="date" id="endDate" />
-                    </p>
-                    <button class="primary-btn" id="show">Show status data</button>
-                </form>
+            <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+            <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+            <nav>
+    </header>
+
+    <div class="container">
+        <!-- Div used to append the sign in components too, created within loginUpdated.js -->
+        <div id="signin-content"></div>
+
+        <!-- Header used to display the name of the example and more information about the example -->
+        <div class="example-header">
+
+            <!-- Name of the example-->
+            <div class="title">Status Data Example</div>
+
+            <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+            <div class="skill-level">Skill level:
+                <div class="skill-tooltip">
+                    <img src="images/intermediate-pill.svg">
+                    <div class="skill-text">
+                        <p>This example demonstrates a tool that can be built with an intermediate-level knowledge of
+                            the MyGeotab system. It is suitable for those who have a good understanding of the Geotab
+                            ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within
+                            their projects.</p>
+                    </div>
+                </div>
             </div>
 
-            <div id="table-container" class="feed-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Diagnostic</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body"></tbody>
-                </table>
+            <!-- Description section of the example -->
+            <div class="description">
+                This example demonstrates how to retrieve a vehicle's engine status data.
+                Use the provided form to select a vehicle and then filter the type of engine status data you would like
+                to retrieve. You can narrow your search even more by selecting a specific date range.
+            </div>
+
+            <!-- Methods/objects used section containing the links to the specific SDK references used -->
+            <div class="api-references">In this example
+                <details open>
+                    <summary>API Methods:</summary>
+                    <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
+                </details>
+                <details open>
+                    <summary>API Entities:</summary>
+                    <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
+                    <a href="https://geotab.github.io/sdk/software/api/reference/#Diagnostic"
+                        target="_blank">Diagnostic</a>
+                    <a href="https://geotab.github.io/sdk/software/api/reference/#StatusData"
+                        target="_blank">StatusData</a>
+                </details>
             </div>
         </div>
 
-        <!-- JavaScript file containing the api functionality -->
-        <script src="js/api.js"></script>
+        <!-- Components which make up the example are placed here -->
+        <div id="example-content">
+            <form>
+                <p>
+                    Select a vehicle from the dropdown below and choose <br>
+                    the dates you want the readings for:
+                </p>
+                <p>
+                    <select id="device">
+                        <option disabled="disabled">Select a vehicle</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="engineType">Filter By:</label>
+                    <select id="engineType">
+                        <option>Any engine type</option>
+                    </select>
+                </p>
+                <p>
+                    <select id="diagnosticCode">
+                        <option>Any diagnostic code</option>
+                    </select>
+                </p>
+                <p>
+                    <select id="diagnosticSource">
+                        <option>Any diagnostic source</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" />
+                </p>
+                <p>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" />
+                </p>
+                <button class="primary-btn" id="show">Show status data</button>
+            </form>
+        </div>
 
-        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
-        <script src="js/loginUpdated.js"></script>
+        <div id="table-container" class="feed-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Diagnostic</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+            <div id="noFilter" style="display: none">No data available</div>
+        </div>
+    </div>
 
-        <!-- The JavaScript used for the example is present in the same HTML file here -->
-        <script type="text/javascript">
-            var table;
-            var device;
-            var engineType;
-            var diagnosticCode;
-            var diagnosticSource;
-            var startDate;
-            var endDate;
+    <!-- JavaScript file containing the api functionality -->
+    <script src="js/api.js"></script>
 
-            document.addEventListener("DOMContentLoaded", function() {
+    <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
+    <script src="js/loginUpdated.js"></script>
 
-                table = document.getElementById("table-body");
-                device = document.getElementById("device");
-                engineType = document.getElementById("engineType");
-                diagnosticCode = document.getElementById("diagnosticCode");
-                diagnosticSource = document.getElementById("diagnosticSource");
-                startDate = document.getElementById("startDate");
-                endDate = document.getElementById("endDate");
+    <!-- The JavaScript used for the example is present in the same HTML file here -->
+    <script type="text/javascript">
+        var table;
+        var device;
+        var engineType;
+        var diagnosticCode;
+        var diagnosticSource;
+        var startDate;
+        var endDate;
 
-                document.getElementById("show").addEventListener("click", function(event) {
-                    event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
 
-                    var deviceId = device[device.selectedIndex].getAttribute("data-id");
-                    var engineTypeId = engineType[engineType.selectedIndex].getAttribute("data-id");
-                    var diagnosticCodeId = diagnosticCode[diagnosticCode.selectedIndex].getAttribute("data-id");
-                    var diagnosticSourceId = diagnosticSource[diagnosticSource.selectedIndex].getAttribute("data-id");
-                    var dateRange = {
-                        start: startDate.value,
-                        end: endDate.value
-                    };
+            table = document.getElementById("table-body");
+            device = document.getElementById("device");
+            engineType = document.getElementById("engineType");
+            diagnosticCode = document.getElementById("diagnosticCode");
+            diagnosticSource = document.getElementById("diagnosticSource");
+            startDate = document.getElementById("startDate");
+            endDate = document.getElementById("endDate");
 
-                    if (deviceId === null) {
-                        alert("Please select a vehicle first");
-                        return;
-                    }
-                    if ((dateRange.start === "") || (dateRange.end === "")) {
-                        alert("Please enter a valid start and end date");
-                        return;
-                    }
+            document.getElementById("show").addEventListener("click", function (event) {
+                event.preventDefault();
 
-                    table.innerHTML = "";
-                    document.getElementById("table-container").setAttribute("style", "display:block;");
-                    showStatusData(getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange));
-                });
-                populateInterface();
-            });
-
-            function showStatusData(searchObject) {
-                api.call("Get", searchObject, function(result) {
-                    if (result !== undefined && result.length > 0) {
-                        for (var i = 0; i < result.length; i++) {
-                            table.appendChild(createRow(result[i]));
-                        }
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
-            }
-
-            function getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange) {
-                var searchObject = {};
-
-                searchObject["typeName"] = "StatusData";
-                searchObject["search"] = {};
-                searchObject["search"]["deviceSearch"] = {
-                    "id": deviceId
+                var deviceId = device[device.selectedIndex].getAttribute("data-id");
+                var engineTypeId = engineType[engineType.selectedIndex].getAttribute("data-id");
+                var diagnosticCodeId = diagnosticCode[diagnosticCode.selectedIndex].getAttribute("data-id");
+                var diagnosticSourceId = diagnosticSource[diagnosticSource.selectedIndex].getAttribute("data-id");
+                var dateRange = {
+                    start: startDate.value,
+                    end: endDate.value
                 };
-                searchObject["search"]["fromDate"] = dateRange.start;
-                searchObject["search"]["toDate"] = dateRange.end;
 
-                if (engineTypeId !== null) {
-                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
-                        searchObject["search"]["diagnosticSearch"] = {};
-                    }
-                    searchObject["search"]["diagnosticSearch"]["engineTypeSearch"] = {
-                        id: engineTypeId
-                    }
+                if (deviceId === null) {
+                    alert("Please select a vehicle first");
+                    return;
+                }
+                if ((dateRange.start === "") || (dateRange.end === "")) {
+                    alert("Please enter a valid start and end date");
+                    return;
                 }
 
-                if (diagnosticCodeId !== null) {
-                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
-                        searchObject["search"]["diagnosticSearch"] = {};
+                table.innerHTML = "";
+                document.getElementById("table-container").setAttribute("style", "display:block;");
+                showStatusData(getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange));
+            });
+            populateInterface();
+        });
+
+        function showStatusData(searchObject) {
+            api.call("Get", searchObject, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    document.getElementById("noFilter").style.display = "none";
+                    for (var i = 0; i < result.length; i++) {
+                        table.appendChild(createRow(result[i]));
                     }
-                    searchObject["search"]["diagnosticSearch"]["code"] = parseInt(diagnosticCodeId);
+                } else {
+                    document.getElementById("noFilter").style.display = "inline-block";
                 }
+            }, function (error) {
+                console.log(error);
+            });
+        }
 
-                if (diagnosticSourceId !== null) {
-                    if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
-                        searchObject["search"]["diagnosticSearch"] = {};
-                    }
-                    searchObject["search"]["diagnosticSearch"]["sourceSearch"] = {
-                        id: diagnosticSourceId
-                    }
+        function getSearchObject(deviceId, engineTypeId, diagnosticCodeId, diagnosticSourceId, dateRange) {
+            var searchObject = {};
+
+            searchObject["typeName"] = "StatusData";
+            searchObject["search"] = {};
+            searchObject["search"]["deviceSearch"] = {
+                "id": deviceId
+            };
+            searchObject["search"]["fromDate"] = dateRange.start;
+            searchObject["search"]["toDate"] = dateRange.end;
+
+            if (engineTypeId !== null) {
+                if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                    searchObject["search"]["diagnosticSearch"] = {};
                 }
-
-                return searchObject;
+                searchObject["search"]["diagnosticSearch"]["engineTypeSearch"] = {
+                    id: engineTypeId
+                }
             }
 
-            function createRow(statusDataItem) {
-                var row = document.createElement("tr");
-                row.appendChild(createCell(statusDataItem.dateTime));
-                row.appendChild(createCell(statusDataItem.diagnostic.id.replace("Diagnostic", "").replace("Id", "")));
-                row.appendChild(createCell(statusDataItem.data));
-                return row;
+            if (diagnosticCodeId !== null) {
+                if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                    searchObject["search"]["diagnosticSearch"] = {};
+                }
+                searchObject["search"]["diagnosticSearch"]["code"] = parseInt(diagnosticCodeId);
             }
 
-            function createCell(text) {
-                var cell = document.createElement("td");
-                var textNode = document.createTextNode(text);
-                cell.appendChild(textNode);
-                return cell;
+            if (diagnosticSourceId !== null) {
+                if (!searchObject["search"].hasOwnProperty("diagnosticSearch")) {
+                    searchObject["search"]["diagnosticSearch"] = {};
+                }
+                searchObject["search"]["diagnosticSearch"]["sourceSearch"] = {
+                    id: diagnosticSourceId
+                }
             }
 
-            function populateInterface() {
-                // Date inputs
-                var today = new Date();
-                var tomorrow = new Date();
-                tomorrow.setDate(today.getDate() + 1);
-                startDate.value = today.toJSON().slice(0, 10);
-                endDate.value = tomorrow.toJSON().slice(0, 10);
+            return searchObject;
+        }
 
-                // Retrieve the list of vehicles
-                api.call("Get", {
-                    "typeName": "Device"
-                }, function(result) {
-                    if (result !== undefined && result.length > 0) {
-                        var now = new Date();
-                        for (var i = 0; i < result.length; i++) {
-                            if (new Date(result[i].activeTo) > now) {
-                                var option = new Option();
-                                option.text = result[i].name;
-                                option.setAttribute("data-id", result[i].id);
-                                device.add(option);
-                            }
-                        }
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
+        function createRow(statusDataItem) {
+            var row = document.createElement("tr");
+            row.appendChild(createCell(statusDataItem.dateTime));
+            row.appendChild(createCell(statusDataItem.diagnostic.id.replace("Diagnostic", "").replace("Id", "")));
+            row.appendChild(createCell(statusDataItem.data));
+            return row;
+        }
 
-                // Retrieve the engine types
-                api.call("Get", {
-                    "typeName": "EngineType"
-                }, function(result) {
-                    if (result !== undefined && result.length > 0) {
-                        for (var i = 0; i < result.length; i++) {
+        function createCell(text) {
+            var cell = document.createElement("td");
+            var textNode = document.createTextNode(text);
+            cell.appendChild(textNode);
+            return cell;
+        }
+
+        function populateInterface() {
+            // Date inputs
+            var today = new Date();
+            var tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            startDate.value = today.toJSON().slice(0, 10);
+            endDate.value = tomorrow.toJSON().slice(0, 10);
+
+            // Retrieve the list of vehicles
+            api.call("Get", {
+                "typeName": "Device"
+            }, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    var now = new Date();
+                    for (var i = 0; i < result.length; i++) {
+                        if (new Date(result[i].activeTo) > now) {
                             var option = new Option();
                             option.text = result[i].name;
                             option.setAttribute("data-id", result[i].id);
-                            engineType.add(option);
+                            device.add(option);
                         }
                     }
-                }, function(error) {
-                    console.log(error);
-                });
+                }
+            }, function (error) {
+                console.log(error);
+            });
 
-                // Retrieve the diagnostics and split them up
-                api.call("Get", {
-                    "typeName": "Diagnostic"
-                }, function(result) {
-                    if (result !== undefined && result.length > 0) {
-                        var diagnosticCodes = [];
-                        var diagnosticSources = {};
+            // Retrieve the engine types
+            api.call("Get", {
+                "typeName": "EngineType"
+            }, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    for (var i = 0; i < result.length; i++) {
+                        var option = new Option();
+                        option.text = result[i].name;
+                        option.setAttribute("data-id", result[i].id);
+                        engineType.add(option);
+                    }
+                }
+            }, function (error) {
+                console.log(error);
+            });
 
-                        for (var i = 0; i < result.length; i++) {
-                            if (!diagnosticCodes.hasOwnProperty(result[i].code)) {
-                                diagnosticCodes[result[i].code] = result[i];
+            // Retrieve the diagnostics and split them up
+            api.call("Get", {
+                "typeName": "Diagnostic"
+            }, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    var diagnosticCodes = [];
+                    var diagnosticSources = {};
 
-                                var option = new Option();
-                                option.text = result[i].name + " (" + result[i].code + ")";
-                                option.setAttribute("data-id", result[i].code);
-                                diagnosticCode.add(option);
-                            }
-                            if (!diagnosticSources.hasOwnProperty(result[i].source)) {
-                                diagnosticSources[result[i].source] = result[i];
+                    for (var i = 0; i < result.length; i++) {
+                        if (!diagnosticCodes.hasOwnProperty(result[i].code)) {
+                            diagnosticCodes[result[i].code] = result[i];
 
-                                var option = new Option();
-                                option.text = result[i].source.replace("Source", "").replace("Id", "");
-                                option.setAttribute("data-id", result[i].source);
-                                diagnosticSource.add(option);
-                            }
+                            var option = new Option();
+                            option.text = result[i].name + " (" + result[i].code + ")";
+                            option.setAttribute("data-id", result[i].code);
+                            diagnosticCode.add(option);
+                        }
+                        if (!diagnosticSources.hasOwnProperty(result[i].source)) {
+                            diagnosticSources[result[i].source] = result[i];
+
+                            var option = new Option();
+                            option.text = result[i].source.replace("Source", "").replace("Id", "");
+                            option.setAttribute("data-id", result[i].source);
+                            diagnosticSource.add(option);
                         }
                     }
-                }, function(error) {
-                    console.log(error);
-                });
-            }
-        </script>
-    </body>
+                }
+            }, function (error) {
+                console.log(error);
+            });
+        }
+
+    </script>
+</body>
+
 </html>

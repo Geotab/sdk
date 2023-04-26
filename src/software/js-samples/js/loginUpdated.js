@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
     var GeotabLogin = (function () {
-
+        
         var authenticationCallback,
             debug = {
                 enabled: false,
@@ -16,15 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
         function initializeGeotabApi() {
-            api = GeotabApi(function (detailsCallback) {
+            api = GeotabApi(function (detailsCallback) {    
                 authenticationCallback = detailsCallback;
 
                 // Create the modal background to sign up
-                var blanket = document.createElement("div");
-                blanket.setAttribute("id", "blanket");
-                blanket.setAttribute("class", "blanket");
-    
-                document.body.appendChild(blanket);
+                const preventDuplicate = document.querySelectorAll('.blanket').length;
+                if(preventDuplicate === 0){
+                    var blanket = document.createElement("div");
+                    blanket.setAttribute("id", "blanket");
+                    blanket.setAttribute("class", "blanket");
+                    document.body.appendChild(blanket);
+                }
                 
                 // Hide scroll-bar when signing in
                 document.body.style.overflow = 'hidden';
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("signin-content").style.display = "block";
 
                 // Show example in the background
-                document.getElementById("container").style.display = "inline-block";
+                document.querySelector(".container").style.display = "inline-block";
             }, {
                 rememberMe: false
             });
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("signin-content").style.display = "block";
             // document.getElementById("example-content").style.display = "none";
-            document.getElementById("container").style.display = "inline-block";
+            document.querySelector(".container").style.display = "inline-block";
         }
 
         function closeModal(id) {
