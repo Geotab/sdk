@@ -70,33 +70,37 @@
                     <details open>
                         <summary>API Entities:</summary>
                         <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
-                        <a href="https://geotab.github.io/sdk/software/api/reference/#LogRecord" target="_blank">Log Record</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#LogRecord" target="_blank">LogRecord</a>
                         <a href="https://geotab.github.io/sdk/software/api/reference/#Trip" target="_blank">Trip</a>
                     </details>
                 </div>
             </div>
 
             <!-- Components which make up the example are placed here -->
-            <div id="example-content">
-                <form>
-                    <p>
-                        <select id="device">
-                            <option disabled="disabled">Select a device</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select id="trip">
-                            <option disabled="disabled">Select a trip</option>
-                        </select>
-                    </p>
-                    <button class="primary-btn" id="showTrip">Show trip</button>
-                </form>
+            <div id="example-content" >
+                <div style="display:flex;">
+                    <form style="width: 340px;">
+                        <p>
+                            <select id="device">
+                                <option disabled="disabled">Select a device</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select id="trip">
+                                <option disabled="disabled">Select a trip</option>
+                            </select>
+                        </p >
+                        <p id="noTripsAvailableInfo"></p>
+                        <button class="primary-btn" id="showTrip">Show trip</button>   
+                    </form>  
+                    <!-- Div which consists of the leaflet map -->
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Div which consists of the leaflet map -->
-            <div class="map-container">
-                <div id="map"></div>
-            </div>    
+             
+            
         </div>
 
         <!-- JavaScript file containing the map functionality -->
@@ -178,12 +182,19 @@
                             toDate: endOfDay
                         }
                     }, function (result) {
-                        for (var i = 0; i < result.length; i++) {
-                            var option = new Option();
-                            option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
-                            option.setAttribute("data-start", result[i].start);
-                            option.setAttribute("data-stop", result[i].stop);
-                            select.add(option);
+                        var infoText = document.getElementById("noTripsAvailableInfo")
+                        
+                        if (result.length == 0) {
+                            infoText.innerHTML = "No trips were found for this device within the last 24 hours. Please select another vehicle."
+                        } else {
+                            infoText.innerHTML = ""
+                            for (var i = 0; i < result.length; i++) {
+                                var option = new Option();
+                                option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
+                                option.setAttribute("data-start", result[i].start);
+                                option.setAttribute("data-stop", result[i].stop);
+                                select.add(option);
+                            }
                         }
                     }, function (error) {
                         alert(error);
