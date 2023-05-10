@@ -9,7 +9,8 @@
         <!-- Materialize icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- CSS used for the map -->
-        <link href="js/mapbox/mapbox.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     </head>
 
     <body>
@@ -89,8 +90,8 @@
                         <input class="tab" id="tabCannedResponse" type="radio" name="rg1">
                         <label for="tabCannedResponse">Canned Response Message</label>
 
-                        <input class="tab" id="tabLocation" type="radio" name="rg1" style="display: none">
-                        <label for="tabLocation" style="display: none">Location Message</label>
+                        <input class="tab" id="tabLocation" type="radio" name="rg1">
+                        <label for="tabLocation">Location Message</label>
                     </p>
                     <p>
                         <select id="device">
@@ -116,7 +117,8 @@
                         </p>
                         <p>
                             <label for="location">Location</label>
-                            <input id="location" type="text" disabled="disabled">
+                            <input id="location" type="text" data-latitude="" data-longitude="">
+                            <p id="selectedLocation"></p>
                         </p>
                     </div>
                     <button class="primary-btn" id="send">Send</button>
@@ -129,7 +131,8 @@
         </div>
 
         <!-- JavaScript file containing the map functionality-->
-        <script src="js/mapbox/mapbox.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
         <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
@@ -137,13 +140,24 @@
         <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/loginUpdated.js"></script>
 
+        <style>
+            #map {
+                width: 500px;
+                height: 500px;
+            }
+        </style>
+
+            <div id="map"></div>
+            <pre id="coordinates" class="coordinates"></pre>            
+
         <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
 
             var map;
-            var featureGroup;
+            // var featureGroup;
             var devicesLookup = {};
             var user;
+            var marker;
 
             document.addEventListener("DOMContentLoaded", function () {
 
@@ -181,20 +195,28 @@
                 populateUser();
             });
 
-            function onMapClicked(event) {
-                var location = document.getElementById("location");
-                location.value = event.latlng.lat.toFixed(5) + ", " + event.latlng.lng.toFixed(5);
-                location.setAttribute("data-latitude", event.latlng.lat);
-                location.setAttribute("data-longitude", event.latlng.lng);
-
-                var marker = new L.Marker(event.latlng, {
-                    icon: L.mapbox.marker.icon({'marker-color': '669900'}),
+            function onMapClicked(e) {
+                if(marker)
+                marker.remove();
+            
+            marker = L.marker([e.latlng.lat, e.latlng.lng], {
                     draggable: true
-                });
+                })
+                .bindPopup(`Location: ${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`)
+                .addTo(map)
+            let location = marker.getLatLng();
+            marker.on("moveend", () => {    
+                marker.bindPopup(`Location: ${location.lat.toFixed(5)}, ${location.lng.toFixed(5)}`)
+            });
 
-                featureGroup.clearLayers();
-                featureGroup.addLayer(marker);
-            }
+            document.getElementById("location").value = `Lat = ${location.lat.toFixed(5)}, Long = ${location.lng.toFixed(5)}`
+
+            document.getElementById("location").dataset.latitude = location.lat.toFixed(5)
+            document.getElementById("location").dataset.longitude = location.lng.toFixed(5)
+
+            
+        }
+        
 
             function populateDevices() {
                 api.call("Get", {
@@ -276,10 +298,12 @@
                     // textMessage.messageContent.address = "reset stops";
                     // textMessage.messageContent.latitude = 0;
                     // textMessage.messageContent.longitude = 0;
+
                     textMessage.messageContent.contentType = "Location";
                     textMessage.messageContent.address = location;
                     textMessage.messageContent.latitude = parseFloat(document.getElementById("location").getAttribute("data-latitude"));
                     textMessage.messageContent.longitude = parseFloat(document.getElementById("location").getAttribute("data-longitude"));
+
                 } else if (cannedResponses !== "") {
                     textMessage.messageContent.contentType = "CannedResponse";
                     textMessage.messageContent.cannedResponseOptions = cannedResponses.split(",").map(function (response) {
@@ -303,14 +327,22 @@
 
                 if (tab === "tabLocation") {
                     if (!map) {
-                        // Initialize MapBox engine (http://www.mapbox.com)
-                        map = L.mapbox.map("map", "examples.map-vyofok3q");
-                        featureGroup = L.featureGroup().addTo(map);
+
+        let marker;
+        
+        map = L.map('map', {
+            container: 'map',
+            center: [40, -74.5],
+            zoom: 9
+        });
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
                         map.on("click", onMapClicked);
-                    } else {
-                        featureGroup.clearLayers();
-                    }
+                    } 
                 }
             }
         </script>
