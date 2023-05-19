@@ -231,6 +231,25 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
+### Msg Type 0x26: Protobuf data packet
+
+Issued by the GO device in response to Msg Type 0x8C.
+Information published by the GO device.
+
+### Msg Type 0x27: Add-On protocol version to external device
+
+Issued by the GO device on receipt of 0x8B.Should be paired with 0x8B. 0x27 is a reply to 0x8B.
+Sent by the GO to an external device as a reply to the Add-On protocol version request. The protocol version sent includes the Major and Minor version numbers.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x27 | 1 | 1 |
+| Message Body Length = 4 | 1 | 2 |
+| Protocol major version | 2 | 3 |
+| Protocol minor version | 2 | 5 |
+| Checksum | 2 | 7 |
+| ETX (0x03) | 1 | 9 |
 
 ## Messages from External Device
 
@@ -384,6 +403,22 @@ After handshaking, this message can be issued periodically by the External Devic
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
+
+### Msg Type 0x8B: Add-On protocol version request
+
+Sent by the external device when requesting the add on protocol version number. Once the GO receives this request it will reply with 0x27.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x8B | 1 | 1 |
+| Message Body Length = 0 | 1 | 2 |
+| Checksum | 2 | 3 |
+| ETX (0x03) | 1 | 5 |
+| Reply: Third-Party version Ack Reply ([Msg Type 0x27](#msg-type-0x27-add-on-version-to-external-device)) |
+
+### Msg Type 0x8C: Protobuf data packet
+Sent by the external device for the purpose of configuring its information subscription from the GO device.
 
 ## Messages from MyGeotab
 
