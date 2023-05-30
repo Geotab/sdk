@@ -4,14 +4,36 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## May 29, 2023
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### GetPartnerDeviceContractsAsync
+
+- To help you find devices faster, we’ve updated the **GetPartnerDeviceContractsAsync** API to include a database search parameter (`databaseFilter`). This parameter allows you to retrieve a list of devices that are owned by the specified database.  
+<br/>
+
+***
+## March 27, 2023
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### ApiDeviceContract
+
+- In an upcoming release, we will use the gateway’s activation date as the source for `FirstDeviceActivationDate` when returning an **ApiDeviceContract** object (for example, by calling **GetDeviceContractsByPage**) to align with the Device Admin page  
+<br/>
+
+***
 ## March 6, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
 
 #### ApiDeviceContract
 
-- In an upcoming release, we will use the gateway’s activation date as the source for `FirstDeviceActivationDate` when returning an **ApiDeviceContract** object (for example, by calling **GetDeviceContractsByPage**) to align with the Device Admin page
+- In an upcoming release, we will use the gateway’s activation date as the source for `FirstDeviceActivationDate` when returning an **ApiDeviceContract** object (for example, by calling **GetDeviceContractsByPage**) to align with the Device Admin page  
+<br/>
 
+***
 ## February 13, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
