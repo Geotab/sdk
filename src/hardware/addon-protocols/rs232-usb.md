@@ -231,6 +231,19 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
+### Msg Type 0x26: Protobuf data packet
+
+Issued by the GO device in response to Msg Type 0x8C.Information published by the GO device.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x26 | 1 | 1 |
+| Message Body Length = x (1 - 255) | 1 | 2 |
+| Data Payload Protobuf (1-255) | x | 3 |
+| Checksum | 2 | 3+x |
+| ETX (0x03) | 1 | 5+x |
+
 ### Msg Type 0x27: Add-On protocol version to external device
 
 Issued by the GO device on receipt of 0x8B.Should be paired with 0x8B. 0x27 is a reply to 0x8B.
@@ -411,6 +424,20 @@ Sent by the external device when requesting the add on protocol version number. 
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 | Reply: Third-Party version Ack Reply ([Msg Type 0x27](#msg-type-0x27-add-on-version-to-external-device)) |
+
+### Msg Type 0x8C: Protobuf data packet
+
+Sent by the external device for the purpose of configuring its information subscription from the GO device. The GO device will respond with 0x26.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x8C | 1 | 1 |
+| Message Body Length = x(1-255) | 1 | 2 |
+| Data Payload Protobuf (message_body) = x (1 to 255) | x | 3 |
+| Checksum | 2 | 3 + x |
+| ETX (0x03) | 1 | 5 + x |
+| Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
 
 ## Messages from MyGeotab
 
