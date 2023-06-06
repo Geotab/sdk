@@ -236,6 +236,7 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 Issued by the GO device in response to Msg Type 0x8C.
 Or Issued by the Go to publish its information to the device if third party device subscribes different topics.
 The information includes a payload containing data encoded in the protobuf format.
+It will be availabe in add-on protocol version 1.2.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -433,6 +434,7 @@ Sent by the external device when requesting the add on protocol version number. 
 
 Sent by the external device for the purpose of configuring its information subscription. The GO device will respond with 0x26 ack.
 The information mentioned above refers to a payload containing data encoded in the protobuf format.
+It will be availabe in add-on protocol version 1.2.
 
 |   | Bytes | Position |
 | --- | --- | --- |
