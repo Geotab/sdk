@@ -597,6 +597,14 @@ This is an example of binary data packets for image data transferred using the M
 Messages sent from the IOX to the GO is represented by IoxToGo
 Messages sent from the GO to the IOX is represented by IoxFromGo
 
+example of building protobuf in python:
+<code>
+iox_to_go=iox_messaging_pb2.IoxToGo()
+iox_to_go.pub_sub.sub.topic = 1 #TOPIC_ACCEL
+iox_to_go_seralized = iox_to_go.SerializeToString()
+</code>
+After building the protobuf, we will get payload "0a040a020801"
+
 The context of .proto is as below:
 
 <code>
