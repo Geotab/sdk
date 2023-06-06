@@ -233,10 +233,10 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 
 ### Msg Type 0x26: Protobuf data packet
 
+Available with add-on protocol version >= 1.2.
 Issued by the GO device in response to Msg Type 0x8C.
-Or Issued by the Go to publish its information to the device if third party device subscribes different topics.
+Also issued by the GO device to publish information for the topics (defined in Appendix D) subscribed by the third party device.
 The information includes a payload containing data encoded in the protobuf format.
-It will be availabe in add-on protocol version 1.2.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -432,9 +432,8 @@ Sent by the external device when requesting the add on protocol version number. 
 
 ### Msg Type 0x8C: Protobuf data packet
 
-Sent by the external device for the purpose of configuring its information subscription. The GO device will respond with 0x26 ack.
-The information mentioned above refers to a payload containing data encoded in the protobuf format.
-It will be availabe in add-on protocol version 1.2.
+Available with add-on protocol version >= 1.2.
+Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK. The topics that the third party is interested in are requested in the form of a payload data encoded using protobuf format.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -595,27 +594,19 @@ This is an example of binary data packets for image data transferred using the M
 
 ### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
 
-####1.
-####0x8C Messages sent from the IOX to the GO
-####Data Payload Protobuf (third party needs encode the data with protobuf):
+Messages sent from the IOX to the GO is represented by IoxToGo
+Messages sent from the GO to the IOX is represented by IoxFromGo
 
-message IoxToGo {
-    oneof msg {
-        PubSubToGo = 1;
-    }
-}
+The context of .proto is as below:
 
-PubSubToGo has either one of message:
-oneof msg {
-   sub = 1; (subscribe topic)
-   unsub = 2; (unsbuscribe topic)
-   subs = 3; (ask go to list all topics (google.protobuf.Empty))
-   clear_subs = 4; (clear the list of subscribed topics on the GO (google.protobuf.Empty))
-   list_avail_topics = 5; (list available topics (google.protobuf.Empty))
-}
-
-for both sub and unsub there are 22 total topics:
+<code>
+// Possible subscription topics
+// Includes status data IDs
+enum Topic {
+    TOPIC_UNSPECIFIED = 0;
     TOPIC_ACCEL = 1;
+    TOPIC_GPS = 2;
+    TOPIC_BATTERY_VOLTAGE = 3;
     TOPIC_VIN = 4;
     TOPIC_GEAR = 5;
     TOPIC_ENGINE_SPEED = 6;
@@ -637,74 +628,138 @@ for both sub and unsub there are 22 total topics:
     TOPIC_RIGHT_TURN_SIGNAL = 22;
     TOPIC_EV_CHARGING_STATE = 23;
     TOPIC_PARK_BRAKE = 24;
+}
 
-####2.
-####0x26 Messages sent from the GO to the IOX
-####Data Payload Protobuf(third party device need to decode protobuf to get identical data field):
-
-message IoxFromGo {
-    oneof msg {
-        PubSubFromGo = 1;
+message SubAck {
+    enum Result {
+        SUB_ACK_RESULT_UNSPECIFIED = 0;
+        // Subscription success
+        SUB_ACK_RESULT_SUCCESS = 1;
+        // Generic subscription failure
+        SUB_ACK_RESULT_FAILED = 2;
+        // Subscribe fails if an unknown topic is specified
+        SUB_ACK_RESULT_UNKNOWN_TOPIC = 3;
+        // Subscribe fails if the topic has already been subscribed to
+        SUB_ACK_RESULT_TOPIC_ALREADY_SUBBED = 4;
+        // Unsubscribe fails if the topic has not been subscribed to
+        SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5;
+        // Unsubscribe fails if the subscription belongs to another IOX.
+        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6;
     }
+    Result result = 1;
+    Topic topic = 2;
 }
 
-PubSubFromGo has either one of following message:
-oneof msg {
-    sub_ack = 1; (Reply to sub and unsub, indicating success/failure)
-    topic_list = 2; (Reply to list_subs, containing all subscribed topics)
-    topic_info_list = 3; (Reply to list_avail_topics, containing info on all supported topics)
-    pub = 4; (Data sample published by the GO)
-    clear_subs_ack = 5; (Reply to clear_subs, indicating that the message was received)
+// May be extended with metadata for each topic in the future
+message TopicInfo {
+    Topic topic = 1;
 }
 
-sub_ack has two fiels
-    Result = 1
-    topic = 2
-	Result is enum:
-	        SUB_ACK_RESULT_UNSPECIFIED = 0; (result not specified)
-	        SUB_ACK_RESULT_SUCCESS = 1; (Subscription success)
-	        SUB_ACK_RESULT_FAILED = 2; (Generic subscription failure)
-	        SUB_ACK_RESULT_UNKNOWN_TOPIC = 3; (Subscribe fails if an unknown topic is specified)
-	        SUB_ACK_RESULT_TOPIC_ALREADY_SUBBED = 4; (Subscribe fails if the topic has already been subscribed to)
-	        SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5; (Unsubscribe fails if the topic has not been subscribed to)
-	        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6; (Unsubscribe fails if the subscription belongs to another IOX.)
+message TopicList {
+    repeated Topic topics = 1;
+}
 
-topic_list has repeated topics:
-    repeated topic = 1
+message TopicInfoList {
+    repeated TopicInfo topics = 1;
+}
 
-topic_info_list has repeated topic_list
+message ClearSubAck {
+    enum Result {
+        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
+        // Unsubscribe succeeded
+        CLEAR_SUB_ACK_RESULT_SUCCESS = 1;
+        // Unsubscribe fails if the subscription belongs to another IOX.
+        CLEAR_SUB_ACK_RESULT_FAILED = 2;
+    }
+    Result result = 1;
+}
 
-pub has 3 files:
-    time = 1 (google.protobuf.Timestamp)
-    topic = 2
-    oneof Value {
+message Vec3 {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Gps {
+    // Latitude, in degrees (+ve = north, -ve = south)
+    float latitude = 1;
+    // Longitude, in degrees (+ve = east, -ve = west)
+    float longitude = 2;
+    // Speed, in km/h
+    float speed = 3;
+    // Heading, in degrees
+    float heading = 4;
+    google.protobuf.Timestamp gps_time = 5;
+}
+
+message Publish {
+    google.protobuf.Timestamp time = 1;
+    Topic topic = 2;
+    oneof value {
         bool bool_value = 3;
         int32 int_value = 4;
         uint32 uint_value = 5;
-        float float_value = 6; (Used for VIN (17 digits))
-        string string_value = 7; (Used for acceleration)
+        float float_value = 6;
+        // Used for VIN (17 digits)
+        string string_value = 7;
+        // Used for acceleration
         Vec3 vec3_value = 8;
         Gps gps_value = 9;
+    };
+}
+
+message Subscribe {
+    Topic topic = 1;
+}
+
+message Unsubscribe {
+    Topic topic = 1;
+}
+
+// Pub-sub protocol messages sent to the GO
+message PubSubToGo {
+    oneof msg {
+        // Add the topic to the GO's list of topics that it sends to the IOX
+        Subscribe sub = 1;
+        // Remove the topic from the GO's list of topics
+        Unsubscribe unsub = 2;
+        // Return all subscribed topics on the GO
+        google.protobuf.Empty list_subs = 3;
+        // Clear the list of subscribed topics on the GO
+        google.protobuf.Empty clear_subs = 4;
+        // Return all topics that the IOX can subscribe to
+        google.protobuf.Empty list_avail_topics = 5;
     }
+}
 
-    message Vec3 {
-        float x = 1;
-        float y = 2;
-        float z = 3;
+// Pub-sub protocol messages sent from the GO
+message PubSubFromGo {
+    oneof msg {
+        // Reply to sub and unsub, indicating success/failure
+        SubAck sub_ack = 1;
+        // Reply to list_subs, containing all subscribed topics
+        TopicList topic_list = 2;
+        // Reply to list_avail_topics, containing info on all supported topics
+        TopicInfoList topic_info_list = 3;
+        // Data sample published by the GO
+        Publish pub = 4;
+        // Reply to clear_subs, indicating that the message was received
+        ClearSubAck clear_subs_ack = 5;
     }
+}
 
-    message Gps {
-        float latitude = 1; (Latitude, in degrees)
-        float longitude = 2; (Longitude, in degrees)
-        float speed = 3; (Speed, in km/h)
-        float heading = 4;
-        google.protobuf.Timestamp gps_time = 5;
+// Messages sent from the IOX to the GO
+message IoxToGo {
+    oneof msg {
+        PubSubToGo pub_sub = 1;
     }
+}
 
-ClearSubAck has onefield:
-    enum result
-        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
-        CLEAR_SUB_ACK_RESULT_SUCCESS = 1; (Unsubscribe succeeded)
-        CLEAR_SUB_ACK_RESULT_FAILED = 2; (Unsubscribe fails if the subscription belongs to another IOX.)
-
+// Messages sent from the GO to the IOX
+message IoxFromGo {
+    oneof msg {
+        PubSubFromGo pub_sub = 1;
+    }
+}
+</code>
 
