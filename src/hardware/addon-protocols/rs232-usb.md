@@ -233,7 +233,9 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 
 ### Msg Type 0x26: Protobuf data packet
 
-Issued by the GO device in response to Msg Type 0x8C.Information published by the GO device.
+Issued by the GO device in response to Msg Type 0x8C.
+Or Issued by the Go to publish its information to the device if third party device subscribes different topics.
+The information includes a payload containing data encoded in the protobuf format.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -243,6 +245,8 @@ Issued by the GO device in response to Msg Type 0x8C.Information published by th
 | Data Payload Protobuf (1-255) | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
+
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
@@ -427,7 +431,8 @@ Sent by the external device when requesting the add on protocol version number. 
 
 ### Msg Type 0x8C: Protobuf data packet
 
-Sent by the external device for the purpose of configuring its information subscription from the GO device. The GO device will respond with 0x26.
+Sent by the external device for the purpose of configuring its information subscription. The GO device will respond with 0x26 ack.
+The information mentioned above refers to a payload containing data encoded in the protobuf format.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -438,6 +443,8 @@ Sent by the external device for the purpose of configuring its information subsc
 | Checksum | 2 | 3 + x |
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
+
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
 
 ## Messages from MyGeotab
 
@@ -583,3 +590,119 @@ This is an example of binary data packets for image data transferred using the M
 | Total Number of Payload Bytes Received | x | 12 |
 | Checksum | 2 | 12+x |
 | ETX (0x03) | 1 | 14+x |
+
+### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
+
+####1.
+####0x8C Messages sent from the IOX to the GO
+####Data Payload Protobuf (third party needs encode the data with protobuf):
+
+message IoxToGo {
+    oneof msg {
+        PubSubToGo = 1;
+    }
+}
+
+PubSubToGo has either one of message:
+oneof msg {
+   sub = 1; (subscribe topic)
+   unsub = 2; (unsbuscribe topic)
+   subs = 3; (ask go to list all topics (google.protobuf.Empty))
+   clear_subs = 4; (clear the list of subscribed topics on the GO (google.protobuf.Empty))
+   list_avail_topics = 5; (list available topics (google.protobuf.Empty))
+}
+
+for both sub and unsub there are 22 total topics:
+    TOPIC_ACCEL = 1;
+    TOPIC_VIN = 4;
+    TOPIC_GEAR = 5;
+    TOPIC_ENGINE_SPEED = 6;
+    TOPIC_ENGINE_LOAD = 7;
+    TOPIC_ODOMETER = 8;
+    TOPIC_ACCEL_PEDAL_PERCENTAGE = 9;
+    TOPIC_COOLANT_TEMP = 10;
+    TOPIC_DOC_INTAKE_GAS_TEMP = 11;
+    TOPIC_DOC_OUTLET_GAS_TEMP = 12;
+    TOPIC_FUELTANK1_UNITS = 13;
+    TOPIC_FUELTANK2_UNITS = 14;
+    TOPIC_FUELTANK1_PERCENT = 15;
+    TOPIC_FUELTANK2_PERCENT = 16;
+    TOPIC_STATE_OF_CHARGE = 17;
+    TOPIC_ENGINE_ROAD_SPEED = 18;
+    TOPIC_VEHICLE_ACTIVE = 19;
+    TOPIC_DRIVER_SEATBELT = 20;
+    TOPIC_LEFT_TURN_SIGNAL = 21;
+    TOPIC_RIGHT_TURN_SIGNAL = 22;
+    TOPIC_EV_CHARGING_STATE = 23;
+    TOPIC_PARK_BRAKE = 24;
+
+####2.
+####0x26 Messages sent from the GO to the IOX
+####Data Payload Protobuf(third party device need to decode protobuf to get identical data field):
+
+message IoxFromGo {
+    oneof msg {
+        PubSubFromGo = 1;
+    }
+}
+
+PubSubFromGo has either one of following message:
+oneof msg {
+    sub_ack = 1; (Reply to sub and unsub, indicating success/failure)
+    topic_list = 2; (Reply to list_subs, containing all subscribed topics)
+    topic_info_list = 3; (Reply to list_avail_topics, containing info on all supported topics)
+    pub = 4; (Data sample published by the GO)
+    clear_subs_ack = 5; (Reply to clear_subs, indicating that the message was received)
+}
+
+sub_ack has two fiels
+    Result = 1
+    topic = 2
+	Result is enum:
+	        SUB_ACK_RESULT_UNSPECIFIED = 0; (result not specified)
+	        SUB_ACK_RESULT_SUCCESS = 1; (Subscription success)
+	        SUB_ACK_RESULT_FAILED = 2; (Generic subscription failure)
+	        SUB_ACK_RESULT_UNKNOWN_TOPIC = 3; (Subscribe fails if an unknown topic is specified)
+	        SUB_ACK_RESULT_TOPIC_ALREADY_SUBBED = 4; (Subscribe fails if the topic has already been subscribed to)
+	        SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5; (Unsubscribe fails if the topic has not been subscribed to)
+	        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6; (Unsubscribe fails if the subscription belongs to another IOX.)
+
+topic_list has repeated topics:
+    repeated topic = 1
+
+topic_info_list has repeated topic_list
+
+pub has 3 files:
+    time = 1 (google.protobuf.Timestamp)
+    topic = 2
+    oneof Value {
+        bool bool_value = 3;
+        int32 int_value = 4;
+        uint32 uint_value = 5;
+        float float_value = 6; (Used for VIN (17 digits))
+        string string_value = 7; (Used for acceleration)
+        Vec3 vec3_value = 8;
+        Gps gps_value = 9;
+    }
+
+    message Vec3 {
+        float x = 1;
+        float y = 2;
+        float z = 3;
+    }
+
+    message Gps {
+        float latitude = 1; (Latitude, in degrees)
+        float longitude = 2; (Longitude, in degrees)
+        float speed = 3; (Speed, in km/h)
+        float heading = 4;
+        google.protobuf.Timestamp gps_time = 5;
+    }
+
+ClearSubAck has onefield:
+    enum result
+        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
+        CLEAR_SUB_ACK_RESULT_SUCCESS = 1; (Unsubscribe succeeded)
+        CLEAR_SUB_ACK_RESULT_FAILED = 2; (Unsubscribe fails if the subscription belongs to another IOX.)
+
+
