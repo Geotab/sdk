@@ -1,27 +1,19 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Get count of vehicles and users</title><link href=css/geotab.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Example: Count vehicles and users</h1><h3>Simply counts the number of devices and users on your account.</h3></div></header><div class="container bordered"><div id=disclaimer><label id=disclaimerLabel>Sample add-in/tool</label><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div><div id=signin-content></div><div id=example-content class=padded><p>Total vehicles: <span id=vehicleCount>Not determined yet</span></p><p>Total users: <span id=userCount>Not determined yet</span></p><button id=submit>Get count</button></div></div><footer><div class="container footernotes"><p><strong>&copy; 2015 Geotab, Inc.</strong></p><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=help-content><h2>Help</h2><p><strong>Overview</strong><br>This example shows you how to make simple API requests.</p><p><strong>Work flow</strong><br>We make two API requests to retrieve the count of the <a href=https://my6.geotab.com/sdk/default.html#/api target=_blank>Device</a> and <a href=https://my6.geotab.com/sdk/default.html#/api target=_blank>User</a> entities. The API response containing the count is then displayed on the page.</p><p><strong>Skill level</strong><br>Beginner</p></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>document.addEventListener("DOMContentLoaded", function () {
-
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Get Count of Vehicles & Users</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Get Count Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/beginner-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with a beginner-level knowledge of the MyGeotab system. It is suitable for those who are new to the Geotab ecosystem and are just getting started with learning about the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This example shows you how to make simple API requests. We make two API requests to retrieve the count of the Device and User entities. The API response containing the count is then displayed on the page.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#GetCountOf1 target=_blank>GetCountOf</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Driver target=_blank>Driver</a> <a href=https://geotab.github.io/sdk/software/api/reference/#User target=_blank>User</a></details></div></div><div id=example-content class=padded><table><thead><tr><th>Total Vehicles</th><th>Total Users</th></tr></thead><tr><td><span id=vehicleCount>Not Determined Yet</span></td><td><span id=userCount>Not Determined Yet</span></td></tr></table><button class=primary-btn id=submit>Get count</button></div></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("submit").addEventListener("click", function (event) {
                     event.preventDefault();
 
-                    api.call("GetCountOf", {
-                        typeName: "Device"
-                    }, function (result) {
-                        if (result) {
-                            document.getElementById("vehicleCount").innerHTML = result;
-                        }
-                    }, function (error) {
-                        alert(error);
-                    });
-
-                    api.call("GetCountOf", {
-                        typeName: "User"
-                    }, function (result) {
-                        if (result) {
-                            document.getElementById("userCount").innerHTML = result;
-                        }
-                    }, function (error) {
-                        alert(error);
+                    api.multiCall (
+                        [
+                            ["GetCountOf", {"typeName": "Device"}],
+                            ["GetCountOf", {"typeName": "User"}]
+                        ],
+                        function (result) {
+                            if (result) {
+                                document.getElementById("vehicleCount").innerHTML = result[0];
+                                document.getElementById("userCount").innerHTML = result[1];
+                            }
+                        }, function (error) {
+                            alert(error);
                     });
                 });
-
             });</script></body></html>

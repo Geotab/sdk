@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
     var GeotabLogin = (function () {
-
+        
         var authenticationCallback,
             debug = {
                 enabled: false,
@@ -16,11 +16,26 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
         function initializeGeotabApi() {
-            api = GeotabApi(function (detailsCallback) {
+            api = GeotabApi(function (detailsCallback) {    
                 authenticationCallback = detailsCallback;
 
+                // Create the modal background to sign up
+                const preventDuplicate = document.querySelectorAll('.blanket').length;
+                if(preventDuplicate === 0){
+                    var blanket = document.createElement("div");
+                    blanket.setAttribute("id", "blanket");
+                    blanket.setAttribute("class", "blanket");
+                    document.body.appendChild(blanket);
+                }
+                
+                // Hide scroll-bar when signing in
+                document.body.style.overflow = 'hidden';
+
+                // Show sign in components 
                 document.getElementById("signin-content").style.display = "block";
-                document.getElementById("example-content").style.display = "none";
+
+                // Show example in the background
+                document.querySelector(".container").style.display = "inline-block";
             }, {
                 rememberMe: false
             });
@@ -31,13 +46,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert(reason);
             }
 
+            // Determines if the modal background is present if not creates the background 
+            const preventDuplicate = document.querySelectorAll('.blanket').length;
+            if(preventDuplicate === 0){
+                var blanket = document.createElement("div");
+                blanket.setAttribute("id", "blanket");
+                blanket.setAttribute("class", "blanket");
+                document.body.appendChild(blanket);
+            }
+
             document.getElementById("signin-content").style.display = "block";
-            document.getElementById("example-content").style.display = "none";
+            // document.getElementById("example-content").style.display = "none";
+            document.querySelector(".container").style.display = "inline-block";
         }
 
         function closeModal(id) {
             var modal = document.getElementById(id + "-modal"),
                 blanket = document.getElementById("blanket");
+
+            // Show the examples scroll-bar when the modal closed
+            document.body.style.overflow = 'auto';
 
             modal.parentNode.removeChild(modal);
             blanket.parentNode.removeChild(blanket);
@@ -59,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
             modalClose.onclick = function () {
                 closeModal(id);
             };
-            modalClose.innerHTML = "OK";
+            modalClose.classList.add("material-icons");
+            modalClose.innerText = "close";
 
             modal.setAttribute("id", id + "-modal");
             modal.setAttribute("class", "modal bordered");
@@ -89,6 +118,41 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         function intializeInterface() {
+            // Build the outer container holding the sign in form
+            var signInContainer = document.createElement("div");
+            signInContainer.classList.add("sign-in-container");
+            signInContainer.setAttribute("id", "signin-container");
+
+            // Div holding the heading text below (e.g. Welcome!)
+            var signInHeader = document.createElement("div");
+            signInHeader.classList.add("sign-in-header");
+            
+            var heading1 = document.createElement("h1");
+            heading1.innerText = "Welcome!";
+            var heading2 = document.createElement("h2");
+            heading2.innerText = "Please enter your MyGeotab credentials to continue.";
+
+            // Div containing the disclaimer
+            var signInDisclaimer = document.createElement("div");
+            signInDisclaimer.classList.add("sign-in-disclaimer");
+
+            // Using materialize css to import the 'error' icon
+            var disclaimerIcon = document.createElement("div");
+            disclaimerIcon.classList.add("material-icons");
+            disclaimerIcon.innerText = "error";
+
+            var disclaimerText = document.createElement("h2");
+            disclaimerText.innerText = "This tool is provided as an example and is available on an As-Is basis, you must assume all the risks and costs associated with the use of the sample tool, including, any damage to any equipment, software, information or data.";
+                
+            signInHeader.appendChild(heading1);
+            signInHeader.appendChild(heading2);
+            
+            signInDisclaimer.appendChild(disclaimerIcon);
+            signInDisclaimer.appendChild(disclaimerText);
+
+            signInContainer.appendChild(signInHeader);
+            signInContainer.appendChild(signInDisclaimer);
+
             // Build sign in form
             var form = document.createElement("form"),
                 legend = document.createElement("legend"),
@@ -98,17 +162,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 paragraph4 = document.createElement("p"),
                 button = document.createElement("button")
 
-            legend.innerHTML = "Sign in to continue";
-
             // Build server field
             paragraph1.appendChild(createLabel({
                 for: "server",
-                html: "Server name"
+                html: "Server Name"
             }));
             paragraph1.appendChild(createInput({
                 id: "server",
                 type: "text",
-                placeholder: "Example: my.geotab.com",
+                placeholder: "e.g. my.geotab.com",
                 value: (debug.enabled === true ? debug.server : undefined)
             }));
 
@@ -120,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
             paragraph2.appendChild(createInput({
                 id: "database",
                 type: "text",
-                placeholder: "Example: MyCompany",
+                placeholder: "e.g. MyCompany",
                 value: (debug.enabled === true ? debug.database : undefined)
             }));
 
@@ -132,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
             paragraph3.appendChild(createInput({
                 id: "email",
                 type: "email",
-                placeholder: "my.name@mycompany.com",
+                placeholder: "e.g. my.name@mycompany.com",
                 value: (debug.enabled === true ? debug.email : undefined)
             }));
 
@@ -144,11 +206,13 @@ document.addEventListener("DOMContentLoaded", function () {
             paragraph4.appendChild(createInput({
                 id: "password",
                 type: "password",
-                placeholder: "",
+                placeholder: "*********",
                 value: (debug.enabled === true ? debug.password : undefined)
             }));
 
             button.setAttribute("id", "signin");
+            button.classList.add("primary-btn");
+            button.classList.add("sign-in-btn");
             button.innerHTML = "Sign in";
 
             form.appendChild(legend);
@@ -158,13 +222,19 @@ document.addEventListener("DOMContentLoaded", function () {
             form.appendChild(paragraph4);
             form.appendChild(button);
 
-            document.getElementById("signin-content").appendChild(form);
+            signInContainer.appendChild(form);
+
+            document.getElementById("signin-content").appendChild(signInContainer);
 
             var templateButton = document.getElementById("template");
 
             if (templateButton) {
                 templateButton.addEventListener("click", function (event) {
                     event.preventDefault();
+
+                    // Hide the examples scroll-bar when the template open
+                    document.body.style.overflow = 'hidden';
+
                     showModal("template-content");
                 });
             }
@@ -172,18 +242,27 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("signin").addEventListener("click", function (event) {
                 event.preventDefault();
 
+                // Transparent background behind the sign-in modal
+                var blanket = document.getElementById("blanket");
+                
                 var server   = document.getElementById("server").value,
                     database = document.getElementById("database").value,
                     email    = document.getElementById("email").value,
                     password = document.getElementById("password").value;
-
+                    
                 authenticationCallback(server, database, email, password, function (error) {
                     alert(error);
+                    document.body.style.overflow = 'hidden';
                     signOut();
                 });
+                                
+                // Show scroll-bar when sign in successful
+                document.body.style.overflow = 'auto';
 
+                // Remove sign in modal and the modal background
+                blanket.parentNode.removeChild(blanket);
                 document.getElementById("signin-content").style.display = "none";
-                document.getElementById("example-content").style.display = "block";
+                document.getElementById("example-content").style.display = "inline-block";
             });
 
             document.getElementById("signout").addEventListener("click", function (event) {
@@ -196,10 +275,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 signOut();
             });
 
-            document.getElementById("help").addEventListener("click", function (event) {
-                event.preventDefault();
-                showModal("help-content");
-            });
+            // document.getElementById("help").addEventListener("click", function (event) {
+            //     event.preventDefault();
+            //     showModal("help-content");
+            // });
         }
 
         return function () {

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Single sign on example</title><link href=css/geotab.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Example: Single sign on</h1><h3>How to integrate MyGeotab features with your own web application</h3></div></header><div class="container bordered spaced"><div id=disclaimer><label id=disclaimerLabel>Sample add-in/tool</label><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div><div id=signin-content></div><div id=example-content><div class=description><h3>Link to MyGeotab</h3><p id=link>Determining...</p><h3>Link to MyGeotab to target page</h3><p id=linkTarget>Determining...</p></div></div></div><div id=example-map class="container bordered spaced"><div id=map><div class=description><h3>Integrated map</h3></div><iframe id=liveMapIframe>Sorry, your browser does not support iframes.</iframe></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 11/10/2015</p></div></footer><div id=help-content><h2>Help</h2><p><strong>Overview</strong><br>To provide a seamless experience between your own web application and MyGeotab use <i>single sign on</i>. A user signed in to your app can relay their credentials to MyGeotab without having to sign in at all.</p><p><strong>Work flow</strong><br>Simply store the Geotab credentials in your own database and retrieve them for the current user. Use the following Geotab API methods to authenticate to Geotab and display the features you want.</p><p>Keep in mind that a user's password may change and how you will keep these changes up to date in your database is up to you.</p><ol><li><strong>Authentication:</strong> Provide your credentials in the form below. When integrating Geotab single sign on in your own application these values would come from your own database based on the current user.</li><li><strong>Redirection:</strong> The call you make to the Geotab Authenticate method returns two properties:<ul><li><i>credentials:</i> The value which will be used to construct the URL to authenticate to MyGeotab.</li><li><i>path:</i> The server URL that you should be on (or "ThisServer" if you're already on the correct server).</li></ul></li></ol><p><strong>Skill level</strong><br>Intermediate</p></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var geotabSession;
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Embedded URLs Example</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Embedded URLs Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/intermediate-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>To provide a seamless experience between your own web application and MyGeotab use single sign on. A user signed in to your app can relay their credentials to MyGeotab without having to sign in at all.Simply store the Geotab credentials in your own database and retrieve them for the current user. Use the following Geotab API methods to authenticate to Geotab and display the features you want.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/ target=_blank>N/A</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/ target=_blank>N/A</a></details></div></div><div id=example-content><form><h3>Link to MyGeotab:</h3><p id=link>Determining...</p><h3>Link to MyGeotab Target Page:</h3><p id=linkTarget>Determining...</p><h3>Link to the Map</h3><p id=mapTarget>Determining...</p></form></div><div id=example-map class=map-container style="float: left; margin-left: 1.4rem;"><div id=map><iframe id=liveMapIframe>Sorry, your browser does not support iframes.</iframe></div></div></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var geotabSession;
 
             document.addEventListener("DOMContentLoaded", function () {
 
@@ -9,9 +9,11 @@
                     var baseUrl = getBaseMyGeotabUrl();
                     var targetedUrl = getTargetedMyGeotabUrl("devices");
                     var liveMapUrl = getLiveMapUrl();
+                    console.log(liveMapUrl);
 
                     document.getElementById("link").innerHTML = "<a href='" + baseUrl + "' target='_blank'>" + baseUrl + "</a>";
                     document.getElementById("linkTarget").innerHTML = "<a href='" + targetedUrl + "' target='_blank'>" + targetedUrl + "</a>";
+                    document.getElementById("mapTarget").innerHTML = "<a href='" + liveMapUrl + "' target='_blank'>" + liveMapUrl + "</a>";
                     document.getElementById("example-map").style.display = "block";
                     document.getElementById("liveMapIframe").setAttribute("src", liveMapUrl);
                 });
@@ -41,7 +43,7 @@
             }
 
             function getBaseMyGeotabUrl() {
-                 return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/#" +
+                return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/#" +
                         "token:(database:" + escapeRison(geotabSession.credentials.database) + "," +
                         "rememberMe:!t,sessionId:&#39;" + geotabSession.credentials.sessionId + "&#39;," +
                         "userName:&#39;" + escapeRison(geotabSession.credentials.userName) + "&#39;)";
@@ -49,15 +51,15 @@
 
             function getTargetedMyGeotabUrl(target) {
                 return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/#" +
-                       target + "," +
-                       "token:(database:" + escapeRison(geotabSession.credentials.database) + "," +
-                       "rememberMe:!t,sessionId:&#39;" + geotabSession.credentials.sessionId + "&#39;," +
-                       "userName:&#39;" + escapeRison(geotabSession.credentials.userName) + "&#39;)";
+                    target + "," +
+                    "token:(database:" + escapeRison(geotabSession.credentials.database) + "," +
+                    "rememberMe:!t,sessionId:&#39;" + geotabSession.credentials.sessionId + "&#39;," +
+                    "userName:&#39;" + escapeRison(geotabSession.credentials.userName) + "&#39;)";
             }
 
             function getLiveMapUrl() {
-                return "https://" + normalizeServerName(geotabSession.server) + "/geotab/checkmate/ui/map.html#credentials:(" +
-                       "database:" + escapeRison(geotabSession.credentials.database) + ",rememberMe:!t,sessionId:'" +
-                       geotabSession.credentials.sessionId + "',userName:'" +
+                return "https://" + normalizeServerName(geotabSession.server) + "/" + geotabSession.credentials.database + "/geotab/checkmate/ui/map.html#credentials:(" +
+                    "database:" + escapeRison(geotabSession.credentials.database) + ",rememberMe:!t,sessionId:'" +
+                    geotabSession.credentials.sessionId + "',userName:'" +
                         escapeRison(geotabSession.credentials.userName) + "')";
             }</script></body></html>

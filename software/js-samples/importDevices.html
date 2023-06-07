@@ -1,9 +1,6 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Import devices</title><link href=css/geotab.css rel=stylesheet type=text/css></head><body><header><div class=container><nav><img src=http://www.geotab.com/webimages/header/geotablogo.png alt=""> <button id=help>Help</button> <button id=signout>Sign out</button></nav><h1>Example: Import devices</h1><h3>How to import a collection of devices to MyGeotab</h3></div></header><div class="container bordered"><div id=disclaimer><label id=disclaimerLabel>Sample add-in/tool</label><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div><div id=signin-content></div><div id=example-content><form><h3>Import devices</h3><p>Use the text box below to import multiple devices at a time. Place each device on its own line as follows:</p><div class=code><pre>SerialNumber,Name1,GroupName<br>SerialNumber,Name2,GroupName<br>SerialNumber,Name3,GroupName</pre></div><p><input id=createGroups type=checkbox checked> <label for=createGroups>Automatically create new groups if needed</label></p><p><textarea id=content cols=80 rows=8></textarea></p><button id=importDevices>Import devices</button> <span id=result></span></form></div></div><footer><div class="container footernotes"><p>Source code provided as part of the <a href=https://helpdesk.geotab.com/forums target=_blank>Geotab SDK</a>.</p><p>Last updated on 08/31/2015</p></div></footer><div id=help-content><h2>Help</h2><p><strong>Overview</strong><br>This utility helps you import devices to your account using comma separated values (CSV).</p><p><strong>Work flow</strong><br>Initially a cache will be created of all the devices currently on your account. The input provided is parsed and if a device does not exist in the cache, it will be added and then saved to your account.</p><p><strong>Skill level</strong><br>Intermediate</p></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var groupCache;
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Import Devices Example</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Import Devices Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/intermediate-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This utility helps you import devices to your account using comma separated values (CSV). Initially a cache will be created of all the devices currently on your account. The input provided is parsed and if a device does not exist in the cache, it will be added and then saved to your account.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Add1 target=_blank>Add</a> <a href=https://geotab.github.io/sdk/software/api/reference/#Get1 target=_blank>Get</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Device target=_blank>Device</a> <a href=https://geotab.github.io/sdk/software/api/reference/#Group target=_blank>Group</a></details></div></div><div id=example-content><form><p>Use the text box below to import multiple devices at a time. Place each device on its own line as follows:</p><div class=code><pre>SerialNumber,Name1,GroupName<br>SerialNumber,Name2,GroupName<br>SerialNumber,Name3,GroupName</pre></div><p><input id=createGroups type=checkbox checked> <label for=createGroups>Automatically create new groups if needed</label></p><p><textarea id=content cols=80 rows=8></textarea></p><button class=primary-btn id=importDevices>Import devices</button> <span id=result></span></form></div></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var groupCache;
 
             document.addEventListener("DOMContentLoaded", function () {
-
-                groupCache = refreshGroupCache(null);
-
                 document.getElementById("importDevices").addEventListener("click", function (event) {
                     event.preventDefault();
 
@@ -41,14 +38,14 @@
                             }
 
                             // If create groups is enabled, queue up the new groups to be created
-							if (!groupCache.hasOwnProperty(split[2])) {
-								if (createGroups) {
-									(newGroups.indexOf(split[2]) === -1) && newGroups.push(split[2]);
-								} else {
-									alert("Can't import " + split[1] + " because its group does not exist");
+                            if (!groupCache.hasOwnProperty(split[2])) {
+                                if (createGroups) {
+                                    (newGroups.indexOf(split[2]) === -1) && newGroups.push(split[2]);
+                                } else {
+                                    alert("Can't import " + split[1] + " because its group does not exist");
                                     return;
-								}
-							}
+                                }
+                            }
                         }
 
                         // MultiCalls for new groups
@@ -88,7 +85,7 @@
                         document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
                     }
                 });
-
+                groupCache = refreshGroupCache(null);
             });
 
             function addDevice(serialNumber, name, groupId) {
