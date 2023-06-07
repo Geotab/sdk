@@ -233,7 +233,10 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 
 ### Msg Type 0x26: Protobuf data packet
 
-Issued by the GO device in response to Msg Type 0x8C.Information published by the GO device.
+Available with add-on protocol version >= 1.2.
+Issued by the GO device in response to Msg Type 0x8C.
+Also issued by the GO device to publish information for the topics (defined in Appendix D) subscribed by the third party device.
+The information includes a payload containing data encoded in the protobuf format.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -243,6 +246,8 @@ Issued by the GO device in response to Msg Type 0x8C.Information published by th
 | Data Payload Protobuf (1-255) | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
+
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
@@ -427,7 +432,8 @@ Sent by the external device when requesting the add on protocol version number. 
 
 ### Msg Type 0x8C: Protobuf data packet
 
-Sent by the external device for the purpose of configuring its information subscription from the GO device. The GO device will respond with 0x26.
+Available with add-on protocol version >= 1.2.
+Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK. The topics that the third party is interested in are requested in the form of a payload data encoded using protobuf format.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -438,6 +444,8 @@ Sent by the external device for the purpose of configuring its information subsc
 | Checksum | 2 | 3 + x |
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
+
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
 
 ## Messages from MyGeotab
 
@@ -583,3 +591,183 @@ This is an example of binary data packets for image data transferred using the M
 | Total Number of Payload Bytes Received | x | 12 |
 | Checksum | 2 | 12+x |
 | ETX (0x03) | 1 | 14+x |
+
+### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
+
+Messages sent from the IOX to the GO is represented by IoxToGo
+Messages sent from the GO to the IOX is represented by IoxFromGo
+
+example of building protobuf in python:
+<code>
+iox_to_go=iox_messaging_pb2.IoxToGo()
+iox_to_go.pub_sub.sub.topic = 1 #TOPIC_ACCEL
+iox_to_go_seralized = iox_to_go.SerializeToString()
+</code>
+After the protobuf is built, we will get payload "0a040a020801"
+
+The content of complete .proto is as below.
+
+<code>
+// Possible subscription topics
+// Includes status data IDs
+enum Topic {
+    TOPIC_UNSPECIFIED = 0;
+    TOPIC_ACCEL = 1;
+    TOPIC_GPS = 2;
+    TOPIC_BATTERY_VOLTAGE = 3;
+    TOPIC_VIN = 4;
+    TOPIC_GEAR = 5;
+    TOPIC_ENGINE_SPEED = 6;
+    TOPIC_ENGINE_LOAD = 7;
+    TOPIC_ODOMETER = 8;
+    TOPIC_ACCEL_PEDAL_PERCENTAGE = 9;
+    TOPIC_COOLANT_TEMP = 10;
+    TOPIC_DOC_INTAKE_GAS_TEMP = 11;
+    TOPIC_DOC_OUTLET_GAS_TEMP = 12;
+    TOPIC_FUELTANK1_UNITS = 13;
+    TOPIC_FUELTANK2_UNITS = 14;
+    TOPIC_FUELTANK1_PERCENT = 15;
+    TOPIC_FUELTANK2_PERCENT = 16;
+    TOPIC_STATE_OF_CHARGE = 17;
+    TOPIC_ENGINE_ROAD_SPEED = 18;
+    TOPIC_VEHICLE_ACTIVE = 19;
+    TOPIC_DRIVER_SEATBELT = 20;
+    TOPIC_LEFT_TURN_SIGNAL = 21;
+    TOPIC_RIGHT_TURN_SIGNAL = 22;
+    TOPIC_EV_CHARGING_STATE = 23;
+    TOPIC_PARK_BRAKE = 24;
+}
+
+message SubAck {
+    enum Result {
+        SUB_ACK_RESULT_UNSPECIFIED = 0;
+        // Subscription success
+        SUB_ACK_RESULT_SUCCESS = 1;
+        // Generic subscription failure
+        SUB_ACK_RESULT_FAILED = 2;
+        // Subscribe fails if an unknown topic is specified
+        SUB_ACK_RESULT_UNKNOWN_TOPIC = 3;
+        // Subscribe fails if the topic has already been subscribed to
+        SUB_ACK_RESULT_TOPIC_ALREADY_SUBBED = 4;
+        // Unsubscribe fails if the topic has not been subscribed to
+        SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5;
+        // Unsubscribe fails if the subscription belongs to another IOX.
+        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6;
+    }
+    Result result = 1;
+    Topic topic = 2;
+}
+
+// May be extended with metadata for each topic in the future
+message TopicInfo {
+    Topic topic = 1;
+}
+
+message TopicList {
+    repeated Topic topics = 1;
+}
+
+message TopicInfoList {
+    repeated TopicInfo topics = 1;
+}
+
+message ClearSubAck {
+    enum Result {
+        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
+        // Unsubscribe succeeded
+        CLEAR_SUB_ACK_RESULT_SUCCESS = 1;
+        // Unsubscribe fails if the subscription belongs to another IOX.
+        CLEAR_SUB_ACK_RESULT_FAILED = 2;
+    }
+    Result result = 1;
+}
+
+message Vec3 {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Gps {
+    // Latitude, in degrees (+ve = north, -ve = south)
+    float latitude = 1;
+    // Longitude, in degrees (+ve = east, -ve = west)
+    float longitude = 2;
+    // Speed, in km/h
+    float speed = 3;
+    // Heading, in degrees
+    float heading = 4;
+    google.protobuf.Timestamp gps_time = 5;
+}
+
+message Publish {
+    google.protobuf.Timestamp time = 1;
+    Topic topic = 2;
+    oneof value {
+        bool bool_value = 3;
+        int32 int_value = 4;
+        uint32 uint_value = 5;
+        float float_value = 6;
+        // Used for VIN (17 digits)
+        string string_value = 7;
+        // Used for acceleration
+        Vec3 vec3_value = 8;
+        Gps gps_value = 9;
+    };
+}
+
+message Subscribe {
+    Topic topic = 1;
+}
+
+message Unsubscribe {
+    Topic topic = 1;
+}
+
+// Pub-sub protocol messages sent to the GO
+message PubSubToGo {
+    oneof msg {
+        // Add the topic to the GO's list of topics that it sends to the IOX
+        Subscribe sub = 1;
+        // Remove the topic from the GO's list of topics
+        Unsubscribe unsub = 2;
+        // Return all subscribed topics on the GO
+        google.protobuf.Empty list_subs = 3;
+        // Clear the list of subscribed topics on the GO
+        google.protobuf.Empty clear_subs = 4;
+        // Return all topics that the IOX can subscribe to
+        google.protobuf.Empty list_avail_topics = 5;
+    }
+}
+
+// Pub-sub protocol messages sent from the GO
+message PubSubFromGo {
+    oneof msg {
+        // Reply to sub and unsub, indicating success/failure
+        SubAck sub_ack = 1;
+        // Reply to list_subs, containing all subscribed topics
+        TopicList topic_list = 2;
+        // Reply to list_avail_topics, containing info on all supported topics
+        TopicInfoList topic_info_list = 3;
+        // Data sample published by the GO
+        Publish pub = 4;
+        // Reply to clear_subs, indicating that the message was received
+        ClearSubAck clear_subs_ack = 5;
+    }
+}
+
+// Messages sent from the IOX to the GO
+message IoxToGo {
+    oneof msg {
+        PubSubToGo pub_sub = 1;
+    }
+}
+
+// Messages sent from the GO to the IOX
+message IoxFromGo {
+    oneof msg {
+        PubSubFromGo pub_sub = 1;
+    }
+}
+</code>
+
