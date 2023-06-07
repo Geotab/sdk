@@ -1,43 +1,85 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8" />
-
-        <title>Geotab SDK | Add zone example</title>
-
+        <title>Geotab SDK | Add Zone Example</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- CSS used for the map (Leaflet) -->
         <link href="js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
-        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
-
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
-
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
         <header>
-            <div class="container">
-                <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Example: Add zone</h1>
-                <h3>Creates a new zone by reverse geocoding an address</h3>
-            </div>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
+
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+            </nav>
         </header>
 
-        <div class="container bordered">
-            <div id="disclaimer">
-				<label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-			</div>
-
+        <div class="container">
+            <!-- Div used to append the sign in components too within loginUpdated.js -->
             <div id="signin-content"></div>
 
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">Add Zone Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:    
+                    <div class="skill-tooltip">   
+                        <img src="images/intermediate-pill.svg">  
+                        <div class="skill-text">
+                            <p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    This JavaScript example guides you through the process of creating zones and geocoding addresses.
+                    Using an address such as "CN Tower", or "102 Main Street East, Toronto, ON" an API request is made to retrieve the latitude and longitude coordinates for that address. Then, a box is created around that point consisting of four corners. The distance apart is variable using the slider provided. To finish creating the zone, add a name and click Add zone and the points you see will be saved to your account.
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Add1" target="_blank">Add</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#GetCoordinates" target="_blank">GetCoordinates</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Zone" target="_blank">Zone</a>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Components which make up the example in this case input fields to select a location -->
             <div id="example-content">
                 <form>
-                    <h3>Search for address</h3>
                     <p>
-                        <label for="address">Street address</label>
+                        <label for="address">Street Address</label>
                         <input id="address" type="text" placeholder="Example: 125 John Street, Mycity">
                     </p>
                     <p>
@@ -51,11 +93,11 @@
                         <label for="shape-circle">Circle</label>
                     </p>
                     <p>
-                        <button id="search">Search</button>
+                        <button class="primary-btn" id="search">Search</button>
                     </p>
                     <div id="example-content-details">
                         <p>
-                            <label for="zoneName">Zone name</label>
+                            <label for="zoneName">Zone Name</label>
                             <input id="zoneName" type="text" placeholder="Example: My office" maxlength="255">
                         </p>
                         <p>
@@ -63,48 +105,28 @@
                             <label for="zoneDisplayed">Show on MyGeotab by default</label>
                         </p>
                         <p>
-                            <button id="addZone">Add zone</button>
+                            <button class="primary-btn" id="addZone">Add zone</button>
                         </p>
                     </div>
                 </form>
             </div>
-
-        </div>
-
-        <div class="container bordered spaced">
-            <div id="map"></div>
-        </div>
-
-        <footer>
-            <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 08/31/2015</p>
+            
+            <!-- Div which consists of the leaflet map -->
+            <div class="map-container">
+                <div id="map"></div>
             </div>
-        </footer>
-
-        <div id="help-content">
-            <h2>Help</h2>
-            <p>
-                <strong>Overview</strong><br />
-                This JavaScript example guides you through the process of creating zones and geocoding addresses.
-            </p>
-            <p>
-                <strong>Work flow</strong><br />
-                Using an address such as "CN Tower", or "102 Main Street East, Toronto, ON" an API request is made to retrieve the
-                latitude and longitude coordinates for that address. Then, a box is created around that point consisting of four corners.
-                The distance apart is variable using the slider provided. To finish creating the zone, add a name and click Add zone and the
-                points you see will be saved to your account.
-            </p>
-            <p>
-                <strong>Skill level</strong><br />
-                Intermediate
-            </p>
         </div>
 
+        <!-- JavaScript file containing the map functionality -->
         <script src="js/leaflet/leaflet.js"></script>
+
+        <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/login.js"></script>
 
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
 
             var map;
@@ -181,7 +203,7 @@
                     }, function (result) {
                         alert("Successfully created zone " + zoneName);
                     }, function (error) {
-                        console.log(error);
+                        alert(error);
                     });
                 });
 

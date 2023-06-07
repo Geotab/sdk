@@ -1,42 +1,94 @@
-﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Geotab SDK | Import users</title>
-        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
+        <title>Geotab SDK | Import Users Example</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
     </head>
-    <body>
-        <header>
-            <div class="container">
-                <nav>
-                    <img src="https://gogwebp01.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="template">Template</button>&nbsp;&nbsp;
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Import users</h1>
-                <h3>Creates new users from a comma separated list</h3>
-				
-				
-            </div>
-        </header>
-        <div class="container bordered">
 
-			<div id="disclaimer">
-				<label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-			</div>
+    <body>
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
+        <header>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
+
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+
+                <!-- 
+                    Template button used to open the template modal (modal content is within this HTML file has the id="template-content", mostly used for importers).
+                    The buttons/modals JavaScript functionality is within loginUpdated.js.
+                -->
+                <button class="secondary-btn template-btn" id="template">Template</button>
+            </nav>
+        </header>
+            
+        <div class="container">
+            <!-- Div used to append the sign in components too, created within loginUpdated.js -->
             <div id="signin-content"></div>
 
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">Import Users Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:  
+                    <div class="skill-tooltip">   
+                        <img src="images/advanced-pill.svg">
+                        <div class="skill-text">
+                            <p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    This SDK example assists with importing users to your database using comma separated values (CSV). Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source.
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Add1" target="_blank">Add</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Driver" target="_blank">Driver</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#HosRuleSet" target="_blank">HosRuleSet</a>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Components which make up the example are placed here -->
             <div id="example-content">
                 <form>
-                    <h3>Import users</h3>
                     <p>
-                        <label for="import-userName">Email or username</label>
+                        <label for="import-userName">Email or Username</label>
                         <input id="import-userName" type="text" placeholder="user@geotab.com" maxlength="255" />
                     </p>
                     <p>
-                        <label for="import-firstName">Full name</label>
+                        <label for="import-firstName">Full Name</label>
                         <input id="import-firstName" type="text" placeholder="John" maxlength="255" />
                         <input id="import-lastName" type="text" placeholder="Smith" maxlength="255" />
                     </p>
@@ -54,22 +106,21 @@
                         <select id="import-reporting-groups" multiple data-placeholder="Select reporting groups"></select>
                     </p>
 					<p>
-						<label for="import-securityClearance">Security clearance</label>
+						<label for="import-securityClearance">Security Clearance</label>
 						<select id="import-securityClearance"></select>
 					</p>
 					<p>
-						<label for="import-nfcKey">Driver key (optional)</label>
+						<label for="import-nfcKey">Driver Key (optional)</label>
 						<input id="import-nfcKey" type="text" placeholder="NFC key number" />
 						<input id="import-customNFC" type="text" placeholder="Custom NFC key number" />
 					</p>
 			
 					<p>
-
-					<!-- Phone Code takes priority over country code (e.g. if the countryCode for Algeria is selected but the phone number code is +1 then the country will be Canada)  -->
-					<!-- Country Code/Flag  -->
+                        <!-- Phone Code takes priority over country code (e.g. if the countryCode for Algeria is selected but the phone number code is +1 then the country will be Canada)  -->
+                        <!-- Country Code/Flag  -->
 						<label for="import-countryCode">Country Code / Phone Number / Ext (optional)</label>
 
-						<select name="country" id="import-countryCode" style="height: 33px;">
+						<select name="country" id="import-countryCode">
 							<option value="CA">Canada +1</option>
 							<option value="US">United States +1</option>
 							<option value="AL">Albania +355</option>
@@ -224,9 +275,9 @@
 							<option value="">Other</option>
 						</select>
 
-					<!-- Phone Number -->
+					    <!-- Phone Number -->
                         <input id="import-phoneNumber" type="text" placeholder="+1 5555555555" maxlength="20" />
-					<!-- Phone Number Extension -->
+					    <!-- Phone Number Extension -->
 	                     <input id="import-phoneNumberExtension" type="text" placeholder="1234" maxlength="5" />
 					</p>
 					<!-- Designation -->
@@ -235,12 +286,12 @@
                         <input id="import-designation" type="text" maxlength="50" />
 					</p>
 					<p>
-                        <label for="import-employeeNumber">Employee number (optional)</label>
+                        <label for="import-employeeNumber">Employee Number (optional)</label>
                         <input id="import-employeeNumber" type="text" maxlength="255" />
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">Fuel economy measurement:</label>
+							<label class="label">Fuel Economy Measurement:</label>
 							<div id="options_fuelEconomySelect"><input type="radio" name="fuelButton" value="LitersPer100Km" id="Lper100km" checked>
 								<label>L/100 km</label><input type="radio" name="fuelButton" value="KmPerLiter" id="kmperL">
 								<label>km/L</label><input type="radio" name="fuelButton" value="MPGUS" id="mpgUS">
@@ -250,7 +301,7 @@
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">Distance measurement system:</label>
+							<label class="label">Distance Measurement System:</label>
 							<div id="options_measurementSelect">
 								<input type="radio" name="distanceunits" value="Metric" id="metricUnit" checked>
 								<label>Metric</label>
@@ -260,7 +311,7 @@
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">Feature preview:</label>
+							<label class="label">Feature Preview:</label>
 							<div><input type="radio" name="featurePreviewRadioButton" value="On" id="idFeaturePreviewOn">
 								<label>On</label>
 								<input type="radio" name="featurePreviewRadioButton" value="Off" id="idFeaturePreviewOff" checked>
@@ -268,52 +319,52 @@
 						</div>
 					</p>
 					<p>
-						<label for="options_userTimeZoneOffset">Time zone:</label>
+						<label for="options_userTimeZoneOffset">Time Zone:</label>
                         <select id="options_userTimeZoneOffset"></select>
 					</p>
 										
-					<button type="button" class="clickable-heading">Click me to toggle HOS fields:</button>
+					<button type="button" class="clickable-heading secondary-btn">Click me to toggle HOS fields:</button>
 
 					<ul style="display:none">
 					<p>
 						<div class="checkmateField">
-							<label for="options_AuthorityName">Authority name: </label>
+							<label for="options_AuthorityName">Authority Name: </label>
 							<input id="options_AuthorityName" class="checkmateFormEditField" title="The motor carrier that the driver works for.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label for="options_AuthorityAddress">Authority address: </label>
+							<label for="options_AuthorityAddress">Authority Address: </label>
 							<input id="options_AuthorityAddress" class="checkmateFormEditField" title="The motor carrier's main office address.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label for="options_CarrierNumber">Carrier number:</label>
+							<label for="options_CarrierNumber">Carrier Number:</label>
 							<input id="options_CarrierNumber" class="checkmateFormEditField" title="In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label for="options_Name">Home terminal:</label>
+							<label for="options_Name">Home Terminal:</label>
 							<input id="options_Name" class="checkmateFormEditField" title="The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label for="options_Address">Home terminal address:</label>
+							<label for="options_Address">Home Terminal Address:</label>
 							<input id="options_Address" class="checkmateFormEditField" title="The motor carrier's address where the driver ordinarily reports for work.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label for="options_LicenseNumber">Driver license number:</label>
+							<label for="options_LicenseNumber">Driver License Number:</label>
 							<input id="options_LicenseNumber" class="checkmateFormEditField" maxlength="1000" title="Driver's license number and License state/province must be set at the same time.">
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">License state/province:</label>
+							<label class="label">License State/Province:</label>
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_licenseStateSelect" title="Selecting North America will show a dropdown menu; selecting Other will display a text box."><input
 								 type="radio" onclick="javascript:yesnoCheck();" name="licenseStateRadioButton" value="North America"  id="idLicenseStateNA"><label
 								 class="geotabButton switcherItem_Metric" for="idLicenseStateNA">North America</label><input type="radio" onclick="javascript:yesnoCheck();" name="licenseStateRadioButton"
@@ -439,7 +490,7 @@
 						<div class="checkmateField">
 							<label for="options_hosRuleSet">Ruleset:</label>
 							<select id="options_hosRuleSet" class="checkmateFormEditField" title="This is the ruleset the user will follow when using hours of service.">
-								<option value=""></option>"Please select a ruleset"</option>
+								<option value=""></option>"Please Select a Ruleset"</option>
 								<option value="HosRuleSetAlaskaPassenger7Day">Alaska Passenger 70-hour/7-day</option>
 								<option value="HosRuleSetAlaskaPassenger8Day">Alaska Passenger 80-hour/8-day</option>
 								<option value="HosRuleSetAlaskaProperty7Day">Alaska Property 70-hour/7-day</option>
@@ -524,15 +575,12 @@
 								<option value="HosRuleSetOregon8day">Oregon 80-hour/8-day</option>
 								<option value="HosRuleSetSouthCarolina7Day">South Carolina 70-hour/7-day</option>
 								<option value="HosRuleSetSouthCarolina8Day">South Carolina 80-hour/8-day</option>
-					
-					
-					
 							</select>
 						</div>
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">Yard move allowed:</label>
+							<label class="label">Yard Move Allowed:</label>
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_yardModeSelect" title="Toggling this setting to ON allows the driver to apply the yard move exemption."><input
 								 type="radio" name="yardMoveRadioButton" value="On"  id="idYardMoveOn"><label
 								 class="geotabButton switcherItem_Metric" for="idYardMoveOn">On</label><input type="radio" name="yardMoveRadioButton"
@@ -541,7 +589,7 @@
 					</p>
 					<p>
 						<div class="checkmateField">
-							<label class="label">Personal conveyance allowed:</label>
+							<label class="label">Personal Conveyance Allowed:</label>
 							<div class="flexible set-2x buttonSet horizontalButtonSet adjustableButtonSet" id="options_personalConveyanceSelect" title="Toggling this setting to ON allows the driver to apply the personal conveyance exemption."><input
 								 type="radio" name="personalConveyanceRadioButton" value="On"  id="idPersonalConveyanceOn"><label
 								 class="geotabButton switcherItem_Metric" for="idPersonalConveyanceOn">On</label><input type="radio" name="personalConveyanceRadioButton"
@@ -550,40 +598,23 @@
 					</p>
 					</ul>
 					<p>
-						<button id="addUser">Add user</button>&nbsp;&nbsp;<button id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" id="clear" onclick="ClearFields();">Clear</button>
+						<h3>Step 1: Click Add user (can view the inputted information in the input container below) </h3>
+						<button class="primary-btn" id="addUser">Add user</button>
+					</p>
+					<p>
+						<h3>Step 2: Click Import users (to import the user to the database) </h3>
+						<button class="primary-btn" id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" class="secondary-btn" id="clear" onclick="ClearFields();">Clear</button>
 					</p>
                     <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
                     </p>
                 </form>
             </div>
-
         </div>
 
-        <footer>
-            <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-
-                <p>Last updated on 08/21/2020</p>
-
-
-            </div>
-        </footer>
-        
+        <!-- This is the template modals container in which HTML can be added to include a template which the user can copy and paste for the importers -->
         <div id="template-content">
             <h2>Template</h2>
-            <p>
-
-                To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
-
-            </p>
-			<div class="code">
-				<pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
-			</div>
-        </div>
-
-        <div id="help-content">
-            <h2>Help</h2>
             <p>
                 This SDK example assists with importing users to your database using comma separated values (CSV).
             </p>
@@ -595,6 +626,7 @@
 							<th>Value</th>
 							<th>Example</th>
 							<th>Notes</th>
+							<th>Required</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -602,31 +634,37 @@
 							<td>Email</td>
 							<td>john.smith@geotab.com</td>
 							<td>Can be email or user name. Spaces are not allowed.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>First name</td>
 							<td>John</td>
 							<td>Spaces are not allowed.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Last name</td>
 							<td>Smith</td>
 							<td></td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Password</td>
 							<td></td>
 							<td>Minimum of 6 characters.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of groups separated by the | character.</td>
+							<td><b>Yes</b></td>
                         </tr>
                         <tr>
 							<td>Reporting Groups</td>
 							<td>Drivers|West|Garmin</td>
 							<td>Names of reporting groups separated by the | character.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Security clearance ID</td>
@@ -636,128 +674,161 @@
 								Example:<br />
 								my.geotab.com/DATABASE/#clearance,id:<strong>b28A7</strong>
 							</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>NFC key number</td>
 							<td>T1234S</td>
-							<td><i>Optional</i>. Found on the NFC key fob.</td>
+							<td>Found on the NFC key fob.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Custom NFC key number</td>
 							<td>12345678</td>
-							<td><i>Optional</i>. Found on the Custom NFC key fob.</td>
+							<td>Found on the Custom NFC key fob.</td>
+							<td>No</td>
 						</tr>
 						<!-- Country Code -->
 						<tr>
 							<td>Country Code</td>
 							<td>CA</td>
-							<td><i>Optional</i>. The user two symbols country ISO code (https://www.iso.org/iso-3166-country-codes.html)</td>
+							<td>The user two symbols country ISO code (https://www.iso.org/iso-3166-country-codes.html)</td>
+							<td>No</td>
 						</tr>
 						<!-- Phone number -->
 						<tr>
 							<td>Phone number</td>
 							<td>+1 5555555555</td>
-							<td><i>Optional</i>. The user's phone number with space separated country phone code.</td>
+							<td>The user's phone number with space separated country phone code.</td>
+							<td>No</td>
 						</tr>
 						<!-- Phone number Extension-->
 						<tr>
 							<td>Phone number extension</td>
 							<td>1234</td>
-							<td><i>Optional</i>. The user's phone number extension.</td>
+							<td>The user's phone number extension.</td>
+							<td>No</td>
 						</tr>
 						<!-- Designation -->
 						<tr>
 							<td>Designation</td>
 							<td>""</td>
-							<td><i>Optional</i>. The user's designation</td>
+							<td>The user's designation</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Employee number</td>
 							<td>63-221-44</td>
-							<td><i>Optional</i>. The user's employee number.</td>
+							<td>The user's employee number.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Fuel economy measurement</td>
 							<td>LitersPer100Km</td>
-							<td><i>Optional</i>. Choose how to display fuel economy. There are four different measurements: liters per 100 kilometers, kilometers per liter, miles per US gallon, or miles per imperial gallon. You may need to refresh your browser for the change to take effect.</td>
+							<td>Choose how to display fuel economy. There are four different measurements: liters per 100 kilometers, kilometers per liter, miles per US gallon, or miles per imperial gallon. You may need to refresh your browser for the change to take effect.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Distance measurement system</td>
 							<td>Metric (true)</td>
-							<td><i>Optional</i>. Choose how to display speeds and distances. This can be Metric or US/Imperial. You may need to refresh your browser to see the change take effect.</td>
+							<td>Choose how to display speeds and distances. This can be Metric or US/Imperial. You may need to refresh your browser to see the change take effect.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Feature preview</td>
 							<td>On or Off (true or false)</td>
-							<td><i>Optional</i>. Toggle feature preview.</td>
+							<td>Toggle feature preview.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Time zone</td>
 							<td>America/New_York</td>
 							<td>The time zone offset from UTC for your location. All data will be displayed in this time zone.</td>
+							<td><b>Yes</b></td>
 						</tr>
 						<tr>
 							<td>Authority name</td>
 							<td>National Express</td>
-							<td><i>Optional</i>. The motor carrier that the driver works for.</td>
+							<td>The motor carrier that the driver works for.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Authority address</td>
 							<td>5000 Explorer Drive</td>
-							<td><i>Optional</i>. The motor carrier's main office address.</td>
+							<td>The motor carrier's main office address.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Carrier number</td>
 							<td>8Z88</td>
-							<td><i>Optional</i>. In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.</td>
+							<td>In the United States, this is the motor carrier's USDOT number. In Canada, this is the Canadian Carrier code.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Home terminal</td>
 							<td>Stark Tower</td>
-							<td><i>Optional</i>. The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.</td>
+							<td>The motor carrier's place of business where the driver ordinarily reports for work. This can include a temporary work site designated by the motor carrier.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Home terminal address</td>
 							<td>200 Park Avenue</td>
-							<td><i>Optional</i>. The motor carrier's address where the driver ordinarily reports for work.</td>
+							<td>The motor carrier's address where the driver ordinarily reports for work.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Driver license number</td>
 							<td>YEET</td>
-							<td><i>Optional</i>. Driver's license number and License state/province must be set at the same time.</td>
+							<td>Driver's license number and License state/province must be set at the same time.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>License state/province</td>
 							<td>Ontario (ON)</td>
-							<td><i>Optional</i>. Selecting North America will show a dropdown menu; selecting Other will display a text box.</td>
+							<td>Selecting North America will show a dropdown menu; selecting Other will display a text box.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Ruleset</td>
 							<td>California Property Intrastate (HosRuleSetCaliforniaProperty)</td>
-							<td><i>Optional</i>. This is the ruleset the user will follow when using hours of service.</td>
+							<td>This is the ruleset the user will follow when using hours of service.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Yard move allowed</td>
 							<td>On or Off (true or false)</td>
-							<td><i>Optional</i>. Toggling this setting to ON allows the driver to apply the yard move exemption.</td>
+							<td>Toggling this setting to ON allows the driver to apply the yard move exemption.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Personal conveyance allowed</td>
 							<td>On of Off (true or false)</td>
-							<td><i>Optional</i>. Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
+							<td>Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
+							<td>No</td>
 						</tr>
 					</tbody>
 				</table>
+                <p>
+                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
+                </p>
+                <div class="code">
+                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
+                </div>
             </p>
         </div>
 
+        <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/login.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
+		<!-- Imported required JavaScript -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
+
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
-
             var groupCache = {};
             var securityClearanceCache = {};
 			var selectedGroups = [];
@@ -768,7 +839,7 @@
 
 			function toggleDocs(event) {
 
-				if (event.target && event.target.className == 'clickable-heading') {
+				if (event.target && event.target.className == 'clickable-heading secondary-btn') {
 
 					var next = event.target.nextElementSibling;
 
@@ -795,13 +866,7 @@
 
 			document.addEventListener('click', toggleDocs, true);
 
-            document.addEventListener("DOMContentLoaded", function() {
-
-                groupCache = refreshGroupCache(null);
-				securityClearanceCache = refreshSecurityClearanceCache(null);
-				timeZoneCache = refreshTimeZoneCache(null);
-				
-				
+            document.addEventListener("DOMContentLoaded", function() {	
 				document.getElementById("content").addEventListener("keyup", function(event) {
 					event.preventDefault();
 					
@@ -1111,10 +1176,139 @@
 							}
 						}
                     }
-                });
-
+                });		
+				groupCache = refreshGroupCache(null);
+				//timeZoneCache = refreshTimeZoneCache(null);
+				//securityClearanceCache = refreshSecurityClearanceCache(null);
             });
+            function refreshGroupCache(callback) {
+				var select = document.getElementById("import-groups");
+                var selectR = document.getElementById("import-reporting-groups");
 			
+                api.call("Get", {
+                    typeName: "Group"
+                }, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        groupCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].name === undefined) {
+								result[i].name = result[i].id;
+                            }
+                        }
+						result.sort(function(a, b) {
+							if (a.name.toLowerCase() < b.name.toLowerCase()) {
+								return -1;
+							}
+							if (a.name.toLowerCase() > b.name.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						});
+						for (i = 0; i < result.length; i++) {
+							groupCache[result[i].name] = result[i];
+							var option = new Option();
+							option.text = result[i].name;
+							option.value = result[i].id;
+							select.add(option);
+                            var optionR = new Option();
+							optionR.text = result[i].name;
+							optionR.value = result[i].id;
+                            selectR.add(optionR);
+						}
+						timeZoneCache = refreshTimeZoneCache(null);
+						securityClearanceCache = refreshSecurityClearanceCache(null);
+                    }
+					$("#import-groups").chosen({
+						search_contains: true
+					});
+                    $("#import-reporting-groups").chosen({
+						search_contains: true
+					});
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+			function refreshTimeZoneCache(callback) {
+				var select = document.getElementById("options_userTimeZoneOffset");
+			
+                api.call("GetTimeZones", {}, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        timeZoneCache = {};
+
+						result.sort(function(a, b) {
+							if (a.id.toLowerCase() < b.id.toLowerCase()) {
+								return -1;
+							}
+							if (a.id.toLowerCase() > b.id.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						});
+						for (i = 0; i < result.length; i++) {
+							timeZoneCache[result[i].id] = result[i];
+							var option = new Option();
+							option.text = result[i].id;
+							option.value = result[i].id;
+							select.add(option);
+						}
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function refreshSecurityClearanceCache(callback) {
+				var select = document.getElementById("import-securityClearance");
+			
+                api.call("Get", {
+                    typeName: "Group",
+                    search: {
+                        id: "GroupSecurityId"
+                    }
+                }, function(result) {
+                    if (result !== undefined && result != null && result.length > 0) {
+                        securityClearanceCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].name === undefined) {
+								result[i].name = result[i].id;
+                            }
+                        }
+						result.sort(function(a, b) {
+							if (a.name.toLowerCase() < b.name.toLowerCase()) {
+								return -1;
+							}
+							if (a.name.toLowerCase() > b.name.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						});
+						for (i = 0; i < result.length; i++) {
+							securityClearanceCache[result[i].id] = result[i];
+							var option = new Option();
+							option.text = result[i].name;
+							option.value = result[i].id;
+							select.add(option);
+						}
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+			function ClearFields() {
+				document.getElementById("content").value = "";
+			}
+
 			function parseUserFromFields() {
 				var groups = [];
 			
@@ -1281,136 +1475,7 @@
 				else alert("Custom NFC Key Serial Number must be between 0 and 72057594037927940.")
                 return keys;
 			}
-
-			function refreshTimeZoneCache(callback) {
-				var select = document.getElementById("options_userTimeZoneOffset");
-			
-                api.call("GetTimeZones", {}, function(result) {
-                    if (result !== undefined && result != null && result.length > 0) {
-                        timeZoneCache = {};
-
-						result.sort(function(a, b) {
-							if (a.id.toLowerCase() < b.id.toLowerCase()) {
-								return -1;
-							}
-							if (a.id.toLowerCase() > b.id.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-						});
-						for (i = 0; i < result.length; i++) {
-							timeZoneCache[result[i].id] = result[i];
-							var option = new Option();
-							option.text = result[i].id;
-							option.value = result[i].id;
-							select.add(option);
-						}
-                    }
-                    if (callback) {
-                        callback();
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
-            }
-
-            function refreshGroupCache(callback) {
-				var select = document.getElementById("import-groups");
-                var selectR = document.getElementById("import-reporting-groups");
-			
-                api.call("Get", {
-                    typeName: "Group"
-                }, function(result) {
-                    if (result !== undefined && result != null && result.length > 0) {
-                        groupCache = {};
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].name === undefined) {
-								result[i].name = result[i].id;
-                            }
-                        }
-						result.sort(function(a, b) {
-							if (a.name.toLowerCase() < b.name.toLowerCase()) {
-								return -1;
-							}
-							if (a.name.toLowerCase() > b.name.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-						});
-						for (i = 0; i < result.length; i++) {
-							groupCache[result[i].name] = result[i];
-							var option = new Option();
-							option.text = result[i].name;
-							option.value = result[i].id;
-							select.add(option);
-                            var optionR = new Option();
-							optionR.text = result[i].name;
-							optionR.value = result[i].id;
-                            selectR.add(optionR);
-						}
-                    }
-					$("#import-groups").chosen({
-						search_contains: true
-					});
-                    $("#import-reporting-groups").chosen({
-						search_contains: true
-					});
-                    if (callback) {
-                        callback();
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
-            }
-
-            function refreshSecurityClearanceCache(callback) {
-				var select = document.getElementById("import-securityClearance");
-			
-                api.call("Get", {
-                    typeName: "Group",
-                    search: {
-                        id: "GroupSecurityId"
-                    }
-                }, function(result) {
-                    if (result !== undefined && result != null && result.length > 0) {
-                        securityClearanceCache = {};
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].name === undefined) {
-								result[i].name = result[i].id;
-                            }
-                        }
-						result.sort(function(a, b) {
-							if (a.name.toLowerCase() < b.name.toLowerCase()) {
-								return -1;
-							}
-							if (a.name.toLowerCase() > b.name.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-						});
-						for (i = 0; i < result.length; i++) {
-							securityClearanceCache[result[i].id] = result[i];
-							var option = new Option();
-							option.text = result[i].name;
-							option.value = result[i].id;
-							select.add(option);
-						}
-                    }
-                    if (callback) {
-                        callback();
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
-            }
-
-			function ClearFields() {
-
-			document.getElementById("content").value = "";
-			}
-
         </script>
 
     </body>
-
 </html>

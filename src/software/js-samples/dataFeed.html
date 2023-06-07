@@ -1,49 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8" />
-
-        <title>Geotab SDK | Data feed example</title>
-
-        <link href="css/geotab.css" rel="stylesheet" type="text/css">
-
+        <title>Geotab SDK | Data Feed Example</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
-
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
         <header>
-            <div class="container">
-                <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Example: Data feed</h1>
-                <h3>Demonstrates how to poll for newly available data</h3>
-            </div>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
+
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+            </nav>
         </header>
 
-        <div class="container bordered">
-
-            <div id="disclaimer">
-				<label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-			</div>
+        <div class="container">
+            <!-- Div used to append the sign in components too within loginUpdated.js -->
             <div id="signin-content"></div>
 
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">Data Feed Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:    
+                    <div class="skill-tooltip">   
+                        <img src="images/advanced-pill.svg">    
+                        <div class="skill-text">
+                            <p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    This example shows you how you can implement polling for multiple sources of data.
+                    We retrieve new information by setting up JavaScript intervals which invoke a function every few seconds. This function
+                    is responsible for building a set of API requests using <a href="https://geotab.github.io/sdk/software/guides/using-in-javascript/#multicall" target="_blank">MultiCall</a>
+                    to reduce network traffic. After we have the results from the API response, we dynamically build an HTML table with all the data.
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1" target="_blank">GetFeed</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#FaultData" target="_blank">FaultData</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#LogRecord" target="_blank">LogRecord</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#StatusData" target="_blank">StatusData</a>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Components which make up the example in this case input fields to select the data to be retrieved -->
             <div id="example-content">
                 <form>
-                    <h3>Select feed data</h3>
                     <p>
-                        This example will show you how you can poll your Geotab account on a regular interval for new information.
-                        You can use this framework to integrate your location history and vehicle status in to your own applications
-                        by performing periodic updates when needed.
-                    </p>
-                    <p>
-                        In order to reduce the amount of network traffic, this example uses aggregated API calls which are called
-                        <i>multi-calls</i>. You can read more about them in the 
-                        <a href="https://my.geotab.com/sdk/#/concepts" target="_blank">Geotab SDK documentation</a>.
+                        Select the options of data you want to visualize:
                     </p>
                     <p>
                         <input id="includeLocationData" type="checkbox" checked="checked" /> <label for="includeLocationData">Include location data</label>
@@ -54,59 +91,36 @@
                     <p>
                         <input id="includeFaultData" type="checkbox" checked="checked" /> <label for="includeFaultData">Include vehicle fault data</label>
                     </p>
-                    <button id="toggleFeed">Start data feed</button>&nbsp;<button id="clear">Clear</button>
+                    <button class="primary-btn" id="toggleFeed">Start data feed</button>&nbsp;<button class="secondary-btn" id="clear">Clear</button>
                 </form>
-
             </div>
-
-        </div>
-
-        <div id="feed-container" class="container bordered spaced invisible">
-            <table>
-                <thead>
-                <tr>
-                    <th>Vehicle Id</th>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Speed</th>
-                    <th>Diagnostic</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tbody id="feed"></tbody>
-            </table>
-        </div>
-
-        <footer>
-            <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 08/31/2015</p>
+            
+            <div id="feed-container" class="feed-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vehicle Id</th>
+                            <th>Id</th>
+                            <th>Date</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Speed</th>
+                            <th>Diagnostic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feed"></tbody>
+                </table>
             </div>
-        </footer>
-
-        <div id="help-content">
-            <h2>Help</h2>
-            <p>
-                <strong>Overview</strong><br />
-                This example shows you how you can implement polling for multiple sources of data.
-            </p>
-            <p>
-                <strong>Work flow</strong><br />
-                We retrieve new information by setting up JavaScript intervals which invoke a function every few seconds. This function
-                is responsible for building a set of API requests using <a href="https://my6.geotab.com/sdk/default.html#/concepts" target="_blank">MultiCall</a>
-                to reduce network traffic. After we have the results from the API response, we dynamically build an HTML table with all the data.
-            </p>
-            <p>
-                <strong>Skill level</strong><br />
-                Advanced
-            </p>
         </div>
 
+        <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/login.js"></script>
 
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
 
             var table;
@@ -114,7 +128,7 @@
             var updateInterval = 5; // In seconds
             var update = null;
             var lastVersions = [ null, null, null ];
-            var startDate = new Date().toISOString();
+            var startDate = new Date(new Date().setUTCHours(0,0,0,0) - 24*60*60*1000).toISOString();
 
             document.addEventListener("DOMContentLoaded", function() {
 
@@ -133,6 +147,7 @@
                     } else {
                         if (update) {
                             clearInterval(update);
+                            lastVersions = [null, null, null];
                         }
                     }
                 });
@@ -162,7 +177,8 @@
                         "fromVersion": lastVersions[0],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 
@@ -172,7 +188,8 @@
                         "fromVersion": lastVersions[1],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 
@@ -182,7 +199,8 @@
                         "fromVersion": lastVersions[2],
                         "search": {
                             "fromDate": startDate
-                        }
+                        },
+                        "resultsLimit": 1000,
                     }]);
                 }
 

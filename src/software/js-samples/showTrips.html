@@ -1,91 +1,119 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8" />
-
-        <title>Geotab SDK | Show device trips</title>
-
+        <title>Geotab SDK | Show Device Trips Example</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- CSS used for the map (Leaflet) -->
         <link href="js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
-        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
-
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
-
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
         <header>
-            <div class="container">
-                <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Example: Show device trips</h1>
-                <h3>Retrieves a device's trip list and displays each one on a map</h3>
-            </div>
-        </header>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
 
-        <div class="container bordered">
-            <div id="disclaimer">
-                <label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-            </div>
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+            </nav>
+        </header>
+            
+        <div class="container">
+            <!-- Div used to append the sign in components too, created within loginUpdated.js -->
             <div id="signin-content"></div>
 
-            <div id="example-content">
-                <form>
-                    <h3>Select device</h3>
-                    <p>
-                        <select id="device">
-                            <option disabled="disabled">Select a device</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select id="trip">
-                            <option disabled="disabled">Select a trip</option>
-                        </select>
-                    </p>
-                    <button id="showTrip">Show trip</button>
-                </form>
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">Show Device Trips Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:  
+                    <div class="skill-tooltip">   
+                        <img src="images/beginner-pill.svg">
+                        <div class="skill-text">
+                            <p>This example demonstrates a tool that can be built with a beginner-level knowledge of the MyGeotab system. It is suitable for those who are new to the Geotab ecosystem and are just getting started with learning about the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    This example demonstrates some simple API requests and drawing a vehicle's trip on a map.
+                    Your vehicles are retrieved using an initial API request for all Device entities. Then when one is selected, the current day's Trips are retrieved. The trip's LogRecords are retrieved and displayed on the map.                    
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#LogRecord" target="_blank">LogRecord</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Trip" target="_blank">Trip</a>
+                    </details>
+                </div>
             </div>
 
-        </div>
-
-        <div class="container bordered spaced">
-            <div id="map"></div>
-        </div>
-
-        <footer>
-            <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 08/31/2015</p>
+            <!-- Components which make up the example are placed here -->
+            <div id="example-content" >
+                <div style="display:flex;">
+                    <form style="width: 340px;">
+                        <p>
+                            <select id="device">
+                                <option disabled="disabled">Select a device</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select id="trip">
+                                <option disabled="disabled">Select a trip</option>
+                            </select>
+                        </p >
+                        <p id="noTripsAvailableInfo"></p>
+                        <button class="primary-btn" id="showTrip">Show trip</button>   
+                    </form>  
+                    <!-- Div which consists of the leaflet map -->
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
             </div>
-        </footer>
-
-        <div id="help-content">
-            <h2>Help</h2>
-            <p>
-                <strong>Overview</strong><br />
-                This example demonstrates some simple API requests and drawing a vehicle's trip on a map.
-            </p>
-            <p>
-                <strong>Work flow</strong><br />
-                Your vehicles are retrieved using an initial API request for all Device entities. Then when one is
-                selected, the current day's <a href="https://my6.geotab.com/sdk/default.html#/api" target="_blank">Trips</a>
-                are retrieved. The trip's LogRecords are retrieved and displayed on the map.
-            </p>
-            <p>
-                <strong>Skill level</strong><br />
-                Beginner
-            </p>
+             
+            
         </div>
 
+        <!-- JavaScript file containing the map functionality -->
         <script src="js/leaflet/leaflet.js"></script>
+
+        <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/login.js"></script>
 
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
-
             var map;
             var featureGroup;
 
@@ -98,9 +126,6 @@
                     subdomains: ['a','b','c']
                 }).addTo(map);
                 featureGroup = L.featureGroup().addTo(map);
-
-                // Download devices to work with
-                populateDevices();
 
                 document.getElementById("showTrip").addEventListener("click", function (event) {
                     event.preventDefault();
@@ -157,12 +182,19 @@
                             toDate: endOfDay
                         }
                     }, function (result) {
-                        for (var i = 0; i < result.length; i++) {
-                            var option = new Option();
-                            option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
-                            option.setAttribute("data-start", result[i].start);
-                            option.setAttribute("data-stop", result[i].stop);
-                            select.add(option);
+                        var infoText = document.getElementById("noTripsAvailableInfo")
+                        
+                        if (result.length == 0) {
+                            infoText.innerHTML = "No trips were found for this device within the last 24 hours. Please select another vehicle."
+                        } else {
+                            infoText.innerHTML = ""
+                            for (var i = 0; i < result.length; i++) {
+                                var option = new Option();
+                                option.text = "Trip " + (i + 1) + " (" + result[i].distance.toFixed(2) + " km)";
+                                option.setAttribute("data-start", result[i].start);
+                                option.setAttribute("data-stop", result[i].stop);
+                                select.add(option);
+                            }
                         }
                     }, function (error) {
                         alert(error);
@@ -209,11 +241,11 @@
 
                     map.fitBounds(featureGroup.getBounds());
                 }
-
+                // Download devices to work with
+                populateDevices();
             });
 
         </script>
 
     </body>
-
 </html>

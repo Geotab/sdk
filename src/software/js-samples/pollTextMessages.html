@@ -1,104 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
-        <title>Geotab SDK | Poll text messages example</title>
-
-        <link href="css/geotab.css" rel="stylesheet" type="text/css" />
-
+        <meta charset="utf-8" />
+        <title>Geotab SDK | Poll Text Messages Example</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
-
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
         <header>
-            <div class="container">
-                <nav>
-                    <img src="http://www.geotab.com/webimages/header/geotablogo.png" alt="" />
-                    <button id="help">Help</button>
-                    <button id="signout">Sign out</button>
-                </nav>
-                <h1>Example: Poll text messages</h1>
-                <h3>Polls for delivered, sent and read text messages.</h3>
-            </div>
-        </header>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
 
-        <div class="container bordered">
-            <div id="disclaimer">
-                <label id="disclaimerLabel">Sample add-in/tool</label> <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
-            </div>
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+            </nav>
+        </header>
+            
+        <div class="container">
+            <!-- Div used to append the sign in components too, created within loginUpdated.js -->
             <div id="signin-content"></div>
 
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">Poll Text Messages Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:  
+                    <div class="skill-tooltip">   
+                        <img src="images/advanced-pill.svg">
+                        <div class="skill-text">
+                            <p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    This example shows how to regularly poll for new text messages.
+                    The first step is send to a text message to a Garmin equipped vehicle. An polling interval is created which checks for new delivered, sent and read text messages where you should be able to see the message you have sent. You can then use the options provided to send a mock reply. This will be displayed in the messages table.
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Add1" target="_blank">Add</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank">TextMessage</a>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#User" target="_blank">User</a>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Components which make up the example are placed here -->
             <div id="example-content">
                 <form>
-                    <p>
-                        This sample is polling for text messages that have been added or modified since you authenticated.
-                        After you send a message (step 1) or reply (step 2), it will be displayed after the next poll for text
-                        messages has completed (the sample poll interval is 5 seconds).
-                    </p>
-                    <h3>1: Send message</h3>
+                    <h3>Step 1: Select a device to the send the message </h3>
                     <p>
                         <select id="device">
-                            <option disabled="disabled">Select a device</option>
+                            <option disabled="disabled">Step 1: Select a device to the send the message </option>
                         </select>
                     </p>
-                    <button id="send" style="margin-bottom: 20px;">Send</button>
-                    <h3>2: Reply message</h3>
-                    <p>
-                        This will mock the device's reply to the text message we sent.
-                    </p>
-                    <button id="reply" disabled="disabled">Reply</button>
+                    <button class="primary-btn" id="send" style="margin-bottom: 20px;">Send</button>
+                    <h3>Step 2: Reply message (this will mock the device's <br>
+                        reply to the text message we sent)
+                    </h3>
+                    <button class="primary-btn" id="reply" disabled="disabled">Reply</button>
                 </form>
             </div>
+
+            <table id="messages" class="feed-container">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Parent Id</th>
+                        <th>Reply Id</th>
+                        <th>Device</th>
+                        <th>Sent</th>
+                        <th>Message</th>
+                        <th>Response Options</th>
+                        <th>User</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>
+            </table>
         </div>
 
-        <table id="messages" class="container bordered spaced" style="display: none">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Parent Id</th>
-                    <th>Reply Id</th>
-                    <th>Device</th>
-                    <th>Sent</th>
-                    <th>Message</th>
-                    <th>Response Options</th>
-                    <th>User</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-
-        <footer>
-            <div class="container footernotes">
-                <p>Source code provided as part of the <a href="https://helpdesk.geotab.com/forums" target="_blank">Geotab SDK</a>.</p>
-                <p>Last updated on 08/31/2015</p>
-            </div>
-        </footer>
-
-        <div id="help-content">
-            <h2>Help</h2>
-            <p>
-                <strong>Overview</strong><br />
-                This example shows how to regularly poll for new text messages.
-            </p>
-            <p>
-                <strong>Work flow</strong><br />
-                The first step is send to a text message to a Garmin equipped vehicle. An polling interval is created
-                which checks for new delivered, sent and read text messages where you should be able to see the message
-                you have sent. You can then use the options provided to send a mock reply. This will be displayed in
-                the messages table.
-            </p>
-            <p>
-                <strong>Skill level</strong><br />
-                Advanced
-            </p>
-        </div>
-
+        <!-- JavaScript file containing the api functionality -->
         <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
         <script src="js/login.js"></script>
 
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
         <script type="text/javascript">
 
             var pollSeconds = 5;
@@ -107,15 +126,7 @@
             var messages = [];
             var devicesLookup = {};
             var user;
-
             document.addEventListener("DOMContentLoaded", function () {
-
-                // start polling for new text messages
-                pollForTextMessages();
-
-                // Download devices to work with
-                populateDevices();
-
                 document.getElementById("send").addEventListener("click", function (event) {
                     event.preventDefault();
 
@@ -149,6 +160,8 @@
 
                     sendMessage(createMessage(device, lastSentMessageId), true);
                 });
+                // Download devices to work with
+                populateDevices();
             });
 
             function pollForTextMessages() {
@@ -259,6 +272,8 @@
 
                             devicesLookup[result[i].id] = result[i];
                         }
+                        // start polling for new text messages
+                        pollForTextMessages();
                     } else {
                         alert("Could not retrieve devices");
                     }
@@ -354,5 +369,4 @@
         </script>
 
     </body>
-
 </html>
