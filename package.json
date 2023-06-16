@@ -7,6 +7,11 @@
         "name": "Steve Hansen",
         "email": "stevehansen@geotab.com"
     },
+    "scripts": {
+        "start": "gulp",
+        "build": "gulp build --prod",
+        "deploy": "gulp deploy"
+    },
     "overrides": {
         "graceful-fs": "^4.2.10"
     },
