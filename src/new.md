@@ -75,7 +75,7 @@ We’ve corrected the following errors:
 
 #### Nuget
 - Enabled brotli compression in Nuget package API.cs requests.
-- Many ObjectModel classes are marked as “sealed”. Marking a class as “sealed” prevents tampering of important classes that can compromise security or impact performance.
+- ~~Many ObjectModel classes are marked as “sealed”. Marking a class as “sealed” prevents tampering of important classes that can compromise security or impact performance.~~
 
 > **!IMPORTANT:** Updating your application to version 10.0 may not work if an ObjectModel class is inherited.
 
