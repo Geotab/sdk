@@ -6,6 +6,22 @@ title: What's New
 
 ## May 29, 2023
 
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### GetDeviceContractsByPage and GetDeviceContracts
+
+- In a future release, we will be adding two new columns to Device Admin: `Auto-Activated` and `Billing Start Date` to improve visibility of auto-activation events, as well as the actual start of billing for a device. Therefore, we will also be making data points of `Auto-Activated` and `Billing Start Date` available through the **GetDeviceContractsByPage** and **GetDeviceContracts** APIs in a future release. We will provide more details closer to the release date.   
+
+#### GetOnlineOrderStatus
+
+- In an upcoming release, we will be adding the following parameters to the **GetOnlineOrderStatus** API:
+- `promoCode` — Returns the promo code used when the order was placed, if applicable.
+- `rateCode` — Returns the promo code used for a monthly Rate Plan subscription when the order was placed, if applicable.  
+<br/>  
+
+***
+## May 29, 2023
+
 <h3 class="text-primary font-weight-bold">Updates</h3>
 
 #### GetPartnerDeviceContractsAsync
