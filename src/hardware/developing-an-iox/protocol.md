@@ -76,6 +76,9 @@ Any IOX that is connected to the GO device must respond to the poll request. The
 
 An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.
 
+## Waking up the GO Device
+Every 1 second, the GO wakes up for 2ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1ms until the GO notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
+
 ## Commands
 
 ### Reset (0x00)
@@ -348,9 +351,11 @@ Sent from the GO to the IOX when the GO wants to transfer data that can not fit 
 | 12 | GO info |
 
 #### Type 12 Go info
+
 Supported from protocol version 1.1.
 
 ##### payload id = 0
+
 | Byte | Byte Description |
 | --- | --- |
 | 0  | =0 for payload is GO serial number. |
@@ -358,6 +363,7 @@ Supported from protocol version 1.1.
 | 13 | 0 |
 
 ##### payload id = 1
+
 | Byte | Byte Description |
 | --- | --- |
 | 0  | =1 for payload is GO firmware version number. |
@@ -366,6 +372,7 @@ Supported from protocol version 1.1.
 | 5-6 | GO firmware version: Minor |
 
 ##### payload id = 2
+
 | Byte | Byte Description |
 | --- | --- |
 | 0  | =2 for payload is IOX protocol version number. |
