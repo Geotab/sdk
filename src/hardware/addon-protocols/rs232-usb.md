@@ -774,4 +774,8 @@ message IoxFromGo {
     }
 }
 ```
-
+Note: The IOX Pub/Sub is controlled by a Master-Switch.  When IOX Pub/Sub is not enabled:
+* Request to subscribe/unsubscribe a topic will be responded with SUB_ACK_RESULT_DISABLED.
+* Request to clear the subscription will be responded with CLEAR_SUBS_ACK_RESULT_DISABLED.
+* Request to list the subscription will be responded with an empty list.
+* Request to list all available topics will be responded with an empty list.
