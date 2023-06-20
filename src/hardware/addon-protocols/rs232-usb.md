@@ -598,16 +598,16 @@ Messages sent from the IOX to the GO is represented by IoxToGo
 Messages sent from the GO to the IOX is represented by IoxFromGo
 
 example of building protobuf in python:
-<code>
+```
 iox_to_go=iox_messaging_pb2.IoxToGo()
 iox_to_go.pub_sub.sub.topic = 1 #TOPIC_ACCEL
 iox_to_go_seralized = iox_to_go.SerializeToString()
-</code>
+```
 After the protobuf is built, we will get payload "0a040a020801"
 
 The content of complete .proto is as below.
 
-<code>
+```
 // Possible subscription topics
 // Includes status data IDs
 enum Topic {
@@ -652,7 +652,9 @@ message SubAck {
         // Unsubscribe fails if the topic has not been subscribed to
         SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5;
         // Unsubscribe fails if the subscription belongs to another IOX.
-        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6;
+        SUB_ACK_RESULT_UNAVAILABLE = 6;
+        // IOX Pub/Sub is not enabled by Master Switch.
+        SUB_ACK_RESULT_DISABLED = 7;
     }
     Result result = 1;
     Topic topic = 2;
@@ -671,13 +673,15 @@ message TopicInfoList {
     repeated TopicInfo topics = 1;
 }
 
-message ClearSubAck {
+message ClearSubsAck {
     enum Result {
-        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
-        // Unsubscribe succeeded
-        CLEAR_SUB_ACK_RESULT_SUCCESS = 1;
-        // Unsubscribe fails if the subscription belongs to another IOX.
-        CLEAR_SUB_ACK_RESULT_FAILED = 2;
+        CLEAR_SUBS_ACK_RESULT_UNSPECIFIED = 0;
+        // Clear subscription succeeded
+        CLEAR_SUBS_ACK_RESULT_SUCCESS = 1;
+        // Clear subscription failed: The subscription is owned by another IOX.
+        CLEAR_SUBS_ACK_RESULT_UNAVAILABLE = 2;
+        // Clear subscription failed: Pub/Sub is not enabled by Master Switch.
+        CLEAR_SUBS_ACK_RESULT_DISABLED = 3;
     }
     Result result = 1;
 }
@@ -769,5 +773,5 @@ message IoxFromGo {
         PubSubFromGo pub_sub = 1;
     }
 }
-</code>
+```
 
