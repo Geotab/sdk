@@ -247,7 +247,7 @@ The information includes a payload containing data encoded in the protobuf forma
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Refer to [Appendix D: IOX Pub/Sub protobuf data packets in message type 0x8C, 0x26](#Appendix-D:-IOX-Pub/Sub-protobuf-data-packets-in-message-type-0x8C,-0x26).
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
@@ -445,7 +445,7 @@ Sent by the external device to subscribe to various topics/information. The GO d
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Refer to [Appendix D: IOX Pub/Sub protobuf data packets in message type 0x8C, 0x26](#Appendix-D:-IOX-Pub/Sub-protobuf-data-packets-in-message-type-0x8C,-0x26).
 
 ## Messages from MyGeotab
 
@@ -592,7 +592,7 @@ This is an example of binary data packets for image data transferred using the M
 | Checksum | 2 | 12+x |
 | ETX (0x03) | 1 | 14+x |
 
-### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
+### Appendix D: IOX Pub/Sub protobuf data packets in message type 0x8C, 0x26
 
 Messages sent from the IOX to the GO is represented by IoxToGo
 Messages sent from the GO to the IOX is represented by IoxFromGo
