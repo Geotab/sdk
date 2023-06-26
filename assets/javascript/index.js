@@ -44,11 +44,6 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   setupSidebarToggle();
   scrollSidebar();
-  var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-    debugger;
-    new bootstrap.Tooltip(tooltipTriggerEl);
-  });
 });
 (function (document, history, location) {
   var HISTORY_SUPPORT = !!(history && history.pushState);
