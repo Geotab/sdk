@@ -91,7 +91,7 @@ Issued by the external device on power-up every second until the Acknowledge mes
 
 ### Msg Type 0x80: Third-Party Data as Status Data
 
-Issued by the external device whenever it wants Third-Party Data saved on the GO device.
+Issued by the external device whenever it wants Third-Party Data saved on the GO device. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
 
 | CAN ID Breakdown | Value |
 | --- | --- |

@@ -180,7 +180,7 @@ Sent by the GO device after a packet wrapped passthrough message attempt to the 
 
 ### IOX Single Frame Log Data (0x1D)
 
-Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame.
+Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
 
 #### Payload
 
