@@ -236,6 +236,14 @@ Issued by the GO device on receipt of Binary Data of 256 bytes or more from the 
 Available with add-on protocol version >= 1.2.
 Issued by the GO device in response to Msg Type 0x8C.
 Also issued by the GO device to publish information for the topics (defined in Appendix D) subscribed by the third party device.
+<br/><br/>   
+**Note:** The IOX Pub/Sub is controlled by a Master-Switch.  When IOX Pub/Sub is not enabled:
+* Request to subscribe/unsubscribe a topic will be responded with SUB_ACK_RESULT_DISABLED.
+* Request to clear the subscription will be responded with CLEAR_SUBS_ACK_RESULT_DISABLED.
+* Request to list the subscription will be responded with an empty list.
+* Request to list all available topics will be responded with an empty list.
+<br/><br/> 
+
 The information includes a payload containing data encoded in the protobuf format.
 
 |   | Bytes | Position |
@@ -247,7 +255,7 @@ The information includes a payload containing data encoded in the protobuf forma
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Refer to [Appendix D: IOX PubSub protobuf data packets in message type 0x8C, 0x26](#appendix-d-iox-pubsub-protobuf-data-packets-in-message-type-0x8c-0x26).
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
@@ -428,7 +436,7 @@ Sent by the external device when requesting the add on protocol version number. 
 | Message Body Length = 0 | 1 | 2 |
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
-| Reply: Third-Party version Ack Reply ([Msg Type 0x27](#msg-type-0x27-add-on-version-to-external-device)) |
+| Reply: Third-Party version Ack Reply ([Msg Type 0x27](#msg-type-0x27-add-on-protocol-version-to-external-device)) |
 
 ### Msg Type 0x8C: Protobuf data packet
 
@@ -445,7 +453,7 @@ Sent by the external device to subscribe to various topics/information. The GO d
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Refer to [Appendix D: IOX PubSub protobuf data packets in message type 0x8C, 0x26](#appendix-d-iox-pubsub-protobuf-data-packets-in-message-type-0x8c-0x26).
 
 ## Messages from MyGeotab
 
@@ -592,22 +600,22 @@ This is an example of binary data packets for image data transferred using the M
 | Checksum | 2 | 12+x |
 | ETX (0x03) | 1 | 14+x |
 
-### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
+### Appendix D: IOX PubSub protobuf data packets in message type 0x8C, 0x26
 
 Messages sent from the IOX to the GO is represented by IoxToGo
 Messages sent from the GO to the IOX is represented by IoxFromGo
 
 example of building protobuf in python:
-<code>
+```
 iox_to_go=iox_messaging_pb2.IoxToGo()
 iox_to_go.pub_sub.sub.topic = 1 #TOPIC_ACCEL
 iox_to_go_seralized = iox_to_go.SerializeToString()
-</code>
+```
 After the protobuf is built, we will get payload "0a040a020801"
 
 The content of complete .proto is as below.
 
-<code>
+```
 // Possible subscription topics
 // Includes status data IDs
 enum Topic {
@@ -652,7 +660,9 @@ message SubAck {
         // Unsubscribe fails if the topic has not been subscribed to
         SUB_ACK_RESULT_TOPIC_NOT_SUBBED = 5;
         // Unsubscribe fails if the subscription belongs to another IOX.
-        SUB_ACK_RESULT_SUBSCRIPTION_NOT_AVAILABLE = 6;
+        SUB_ACK_RESULT_UNAVAILABLE = 6;
+        // IOX Pub/Sub is not enabled by Master Switch.
+        SUB_ACK_RESULT_DISABLED = 7;
     }
     Result result = 1;
     Topic topic = 2;
@@ -671,13 +681,15 @@ message TopicInfoList {
     repeated TopicInfo topics = 1;
 }
 
-message ClearSubAck {
+message ClearSubsAck {
     enum Result {
-        CLEAR_SUB_ACK_RESULT_UNSPECIFIED = 0;
-        // Unsubscribe succeeded
-        CLEAR_SUB_ACK_RESULT_SUCCESS = 1;
-        // Unsubscribe fails if the subscription belongs to another IOX.
-        CLEAR_SUB_ACK_RESULT_FAILED = 2;
+        CLEAR_SUBS_ACK_RESULT_UNSPECIFIED = 0;
+        // Clear subscription succeeded
+        CLEAR_SUBS_ACK_RESULT_SUCCESS = 1;
+        // Clear subscription failed: The subscription is owned by another IOX.
+        CLEAR_SUBS_ACK_RESULT_UNAVAILABLE = 2;
+        // Clear subscription failed: Pub/Sub is not enabled by Master Switch.
+        CLEAR_SUBS_ACK_RESULT_DISABLED = 3;
     }
     Result result = 1;
 }
@@ -769,5 +781,4 @@ message IoxFromGo {
         PubSubFromGo pub_sub = 1;
     }
 }
-</code>
-
+```
