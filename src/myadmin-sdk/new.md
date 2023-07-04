@@ -4,6 +4,41 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## July 1, 2023
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### ProvisionDevicesBulk
+
+- Currently, **ProvisionDevice** and **ProvisionDeviceToAccount** methods are available to provision a single third-party custom telematics or OEM device (via the serial number).
+- To help you manage large quantities of devices, we’ve added a new **ProvisionDevicesBulk** method to provision multiple third-party custom telematics devices or OEM in bulk with an optional quantity field.
+<br/>
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### GetDeviceContractsByPage and GetDeviceContracts
+
+- In a future release, we will be adding two new columns to Device Admin: `Auto-Activated` and `Billing Start Date` to improve visibility of auto-activation events, as well as the actual start of billing for a device. 
+- The `Auto-Activated` column will help you identify whether a device has been automatically activated by Geotab, and display the following values:
+    - **Yes** — The device was automatically activated by Geotab.
+    - **No** — The device was activated by installation.
+    - **Not Available** — The device has been shipped, but has not been installed, or auto-activated.\
+    **NOTE**: For devices shipped prior to the release of this feature, **Not Available** will be displayed.
+- The `Billing Start Date` column will help you determine when billing started for a device. This column will display one of the following values:
+    - **Date** — Displays the date that the device was auto-activated, installed, or transferred from another Partner.\
+    **NOTE**: Plan changes for devices will not impact this date.
+    - **Not Available** — Indicates that a device has been shipped, but has not been installed, or auto-activated.\
+    **NOTE**: For devices shipped prior to the release of this feature, **Not Available** will be displayed.
+- Therefore, we will also be making data points of `Auto-Activated` and `Billing Start Date` available through the **GetDeviceContractsByPage** and **GetDeviceContracts** APIs in a future release. We will provide more details closer to the release date.   
+
+#### GetOnlineOrderStatus
+
+- In an upcoming release, we will be adding the following parameters to the **GetOnlineOrderStatus** API:
+- `promoCode` — Returns the promo code used when the order was placed, if applicable.
+- `rateCode` — Returns the promo code used for a monthly Rate Plan subscription when the order was placed, if applicable.  
+<br/>  
+
+***
 ## May 29, 2023
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
