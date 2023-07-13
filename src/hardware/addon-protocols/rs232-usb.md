@@ -654,6 +654,30 @@ So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A
 So, the final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
     <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
 
+## GO to External device messages
+0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
+
+An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
+
+The external device will receive a 0x26 message from the GO device such as:
+        (02 26 08 0A 06 0A 04 08 01 10 01 68 E8 03)
+
+The extracted IoxFromGo message with Protobuf encoding = (0A 06 0A 04 08 01 10 01)
+The IoxFromGo message after decoding = {
+    .which_msg = 0x01, 
+    .pub_sub = {
+         .which_msg = 0x01, 
+         .suback = { .result = 0x01, .topic = 0x01 }
+    }
+}
+
+The IoxFromGo message can be interpreted as { 
+    .which_msg = IoxFromGo_pub_sub_tag, 
+    .pub_sub = {
+        .which_msg = PubSubFromGo_sub_ack_tag, 
+        .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
+    }
+}
 
 ## Message Description
 <a name="-Topic"></a>
