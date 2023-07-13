@@ -633,6 +633,27 @@ Note: The 'sub_ack' and the 'clear_subs_ack' message can contain the source of e
 
 Note: The subscription is cleared if the GO or the IOX lost power or if the IOX is disconnected from the GO device.
 
+## External device to GO messages
+0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
+An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
+
+0x8C fields values: 
+        STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03
+
+IoxToGo message = { 
+        .which_msg = IoxToGo_pub_sub_tag, 
+        .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
+};
+IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { .topic = 0x01 }}};
+
+So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
+    This leads to, IoxToGo message length after Protobuf encoding: 0x06
+    Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
+    Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
+
+So, the final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
+    <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
+
 
 ## Message Description
 <a name="-Topic"></a>
