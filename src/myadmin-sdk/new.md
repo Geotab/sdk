@@ -4,6 +4,22 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## July 10, 2023
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### GetOnlineOrderStatus
+
+- In a future release, we will be adding a new `shippingCost` field as a return object to the **GetOnlineOrderStatus** method. This field will return the shipping cost at the time the order was placed.
+- In a future release, the **GetOnlineOrderStatus** method will add a default date range and return order data from the last month if the following parameters are sent as null:
+    - purchaseOrderNo
+    - orderNo
+    - orderDateFrom
+    - orderDateTo
+- There will also be a limit of 5000 orders that can be retrieved in a single request.   
+<br/>   
+
+***
 ## July 1, 2023
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
