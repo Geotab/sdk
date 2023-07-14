@@ -33,3 +33,8 @@ The toolkit provides helpful integration resources and context in addition to th
 We have also moved to the new DIG platform for Custom Telematics Device integrations and included DIG documentation linked from the toolkit as well (while slating the MyAdmin documentation for deprecation).
 
 Please refer to [Geotab Integrations: Hardware Technical Toolkit](https://docs.google.com/presentation/d/1SH-VX9GeVImHUyaqJgCzZ28fMa0-sVqh4ue-sNRTO9M/) for further details.
+
+## Requesting sample hardware
+If you would like to request Geotab hardware for testing or develeopment, here are your options:
+* If you are already working with a Geotab reseller or a Geotab employee, please procure hardware with their help.
+* Otherwise, please submit [this form](https://forms.gle/CnAxQwEFqPGQEGPp9).
