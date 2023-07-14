@@ -609,29 +609,34 @@ The appropriate master switch needs to be set to use the pub/sub functionality c
 
 The list of some of the (unordered) messages and their use is as mentioned below.
 
-To get a list of all the subscribable topics: The external device must send the 'list_avail_topics' message.
+To get a list of all the subscribable topics: The external device must send a 'PubSubToGo' message with the 'list_avail_topics' field.
     The GO device will respond with a 'topic_info_list' message.
 
 
-To subscribe to a topic: The external device must send a 'PubSubToGo' message with a 'sub' field, to the GO device. 
-    The Go Responds with a 'PubSubFromGo' message with a 'sub_ack' field containing a SUB_ACK_RESULT_SUCCESS.
+To subscribe to a topic: The external device must send a 'PubSubToGo' message with the 'sub' field. 
+    The Go Responds with a 'PubSubFromGo' message with the 'sub_ack' field containing a SUB_ACK_RESULT_SUCCESS.
 
 
 To get a list of subscribed topics: The external device must send a 'PubSubToGo' message with a 'list_subs' field. 
-    The GO device will respond with a 'topic_list' message.
+    The GO device will respond with a 'PubSubFromGo' message with the 'topic_list' field.
  
 How the external device gets published information for subscribed topics: 
-  When there is an update to a subscribed topic, the GO device will send the update in a 'pub' message.
+    When there is an update to a subscribed topic, the GO device will send the update in a 'PubSubFromGo' message with the 'pub' field.
 
-To remove a topic from the subscription: The external device  must send an 'unsub' message.
-    The GO device will respond with a 'sub_ack' message containing a 'SUB_ACK_RESULT_SUCCESS'.
+To remove a topic from the subscription: The external device  must send a 'PubSubToGo' message with the 'unsub' field. 
+    The GO device will respond with a 'PubSubFromGo' message with the 'sub_ack' field containing a 'SUB_ACK_RESULT_SUCCESS'.
 
-To clear the entire subscription list: The external device  must send a 'clear_subs' message.
-    The GO device will respond with a 'clear_subs_ack' message with a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
+To clear the entire subscription list: The external device  must send a 'PubSubToGo' message with the 'clear_subs' field.
+    The GO device will respond with a 'PubSubFromGo' message with the 'clear_subs_ack' field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
  
-Note: The 'sub_ack' and the 'clear_subs_ack' message can contain the source of error when a request cannot be performed successfully.
+Note: The a 'PubSubFromGo' message with the 'sub_ack' or the 'clear_subs_ack' field can contain the source of error when a request cannot be performed successfully.
 
 Note: The subscription is cleared if the GO or the IOX lost power or if the IOX is disconnected from the GO device.
+
+Note, If the master switch is not enabled:
+    - An IOX will not able to subscribe any topic.
+    - The list of subscribable topics will be empty.
+
 
 ## External device to GO messages
 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
