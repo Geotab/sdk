@@ -609,29 +609,28 @@ The appropriate master switch needs to be set to use the pub/sub functionality c
 
 The list of some of the (unordered) messages and their use is as mentioned below.
 
-To get a list of all the subscribable topics: The external device must send a 'PubSubToGo' message with the 'list_avail_topics' field.
-    The GO device will respond with a 'topic_info_list' message.
+To get a list of all the subscribable topics: The external device needs to send an IoxToGo message with the pub_sub.list_avail_topics field set.
+    The GO device responds with an IoxFromGo message with the pub_sub.topic_info_list field.
 
+To subscribe to a topic: The external device needs to send an IoxToGo message with the pub_sub.sub field set. 
+    The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing 'SUB_ACK_RESULT_SUCCESS'.
 
-To subscribe to a topic: The external device must send a 'PubSubToGo' message with the 'sub' field. 
-    The Go Responds with a 'PubSubFromGo' message with the 'sub_ack' field containing a SUB_ACK_RESULT_SUCCESS.
-
-
-To get a list of subscribed topics: The external device must send a 'PubSubToGo' message with a 'list_subs' field. 
-    The GO device will respond with a 'PubSubFromGo' message with the 'topic_list' field.
+To get a list of subscribed topics: The external device needs to send a IoxToGo message with the pub_sub.msg.list_subs field set. 
+    The GO device responds with an IoxFromGo message with the pub_sub.topic_list field set.
  
 How the external device gets published information for subscribed topics: 
-    When there is an update to a subscribed topic, the GO device will send the update in a 'PubSubFromGo' message with the 'pub' field.
+    When there is an update to a subscribed topic, the GO device sends the update in an IoxFromGo message with the pub_sub.pub field set.
 
-To remove a topic from the subscription: The external device  must send a 'PubSubToGo' message with the 'unsub' field. 
-    The GO device will respond with a 'PubSubFromGo' message with the 'sub_ack' field containing a 'SUB_ACK_RESULT_SUCCESS'.
+To remove a topic from the subscription: The external device needs to send a IoxToGo message with the pub_sub.msg.unsub field set. 
+    The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing a 'SUB_ACK_RESULT_SUCCESS'.
 
-To clear the entire subscription list: The external device  must send a 'PubSubToGo' message with the 'clear_subs' field.
-    The GO device will respond with a 'PubSubFromGo' message with the 'clear_subs_ack' field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
+To clear the entire subscription list: The external device needs to send a IoxToGo message with the pub_sub.msg.clear_subs field set.
+    The Go device responds with an IoxFromGo message with the pub_sub.clear_subs_ack.result field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
  
-Note: The a 'PubSubFromGo' message with the 'sub_ack' or the 'clear_subs_ack' field can contain the source of error when a request cannot be performed successfully.
+Note: The an IoxFromGo message with the pub_sub.sub_ack.result field or the pub_sub.clear_subs_ack.result field can contain the source 
+of error when the request cannot be performed successfully.
 
-Note: The subscription is cleared if the GO or the IOX lost power or if the IOX is disconnected from the GO device.
+Note: The subscription is cleared if the GO or the IOX has lost power or if the IOX is disconnected from the GO device.
 
 Note, If the master switch is not enabled:
     - An IOX will not able to subscribe any topic.
@@ -655,7 +654,7 @@ IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { 
 So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
     This leads to, IoxToGo message length after Protobuf encoding: 0x06
     Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
-    Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
+    The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
 
 So, the final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
     <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
@@ -666,9 +665,9 @@ So, the final byte stream that the external device would send to GO, in order to
 An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
 
 The external device will receive a 0x26 message from the GO device such as:
-        (02 26 08 0A 06 0A 04 08 01 10 01 68 E8 03)
+        (0x02 0x26 0x08 0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01 0x68 0xE8 0x03)
 
-The extracted IoxFromGo message with Protobuf encoding = (0A 06 0A 04 08 01 10 01)
+The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
 The IoxFromGo message after decoding = {
     .which_msg = 0x01, 
     .pub_sub = {
@@ -727,12 +726,12 @@ The ID of all the subscribable topics.
 
 ### ClearSubsAck
 GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to a Clear-subscription-request.
+This is a response to a Clear subscription request.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| result | [ClearSubsAck.Result](#ClearSubsAck-Result) |  | This is the result of a Clear-subscription-request. |
+| result | [ClearSubsAck.Result](#ClearSubsAck-Result) |  | This is the result of a Clear subscription request. |
 
 
 
@@ -762,7 +761,7 @@ This structure is used for publishing the output of the GPS.
 <a name="-IoxFromGo"></a>
 
 ### IoxFromGo
-GO to IOX: Top level of a pub-sub message.
+GO to IOX: Top level of a pub/sub message.
 An IoxFromGo message can only contain one PubSubFromGo message.
 
 
@@ -778,7 +777,7 @@ An IoxFromGo message can only contain one PubSubFromGo message.
 <a name="-IoxToGo"></a>
 
 ### IoxToGo
-IOX to GO: Top level of a pub-sub message.
+IOX to GO: Top level of a pub/sub message.
 An IoxToGo message can only contain one PubSubToGo message.
 
 
@@ -820,11 +819,11 @@ This level identifies the type of requests to the subscription.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sub | [Subscribe](#Subscribe) |  | Subscribe-request: Add a topic to the subscription. |
-| unsub | [Unsubscribe](#Unsubscribe) |  | Unsubscribe-request: Remove the topic from the subscription. |
-| list_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribed-list-request: gps_time all subscribed topics. |
-| clear_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Clear-subscription-request: Clear all the subscribed topics from the subscription. |
-| list_avail_topics | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribable-list-request: Get the list of all subscribable topics. |
+| sub | [Subscribe](#Subscribe) |  | Subscribe request: Add a topic to the subscription. |
+| unsub | [Unsubscribe](#Unsubscribe) |  | Unsubscribe request: Remove the topic from the subscription. |
+| list_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribed list request: gps_time all subscribed topics. |
+| clear_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Clear subscription request: Clear all the subscribed topics from the subscription. |
+| list_avail_topics | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribable list request: Get the list of all subscribable topics. |
 
 
 
@@ -859,12 +858,12 @@ The Go device sends this message for each subscribed topic when an update to the
 
 ### SubAck
 GO to IOX: 3nd level of a IoxFromGo message.
-This structure contains a response to a Subscribe-request or an Unsubscribe-request.
+This structure contains a response to a Subscribe request or an Unsubscribe request.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| result | [SubAck.Result](#SubAck-Result) |  | The result of a subscribe-request or an unsubscribe-request. |
+| result | [SubAck.Result](#SubAck-Result) |  | The result of a subscribe request or an unsubscribe request. |
 | topic | [Topic](#Topic) |  | The topic specified in the request. |
 
 
@@ -876,7 +875,7 @@ This structure contains a response to a Subscribe-request or an Unsubscribe-requ
 
 ### Subscribe
 IOX to GO: 3rd level of an IoxToGo message.
-Subscribe-request: An external device sends this message to subscribe an available topic.
+Subscribe request: An external device sends this message to subscribe an available topic.
 
 
 | Field | Type | Label | Description |
@@ -892,7 +891,7 @@ Subscribe-request: An external device sends this message to subscribe an availab
 
 ### TopicInfo
 GO to IOX: 
-This is part of the response to the Subscribable-list-request message.
+This is part of the response to the Subscribable list request message.
 This structure contains the information of one subscribable topics.
 
 
@@ -909,7 +908,7 @@ This structure contains the information of one subscribable topics.
 
 ### TopicInfoList
 GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to the Subscribable-list-request message.
+This is a response to the Subscribable list request message.
 This structure contains the information of all subscribable topics.
 
 
@@ -926,7 +925,7 @@ This structure contains the information of all subscribable topics.
 
 ### TopicList
 GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to the Subscribed-list-request message.
+This is a response to the Subscribed list request message.
 This structure provides the list of all the subscribed topics.
 
 
@@ -945,7 +944,7 @@ array of IDs, each from a subscribed topic. |
 
 ### Unsubscribe
 IOX to GO: 3rd level of an IoxToGo message.
-Unsubscribe-request: An external device sends this message to unsubscribe a topic.
+Unsubscribe request: An external device sends this message to unsubscribe a topic.
 
 
 | Field | Type | Label | Description |
@@ -980,7 +979,7 @@ This structure is used for publishing the output of the accelerometer.
 <a name="-ClearSubsAck-Result"></a>
 
 ### ClearSubsAck.Result
-Possible result of a Clear-subscription-request.
+Possible result of a Clear subscription request.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -994,7 +993,7 @@ Possible result of a Clear-subscription-request.
 <a name="-SubAck-Result"></a>
 
 ### SubAck.Result
-Possible result returned from a Subscribe-request or an Unsubscribe-request.
+Possible result returned from a Subscribe request or an Unsubscribe request.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
