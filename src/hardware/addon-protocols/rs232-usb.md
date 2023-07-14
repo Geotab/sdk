@@ -605,28 +605,28 @@ This Proto file defines message payloads for the Third party Message Type 0x8C (
 
 The protobufs defined here follows a simple pub/sub protocol, where a third party IOX device can subscribe to one of the supported TOPICs (enum Topic) and receive the desired information from the GO.
 
-The IOX Pub/Sub feature MUST be enabled via a Master switch" fEnableIoxPubsub' at offset 243 to use it correctly.
+The appropriate master switch needs to be set to use the pub/sub functionality correctly.
 
-Below is the main high level usage of messages:
+The list of some of the (unordered) messages and their use is as mentioned below.
 
-Get a list of all the subscribable topics: IOX must send the 'list_avail_topics' message.
+To get a list of all the subscribable topics: The external device must send the 'list_avail_topics' message.
     The GO device will respond with a 'topic_info_list' message.
 
 
-Subscribe to a topic: IOX must send a 'sub' message to the GO device. 
-    The Go Responds with a 'sub_ack' message containing a SUB_ACK_RESULT_SUCCESS.
+To subscribe to a topic: The external device must send a 'PubSubToGo' message with a 'sub' field, to the GO device. 
+    The Go Responds with a 'PubSubFromGo' message with a 'sub_ack' field containing a SUB_ACK_RESULT_SUCCESS.
 
 
-Get a list of subscribed topics: IOX must send a 'list_subs' message. 
+To get a list of subscribed topics: The external device must send a 'PubSubToGo' message with a 'list_subs' field. 
     The GO device will respond with a 'topic_list' message.
  
-How IOX gets published information for subscribed topics: 
+How the external device gets published information for subscribed topics: 
   When there is an update to a subscribed topic, the GO device will send the update in a 'pub' message.
 
-Remove a topic from the subscription: IOX must send an 'unsub' message. 
+To remove a topic from the subscription: The external device  must send an 'unsub' message.
     The GO device will respond with a 'sub_ack' message containing a 'SUB_ACK_RESULT_SUCCESS'.
 
-Clear the entire subscription list: IOX must send a 'clear_subs' message.
+To clear the entire subscription list: The external device  must send a 'clear_subs' message.
     The GO device will respond with a 'clear_subs_ack' message with a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
  
 Note: The 'sub_ack' and the 'clear_subs_ack' message can contain the source of error when a request cannot be performed successfully.
@@ -635,6 +635,7 @@ Note: The subscription is cleared if the GO or the IOX lost power or if the IOX 
 
 ## External device to GO messages
 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
+The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
 An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
 
 0x8C fields values: 
@@ -694,26 +695,26 @@ The ID of all the subscribable topics.
 | TOPIC_GPS | 2 | Gps, Lat/Long: degrees. speed: km/h, (DO NOT USE) To be implemented |
 | TOPIC_BATTERY_VOLTAGE | 3 | float, Volt, (DO NOT USE) To be implemented |
 | TOPIC_VIN | 4 | 17 character String, Unitless |
-| TOPIC_GEAR | 5 | 32-bit signed int, Unitless, -1=Reverse. 0=Neutral. 1-8:Nth gear. 126=Park. 127=Drive. 129=Intermediate. 130=Unknown. |
-| TOPIC_ENGINE_SPEED | 6 | 32-bit float, RPM |
-| TOPIC_ENGINE_LOAD | 7 | 32-bit float, % |
-| TOPIC_ODOMETER | 8 | 32-bit float, Km |
-| TOPIC_ACCEL_PEDAL_PERCENTAGE | 9 | 32-bit float, % |
-| TOPIC_COOLANT_TEMP | 10 | 32-bit float, degC |
-| TOPIC_DOC_INTAKE_GAS_TEMP | 11 | 32-bit float, degC |
-| TOPIC_DOC_OUTLET_GAS_TEMP | 12 | 32-bit float, degC |
-| TOPIC_FUELTANK1_UNITS | 13 | 32-bit float, Litres |
-| TOPIC_FUELTANK2_UNITS | 14 | 32-bit float, Litres |
-| TOPIC_FUELTANK1_PERCENT | 15 | 32-bit float, % |
-| TOPIC_FUELTANK2_PERCENT | 16 | 32-bit float, % |
-| TOPIC_STATE_OF_CHARGE | 17 | 32-bit float, % |
-| TOPIC_ENGINE_ROAD_SPEED | 18 | 32-bit float, km/h |
-| TOPIC_VEHICLE_ACTIVE | 19 | 32-bit signed int, Unitless, 0=IgnitionOff. 1=IgnitionOn. |
-| TOPIC_DRIVER_SEATBELT | 20 | 32-bit signed int, Unitless, 0=Buckled. 1=Unblocked. |
-| TOPIC_LEFT_TURN_SIGNAL | 21 | 32-bit signed int, Unitless, 0=Off. 1=On |
-| TOPIC_RIGHT_TURN_SIGNAL | 22 | 32-bit signed int, Unitless, 0=Off. 1=On |
-| TOPIC_EV_CHARGING_STATE | 23 | 32-bit signed int, Unitless, 0=NotCharging. 1=AC charging. 2=DC charging. |
-| TOPIC_PARK_BRAKE | 24 | 32-bit signed int, Unitless, 0=Off. 1=On. 2=Error. |
+| TOPIC_GEAR | 5 | 32 bit signed int, Unitless, -1=Reverse. 0=Neutral. 1-8:Nth gear. 126=Park. 127=Drive. 129=Intermediate. 130=Unknown.|
+| TOPIC_ENGINE_SPEED | 6 | 32 bit float, RPM |
+| TOPIC_ENGINE_LOAD | 7 | 32 bit float, % |
+| TOPIC_ODOMETER | 8 | 32 bit float, km |
+| TOPIC_ACCEL_PEDAL_PERCENTAGE | 9 | 32 bit float, % |
+| TOPIC_COOLANT_TEMP | 10 | 32 bit float, degC |
+| TOPIC_DOC_INTAKE_GAS_TEMP | 11 | 32 bit float, degC |
+| TOPIC_DOC_OUTLET_GAS_TEMP | 12 | 32 bit float, degC |
+| TOPIC_FUELTANK1_UNITS | 13 | 32 bit float, Litres |
+| TOPIC_FUELTANK2_UNITS | 14 | 32 bit float, Litres |
+| TOPIC_FUELTANK1_PERCENT | 15 | 32 bit float, % |
+| TOPIC_FUELTANK2_PERCENT | 16 | 32 bit float, % |
+| TOPIC_STATE_OF_CHARGE | 17 | 32 bit float, % |
+| TOPIC_ENGINE_ROAD_SPEED | 18 | 32 bit float, km/h |
+| TOPIC_VEHICLE_ACTIVE | 19 | 32 bit signed int, Unitless, 0=Ignition Off. 1=Ignition On. |
+| TOPIC_DRIVER_SEATBELT | 20 | 32 bit signed int, Unitless, 0=Buckled. 1=Unbuckled. |
+| TOPIC_LEFT_TURN_SIGNAL | 21 | 32 bit signed int, Unitless, 0=Off. 1=On |
+| TOPIC_RIGHT_TURN_SIGNAL | 22 | 32 bit signed int, Unitless, 0=Off. 1=On |
+| TOPIC_EV_CHARGING_STATE | 23 | 32 bit signed int, Unitless, 0=Not Charging. 1=AC charging. 2=DC charging. |
+| TOPIC_PARK_BRAKE | 24 | 32 bit signed int, Unitless, 0=Off. 1=On. 2=Error. |
 
 
 
@@ -773,7 +774,7 @@ An IoxFromGo message can only contain one PubSubFromGo message.
 
 ### IoxToGo
 IOX to GO: Top level of a pub-sub message.
-IAn IoxToGo message can only contain one PubSubToGo message.
+An IoxToGo message can only contain one PubSubToGo message.
 
 
 | Field | Type | Label | Description |
