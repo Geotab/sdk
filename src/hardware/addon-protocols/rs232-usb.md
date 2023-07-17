@@ -501,7 +501,7 @@ To send MIME messages from MyGeotab to the external device, please use the follo
 
 ### Appendix A: Raw Message Data Example for IOX-USB & IOX-RS232
 
-```js
+```javascript
 Handshake Sync from External Device
 0x55... 0x55... 0x55
 
@@ -634,57 +634,54 @@ Note, If the master switch is not enabled:
 
 
 #### Example Message from IOX to GO:
-    - 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
-    - The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
-    - An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
-    	0x8C fields values: 
-        	STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03
-
-```js
+- 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
+- The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
+- An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
+  - 0x8C fields values:<br> 
+    STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03<br>
+    ```js
     IoxToGo message = { 
-             .which_msg = IoxToGo_pub_sub_tag, 
-             .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
+        .which_msg = IoxToGo_pub_sub_tag, 
+        .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
     };
     IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { .topic = 0x01 }}};
-```
+    ```
+  - So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
+  - This leads to, IoxToGo message length after Protobuf encoding to be 0x06.
+  - Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
+  - The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
 
-    - So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
-         This leads to, IoxToGo message length after Protobuf encoding to be 0x06.
-         Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
-         The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
-
-    - The final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
-         <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
+  - The final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be:<br>
+    <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
 
 
 #### Example Response/Event from GO to IOX:
-    - 0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
-    - An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
-    - The external device will receive a 0x26 message from the GO device such as:
-        (0x02 0x26 0x08 0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01 0x68 0xE8 0x03)
-    - The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
+- 0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
+- An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
+  - The external device will receive a 0x26 message from the GO device such as:<br>
+    (0x02 0x26 0x08 0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01 0x68 0xE8 0x03)
+  - The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
     
-    The IoxFromGo message after decoding = 
-```js
+  - The IoxFromGo message after decoding = 
+    ```js
     {
-         .which_msg = 0x01, 
-         .pub_sub = {
-              .which_msg = 0x01, 
-              .suback = { .result = 0x01, .topic = 0x01 }
-         }
-     }
-```
-    - The IoxFromGo message can be interpreted as 
-    
-```js
+        .which_msg = 0x01, 
+        .pub_sub = {
+            .which_msg = 0x01, 
+            .suback = { .result = 0x01, .topic = 0x01 }
+        }
+    }
+    ```
+  - The IoxFromGo message can be interpreted as 
+    ```js
     { 
-         .which_msg = IoxFromGo_pub_sub_tag, 
-         .pub_sub = {
-             .which_msg = PubSubFromGo_sub_ack_tag, 
-             .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
-         }
+        .which_msg = IoxFromGo_pub_sub_tag, 
+        .pub_sub = {
+            .which_msg = PubSubFromGo_sub_ack_tag, 
+            .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
+        }
     } 
-```
+    ```
 
 <a name="-Topic"></a>
 
@@ -743,11 +740,11 @@ This structure is used for publishing the output of the GPS.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| latitude | [float](#float) |  | Latitude, in degrees (&#43;ve = north, -ve = south) |
-| longitude | [float](#float) |  | Longitude, in degrees (&#43;ve = east, -ve = west) |
-| speed | [float](#float) |  | Speed, in km/h |
-| heading | [float](#float) |  | Heading, in degrees |
-| gps_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Time the GPS data is sampled. |
+| latitude | float |  | Latitude, in degrees (&#43;ve = north, -ve = south) |
+| longitude | float |  | Longitude, in degrees (&#43;ve = east, -ve = west) |
+| speed | float |  | Speed, in km/h |
+| heading | float |  | Heading, in degrees |
+| gps_time | google.protobuf.Timestamp|  | Time the GPS data is sampled. |
 
 
 
@@ -814,9 +811,9 @@ This level identifies the type of requests to the subscription.
 | ----- | ---- | ----- | ----------- |
 | sub | [Subscribe](#Subscribe) |  | Subscribe request: Add a topic to the subscription. |
 | unsub | [Unsubscribe](#Unsubscribe) |  | Unsubscribe request: Remove the topic from the subscription. |
-| list_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribed list request: gps_time all subscribed topics. |
-| clear_subs | [google.protobuf.Empty](#google-protobuf-Empty) |  | Clear subscription request: Clear all the subscribed topics from the subscription. |
-| list_avail_topics | [google.protobuf.Empty](#google-protobuf-Empty) |  | Subscribable list request: Get the list of all subscribable topics. |
+| list_subs | google.protobuf.Empty |  | Subscribed list request: gps_time all subscribed topics. |
+| clear_subs | google.protobuf.Empty |  | Clear subscription request: Clear all the subscribed topics from the subscription. |
+| list_avail_topics | google.protobuf.Empty |  | Subscribable list request: Get the list of all subscribable topics. |
 
 
 
@@ -832,13 +829,13 @@ The Go device sends this message for each subscribed topic when an update to the
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Time since 1970-01-01 00:00:00 UTC. |
+| time | google.protobuf.Timestamp |  | Time since 1970-01-01 00:00:00 UTC. |
 | topic | [Topic](#Topic) |  | ID of the subscribed topic this message contains. |
-| bool_value | [bool](#bool) |  |  |
-| int_value | [int32](#int32) |  |  |
-| uint_value | [uint32](#uint32) |  |  |
-| float_value | [float](#float) |  |  |
-| string_value | [string](#string) |  | Used for VIN (17 digits) |
+| bool_value | bool |  |  |
+| int_value | int32 |  |  |
+| uint_value | uint32 |  |  |
+| float_value | float |  |  |
+| string_value | string |  | Used for VIN (17 digits) |
 | vec3_value | [Vec3](#Vec3) |  | Used for acceleration |
 | gps_value | [Gps](#Gps) |  | Used for GPS output. |
 
@@ -958,9 +955,9 @@ This structure is used for publishing the output of the accelerometer.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| x | [float](#float) |  | Output of the X-axis. |
-| y | [float](#float) |  | Output of the Y-axis. |
-| z | [float](#float) |  | Output of the Z-axis. |
+| x | float |  | Output of the X-axis. |
+| y | float |  | Output of the Y-axis. |
+| z | float |  | Output of the Z-axis. |
 
 
 
