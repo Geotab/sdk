@@ -597,109 +597,110 @@ This is an example of binary data packets for image data transferred using the M
 <a name="pubsub-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## pubsub.proto
-
-## Introduciton
+#### PUB/Sub Protocol Documentation
+#### Introduction
 
 This Proto file defines message payloads for the Third party Message Type 0x8C (Protobuf Data Packet from IOX to GO) and Message Type 0x26 (Protobuf Data Packet from GO to IOX).
-
-The protobufs defined here follows a simple pub/sub protocol, where a third party IOX device can subscribe to one of the supported TOPICs (enum Topic) and receive the desired information from the GO.
-
+The protobufs defined here follows a simple pub/sub protocol, where a third party IOX device can subscribe to one of the supported TOPICs (enum Topic) 
+and receive the desired information from the GO.
 The appropriate master switch needs to be set to use the pub/sub functionality correctly.
 
 The list of some of the (unordered) messages and their use is as mentioned below.
+1. To get a list of all the subscribable topics: The external device needs to send an IoxToGo message with the pub_sub.list_avail_topics field set.
+     The GO device responds with an IoxFromGo message with the pub_sub.topic_info_list field.
 
-To get a list of all the subscribable topics: The external device needs to send an IoxToGo message with the pub_sub.list_avail_topics field set.
-    The GO device responds with an IoxFromGo message with the pub_sub.topic_info_list field.
+2. To subscribe to a topic: The external device needs to send an IoxToGo message with the pub_sub.sub field set. 
+     The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing 'SUB_ACK_RESULT_SUCCESS'.
 
-To subscribe to a topic: The external device needs to send an IoxToGo message with the pub_sub.sub field set. 
-    The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing 'SUB_ACK_RESULT_SUCCESS'.
+3. To get a list of subscribed topics: The external device needs to send a IoxToGo message with the pub_sub.msg.list_subs field set. 
+     The GO device responds with an IoxFromGo message with the pub_sub.topic_list field.
 
-To get a list of subscribed topics: The external device needs to send a IoxToGo message with the pub_sub.msg.list_subs field set. 
-    The GO device responds with an IoxFromGo message with the pub_sub.topic_list field set.
- 
-How the external device gets published information for subscribed topics: 
-    When there is an update to a subscribed topic, the GO device sends the update in an IoxFromGo message with the pub_sub.pub field set.
+4. How the external device gets published information for subscribed topics: 
+     When there is an update to a subscribed topic, the GO device sends the update in an IoxFromGo message with the pub_sub.pub field set.
 
-To remove a topic from the subscription: The external device needs to send a IoxToGo message with the pub_sub.msg.unsub field set. 
-    The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing a 'SUB_ACK_RESULT_SUCCESS'.
+5. To remove a topic from the subscription: The external device needs to send a IoxToGo message with the pub_sub.msg.unsub field set. 
+     The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing a 'SUB_ACK_RESULT_SUCCESS'.
 
-To clear the entire subscription list: The external device needs to send a IoxToGo message with the pub_sub.msg.clear_subs field set.
-    The Go device responds with an IoxFromGo message with the pub_sub.clear_subs_ack.result field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
- 
-Note: The an IoxFromGo message with the pub_sub.sub_ack.result field or the pub_sub.clear_subs_ack.result field can contain the source 
-of error when the request cannot be performed successfully.
+6. To clear the entire subscription list: The external device needs to send a IoxToGo message with the pub_sub.msg.clear_subs field set.
+     The Go device responds with an IoxFromGo message with the pub_sub.clear_subs_ack.result field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
 
-Note: The subscription is cleared if the GO or the IOX has lost power or if the IOX is disconnected from the GO device.
+Note: The a 'PubSubFromGo' message with the 'sub_ack' or the 'clear_subs_ack' field can contain the source of error when a request cannot be performed successfully.
+
+Note: The subscription is cleared if the GO or the IOX lost power or if the IOX is disconnected from the GO device.
 
 Note, If the master switch is not enabled:
-    - An IOX will not able to subscribe any topic.
-    - The list of subscribable topics will be empty.
+         - An IOX will not able to subscribe any topic.
+         - The list of subscribable topics will be empty.
 
 
-## External device to GO messages
-0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
-The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
-An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
+#### Example Message from IOX to GO:
+    - 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
+    - The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
+    - An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
+    	0x8C fields values: 
+        	STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03
 
-0x8C fields values: 
-        STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03
+```js
+    IoxToGo message = { 
+             .which_msg = IoxToGo_pub_sub_tag, 
+             .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
+    };
+    IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { .topic = 0x01 }}};
+```
 
-IoxToGo message = { 
-        .which_msg = IoxToGo_pub_sub_tag, 
-        .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
-};
-IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { .topic = 0x01 }}};
+    - So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
+         This leads to, IoxToGo message length after Protobuf encoding to be 0x06.
+         Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
+         The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
 
-So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
-    This leads to, IoxToGo message length after Protobuf encoding: 0x06
-    Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
-    The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
+    - The final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
+         <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
 
-So, the final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be: 
-    <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
 
-## GO to External device messages
-0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
-
-An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
-
-The external device will receive a 0x26 message from the GO device such as:
+#### Example Response/Event from GO to IOX:
+    - 0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
+    - An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
+    - The external device will receive a 0x26 message from the GO device such as:
         (0x02 0x26 0x08 0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01 0x68 0xE8 0x03)
-
-The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
-The IoxFromGo message after decoding = {
-    .which_msg = 0x01, 
-    .pub_sub = {
+    - The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
+    
+    The IoxFromGo message after decoding = 
+```js
+    {
          .which_msg = 0x01, 
-         .suback = { .result = 0x01, .topic = 0x01 }
-    }
-}
+         .pub_sub = {
+              .which_msg = 0x01, 
+              .suback = { .result = 0x01, .topic = 0x01 }
+         }
+     }
+```
+    - The IoxFromGo message can be interpreted as 
+    
+```js
+    { 
+         .which_msg = IoxFromGo_pub_sub_tag, 
+         .pub_sub = {
+             .which_msg = PubSubFromGo_sub_ack_tag, 
+             .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
+         }
+    } 
+```
 
-The IoxFromGo message can be interpreted as { 
-    .which_msg = IoxFromGo_pub_sub_tag, 
-    .pub_sub = {
-        .which_msg = PubSubFromGo_sub_ack_tag, 
-        .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
-    }
-}
-
-## Message Description
 <a name="-Topic"></a>
 
 ### Topic
 The ID of all the subscribable topics.
 @exclude Includes status data IDs
-@exclude The comment is CSV format, 1st field is the type, 2nd field is the unit, 3rd field is the extra information (if any).
+@exclude The comment is CSV format: 1st field is the type, 2nd field is the unit, 3rd field is the extra information (if any).
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | TOPIC_UNSPECIFIED | 0 | Invalid topic,, (DO NOT USE) |
-| TOPIC_ACCEL | 1 | Vec3, m/s^2, (DO NOT USE) To be implemented |
-| TOPIC_GPS | 2 | Gps, Lat/Long: degrees. speed: km/h, (DO NOT USE) To be implemented |
-| TOPIC_BATTERY_VOLTAGE | 3 | float, Volt, (DO NOT USE) To be implemented |
-| TOPIC_VIN | 4 | 17 character String, Unitless |
-| TOPIC_GEAR | 5 | 32 bit signed int, Unitless, -1=Reverse. 0=Neutral. 1-8:Nth gear. 126=Park. 127=Drive. 129=Intermediate. 130=Unknown.|
+| TOPIC_ACCEL | 1 | Vec3, m/s^2, To be implemented |
+| TOPIC_GPS | 2 | Gps, Lat/Long: degrees. speed: km/h, To be implemented |
+| TOPIC_BATTERY_VOLTAGE | 3 | float, Volt, To be implemented |
+| TOPIC_VIN | 4 | String, Unitless |
+| TOPIC_GEAR | 5 | 32 bit signed int, Unitless, 1=Reverse. 0=Neutral. 1 to 8:Nth gear. 126=Park. 127=Drive. 129=Intermediate. 130=Unknown. |
 | TOPIC_ENGINE_SPEED | 6 | 32 bit float, RPM |
 | TOPIC_ENGINE_LOAD | 7 | 32 bit float, % |
 | TOPIC_ODOMETER | 8 | 32 bit float, km |
@@ -721,7 +722,6 @@ The ID of all the subscribable topics.
 | TOPIC_PARK_BRAKE | 24 | 32 bit signed int, Unitless, 0=Off. 1=On. 2=Error. |
 
 
-
 <a name="-ClearSubsAck"></a>
 
 ### ClearSubsAck
@@ -732,10 +732,6 @@ This is a response to a Clear subscription request.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | result | [ClearSubsAck.Result](#ClearSubsAck-Result) |  | This is the result of a Clear subscription request. |
-
-
-
-
 
 
 <a name="-Gps"></a>
@@ -752,9 +748,6 @@ This structure is used for publishing the output of the GPS.
 | speed | [float](#float) |  | Speed, in km/h |
 | heading | [float](#float) |  | Heading, in degrees |
 | gps_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Time the GPS data is sampled. |
-
-
-
 
 
 
@@ -1005,4 +998,5 @@ Possible result returned from a Subscribe request or an Unsubscribe request.
 | SUB_ACK_RESULT_TOPIC_NOT_SUBBED | 5 | Unsubscribe fails if the topic has not been subscribed to |
 | SUB_ACK_RESULT_UNAVAILABLE | 6 | Unsubscribe fails if the subscription belongs to another IOX. |
 | SUB_ACK_RESULT_DISABLED | 7 | IOX Pub/Sub is not enabled by Master Switch. |
+
 
