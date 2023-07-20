@@ -166,18 +166,16 @@
                                 name: name,
                                 comments: comments,
                                 parent: {
-                                    id: parent
+                                    id: parent.id
                                 },
                                 color: {
                                     a: 0,
                                     r: 0,
                                     g: 0,
                                     b: 255
-                                }
+                                },
+                                isGlobalReportingGroup: parent.isGlobalReportingGroup
                             };
-                            if (parent.id[0] === "G") {
-                                entity["isGlobalReportingGroup"] = true;
-                            }
                             api.call("Add", {
                                 typeName: "Group",
                                 entity: entity
@@ -213,7 +211,7 @@
 
         function parseParentGroup(text) {
             if (text === "") {
-                return "GroupCompanyId";
+                return { "id": "GroupCompanyId", "isGlobalReportingGroup": false };
             } else if (groupCache.hasOwnProperty(text)) {
                 return groupCache[text];
             } else {
@@ -230,9 +228,15 @@
                     for (var i = 0; i < result.length; i++) {
                         // Built-in groups do not have proper names
                         if (result[i].name === undefined) {
-                            groupCache[result[i].id] = result[i].id;
+                            groupCache[result[i].id] = {
+                                "id": result[i].id,
+                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                            };
                         } else {
-                            groupCache[result[i].name] = result[i].id;
+                            groupCache[result[i].name] = {
+                                "id": result[i].id,
+                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                            };
                         }
                     }
                 }
