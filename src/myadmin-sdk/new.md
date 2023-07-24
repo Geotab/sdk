@@ -4,6 +4,30 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## July 29, 2023
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### MyAdminAPIUser
+
+- We have deprecated the **MyAdminApiUser** role. This role was initially used to make MyAdmin API calls, but we confirmed that API calls are open to anyone with a MyAdmin account. As a result, we have deprecated the role to reduce confusion and simplify access to our API. 
+<br/>  
+
+#### CalculateVinOemEligibilitiesAsync and GetOemSupportEligibilityForMakeAsync
+
+- Together with the Vehicle / VIN Lookup page improvements, we’ve added the following APIs to allow you to confirm whether a vehicle or VIN is eligible for OEM connectivity services:
+    - **CalculateVinOemEligibilitiesAsync** — Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
+    - **GetOemSupportEligibilityForMakeAsync** — Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
+<br/>   
+
+#### DatabaseExists
+
+- To save time when creating new databases, we’ve added a new **DatabaseExists** method that returns a true or false value to allow you to confirm whether a database name already exists:
+    - **true** — The database name already exists
+    - **false** — The database name does not exist
+<br/>   
+
+***
 ## July 10, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
