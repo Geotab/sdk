@@ -1,123 +1,131 @@
 <!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Import Groups Example</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Import Groups Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/intermediate-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This utility helps you import groups to your account using comma separated values (CSV). Initially a cache will be created of all the groups currently on your account. The input provided is parsed and if a group does not exist in the cache, it will be added and then saved to your account.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Add1 target=_blank>Add</a> <a href=https://geotab.github.io/sdk/software/api/reference/#Get1 target=_blank>Get</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Group target=_blank>Group</a></details></div></div><div id=example-content><form><p>Use the text box below to import multiple groups at a time. Place each group on its own line as follows:</p><div class=code><pre>Name1,Description,ParentGroupName<br>Name2,Description,ParentGroupName<br>Name3,Description,</pre></div><p>Note: The last example does not specify a parent group and will instead be placed in your top-most group.<br>Groups will automatically be created for you if they do not already exist.</p><p><textarea id=content cols=80 rows=8></textarea></p><button class=primary-btn id=importGroups>Import groups</button> <span id=result></span></form></div></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var groupCache;
 
-            document.addEventListener("DOMContentLoaded", function() {
-                document.getElementById("importGroups").addEventListener("click", function(event) {
-                    event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("importGroups").addEventListener("click", function (event) {
+                event.preventDefault();
 
-                    var content = document.getElementById("content").value,
-                        addGroups = function (groups) {
-                            if (!groups.length) {
-                                document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
-                                return;
-                            }
-                            // Split up the group properties
-                            var group = groups.shift(),
-                                split = group.split(",");
+                var content = document.getElementById("content").value,
+                    addGroups = function (groups) {
+                        if (!groups.length) {
+                            document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
+                            return;
+                        }
+                        // Split up the group properties
+                        var group = groups.shift(),
+                            split = group.split(",");
 
-                            if (split.length !== 3) {
-                                console.log("Could not import " + group);
-                                addGroups(groups);
-                                return;
-                            }
+                        if (split.length !== 3) {
+                            console.log("Could not import " + group);
+                            addGroups(groups);
+                            return;
+                        }
 
-                            var name = split[0];
-                            var comments = split[1];
-                            var parent = parseParentGroup(split[2]);
+                        var name = split[0];
+                        var comments = split[1];
+                        var parent = parseParentGroup(split[2]);
 
-                            if (parent === null) {
-                                console.log("Could not import " + group);
-                                addGroups(groups);
-                                return;
-                            }
+                        if (parent === null) {
+                            console.log("Could not import " + group);
+                            addGroups(groups);
+                            return;
+                        }
 
-                            if (name.length > 255) {
-                                alert("Group name on line " + (i + 1) + " exceeds 255 characters");
-                                return;
-                            }
+                        if (name.length > 255) {
+                            alert("Group name on line " + (i + 1) + " exceeds 255 characters");
+                            return;
+                        }
 
-                            if (comments.length > 255) {
-                                alert("Description on line " + (i + 1) + " exceeds 255 characters");
-                                return;
-                            }
+                        if (comments.length > 255) {
+                            alert("Description on line " + (i + 1) + " exceeds 255 characters");
+                            return;
+                        }
 
-                            if (groupCache.hasOwnProperty(name)) {
-                                console.log("Skipped group " + name + " because it already exists");
-                                addGroups(groups);
-                            } else {
-                                api.call("Add", {
-                                    typeName: "Group",
-                                    entity: {
-                                        name: name,
-                                        comments: comments,
-                                        parent: {
-                                            id: parent
-                                        },
-                                        color: {
-                                            a: 0,
-                                            r: 0,
-                                            g: 0,
-                                            b: 255
-                                        }
-                                    }
-                                }, function(result) {
-                                    if (result !== undefined && result) {
-                                        groupCache[split[0]] = result
-                                    }
-                                    setTimeout(function () {
-                                        addGroups(groups);
-                                    }, 10);
-                                    console.log("Successfully imported the group!");
-                                }, function(error) {
-                                    console.log(error);
+                        if (groupCache.hasOwnProperty(name)) {
+                            console.log("Skipped group " + name + " because it already exists");
+                            addGroups(groups);
+                        } else {
+                            var entity = {
+                                name: name,
+                                comments: comments,
+                                parent: {
+                                    id: parent.id
+                                },
+                                color: {
+                                    a: 0,
+                                    r: 0,
+                                    g: 0,
+                                    b: 255
+                                },
+                                isGlobalReportingGroup: parent.isGlobalReportingGroup
+                            };
+                            api.call("Add", {
+                                typeName: "Group",
+                                entity: entity
+                            }, function (result) {
+                                if (result !== undefined && result) {
+                                    groupCache[split[0]] = result
+                                }
+                                setTimeout(function () {
                                     addGroups(groups);
-                                });
-                            }
-                        };
+                                }, 10);
+                                console.log("Successfully imported the group!");
+                            }, function (error) {
+                                console.log(error);
+                                addGroups(groups);
+                            });
+                        }
+                    };
 
-                    if (content === "") {
-                        alert("At least one group is required");
-                    } else {
-                        // Split up the lines one by one
-                        var groups = content.split("\n");
-
-                        // Reset the result display
-                        document.getElementById("result").innerHTML = "";
-
-                        addGroups(content.split("\n"));
-                    }
-                });
-                groupCache = refreshGroupCache(null);
-            });
-
-            function parseParentGroup(text) {
-                if (text === "") {
-                    return "GroupCompanyId";
-                } else if (groupCache.hasOwnProperty(text)) {
-                    return groupCache[text];
+                if (content === "") {
+                    alert("At least one group is required");
                 } else {
-                    return null;
-                }
-            }
+                    // Split up the lines one by one
+                    var groups = content.split("\n");
 
-            function refreshGroupCache(callback) {
-                api.call("Get", {
-                    typeName: "Group"
-                }, function(result) {
-                    if (result !== undefined && result.length > 0) {
-                        groupCache = {};
-                        for (var i = 0; i < result.length; i++) {
-                            // Built-in groups do not have proper names
-                            if (result[i].name === undefined) {
-                                groupCache[result[i].id] = result[i].id;
-                            } else {
-                                groupCache[result[i].name] = result[i].id;
-                            }
+                    // Reset the result display
+                    document.getElementById("result").innerHTML = "";
+
+                    addGroups(content.split("\n"));
+                }
+            });
+            groupCache = refreshGroupCache(null);
+        });
+
+        function parseParentGroup(text) {
+            if (text === "") {
+                return { "id": "GroupCompanyId", "isGlobalReportingGroup": false };
+            } else if (groupCache.hasOwnProperty(text)) {
+                return groupCache[text];
+            } else {
+                return null;
+            }
+        }
+
+        function refreshGroupCache(callback) {
+            api.call("Get", {
+                typeName: "Group"
+            }, function (result) {
+                if (result !== undefined && result.length > 0) {
+                    groupCache = {};
+                    for (var i = 0; i < result.length; i++) {
+                        // Built-in groups do not have proper names
+                        if (result[i].name === undefined) {
+                            groupCache[result[i].id] = {
+                                "id": result[i].id,
+                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                            };
+                        } else {
+                            groupCache[result[i].name] = {
+                                "id": result[i].id,
+                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                            };
                         }
                     }
-                    if (callback) {
-                        callback();
-                    }
-                }, function(error) {
-                    console.log(error);
-                });
-            }</script></body></html>
+                }
+                if (callback) {
+                    callback();
+                }
+            }, function (error) {
+                console.log(error);
+            });
+        }</script></body></html>
