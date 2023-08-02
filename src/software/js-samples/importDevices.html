@@ -167,18 +167,17 @@
                             [{ id: "GroupVehicleId" }]
                         }
                         const device = {
-                            serialNumber: "",
+                            serialNumber: deviceSerialNumber,
                             name: deviceName,
                             groups: [{ id: groupObject.id }],
                             vehicleIdentificationNumber: deviceVin
                         };
                         await addDevice(device);
-
-                        document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
                     } catch (error) {
                         console.error(error)
                         alert(error)
                     }
+                    document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
                 }
             }
 
