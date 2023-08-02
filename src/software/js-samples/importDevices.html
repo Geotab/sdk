@@ -116,11 +116,14 @@
     <!-- The JavaScript used for the example is present in the same HTML file here -->
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", async function () {
-            let groupCache = await getGroup();
-            let assetTypeCache = getGroupDescendants("GroupAssetTypeId");
+            let groupCache;
+            let assetTypeCache;
 
             document.getElementById("importDevices").addEventListener("click", async (event) => {
                 event.preventDefault();
+                // Cache should be updated every time the button is clicked, to ensure that the latest data is retrieved.
+                groupCache = await getGroup();
+                assetTypeCache = getGroupDescendants("GroupAssetTypeId");
                 await importDevices();
             });
 
@@ -132,7 +135,6 @@
                 const dataRows = data.split("\n");
                 
                 for (let i = 0; i < dataRows.length; i++) {
-                    let rowNumber = i + 1;
                     try {
                         const row = dataRows[i];
                         if (!isRowValid(row)) {
@@ -140,7 +142,7 @@
                         }
                         
                         const deviceData = row.split(",");
-                        if (!isDeviceDataValid(deviceData, rowNumber)) {
+                        if (!isDeviceDataValid(deviceData)) {
                             continue;
                         }
                         
@@ -158,9 +160,9 @@
                             vehicleIdentificationNumber: deviceVin
                         };
                         await addDevice(device);
-                        addLogs(`Row ${rowNumber} - Added`);
+                        addLogs(`Row ${i + 1} - New Device Added: ${deviceName}`);
                     } catch (error) {
-                        addLogs(`Row ${rowNumber} - ${error}`);
+                        addLogs(`Row ${i + 1} - ${error}`);
                         console.error(error);
                     }
                 }
@@ -183,7 +185,6 @@
             async function handleGroup(deviceGroup, createGroupIfNotExist) {
                 let groups = [];
                 let groupObject = groupCache.find(x => x.name === deviceGroup);
-
                 if (!groupObject) {
                     if (createGroupIfNotExist) {
                         groupObject = {
@@ -193,11 +194,11 @@
                         }
                         groupObject.id = await AddGroup(groupObject);
                         groupCache.push(groupObject);
+                        addLogs(`* New Group Added: ${deviceGroup}`);
                     }
                 } else {
                     groups.push({ id: groupObject.id });
                 }
-
                 if (!isAssetType(groupObject)) {
                     groups.push({ id: "GroupVehicleId" });
                 }
@@ -207,7 +208,10 @@
             function getGroup() {
                 return new Promise((resolve, reject) => {
                     api.call("Get", {
-                        typeName: "Group"
+                        typeName: "Group",
+                        propertySelector: {
+                            fields: ["id", "name", "children"]
+                        }
                     }, function (result) {
                         resolve(result);
                     }, function (error) {
@@ -251,7 +255,7 @@
                 return true;
             }
 
-            function isDeviceDataValid(deviceData, rowNumber) {
+            function isDeviceDataValid(deviceData) {
                 if (deviceData.length < 3) {
                     throw new Error("Insufficient number of properties. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.");
                 }
@@ -283,6 +287,7 @@
                 return true;
             }
 
+            // Recursive function to retrieve all descendants of a group.
             function getGroupDescendants(groupId) {
                 let group = groupCache.find(x => x.id === groupId)
                 if (group && group.children.length > 0) {
