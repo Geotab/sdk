@@ -119,15 +119,18 @@
             let groupCache = await getGroup();
             let assetTypeCache = getGroupDescendants("GroupAssetTypeId");
 
-            document.getElementById("importDevices").addEventListener("click", async(event)=>{
+            document.getElementById("importDevices").addEventListener("click", async (event) => {
                 event.preventDefault();
-                await importDevices()
+                await importDevices();
             });
 
             async function importDevices() {
+                clearLogs();
+
                 const data = document.getElementById("content").value;
                 const createGroupIfNotExist = document.getElementById("createGroups").checked;
                 const dataRows = data.split("\n");
+                
                 for (let i = 0; i < dataRows.length; i++) {
                     let rowNumber = i + 1;
                     try {
@@ -135,50 +138,70 @@
                         if (!isRowValid(row)) {
                             continue;
                         }
+                        
                         const deviceData = row.split(",");
                         if (!isDeviceDataValid(deviceData, rowNumber)) {
                             continue;
                         }
+                        
                         const deviceSerialNumber = deviceData[0];
                         const deviceName = deviceData[1];
                         const deviceGroup = deviceData[2];
                         const deviceVin = deviceData[3];
 
-                        let groups = [];
-                        let groupObject = groupCache.find(x => x.name === deviceGroup)
-                        if (!groupObject) {
-                            if (createGroupIfNotExist) {
-                                // create group
-                                groupObject = {
-                                    name: deviceGroup,
-                                    comments: "Imported with SDK js samples: importDevices",
-                                    parent: {
-                                        id: "GroupCompanyId"
-                                    },
-                                }
-                                // add new group to cache
-                                groupObject.id = await AddGroup(groupObject);
-                                groupCache.push(groupObject);
-                            }
-                        }
-                        groups.push({ id: groupObject.id });
-                        
-                        if(!isAssetType(groupObject)) {
-                            [{ id: "GroupVehicleId" }]
-                        }
+                        let groups = await handleGroup(deviceGroup, createGroupIfNotExist);
+
                         const device = {
                             serialNumber: deviceSerialNumber,
                             name: deviceName,
-                            groups: [{ id: groupObject.id }],
+                            groups: groups,
                             vehicleIdentificationNumber: deviceVin
                         };
                         await addDevice(device);
+                        addLogs(`Row ${rowNumber} - Added`);
                     } catch (error) {
-                        console.error(error)
-                        alert(error)
+                        addLogs(`Row ${rowNumber} - ${error}`);
+                        console.error(error);
                     }
-                    document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
                 }
+                addLogs("Importing finished.");
+            }
+
+            function clearLogs() {
+                const parentElement = document.getElementById("result");
+                while (parentElement.firstChild) {
+                    parentElement.removeChild(parentElement.firstChild);
+                }
+            }
+
+            function addLogs(text) {
+                let log = document.createElement("p");
+                log.innerText = text;
+                document.getElementById("result").appendChild(log);
+            }
+
+            async function handleGroup(deviceGroup, createGroupIfNotExist) {
+                let groups = [];
+                let groupObject = groupCache.find(x => x.name === deviceGroup);
+
+                if (!groupObject) {
+                    if (createGroupIfNotExist) {
+                        groupObject = {
+                            name: deviceGroup,
+                            comments: "Imported with SDK js samples: importDevices",
+                            parent: { id: "GroupCompanyId" },
+                        }
+                        groupObject.id = await AddGroup(groupObject);
+                        groupCache.push(groupObject);
+                    }
+                } else {
+                    groups.push({ id: groupObject.id });
+                }
+
+                if (!isAssetType(groupObject)) {
+                    groups.push({ id: "GroupVehicleId" });
+                }
+                return groups;
             }
 
             function getGroup() {
@@ -222,7 +245,7 @@
             }
 
             function isRowValid(row) {
-                if (row.trim() === "") {// Trim whitespace before checking if row is empty
+                if (row.trim() === "") { // Trim whitespace before checking if row is empty
                     throw new Error(`Empty. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.`);
                 }
                 return true;
@@ -230,41 +253,41 @@
 
             function isDeviceDataValid(deviceData, rowNumber) {
                 if (deviceData.length < 3) {
-                    throw new Error(`Row ${rowNumber} - Insufficient number of properties. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.`);
+                    throw new Error("Insufficient number of properties. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.");
                 }
                 if (deviceData.length > 4) {
-                    throw new Error(`Row ${rowNumber} - Too many properties. Expected: SerialNumber, Name, GroupName, and VIN (optional).`);
+                    throw new Error("Too many properties. Expected: SerialNumber, Name, GroupName, and VIN (optional).");
                 }
                 if (!deviceData[0]) {
-                    throw new Error(`Row ${rowNumber} - Serial Number is required.`);
+                    throw new Error("Serial Number is required.");
                 }
                 if (!deviceData[1]) {
-                    throw new Error(`Row ${rowNumber} - Device Name is required.`);
+                    throw new Error("Device Name is required.");
                 }
                 if (!deviceData[2]) {
-                    throw new Error(`Row ${rowNumber} - Group Name is required.`);
+                    throw new Error("Group Name is required.");
                 }
                 if (deviceData[0].length > 255) {
-                    throw new Error(`Row ${rowNumber} - Serial Number exceeds 255 characters.`);
+                    throw new Error("Serial Number exceeds 255 characters.");
                 }
                 if (deviceData[1].length > 255) {
-                    throw new Error(`Row ${rowNumber} - Device Name exceeds 255 characters.`);
+                    throw new Error("Device Name exceeds 255 characters.");
                 }
                 if (deviceData[2].length > 255) {
-                    throw new Error(`Row ${rowNumber} - Group Name exceeds 255 characters.`);
+                    throw new Error("Group Name exceeds 255 characters.");
                 }
                 // vin is optional
                 if (deviceData[3]?.length > 255) {
-                    throw new Error(`Row ${rowNumber} - VIN exceeds 255 characters.`);
+                    throw new Error("VIN exceeds 255 characters.");
                 }
                 return true;
             }
 
-            function getGroupDescendants(groupId){
+            function getGroupDescendants(groupId) {
                 let group = groupCache.find(x => x.id === groupId)
-                if(group && group.children.length > 0){
+                if (group && group.children.length > 0) {
                     let list = [group];
-                    for(let i of group.children){
+                    for (let i of group.children) {
                         let descendants = getGroupDescendants(i.id);
                         if (descendants !== null) {
                             list = list.concat(descendants);
@@ -274,11 +297,11 @@
                 }
                 return null;
             }
-            
-            function isAssetType(group){
+
+            function isAssetType(group) {
                 return assetTypeCache.some(x => x.id === group.id);
             }
-        })
+        });
 
     </script>
 
