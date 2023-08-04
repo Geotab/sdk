@@ -783,3 +783,7 @@ p {
 ::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
+
+.importDevices-rulesList{
+    margin: 0;
+}

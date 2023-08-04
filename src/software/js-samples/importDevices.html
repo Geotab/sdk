@@ -64,9 +64,14 @@
 
             <!-- Description section of the example -->
             <div class="description">
-                This utility helps you import devices to your account using comma separated values (CSV).
-                Initially a cache will be created of all the devices currently on your account. The input provided is
-                parsed and if a device does not exist in the cache, it will be added and then saved to your account.
+                <p>This example imports devices to your account using comma-separated values (CSV). The provided input will be parsed, added, and saved to your account. Please note the following rules:
+                <ol>
+                    <li class="importDevices-rulesList">The `<b>GroupName</b>` field cannot be an `<b>AssetType</b>`.</li>
+                    <li class="importDevices-rulesList">If an `<b>AssetType</b>` value is not provided or not found, it will default to "Vehicle".</li>
+                    <li class="importDevices-rulesList">If the `<b>Vin</b>` field is not given, it will be treated as an empty string.</li>
+                </ol>
+                Please ensure your CSV input follows these guidelines to ensure a successful device import.
+                </p>
             </div>
 
             <!-- Methods/objects used section containing the links to the specific SDK references used -->
@@ -92,7 +97,9 @@
                     on its own line as follows:
                 </p>
                 <div class="code">
-                    <pre>SerialNumber,Name1,GroupName,Vin(optional)</pre>
+                    <pre>SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)</pre>
+                    <pre>SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)</pre>
+                    <pre>SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)</pre>
                 </div>
                 <p>
                     <input id="createGroups" type="checkbox" checked="checked" /> <label
@@ -116,14 +123,16 @@
     <!-- The JavaScript used for the example is present in the same HTML file here -->
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", async function () {
-            let groupCache;
+            let allGroupCache;
             let assetTypeCache;
+            let nonAssetTypeCache;
 
             document.getElementById("importDevices").addEventListener("click", async (event) => {
                 event.preventDefault();
                 // Cache should be updated every time the button is clicked, to ensure that the latest data is retrieved.
-                groupCache = await getGroup();
+                allGroupCache = await getGroup();
                 assetTypeCache = getGroupDescendants("GroupAssetTypeId");
+                nonAssetTypeCache = allGroupCache.filter(x => !assetTypeCache.some(y => y.id === x.id));
                 await importDevices();
             });
 
@@ -132,6 +141,11 @@
 
                 const data = document.getElementById("content").value;
                 const createGroupIfNotExist = document.getElementById("createGroups").checked;
+                
+                if (!isDataValid(data)) {
+                    return;
+                }
+                
                 const dataRows = data.split("\n");
                 
                 for (let i = 0; i < dataRows.length; i++) {
@@ -145,13 +159,16 @@
                         if (!isDeviceDataValid(deviceData)) {
                             continue;
                         }
-                        
-                        const deviceSerialNumber = deviceData[0];
-                        const deviceName = deviceData[1];
-                        const deviceGroup = deviceData[2];
-                        const deviceVin = deviceData[3];
+                        const deviceSerialNumber = deviceData[0]?.trim();
+                        const deviceName = deviceData[1]?.trim();
+                        const deviceGroupName = deviceData[2]?.trim();
+                        const deviceAssetTypeName = deviceData[3]?.trim();
+                        const deviceVin = deviceData[4]?.trim();
 
-                        let groups = await handleGroup(deviceGroup, createGroupIfNotExist);
+                        let groups = await handleNonAssetType(deviceGroupName, createGroupIfNotExist);
+                        let assetTypes = await handleAssetType(deviceAssetTypeName);
+
+                        groups = groups.concat(assetTypes);
 
                         const device = {
                             serialNumber: deviceSerialNumber,
@@ -182,27 +199,36 @@
                 document.getElementById("result").appendChild(log);
             }
 
-            async function handleGroup(deviceGroup, createGroupIfNotExist) {
+            // Returns NonAssetType id. Adds a new group if createGroupIfNotExist (checkbox is checked). 
+            async function handleNonAssetType(deviceGroupName, createGroupIfNotExist) {
                 let groups = [];
-                let groupObject = groupCache.find(x => x.name === deviceGroup);
+                let groupObject = nonAssetTypeCache.find(x => x.name === deviceGroupName);
                 if (!groupObject) {
-                    if (createGroupIfNotExist) {
-                        groupObject = {
-                            name: deviceGroup,
-                            comments: "Imported with SDK js samples: importDevices",
-                            parent: { id: "GroupCompanyId" },
-                        }
-                        groupObject.id = await AddGroup(groupObject);
-                        groupCache.push(groupObject);
-                        addLogs(`* New Group Added: ${deviceGroup}`);
+                    // If cannot find AssetType and createGroupIfNotExist is false, throw an error
+                    if (!isNonAssetTypeValid(deviceGroupName, createGroupIfNotExist)) {
+                        return;
                     }
+                    groupObject = {
+                        name: deviceGroupName,
+                        comments: "Imported with SDK js samples: importDevices",
+                        parent: { id: "GroupCompanyId" },
+                    }
+                    groupObject.id = await AddGroup(groupObject);
+                    groups.push({ id: groupObject.id });
+                    allGroupCache.push(groupObject);
+                    nonAssetTypeCache.push(groupObject);
+                    addLogs(`* New Group Added: ${deviceGroupName}`);
+                    
                 } else {
                     groups.push({ id: groupObject.id });
                 }
-                if (!isAssetType(groupObject)) {
-                    groups.push({ id: "GroupVehicleId" });
-                }
                 return groups;
+            }
+            
+            // Returns AssetType id. Default to 'Vehicle' if the given AssetType is not found
+            function handleAssetType(deviceAssetTypeName) {
+                const assetTypeObject = assetTypeCache.find(x => x.name === deviceAssetTypeName);
+                return (deviceAssetTypeName && assetTypeObject) ? [{ id: assetTypeObject.id }] : [{ id: "GroupVehicleId" }];
             }
 
             function getGroup() {
@@ -248,19 +274,30 @@
                 })
             }
 
+
+            function isDataValid(data) {
+                if (data?.trim() === "") {
+                    addLogs("Error: The provided input is empty or contains only whitespace characters. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
+                    console.error(`Error: The provided input is empty or contains only whitespace characters. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)`);
+                    addLogs("Importing finished.");
+                    return false;
+                }
+                return true;
+            }
+
             function isRowValid(row) {
-                if (row.trim() === "") { // Trim whitespace before checking if row is empty
-                    throw new Error(`Empty. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.`);
+                if (row?.trim() === "") { // Trim whitespace before checking if row is empty
+                    throw new Error(`No device data. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)`);
                 }
                 return true;
             }
 
             function isDeviceDataValid(deviceData) {
                 if (deviceData.length < 3) {
-                    throw new Error("Insufficient number of properties. Expected: SerialNumber, Name, and GroupName and VIN (optional) are allowed.");
+                    throw new Error("Insufficient number of properties. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
                 }
-                if (deviceData.length > 4) {
-                    throw new Error("Too many properties. Expected: SerialNumber, Name, GroupName, and VIN (optional).");
+                if (deviceData.length > 5) {
+                    throw new Error("Too many properties. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
                 }
                 if (!deviceData[0]) {
                     throw new Error("Serial Number is required.");
@@ -280,17 +317,31 @@
                 if (deviceData[2].length > 255) {
                     throw new Error("Group Name exceeds 255 characters.");
                 }
-                // vin is optional
+                // assetType is optional
                 if (deviceData[3]?.length > 255) {
+                    throw new Error("Asset Type exceeds 255 characters.");
+                }
+                // vin is optional
+                if (deviceData[4]?.length > 255) {
                     throw new Error("VIN exceeds 255 characters.");
+                }
+                return true;
+            }
+
+            function isNonAssetTypeValid(deviceGroupName, createGroupIfNotExist) {
+                if (assetTypeCache.find(x => x.name === deviceGroupName) ) { 
+                    throw new Error(`This is a Asset Type: ${deviceGroupName}`);
+                }
+                if (!createGroupIfNotExist) {
+                    throw new Error(`This Group Name does not exist: ${deviceGroupName}`);
                 }
                 return true;
             }
 
             // Recursive function to retrieve all descendants of a group.
             function getGroupDescendants(groupId) {
-                let group = groupCache.find(x => x.id === groupId)
-                if (group && group.children.length > 0) {
+                let group = allGroupCache.find(x => x.id === groupId);
+                if (group?.children.length > 0) {
                     let list = [group];
                     for (let i of group.children) {
                         let descendants = getGroupDescendants(i.id);
@@ -306,10 +357,11 @@
             function isAssetType(group) {
                 return assetTypeCache.some(x => x.id === group.id);
             }
+
+            function isNonAssetType(group) {
+                return nonAssetTypeCache.some(x => x.id === group.id);
+            }
         });
-
     </script>
-
 </body>
-
 </html>
