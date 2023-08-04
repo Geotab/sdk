@@ -380,8 +380,25 @@
                             } else if (node.nodeName === "list") {
                                 returnText.push("<ul>");
                                 for (var j = 0; j < nodeChildren.length; j++) {
+
                                     returnText.push("<li>");
                                     returnText.push(pullTextWithLinked(nodeChildren[j].childNodes[0].childNodes, [])); // item and description tags for list
+
+                                    // nested list
+                                    if (nodeChildren[j].childNodes.length > 1) {debugger;
+                                        let childNode  = nodeChildren[j].childNodes[1];
+                                        if (childNode.nodeName === "list") {
+                                            returnText.push("<ul>");
+                                            for (var k = 0; k < childNode.children.length; k++) {
+                                                returnText.push("<li>");
+                                                returnText.push(pullTextWithLinked(childNode.children[k].childNodes[0].childNodes, [])); // item and description tags for list
+                                                returnText.push("</li>");
+                                            }
+                                            returnText.push("</ul>");
+                                            continue;
+                                        }
+                                    }
+
                                     returnText.push("</li>");
                                 }
                                 returnText.push("</ul>");
