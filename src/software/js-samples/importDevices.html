@@ -228,7 +228,12 @@
             // Returns AssetType id. Default to 'Vehicle' if the given AssetType is not found
             function handleAssetType(deviceAssetTypeName) {
                 const assetTypeObject = assetTypeCache.find(x => x.name === deviceAssetTypeName);
-                return (deviceAssetTypeName && assetTypeObject) ? [{ id: assetTypeObject.id }] : [{ id: "GroupVehicleId" }];
+                if (deviceAssetTypeName && assetTypeObject) {
+                    return [{ id: assetTypeObject.id }];
+                } else {
+                    addLogs(`* Cannot find Asset Type: "${deviceAssetTypeName}". Defaulting to "Vehicle" Asset Type.`);
+                    return [{ id: "GroupVehicleId" }];
+                };
             }
 
             function getGroup() {
@@ -341,12 +346,14 @@
             // Recursive function to retrieve all descendants of a group.
             function getGroupDescendants(groupId) {
                 let group = allGroupCache.find(x => x.id === groupId);
-                if (group?.children.length > 0) {
+                if (group) {
                     let list = [group];
-                    for (let i of group.children) {
-                        let descendants = getGroupDescendants(i.id);
-                        if (descendants !== null) {
-                            list = list.concat(descendants);
+                    if (group.children.length > 0) {
+                        for (let i of group.children) {
+                            let descendants = getGroupDescendants(i.id);
+                            if (descendants !== null) {
+                                list = list.concat(descendants);
+                            }
                         }
                     }
                     return list;
