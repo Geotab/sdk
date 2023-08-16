@@ -72,7 +72,7 @@
                 },
                 gotPostMessage = function(e) {
                     var data = JSON.parse(e.data), call, type;
-                    
+
                     if (data) {
                         type = data.type;
                         call = activeCalls.get(data.uid);

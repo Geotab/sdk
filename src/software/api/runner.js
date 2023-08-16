@@ -77,13 +77,6 @@ export default function ApiRunnerCore() {
                 } else {
                     value[language] = editor.getValue();
                 }
-                // Try to extract the data type from the editor code.
-                // if (language === 'javascript' && value[language]) {
-                //     let match = value[language].match(/"typeName": "(\w+)"/);
-                //     if (match) {
-                //         callDataType = match[1];
-                //     }
-                // }
                 return value;
             },
             setValue = value => {

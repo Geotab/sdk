@@ -15,7 +15,7 @@ var ConsoleManager = (function() {
                     if (type === "object") {
                         if (Array.isArray(data)) {
                             type = "array";
-                        } 
+                        }
                     }
                     if (data === null) {
                         data = "null";
