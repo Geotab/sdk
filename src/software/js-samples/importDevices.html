@@ -109,7 +109,7 @@
                     <textarea id="content" cols="80" rows="8"></textarea>
                 </p>
                 <button class="primary-btn" id="importDevices">Import devices</button>
-                <span id="result"></span>
+                <span id="result" class="importDevices-result"></span>
             </form>
         </div>
     </div>
@@ -150,6 +150,7 @@
                 
                 for (let i = 0; i < dataRows.length; i++) {
                     try {
+                        addLogs(`Row ${i+1}:`);
                         const row = dataRows[i];
                         if (!isRowValid(row)) {
                             continue;
@@ -174,12 +175,13 @@
                             serialNumber: deviceSerialNumber,
                             name: deviceName,
                             groups: groups,
-                            vehicleIdentificationNumber: deviceVin
+                            vehicleIdentificationNumber: deviceVin,
+                            comment: "Imported with SDK js samples: importDevices",
                         };
                         await addDevice(device);
-                        addLogs(`Row ${i + 1} - New Device Added: ${deviceName}`);
+                        addLogs(`- New Device Added: ${deviceName}`);
                     } catch (error) {
-                        addLogs(`Row ${i + 1} - ${error}`);
+                        addLogs(`- ${error}`);
                         console.error(error);
                     }
                 }
@@ -211,13 +213,13 @@
                     groupObject = {
                         name: deviceGroupName,
                         comments: "Imported with SDK js samples: importDevices",
-                        parent: { id: "GroupCompanyId" },
+                        parent: { id: "GroupCompanyId" }
                     }
                     groupObject.id = await AddGroup(groupObject);
                     groups.push({ id: groupObject.id });
                     allGroupCache.push(groupObject);
                     nonAssetTypeCache.push(groupObject);
-                    addLogs(`* New Group Added: ${deviceGroupName}`);
+                    addLogs(`- New Group Added: ${deviceGroupName}`);
                     
                 } else {
                     groups.push({ id: groupObject.id });
@@ -231,7 +233,11 @@
                 if (deviceAssetTypeName && assetTypeObject) {
                     return [{ id: assetTypeObject.id }];
                 } else {
-                    addLogs(`* Cannot find Asset Type: "${deviceAssetTypeName}". Defaulting to "Vehicle" Asset Type.`);
+                    if (!deviceAssetTypeName || deviceAssetTypeName === "") {
+                        addLogs(`- No Asset Type provided. Defaulting to "Vehicle" Asset Type.`);
+                    } else {
+                        addLogs(`- Cannot find Asset Type: "${deviceAssetTypeName}". Defaulting to "Vehicle" Asset Type.`);
+                    }
                     return [{ id: "GroupVehicleId" }];
                 };
             }
@@ -246,7 +252,7 @@
                     }, function (result) {
                         resolve(result);
                     }, function (error) {
-                        reject(error);
+                        reject(`Error: Cannot get Group - ${error}`);
                     });
                 })
             }
@@ -261,7 +267,7 @@
                     }, function (result) {
                         resolve(result);
                     }, function (error) {
-                        reject(error);
+                        reject(`Error: Cannot add device - ${error}`);
                     });
                 })
             }
@@ -274,7 +280,7 @@
                     }, function (result) {
                         resolve(result);
                     }, function (error) {
-                        reject(error);
+                        reject(`Error: Cannot add group - ${error}`);
                     });
                 })
             }
@@ -282,7 +288,7 @@
 
             function isDataValid(data) {
                 if (data?.trim() === "") {
-                    addLogs("Error: The provided input is empty or contains only whitespace characters. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
+                    addLogs("- Error: The provided input is empty or contains only whitespace characters. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
                     console.error(`Error: The provided input is empty or contains only whitespace characters. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)`);
                     addLogs("Importing finished.");
                     return false;
@@ -304,13 +310,13 @@
                 if (deviceData.length > 5) {
                     throw new Error("Too many properties. Expected: SerialNumber,Name,GroupName,AssetType(Optional),VIN(Optional)");
                 }
-                if (!deviceData[0]) {
+                if (!deviceData[0] || deviceData[0].trim() === "") {
                     throw new Error("Serial Number is required.");
                 }
-                if (!deviceData[1]) {
+                if (!deviceData[1] || deviceData[1].trim() === "") {
                     throw new Error("Device Name is required.");
                 }
-                if (!deviceData[2]) {
+                if (!deviceData[2] || deviceData[2].trim() === "") {
                     throw new Error("Group Name is required.");
                 }
                 if (deviceData[0].length > 255) {

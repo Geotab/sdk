@@ -787,3 +787,7 @@ p {
 .importDevices-rulesList{
     margin: 0;
 }
+
+.importDevices-result *{
+    margin: 0;
+}
