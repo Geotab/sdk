@@ -1,12 +1,21 @@
 var ConsoleManager = (function() {
-    let dataType = '';
+    let dataType = {};
+    let currentDataType = '';
     var consolePreviewer = function(data, container) {
             var renderObject = function(key, data, parent, isChildProperty, isInactive) {
                     var type = typeof(data);
+                    if (data.uid) {
+                        currentDataType = dataType[data.uid];
+                        delete dataType[data.uid];
+                        if (type === 'object' && !Array.isArray(data)) {
+                            data = data.data ?? null;
+                        }
+                    }
+                    
                     if (type === "object") {
                         if (Array.isArray(data)) {
                             type = "array";
-                        }
+                        } 
                     }
                     if (data === null) {
                         data = "null";
@@ -18,6 +27,7 @@ var ConsoleManager = (function() {
                     }
                     if (renderers[type]) {
                         renderers[type](key, data, parent, isChildProperty, isInactive);
+                        currentDataType = '';
                     }
                 },
                 createElement = function(tag, className, innerHTML) {
@@ -136,9 +146,8 @@ var ConsoleManager = (function() {
                             keyElement = isChildProperty ? createElement("span", "data-object-key", key + ": ") : null;
                         
                         let arrayLabel = 'Array';
-                        if (dataType) {
-                            arrayLabel = dataType;
-                            dataType = '';
+                        if (currentDataType) {
+                            arrayLabel = currentDataType;
                         }
                         const value = createElement("span", "data-object-value", `${arrayLabel}[${data.length}]`),
                             preview = !isChildProperty ? createElement("span", "data-object-preview", " [ ... ]") : null,
@@ -183,6 +192,7 @@ var ConsoleManager = (function() {
                 clear = function() {
                     data = null;
                     container = null;
+                    dataType = {};
                 };
 
             renderObject(null, data, container);
