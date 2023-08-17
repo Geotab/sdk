@@ -99,6 +99,7 @@ export default function ApiRunnerCore() {
             },
             getValue = () => editor?.getSession().getValue(),
             ignoreNextChange = () => ignoreChanges = true,
+            resize = () => editor.resize(),
             self = {
                 render: render,
                 process: process,
@@ -107,7 +108,8 @@ export default function ApiRunnerCore() {
                 editor: editor,
                 setMode: setMode,
                 getMode: getMode,
-                ignoreNextChange
+                ignoreNextChange,
+                resize: resize
             };
 
         return self;

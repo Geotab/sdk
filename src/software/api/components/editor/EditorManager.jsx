@@ -197,6 +197,7 @@ export default function EditorManager({ appState }) {
         const key = getResizeId(containerId);
         return (sizes) => {
             areSizesValid(sizes) && localStorage.setItem(key, JSON.stringify(sizes));
+            resizeEditors();
         };
     }
 
@@ -219,11 +220,17 @@ export default function EditorManager({ appState }) {
     function hideGutter(elem) {
         elem.style.display = 'none';
         elem.classList.add('hide-before-and-after');
+        resizeEditors()
     }
 
     function showGutter(elem) {
         elem.style.display = 'flex';
         elem.classList.remove('hide-before-and-after');
+        resizeEditors()
+    }
+
+    function resizeEditors() {
+        Object.values(appState.editorRef.current).forEach(editor => editor.resize());
     }
 }
 ;
