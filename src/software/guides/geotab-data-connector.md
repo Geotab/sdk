@@ -5,7 +5,7 @@ title: Using the Geotab Data Connector
 ---
 
 ## Overview
-This guide describes the general flow for ETL users to consume Geotab Data Connector. OData Connector implemented OData protocol V4, or you may consider it just as a RESTful service.
+This guide describes the general flow for ETL users to consume [Geotab Data Connector](https://docs.google.com/document/d/1-Id2ReZcR8c-qudzY-dw8AzGTlMEzwO_mScg45vplDU/edit?usp=sharing). OData Connector implemented OData protocol V4, or you may consider it just as a RESTful service.
 
 ## Endpoint
 Before making your first call, it is strongly recommended to skip the **general entry** and make the call directly to **OData Connector**. If you are not sure what the URL to call is, please contact the support team.
