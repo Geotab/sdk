@@ -43,6 +43,8 @@ toc:
             beta: true
           - page: Connect to Power BI
             url: /software/guides/power-bi/
+          - page: Using the Geotab Data Connector
+            url: /software/guides/geotab-data-connector/
       - title: API
         subfolderitems:
           - page: Reference
