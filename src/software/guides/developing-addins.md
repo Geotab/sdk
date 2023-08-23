@@ -450,6 +450,7 @@ The state object is a powerful tool for creating navigational components by chan
 | `gotoPage` | Redirects the user to another page with optional parameters. `Example:state.gotoPage("map", { someParameter1: true, someParameter2: 5 });` | String, [Object] | Void |
 | `hasAccessToPage` | Checks whether the current user has the security clearance to view a page by its `#` (hash) value. Example: `var result =    state.hasAccessToPage("map");` | String | Boolean |
 | `getGroupFilter` | Gets an array with ids of the selected groups in the organization filter. Example: `var result = state.getGroupFilter();` | None | Array |
+| `getAdvancedGroupFilter` | Gets an object with a *relation* property and a *groupFilterConditions* array of the selected groups in the organization filter. Example: `var result = state.getAdvancedGroupFilter();` | None | Object |
 
 > The second parameter to the gotoPage method is optional and is used for query string parameters.
 
