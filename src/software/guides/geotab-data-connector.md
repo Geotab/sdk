@@ -5,10 +5,10 @@ title: Using the Geotab Data Connector
 ---
 
 ## Overview
-This guide describes the general flow for ETL users to consume [Geotab Data Connector](https://docs.google.com/document/d/1-Id2ReZcR8c-qudzY-dw8AzGTlMEzwO_mScg45vplDU/edit?usp=sharing). OData Connector implemented OData protocol V4, or you may consider it just as a RESTful service.
+This guide describes the general flow for ETL users to consume [Geotab Data Connector](https://docs.google.com/document/d/1PEY6L5i3UlVV-5S9FaAV0MHnReCl9vgLxs_mLs26yVo/edit?usp=sharing). OData Connector implemented OData protocol V4, or you may consider it just as a RESTful service.
 
 ## Endpoint
-Before making your first call, it is strongly recommended to skip the **general entry** and make the call directly to **OData Connector**. If you are not sure what the URL to call is, please contact the support team.
+Before making your first call, it is strongly recommended to skip the [general entry](#general-entry) and make the call directly to [OData Connector](#odata-connector). If you are not sure what the URL to call is, please contact the support team.
 
 ### General Entry
 Feel free to skip this section if you plan to make calls directly to OData Connector. If you have to make a call to the general entry (https://data-connector.geotab.com), make sure you are ready to handle the 302 response and make another call to the returned URL.
@@ -168,4 +168,4 @@ kpiDf= pd.DataFrame(r.json()['value'])
 kpiDf.head(5)
 ```
 ## Table Schema
-In phase 1, Data Connector supports 5 tables: **DeviceGroups, LatestVehicleMetadata, VehicleKPI_Daily, VehicleKPI_Hourly** and **VehicleKPI_Monthly**. For more information, see [here](https://docs.google.com/document/d/1PEY6L5i3UlVV-5S9FaAV0MHnReCl9vgLxs_mLs26yVo/edit#heading=h.ct62i572rkz8).
+Please refer to [Geotab Data Connector – Data Schema and Dictionary](https://docs.google.com/document/d/1-Id2ReZcR8c-qudzY-dw8AzGTlMEzwO_mScg45vplDU/edit?usp=sharing) for current available data and details about table schema. 
