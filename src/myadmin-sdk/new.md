@@ -4,6 +4,28 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## September 5, 2023
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### GetDeviceContractsByPage & GetDeviceContracts
+
+- Along with the new `Auto-Activated` and `Billing Start Date` columns in Device Admin, we have made data points of `Auto-Activated` and `Billing Start Date` also available through the **GetDeviceContractsByPage** and **GetDeviceContracts** methods.
+<br/>  
+
+#### CalculateVinOemEligibilitiesAsync and GetOemSupportEligibilityForMakeAsync
+
+- Together with the Vehicle / VIN Lookup page improvements, we’ve added the following APIs to allow you to confirm whether a vehicle or VIN is eligible for OEM connectivity services:
+    - **CalculateVinOemEligibilitiesAsync** — Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
+    - **GetOemSupportEligibilityForMakeAsync** — Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
+<br/>   
+
+#### GetOnlineOrderStatus
+
+- We have added a new `shippingCost` field as a return object to the **GetOnlineOrderStatus** method. This field will return the shipping cost at the time the order was placed.  
+<br/>   
+
+***  
 ## July 29, 2023
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
@@ -24,10 +46,10 @@ title: What's New
 
 - To save time when creating new databases, we’ve added a new **DatabaseExists** method that returns a true or false value to allow you to confirm whether a database name already exists:
     - **true** — The database name already exists
-    - **false** — The database name does not exist
+    - **false** — The database name does not exist  
 <br/>   
 
-***
+***  
 ## July 10, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
