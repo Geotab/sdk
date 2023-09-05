@@ -10,7 +10,11 @@ title: What's New
 
 #### GetDeviceContractsByPage & GetDeviceContracts
 
-- Along with the new `Auto-Activated` and `Billing Start Date` columns in Device Admin, we have made data points of `Auto-Activated` and `Billing Start Date` also available through the **GetDeviceContractsByPage** and **GetDeviceContracts** methods.
+- Along with the new `Auto-Activated` and `Billing Start Date` columns in Device Admin, we have added two new parameters to the **GetDeviceContractsByPage** and **GetDeviceContracts** methods:
+    - `isAutoActivated` — Returns a result that indicates whether the device was auto-activated by Geotab.
+        - true — The device was auto-activated by Geotab.
+        - false — The device has yet to be activated or was activated from being installed in an asset.
+    - `billingStartDate` — Returns the date when the device was activated.
 <br/>  
 
 #### CalculateVinOemEligibilitiesAsync and GetOemSupportEligibilityForMakeAsync
