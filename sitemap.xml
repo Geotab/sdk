@@ -40,6 +40,9 @@
 <loc>https://geotab.github.io/sdk/software/guides/drive-addins/</loc>
 </url>
 <url>
+<loc>https://geotab.github.io/sdk/software/guides/geotab-data-connector/</loc>
+</url>
+<url>
 <loc>https://geotab.github.io/sdk/myadmin-sdk/guides/getting-started/</loc>
 </url>
 <url>
@@ -134,7 +137,7 @@
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/api/codebase/iframe.html</loc>
-<lastmod>2022-01-24T10:24:02-05:00</lastmod>
+<lastmod>2023-09-06T09:32:51-04:00</lastmod>
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/api/samples/add-driver-with-nothing-clearance/sample.html</loc>
@@ -262,7 +265,7 @@
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/js-samples/importDevices.html</loc>
-<lastmod>2023-06-07T13:01:14-04:00</lastmod>
+<lastmod>2023-09-06T09:32:51-04:00</lastmod>
 </url>
 <url>
 <loc>https://geotab.github.io/sdk/software/js-samples/importGroups.html</loc>
