@@ -67,7 +67,7 @@
                         call = activeCalls.get(data.uid);
                         if (call) {
                             if (type === "success") {
-                                call.successCallback(data.data, data.uid);
+                                call.successCallback(data.data);
                             } else {
                                 call.errorCallback(data.data);
                             }
@@ -90,8 +90,8 @@
                                 type: "call",
                                 method: method,
                                 params: params
-                            }, function(result, uid) {
-                                (successCallback || console.log)({data: result, uid: uid});
+                            }, function(result) {
+                                (successCallback || console.log)(result);
                                 resolve(result);
                             }, function(error) {
                                 (errorCallback || console.error)(error);
