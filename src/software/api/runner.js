@@ -12,7 +12,6 @@ let loginFormHasBeenShown = false;
 
 export default function ApiRunnerCore() {
 
-    let callDataType = {};
     const htmlEscape = str => String(str || "")
         .replace(/&/g, "&amp;")
         .replace(/"/g, "&quot;")
@@ -140,16 +139,12 @@ export default function ApiRunnerCore() {
                 });
             });
             postMessages.on("call", data => {
-                if (data.params.typeName) {
-                    callDataType[data.uid.toString()] = data.params.typeName;
-                }
                 api.call(data.method, data.params, getSendResponse("success", data.uid), getSendResponse("error", data.uid));
             });
             postMessages.on("multiCall", data => {
                 api.multiCall(data.calls, getSendResponse("success", data.uid), getSendResponse("error", data.uid));
             });
             postMessages.on("log", data => {
-                callDataType && consoleManager.setDataType(callDataType);
                 consoleManager.log.apply(consoleManager.log, data.data);
             });
             postMessages.on("error", data => {
