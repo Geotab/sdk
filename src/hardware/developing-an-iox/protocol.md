@@ -354,6 +354,19 @@ This message allows an IOX to send a protobuf encoded payload to the GO. It supp
 [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto).
 
 
+### Buzzer Beep (0x24)
+
+Sent from an IOX to the GO to request the buzzer beep with the given parameters. 
+
+#### Payload
+
+| Byte # | Byte Description |
+| --- | --- |
+| 0 | Number of Beeps |
+| 1 | Duration (Multiple of 56ms)  |
+| 2 | Delay Between Beeps (Multiple of 56ms) |
+
+
 ### IOX Request/Status (0x25)
 
 Sent from the IOX to the GO device to inform the GO device of events or status changes.
