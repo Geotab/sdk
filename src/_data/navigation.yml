@@ -86,6 +86,9 @@ toc:
           - page: Android
             url: https://github.com/Geotab/android-external-device-example
             external: true
+          - page: Raspberry Pi
+            url: https://github.com/Geotab/IOX-raspberryPi-demo
+            external: true
       - title: Developing an IOX
         subfolderitems:
           - page: Hardware Design Guide
