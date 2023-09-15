@@ -78,6 +78,7 @@ An IOX could receive messages from the GO device that are not documented here. T
 ## Waking up the GO Device
 Every 1 second, the GO wakes up for 2ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1ms until the GO notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
 
+
 ## Commands
 
 ### Reset (0x00)
@@ -549,3 +550,148 @@ Supported from protocol version 1.2.
 
 This message allows an GO to send a protobuf encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13.
 [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto).
+
+
+## Sequence Diagrams
+
+### Handshake
+
+<!--
+@startuml handshake
+note over GO, IOX: Go Power up
+|||
+GO -> IOX: RESET (0x00)
+|||
+GO -> IOX: POLL (0x01)
+IOX->GO: 8 byte first POLL_RESPONSE (0x02) (value 01 ...)
+GO->IOX: Acknowledgement (0x14)
+IOX->GO: ADDITIONAL_INFO (0x03) (optional)
+GO->IOX: Acknowledgement (0x14)
+IOX->GO: IOX Single Frame Log Data (0x1D)\nType: 1 (ExternalDeviceConnectionStatus)
+GO->IOX: Acknowledgement (0x14)
+|||
+note over GO, IOX: Idle Process
+loop every 7 second
+GO -> IOX: POLL (0x01)
+IOX -> GO: 1 byte POLL_RESPONSE (0x02) (value 00)
+GO -> IOX: Acknowledgement (0x14)
+end
+@enduml
+-->
+
+![Handshake UML](https://www.plantuml.com/plantuml/png/bP1FIyD05CJl-HJls80jYGfA3wN5f24Gki7qu44eQ_9iGpVxGdRJFz0FxylgGKGgNfPbPlZDxioDbPtj6mKxgIkpatlqD5a4Ec07YRY1LBnC8I78wSXAttgNoyLB18nddzPpNCHh60Md8F1_Uhd8CcU5liV2U9Q8AJp2svaBtklEM9VOC28Ngo9sqLiVHWUfUeGWXCbauZDmF7EuHRdNT5HORR51ROTuUF-Dl8YYT9sArIBRfAkbSBWxnb5hQz9I_GF55oXglLK8oqus21bj8P9MkcJal-hrkSKfX32AJnOxfaTug4jy8gsn7FeAAsrl_kxapNwRFAsuE--eH6CyHTG2id-61p1Oagwkx3pemoT2j_JrZGF_2tJjYSXrSpxwHdq0)
+
+### Sleep/Wake
+
+<!--
+@startuml sleep_wake
+== GO going to Sleep ==
+loop 5 times
+GO -> IOX: Sleep (0x05)
+end
+note over IOX: IOX should wait 2s before sleeping
+GO -> IOX: Poll (0x01)
+IOX -> GO: Poll Response (0x02) (value: 02 = Going to sleep)
+GO -> IOX: Acknowledge (0x14)
+== GO Wake up ==
+loop 5 times
+GO -> IOX: Wakeup (0x04)
+end
+GO -> IOX: Poll (0x01)
+IOX -> GO: Poll Response (0x02) (value: 04 = First poll response after wakeup)
+GO -> IOX: Acknowledge (0x14)
+@enduml
+-->
+
+![Sleep/Wake UML](https://www.plantuml.com/plantuml/png/fL4zJyCm5DpzAswi1wGqIfTAHcK1CHN101iov3L4TVqYVpJyV5xY87M2eOk7k_DzwErYiY7baqDqHCFxQ8-aZC737XttlaDYl4mCZ56EUS06gJzHLAAukSNZ_csx25RLTxNHYdohF2S2doaKNXx4BywknMZxX3hYWmuSg8HApANR4pitcwsr4a1mQRF0pnG7zf5cljPOdQtBj4LLGpelXOkhllIy-pnw7XsrtVnrtUXbvAliHVvptIJ9PLvJvbrRje71VHzYmZ3fmg_E7X85Z5FUl_Ltv5ivsmy0)
+
+### Data Logging
+
+<!--
+@startuml data_logging
+note over GO, IOX: Inital handshake
+== Status Data ==
+IOX -> GO: IOX Single Frame Log Data (0x1D)\nType: 0 Generic Data Record
+GO -> IOX: Acknowledge (0x14)
+note over IOX: Header\n1 byte: Type = 0\n2 bytes: Data ID\n1 byte: Data Length = 0-3
+note over IOX: Payload\n4 bytes: Data
+== Curve Data ==
+IOX -> GO: IOX Multi-Frame Log Data (0x1E)\nType 11: Curve Logging
+GO -> IOX: Acknowledge (0x14)
+note over GO: Each frame is ACKed
+/ note over IOX: Each frame has a 1 byte frame counter
+note over IOX: Header\n1 byte: Type = 4\n2 bytes: Data Length = 15
+note over IOX: Payload\n1 byte: Curve Function\n\tAdd = 2, Save = 3\n2 bytes: Data ID\n4 bytes: Data\n1 byte: Length\n2 bytes: Allowed Error\n2 bytes: Estimate Error\n2 bytes: Data Interval\n1 byte: Smoothing Coefficient
+@enduml
+-->
+
+![Data Logging UML](https://www.plantuml.com/plantuml/png/ZP51Rvj048Nl_8evDbAiciIz8575iebhrPMhqaCFIDMK7SCgosor3AJ-zmKM2KGRoTVPzxwPz_Qf5dJIL0OK2luqjYWq5m5R8R0jEJYSx-5u_X71aRMWWH9PrIM-K137a0fAKyE-iq8S1vqELXyxIzHR8Er8Xk3POKLmieNNlLl_2VTt6N-__gO8rd0W9gTp__YDSkjKS3Xt7Bzscx-mVJMa2XgicxlfEA_uHAZ8PHp2hwjqo1uCCQmpVXWcTUJPn_sa6GOduaBANhfwN4A_ujLOL1blvem-ywvnBRqL-KjZHA_-apWP4qCOHYFYvBk-EMo_8y6yXCk0rpLiTvz91UzXSVjCL68D23xrECfjmqBknXOtKukBqi8FRtGsCNpEvuPpqPOppcIhL6Tzk8SKsnx_-EydBIgVQ7xppB0rnhwIWiGvwsRpf1PTeT3oOTpGfs_HJE2qibPApGNiB5qkEjV44ZmHgwOoVm40)
+
+### GO Info
+
+<!--
+@startuml go_info
+autonumber
+note over GO, IOX: Inital handshake
+== Periodic timestamp request from IOX ==
+IOX -> GO: IOX Request/Status (0x25)\nType 2 - Request GO Device Data Message
+note over IOX: Message Version 2
+GO->IOX: Acknowledgement (0x14)
+GO->IOX: GO Multi-Frame Data (0x27)\nType 2 - GO Device Data Message Version 2
+note over IOX: Each frame has a 1 byte frame counter
+note over IOX: Header\n1 byte: Type = 2\n2 bytes: Data Length = 51
+note over IOX: Payload\n4 bytes: Timestamp\n4 bytes: Latitude\n4 bytes: Longitude\n1 byte: Speed\n2 bytes: RPM\n4 bytes: Odometer\n1 byte: Flags\n4 bytes: Trip Odometer\n4 bytes: Engine Hours\n4 bytes: Trip Duration\n4 bytes: Deprecated\n4 bytes: Driver ID\n11 bytes: GO Serial Number
+IOX->IOX: Receive all 7 frames\nAssemble complete message
+@enduml
+-->
+
+![GO Info UML](https://www.plantuml.com/plantuml/png/PPBRQjj048RlzHHpsK1DQv4GC2Wae1m2SMtiK7fXA6FjM5go1tLtDgtVlgk3saMvalXcPhzVchtrZ8w3Lb3RdzASR8Q1hGdwI2upbWdiEpbut7o6vysF5JmRoQYWGIDyWs-K5GLioKahP0KiDNb6tOAZNo6-mibPtGr2KMJTOt4JZrhrP3UqVDapSl3mwUkV_EhYO5xFBK4EYwaU-w6aTraHbCW8Q_8UQqgozRb63D_9UMaDvDdZPd7Jb-wgDsD_An8rQJBScPQN5__hKR0EYkNYmQ4UB7sQwpJDFCLSDyzpZrK3f_x01ZqWBE5uPXfHPODXSlEX9q91xc26tXNqzWBoWybxubU3_OLCpKsiN2tdHspnh2oAWxcS9bwdfIJi1Lbo49GYQ-gHJVfzIoGIzswxJWOsmchYDEw3mjgdPYVRfEqVluycG_1aW_lGNWQ7BAr9U4cjemgPH0gTxB-vZFhb1EEIzkGaAlWsNE3uIyObxwYYE06e55mFMuZkE-z97rMt4DqgOW8zNgzRCY9ezHS0)
+
+### PubSub
+
+<!--
+@startuml pubsub
+autonumber
+note over GO, IOX: Inital handshake
+== PubSub - IOX Protocol Layer ==
+note over GO: GO Multi-Frame Data (0x27)\nType 13: Protobuf data
+/ note over IOX: IOX Multi-Frame Log Data (0x1E)\nType 13: Protobuf data
+== PubSub - Protobuf Contents ==
+IOX -> GO: Get a list of all subscribable topics
+GO->IOX: Topic list
+|||
+IOX -> GO: Subscribe to a topic
+GO->IOX: Subscribe ack
+|||
+GO->IOX: Publish on a topic
+@enduml
+-->
+
+![PubSub UML](https://www.plantuml.com/plantuml/png/TOvFIyCm68Vl-HI_eu95fmUXq37mpnXCEjWE7hoyQJDRbYObUICE-k5jLcdjmKCBuVS-3y_ACpaEZKORf0zIK61hGYEL4yQoWlrI3kly1flyFSN6r4mQ5PdILtHI8ikm2t8V999uWPspR0khiQLp3sRPp9Bs7zw2vZfvTTGeF1CJhkw-xn-lFypXt2ei7j918iCHPJ-BMqoA615_CydMVewYnSk_ebdhk3nPmygmZwbHd2o7JiKWwDepx16aDNoGld2r9AaLsBPruSKwJvQNf4DyNyv5rtL_HVjVB3AW0PouQQNY5D5nYgczhu8r8xPIfWoD_W40)
+
+### MIME
+
+<!--
+@startuml mime
+note over GO, IOX: Inital handshake
+== MIME data from GO ==
+loop N/8 times with up to 8 bytes of data in each frame
+GO -> IOX: TX Data (0x0B)
+end
+note over GO: AddOn Wrapper - 1 byte data length\n1 byte: STX\n1 byte: Type = 0x23\n1 bytes: Data Length N\nN bytes: Data\n2 bytes: Checksum\n1 byte: ETX
+note over GO: AddOn Wrapper - 2 byte data length\n1 byte: STX\n1 byte: Type = 0x25\n2 bytes: Data Length N\nN bytes: Data\n2 bytes: Checksum\n1 byte: ETX
+== MIME data to GO ==
+IOX -> GO: IOX Request/Status (0x25)\nType 1 - Packet Wrapper
+note over IOX: 2 bytes: Type = 1\n1 byte: Beginning = 0
+loop N/8 times with up to 8 bytes of data in each frame
+GO <- IOX: TX Data (0x0C)
+end
+IOX -> GO: IOX Request/Status (0x25)\nType 1 - Packet Wrapper
+note over IOX: 2 bytes: Type = 1\n1 byte: End = 1
+|||
+GO -> IOX: Application Specific Data (0x1C)\nType 0: Modem transmission result
+note over GO: 1 byte: Type = 0\n1 byte: Result (0 = Fail, 1 = Success)
+@enduml
+-->
+
+![MIME UML](https://www.plantuml.com/plantuml/png/lP91Qzj048Nl-XNl64DCB9T245L9uhh5KDibDjG7NxRIs5eipQhQsJO1__YkjAXAqaCfWTvs7plpljbvDrPK8wugKUcA8ZP2C3-emQVr9HRhNO85Qr4b2iMvBTI9eZJ5Sh6S8rUYS6XCvTyYJQFIc1ghgsk8xsJnKqi1LqCChl7jKRna3g58CqXbXIzMtjDNZzy7h-qE7ze75vE7oTqe8iwV4IMupVCruskZwjehOyHTvz2r93vAiUUW9TXiTyDb-rWJKamUfczwqIR1x7DNXzMULq_rFK_xwwoWx6HTDRIRRtT_8Pl-EzdROFbwicSR4eEm7__3_gCxsFPuJzyTMRdQY19dST42ZFRSuSGOuulAJYJzHCEqOLCzGOyV3mHtTDJCce_jLAz9nRlndwcOXLJyhrdcdBT2T3wVd-RqjgvBdIdHXh6fATC7dVrcZ6UzzIJ1qkHKGHh5jjBMjWKDMLVAY_YyJCE0SDyzzusz_57fyXAnFsrSbf6re-Y6E7TL-Gi0)
