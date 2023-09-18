@@ -574,6 +574,10 @@ This message allows an GO to send a protobuf encoded payload to the IOX. It supp
 
 ## Sequence Diagrams
 
+<!--
+UML diagrams are generated from https://plantuml.com/
+-->
+
 ### Handshake
 
 <!--
@@ -599,7 +603,7 @@ end
 @enduml
 -->
 
-![Handshake UML](https://www.plantuml.com/plantuml/png/bP1FIyD05CJl-HJls80jYGfA3wN5f24Gki7qu44eQ_9iGpVxGdRJFz0FxylgGKGgNfPbPlZDxioDbPtj6mKxgIkpatlqD5a4Ec07YRY1LBnC8I78wSXAttgNoyLB18nddzPpNCHh60Md8F1_Uhd8CcU5liV2U9Q8AJp2svaBtklEM9VOC28Ngo9sqLiVHWUfUeGWXCbauZDmF7EuHRdNT5HORR51ROTuUF-Dl8YYT9sArIBRfAkbSBWxnb5hQz9I_GF55oXglLK8oqus21bj8P9MkcJal-hrkSKfX32AJnOxfaTug4jy8gsn7FeAAsrl_kxapNwRFAsuE--eH6CyHTG2id-61p1Oagwkx3pemoT2j_JrZGF_2tJjYSXrSpxwHdq0)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_handshake.png)
 
 ### Sleep/Wake
 
@@ -623,7 +627,7 @@ GO -> IOX: Acknowledge (0x14)
 @enduml
 -->
 
-![Sleep/Wake UML](https://www.plantuml.com/plantuml/png/fL4zJyCm5DpzAswi1wGqIfTAHcK1CHN101iov3L4TVqYVpJyV5xY87M2eOk7k_DzwErYiY7baqDqHCFxQ8-aZC737XttlaDYl4mCZ56EUS06gJzHLAAukSNZ_csx25RLTxNHYdohF2S2doaKNXx4BywknMZxX3hYWmuSg8HApANR4pitcwsr4a1mQRF0pnG7zf5cljPOdQtBj4LLGpelXOkhllIy-pnw7XsrtVnrtUXbvAliHVvptIJ9PLvJvbrRje71VHzYmZ3fmg_E7X85Z5FUl_Ltv5ivsmy0)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_sleep_wake.png)
 
 ### Data Logging
 
@@ -645,7 +649,7 @@ note over IOX: Payload\n1 byte: Curve Function\n\tAdd = 2, Save = 3\n2 bytes: Da
 @enduml
 -->
 
-![Data Logging UML](https://www.plantuml.com/plantuml/png/ZP51Rvj048Nl_8evDbAiciIz8575iebhrPMhqaCFIDMK7SCgosor3AJ-zmKM2KGRoTVPzxwPz_Qf5dJIL0OK2luqjYWq5m5R8R0jEJYSx-5u_X71aRMWWH9PrIM-K137a0fAKyE-iq8S1vqELXyxIzHR8Er8Xk3POKLmieNNlLl_2VTt6N-__gO8rd0W9gTp__YDSkjKS3Xt7Bzscx-mVJMa2XgicxlfEA_uHAZ8PHp2hwjqo1uCCQmpVXWcTUJPn_sa6GOduaBANhfwN4A_ujLOL1blvem-ywvnBRqL-KjZHA_-apWP4qCOHYFYvBk-EMo_8y6yXCk0rpLiTvz91UzXSVjCL68D23xrECfjmqBknXOtKukBqi8FRtGsCNpEvuPpqPOppcIhL6Tzk8SKsnx_-EydBIgVQ7xppB0rnhwIWiGvwsRpf1PTeT3oOTpGfs_HJE2qibPApGNiB5qkEjV44ZmHgwOoVm40)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_data_logging.png)
 
 ### GO Info
 
@@ -665,7 +669,7 @@ IOX->IOX: Receive all 7 frames\nAssemble complete message
 @enduml
 -->
 
-![GO Info UML](https://www.plantuml.com/plantuml/png/PPBRQjj048RlzHHpsK1DQv4GC2Wae1m2SMtiK7fXA6FjM5go1tLtDgtVlgk3saMvalXcPhzVchtrZ8w3Lb3RdzASR8Q1hGdwI2upbWdiEpbut7o6vysF5JmRoQYWGIDyWs-K5GLioKahP0KiDNb6tOAZNo6-mibPtGr2KMJTOt4JZrhrP3UqVDapSl3mwUkV_EhYO5xFBK4EYwaU-w6aTraHbCW8Q_8UQqgozRb63D_9UMaDvDdZPd7Jb-wgDsD_An8rQJBScPQN5__hKR0EYkNYmQ4UB7sQwpJDFCLSDyzpZrK3f_x01ZqWBE5uPXfHPODXSlEX9q91xc26tXNqzWBoWybxubU3_OLCpKsiN2tdHspnh2oAWxcS9bwdfIJi1Lbo49GYQ-gHJVfzIoGIzswxJWOsmchYDEw3mjgdPYVRfEqVluycG_1aW_lGNWQ7BAr9U4cjemgPH0gTxB-vZFhb1EEIzkGaAlWsNE3uIyObxwYYE06e55mFMuZkE-z97rMt4DqgOW8zNgzRCY9ezHS0)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_go_info.png)
 
 ### PubSub
 
@@ -687,7 +691,7 @@ GO->IOX: Publish on a topic
 @enduml
 -->
 
-![PubSub UML](https://www.plantuml.com/plantuml/png/TOvFIyCm68Vl-HI_eu95fmUXq37mpnXCEjWE7hoyQJDRbYObUICE-k5jLcdjmKCBuVS-3y_ACpaEZKORf0zIK61hGYEL4yQoWlrI3kly1flyFSN6r4mQ5PdILtHI8ikm2t8V999uWPspR0khiQLp3sRPp9Bs7zw2vZfvTTGeF1CJhkw-xn-lFypXt2ei7j918iCHPJ-BMqoA615_CydMVewYnSk_ebdhk3nPmygmZwbHd2o7JiKWwDepx16aDNoGld2r9AaLsBPruSKwJvQNf4DyNyv5rtL_HVjVB3AW0PouQQNY5D5nYgczhu8r8xPIfWoD_W40)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_pubsub.png)
 
 ### MIME
 
@@ -714,4 +718,4 @@ note over GO: 1 byte: Type = 0\n1 byte: Result (0 = Fail, 1 = Success)
 @enduml
 -->
 
-![MIME UML](https://www.plantuml.com/plantuml/png/lP91Qzj048Nl-XNl64DCB9T245L9uhh5KDibDjG7NxRIs5eipQhQsJO1__YkjAXAqaCfWTvs7plpljbvDrPK8wugKUcA8ZP2C3-emQVr9HRhNO85Qr4b2iMvBTI9eZJ5Sh6S8rUYS6XCvTyYJQFIc1ghgsk8xsJnKqi1LqCChl7jKRna3g58CqXbXIzMtjDNZzy7h-qE7ze75vE7oTqe8iwV4IMupVCruskZwjehOyHTvz2r93vAiUUW9TXiTyDb-rWJKamUfczwqIR1x7DNXzMULq_rFK_xwwoWx6HTDRIRRtT_8Pl-EzdROFbwicSR4eEm7__3_gCxsFPuJzyTMRdQY19dST42ZFRSuSGOuulAJYJzHCEqOLCzGOyV3mHtTDJCce_jLAz9nRlndwcOXLJyhrdcdBT2T3wVd-RqjgvBdIdHXh6fATC7dVrcZ6UzzIJ1qkHKGHh5jjBMjWKDMLVAY_YyJCE0SDyzzusz_57fyXAnFsrSbf6re-Y6E7TL-Gi0)
+![]({{site.baseurl}}/hardware/developing-an-iox/uml_mime.png)
