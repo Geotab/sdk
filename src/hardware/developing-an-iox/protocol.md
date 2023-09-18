@@ -321,7 +321,7 @@ This message can be used to send the 4byte (int32_t) data that is curve logged b
 
 | Byte # | Curve Logging |
 | --- | --- |
-| 0 | 2 = Add Point <br> 3 = Save Curve |
+| 0 | Curve Function |
 | 1-2 | Status Data ID |
 | 3-7 | Data (signed 32bit) |
 | 8 | Data Length |
@@ -329,6 +329,13 @@ This message can be used to send the 4byte (int32_t) data that is curve logged b
 | 11-12 | Estimate Error |
 | 12-13 | Deprecated = 0 |
 | 14 | Smoothing Coefficient |
+
+| Parameter | Description |
+| --- | --- |
+| Curve Function | 2 = Add Point <br> 3 = Save Curve |
+| Allowed Error | Perpendicular distance threshold (must be > 0). All points with their perpendicular distance > threshold are declared as significant points and saved. |
+| Estimate Error | If EstimateError > 0 and the new point deviated from estimated value > EstimateError, we will reduce/save the curve. |
+| Smoothing Coefficient | Applies a low pass filter to the data. <br> 0 = No filtering <br> 1-254 = Smoothing coefficient magnitude |
 
 #### Type 12 Logging With Timestamp
 
