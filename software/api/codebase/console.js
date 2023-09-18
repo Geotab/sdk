@@ -1,8 +1,8 @@
 var ConsoleManager = (function() {
-    let dataType = '';
     var consolePreviewer = function(data, container) {
             var renderObject = function(key, data, parent, isChildProperty, isInactive) {
                     var type = typeof(data);
+                    
                     if (type === "object") {
                         if (Array.isArray(data)) {
                             type = "array";
@@ -136,10 +136,6 @@ var ConsoleManager = (function() {
                             keyElement = isChildProperty ? createElement("span", "data-object-key", key + ": ") : null;
                         
                         let arrayLabel = 'Array';
-                        if (dataType) {
-                            arrayLabel = dataType;
-                            dataType = '';
-                        }
                         const value = createElement("span", "data-object-value", `${arrayLabel}[${data.length}]`),
                             preview = !isChildProperty ? createElement("span", "data-object-preview", " [ ... ]") : null,
                             children = createElement("span", "data-object-children-hidden", "");
@@ -266,17 +262,13 @@ var ConsoleManager = (function() {
                 views = [];
                 container.innerHTML = "";
             };
-        
-        function setDataType(type) {
-            dataType = type;
-        }
+
         return {
             render: render,
             process: process,
             log: consoleLog,
             error: consoleError,
-            clear: clear,
-            setDataType: setDataType
+            clear: clear
         };
     };
 })();

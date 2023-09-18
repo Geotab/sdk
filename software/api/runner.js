@@ -12,7 +12,6 @@ let loginFormHasBeenShown = false;
 
 export default function ApiRunnerCore() {
 
-    let callDataType = '';
     const htmlEscape = str => String(str || "")
         .replace(/&/g, "&amp;")
         .replace(/"/g, "&quot;")
@@ -77,13 +76,6 @@ export default function ApiRunnerCore() {
                 } else {
                     value[language] = editor.getValue();
                 }
-                // Try to extract the data type from the editor code.
-                if (language === 'javascript' && value[language]) {
-                    let match = value[language].match(/"typeName": "(\w+)"/);
-                    if (match) {
-                        callDataType = match[1];
-                    }
-                }
                 return value;
             },
             setValue = value => {
@@ -99,6 +91,7 @@ export default function ApiRunnerCore() {
             },
             getValue = () => editor?.getSession().getValue(),
             ignoreNextChange = () => ignoreChanges = true,
+            resize = () => editor.resize(),
             self = {
                 render: render,
                 process: process,
@@ -107,7 +100,8 @@ export default function ApiRunnerCore() {
                 editor: editor,
                 setMode: setMode,
                 getMode: getMode,
-                ignoreNextChange
+                ignoreNextChange,
+                resize: resize
             };
 
         return self;
@@ -151,7 +145,6 @@ export default function ApiRunnerCore() {
                 api.multiCall(data.calls, getSendResponse("success", data.uid), getSendResponse("error", data.uid));
             });
             postMessages.on("log", data => {
-                callDataType && consoleManager.setDataType(callDataType);
                 consoleManager.log.apply(consoleManager.log, data.data);
             });
             postMessages.on("error", data => {
