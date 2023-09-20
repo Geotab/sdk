@@ -333,7 +333,7 @@ This message can be used to send the 4byte (int32_t) data that is curve logged b
 | Parameter | Description |
 | --- | --- |
 | Curve Function | 2 = Add Point <br> 3 = Save Curve |
-| Allowed Error | Perpendicular distance threshold (must be > 0). All points with their perpendicular distance > threshold are declared as significant points and saved. |
+| Allowed Error | Vertical distance threshold (must be > 0). All points with their vertical distance > threshold are declared as significant points and saved. |
 | Estimate Error | If EstimateError > 0 and the new point deviated from estimated value > EstimateError, we will reduce/save the curve. |
 | Smoothing Coefficient | Applies a low pass filter to the data. <br> 0 = No filtering <br> 1-254 = Smoothing coefficient magnitude |
 
