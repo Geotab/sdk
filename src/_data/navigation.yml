@@ -95,6 +95,8 @@ toc:
             url: /hardware/developing-an-iox/hardware-design-guide/
           - page: Messaging Protocol
             url: /hardware/developing-an-iox/messaging-protocol/
+          - page: MIME Protocol
+            url: /hardware/developing-an-iox/mime-protocol/
   - title: MyAdmin SDK
     folderitems:
     - page: MyAdmin SDK Introduction

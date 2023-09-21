@@ -18,6 +18,7 @@ All messages are supported since IOX Expander Protocol version 1.0 unless stated
 Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
 
 Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.
+[MIME passthrough messages](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/)
 
 ### Serial Number
 Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
@@ -135,7 +136,7 @@ Causes all IOXs to go into Sleep Mode. Devices will enter Sleep Mode no sooner t
 
 ### TX Data (0x0B)
 
-Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure.
+Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure such as [MIME](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
 
 #### Payload — TX Data
 
@@ -145,7 +146,7 @@ Data sent from the GO device to the addressed IOX. The contents of this payload 
 
 ### RX Data (0x0C)
 
-Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure.
+Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as [MIME](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
 The 0x0C message series start with a Information Type 1 - Packet Wrapper [0x25 message](#iox-requeststatus-0x25), and also ends with one.
 
 #### Payload — RX Data
@@ -358,7 +359,31 @@ Additional information about curve logging can be found here: [Curve Logging](ht
 Supported from Add-On protocol version 1.2.
 
 This message allows an IOX to send a protobuf encoded payload to the GO. It supports a publish/subscribe model of vehicle status information. The GO responds with GO Multi-Frame Data (0x27) - Type 13.
-[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto).
+[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto). The currently supported topics are:
+
+| Topic | 
+| --- |
+| TOPIC_VIN |
+| TOPIC_GEAR |
+| TOPIC_ENGINE_SPEED |
+| TOPIC_ENGINE_LOAD |
+| TOPIC_ODOMETER |
+| TOPIC_ACCEL_PEDAL_PERCENTAGE |
+| TOPIC_COOLANT_TEMP |
+| TOPIC_DOC_INTAKE_GAS_TEMP |
+| TOPIC_DOC_OUTLET_GAS_TEMP |
+| TOPIC_FUELTANK1_UNITS |
+| TOPIC_FUELTANK2_UNITS |
+| TOPIC_FUELTANK1_PERCENT |
+| TOPIC_FUELTANK2_PERCENT |
+| TOPIC_STATE_OF_CHARGE |
+| TOPIC_ENGINE_ROAD_SPEED |
+| TOPIC_VEHICLE_ACTIVE |
+| TOPIC_DRIVER_SEATBELT |
+| TOPIC_LEFT_TURN_SIGNAL |
+| TOPIC_RIGHT_TURN_SIGNAL |
+| TOPIC_EV_CHARGING_STATE |
+| TOPIC_PARK_BRAKE |
 
 
 ### Buzzer Beep (0x24)
