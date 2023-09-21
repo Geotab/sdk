@@ -17,8 +17,8 @@ All messages are supported since IOX Expander Protocol version 1.0 unless stated
 
 Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
 
-Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the MIME passthrough messages.
-[MIME passthrough messages](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/)
+Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the 
+[MIME passthrough messages](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
 
 ### Serial Number
 Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
@@ -228,27 +228,27 @@ Used to identify the service running on the IOX. Required to use the passthrough
 Binary Data Packet Wrapping:
 0: The passthrough data from myGeotab will be passed to the external device without modification.
 1: The passthrough data from myGeotab will be wrapped in a serial protocol before being sent to the external device.
-Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different MTU sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from myGeotab.
+Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different packet sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from myGeotab. The maximum packet size currently supported is 1000 bytes.
 
-For payloads with a length less than 1 byte, this format is used:
+For payloads with a length of 0 - 255 bytes, this format is used:
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x23 | 1 | 1 |
-| Message Body Length = x (0 - 249) | 1 | 2 |
+| Message Body Length = x | 1 | 2 |
 | Binary Data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
-For payloads larger than 1 byte, this format is used:
+For payloads with a length of 256 - 1000 bytes, this format is used:
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x25 | 1 | 1 |
-| Message Body Length = x (256 - 1023) | 1 | 2 |
-| Binary Data | x | 3 |
-| Checksum | 2 | 3+x |
-| ETX (0x03) | 1 | 5+x |
+| Message Body Length = x | 2 | 2 |
+| Binary Data | x | 4 |
+| Checksum | 2 | 4+x |
+| ETX (0x03) | 1 | 6+x |
 
 More details on the checksum can be found here: [Add-On Protocol - RS232 & USB](https://geotab.github.io/sdk/hardware/addon-protocols/rs232-usb/#checksum)
 
