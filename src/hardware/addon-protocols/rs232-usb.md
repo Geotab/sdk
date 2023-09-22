@@ -193,7 +193,7 @@ Issued by the GO device on acceptance or rejection of either a Binary Data (0x86
 
 ### Msg Type 0x23: Binary Data Packet
 
-Issued by the GO device on receipt of a Binary Data packet of 255 bytes or less from myGeotab destined for the external device. This message format will only be used if the corresponding "Binary Data Packet Wrapping" flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from myGeotab.
+Issued by the GO device on receipt of a Binary Data packet of 255 bytes or less from MyGeotab destined for the external device. This message format will only be used if the corresponding "Binary Data Packet Wrapping" flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from MyGeotab.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -220,7 +220,7 @@ Sent by the GO device to the external device. Can be in response to a 0x88 messa
 
 ### Msg Type 0x25: Extended binary data packet
 
-Issued by the GO device on receipt of a Binary Data packet of 256 bytes or more from myGeotab destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from myGeotab. The maximum length currently supported by the GO is 1000 bytes.
+Issued by the GO device on receipt of a Binary Data packet of 256 bytes or more from MyGeotab destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from MyGeotab. The maximum length currently supported by the GO is 1000 bytes.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -363,7 +363,7 @@ This is a request-response message. It can be issued by the External Device when
 
 ### Msg Type 0x86: Binary Data Packet
 
-Sent by the external device when sending messages with <= 255 bytes of data content to myGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
+Sent by the external device when sending messages with <= 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -375,7 +375,7 @@ Sent by the external device when sending messages with <= 255 bytes of data cont
 | ETX (0x03) | 1 | 5+x |
 | Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |   |   |
 
-The payload of the binary data needs to adhere to protocols understood by myGeotab. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
+The payload of the binary data needs to adhere to protocols understood by MyGeotab. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
 
 ### Msg Type 0x87: Third-Party Data as Priority Status Data
 
@@ -421,7 +421,7 @@ After handshaking, this message can be issued periodically by the External Devic
 
 ### Msg Type 0x8A: Extended binary data packet
 
-Sent by the external device when sending messages with <= 1000 bytes of data content to myGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
+Sent by the external device when sending messages with <= 1000 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -523,7 +523,7 @@ MIME-type data can be transferred from an external device to the server via the 
  The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
-3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back from myGeotab.
+3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back from MyGeotab.
 
 Readers are encouraged to also read the [Geotab MIME Data Exchange Example IOX-RS232](https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing) to better understand of the protocol.
 

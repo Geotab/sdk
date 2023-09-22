@@ -211,7 +211,7 @@ Used to request the GO log status data and additionally send via Iridium if avai
 
 #### Log Type: 1 (externalDeviceConnectionStatus)
 
-Used to identify the service running on the IOX. Required to use the passthrough channel to communicate with myGeotab.
+Used to identify the service running on the IOX. Required to use the passthrough channel to communicate with MyGeotab.
 
 | Data | Description |
 | --- | --- |
@@ -226,9 +226,9 @@ Used to identify the service running on the IOX. Required to use the passthrough
 | 2 - 15 | Reserved |
 
 Binary Data Packet Wrapping:
-0: The passthrough data from myGeotab will be passed to the external device without modification.
-1: The passthrough data from myGeotab will be wrapped in a serial protocol before being sent to the external device.
-Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different packet sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from myGeotab. The maximum packet size currently supported is 1000 bytes.
+0: The passthrough data from MyGeotab will be passed to the external device without modification.
+1: The passthrough data from MyGeotab will be wrapped in a serial protocol before being sent to the external device.
+Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different packet sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from MyGeotab. The maximum packet size currently supported is 1000 bytes.
 
 For payloads with a length of 0 - 255 bytes, this format is used:
 |   | Bytes | Position |
@@ -421,7 +421,7 @@ This message is used to inform the GO device that the issuing IOX is busy with s
 
 #### Information Type 1 - Packet Wrapper
 
-This is used to send a packet of up to 1023 bytes of binary data through the GO to myGeotab.
+This is used to send a packet of up to 1023 bytes of binary data through the GO to MyGeotab.
 
 Usage:
 1. Send Packet Wrapper - Beginning of data packet (0).
