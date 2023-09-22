@@ -9,6 +9,7 @@ title: IO Expander Protocol
 The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device. Readers are recommended to find examples from [CAN IOX Sample Communication Session](https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing) as they read through the rest of this page.
 
 ### Identification
+
 This document describes the <span style="color:red">IOX Expander Protocol version 1.2</span>.
 
 All messages are supported since IOX Expander Protocol version 1.0 unless stated otherwise.
@@ -21,9 +22,11 @@ Geotab recommends that all partners who develop their own IOX Add-ons ensure the
 [MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
 ### Serial Number
+
 Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
 
 Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:
+
 1. Generate a random 4 byte value.
 2. Make sure that the 2 LSBs are not equal to '0000'.
 3. Make sure that you do not already have this value stored in your database of existing serial numbers.
@@ -53,6 +56,7 @@ The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID be
 IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.
 
 ### IOX ID
+
 Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrator shall report the IOX ID in byte 7 of the Poll Response (0x02).
 
 ### Acknowledge Process
@@ -77,8 +81,8 @@ Any IOX that is connected to the GO device must respond to the poll request. The
 An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.
 
 ## Waking up the GO Device
-Every 1 second, the GO wakes up for 2ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1ms until the GO notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
 
+Every 1 second, the GO wakes up for 2ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1ms until the GO notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
 
 ## Commands
 
@@ -177,7 +181,6 @@ Sent by the GO device after a packet wrapped passthrough message attempt to the 
 | 0 | Log Type |
 | 1 | 0 = Rejected <br> 1 = Accepted |
 
-
 ### IOX Single Frame Log Data (0x1D)
 
 Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame.
@@ -251,7 +254,6 @@ For payloads with a length of 256 - 1000 bytes, this format is used:
 | ETX (0x03) | 1 | 6+x |
 
 More details on the checksum can be found here: [Add-On Protocol - RS232 & USB]({{site.baseurl}}/hardware/addon-protocols/rs232-usb/#checksum)
-
 
 #### Log Type: 2 (GenericFaultRecord)
 
@@ -340,8 +342,9 @@ This message can be used to send the 4byte (int32_t) data that is curve logged b
 
 #### Type 12 Logging With Timestamp
 
-This message can be used to send status data along with a provided timestamp. 
+This message can be used to send status data along with a provided timestamp.
 Possible use cases:
+
 1. Store data in the IOX while the GO device is asleep and send all data after waking up
 2. Run the curve logging algorithm in the IOX and send those points to be transmitted to MyGeotab.  
 Additional information about curve logging can be found here: [Curve Logging](https://github.com/Geotab/curve)
@@ -385,7 +388,6 @@ This message allows an IOX to send a protobuf encoded payload to the GO. It supp
 | TOPIC_EV_CHARGING_STATE |
 | TOPIC_PARK_BRAKE |
 
-
 ### Buzzer Beep (0x24)
 
 Sent from an IOX to the GO to request the buzzer beep with the given parameters. 
@@ -397,7 +399,6 @@ Sent from an IOX to the GO to request the buzzer beep with the given parameters.
 | 0 | Number of Beeps |
 | 1 | Duration (Multiple of 56ms)  |
 | 2 | Delay Between Beeps (Multiple of 56ms) |
-
 
 ### IOX Request/Status (0x25)
 
@@ -424,6 +425,7 @@ This message is used to inform the GO device that the issuing IOX is busy with s
 This is used to send a packet of up to 1023 bytes of binary data through the GO to myGeotab.
 
 Usage:
+
 1. Send Packet Wrapper - Beginning of data packet (0).
 2. Multiple Rx Data (0x0C) messages until the entire bypass binary data is sent. Pay attention to the Acknowledge (0x14) message responded from GO if the GO Receive-Buffer is ready to accept the next Rx Data (0x0C) message. The streaming flow control bit in the ACK is not relevant for this type of exchange and can be ignored.
 3. Send Packet Wrapper - End of data packet (1).
@@ -445,7 +447,7 @@ This message is used by an IOX which requires vehicle information from the GO de
 
 #### Information Type 3 - Connect and Send Records
 
-This message requests the GO modem initiate a connection to the server. 
+This message requests the GO modem initiate a connection to the server.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -472,7 +474,6 @@ Sent from the IOX to the GO requesting the identification information. The will 
 | 0-1 | 0x000C |
 | 2 | Request info:  <br> 0 = GO serial number  <br> 1 = GO firmware version  <br> 2 = IOX protocol version |
 
-
 ### GO Status Information (0x26)
 
 Sent from the GO to the IOX to pass information the IOX may need. This is a broadcast message. It is sent once any corresponding information type changes.
@@ -497,7 +498,6 @@ Sent from the GO to the IOX to pass information the IOX may need. This is a broa
 | --- | --- |
 | 0-1 | 0x0000 |
 | 2 | 0 = Modem is not ready <br> 1 = Modem is available |
-
 
 ### GO Multi-Frame Data (0x27)
 
@@ -595,7 +595,6 @@ Supported from protocol version 1.2.
 
 This message allows an GO to send a protobuf encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13.
 [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto).
-
 
 ## Sequence Diagrams
 

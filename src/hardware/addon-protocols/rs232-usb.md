@@ -6,10 +6,11 @@ title: Add-On Protocol - RS232 & USB
 
 External devices can communicate with the Geotab GO device through the Third-Party RS232 and USB protocol below. Two-way communication is supported, allowing a MyGeotab API call to produce messages from the IOX device to reach the external device. The hardware interface will be one of the following:
 
- - [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
- - [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
+- [IOX-RS232 F/M](https://www.geotab.com/documentation/iox-rs232/ "IOX-RS232 Support Documentation")
+- [IOX-USB](https://www.geotab.com/documentation/iox-usb/ "IOX-USB Support Documentation")
 
 ## Special Requirements
+
 ### Enabling IOX-USB Data Transfer
 
 To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through MyGeotab.
@@ -28,12 +29,14 @@ The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rat
 2. USB-CDC (Communications Device Class)
 
 ### Powering a device using the IOX-RS232 and IOX-USB
-Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device. 
 
-- The IOX-USB can provide 1.5A at 5V as a power output. 
+Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.
+
+- The IOX-USB can provide 1.5A at 5V as a power output.
 - The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add On device using the IOX-RS232.
 
 ### Grounding a device
+
 Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232 as this will improve signal integrity.
 
 ### Serial Port Settings For Add-Ons
@@ -53,12 +56,12 @@ The following process should be followed when integrating a third-party device w
 
 Contact the [Geotab Solutions Engineering team](mailto:soleng@geotab.com) with a detailed integration proposal, this should include:
 
- - A name for the integration
- - The interfacing hardware
- - Data types that will be sent to MyGeotab
- - The required Status Data
- - Direction of data transfer
- - Expected timelines for integrating
+- A name for the integration
+- The interfacing hardware
+- Data types that will be sent to MyGeotab
+- The required Status Data
+- Direction of data transfer
+- Expected timelines for integrating
  
 The Solutions Engineering team will respond with follow up questions to define the integration, and assign an External device ID, and any Status Data IDs that would be required. 
 
@@ -66,7 +69,7 @@ An additional resource is the [Hardware Integration Toolkit](https://docs.google
 
 ### Using Status Data IDs
 
-There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). Specifics regarding Status Data ID implementations can be found on the README sheet. 
+There is an extensively defined Status Data ID list which can be found at [MyGeotab Diagnostics](https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080). Specifics regarding Status Data ID implementations can be found on the README sheet.
 
 ### Handshake
 
@@ -105,6 +108,7 @@ ChkB = ChkB + ChkA;
 All values must be sent using Little Endian Byte Order, meaning the least significant byte first.
 
 ## Messages from the GO device
+
 ### Msg Type 0x01: Handshake Request
 
 Issued by GO device on receipt of the Handshake Sync and periodically re-sent to confirm that the external device is still attached.
@@ -216,7 +220,6 @@ Sent by the GO device to the external device. Can be in response to a 0x88 messa
 | Binary Data | x | 4 |
 | Checksum | 2 | 4+x |
 | ETX (0x03) | 1 | 6+x |
-
 
 ### Msg Type 0x25: Extended binary data packet
 
@@ -520,7 +523,8 @@ Third-Party Data Acknowledge from GO device
 
 MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in [MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
- The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
 3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back from myGeotab.
