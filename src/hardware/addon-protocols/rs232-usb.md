@@ -245,7 +245,7 @@ Issued by the GO device in response to 0x8C. Also issued by the GO device to pub
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
-The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto) for details. 
+The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto) for details. 
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
@@ -463,7 +463,7 @@ Sent by the external device to subscribe to various topics/information. The GO d
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
 
-The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto) for details. The currently supported topics are:
+The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto) for details. The currently supported topics are:
 
 | Topic | 
 | --- |

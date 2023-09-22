@@ -359,7 +359,7 @@ Additional information about curve logging can be found here: [Curve Logging](ht
 Supported from Add-On protocol version 1.2.
 
 This message allows an IOX to send a protobuf encoded payload to the GO. It supports a publish/subscribe model of vehicle status information. The GO responds with GO Multi-Frame Data (0x27) - Type 13.
-[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto). The currently supported topics are:
+[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto). The currently supported topics are:
 
 | Topic | 
 | --- |
@@ -594,7 +594,7 @@ Sent in response to IOX Request/Status (0x25) - Type 12.
 Supported from protocol version 1.2.
 
 This message allows an GO to send a protobuf encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13.
-[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/iox_messaging.proto).
+[Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto).
 
 
 ## Sequence Diagrams
