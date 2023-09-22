@@ -18,7 +18,7 @@ All messages are supported since IOX Expander Protocol version 1.0 unless stated
 Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
 
 Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the 
-[MIME passthrough messages](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
+[MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
 ### Serial Number
 Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
@@ -136,7 +136,7 @@ Causes all IOXs to go into Sleep Mode. Devices will enter Sleep Mode no sooner t
 
 ### TX Data (0x0B)
 
-Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure such as [MIME](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
+Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure such as [MIME]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
 #### Payload — TX Data
 
@@ -146,7 +146,7 @@ Data sent from the GO device to the addressed IOX. The contents of this payload 
 
 ### RX Data (0x0C)
 
-Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as [MIME](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
+Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as [MIME]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 The 0x0C message series start with a Information Type 1 - Packet Wrapper [0x25 message](#iox-requeststatus-0x25), and also ends with one.
 
 #### Payload — RX Data
@@ -250,7 +250,7 @@ For payloads with a length of 256 - 1000 bytes, this format is used:
 | Checksum | 2 | 4+x |
 | ETX (0x03) | 1 | 6+x |
 
-More details on the checksum can be found here: [Add-On Protocol - RS232 & USB](https://geotab.github.io/sdk/hardware/addon-protocols/rs232-usb/#checksum)
+More details on the checksum can be found here: [Add-On Protocol - RS232 & USB]({{site.baseurl}}/hardware/addon-protocols/rs232-usb/#checksum)
 
 
 #### Log Type: 2 (GenericFaultRecord)
@@ -314,7 +314,7 @@ Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO dev
 | 1 | Data Type |
 | 2 | FP24 Value |
 
-Further details can be found here: [Add-On Protocol - BLE](https://geotab.github.io/sdk/hardware/addon-protocols/ble/)
+Further details can be found here: [Add-On Protocol - BLE]({{site.baseurl}}/hardware/addon-protocols/ble/)
 
 #### Type 11 Curve Logging
 

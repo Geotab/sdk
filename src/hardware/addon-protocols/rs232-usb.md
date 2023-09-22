@@ -518,7 +518,7 @@ Third-Party Data Acknowledge from GO device
 
 ### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
-MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in [MIME passthrough messages](https://geotab.github.io/sdk/hardware/developing-an-iox/mime-protocol/).
+MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in [MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
  The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
