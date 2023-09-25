@@ -19,6 +19,7 @@ To enable third-party data communication on the IOX-USB, apply the following cus
 ```
 
 \* *Note* \- The GO device will automatically upgrade to the ProPlus rate plan once third-party data transfer begins.
+
 ### IOX-USB Communication Consideration
  
 The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rate is 12 Mbit/s. The IOX-USB can use two methods to enumerate a USB device:
@@ -131,9 +132,9 @@ Issued by GO device on receipt of Third-Party Data from the External Device.
 
 ### Msg Type 0x21: GO Device Data
 
-Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141) or periodically when a 0x85 request message is received.
+Issued by GO device every 2 seconds to a connected Enhanced Hours Of Service Device (ID: 4141) or periodically when a 0x85 request message is received.
 
-- An Enhanced HOS Device must ACK this message with a 0x84 message.
+- An Enhanced Hours Of Service Device must ACK this message with a 0x84 message.
 - If the data is requested periodically using the 0x85 message, the ACK is optional.
 
 |   | Bytes | Position |
@@ -151,8 +152,8 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 | Trip Odometer [4] | 4 | 23 |
 | Total Engine Hours | 4 | 27 |
 | Trip Duration [5] | 4 | 31 |
-| GO Device ID [6] | 4 | 35 |
-| Driver ID [7] | 4 | 39 |
+| Deprecated = 0 | 4 | 35 |
+| Driver ID [6] | 4 | 39 |
 | GO Device Serial Number | 12 | 43 |
 | Checksum | 2 | Length + 3 |
 | ETX (0x03) | 1 | Length + 5 |
@@ -163,8 +164,7 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 3. If Road Speed from the engine is not available, GPS speed is used.
 4. Increase of odometer since the most recent ignition on. If Odometer is not available, GPS device distance is used.
 5. Time passed since the most recent ignition on.
-6. GO Device ID is a legacy field. It will contain invalid values by April 15, 2021.
-7. Driver ID only available when using the IOX-NFC.
+6. Driver ID only available when using the IOX-NFC.
 
 #### *Conversions*
 
@@ -179,64 +179,62 @@ Issued by GO device every 2 seconds to a connected Enhanced HOS Device (ID: 4141
 
 ### Msg Type 0x22: Binary Data Response
 
-Issued by the GO device on successful/unsuccessful transmission of Binary Data (via Msg Type 0x86) to the server.
+Issued by the GO device on acceptance or rejection of either a Binary Data (0x86), an Extended Application Specific Data (0x88), or an Extended Binary Data (0x8A) message from the external device.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x22 | 1 | 1 |
 | Message Body Length = 4 | 1 | 2 |
-| Binary data transmission success <br> 0 = transmission failure <br> 1 = transmission success | 1 | 3 |
+| Binary data transmission success <br> 0 = Rejected <br> 1 = Accepted | 1 | 3 |
 | Reserved | 3 | 4 |
 | Checksum | 2 | 7 |
 | ETX (0x03) | 1 | 9 |
 
 ### Msg Type 0x23: Binary Data Packet
 
-Issued by the GO device on receipt of Binary Data from the server destined for the external device. This message format will only be used if the corresponding "Binary Data Packet Wrapping" flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from the server.
+Issued by the GO device on receipt of a Binary Data packet of 255 bytes or less from MyGeotab destined for the external device. This message format will only be used if the corresponding "Binary Data Packet Wrapping" flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from MyGeotab.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x23 | 1 | 1 |
-| Message Body Length = x (0 - 249) | 1 | 2 |
+| Message Body Length = x (0 - 255) | 1 | 2 |
 | Binary Data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
 ### Msg Type 0x24: Extended application specific data to external device
 
-Sent by the GO device to the external device. Send data as multi-frame data to iox. Once iox recieved the data, it will foward data to external device. Currently only used for carshare.
+Sent by the GO device to the external device. Can be in response to a 0x88 message and used for payloads larger than 1 byte. Currently only used for Keyless.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x24 | 1 | 1 |
-| Message Body Length = x (0 - 119) | 1 | 2 |
-| Extended_binary_data | x | 3 |
-| Checksum | 2 | 3+x |
-| ETX (0x03) | 1 | 5+x |
+| Message Body Length = x | 2 | 2 |
+| Binary Data | x | 4 |
+| Checksum | 2 | 4+x |
+| ETX (0x03) | 1 | 6+x |
 
 
 ### Msg Type 0x25: Extended binary data packet
 
-Issued by the GO device on receipt of Binary Data of 256 bytes or more from the server destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from the server.
+Issued by the GO device on receipt of a Binary Data packet of 256 bytes or more from MyGeotab destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from MyGeotab. The maximum length currently supported by the GO is 1000 bytes.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x25 | 1 | 1 |
-| Message Body Length = x (256 - 1023) | 1 | 2 |
-| Extended_binary_data | x | 3 |
-| Checksum | 2 | 3+x |
-| ETX (0x03) | 1 | 5+x |
+| Message Body Length = x (256 - 1000) | 2 | 2 |
+| Binary Data | x | 4 |
+| Checksum | 2 | 4+x |
+| ETX (0x03) | 1 | 6+x |
 
 ### Msg Type 0x26: Protobuf data packet
 
 Available with add-on protocol version >= 1.2.
-Issued by the GO device in response to Msg Type 0x8C.
-Also issued by the GO device to publish information for the topics (defined in Appendix D) subscribed by the third party device.
-The information includes a payload containing data encoded in the protobuf format.
+Issued by the GO device in response to 0x8C. Also issued by the GO device to publish information for the topics subscribed by the AddOn device.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -247,12 +245,11 @@ The information includes a payload containing data encoded in the protobuf forma
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto) for details. 
 
 ### Msg Type 0x27: Add-On protocol version to external device
 
-Issued by the GO device on receipt of 0x8B.Should be paired with 0x8B. 0x27 is a reply to 0x8B.
-Sent by the GO to an external device as a reply to the Add-On protocol version request. The protocol version sent includes the Major and Minor version numbers.
+Sent by the GO to an external device as a reply to the Add-On protocol version request (0x8B).
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -285,7 +282,7 @@ Issued by the External Device when it receives the Handshake Request.
 | Message Type = 0x81 | 1 | 1 |
 | Message Body Length = 4 | 1 | 2 |
 | External Device ID (assigned by Geotab) | 2 | 3 |
-| Flags <br> 1st bit: Handshake Confirmation ACK <br> 2nd bit: Binary Data Packet Wrapping <br> All other bits:Reserved for future implementation, must be set to 0 | 2 | 5 |
+| Flags <br> 1st bit: Handshake Confirmation ACK <br> 2nd bit: Binary Data Packet Wrapping <br>  3rd bit: Self Powered External Device <br>All other bits:Reserved for future implementation, must be set to 0 | 2 | 5 |
 | Checksum | 2 | 7 |
 | ETX (0x03) | 1 | 9 |
 
@@ -298,6 +295,11 @@ Binary Data Packet Wrapping:
 
 - 0: The passthrough data from the server will be passed to the external device without modification.
 - 1: The passthrough data from the server will be wrapped in a Binary Data Packet message before being sent to the external device.
+
+Self Powered External Device:
+
+- 0: The External Device receives power from the IOX. After waking up the IOX will restore power to the External Device and wait for the handhsake to complete.
+- 1: The External Device has its own power source. The IOX will not wait for the handshake and will assume it can initiate communication with the External Device immediately after waking up.
 
 ### Msg Type 0x80: Third-Party Data as Status Data
 
@@ -340,7 +342,7 @@ Issued by the External Device on receipt of the GO Device Data message.
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 
-For the purpose of acknowledging the GO Device Data message when connected as an Enhanced HOS Device:
+For the purpose of acknowledging the GO Device Data message when connected as an Enhanced Hours Of Service Device:
 
 - The GO device will keep streaming the GO Device Data messages even if no ACK is received for up to 30 seconds.
 - If no ACK is received in that time frame the GO Device will send an External Device Disconnected record to the server and will wait for a new Handshake Sync request from the External Device.
@@ -348,7 +350,7 @@ For the purpose of acknowledging the GO Device Data message when connected as an
 
 ### Msg Type 0x85: Request Device Data Message
 
-This is a request-response message. It can be issued by the External Device whenever it wishes to receive the Device Data Info Message (Msg Type 0x21).
+This is a request-response message. It can be issued by the External Device whenever it wishes to receive the Device Data Info Message (0x21).
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -361,23 +363,23 @@ This is a request-response message. It can be issued by the External Device when
 
 ### Msg Type 0x86: Binary Data Packet
 
-Sent by the external device when sending binary data directly to the server. The contents of the message will be ignored by the GO device and simply sent on to the server for processing. The GO device will respond with the Binary Data Response message indicating whether the data was successfully sent via the modem.
+Sent by the external device when sending messages with <= 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x86 | 1 | 1 |
-| Message Body Length = x (0 - 250) | 1 | 2 |
+| Message Body Length = x (0 - 255) | 1 | 2 |
 | Binary Data | x | 3 |
 | Checksum | 2 | 3+x |
 | ETX (0x03) | 1 | 5+x |
 | Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |   |   |
 
-The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
+The payload of the binary data needs to adhere to protocols understood by MyGeotab. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
 
 ### Msg Type 0x87: Third-Party Data as Priority Status Data
 
-Priority Status Data will follow an expedited processing workflow on the GoDevice but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection if available.
+Priority Status Data will follow an expedited processing workflow on the GO but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection if available.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -392,16 +394,16 @@ Priority Status Data will follow an expedited processing workflow on the GoDevic
 
 ### Msg Type 0x88: Extended application specific data from external device
 
-Extended application specific data from external device is sent by the external device to the GO device. Can be used for payloads larger than 1 byte. There must be an associated service running on the GO that is looking for these messages. Currently only used for carshare.
+Extended application specific data from external device is sent by the external device to the GO device. Can be used for payloads larger than 1 byte. There must be an associated service running on the GO that is looking for these messages. Currently only used for Keyless.
 
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
 | Message Type = 0x88 | 1 | 1 |
-| Message Body Length = x (1 to 1024) | 1 | 2 |
-| extended_binary_data (message_body) = | 0 | 1 | 2 | 3 | ...| x-1 |  (data content could be from 0 to 0xff)
-| Checksum | 2 | 3+x |
-| ETX (0x03) | 1 | 5+x |
+| Message Body Length = x (1 to 1024) | 2 | 2 |
+| Data Payload | x | 4 |
+| Checksum | 2 | 4+x |
+| ETX (0x03) | 1 | 6+x |
 | Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |
 
 ### Msg Type 0x89: Ping
@@ -416,6 +418,22 @@ After handshaking, this message can be issued periodically by the External Devic
 | Checksum | 2 | 3 |
 | ETX (0x03) | 1 | 5 |
 | Reply: Third-Party Data Ack ([Msg Type 0x02](#msg-type-0x02-third-party-data-acknowledge)) |
+
+### Msg Type 0x8A: Extended binary data packet
+
+Sent by the external device when sending messages with <= 1000 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
+
+|   | Bytes | Position |
+| --- | --- | --- |
+| STX (0x02) | 1 | 0 |
+| Message Type = 0x86 | 1 | 1 |
+| Message Body Length = x (0 - 1000) | 2 | 2 |
+| Extended_binary_data | x | 4 |
+| Checksum | 2 | 4+x |
+| ETX (0x03) | 1 | 6+x |
+| Reply: Binary Data Response ([Msg Type 0x22](#msg-type-0x22-binary-data-response)) |   |   |
+
+The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one these protocols. Please see [Appendix C](#appendix-c-using-binary-data-messages-to-transfer-mime-data) for implementation details.
 
 ### Msg Type 0x8B: Add-On protocol version request
 
@@ -433,7 +451,7 @@ Sent by the external device when requesting the add on protocol version number. 
 ### Msg Type 0x8C: Protobuf data packet
 
 Available with add-on protocol version >= 1.2.
-Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK. The topics that the third party is interested in are requested in the form of a payload data encoded using protobuf format.
+Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK.
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -445,57 +463,31 @@ Sent by the external device to subscribe to various topics/information. The GO d
 | ETX (0x03) | 1 | 5 + x |
 | Reply: Protobuf data packet ([Msg Type 0x26](#msg-type-0x26-Protobuf-data-packet)) |
 
-The payload of the protobuf data needs to adhere to protocols understood by the Geotab servers. Please see Appendix D for the payload details.
+The payload is protobuf encoded. Please see [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto) for details. The currently supported topics are:
 
-## Messages from MyGeotab
-
-To send messages from MyGeotab to the external device, please download the source code of the [Starter Kit](https://geotab.github.io/sdk/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html#L76) with the following script. The alternative is paste the script in the [Runner](https://geotab.github.io/sdk/software/api/runner.html).
-```javascript
-    api.call("Add", {
-            "typeName": "TextMessage",
-            "entity": {
-              "user": {
-                "id": user.id               //Replace with user id of interest
-              },
-              "device": {
-                "id": device.id             //Replace with device id of interest
-              },
-              "messageContent": {
-                "contentType": "SerialIox",
-                "channel": 1,               //Taken from Get<IoxAddOn> call
-                "data": base64_encoded_byte //Replace with your data encoded in base64
-              },
-              "isDirectionToVehicle": true
-            }
-          }, function(result) {
-              console.log("Done: ", result);
-          }, function(e) {
-              console.error("Failed:", e);
-          });)
-```
-To send MIME messages from MyGeotab to the external device, please use the following script instead:
-```javascript
-    api.call("Add", {
-    "typeName": "TextMessage",
-    "entity":{
-        "user":{"id":user.id},                    //Replace with user id of interest
-        "device":{"id":device.id},                //Replace with device id of interest
-        "messageContent":{
-            "contentType":"MimeContent",
-            "channelNumber":1,
-            "mimeType":"text",                    //Can be changed to any free format text value
-			      "binaryDataPacketDelay":"00:00:03.0000000", //applies a 
-            //configurable delay of up to 5 seconds in between each sequenced message
-            // of a multimessage MIME payload
-            "data":base64_encoded_byte //Replace with your data encoded in base64
-        },
-        "isDirectionToVehicle":true},
-      }, function(result) {
-          console.log("Done: ", result);
-      }, function(e) {
-          console.error("Failed:", e);
-      });
-```
+| Topic | 
+| --- |
+| TOPIC_VIN |
+| TOPIC_GEAR |
+| TOPIC_ENGINE_SPEED |
+| TOPIC_ENGINE_LOAD |
+| TOPIC_ODOMETER |
+| TOPIC_ACCEL_PEDAL_PERCENTAGE |
+| TOPIC_COOLANT_TEMP |
+| TOPIC_DOC_INTAKE_GAS_TEMP |
+| TOPIC_DOC_OUTLET_GAS_TEMP |
+| TOPIC_FUELTANK1_UNITS |
+| TOPIC_FUELTANK2_UNITS |
+| TOPIC_FUELTANK1_PERCENT |
+| TOPIC_FUELTANK2_PERCENT |
+| TOPIC_STATE_OF_CHARGE |
+| TOPIC_ENGINE_ROAD_SPEED |
+| TOPIC_VEHICLE_ACTIVE |
+| TOPIC_DRIVER_SEATBELT |
+| TOPIC_LEFT_TURN_SIGNAL |
+| TOPIC_RIGHT_TURN_SIGNAL |
+| TOPIC_EV_CHARGING_STATE |
+| TOPIC_PARK_BRAKE |
 
 ## Appendices
 
@@ -526,27 +518,18 @@ Third-Party Data Acknowledge from GO device
 
 ### Appendix C: Using Binary Data Messages to Transfer MIME Data
 
-MIME-type data can be transferred from an external device to the server via the GO device. Readers are encouraged to read the [Geotab MIME Data Exchange Example IOX-RS232](https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing) to better understand the subsequent protocol. The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
+MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in [MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
+
+ The Message Flow is similar to that outlined in [Appendix B](#appendix-b-sample-message-flow-for-iox-usb--iox-rs232), with the following variations:
 1. Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is [such](#binary-data-packets-containing-mime-type-data)
 2. Data Acknowledge Message is instantiated as Binary Data Response (0x22)
-3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back to the GO device.
+3. After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is [such](#binary-data-packet-containing-mime-type-acknowledge). Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back from MyGeotab.
 
-MIME-type data will be saved as a MIME-type blob on the server. The blob can be accessed through the software SDK as a [TextMessage](/software/api/reference/#TextMessage). The SDK can also be used to send MIME-type data from the server to an external device connected to a GO device.
+Readers are encouraged to also read the [Geotab MIME Data Exchange Example IOX-RS232](https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing) to better understand of the protocol.
 
-### The MIME Type Protocol:
+#### Binary Data Packets Containing MIME Type Data
 
-|   | Bytes | Position |
-| --- | --- | --- |
-| MIME type length = x | 1 | 0 |
-| MIME type in ASCII | x | 1 |
-| Payload Length = y | 4 | 1 + x |
-| Binary Payload | y | 5 + x |
-
-The MIME protocol will be an inner protocol within the binary data packet messages. The MIME data will be broken into 250 byte chunks and sent within binary data packet messages. The first byte within the message will be a sequence counter; all remaining bytes will contain the MIME data.
-
-### Binary Data Packets Containing MIME Type Data
-
-This is an example of binary data packets for image data transferred using the MIME type "image/jpeg". The image size is 83000 bytes.
+This is an example of binary data packets for image data transferred using the MIME type “image/jpeg”. The image size is 83000 bytes. The packet size is 250.
 
 **First packet:**
 
@@ -575,9 +558,7 @@ This is an example of binary data packets for image data transferred using the M
 | Checksum | 2 | 253 |
 | ETX (0x03) | 1 | 255 |
 
-\* If the sequence number reaches 255 (0xFF) and more packets need to be sent, the sequence number must reset to a value of 1 and continue counting. **A sequence number of 0 must only be used for the first packet.**
-
-### Binary Data Packet Containing MIME Type Acknowledge
+#### Binary Data Packet Containing MIME Type Acknowledge
 
 |   | Bytes | Position |
 | --- | --- | --- |
@@ -591,409 +572,3 @@ This is an example of binary data packets for image data transferred using the M
 | Total Number of Payload Bytes Received | x | 12 |
 | Checksum | 2 | 12+x |
 | ETX (0x03) | 1 | 14+x |
-
-### Appendix D: Using protobuf Messages to Communicate by using 0x8C, 0x26
-
-<a name="pubsub-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-#### PUB/Sub Protocol Documentation
-#### Introduction
-
-This Proto file defines message payloads for the Third party Message Type 0x8C (Protobuf Data Packet from IOX to GO) and Message Type 0x26 (Protobuf Data Packet from GO to IOX).
-The protobufs defined here follows a simple pub/sub protocol, where a third party IOX device can subscribe to one of the supported TOPICs (enum Topic) 
-and receive the desired information from the GO.
-The appropriate master switch needs to be set to use the pub/sub functionality correctly.
-
-The list of some of the (unordered) messages and their use is as mentioned below.
-1. To get a list of all the subscribable topics: The external device needs to send an IoxToGo message with the pub_sub.list_avail_topics field set.
-     The GO device responds with an IoxFromGo message with the pub_sub.topic_info_list field.
-
-2. To subscribe to a topic: The external device needs to send an IoxToGo message with the pub_sub.sub field set. 
-     The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing 'SUB_ACK_RESULT_SUCCESS'.
-
-3. To get a list of subscribed topics: The external device needs to send a IoxToGo message with the pub_sub.msg.list_subs field set. 
-     The GO device responds with an IoxFromGo message with the pub_sub.topic_list field.
-
-4. How the external device gets published information for subscribed topics: 
-     When there is an update to a subscribed topic, the GO device sends the update in an IoxFromGo message with the pub_sub.pub field set.
-
-5. To remove a topic from the subscription: The external device needs to send a IoxToGo message with the pub_sub.msg.unsub field set. 
-     The Go device responds with an IoxFromGo message with the pub_sub.sub_ack.result field containing a 'SUB_ACK_RESULT_SUCCESS'.
-
-6. To clear the entire subscription list: The external device needs to send a IoxToGo message with the pub_sub.msg.clear_subs field set.
-     The Go device responds with an IoxFromGo message with the pub_sub.clear_subs_ack.result field containing a 'CLEAR_SUBS_ACK_RESULT_SUCCESS'.
-
-Note: The a 'PubSubFromGo' message with the 'sub_ack' or the 'clear_subs_ack' field can contain the source of error when a request cannot be performed successfully.
-
-Note: The subscription is cleared if the GO or the IOX lost power or if the IOX is disconnected from the GO device.
-
-Note, If the master switch is not enabled:
-         - An IOX will not able to subscribe any topic.
-         - The list of subscribable topics will be empty.
-
-
-#### Example Message from IOX to GO:
-- 0x8C is a message type sent from an external device to GO, to either subscribe or to get a list of topics or to get a list of subscribed topics etc. 
-- The payload of the 0x8C message is the Pub/Sub message, encoded with Protobuf using nanopb.
-- An example usage of the 0x8C message to subscribe to one of the topics like TOPIC_ACCEL is as described below.
-  - 0x8C fields values:<br> 
-    STX=0x02, MessageId = 0x8C, Data payload: Protobuf encoding for message IoxToGo (detailed below), ETX=0x03<br>
-    ```js
-    IoxToGo message = { 
-        .which_msg = IoxToGo_pub_sub_tag, 
-        .pub_sub = { .which_msg = PubSubToGo_sub_tag, .sub = { .topic = TOPIC_ACCEL }}
-    };
-    IoxToGo message = { .which_msg = 0x01, .pub_sub = { .which_msg = 0x01, .sub = { .topic = 0x01 }}};
-    ```
-  - So, IoxToGo message, i.e. Data Payload, after Protobuf encoding: {0x0A 0x04 0x0A 0x02 0x08 0x01}
-  - This leads to, IoxToGo message length after Protobuf encoding to be 0x06.
-  - Checksum calculation from (0x02 0x8C 0x06, 0x0A 0x04 0x0A 0x02 0x08 0x01) = (0xB7 0x28)
-  - The result Data Payload = (0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28)
-
-  - The final byte stream that the external device would send to GO, in order to subscribe for the TOPIC_ACCEL should be:<br>
-    <0x02 0x8C 0x06 0x0A 0x04 0x0A 0x02 0x08 0x01 0xB7 0x28 0x03>
-
-
-#### Example Response/Event from GO to IOX:
-- 0x26 is a message type sent from GO to an external device, to either acknowledge a subscription request or other request sent from the external device.
-- An example usage of the 0x26 message is to acknowledge a request to subscribe to a topic such as TOPIC_ACCEL, the message is described as below.
-  - The external device will receive a 0x26 message from the GO device such as:<br>
-    (0x02 0x26 0x08 0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01 0x68 0xE8 0x03)
-  - The extracted IoxFromGo message with Protobuf encoding = (0x0A 0x06 0x0A 0x04 0x08 0x01 0x10 0x01)
-    
-  - The IoxFromGo message after decoding = 
-    ```js
-    {
-        .which_msg = 0x01, 
-        .pub_sub = {
-            .which_msg = 0x01, 
-            .suback = { .result = 0x01, .topic = 0x01 }
-        }
-    }
-    ```
-  - The IoxFromGo message can be interpreted as 
-    ```js
-    { 
-        .which_msg = IoxFromGo_pub_sub_tag, 
-        .pub_sub = {
-            .which_msg = PubSubFromGo_sub_ack_tag, 
-            .suback = { .result = SubAck_SUB_ACK_RESULT_SUCCESS, .topic = TOPIC_ACCEL }
-        }
-    } 
-    ```
-
-<a name="-Topic"></a>
-
-### Topic
-The ID of all the subscribable topics.
-@exclude Includes status data IDs
-@exclude The comment is CSV format: 1st field is the type, 2nd field is the unit, 3rd field is the extra information (if any).
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TOPIC_UNSPECIFIED | 0 | Invalid topic,, (DO NOT USE) |
-| TOPIC_ACCEL | 1 | Vec3, m/s^2, To be implemented |
-| TOPIC_GPS | 2 | Gps, Lat/Long: degrees. speed: km/h, To be implemented |
-| TOPIC_BATTERY_VOLTAGE | 3 | float, Volt, To be implemented |
-| TOPIC_VIN | 4 | String, Unitless |
-| TOPIC_GEAR | 5 | 32 bit signed int, Unitless, 1=Reverse. 0=Neutral. 1 to 8:Nth gear. 126=Park. 127=Drive. 129=Intermediate. 130=Unknown. |
-| TOPIC_ENGINE_SPEED | 6 | 32 bit float, RPM |
-| TOPIC_ENGINE_LOAD | 7 | 32 bit float, % |
-| TOPIC_ODOMETER | 8 | 32 bit float, km |
-| TOPIC_ACCEL_PEDAL_PERCENTAGE | 9 | 32 bit float, % |
-| TOPIC_COOLANT_TEMP | 10 | 32 bit float, degC |
-| TOPIC_DOC_INTAKE_GAS_TEMP | 11 | 32 bit float, degC |
-| TOPIC_DOC_OUTLET_GAS_TEMP | 12 | 32 bit float, degC |
-| TOPIC_FUELTANK1_UNITS | 13 | 32 bit float, Litres |
-| TOPIC_FUELTANK2_UNITS | 14 | 32 bit float, Litres |
-| TOPIC_FUELTANK1_PERCENT | 15 | 32 bit float, % |
-| TOPIC_FUELTANK2_PERCENT | 16 | 32 bit float, % |
-| TOPIC_STATE_OF_CHARGE | 17 | 32 bit float, % |
-| TOPIC_ENGINE_ROAD_SPEED | 18 | 32 bit float, km/h |
-| TOPIC_VEHICLE_ACTIVE | 19 | 32 bit signed int, Unitless, 0=Ignition Off. 1=Ignition On. |
-| TOPIC_DRIVER_SEATBELT | 20 | 32 bit signed int, Unitless, 0=Buckled. 1=Unbuckled. |
-| TOPIC_LEFT_TURN_SIGNAL | 21 | 32 bit signed int, Unitless, 0=Off. 1=On |
-| TOPIC_RIGHT_TURN_SIGNAL | 22 | 32 bit signed int, Unitless, 0=Off. 1=On |
-| TOPIC_EV_CHARGING_STATE | 23 | 32 bit signed int, Unitless, 0=Not Charging. 1=AC charging. 2=DC charging. |
-| TOPIC_PARK_BRAKE | 24 | 32 bit signed int, Unitless, 0=Off. 1=On. 2=Error. |
-
-
-<a name="-ClearSubsAck"></a>
-
-### ClearSubsAck
-GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to a Clear subscription request.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [ClearSubsAck.Result](#ClearSubsAck-Result) |  | This is the result of a Clear subscription request. |
-
-
-<a name="-Gps"></a>
-
-### Gps
-GO to IOX:
-This structure is used for publishing the output of the GPS.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| latitude | float |  | Latitude, in degrees (&#43;ve = north, -ve = south) |
-| longitude | float |  | Longitude, in degrees (&#43;ve = east, -ve = west) |
-| speed | float |  | Speed, in km/h |
-| heading | float |  | Heading, in degrees |
-| gps_time | google.protobuf.Timestamp|  | Time the GPS data is sampled. |
-
-
-
-<a name="-IoxFromGo"></a>
-
-### IoxFromGo
-GO to IOX: Top level of a pub/sub message.
-An IoxFromGo message can only contain one PubSubFromGo message.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pub_sub | [PubSubFromGo](#PubSubFromGo) |  |  |
-
-
-
-
-
-
-<a name="-IoxToGo"></a>
-
-### IoxToGo
-IOX to GO: Top level of a pub/sub message.
-An IoxToGo message can only contain one PubSubToGo message.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pub_sub | [PubSubToGo](#PubSubToGo) |  |  |
-
-
-
-
-
-
-<a name="-PubSubFromGo"></a>
-
-### PubSubFromGo
-GO to IOX: 2nd level of an IoxFromGo message.
-This level identifies the type of information/response.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sub_ack | [SubAck](#SubAck) |  | Reply to sub and unsub, indicating success/failure |
-| topic_list | [TopicList](#TopicList) |  | Reply to list_subs, containing all subscribed topics |
-| topic_info_list | [TopicInfoList](#TopicInfoList) |  | Reply to list_avail_topics, containing info on all supported topics |
-| pub | [Publish](#Publish) |  | Data sample published by the GO |
-| clear_subs_ack | [ClearSubsAck](#ClearSubsAck) |  | Reply to clear_subs, indicating success/failure |
-
-
-
-
-
-
-<a name="-PubSubToGo"></a>
-
-### PubSubToGo
-IOX to GO: 2nd level of an IoxToGo message.
-This level identifies the type of requests to the subscription.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sub | [Subscribe](#Subscribe) |  | Subscribe request: Add a topic to the subscription. |
-| unsub | [Unsubscribe](#Unsubscribe) |  | Unsubscribe request: Remove the topic from the subscription. |
-| list_subs | google.protobuf.Empty |  | Subscribed list request: gps_time all subscribed topics. |
-| clear_subs | google.protobuf.Empty |  | Clear subscription request: Clear all the subscribed topics from the subscription. |
-| list_avail_topics | google.protobuf.Empty |  | Subscribable list request: Get the list of all subscribable topics. |
-
-
-
-
-
-
-<a name="-Publish"></a>
-
-### Publish
-GO to IOX: 3nd level of an IoxFromGo message.
-The Go device sends this message for each subscribed topic when an update to the status of the topic is available.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| time | google.protobuf.Timestamp |  | Time since 1970-01-01 00:00:00 UTC. |
-| topic | [Topic](#Topic) |  | ID of the subscribed topic this message contains. |
-| bool_value | bool |  |  |
-| int_value | int32 |  |  |
-| uint_value | uint32 |  |  |
-| float_value | float |  |  |
-| string_value | string |  | Used for VIN (17 digits) |
-| vec3_value | [Vec3](#Vec3) |  | Used for acceleration |
-| gps_value | [Gps](#Gps) |  | Used for GPS output. |
-
-
-
-
-
-
-<a name="-SubAck"></a>
-
-### SubAck
-GO to IOX: 3nd level of a IoxFromGo message.
-This structure contains a response to a Subscribe request or an Unsubscribe request.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [SubAck.Result](#SubAck-Result) |  | The result of a subscribe request or an unsubscribe request. |
-| topic | [Topic](#Topic) |  | The topic specified in the request. |
-
-
-
-
-
-
-<a name="-Subscribe"></a>
-
-### Subscribe
-IOX to GO: 3rd level of an IoxToGo message.
-Subscribe request: An external device sends this message to subscribe an available topic.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topic | [Topic](#Topic) |  | ID of the topic the IOX wishes to subscribe. |
-
-
-
-
-
-
-<a name="-TopicInfo"></a>
-
-### TopicInfo
-GO to IOX: 
-This is part of the response to the Subscribable list request message.
-This structure contains the information of one subscribable topics.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topic | [Topic](#Topic) |  |  |
-
-
-
-
-
-
-<a name="-TopicInfoList"></a>
-
-### TopicInfoList
-GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to the Subscribable list request message.
-This structure contains the information of all subscribable topics.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topics | [TopicInfo](#TopicInfo) | repeated | array of topic information, each from a subscribable topic. |
-
-
-
-
-
-
-<a name="-TopicList"></a>
-
-### TopicList
-GO to IOX: 3rd level of an IoxFromGo message. 
-This is a response to the Subscribed list request message.
-This structure provides the list of all the subscribed topics.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topics | [Topic](#Topic) | repeated | An array of topics.
-
-array of IDs, each from a subscribed topic. |
-
-
-
-
-
-
-<a name="-Unsubscribe"></a>
-
-### Unsubscribe
-IOX to GO: 3rd level of an IoxToGo message.
-Unsubscribe request: An external device sends this message to unsubscribe a topic.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| topic | [Topic](#Topic) |  | ID of a subscribed topic, the IOX wishes to removed. |
-
-
-
-
-
-
-<a name="-Vec3"></a>
-
-### Vec3
-GO to IOX:
-This structure is used for publishing the output of the accelerometer.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| x | float |  | Output of the X-axis. |
-| y | float |  | Output of the Y-axis. |
-| z | float |  | Output of the Z-axis. |
-
-
-
-
-
- 
-
-
-<a name="-ClearSubsAck-Result"></a>
-
-### ClearSubsAck.Result
-Possible result of a Clear subscription request.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CLEAR_SUBS_ACK_RESULT_UNSPECIFIED | 0 | Not used. ClearSubAck will never return a result = zero. |
-| CLEAR_SUBS_ACK_RESULT_SUCCESS | 1 | Clear subscription succeeded |
-| CLEAR_SUBS_ACK_RESULT_UNAVAILABLE | 2 | Clear subscription failed: The subscription is owned by another IOX. |
-| CLEAR_SUBS_ACK_RESULT_DISABLED | 3 | Clear subscription failed: Pub/Sub is not enabled by Master Switch. |
-
-
-
-<a name="-SubAck-Result"></a>
-
-### SubAck.Result
-Possible result returned from a Subscribe request or an Unsubscribe request.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SUB_ACK_RESULT_UNSPECIFIED | 0 | Not used; zero is never returned as a Result. |
-| SUB_ACK_RESULT_SUCCESS | 1 | Subscription success |
-| SUB_ACK_RESULT_FAILED | 2 | Generic subscription failure |
-| SUB_ACK_RESULT_UNKNOWN_TOPIC | 3 | Subscribe fails if an unknown topic is specified |
-| SUB_ACK_RESULT_TOPIC_ALREADY_SUBBED | 4 | Subscribe fails if the topic has already been subscribed to |
-| SUB_ACK_RESULT_TOPIC_NOT_SUBBED | 5 | Unsubscribe fails if the topic has not been subscribed to |
-| SUB_ACK_RESULT_UNAVAILABLE | 6 | Unsubscribe fails if the subscription belongs to another IOX. |
-| SUB_ACK_RESULT_DISABLED | 7 | IOX Pub/Sub is not enabled by Master Switch. |
-
-

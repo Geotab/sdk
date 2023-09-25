@@ -86,12 +86,17 @@ toc:
           - page: Android
             url: https://github.com/Geotab/android-external-device-example
             external: true
+          - page: Raspberry Pi
+            url: https://github.com/Geotab/IOX-raspberryPi-demo
+            external: true
       - title: Developing an IOX
         subfolderitems:
           - page: Hardware Design Guide
             url: /hardware/developing-an-iox/hardware-design-guide/
           - page: Messaging Protocol
             url: /hardware/developing-an-iox/messaging-protocol/
+          - page: MIME Protocol
+            url: /hardware/developing-an-iox/mime-protocol/
   - title: MyAdmin SDK
     folderitems:
     - page: MyAdmin SDK Introduction
