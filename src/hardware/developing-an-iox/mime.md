@@ -11,8 +11,8 @@ The MIME protocol can be used to exchange data between MyGeotab and an external 
 
 ## Prerequisites
 * An external device must be connected, and its external device ID must be in the range of 4200-4299
-  * This connection is established using IOX-specific messaging, such as [message 0x1D](/hardware/developing-an-iox/messaging-protocol/#iox-single-frame-log-data-0x1d) for custom IOX devices or [message 0x81](/hardware/addon-protocols/rs232-usb/#msg-type-0x81-handshake-confirmation) for IOX-RS232
-  * [Contact Solutions Engineering](/hardware/addon-protocols/rs232-usb/#contact-solutions-engineering) with integration details if you require an external device ID for your integration
+  * This connection is established using IOX-specific messaging, such as [message 0x1D]({{site.baseurl}}/hardware/developing-an-iox/messaging-protocol/#iox-single-frame-log-data-0x1d) for custom IOX devices or [message 0x81]({{site.baseurl}}/hardware/addon-protocols/rs232-usb/#msg-type-0x81-handshake-confirmation) for IOX-RS232/USB
+  * [Contact Solutions Engineering]({{site.baseurl}}/hardware/addon-protocols/rs232-usb/#contact-solutions-engineering) with integration details if you require an external device ID for your integration
 
 ### Protocol
 The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.
@@ -70,7 +70,7 @@ This is an example of binary data packets for image data transferred using the M
 
 
 ### MyGeotab API
-To send/receive messages between MyGeotab and the external device, please download the source code of the Starter Kit sample, and replace the Sample API with the following script. The alternative is to paste the script in the Runner. 
+To send/receive messages between MyGeotab and the external device, please download the source code of the [Starter Kit]({{site.baseurl}}/software/js-samples/#starter-kit) sample, and replace the [Sample API](https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html) with the following script. The alternative is to paste the script in the [Runner]({{site.baseurl}}/software/api/runner.html). 
 
 #### MIME messages from MyGeotab to the external device:
 ```javascript
