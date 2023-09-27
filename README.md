@@ -1,50 +1,46 @@
-# Geotab Developers
+# Getting Started with Create React App
 
-> This project serves as the online SDK for the MyGeotab, Geotab Drive, and MyAdmin. It also contains the guidelines and protocols to integrate IOX hardware add-ons with the GO device as well as Custom Telematics Devices using Geotab’s Data Intake Gateway (DIG). Everything is hosted via Github pages.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting Started
+## Available Scripts
 
-Make sure you have installed:
+In the project directory, you can run:
 
-* **Ruby**: `>2.0` with Bundler `>1.10`
-* **Node**: `>17.3.1`
-* **Gulp:** `4.0` : `npm install gulp-cli -g`
+### `npm start`
 
-If you have cloned this repo or want to reinstall, make sure there's no `node_modules` or `Gemfile.lock` folder/file and then run:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```sh
-$ npm install
-$ bundle install
-```
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-For local testing run with command:
+### `npm test`
 
-```sh
-$ gulp
-```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Deployment
+### `npm run build`
 
-The documention can be built and deployed using these commands:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```sh
-$ gulp build --prod
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-```sh
-$ gulp deploy
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Settings
+### `npm run eject`
 
-The `_config.yml` and `_config.build.yml` provide the Jekyll settings. `_config.build.yml` is only used in production build and overrides settings in `_config.yml`;
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Dependencies
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-> generator-jekyllized
-For more information on how to use this project, please refer to the [README
-on Github](https://github.com/sondr3/generator-jekyllized).
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-## Owner
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-> [Geotab Inc.](https://my.geotab.com)
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
