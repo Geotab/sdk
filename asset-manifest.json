@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/sdk/static/css/main.737c598d.css",
+    "main.js": "/sdk/static/js/main.ba7d0bb0.js",
+    "static/media/hardwareImage.svg": "/sdk/static/media/hardwareImage.0183273ffd207c12d4a3a81260df07c2.svg",
+    "static/media/driveImage.svg": "/sdk/static/media/driveImage.5905db5b0fe682d79bb749c091f630b3.svg",
+    "static/media/mygeotabImage.svg": "/sdk/static/media/mygeotabImage.9138c989e562dc3146d7c04795e8794c.svg",
+    "static/media/myadminImage.svg": "/sdk/static/media/myadminImage.0d9ebbda0334f0b9c8258ec367b66107.svg",
+    "index.html": "/sdk/index.html",
+    "main.737c598d.css.map": "/sdk/static/css/main.737c598d.css.map",
+    "main.ba7d0bb0.js.map": "/sdk/static/js/main.ba7d0bb0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.737c598d.css",
+    "static/js/main.ba7d0bb0.js"
+  ]
+}
