@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Data Feed Example</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Data Feed Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/advanced-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This example shows you how you can implement polling for multiple sources of data. We retrieve new information by setting up JavaScript intervals which invoke a function every few seconds. This function is responsible for building a set of API requests using <a href=https://geotab.github.io/sdk/software/guides/using-in-javascript/#multicall target=_blank>MultiCall</a> to reduce network traffic. After we have the results from the API response, we dynamically build an HTML table with all the data.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#GetFeed1 target=_blank>GetFeed</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#FaultData target=_blank>FaultData</a> <a href=https://geotab.github.io/sdk/software/api/reference/#LogRecord target=_blank>LogRecord</a> <a href=https://geotab.github.io/sdk/software/api/reference/#StatusData target=_blank>StatusData</a></details></div></div><div id=example-content><form><p>Select the options of data you want to visualize:</p><p><input id=includeLocationData type=checkbox checked> <label for=includeLocationData>Include location data</label></p><p><input id=includeStatusData type=checkbox checked> <label for=includeStatusData>Include engine status data</label></p><p><input id=includeFaultData type=checkbox checked> <label for=includeFaultData>Include vehicle fault data</label></p><button class=primary-btn id=toggleFeed>Start data feed</button>&nbsp;<button class=secondary-btn id=clear>Clear</button></form></div><div id=feed-container class=feed-container><table><thead><tr><th>Vehicle Id</th><th>Id</th><th>Date</th><th>Latitude</th><th>Longitude</th><th>Speed</th><th>Diagnostic</th><th>Value</th></tr></thead><tbody id=feed></tbody></table></div></div><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var table;
+            var enabled = false;
+            var updateInterval = 5; // In seconds
+            var update = null;
+            var lastVersions = [ null, null, null ];
+            var startDate = new Date(new Date().setUTCHours(0,0,0,0) - 24*60*60*1000).toISOString();
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+                table = document.getElementById("feed");
+
+                document.getElementById("toggleFeed").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    enabled = !enabled;
+                    event.target.innerHTML = enabled ? "Stop data feed" : "Start data feed";
+
+                    if (enabled) {
+                        document.getElementById("feed-container").setAttribute("style", "display:block;");
+                        pollForData(); // This ensures it starts right away
+                        update = setInterval(pollForData, 1000 * updateInterval);
+                    } else {
+                        if (update) {
+                            clearInterval(update);
+                            lastVersions = [null, null, null];
+                        }
+                    }
+                });
+
+                document.getElementById("clear").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    table.innerHTML = "";
+                });
+
+            });
+
+            function pollForData() {
+                var includeLocationData = document.getElementById("includeLocationData").checked;
+                var includeStatusData = document.getElementById("includeStatusData").checked;
+                var includeFaultData = document.getElementById("includeFaultData").checked;
+
+                if (!includeLocationData && !includeStatusData && !includeFaultData) {
+                    document.getElementById("includeLocationData").checked = true;
+                }
+
+                var apiCalls = [];
+
+                if (includeLocationData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "LogRecord",
+                        "fromVersion": lastVersions[0],
+                        "search": {
+                            "fromDate": startDate
+                        },
+                        "resultsLimit": 1000,
+                    }]);
+                }
+
+                if (includeStatusData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "StatusData",
+                        "fromVersion": lastVersions[1],
+                        "search": {
+                            "fromDate": startDate
+                        },
+                        "resultsLimit": 1000,
+                    }]);
+                }
+
+                if (includeFaultData) {
+                    apiCalls.push(["GetFeed", {
+                        "typeName": "FaultData",
+                        "fromVersion": lastVersions[2],
+                        "search": {
+                            "fromDate": startDate
+                        },
+                        "resultsLimit": 1000,
+                    }]);
+                }
+
+                api.multiCall(apiCalls, function(result) {
+                    if (result !== undefined && result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            displayFeed(result[i]);
+                            lastVersions[i] = result[i].toVersion;
+                        }
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+
+            function displayFeed(feed) {
+                if (feed.data !== undefined && feed.data.length > 0) {
+                    for (var i = 0; i < feed.data.length; i++) {
+                        var row = null,
+                        	feedData = feed.data[i];
+                        if (feedData.hasOwnProperty("data") || feedData.hasOwnProperty("failureMode")) {
+                            row = createEngineRow(feedData);
+                        } else {
+                            row = createLocationRow(feedData);
+                        }
+                        table.appendChild(row);
+                    }
+                }
+            }
+
+            function createLocationRow(feedItem) {
+                var row = document.createElement("tr");
+                row.appendChild(createCell(feedItem.device.id));
+                row.appendChild(createCell(feedItem.id));
+                row.appendChild(createCell(feedItem.dateTime));
+                row.appendChild(createCell(feedItem.latitude));
+                row.appendChild(createCell(feedItem.longitude));
+                row.appendChild(createCell(feedItem.speed));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                return row;
+            }
+
+            function createEngineRow(feedItem) {
+                var row = document.createElement("tr");
+                row.appendChild(createCell(feedItem.device.id));
+                row.appendChild(createCell(feedItem.id));
+                row.appendChild(createCell(feedItem.dateTime));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell("-"));
+                row.appendChild(createCell(feedItem.diagnostic.id.replace("Diagnostic", "").replace("Id", "")));
+                row.appendChild(createCell(feedItem.data || "-"));
+                return row;
+            }
+
+            function createCell(text) {
+                var cell = document.createElement("td");
+                var textNode = document.createTextNode(text);
+                cell.appendChild(textNode);
+                return cell;
+            }</script></body></html>

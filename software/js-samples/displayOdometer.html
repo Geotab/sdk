@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Display Odometer Example</title><link rel=icon href=../../favicon.ico><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Display Odometer Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/advanced-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This examples demonstrates retrieving trips and plotting the vehicle's odometer reading over time. Your vehicles are retrieved using an initial API request for all Device entities. Then when one is selected, the current odometer value is retrieved if available. Then, the vehicle's trips are used to count backward the distance travelled. Each trip distance is plotted on the chart.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Get1 target=_blank>Get</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Device target=_blank>Device</a> <a href=https://geotab.github.io/sdk/software/api/reference/#StatusData target=_blank>Status Data</a></details></div></div><div id=example-content><form><p>Select a vehicle from the dropdown below and choose<br>the dates you want the readings for:</p><p><select id=device><option disabled>Select a vehicle</option></select></p><p><input id=date-from type=date>&nbsp;&nbsp;to&nbsp;&nbsp;<input id=date-to type=date></p></form></div><div id=chart-container class=graph-container><div id=chart class=chart></div></div></div><script src=https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js></script><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var startOdometer;
+
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("device").addEventListener("change", function(event) {
+                    event.preventDefault();
+
+                    retrieveOdometer();
+                });
+
+                document.getElementById("date-from").addEventListener("change", function(event) {
+                    event.preventDefault();
+
+                    retrieveOdometer();
+                });
+
+                document.getElementById("date-to").addEventListener("change", function(event) {
+                    event.preventDefault();
+
+                    retrieveOdometer();
+                });
+                populateDevices();
+            });
+
+            function retrieveOdometer() {
+                var select = document.getElementById("device");
+
+                var deviceId = select[select.selectedIndex].getAttribute("data-deviceid");
+                var fromDateRaw = document.getElementById("date-from").value;
+                var toDateRaw = document.getElementById("date-to").value;
+
+                if (fromDateRaw === "" || toDateRaw === "") {
+                    return;
+                }
+
+                var fromDate = new Date(fromDateRaw);
+                var toDate = new Date(toDateRaw);
+
+                var calls = [];
+
+                calls.push(["Get", {
+                    typeName: "StatusData",
+                    search: {
+                        deviceSearch: {
+                            id: deviceId
+                        },
+                        diagnosticSearch: {
+                            id: "DiagnosticOdometerId"
+                        },
+                        fromDate: fromDate,
+                        toDate: toDate
+                    }
+                }]);
+
+                calls.push(["Get", {
+                    typeName: "StatusData",
+                    search: {
+                        deviceSearch: {
+                            id: deviceId
+                        },
+                        diagnosticSearch: {
+                            id: "DiagnosticOBDOdometerReaderId"
+                        },
+                        fromDate: fromDate,
+                        toDate: toDate
+                    }
+                }]);
+
+                calls.push(["Get", {
+                    typeName: "StatusData",
+                    search: {
+                        deviceSearch: {
+                            id: deviceId
+                        },
+                        diagnosticSearch: {
+                            id: "DiagnosticJ1939TotalVehicleDistanceId"
+                        },
+                        fromDate: fromDate,
+                        toDate: toDate
+                    }
+                }]);
+
+                calls.push(["Get", {
+                    typeName: "StatusData",
+                    search: {
+                        deviceSearch: {
+                            id: deviceId
+                        },
+                        diagnosticSearch: {
+                            id: "DiagnosticJ1708TotalVehicleDistanceId"
+                        },
+                        fromDate: fromDate,
+                        toDate: toDate
+                    }
+                }]);
+
+                calls.push(["Get", {
+                    typeName: "StatusData",
+                    search: {
+                        deviceSearch: {
+                            id: deviceId
+                        },
+                        diagnosticSearch: {
+                            id: "DiagnosticOdometerAdjustmentId"
+                        },
+                        fromDate: fromDate,
+                        toDate: toDate
+                    }
+                }]);
+
+                api.multiCall(calls, function(result) {
+                    if (result && result.length == 5) {
+                        var merged = result[0].concat(result[1]).concat(result[2]).concat(result[3]).concat(result[4]);
+                        var sorted = merged.sort(function (a, b) {
+                            return new Date(a.dateTime) - new Date(b.dateTime);
+                        });
+                        if (sorted && sorted.length > 0) {
+                            startOdometer = sorted[0].data;
+                            displayOdometer(sorted.filter(function(element) {
+                                var dateTime = new Date(element.dateTime);
+                                return (dateTime >= fromDate) && (dateTime <= toDate);
+                            }));
+                        }
+                    } else {
+                        alert("Could not retrieve the current odometer value");
+                    }
+                }, function(error) {
+                    alert(error);
+                });
+            }
+
+            function populateDevices() {
+                api.call("Get", {
+                    typeName: "Device"
+                }, function (result) {
+                    if (result !== undefined && result.length > 0) {
+                        var select = document.getElementById("device");
+                        var now = new Date();
+                        for (var i = 0; i < result.length; i++) {
+                            if (new Date(result[i].activeTo) > now) {
+                                var option = new Option();
+                                option.text = result[i].name;
+                                option.setAttribute("data-deviceid", result[i].id);
+                                select.add(option);
+                            }
+                        }
+                    } else {
+                        alert("Could not retrieve devices");
+                    }
+                }, function (error) {
+                    alert(error);
+                });
+            }
+
+            function displayOdometer(statusData) {
+                var points = [];
+                var minimum = Number.MAX_VALUE;
+                var maximum = Number.MIN_VALUE;
+
+                for (var i = 0; i < statusData.length; i++) {
+                    if (statusData[i].data < minimum) {
+                        minimum = statusData[i].data;
+                    }
+                    if (statusData[i].data > maximum) {
+                        maximum = statusData[i].data;
+                    }
+
+                    points.push({
+                        date: statusData[i].dateTime,
+                        value: parseInt(statusData[i].data / 1000.0)
+                    });
+                }
+
+                document.getElementById("chart-container").style.display = "block";
+                document.getElementById("chart").innerHTML = "";
+
+                new Morris.Area({
+                    element: "chart",
+                    data: points,
+                    xkey: "date",
+                    ykeys: ["value"],
+                    labels: ["Odometer"],
+                    ymin: minimum / 1000.0,
+                    ymax: maximum / 1000.0,
+                    yLabelFormat: function(y) {
+                        return parseInt(y);
+                    },
+                    hoverCallback: function(index, options, content) {
+                        return renderHover(options.data[index].date, options.data[index].value);
+                    },
+                    smooth: false,
+                    parseTime: true,
+                    postUnits: " km",
+                    lineColors: ["#104B7D"],
+                    fillOpacity: 0.3,
+                    pointSize: 0
+                });
+            }
+
+            Date.prototype.mmddyyyy = function() {
+                var yyyy = this.getFullYear().toString();
+                var mm = (this.getMonth()+1).toString();
+                var dd  = this.getDate().toString();
+                return (mm[1]?mm:"0"+mm[0]) + "/" + (dd[1]?dd:"0"+dd[0]) + "/" + yyyy;
+            }
+
+            function renderHover(title, content) {
+                var hover = "<div class='morris-hover-row-label' style='font-size:1.2em'>";
+                hover += parseInt(content) + " km";
+                hover += "</div><div class='morris-hover-point' style='color: #104B7D'>";
+                hover += new Date(title).mmddyyyy();
+                hover += "</div>";
+                return hover;
+            }</script></body></html>
