@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>Geotab SDK | Add Zone Example</title><link rel=icon href=../../favicon.ico><link href=js/leaflet/leaflet.css rel=stylesheet type=text/css><link href=css/JavaScriptExamples.css rel=stylesheet type=text/css><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet></head><body><header><nav><a href=https://geotab.github.io/sdk/software/introduction/ target=_blank><img src=../../assets/images/pillar.svg width=35 height=35 alt=""><h1>MyGeotab SDK</h1></a><div class=sample-tooltip><h1>DEVELOPER SAMPLE</h1><div class=sample-tooltip-text><p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p></div></div><button class="primary-btn sign-out-btn" id=signout>Sign out</button></nav></header><div class=container><div id=signin-content></div><div class=example-header><div class=title>Add Zone Example</div><div class=skill-level>Skill level:<div class=skill-tooltip><img src=images/intermediate-pill.svg><div class=skill-text><p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p></div></div></div><div class=description>This JavaScript example guides you through the process of creating zones and geocoding addresses. Using an address such as "CN Tower", or "102 Main Street East, Toronto, ON" an API request is made to retrieve the latitude and longitude coordinates for that address. Then, a box is created around that point consisting of four corners. The distance apart is variable using the slider provided. To finish creating the zone, add a name and click Add zone and the points you see will be saved to your account.</div><div class=api-references>In this example<details open><summary>API Methods:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Add1 target=_blank>Add</a> <a href=https://geotab.github.io/sdk/software/api/reference/#GetCoordinates target=_blank>GetCoordinates</a></details><details open><summary>API Entities:</summary><a href=https://geotab.github.io/sdk/software/api/reference/#Zone target=_blank>Zone</a></details></div></div><div id=example-content><form><p><label for=address>Street Address</label> <input id=address placeholder="Example: 125 John Street, Mycity"></p><p><label id=sizeLabel for=size>Size (500m)</label> <input id=size type=range value=500 min=100 max=2500></p><p><input id=shape-square type=radio name=shape value=Square checked> <label for=shape-square>Square</label> <input id=shape-circle type=radio name=shape value=Circle> <label for=shape-circle>Circle</label></p><p><button class=primary-btn id=search>Search</button></p><div id=example-content-details><p><label for=zoneName>Zone Name</label> <input id=zoneName placeholder="Example: My office" maxlength=255></p><p><input id=zoneDisplayed type=checkbox checked> <label for=zoneDisplayed>Show on MyGeotab by default</label></p><p><button class=primary-btn id=addZone>Add zone</button></p></div></form></div><div class=map-container><div id=map></div></div></div><script src=js/leaflet/leaflet.js></script><script src=js/api.js></script><script src=js/login.js></script><script type=text/javascript>var map;
+            var layerGroup;
+            var zonePoints;
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Set up Leaflet map (https://leafletjs.com)
+                map = new L.Map("map").setView([43.437111,-79.712756], 13);
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: ['a','b','c']
+                }).addTo(map);
+                layerGroup = L.layerGroup().addTo(map);
+
+                document.getElementById("example-content-details").style.display = "none";
+
+                document.getElementById("search").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var address = document.getElementById("address").value;
+
+                    // Use Geotab API to reverse geocode by street address
+                    if (address == "") {
+                        alert("Address is required");
+                    } else {
+                        api.call("GetCoordinates", {
+                            addresses: [address]
+                        }, function (result) {
+                            if (result[0] != null) {
+                                drawZone(result[0]);
+                                document.getElementById("example-content-details").style.display = "block";
+                            } else {
+                                alert("Could not find coordinates for that address");
+                            }
+                        }, function (error) {
+                            alert(error);
+                        });
+                    }
+                });
+
+                document.getElementById("addZone").addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    var zoneName = document.getElementById("zoneName").value;
+                    var zoneDisplayed = document.getElementById("zoneDisplayed").checked;
+
+                    if (zoneName == "") {
+                        alert("Zone name is required");
+                        return;
+                    }
+
+                    api.call("Add", {
+                        typeName: "Zone",
+                        entity: {
+                            name: zoneName,
+                            externalReference: "",
+                            mustIdentifyStops: true,
+                            displayed: zoneDisplayed,
+                            activeFrom: "1986-01-01T00:00:00.000Z",
+                            activeTo: "2050-01-01T00:00:00.000Z",
+                            zoneTypes: ["ZoneTypeCustomerId"],
+                            groups: [{
+                                id: "GroupCompanyId"
+                            }],
+                            points: zonePoints,
+                            fillColor: {
+                                r: 233,
+                                g: 150,
+                                b: 122,
+                                a: 255
+                            }
+                        }
+                    }, function (result) {
+                        alert("Successfully created zone " + zoneName);
+                    }, function (error) {
+                        alert(error);
+                    });
+                });
+
+                document.getElementById("size").addEventListener("change", function(event) {
+                    if (event.target.value < 1000) {
+                        document.getElementById("sizeLabel").innerHTML = "Size (" + event.target.value + "m)";
+                    } else {
+                        document.getElementById("sizeLabel").innerHTML = "Size (" + (event.target.value / 1000.0).toFixed(2) + "km)";
+                    }
+                });
+            });
+
+            function drawZone(coordinate) {
+                var center = new L.LatLng(coordinate.y, coordinate.x);
+                var radius = document.getElementById("size").value;
+
+                if (document.getElementById("shape-square").checked) {
+                    generateSquareZonePoints(coordinate, radius);
+                } else {
+                    generateCircleZonePoints(coordinate, radius);
+                }
+
+                var polygon = [];
+
+                for (var i = 0; i < zonePoints.length; i++) {
+                    polygon.push([
+                        zonePoints[i].y, zonePoints[i].x
+                    ]);
+                }
+
+                var shape = L.polygon(polygon);
+
+                layerGroup.clearLayers().addLayer(shape);
+                map.setView(center, 13);
+            }
+
+            function generateSquareZonePoints(coordinates, radius) {
+                var earthRadius = 6371000;
+
+                var x1 = (coordinates.x - toDegrees(radius / earthRadius / Math.cos(toRadians(coordinates.y))));
+                var x2 = (coordinates.x + toDegrees(radius / earthRadius / Math.cos(toRadians(coordinates.y))));
+                var y1 = (coordinates.y + toDegrees(radius / earthRadius / Math.sin(toRadians(coordinates.x))));
+                var y2 = (coordinates.y - toDegrees(radius / earthRadius / Math.sin(toRadians(coordinates.x))));
+
+                zonePoints = [
+                    { "x": x1, "y": y1 },
+                    { "x": x2, "y": y1 },
+                    { "x": x2, "y": y2 },
+                    { "x": x1, "y": y2 }
+                ];
+            }
+
+            function generateCircleZonePoints(coordinate, radius) {
+                var earthRadius = 6371000;
+
+                var latitude = toRadians(coordinate.y);
+                var longitude = toRadians(coordinate.x);
+                var angularDistance = radius / earthRadius;
+
+                zonePoints = [];
+
+                for (var i = 0; i <= 360; i++) {
+                    var radians = toRadians(i);
+                    var latitudeRadians = Math.asin(Math.sin(latitude) * Math.cos(angularDistance) + Math.cos(latitude) * Math.sin(angularDistance) * Math.cos(radians));
+                    var longitudeRadians = longitude + Math.atan2(Math.sin(radians) * Math.sin(angularDistance) * Math.cos(latitude), Math.cos(angularDistance) - Math.sin(latitude) * Math.sin(latitudeRadians));
+
+                    zonePoints.push({
+                        "x": toDegrees(longitudeRadians),
+                        "y": toDegrees(latitudeRadians)
+                    });
+                }
+            }
+
+            function toDegrees(radians) {
+                return radians * 180.0 / Math.PI;
+            }
+
+            function toRadians(degrees) {
+                return degrees * (Math.PI / 180.0);
+            }
+
+            function differenceRadians(degrees1, degrees2) {
+                return toRadians(degrees1) - toRadians(degrees2);
+            }</script></body></html>
