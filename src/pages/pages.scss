@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+$font-family: "Roboto", sans-serif;
+$font-weight: 300;
+$text-color: #1E1E1E;
+$font-size-medium: 28px;
+$font-size-small: 20px;
+
+
+// Generic styles
+* {
+  box-sizing: content-box;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  color: $text-color;
+}
+
+.text--medium {
+  font-size: $font-size-medium;
+  margin: 0;
+}
+
+.text--small {
+  font-size: $font-size-small;
+}
+
+// Page-specific styles
+.landing-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  &__left {
+    width: 454px;
+  }
+
+  &__right {
+    width: 716px;
+  }
+
+  &__product-buttons-row {
+    display: flex;
+
+    button {
+      width: 336px;
+      height: 188px;
+      background-color: #FFFFFF;
+      border: 1px solid #C0CCD8;
+      margin: 4px;
+      border-radius: 4px;
+      transition: box-shadow 0.3s ease-in-out;
+      display: inline-block;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
