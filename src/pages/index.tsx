@@ -8,7 +8,7 @@ import "./pages.scss";
 
 const LandingPage = () => {
   return (
-    <div className="landing-page">
+    <div className="landing-page" data-testid="landing-page">
       <div className="landing-page__left">
         <div className="landing-page__text-container">
           <p className="text--medium">This site provides tools for integrating with various types of Geotab products. </p>
@@ -25,19 +25,19 @@ const LandingPage = () => {
       <div className="landing-page__right">
         <div className="landing-page__button-container">
           <div className="landing-page__product-buttons-row">
-            <Link to="/myGeotabIntroduction">
-              <button type="button" className="landing-page__product-button"><img src={MyGeotabImage} alt="Navigate to MyGeotab introduction" /></button>
+            <Link className="landing-page__product-button" to="/myGeotabIntroduction">
+              <img src={MyGeotabImage} alt="Navigate to MyGeotab introduction" />
             </Link>
-            <Link to="/myAdminIntroduction">
-              <button type="button" className="landing-page__product-button"><img src={MyAdminImage} alt="Navigate to MyAdmin introduction" /></button>
+            <Link className="landing-page__product-button" to="/myAdminIntroduction">
+              <img src={MyAdminImage} alt="Navigate to MyAdmin introduction" />
             </Link>
           </div>
           <div className="landing-page__product-buttons-row">
-            <Link to="/driveIntroduction" title="my-element">
-              <button type="button" className="landing-page__product-button"><img src={DriveImage} alt="Navigate to Drive introduction" /></button>
+            <Link className="landing-page__product-button" to="/driveIntroduction">
+              <img src={DriveImage} alt="Navigate to Drive introduction" />
             </Link>
-            <Link to="/hardwareIntroduction">
-              <button type="button" className="landing-page__product-button"><img src={HardwareImage} alt="Navigate to Hardware introduction" /></button>
+            <Link className="landing-page__product-button" to="/hardwareIntroduction">
+              <img src={HardwareImage} alt="Navigate to Hardware introduction" />
             </Link>
           </div>
         </div>

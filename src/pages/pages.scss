@@ -41,21 +41,32 @@ $font-size-small: 20px;
 
   &__product-buttons-row {
     display: flex;
+  }
 
-    button {
-      width: 336px;
-      height: 188px;
-      background-color: #FFFFFF;
-      border: 1px solid #C0CCD8;
-      margin: 4px;
-      border-radius: 4px;
-      transition: box-shadow 0.3s ease-in-out;
-      display: inline-block;
+  &__product-button {
+    width: 336px;
+    height: 188px;
+    background-color: #FFFFFF;
+    outline: 1px solid #C0CCD8;
+    margin: 4px;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      &:hover,
-      &:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      }
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      outline: 2px solid #C0CCD8;
+    }
+
+    &:active {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      outline: 2px solid #0078D3;
     }
   }
 }

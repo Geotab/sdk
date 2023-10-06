@@ -48,8 +48,9 @@ describe("Landing page", () => {
         <LandingPage />
       </BrowserRouter>
     );
-    const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(4);
+    const container = screen.getByTestId('landing-page');
+    const buttons = container.querySelectorAll('.landing-page__product-button');
+    expect(buttons.length).toBe(4);
   });
 
   test("should redirect to the MyGeotab section when the MyGeotab button is clicked.", () => {
