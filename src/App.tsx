@@ -8,7 +8,7 @@ import GettingStarted from './pages/myGeotab/guides/gettingStarted';
 import Methods from './pages/myGeotab/apiReference/methods';
 import Objects from './pages/myGeotab/apiReference/objects';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
