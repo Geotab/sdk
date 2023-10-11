@@ -3,16 +3,17 @@ details>summary {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    margin-block-end: 16px;
 }
 
 summary::-webkit-details-marker {
     display: none;
-  }
+}
 
 details>summary>svg {
     margin-left: 5px;
 }
 
 details {
-    margin-top: 16px;
+    margin-block-start: 16px;
 }

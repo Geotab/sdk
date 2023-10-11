@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { IconArrowTop, IconChevronDown } from "@geotab/react-component-library";
+import { IconChevronUp, IconChevronDown } from "@geotab/react-component-library";
 import "./accordion.scss";
 
 interface AccordianContents {
@@ -10,7 +10,7 @@ interface AccordianContents {
 export default function Accordion(props: AccordianContents) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronDown></IconChevronDown> : <IconArrowTop></IconArrowTop>;
+    let Icon: ReactNode = expanded ? <IconChevronDown></IconChevronDown> : <IconChevronUp></IconChevronUp>;
 
     function handleToggle(): void {
         setExpanded(!expanded);
