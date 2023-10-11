@@ -16,8 +16,8 @@ export default function Accordion(props: AccordianContents) {
         setExpanded(!expanded);
     };
 
-    return (<details onClick={handleToggle}>
-        <summary>
+    return (<details>
+        <summary onClick={handleToggle}>
             {props.summary}
             {Icon}
         </summary>
