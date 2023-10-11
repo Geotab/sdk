@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import "./pages.scss";
+
 const LandingPage = () => {
     return (
       <div>

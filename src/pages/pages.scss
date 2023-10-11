@@ -1,0 +1,28 @@
+
+@import "../variables";
+
+.paragraph{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: $darkBlue;
+}
+
+.title{
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 36px
+}
+
+a {
+    color: $brightBlue;
+  }
+
+.grayBackground{
+    background-color: $lightGray;
+}
+
+.pageContent{
+    //padding: 32px 24px 32px 24px;
+}
+
