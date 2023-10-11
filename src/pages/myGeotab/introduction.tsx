@@ -1,4 +1,4 @@
-import { Component, ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import Accordion from "../../components/Accordion/Accordion";
 
 const deviceData: ReactNode =
@@ -24,7 +24,7 @@ const importExport: ReactNode =
             <li>Import your customer list from a <a href="http://en.wikipedia.org/wiki/Customer_relationship_management">CRM</a> (Customer Relationship Management) system</li>
             <li>Download your vehicle maintenance records into a maintenance system (DVIR)</li>
             <li>Keep your routes up to date based on the day's deliveries</li>
-            <li>Synchronize your vehicle groups based on the vehicle’s role in the company</li>
+            <li>Synchronize your vehicle groups based on the vehicle's role in the company</li>
             <li>Track Hours of Service (HOS) for regulations compliance</li>
         </ul>
         You can start using these tools right now by trying the <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net examples</a>,

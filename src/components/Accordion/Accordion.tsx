@@ -1,4 +1,4 @@
-import { Component, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { IconArrowTop, IconChevronDown } from "@geotab/react-component-library";
 import "./accordion.scss";
 
