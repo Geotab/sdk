@@ -1,26 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-$font-family: "Roboto", sans-serif;
-$font-weight: 300;
-$text-color: #1E1E1E;
-$font-size-medium: 28px;
-$font-size-small: 20px;
+@import "../variables";
 
-
-// Generic styles
-* {
-  box-sizing: content-box;
-  font-family: $font-family;
-  font-weight: $font-weight;
-  color: $text-color;
+.text--large {
+  font-size: $font-size-large;
+  margin: 0;
 }
 
 .text--medium {
   font-size: $font-size-medium;
-  margin: 0;
-}
-
-.text--small {
-  font-size: $font-size-small;
 }
 
 // Page-specific styles
@@ -30,6 +16,7 @@ $font-size-small: 20px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  color: $lightBlack;
 
   &__left {
     width: 454px;
@@ -71,4 +58,43 @@ $font-size-small: 20px;
       box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.20);
     }
   }
+}
+
+.landing-page__text-container {
+  margin-right: 8px;
+}
+
+.landing-page__text-container .subtitle p {
+  margin-block-end: 0px
+}
+
+ul {
+  margin-block-start: 0px
+}
+
+.paragraph {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $darkBlue;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 36px
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+a {
+  color: $brightBlue;
+}
+
+.grayBackground {
+  background-color: $lightGray;
 }

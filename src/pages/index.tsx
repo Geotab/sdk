@@ -1,25 +1,27 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import MyGeotabImage from "./../assets/images/landingPage/mygeotabImage.svg";
 import MyAdminImage from "./../assets/images/landingPage/myadminImage.svg";
 import DriveImage from "./../assets/images/landingPage/driveImage.svg";
 import HardwareImage from "./../assets/images/landingPage/hardwareImage.svg";
+
 import "./pages.scss";
 
-const LandingPage = () => {
+export default function LandingPage() {
   return (
     <div className="landing-page" data-testid="landing-page">
       <div className="landing-page__left">
         <div className="landing-page__text-container">
-          <p className="text--medium">This site provides tools for integrating with various types of Geotab products. </p>
-          <p className="text--small">You will find the information and tools needed to develop software integrations with:</p>
-          <ul>
-            <li className="text--small">MyGeotab</li>
-            <li className="text--small">MyAdmin</li>
-            <li className="text--small">Drive</li>
-            <li className="text--small">Hardware</li>
-          </ul>
-          <p className="text--small">Please refer to <Link to="/" aria-label="View Toolkits">Toolkits</Link> for more information.</p>
+          <p className="title">This site provides tools for integrating with various types of Geotab products. </p>
+          <div className="subtitle">
+            <p>You will find the information and tools needed to develop software integrations with:</p>
+            <ul>
+              <li>MyGeotab</li>
+              <li>MyAdmin</li>
+              <li>Drive</li>
+              <li>Hardware</li>
+            </ul>
+            <p>Please refer to <Link to="/" aria-label="View Toolkits">Toolkits</Link> for more information.</p>
+          </div>
         </div>
       </div>
       <div className="landing-page__right">
@@ -45,5 +47,3 @@ const LandingPage = () => {
     </div>
   );
 };
-
-export default LandingPage;
