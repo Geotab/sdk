@@ -1,16 +1,18 @@
-import React, {createContext} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {Header, Navbar} from "./components";
 import LandingPage from "./pages";
+
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
 import MyGeotabWhatsNew from "./pages/myGeotab/whatsNew";
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
+import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
 import DriveIntroduction from "./pages/drive/introduction";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route path="/myGeotabIntroduction" Component={MyGeotabIntroduction} />
           <Route path="/whatsNew" Component={MyGeotabWhatsNew} />
           <Route path="/gettingStarted" Component={MyGeotabGettingStarted} />
+          <Route path="/usingGoDevices" Component={UsingGoDevices} />
           <Route path="/methods" Component={MyGeotabMethods} />
           <Route path="/objects" Component={MyGeotabObjects} />
 
