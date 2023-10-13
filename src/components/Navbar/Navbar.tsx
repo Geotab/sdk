@@ -7,7 +7,7 @@ import {
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 
-export default function Navbar() {
+export default function Navbar(props: any) {
   const section = useContext(MenuContext);
 
   return (

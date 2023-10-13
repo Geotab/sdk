@@ -15,8 +15,8 @@ import DriveIntroduction from "./pages/drive/introduction";
 function App() {
   return (
       <Router>
-        <Header />
-        <Navbar />
+        {/* <Header /> */}
+        {/* <Navbar /> */}
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />

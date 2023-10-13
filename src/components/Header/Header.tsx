@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 import { MenuContext } from '../../menuContext';
+import { LogoGeotabSDK } from '../Logo/LogoGeotabSDK';
 
-export default function Header() {
+export default function Header(props: any) {
     const [active, setActive] = useState("myGeotab");
 
     return (
@@ -14,6 +15,7 @@ export default function Header() {
                 width: "50%",
                 margin: "auto"
             }}>
+                {props.isLandingPage && <LogoGeotabSDK />}
                 <div onClick={() => setActive("myGeotab")}>myGeotab</div>
                 <div onClick={() => setActive("myAdmin")}>myAdmin</div>
                 <div onClick={() => setActive("Drive")}>Drive</div>

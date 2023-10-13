@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Accordion from "../../components/Accordion/Accordion";
+import Page from "../../components/Page/Page";
 
 const deviceData: ReactNode =
     <div className="paragraph">
@@ -88,7 +89,7 @@ const softwareToolkit: ReactNode =
 
 export default function Introduction() {
     return (
-        <div className="grayBackground pageContent">
+        <Page section="MyGeotab">
             <h1 className="title">Introduction</h1>
             <div className="paragraph">
                 The MyGeotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab.
@@ -110,6 +111,6 @@ export default function Introduction() {
             <Accordion summary="Integrating with MyGeotab" p={integratingWithMyG}></Accordion>
             <Accordion summary="Integrating custom telematics tracking devices into MyGeotab" p={customDevices}></Accordion>
             <Accordion summary="Technical Software Toolkit" p={softwareToolkit}></Accordion>
-        </div>
+        </Page>
     );
 };
