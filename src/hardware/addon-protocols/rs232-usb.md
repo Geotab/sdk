@@ -303,7 +303,7 @@ Self Powered External Device:
 
 ### Msg Type 0x80: Third-Party Data as Status Data
 
-Issued by the external device whenever it requires Third-Party Data to be saved on the GO device as Status Data.
+Issued by the external device whenever it requires Third-Party Data to be saved on the GO device as Status Data. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
 
 |   | Bytes | Position |
 | --- | --- | --- |
