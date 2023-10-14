@@ -1,0 +1,31 @@
+a {
+    text-decoration: none;
+    color: grey;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.menu-item {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabs-container {
+  display: flex;
+  margin-right: 30%;
+}
+
+.geotab-sdk-logo {
+  margin-right: 10px;
+}
+
+.tab-item {
+    padding: 10px;
+    margin-right: 10px;
+}

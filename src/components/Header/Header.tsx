@@ -1,26 +1,34 @@
-
-import React, { useState } from 'react';
-import { MenuContext } from '../../menuContext';
-import { LogoGeotabSDK } from '../Logo/LogoGeotabSDK';
+import React, { useState } from "react";
+import { MenuContext } from "../../menuContext";
+import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
+import { Link } from "react-router-dom";
+import SearchBar from "../../components/Searchbar/Searchbar";
+import "./header.scss";
 
 export default function Header(props: any) {
-    const [active, setActive] = useState("myGeotab");
+  const [active, setActive] = useState("myGeotab");
 
-    return (
-        <MenuContext.Provider value={active}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "30px",
-                width: "50%",
-                margin: "auto"
-            }}>
-                {props.isLandingPage && <LogoGeotabSDK />}
-                <div onClick={() => setActive("myGeotab")}>myGeotab</div>
-                <div onClick={() => setActive("myAdmin")}>myAdmin</div>
-                <div onClick={() => setActive("Drive")}>Drive</div>
-                <div onClick={() => setActive("Hardware")}>Hardware</div>
-            </div>
-        </MenuContext.Provider>
-    );
-};
+  return (
+    <MenuContext.Provider value={active}>
+      <header className="header-container">
+        {props.isLandingPage && <LogoGeotabSDK className="geotab-sdk-logo" />}
+        <div className="tabs-container">
+          <div className="tab-item">
+            <Link to="/myGeotabIntroduction">myGeotab</Link>
+          </div>
+          <div className="tab-item">
+            <Link to="/myAdminIntroduction">myAdmin</Link>
+          </div>
+          <div className="tab-item">
+            <Link to="/driveIntroduction">Drive</Link>
+          </div>
+          <div className="tab-item">
+            <Link to="/hardwareIntroduction">Hardware</Link>
+          </div>
+        </div>
+
+        <SearchBar className="searchbar" />
+      </header>
+    </MenuContext.Provider>
+  );
+}
