@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuContext } from '../../menuContext';
 
@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <div>
       <div>
-        <Link to="/introduction">Introduction</Link>
+        <Link to="/myGeotabIntroduction">Introduction</Link>
       </div>
       <div>
         <Link to="/whatsNew">What's New</Link>
