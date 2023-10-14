@@ -1,6 +1,15 @@
 a {
-    text-decoration: none;
-    color: grey;
+  text-decoration: none;
+  color: grey;
+}
+
+.active-button {
+  background-color: #e5f7fd;
+  font-weight: bold;
+}
+
+a.active-button {
+  color: #005aa8;
 }
 
 .header-container {
@@ -26,6 +35,44 @@ a {
 }
 
 .tab-item {
-    padding: 10px;
-    margin-right: 10px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-bar-input {
+  border: 1px solid #ccc;
+  padding: 3px;
+  width: 100%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: #fff;
+  max-width: 50%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
