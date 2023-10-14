@@ -1,10 +1,10 @@
 
 import { Tabs } from "@geotab/react-component-library";
-import { CodeSample } from "./CodeBlock";
+import CodeSample from "./CodeSample";
 
 
 interface CodeSnippetProps {
-  snippets: {
+  codeExamples: {
       javascript: {
           code: string;
       };
@@ -20,12 +20,12 @@ interface CodeSnippetProps {
   };
 }
 /**
- * Renders a component that displays code snippets in different programming languages.
+ * Renders a component that displays code Examples in different programming languages.
  *
- * @param {CodeSnippetProps} snippets - An object containing code snippets for various programming languages.
+ * @param {CodeSnippetProps} codeExamples - An object containing code examples for various programming languages.
  * Example usage:
  * <CodeSnippet
- *   snippets={{
+ *   codeExamples={{
  *     javascript: {
  *       code: `// Your JavaScript code here`
  *     },
@@ -43,7 +43,7 @@ interface CodeSnippetProps {
  *
  */
 
-export default function CodeSnippet({snippets}: CodeSnippetProps): JSX.Element {
+export default function CodeSnippet({codeExamples}: CodeSnippetProps): JSX.Element {
 
     return ( 
       <div>
@@ -52,28 +52,28 @@ export default function CodeSnippet({snippets}: CodeSnippetProps): JSX.Element {
             {
               content: CodeSample({
                 language: "javascript",
-                code:  snippets.javascript.code,
+                code:  codeExamples.javascript.code,
               }),
               name: "Javascript"
             },
             {
               content: CodeSample({
                 language: "csharp",
-                code:  snippets.csharp.code,
+                code:  codeExamples.csharp.code,
               }),
               name: "C#"
             },
             {
               content: CodeSample({
                 language: "java",
-                code:  snippets.java.code,
+                code:  codeExamples.java.code,
               }),
               name: "Java"
             },
             {
               content: CodeSample({
                 language: "python",
-                code:  snippets.python.code,
+                code:  codeExamples.python.code,
               }),
               name: "Python"
             }
