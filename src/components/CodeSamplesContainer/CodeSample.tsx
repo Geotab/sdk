@@ -1,6 +1,6 @@
 import copyCode from "./CopyCode";
 import { CodeBlock} from 'react-code-blocks';
-import './codeBlock.scss';
+import './CodeSample.scss';
 import copyIcon from "./CopyIcon";
 import CustomTheme from "./CustomTheme";
 import CodeSampleTheme from "./CodeSampleTheme";
@@ -8,13 +8,12 @@ import { Button, ButtonVariant,useToast } from "@geotab/react-component-library"
 
 //Documentation for react-code-blocks: https://www.npmjs.com/package/react-code-blocks
 
-interface CodeBlockProps {
+interface CodeSampleProps {
     language: string;
     code: string;
-
   }
 
-export default function CodeSample(props: CodeBlockProps): JSX.Element{
+export default function CodeSample(props: CodeSampleProps): JSX.Element{
 
     const toast = useToast();
 

@@ -3,8 +3,8 @@ import { Tabs } from "@geotab/react-component-library";
 import CodeSample from "./CodeSample";
 
 
-interface CodeSnippetProps {
-  codeExamples: {
+interface CodeSamplesContainerProps {
+  props: {
       javascript: {
           code: string;
       };
@@ -22,10 +22,10 @@ interface CodeSnippetProps {
 /**
  * Renders a component that displays code Examples in different programming languages.
  *
- * @param {CodeSnippetProps} codeExamples - An object containing code examples for various programming languages.
+ * @param {CodeSamplesContainerProps} props - An object containing code examples for various programming languages.
  * Example usage:
- * <CodeSnippet
- *   codeExamples={{
+ * <CodeSamplesContainer
+ *    props ={{
  *     javascript: {
  *       code: `// Your JavaScript code here`
  *     },
@@ -43,7 +43,7 @@ interface CodeSnippetProps {
  *
  */
 
-export default function CodeSnippet({codeExamples}: CodeSnippetProps): JSX.Element {
+export default function CodeSamplesContainer({props}: CodeSamplesContainerProps): JSX.Element {
 
     return ( 
       <div>
@@ -52,28 +52,28 @@ export default function CodeSnippet({codeExamples}: CodeSnippetProps): JSX.Eleme
             {
               content: CodeSample({
                 language: "javascript",
-                code:  codeExamples.javascript.code,
+                code:  props.javascript.code,
               }),
               name: "Javascript"
             },
             {
               content: CodeSample({
                 language: "csharp",
-                code:  codeExamples.csharp.code,
+                code:  props.csharp.code,
               }),
               name: "C#"
             },
             {
               content: CodeSample({
                 language: "java",
-                code:  codeExamples.java.code,
+                code:  props.java.code,
               }),
               name: "Java"
             },
             {
               content: CodeSample({
                 language: "python",
-                code:  codeExamples.python.code,
+                code:  props.python.code,
               }),
               name: "Python"
             }
