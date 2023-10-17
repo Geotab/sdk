@@ -18,8 +18,7 @@ export default function Header(props: any) {
   };
 
   const handleLinkClick = (target: string) => {
-    setActive(target); 
-    // console.log("Active state is now:", target);
+    setActive(target);
   };
 
   return (
