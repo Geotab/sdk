@@ -12,10 +12,12 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
 import DriveIntroduction from "./pages/drive/introduction";
+import { Toaster } from "@geotab/react-component-library";
 
 
 function App() {
   return (
+    <Toaster duration={2000} position="bottom-center">
       <Router>
         <Header />
         <Navbar />
@@ -35,6 +37,7 @@ function App() {
 
         </Routes>
       </Router>
+      </Toaster>
   );
 }
 
