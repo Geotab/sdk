@@ -1,8 +1,9 @@
- 
-export default function Introduction () {
-    return (
-      <div>
-        <h1>Drive exists.</h1>
-      </div>
-    );
-  };
+import Page from "../../components/Page/Page";
+
+export default function Introduction() {
+  return (
+    <Page section="Drive">
+      <h1>Drive Exists</h1>
+    </Page>
+  );
+}

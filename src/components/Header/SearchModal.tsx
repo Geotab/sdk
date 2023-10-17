@@ -1,5 +1,4 @@
 import React from "react";
-
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,7 +11,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     <div className="modal">
       <div className="modal-content">
         <p>Search Modal opened</p>
-        <button onClick={onClose}>X</button>
+        <button className="close-button" onClick={onClose}>
+          X
+        </button>
       </div>
     </div>
   );

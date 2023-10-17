@@ -1,57 +1,54 @@
-a {
-  text-decoration: none;
-  color: grey;
-}
-
-.active-button {
-  background-color: #e5f7fd;
-  font-weight: bold;
-}
-
-a.active-button {
-  color: #005aa8;
-}
-
+/* Your CSS for the header component */
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   width: 100%;
-}
 
-.menu-item {
-  cursor: pointer;
-  font-weight: bold;
-}
+  .tabs-container {
+    display: flex;
+    margin-right: 25%;
+  }
 
-.tabs-container {
-  display: flex;
-  margin-right: 30%;
-}
+  a {
+    text-decoration: none;
+    color: grey;
+  }
 
-.geotab-sdk-logo {
-  margin-right: 10px;
-}
+  .tab-item,
+  .tab-item.active-button {
+    color: grey;
+    padding: 10px;
+    margin-right: 10px;
+  }
 
-.tab-item {
-  padding: 10px;
-  margin-right: 10px;
+  .tab-item.active-button {
+    background-color: #e5f7fd;
+  }
+
+  .tab-item.active-button a {
+    font-weight: bold;
+    color: #217f9e;
+  }
+
+  .menu-item {
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
 
 .search-bar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 1px solid grey;
 }
 
 .search-bar-input {
-  border: 1px solid #ccc;
-  padding: 3px;
-  width: 100%;
+  padding: 0.25em;
 }
 
+/* Temporary styling for Modal */
 .modal {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -62,12 +59,21 @@ a.active-button {
 }
 
 .modal-content {
+  display: none;
   background-color: #fff;
   max-width: 50%;
   margin: 10px auto;
   padding: 10px;
   border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal-content.active {
+  display: block;
 }
 
 .close-button {
@@ -75,4 +81,10 @@ a.active-button {
   top: 10px;
   right: 10px;
   cursor: pointer;
+  font-size: 20px;
+  color: #000;
+}
+
+.close-button:hover {
+  color: #ff0000;
 }
