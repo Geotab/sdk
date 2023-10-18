@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import { IconChevronRightSmall } from "@geotab/react-component-library";
 import hierarchyDiagram from "../../../assets/images/usingGoDevices/using-go-devices_0.png";
+import { CodeSamples, CodeSamplesContainer } from "../../../components/CodeSamplesContainer";
 
 const overview: ReactNode = <div className="paragraph">
     Data flows from the GO device to the MyGeotab hosted solution automatically.
@@ -16,6 +17,10 @@ const deviceHierarchy: ReactNode = <div className="paragraph">
     <br></br>
     <img src={hierarchyDiagram} alt="device hiearchy" /> {/*TODO: what do we want to do with alt?*/}
 </div>
+
+const test: CodeSamples = {
+
+}
 
 const apiToAddVehicles: ReactNode = <div className="paragraph">
     <p>Geotab has a robust API that allows third-party developers to create their own applications that use data from Geotab hardware.
@@ -48,6 +53,13 @@ const apiToExtractData: ReactNode = <div className="paragraph">
     {/*TODO: fix link */}
 </div>
 
+const testCode: CodeSamples = {
+    javascript: `// Your JavaScript code here`,
+    csharp: `// Your C# code here`,
+    java: `// Your Java code here`,
+    python: `// Your Python code here`
+};
+
 export default function UsingGoDevices() {
     return (
         <div className="pageContent">
@@ -67,6 +79,8 @@ export default function UsingGoDevices() {
                 This document covers the necessary steps to set up a customized solution. Note that the same API is used to retrieve the data from Geotab's
                 hosting solution and is identical to the regular MyGeotab configuration.
             </div>
+
+            <CodeSamplesContainer {...testCode}></CodeSamplesContainer>
 
             <Accordion summary="Overview" p={overview}></Accordion>
             <Accordion summary="Device hierarchy" p={deviceHierarchy}></Accordion>
