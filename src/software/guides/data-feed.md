@@ -71,6 +71,10 @@ For example, as new GPS and engine data arrives from a device, it is processed t
 
 * FaultData
 
+* FillUp
+
+* FuelUsed
+
 * IoxAddOn
 
 * LogRecord
