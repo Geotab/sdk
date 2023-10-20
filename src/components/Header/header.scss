@@ -1,0 +1,75 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 95%;
+  overflow-x: hidden;
+
+  .tabs-container {
+    display: flex;
+    margin-right: 40%;
+  }
+
+  .tab-item {
+    color: grey;
+    padding: 10px;
+    margin-right: 20px;
+
+    &.active-button {
+      background-color: #e5f7fd;
+      a {
+        font-weight: bold;
+        color: #217f9e;
+      }
+    }
+  }
+
+  .menu-item {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  a {
+    color: grey;
+    text-decoration: none;
+  }
+}
+
+.search-bar-container {
+  border: 1px solid silver;
+  margin-right: 10px;
+  max-width: 200px;
+
+  .search-bar-input {
+    padding: 5px;
+  }
+}
+
+/* Temporary placeholder styling for Modal component as there are no designs */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 70%;
+  margin: 40px auto;
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}

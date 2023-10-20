@@ -1,24 +1,81 @@
+import React, { useState, useContext } from "react";
+import MenuContext from "../../menuContext";
+import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
+import { Link } from "react-router-dom";
+import SearchModal from "../../components/Header/SearchModal";
+import "./header.scss";
 
-import React, { useState } from 'react';
-import { MenuContext } from '../../menuContext';
+export default function Header(props: any) {
+  const { active, setActive } = useContext(MenuContext);
+  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
-export default function Header() {
-    const [active, setActive] = useState("myGeotab");
+  const openSearchModal = () => {
+    setSearchModalOpen(true);
+  };
 
-    return (
-        <MenuContext.Provider value={active}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "30px",
-                width: "50%",
-                margin: "auto"
-            }}>
-                <div onClick={() => setActive("myGeotab")}>myGeotab</div>
-                <div onClick={() => setActive("myAdmin")}>myAdmin</div>
-                <div onClick={() => setActive("Drive")}>Drive</div>
-                <div onClick={() => setActive("Hardware")}>Hardware</div>
-            </div>
-        </MenuContext.Provider>
-    );
-};
+  const closeSearchModal = () => {
+    setSearchModalOpen(false);
+  };
+
+  const handleLinkClick = (target: string) => {
+    setActive(target);
+  };
+
+  return (
+    <header className="header-container">
+      {<LogoGeotabSDK className="geotab-sdk-logo" />}
+      <div className="tabs-container">
+        <div
+          className={`tab-item ${active === "myGeotab" ? "active-button" : ""}`}
+        >
+          <Link
+            to="/myGeotabIntroduction"
+            onClick={() => handleLinkClick("myGeotab")}
+            >
+            myGeotab
+          </Link>
+        </div>
+        <div
+          className={`tab-item ${active === "myAdmin" ? "active-button" : ""}`}
+          >
+          <Link
+            to="/myAdminIntroduction"
+            onClick={() => handleLinkClick("myAdmin")}
+            >
+            myAdmin
+          </Link>
+        </div>
+        <div
+          className={`tab-item ${active === "Drive" ? "active-button" : ""}`}
+          >
+          <Link
+            to="/driveIntroduction"
+            onClick={() => handleLinkClick("Drive")}
+            >
+            Drive
+          </Link>
+        </div>
+        <div
+          className={`tab-item ${active === "Hardware" ? "active-button" : ""}`}
+          >
+          <Link
+            to="/hardwareIntroduction"
+            onClick={() => handleLinkClick("Hardware")}
+          >
+            Hardware
+          </Link>
+        </div>
+      </div>
+
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search..."
+          onClick={openSearchModal}
+          className="search-bar-input"
+        />
+      </div>
+      <SearchModal isOpen={isSearchModalOpen} onClose={closeSearchModal} />
+    </header>
+  );
+}
