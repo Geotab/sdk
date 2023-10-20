@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Button } from '@geotab/react-component-library';
+import myGParser from './myGParser';
 
 function createString(inputString: string) {
     const lines = inputString.split('\n');
@@ -22,7 +23,7 @@ function createString(inputString: string) {
                 content.push(
                     <ul key={`ul-${index}`}>
                         {listItems.map((item, itemIndex) => (
-                        <React.Fragment key={`li-${itemIndex}`}>{item}</React.Fragment>
+                            <React.Fragment key={`li-${itemIndex}`}>{item}</React.Fragment>
                         ))}
                     </ul>
                 );
@@ -37,7 +38,7 @@ function createString(inputString: string) {
         content.push(
             <ul key="remaining-list-items">
                 {listItems.map((item, itemIndex) => (
-                <React.Fragment key={`remaining-li-${itemIndex}`}>{item}</React.Fragment>
+                    <React.Fragment key={`remaining-li-${itemIndex}`}>{item}</React.Fragment>
                 ))}
             </ul>
         );
@@ -60,11 +61,18 @@ const methods = [
         description: "Creates new uniquely named database on a server in the federation. Requires either a valid CaptchaAnswer and/or valid MyAdmin user credentials. See https://github.com/Geotab/sample-registration for an example."
     }
 ]
-const methodItems = methods.map((d) => <div><Header title={d.name}></Header><Button>View</Button><p>{createString(d.description)}</p></div>);
+const methodItems = methods.map((d) => <div><Header title={d.name}><Button>View</Button></Header><p>{createString(d.description)}</p></div>);
 //onClick error
 // is the way I'm going so far correct?
 // how to deal with changing table of contents and populating each heading for each parameter
 export default function Methods() {
+    let request = new XMLHttpRequest();
+    request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
+    request.send();
+    let xml: any = request.responseXML;
+    console.log(xml);
+    myGParser(xml);
+    
     async function testClick() {
         alert('Test click!');
     }
