@@ -8,6 +8,7 @@ import "./header.scss";
 export default function Header(props: any) {
   const { active, setActive } = useContext(MenuContext);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
+  const [isLanding, setIsLanding] = useState(true);
 
   const openSearchModal = () => {
     setSearchModalOpen(true);
@@ -19,61 +20,73 @@ export default function Header(props: any) {
 
   const handleLinkClick = (target: string) => {
     setActive(target);
+    setIsLanding(false);
   };
 
   return (
     <header className="header-container">
-      {<LogoGeotabSDK className="geotab-sdk-logo" />}
-      <div className="tabs-container">
-        <div
-          className={`tab-item ${active === "myGeotab" ? "active-button" : ""}`}
-        >
-          <Link
-            to="/myGeotabIntroduction"
-            onClick={() => handleLinkClick("myGeotab")}
+      <div className="header-container__left">
+        {isLanding && <LogoGeotabSDK className="geotab-sdk-logo" />}
+        <div className="header-menu-tabs">
+          <div
+            className={`header-menu-tab ${
+              active === "myGeotab" ? "active-button" : ""
+            }`}
+          >
+            <Link
+              to="/myGeotabIntroduction"
+              onClick={() => handleLinkClick("myGeotab")}
             >
-            myGeotab
-          </Link>
-        </div>
-        <div
-          className={`tab-item ${active === "myAdmin" ? "active-button" : ""}`}
+              myGeotab
+            </Link>
+          </div>
+          <div
+            className={`header-menu-tab ${
+              active === "myAdmin" ? "active-button" : ""
+            }`}
           >
-          <Link
-            to="/myAdminIntroduction"
-            onClick={() => handleLinkClick("myAdmin")}
+            <Link
+              to="/myAdminIntroduction"
+              onClick={() => handleLinkClick("myAdmin")}
             >
-            myAdmin
-          </Link>
-        </div>
-        <div
-          className={`tab-item ${active === "Drive" ? "active-button" : ""}`}
+              myAdmin
+            </Link>
+          </div>
+          <div
+            className={`header-menu-tab ${
+              active === "Drive" ? "active-button" : ""
+            }`}
           >
-          <Link
-            to="/driveIntroduction"
-            onClick={() => handleLinkClick("Drive")}
+            <Link
+              to="/driveIntroduction"
+              onClick={() => handleLinkClick("Drive")}
             >
-            Drive
-          </Link>
-        </div>
-        <div
-          className={`tab-item ${active === "Hardware" ? "active-button" : ""}`}
+              Drive
+            </Link>
+          </div>
+          <div
+            className={`header-menu-tab ${
+              active === "Hardware" ? "active-button" : ""
+            }`}
           >
-          <Link
-            to="/hardwareIntroduction"
-            onClick={() => handleLinkClick("Hardware")}
-          >
-            Hardware
-          </Link>
+            <Link
+              to="/hardwareIntroduction"
+              onClick={() => handleLinkClick("Hardware")}
+            >
+              Hardware
+            </Link>
+          </div>
         </div>
       </div>
-
-      <div className="search-bar-container">
-        <input
-          type="text"
-          placeholder="Search..."
-          onClick={openSearchModal}
-          className="search-bar-input"
-        />
+      <div className="header__container__right">
+        <div className="header-search-bar-container">
+          <input
+            type="text"
+            placeholder="Search..."
+            onClick={openSearchModal}
+            className="header-search-bar-input"
+          />
+        </div>
       </div>
       <SearchModal isOpen={isSearchModalOpen} onClose={closeSearchModal} />
     </header>

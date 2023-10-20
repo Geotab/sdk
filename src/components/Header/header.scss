@@ -1,18 +1,30 @@
+@import "../../variables.scss";
+
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  width: 95%;
-  overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: #f9fafb;
+  padding: 10px 10px;
+}
 
-  .tabs-container {
-    display: flex;
-    margin-right: 40%;
+.header-container__left {
+  display: flex;
+  align-items: center;
+
+  .geotab-sdk-logo {
+    min-width: 180px;
+    margin-right: 60px;
   }
 
-  .tab-item {
-    color: grey;
+  .header-menu-tabs {
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+  }
+
+  .header-menu-tab {
     padding: 10px;
     margin-right: 20px;
 
@@ -23,30 +35,35 @@
         color: #217f9e;
       }
     }
-  }
 
-  .menu-item {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  a {
-    color: grey;
-    text-decoration: none;
+    a {
+      color: #4e677e;
+      text-decoration: none;
+      font-size: $font-size-small;
+    }
   }
 }
 
-.search-bar-container {
-  border: 1px solid silver;
-  margin-right: 10px;
-  max-width: 200px;
+.header__container__right {
+  .header-search-bar-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #748faa;
+    border-radius: 3px;
+    margin-right: 10px;
+    max-width: 300px;
 
-  .search-bar-input {
-    padding: 5px;
+    .header-search-bar-input {
+      font-size: 12px;
+      color: #8da4b9;
+      width: 240px;
+      margin-left: 10px;
+      padding: 5px;
+    }
   }
 }
 
-/* Temporary placeholder styling for Modal component as there are no designs */
+/* Temporary placeholder styling for Modal component as there are currently no designs to reference */
 .modal {
   position: fixed;
   top: 0;
