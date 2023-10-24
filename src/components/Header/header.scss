@@ -7,7 +7,7 @@
   box-sizing: border-box;
   background-color: $backgrounds-content-0;
   flex-shrink: 0;
-  height: 56px;
+  height: 64px;
   gap: 10px;
   padding: 0 24px;
 }
@@ -95,6 +95,15 @@
       font-weight: 400;
       line-height: 16px;
       letter-spacing: 0.32px;
+    }
+
+    .header-search-icon {
+      display: flex;
+      width: 16px;
+      height: 16px;
+      padding: 0.092px 0.138px 0.127px 0.091px;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

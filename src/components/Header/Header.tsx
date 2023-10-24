@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import MenuContext from "../../menuContext";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { Link } from "react-router-dom";
+import { IconSearch } from "./IconSearch";
 import SearchModal from "../../components/Header/SearchModal";
 import "./header.scss";
 
@@ -82,6 +83,9 @@ export default function Header(props: any) {
       </div>
       <div className="header__container__right">
         <div className="header-search-bar-container">
+          <div className="header-search-icon">
+            <IconSearch />
+          </div>
           <input
             type="text"
             placeholder="Search..."
