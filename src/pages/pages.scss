@@ -60,6 +60,19 @@
   }
 }
 
+.usingCustomTelematicsDevices {
+
+  &__deviceManagementIMG{
+    padding: 0.25rem;
+    background-color: $lightGray;
+    border: 1px solid #DEE2E6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+}
+
 .landing-page__text-container {
   margin-right: 8px;
 }
