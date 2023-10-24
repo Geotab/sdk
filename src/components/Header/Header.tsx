@@ -26,7 +26,9 @@ export default function Header(props: any) {
   return (
     <header className="header-container">
       <div className="header-container__left">
-        {isLanding && <LogoGeotabSDK className="geotab-sdk-logo" />}
+        <div className="header-logo-container">
+          {isLanding && <LogoGeotabSDK className="geotab-sdk-logo" />}
+        </div>
         <div className="header-menu-tabs">
           <div
             className={`header-menu-tab ${
