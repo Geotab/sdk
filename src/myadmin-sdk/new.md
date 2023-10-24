@@ -4,6 +4,17 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## October 4, 2023
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### PostOrder
+
+- Currently, for the **PostOrder** method, **InvalidDataException** is returned when there is an exception. In a future release, these exceptions will be returned as a **MyAdminException** instead.  
+
+<br/>   
+
+***
 ## September 5, 2023
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
@@ -12,8 +23,8 @@ title: What's New
 
 - Along with the new `Auto-Activated` and `Billing Start Date` columns in Device Admin, we have added two new parameters to the **GetDeviceContractsByPage** and **GetDeviceContracts** methods:
     - `isAutoActivated` — Returns a result that indicates whether the device was auto-activated by Geotab.
-        - true — The device was auto-activated by Geotab.
-        - false — The device has yet to be activated or was activated from being installed in an asset.
+        - **true** — The device was auto-activated by Geotab.
+        - **false** — The device has yet to be activated or was activated from being installed in an asset.
     - `billingStartDate` — Returns the date when the device was activated.
 <br/>  
 
