@@ -43,8 +43,6 @@
 
     a {
       color: $text-secondary;
-      font-feature-settings: "clig" off, "liga" off;
-      font-family: Roboto;
       font-style: normal;
       font-weight: 400;
       line-height: 16px;
@@ -59,7 +57,6 @@
       a {
         font-weight: 700;
         color: $text-hyperlink;
-        font-feature-settings: "clig" off, "liga" off;
       }
     }
   }
@@ -70,6 +67,7 @@
     display: flex;
     width: 272px;
     padding: 8px;
+    margin-left: 24px;
     justify-content: flex-end;
     align-items: center;
     border-radius: 4px;
@@ -81,27 +79,20 @@
       height: 16px;
       flex-direction: column;
       justify-content: center;
+      font-size: $font-size-small;
+      line-height: 16px;
       margin-left: 8px;
       flex: 1 0 0;
       overflow: hidden;
       color: $text-placeholder;
-      font-feature-settings: "clig" off, "liga" off;
       text-overflow: ellipsis;
       white-space: nowrap;
-
-      font-family: Roboto;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-      letter-spacing: 0.32px;
     }
 
     .header-search-icon {
       display: flex;
       width: 16px;
       height: 16px;
-      padding: 0.092px 0.138px 0.127px 0.091px;
       justify-content: center;
       align-items: center;
     }
@@ -124,7 +115,7 @@
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: $lightGray;
   display: flex;
   flex-direction: column;
   align-items: center;
