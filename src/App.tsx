@@ -1,10 +1,11 @@
-import React, {createContext} from "react";
+import React, { createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Header, Navbar} from "./components";
+import { Header, Navbar } from "./components";
 import LandingPage from "./pages";
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
 import MyGeotabWhatsNew from "./pages/myGeotab/whatsNew";
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
+import MyGeotabDevelopingAddIns from "./pages/myGeotab/guides/developingAddIns";
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 
@@ -22,19 +23,19 @@ function App() {
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
-          <Route path="/myGeotabIntroduction" Component={MyGeotabIntroduction} />
-          <Route path="/whatsNew" Component={MyGeotabWhatsNew} />
-          <Route path="/gettingStarted" Component={MyGeotabGettingStarted} />
-          <Route path="/methods" Component={MyGeotabMethods} />
-          <Route path="/objects" Component={MyGeotabObjects} />
+          <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
+          <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+          <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
+          <Route path="/myGeotab/guides/developingAddIns" Component={MyGeotabDevelopingAddIns} />
+          <Route path="/myGeotab/methods" Component={MyGeotabMethods} />
+          <Route path="/myGeotab/objects" Component={MyGeotabObjects} />
 
-          <Route path="/myAdminIntroduction" Component={MyAdminIntroduction} />
-          <Route path="/hardwareIntroduction" Component={HardwareIntroduction} />
-          <Route path="/driveIntroduction" Component={DriveIntroduction} />
-
+          <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/drive/introduction" Component={DriveIntroduction} />
         </Routes>
       </Router>
-      </Toaster>
+    </Toaster>
   );
 }
 
