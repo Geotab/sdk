@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header, Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
-import createString from './createString';
 import RenderStringWithUrl from './renderStringWithUrl';
 
 let request = new XMLHttpRequest();
