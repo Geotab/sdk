@@ -121,35 +121,34 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                     if (itemType === 'object') {
                         // not all objects have basetype as a parameter in their tags
                         // perhaps the string needs to be hardcoded here in this file instead of passed in an array from the other file
-                        if (item[i].attributes.hasOwnProperty('baseType')) {
-                            if (itemStrings.some(object => item[i].attributes.baseType.nodeValue.includes(object))) {
-                                let tagName = item[i].attributes.name.nodeValue.split('.');
-                                let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
-                                if (!json[objectName]) {
-                                    json[objectName] = {
-                                        "description": "",
-                                        "properties": []
-                                    }
-                                }
-                                for (let j = 0; j < item[i].childNodes.length; j++) {
-                                    if (item[i].childNodes[j].nodeName === 'summary') {
-                                        if (item[i].childNodes[j].hasChildNodes()) {
-                                            let summaryChildren = item[i].childNodes[j].childNodes;
-                                            let summaryText: string = '';
-                                            for (let k = 0; k < summaryChildren.length; k++) {
-                                                if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
-                                                    summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
-                                                }
-                                                if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
-                                                    summaryText += summaryChildren[k].outerHTML;
-                                                }
-                                            }
-                                            json[objectName].description = summaryText.trimStart();
-                                        } 
-                                    }
+
+                        if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel'))) {
+                            let tagName = item[i].attributes.name.nodeValue.split('.');
+                            let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
+                            if (!json[objectName]) {
+                                json[objectName] = {
+                                    "description": "",
+                                    "properties": []
                                 }
                             }
-                        } else if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes(object))) {
+                            for (let j = 0; j < item[i].childNodes.length; j++) {
+                                if (item[i].childNodes[j].nodeName === 'summary') {
+                                    if (item[i].childNodes[j].hasChildNodes()) {
+                                        let summaryChildren = item[i].childNodes[j].childNodes;
+                                        let summaryText: string = '';
+                                        for (let k = 0; k < summaryChildren.length; k++) {
+                                            if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
+                                                summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
+                                            }
+                                            if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
+                                                summaryText += summaryChildren[k].outerHTML;
+                                            }
+                                        }
+                                        json[objectName].description = summaryText.trimStart();
+                                    } 
+                                }
+                            } 
+                        } else if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel'))) {
                             let tagName = item[i].attributes.name.nodeValue.split('.');
                             let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                             if (json[objectName]) {
