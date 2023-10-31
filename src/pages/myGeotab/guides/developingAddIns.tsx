@@ -347,10 +347,10 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
     <p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl"), Brazilian Portuguese ("pt-BR"), Dutch ("nl"), Italian ("it"), Simplified Chinese ("zh-Hans"), Thai ("th"), Indonesian ("id"), Czech ("cs"), Swedish ("sv"), Turkish ("tr"), and Malay ("ms").</p>
 
     <div className="side-note">
-        <p>Reference to the image can be an external URL such as: <code>https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In.</p>
+        <p>Reference to the image can be an external URL such as: <code className="small-code-sample">https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In.</p>
     </div>
 
-    <p>When using the items property to include your source code exclusively, you can set the files property an empty object using <code>{`{ }`}</code> as seen in Listing 1.</p>
+    <p>When using the items property to include your source code exclusively, you can set the files property an empty object using <code className="small-code-sample">{`{ }`}</code> as seen in Listing 1.</p>
 
     <p>Every Add-In has a JavaScript object which is set in your main.js file. For example, the Add-In class name "myaddin" is provided by the following JavaScript entry point:</p>
 
@@ -369,7 +369,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
     <p>For example, the following is an invalid absolute URL due to its dashes and will not be loaded correctly by MyGeotab:</p>
 
     <div className="side-note">
-        <p><code>https://my-web-server.com/pathToAddIn/index.html</code></p>
+        <p><code className="small-code-sample">https://my-web-server.com/pathToAddIn/index.html</code></p>
     </div>
 
     <h3>Embedding source code</h3>
@@ -443,7 +443,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
 
 //
 const ThirdPartyLibraries: ReactNode = <div className="paragraph">
-    <p>Add-Ins can include references to external libraries that have been custom developed or to existing libraries such as jQuery. This is performed in the traditional way by including a <code>&lt;script&gt;</code> tag to the URL of the file.</p>
+    <p>Add-Ins can include references to external libraries that have been custom developed or to existing libraries such as jQuery. This is performed in the traditional way by including a <code className="small-code-sample">&lt;script&gt;</code> tag to the URL of the file.</p>
 
     <h3>Listing 7 — Referencing jQuery from an Add-In</h3>
 
@@ -502,17 +502,17 @@ const PageLifecycle: ReactNode = <div className="paragraph">
                 <tr>
                     <td>initialize</td>
                     <td>Called only once when your custom page is first accessed. Use this method to initialize variables required by your Add-In.</td>
-                    <td><code>function(api, state, callback) {`{... }`}</code></td>
+                    <td><code className="small-code-sample">function(api, state, callback) {`{... }`}</code></td>
                 </tr>
                 <tr>
                     <td>focus</td>
                     <td>This method is called after the user interface has loaded or the state of the organization filter is changed. Use this method for initial interactions with the user or elements on the page.</td>
-                    <td><code>function(api, state) {`{... }`}</code></td>
+                    <td><code className="small-code-sample">function(api, state) {`{... }`}</code></td>
                 </tr>
                 <tr>
                     <td>blur</td>
                     <td>This method is called when the user is navigating away from your page. Use this method to save any required state.</td>
-                    <td><code>function(api, state) {`{... }`}</code></td>
+                    <td><code className="small-code-sample">function(api, state) {`{... }`}</code></td>
                 </tr>
             </tbody>
         </table>
@@ -523,7 +523,7 @@ const PageLifecycle: ReactNode = <div className="paragraph">
     <p>Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the <em>focus</em> method will be called. Finally, when the user is navigating away from your custom page Add-In, the <em>blur</em> method will be called, completing the Add-In lifecycle.</p>
 
     <div className="side-note">
-        <p>It's important to call the <code>callback</code> passed into <code>initialize</code> <em>after</em> all work is complete. Keep in mind the asynchronous nature of JavaScript.</p>
+        <p>It's important to call the <code className="small-code-sample">callback</code> passed into <code className="small-code-sample">initialize</code> <em>after</em> all work is complete. Keep in mind the asynchronous nature of JavaScript.</p>
     </div>
 
     <figure>
@@ -533,9 +533,9 @@ const PageLifecycle: ReactNode = <div className="paragraph">
 
     <h3>Lifecycle implementation</h3>
 
-    <p>The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined, and the optional <em>focus</em> and <em>blur</em> methods will be called due to the <code>callback</code> method being called in the <code>initialize</code> method.</p>
+    <p>The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined, and the optional <em>focus</em> and <em>blur</em> methods will be called due to the <code className="small-code-sample">callback</code> method being called in the <code className="small-code-sample">initialize</code> method.</p>
 
-    <p>Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix <code>geotab.addin</code> (note that the namespace is not hyphenated). In the example below, the full namespace is <code>geotab.addin.myCustomPage1</code>.</p>
+    <p>Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix <code className="small-code-sample">geotab.addin</code> (note that the namespace is not hyphenated). In the example below, the full namespace is <code className="small-code-sample">geotab.addin.myCustomPage1</code>.</p>
 
     <h3>Listing 9 — HTML and JavaScript entry point example</h3>
 
@@ -660,38 +660,38 @@ const JavaScriptButtonAction: ReactNode = <div className="paragraph">
             </thead>
             <tbody>
                 <tr>
-                    <td><code>getState</code></td>
+                    <td><code className="small-code-sample">getState</code></td>
                     <td>Gets an object that represents the current URL state</td>
                     <td>None</td>
                     <td>Object</td>
                 </tr>
                 <tr>
-                    <td><code>setState</code></td>
-                    <td>Sets the current URL state. The object parameter is a modified state retrieved from <code>_getState_</code></td>
+                    <td><code className="small-code-sample">setState</code></td>
+                    <td>Sets the current URL state. The object parameter is a modified state retrieved from <code className="small-code-sample">_getState_</code></td>
                     <td>Object</td>
                     <td>Void</td>
                 </tr>
                 <tr>
-                    <td><code>gotoPage</code></td>
-                    <td>Redirects the user to another page with optional parameters. Example: <code>state.gotoPage("map", {`{someParameter1: true, someParameter2: 5 }`});</code></td>
+                    <td><code className="small-code-sample">gotoPage</code></td>
+                    <td>Redirects the user to another page with optional parameters. Example: <code className="small-code-sample">state.gotoPage("map", {`{someParameter1: true, someParameter2: 5 }`});</code></td>
                     <td>String, [Object]</td>
                     <td>Void</td>
                 </tr>
                 <tr>
-                    <td><code>hasAccessToPage</code></td>
-                    <td>Checks whether the current user has the security clearance to view a page by its <code>#</code> (hash) value. Example: <code>var result = state.hasAccessToPage("map");</code></td>
+                    <td><code className="small-code-sample">hasAccessToPage</code></td>
+                    <td>Checks whether the current user has the security clearance to view a page by its <code className="small-code-sample">#</code> (hash) value. Example: <code className="small-code-sample">var result = state.hasAccessToPage("map");</code></td>
                     <td>String</td>
                     <td>Boolean</td>
                 </tr>
                 <tr>
-                    <td><code>getGroupFilter</code></td>
-                    <td>Gets an array with ids of the selected groups in the organization filter. Example: <code>var result = state.getGroupFilter();</code></td>
+                    <td><code className="small-code-sample">getGroupFilter</code></td>
+                    <td>Gets an array with ids of the selected groups in the organization filter. Example: <code className="small-code-sample">var result = state.getGroupFilter();</code></td>
                     <td>None</td>
                     <td>Array</td>
                 </tr>
                 <tr>
-                    <td><code>getAdvancedGroupFilter</code></td>
-                    <td>Gets an object with a <em>relation</em> property and a <em>groupFilterConditions</em> array of the selected groups in the organization filter. Example: <code>var result = state.getAdvancedGroupFilter();</code></td>
+                    <td><code className="small-code-sample">getAdvancedGroupFilter</code></td>
+                    <td>Gets an object with a <em>relation</em> property and a <em>groupFilterConditions</em> array of the selected groups in the organization filter. Example: <code className="small-code-sample">var result = state.getAdvancedGroupFilter();</code></td>
                     <td>None</td>
                     <td>Object</td>
                 </tr>
@@ -699,7 +699,7 @@ const JavaScriptButtonAction: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <div className="side-note"><p>The second parameter to the <code>gotoPage</code> method is optional and is used for query string parameters.</p></div>
+    <div className="side-note"><p>The second parameter to the <code className="small-code-sample">gotoPage</code> method is optional and is used for query string parameters.</p></div>
 </div>;
 
 //
@@ -808,7 +808,7 @@ const CompleteIntegrationExample: ReactNode = <div className="paragraph">
 const TroubleshootingAndDebugging: ReactNode = <div className="paragraph">
     <p>When developing Add-Ins, the use of Google Chrome and its Developer Tools window is recommended. To open the Chrome Developer Tools on Windows, press CTRL + SHIFT + I; on a Mac, press CMD + OPTION + I.</p>
 
-    <p>The contents of <code>console.log("...")</code> statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.</p>
+    <p>The contents of <code className="small-code-sample">console.log("...")</code> statements can be examined using the Developer Tools, the timeline of XML HTTP requests can be viewed, and breakpoints to step through the JavaScript source code can be created.</p>
 
     <p>It is also recommended to read Google's extensive learning resources available on using <a href="https://developers.google.com/chrome-developer-tools/">Chrome Developer Tools</a> to get started debugging or learn about the advanced features they have available.</p>
 

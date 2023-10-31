@@ -43,21 +43,21 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    outline: 1px solid #C0CCD8;
-    background: #FFF;
+    outline: 1px solid $button-outline;
+    background: $button-bg;
     box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.04);
 
     &:hover {
-      outline: 1px solid #C0CCD8;
-      background: #FFF;
+      outline: 1px solid $button-outline;
+      background: $button-bg;
       box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
     }
 
     &:focus,
     &:active {
       border-radius: 4px;
-      outline: 2px solid #0078D3;
-      background: #F9FAFB;
+      outline: 2px solid $button-outline--focus;
+      background: $button-bg--focus;
       box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
     }
   }
@@ -79,7 +79,7 @@ ul {
 
 .table-container {
   border-radius: 4px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid $table-border;
   margin: 0;
   padding: 0;
 }
@@ -88,14 +88,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-
-
   margin: 16px 0;
 }
 
 
 tbody tr {
-  border-top: 1px solid #d3d3d3;
+  border-top: 1px solid $table-border;
   border-radius: 4px;
 }
 
@@ -114,13 +112,13 @@ td {
 
 .title {
   font-weight: 300;
-  font-size: 28px;
+  font-size: $font-size-large;
   line-height: 36px
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 20px;
+  font-size: $font-size-medium;
   line-height: 28px;
 }
 
@@ -139,15 +137,21 @@ a {
   gap: 16px;
   align-self: stretch;
   border-radius: 4px;
-  background: #EBF6FF;
+  background: $side-note-bg;
   margin: 16px 0;
 
   p {
-    color: #25477B;
+    color: $side-note-color;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0.32px;
   }
+}
+
+.small-code-sample {
+  color: $code-color;
+  background-color: $code-bg;
+  padding: 4px;
 }
