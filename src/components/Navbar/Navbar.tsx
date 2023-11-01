@@ -1,7 +1,7 @@
 
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuContext } from '../../menuContext';
+import MenuContext from "../../menuContext";
 
 export default function Navbar() {
 
