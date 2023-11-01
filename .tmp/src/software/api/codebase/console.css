@@ -1,0 +1,82 @@
+.console {
+    font-family: Consolas, Lucida Console, monospace;
+    font-size: 13px;
+}
+.consoleRecord {
+    margin: 4px;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-bottom: 1px solid #efefef;
+}
+.consoleItem {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+.consoleError {
+    color: #ff0000;
+}
+.data-object-line {
+    display: block;
+}
+.data-object-children {
+    padding-left: 20px;
+    display: block;
+}
+.data-object-children-hidden {
+    display: none;
+}
+.data-object-title {
+    cursor: default;
+}
+.data-object-marker {
+    display: inline-block;
+    width: 10px;
+}
+.data-object-key {
+    color: #952e8e;
+}
+.data-object-inactive-key {
+    color: #cfa2d3;
+}
+.data-object-string-value {
+    color: #c4211d;
+}
+.data-number-value,
+.data-boolean-value {
+    color: #523dd9;
+}
+
+/* Animations for new records added to the console */
+.pulse {
+    animation: pulse .3s;
+    animation-iteration-count: 1;
+}
+.pulse-error {
+    animation: pulse-error .3s;
+    animation-iteration-count: 1;
+}
+@keyframes pulse {
+    0% {
+        background-color: #faf8f8;
+    }
+    50% {
+        background-color: rgba(37, 220, 37, 0.09);
+    }
+    100% {
+        background-color: #faf8f8;
+    }
+}
+@keyframes pulse-error {
+    0% {
+        background-color: #faf8f8;
+    }
+    50% {
+        background-color: rgba(142, 2, 21, 0.13);
+    }
+    100% {
+        background-color: #faf8f8;
+    }
+}

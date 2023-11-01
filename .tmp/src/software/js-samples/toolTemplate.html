@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Geotab SDK | Example Template</title>
+        <link rel="icon" href="../../favicon.ico">
+        <!-- Updated CSS file to reflect the UI refresh -->
+        <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
+        <!-- Materialize icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Contains all of the elements within the nav bar (logo, sample-pill, sign-out button) -->
+        <header>
+            <nav>
+                <!-- MyGeotab SDK Logo -->
+                <a href="https://geotab.github.io/sdk/software/introduction/" target="_blank">
+                    <img src="../../assets/images/pillar.svg" width="35" height="35" alt="">
+                    <h1>MyGeotab SDK</h1>
+                </a>
+
+                <!-- Sample tool tip (text within the class "sample-tooltip-text" is displayed when hovered upon) -->
+                <div class="sample-tooltip">
+                    <h1>DEVELOPER SAMPLE</h1>
+                    <div class="sample-tooltip-text">
+                        <p>This tool is provided as an example and is available on an As-Is basis. You must assume all the risks and costs associated with the use of the sample tool, including, without limitation, any damage to any equipment, software, information or data. In addition, we are not obligated to provide any maintenance, technical or other support for the sample tool. In order to improve our products, we may at any time, and without warning, change the design, presentation, or functionality of the software.</p>
+                    </div>
+                </div>
+
+                <!-- Sign out button using the CSS class "primary-btn" to apply the primary button stylings -->
+                <button class="primary-btn sign-out-btn" id="signout">Sign out</button>
+
+                <!-- 
+                    Template button used to open the template modal (modal content is within this HTML file has the id="template-content", mostly used for importers).
+                    The buttons/modals JavaScript functionality is within loginUpdated.js.
+                    You can test the modal by uncommenting the 'Template' button below.
+                -->
+                <!-- <button class="secondary-btn template-btn" id="template">Template</button> -->
+            </nav>
+        </header>
+            
+        <div class="container">
+            <!-- Div used to append the sign in components too, created within loginUpdated.js -->
+            <div id="signin-content"></div>
+
+            <!-- Header used to display the name of the example and more information about the example -->
+            <div class="example-header"> 
+
+                <!-- Name of the example-->
+                <div class="title">JS Tool Example</div>
+
+                <!-- Skill level tool tip (text within the class "skill-text" is displayed when hovered upon) -->
+                <div class="skill-level">Skill level:  
+                    <div class="skill-tooltip">   
+
+                        <!-- Currently using the beginner pill (present in the images folder under js-samples). Uncomment the specific pill (from below) to match the pill used for the specific example. -->
+                        <img src="images/beginner-pill.svg">
+                        <!-- 
+                        <img src="images/intermediate-pill.svg">
+                        -->
+                        <!--
+                        <img src="images/advanced-pill.svg">
+                        -->
+
+                        <div class="skill-text">
+
+                            <!-- Currently using the beginner skill text. Uncomment the specific skill text (from below) to match the pill used for the specific example. -->
+                            <p>This example demonstrates a tool that can be built with a beginner-level knowledge of the MyGeotab system. It is suitable for those who are new to the Geotab ecosystem and are just getting started with learning about the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                        
+                            <!-- 
+                            <p>This example demonstrates a tool that can be built with an intermediate-level knowledge of the MyGeotab system. It is suitable for those who have a good understanding of the Geotab ecosystem and are comfortable with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                            -->
+                            <!--
+                            <p>This example demonstrates a tool that can be built with an advanced-level knowledge of the MyGeotab system. It is suitable for those who have a well-versed understanding of the entire Geotab ecosystem and are confident with the MyGeotab SDK and leveraging the MyGeotab APIs within their projects.</p>
+                            -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Description section of the example -->
+                <div class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit a nibh in aliquam. Donec blandit sem eget euismod bibendum. Quisque facilisis aliquam augue, sed hendrerit odio volutpat eu. Maecenas urna turpis, pellentesque et felis at, pulvinar ornare ex. Etiam scelerisque, turpis feugiat accumsan dignissim, diam dolor mollis nibh, eget sodales dui tortor eu turpis. Proin accumsan vitae ipsum vitae gravida. Duis vehicula pharetra dui ac fermentum.
+                </div>
+
+                <!-- Methods/objects used section containing the links to the specific SDK references used -->
+                <div class="api-references">In this example
+                    <details open>
+                        <summary>API Methods:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Get1" target="_blank">Get</a>
+                    </details>      
+                    <details open>
+                        <summary>API Entities:</summary>
+                        <a href="https://geotab.github.io/sdk/software/api/reference/#Device" target="_blank">Device</a>
+                        <!-- <a href="https://geotab.github.io/sdk/software/api/reference/#objects" target="_blank">Link to Object</a> -->
+                    </details>
+                </div>
+            </div>
+
+            <!-- 
+                Success and error alerts used to inform the user if the example has been executed.
+                The ids for both alerts can be used within the JavaScript to be displayed.
+                Initially the invisible class is added to both alerts.
+            -->
+            <div id="example-alert">
+                <!-- Success alert -->
+                <div class="alert-disclaimer success invisible" id="success-alert">
+                    <div class="material-icons">check</div>
+                    <h2>Success Text (e.g. The driver has been added successfully.)</h2>
+                </div>
+
+                <!-- Error alert -->
+                <div class="alert-disclaimer error invisible" id="error-alert">
+                    <div class="material-icons">error</div>
+                    <h2>Error Text (e.g. The driver has not been added, please check the browsers console for more details.)</h2>
+                </div>
+            </div>
+
+            <!-- Components which make up the example are placed here -->
+            <div id="example-content">
+
+            </div>
+        </div>
+
+        <!-- This is the template modals container in which HTML can be added to include a template which the user can copy and paste for the importers -->
+        <div id="template-content">
+            <h2>Template</h2>
+            <p>
+                <strong>Overview</strong><br/>
+                This is the template modal which can be used to show certains templates that the user can copy and paste
+                into the importers or any of the other examples.
+            </p>
+        </div>
+
+        <!-- JavaScript file containing the api functionality -->
+        <script src="js/api.js"></script>
+
+        <!-- JavaScript file containing the login functionality (creating the sign-in modal) -->
+        <script src="js/login.js"></script>
+
+        <!-- The JavaScript used for the example is present in the same HTML file here -->
+        <script type="text/javascript">
+
+        </script>
+
+    </body>
+</html>

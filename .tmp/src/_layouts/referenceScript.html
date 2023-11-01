@@ -1,0 +1,1307 @@
+--- 
+layout: pageNoEdit
+---
+<style>
+    /* Hide footer until content loaded. */
+    footer {
+        display: none;
+    }
+</style>
+<input type="search" class="form-control" id="api-reference-search" title="Search for Methods and Objects" placeholder="Search"
+    style="display:none">
+
+<div id="loading-content">
+    <span id="loading-content-text">Giving your CPU something to do...</span>
+</div>
+<div role="main" id="main" style="display:none;">
+    <div id="main-inner">
+        <artical id="reference">
+            <h2 id="methods">Methods</h2>
+
+            <div id="dataStoreMembers"></div>
+
+            <hr>
+
+            <h2 id="objects">Objects</h2>
+
+            <div id="objectMembers"></div>
+        </artical>
+    </div>
+</div>
+
+<ul id="strings" style="display: none;">
+    <li id="typeName">typeName</li>
+    <li id="typeNameDescription">Identifies the type of entity that is being passed to the next parameter. For example,
+        <a class="cref" href="#Device">Device</a>.
+    </li>
+    <li id="credentials">credentials</li>
+    <li id="credentialsDescription">The user's Geotab login
+        <a class="cref" href="#Credentials">Credentials</a>.
+    </li>
+</ul>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.3/polyfill.min.js"></script>
+<script src="../codebase/third-party/Base64.js/base64.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/Nanonid/rison@master/js/rison.js"></script>
+<script src="../helpers.js"></script>
+
+<script>
+    var handleError = function (e) {
+        document.getElementById("loading-content-text").innerHTML = "Error: " + e.message;
+        document.getElementById("main").style.display = "none";
+        document.getElementById("loading-content").style.display = "visible";
+    },
+        request = function () {
+            var xhr = ((typeof (window) !== 'undefined' && window.XMLHttpRequest) ?
+                function () {
+                    return new XMLHttpRequest();
+                } :
+                function () {
+                    return new ActiveXObject('Microsoft.XMLHTTP');
+                }
+            )(),
+                parts = location.pathname.split("/"), path;
+            path = parts.splice(0, parts.length - 2).join("/"),
+            url = referenceType === 'MyAdmin' ?  'https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml' : 'https://mypreview.geotab.com/sdk.xml';
+
+            xhr.open("GET", url);
+            xhr.setRequestHeader("Content-Type", "text/xml");
+            xhr.onreadystatechange = function () {
+                var doc;
+                if (xhr.readyState == 4) {
+                    if (xhr.status === 200) {
+                        doc = new DOMParser();
+                        renderSDK(doc.parseFromString(xhr.responseText, "text/xml"));
+                        document.querySelector("footer").style.display = "block";
+                    } else {
+                        handleError({
+                            message: `Fail to load file ${url}. ${xhr.status}`
+                        });
+                    }
+                    xhr.onreadystatechange = null
+                }
+            };
+            xhr.onerror = function (xhr, err) {
+                handleError({
+                    message: `Fail to load file ${url}.`
+                });
+            };
+            xhr.send(null);
+            return xhr;
+        };
+
+    // different variable will be defined & different function will be executed, based on referenceType, i.e. url path type
+    var referenceType = document.URL.includes('myadmin')? 'MyAdmin': 'MyGeotab';
+    request();
+    
+    var renderSDK = function (xmlDoc) {
+        'use strict';
+        var autocomplete = (function (elem) {
+            var popup = (function (parent) {
+                var ul = document.createElement("UL");
+
+                ul.className = "autocomplete";
+                parent.appendChild(ul);
+                return ul;
+            })(document.querySelector("artical")),
+                searchObj = [],
+                elems = {
+                    category: function (item) {
+                        var li = document.createElement("LI");
+
+                        li.className = "autocompleteStatic";
+                        li.textContent = item.title;
+                        return li;
+                    },
+                    select: function (item) {
+                        var li = document.createElement("LI"),
+                            a = document.createElement("A");
+
+                        li.setAttribute("data-anchor", item.anchor);
+                        li.className = "autocompleteActive";
+                        a.className = "autocompleteLink";
+                        li.appendChild(a);
+                        a.textContent = item.label;
+                        a.href = "#" + item.anchor;
+                        return li;
+                    }
+                },
+                locatePopup = function () {
+                    var offset, parent,
+                        pOffset, parentOffset;
+
+                    if (popup && popup.style.display !== "none") {
+                        offset = elem.getBoundingClientRect();
+                        parent = popup.offsetParent;
+                        pOffset = (parent && parent !== document.body) ? parent.getBoundingClientRect() : null;
+                        parentOffset = {
+                            left: pOffset ? pOffset.left : 0,
+                            top: pOffset ? pOffset.top : 0
+                        };
+
+                        parentOffset.top = parentOffset.top - (parent ? parent.scrollTop : 0);
+                        parentOffset.left = parentOffset.left - (parent ? parent.scrollLeft : 0);
+
+                        popup.style.top = offset.top - parentOffset.top + offset.height + "px";
+                        popup.style.left = offset.left - parentOffset.left + "px";
+                        popup.style.width = Math.floor(offset.width) + "px";
+                    }
+                },
+                render = function (items) {
+                    var grouped = (items || []).reduce(function (obj, item) {
+                        if (!obj[item.category]) {
+                            obj[item.category] = [];
+                        }
+                        obj[item.category].push(item);
+                        return obj
+                    }, {}),
+                        options = Object.keys(grouped).reduce(function (all, key) {
+                            all.push({
+                                title: key
+                            });
+                            return all.concat(grouped[key]);
+                        }, []).reduce(function (parent, item) {
+                            var el = (item.title ? elems.category : elems.select)(item);
+
+                            parent.appendChild(el);
+                            return parent;
+                        }, document.createDocumentFragment());
+
+                    popup.innerHTML = "";
+
+                    if (items.length) {
+                        popup.appendChild(options);
+                        locatePopup();
+                    } else {
+                        close();
+                    }
+
+                },
+                open = function () {
+                    popup.style.display = "block";
+                    popup.scrollTop = 0;
+                    locatePopup();
+                },
+                addClass = function (el) {
+                    var className = "activeHover";
+
+                    if (el) {
+                        if (el.classList) {
+                            el.classList.add(className);
+                        } else {
+                            if (el.className.indexOf(className) < 0) {
+                                el.className = el.className + (el.className ? " " : "") + className;
+                            }
+                        }
+                    }
+                },
+                removeClass = function (el) {
+                    var classes = "activeHover";
+
+                    if (el) {
+                        if (el.classList) {
+                            el.classList.remove(classes);
+                        } else {
+                            var j, elemClasses = el.className.split(" ");
+
+                            for (j = 0; j < elemClasses.length; j++) {
+                                if (classes === elemClasses[j]) {
+                                    elemClasses.splice(j, 1);
+                                    break;
+                                }
+                            }
+                            el.className = elemClasses.join(" ");
+                        }
+                    }
+                },
+                postponedClose = function (e) {
+                    var el = e.target;
+                    while (el) {
+                        if (el === popup || el === elem) {
+                            break;
+                        }
+                        el = el.parentNode;
+                    }
+                    !el && close();
+                },
+                close = function () {
+                    removeClass(currActiveElem);
+                    popup.style.display = "none";
+                },
+                getSibling = function (el, direction, includeCurrentNode) {
+                    var prop = direction + "Sibling",
+                        sibElem = includeCurrentNode ? el : el[prop];
+                    while (sibElem && !sibElem.getAttribute("data-anchor")) {
+                        sibElem = sibElem[prop];
+                    }
+                    return sibElem;
+                },
+                currActiveElem,
+                search = function (pattern) {
+                    return pattern ? searchObj.filter(function (item) {
+                        return item.label.toLowerCase().indexOf(pattern.toLowerCase()) > -1 || (item.isBeta && pattern.toLowerCase() === "preview");
+                    }) : searchObj;
+                },
+                attach = function (el, obj) {
+                    return function (event) {
+                        el.addEventListener(event, obj[event], false);
+                    };
+                },
+                link = function (el) {
+                    var depth = 0, max = 2;
+
+                    while (el && max > depth++) {
+                        if (el.getAttribute("data-anchor")) {
+                            return el
+                        }
+                        el = el.parentNode;
+                    }
+                    return null;
+                },
+                popupEvents = {
+                    mouseover: function (e) {
+                        var el = link(e.target);
+                        if (el && el !== currActiveElem) {
+                            removeClass(currActiveElem);
+                            currActiveElem = el;
+                            addClass(currActiveElem);
+                        }
+                    },
+                    click: function () {
+                        setTimeout(close, 50);
+                    }
+                },
+                searchEvents = {
+                    keyup: function (e) {
+                        var nextElem;
+
+                        switch (e.keyCode) {
+                            case 40://down
+                                nextElem = currActiveElem ? getSibling(currActiveElem, "next", false) : getSibling(popup.childNodes[0], "next", true);
+                                break;
+                            case 38://up
+                                nextElem = currActiveElem ? getSibling(currActiveElem, "previous", false) : getSibling(popup.childNodes[popup.childNodes.length - 1], "previous", true);
+                                break;
+                            case 13://enter
+                                currActiveElem && currActiveElem.childNodes[0].click();
+                                elem.value = "";
+                                break;
+                            case 27://esc
+                                close();
+                                break;
+                            default:
+                                render(search(elem.value));
+                                nextElem = popup.querySelector(".autocompleteActive");
+                                nextElem && open();
+                                break;
+                        }
+
+                        if (nextElem) {
+                            removeClass(currActiveElem);
+                            currActiveElem = nextElem;
+                            addClass(currActiveElem);
+
+                            if (nextElem.offsetTop < popup.scrollTop) {
+                                popup.scrollTop = nextElem.offsetTop;
+                            } else if (nextElem.offsetTop + nextElem.offsetHeight > popup.scrollTop + popup.offsetHeight) {
+                                popup.scrollTop = nextElem.offsetTop - popup.offsetHeight + nextElem.offsetHeight;
+                            }
+                        } else {
+                            currActiveElem = null;
+                        }
+                    },
+                    search: function () {
+                        if (!elem.value) {
+                            render(searchObj);
+                        }
+                    },
+                    focus: function () {
+                        render(search(elem.value));
+                        open()
+                    }
+                };
+
+            window.addEventListener("resize", locatePopup, false);
+            window.addEventListener("click", postponedClose, false);
+            Object.keys(popupEvents).forEach(attach(popup, popupEvents));
+            Object.keys(searchEvents).forEach(attach(elem, searchEvents));
+
+            return {
+                render: function (items) {
+                    searchObj = items || [];
+                    close();
+                },
+                close: close
+            }
+        })(document.getElementById("api-reference-search")),
+
+            RUNNER_URL = "../runner.html",
+            CONSTRUCTOR_IDENTIFIER = "#ctor",
+            entityIdentifierNameSpace = "Geotab.Checkmate.ObjectModel.Id",
+            // Accommodate MyAdmin's xml structure
+            members = referenceType === 'MyAdmin' ? $(xmlDoc.getElementsByTagName("member")): $($(($(xmlDoc)).children()).children()),
+            memberDictionary = {},
+            membersHtml = document.getElementById("dataStoreMembers"),
+            objectMembersHtml = document.getElementById("objectMembers"),
+            methodsArray,
+            objectsArray,
+            memberSearchTags = [],
+            entityPlaceHolder = ["``0", "``1", "``2", "``3", "``4"],
+            memberTypes = {
+                "object": "T",
+                "property": "P",
+                "enumeration": "F",
+                "method": "M"
+            },
+            getMemberTypeString = function (memberType) {
+                switch (memberType) {
+                    case memberTypes.object:
+                        return "Object";
+                    case memberTypes.method:
+                        return "Method";
+                    case memberTypes.enumeration:
+                        return "Enumeration";
+                    case memberTypes.property:
+                        return "Property";
+                    default:
+                        return memberType;
+                }
+            },
+            dataTypes = {
+                "objectArray": "objectArray",
+                "stringArray": "stringArray",
+                "array": "array",
+                "number": "number",
+                "string": "string",
+                "long": "long",
+                "date": "date",
+                "boolean": "boolean",
+                "enum": "enum",
+                "object": "object",
+                "timespan": "timespan",
+                "byteArray": "byteArray" // This is a special type represented by a string
+            },
+            credentialsDescription = {
+                name: $("#credentials").text(),
+                description: $("#credentialsDescription").html()
+            },
+            typeName = {
+                name: $("#typeName").text(),
+                description: $("#typeNameDescription").html()
+            },
+            removeGenericsSymbols = function (string) {
+                return string.replace("``1", "").replace("``2", "").replace("`1", "").replace("`2", "");
+            },
+            pullTextWithLinked = (function () {
+                var commonReturnText = [];
+
+                return function (nodes, custom) {
+                    var i, ii, returnText = custom || commonReturnText,
+                        node, pos, nodeChildren,
+                        nodeType,
+                        attrName,
+                        attrText,
+                        attrTextNoParents = "",
+                        uniqueName;
+
+                    returnText.length = 0;
+                    for (i = 0, ii = nodes.length; i < ii; ++i) {
+                        node = nodes[i];
+                        nodeChildren = node.childNodes;
+                        nodeType = node.nodeType;
+
+                        if (nodeType === 1) {
+                            if (node.nodeName === "para") {
+                                returnText.push("<p>");
+                                returnText.push(pullTextWithLinked(nodeChildren, []));
+                                if (node.getAttribute("beta")) {
+                                    returnText.push(" <span class='beta'>Beta</span>");
+                                }
+                                returnText.push("</p>");
+                            } else if (node.nodeName === "list") {
+                                returnText.push("<ul>");
+                                for (var j = 0; j < nodeChildren.length; j++) {
+
+                                    returnText.push("<li>");
+                                    returnText.push(pullTextWithLinked(nodeChildren[j].childNodes[0].childNodes, [])); // item and description tags for list
+
+                                    // nested list
+                                    if (nodeChildren[j].childNodes.length > 1) {debugger;
+                                        let childNode  = nodeChildren[j].childNodes[1];
+                                        if (childNode.nodeName === "list") {
+                                            returnText.push("<ul>");
+                                            for (var k = 0; k < childNode.children.length; k++) {
+                                                returnText.push("<li>");
+                                                returnText.push(pullTextWithLinked(childNode.children[k].childNodes[0].childNodes, [])); // item and description tags for list
+                                                returnText.push("</li>");
+                                            }
+                                            returnText.push("</ul>");
+                                            continue;
+                                        }
+                                    }
+
+                                    returnText.push("</li>");
+                                }
+                                returnText.push("</ul>");
+                                continue;
+                            }
+
+                            if (node.attributes.length) {
+                                attrName = node.attributes[0].name;
+                                attrText = uniqueName = node.getAttribute(attrName);
+
+                                switch (attrName) {
+                                    case "name":
+                                        attrText = attrText.replace("M:Geotab.Checkmate.ObjectModel.DataStore.", "");
+                                        returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
+                                        break;
+                                    case "cref":
+                                        attrText = attrText.replace("T:Geotab.", "");
+                                        uniqueName = GetNameWithoutCheckmateReference(attrText); //we don't want to remove the appended numbers from href
+                                        attrTextNoParents = removeGenericsSymbols(uniqueName);
+                                        if (attrText.indexOf("T:System") > -1) {
+                                            returnText.push(attrTextNoParents.length > 0 ? attrTextNoParents : attrText);
+                                        } else {
+                                            returnText.push("<a href='#" + uniqueName.replace('`', '') + "' class='" + attrName + "' name='" + attrText + "'>" + (attrTextNoParents.length > 0 ? attrTextNoParents : attrText) + "</a>");
+                                        }
+                                        break;
+                                    case "href":
+                                        returnText.push("<a href='" + attrText + "' target='_blank'>" + node.textContent + "</a>");
+                                        break;
+                                }
+                            }
+                        } else if (nodeType === 3) {
+                            returnText.push(node.textContent);
+                        } else if (nodeType === 1 && nodeChildren.length) {
+                            returnText.push(node.textContent);
+                        }
+                    }
+                    return returnText.join("");
+                };
+            })(),
+            findMemberDictionaryObject = function (argument) {
+                var memberDictionaryTemp = memberDictionary,
+                    pos = argument.indexOf("{"),
+                    names = pos > -1 ? argument.substring(pos + 1, argument.indexOf("}")) : argument;
+
+                names = names.split(".");
+                while (names.length) {
+                    memberDictionaryTemp = memberDictionaryTemp[names.shift()];
+                    if (!memberDictionaryTemp) {
+                        return false;
+                    }
+                }
+                return memberDictionaryTemp;
+            },
+            listMatchRegex = /^Geotab.[a-zA-Z.]+List$/,
+            dataTypeToClass = function (dataTypeString) {
+                var unmodifiedDataTypeString = dataTypeString,
+                    memberDictionaryObject,
+                    dataTypeNameSpace,
+                    indexOfStartCB = dataTypeString.lastIndexOf("{"),
+                    indexOfEndCB = dataTypeString.indexOf("}"),
+                    list, pos, pos2,
+                    listTypes = {
+                        "List": true,
+                        "IList": true,
+                        "IEnumerable": true,
+                        "Enumerable": true,
+                        "Collection": true,
+                        "ICollection": true,
+                        "Dictionary": true,
+                        "IDictionary": true,
+                        "ArrayList": true
+                    };
+
+                //Array
+                if (dataTypeString.indexOf("System.Collections.Generic") > -1) {
+                    pos = dataTypeString.indexOf("{");
+                    pos2 = dataTypeString.indexOf("`1");
+                    list = (pos !== -1) ? dataTypeString.substring(27, pos) : (pos2 !== -1) ? dataTypeString.substring(27, pos2) : "";
+                    if (listTypes[list]) {
+                        return dataTypes.array;
+                    }
+                }
+
+                if (dataTypeString.match(listMatchRegex)) {
+                    return dataTypes.array;
+                }
+
+                dataTypeString = dataTypeString.replace(/@/gi, "");
+                dataTypeString = dataTypeString.replace(/System\./gi, "");
+
+                // namespace could be self referencing if data type and property name are the same, it's so common in C# that we cater for it here
+                dataTypeNameSpace = dataTypeString.split(".");
+                if (dataTypeNameSpace.length > 1) {
+                    dataTypeString = dataTypeNameSpace[dataTypeNameSpace.length - 1];
+                }
+
+                if (indexOfStartCB > -1) {
+                    dataTypeString = dataTypeString.substring(dataTypeString.indexOf("{") + 1, dataTypeString.length);
+                }
+                if (indexOfEndCB > -1) {
+                    dataTypeString = dataTypeString.substring(0, dataTypeString.indexOf("}"));
+                }
+
+                switch (dataTypeString) {
+                    case "Array":
+                        return dataTypes.array;
+                    case "Byte[]":
+                    case "byte[]":
+                        return dataTypes.byteArray;
+                    case "bool":
+                    case "boolean":
+                    case "Boolean":
+                    case "Nullable{Boolean}":
+                        return dataTypes.boolean;
+                    case "int":
+                    case "short":
+                    case "byte":
+                    case "float":
+                    case "double":
+                    case "Int32":
+                    case "Short":
+                    case "Byte":
+                    case "Float":
+                    case "Single":
+                    case "Double":
+                    case "Decimal":
+                    case "Nullable{Int32}":
+                    case "Nullable{Byte}":
+                    case "Nullable{Float}":
+                    case "Nullable{Double}":
+                    case "Nullable{Single}":
+                    case "Nullable{Decimal}":
+                        return dataTypes.number;
+                    case "long":
+                    case "Long":
+                    case "Int64":
+                    case "Nullable{Int64}":
+                    case "Nullable{Long}":
+                        return dataTypes.long;
+                    case "DateTime":
+                    case "Nullable{DateTime}":
+                        return dataTypes.date;
+                    case "TimeSpan":
+                        return dataTypes.timespan;
+                    case "string":
+                    case "Type":
+                    case "String":
+                    case "Guid":
+                    case entityIdentifierNameSpace:
+                        return dataTypes.string;
+                    case entityPlaceHolder[0]:
+                        return dataTypes.object;
+                }
+                //Enum
+                memberDictionaryObject = findMemberDictionaryObject(unmodifiedDataTypeString.replace("Geotab.", ""));
+                if (memberDictionaryObject && memberDictionaryObject.isEnum()) {
+                    return dataTypes.string;
+                }
+                //Object
+                return dataTypes.object;
+            },
+            isMethodRegex = new RegExp(/^.*\.get[^\.\(\)]*$/),
+            fullNameRegex = /(^.*\.)(get)([^\.]*$)/,
+            removeLeadingGetRegex = /^get(.*$)/,
+            removeBracketsRegex = /\(.*\)/g,
+            replaceGeotabRegex = /Geotab\./ig,
+            replaceUrlCharactersRegex = /[!@#$%^&`*]/g,
+            createDictionaryOfMembers = function (objectModelMembers, pullTextWithLinked, memberDictionary) {
+                var getArgumentsArray = function (memberName, indexesToHide) {
+                    var argsTemp = [],
+                        pos = memberName.indexOf("("),
+                        args = pos > 0 ? memberName.substr(pos + 1, memberName.length).replace(")", "") : "",
+                        i;
+
+                    if (args.length) {
+                        args = args.split(",");
+                    }
+                    if (indexesToHide && indexesToHide.length) {
+                        for (i = 0; i < args.length; i += 1) {
+                            if (indexesToHide.indexOf(i) === -1) {
+                                argsTemp.push(args[i]);
+                            }
+                        }
+                        return argsTemp;
+                    }
+                    return args;
+                },
+                    getMemberName = function (memberName, args) {
+                        var isGeneric = memberName.indexOf("``1", 0) > -1 || memberName.indexOf("``2", 0) > -1,
+                            async = "Async";
+
+                        memberName = args !== "" ? memberName.substr(0, memberName.indexOf("(")) : memberName;
+                        // Generics
+                        memberName = removeGenericsSymbols(memberName);
+                        // MyAdmin API keeps the async at the end, therefore no need of the following script
+                        if (referenceType !== 'MyAdmin' && !memberName.startsWith("Checkmate.API.") && memberName.endsWith(async)) {
+                            memberName = memberName.substring(0, memberName.length - async.length);
+                        }
+
+                        // Split member path into array
+                        return {
+                            memberName: memberName.split("."),
+                            isGeneric: isGeneric
+                        };
+                    },
+                    argument = function (name, description, required, beta) {
+                        return {
+                            name: name,
+                            description: description,
+                            required: required,
+                            beta: beta
+                        };
+                    },
+                    processNode = function (node) {
+                        var summary,
+                            remarks,
+                            name,
+                            memberName,
+                            isPropertyMethod,
+                            returns,
+                            supported,
+                            indexesToHide,
+                            hasCredentials,
+                            memberTree,
+                            i,
+                            ii,
+                            j,
+                            propertyAccessorString,
+                            propertyParentName,
+                            propertyName,
+                            currentMemberName,
+                            memberTreeParent,
+                            memberTreeCurrent,
+                            memberNameResults,
+                            searchPropDataType,
+                            memberPropMeth = {
+                                fullName: undefined,
+                                parent: undefined,
+                                name: undefined,
+                                type: undefined,
+                                args: [],
+                                summary: undefined,
+                                remarks: undefined,
+                                parameters: [],
+                                anchor: undefined,
+                                runnerArgs: undefined,
+                                nameSpace: undefined,
+                                supported: false,
+                                isGeneric: false,
+                                baseType: undefined,
+                                isBeta: false,
+                                isEnum: function () {
+                                    var hasProperties,
+                                        hasConstructor,
+                                        p,
+                                        properties = this.properties,
+                                        methods = this.methods;
+
+                                    // Enums don't have constructors
+                                    hasConstructor = methods && methods[CONSTRUCTOR_IDENTIFIER];
+                                    if (hasConstructor) {
+                                        return false;
+                                    }
+
+                                    // All properties need to be enums
+                                    for (p in properties) {
+                                        hasProperties = true;
+                                        if (!properties[p].isEnum()) {
+                                            return false;
+                                        }
+                                    }
+                                    return hasProperties ? true : this.type === memberTypes.enumeration;
+                                }
+                            },
+                            addNonDocumentedArgument = function (array, arg, type) {
+                                array.unshift(argument(arg.name, arg.description, true));
+                                if (memberPropMeth.args === "") {
+                                    memberPropMeth.args = [type];
+                                } else {
+                                    memberPropMeth.args.unshift(type);
+                                }
+                            },
+                            example, code, cref,
+                            memberObject = $.extend(memberPropMeth, {
+                                properties: {},
+                                methods: {}
+                            }),
+                            getItemData = function (member, attribute) {
+                                var value = member.getElementsByTagName(attribute);
+                                if (value.length && !value[0].hasAttribute("jsHide")) {
+                                    return pullTextWithLinked(value[0].childNodes);
+                                }
+                                return "";
+                            },
+                            removeGetAndSet = function (type, text) {
+                                var slicedText;
+                                if (type === memberTypes.property) {
+                                    if (text.lastIndexOf("Gets or sets ", 0) === 0) {
+                                        slicedText = text.slice(13);
+                                    } else if (text.lastIndexOf("Gets ", 0) === 0 || text.lastIndexOf("Sets ", 0) === 0) {
+                                        slicedText = text.slice(5);
+                                    } else {
+                                        slicedText = text;
+                                    }
+                                    return slicedText.charAt(0).toUpperCase() + slicedText.slice(1);
+                                }
+                                return text;
+                            };
+
+                        //Find type
+                        memberPropMeth.fullName = name = node.getAttribute("name");
+                        memberPropMeth.anchor = name.replace(removeBracketsRegex, "").replace(replaceUrlCharactersRegex, "");
+
+                        // Type - T:Type, F:Enum, M:Method, P:Property
+                        memberPropMeth.type = name.substr(0, 1);
+
+                        if (memberPropMeth.type === memberTypes.object) {
+                            memberPropMeth.baseType = node.getAttribute("baseType");
+                        }
+
+                        //If the method/object is not supported we will not add it
+
+                        supported = node.getElementsByTagName("isSupported");
+                        memberPropMeth.isBeta = supported && supported.length && !!supported[0].getAttribute("beta");
+
+                        // for Java we look for methods starting with get
+                        isPropertyMethod = memberPropMeth.type === memberTypes.method && isMethodRegex.test(name);
+
+                        // hiding abstract base clase that needs to be supported show inherited properties but is confising in docs.
+                        let shouldHide = name.indexOf('MimeContentBase') > -1;
+
+                        //In the case of properties/enums there are much more supported than not so we only note the unsupported ones
+                        if (memberPropMeth.type === memberTypes.property || memberPropMeth.type === memberTypes.enumeration || isPropertyMethod) {
+                            memberPropMeth.supported = !shouldHide && supported.length && supported[0].textContent.indexOf("true") > -1 || !supported.length;
+                        } else {
+                            // potential partial classes, if any part is true, use true
+                            for (i = 0; i < supported.length; i++) {
+                                if (supported[i].textContent.indexOf("true") > -1 && !shouldHide) {
+                                    memberPropMeth.supported = true;
+                                }
+                            }
+                        }
+
+                        memberPropMeth.summary = removeGetAndSet(memberPropMeth.type, getItemData(node, "summary").trim());
+                        memberPropMeth.remarks = getItemData(node, "remarks");
+
+                        example = node.querySelector("example");
+                        memberPropMeth.example = Array.prototype.filter.call(example ? example.childNodes : [], function (elem) {
+                            return elem.nodeType == 3;
+                        }).map(function (el) {
+                            return el.textContent;
+                        }).join("\n").trim();
+                        code = node.querySelector("code");
+                        memberPropMeth.code = (code ? code.textContent : "").trim();
+                        memberPropMeth.returns = getItemData(node, "returns");
+                        //Create MyAdmin Required Roles property in the member object
+                        if (referenceType === 'MyAdmin') {
+                            memberPropMeth.roles = getItemData(node, "roles");
+                        }                       
+
+                        name = name.slice(2, name.length + 1);
+                        memberName = name.replace(replaceGeotabRegex, "");
+
+                        indexesToHide = [];
+                        hasCredentials = false;
+                        Array.prototype.forEach.call(node.getElementsByTagName("param"), function (param, i) {
+                            // Web methods already have credentials as an argument
+                            if (!hasCredentials) {
+                                hasCredentials = param.getAttribute("name") === "credentials";
+                            }
+
+                            //Don't Display hidden or httpContext
+                            if (!param.getAttribute("jsHide") && param.getAttribute("name") !== "context" && param.getAttribute("name") !== "cancellationToken") {
+                                memberPropMeth.parameters.push(argument(pullTextWithLinked([param]), pullTextWithLinked(param.childNodes), param.getAttribute("required"), param.getAttribute("beta")));
+                            } else {
+                                indexesToHide.push(i);
+                            }
+                        });
+
+                        // Method Arguments (if there is any)
+                        memberPropMeth.args = getArgumentsArray(memberName, indexesToHide);
+
+                        // Name
+                        memberNameResults = getMemberName(memberName, memberPropMeth.args);
+                        memberName = memberNameResults.memberName;
+
+
+                        // Type name property
+                        if (memberNameResults.isGeneric) {
+                            addNonDocumentedArgument(memberPropMeth.parameters, typeName, "System.String");
+                        }
+                        // Add credentials to DataStore methods, WebMethods have in xml
+                        if (memberName[memberName.length - 2] === "DataStore" && memberPropMeth.type === memberTypes.method) {
+                            addNonDocumentedArgument(memberPropMeth.parameters, credentialsDescription, "Checkmate.Web.Credentials");
+                        }
+
+                        // Object dataType (if there is any)
+                        searchPropDataType = node.querySelector("value see");
+                        if (searchPropDataType) {
+                            cref = searchPropDataType.getAttribute("cref");
+                            memberPropMeth.args = cref ? cref.substring(2) : "";
+                        }
+
+                        // Namespace
+                        memberPropMeth.nameSpace = memberName.join(".");
+                        memberPropMeth.nameSpace = "Geotab." + memberPropMeth.nameSpace.substring(0, memberPropMeth.nameSpace.lastIndexOf("."));
+
+                        // for Java compatibility, we pretend the .getEntity methods  are properties
+                        if (memberPropMeth.supported && isPropertyMethod) {
+                            memberPropMeth.type = "P";
+
+                            // remove leading get from name
+                            memberName[memberName.length - 1] = memberName[memberName.length - 1].replace(removeLeadingGetRegex, "$1");
+
+                            // Replace the leading M to P and remove the get from the getEntity method name
+                            memberPropMeth.fullName = "P" + memberPropMeth.fullName.substring(1);
+                            memberPropMeth.fullName = memberPropMeth.fullName.replace(fullNameRegex, "$1$3");
+
+                            memberPropMeth.anchor = memberPropMeth.fullName.replace(replaceUrlCharactersRegex, "");
+
+                            searchPropDataType = node.querySelector("returns see");
+                            if (searchPropDataType) {
+                                cref = searchPropDataType.getAttribute("cref");
+                                memberPropMeth.args = cref ? cref.substring(2) : "";
+                            }
+
+                            memberPropMeth.returns = "";
+                        }
+
+                        // Add to dictionary
+                        memberTree = memberDictionary;
+                        ii = memberName.length;
+                        if (memberPropMeth.type === memberTypes.object) {
+                            for (i = 0; i < ii; ++i) {
+                                currentMemberName = memberName[i];
+                                memberTreeCurrent = memberTree[memberName[i]];
+
+                                if (i === ii - 1) {
+                                    // Add name and parent to the object
+                                    $.extend(memberObject, {
+                                        parent: i > 0 ? memberName[i - 1] : "Geotab",
+                                        name: currentMemberName
+                                    });
+                                    // add object to memberDictionary
+                                    if (!memberTreeCurrent) {
+                                        memberTree[memberName[i]] = memberObject;
+                                    } else {
+                                        //in case the property or method had to create the object before we added the full object
+                                        $.extend(memberTree[memberName[i]], memberObject);
+                                    }
+                                    return;
+                                } else if (!memberTreeCurrent) {
+                                    // Create the branch when it doesnt exist
+                                    memberTree[memberName[i]] = {};
+                                }
+                                // next branch
+                                memberTree = memberTree[memberName[i]];
+                            }
+                        } else if (memberPropMeth.type === memberTypes.property || memberPropMeth.type === memberTypes.method || memberPropMeth.type === memberTypes.enumeration) {
+                            propertyAccessorString = memberPropMeth.type === memberTypes.property || memberPropMeth.type === memberTypes.enumeration ? "properties" : "methods";
+                            propertyParentName = memberName[ii - 2];
+
+                            for (i = 0; i < ii; i += 1) {
+                                propertyName = memberName[i + 1];
+                                memberTreeParent = memberTree[propertyParentName];
+                                currentMemberName = memberName[i];
+                                memberTreeCurrent = memberTree[currentMemberName];
+
+                                if (ii - 2 === i) {
+                                    // When the object this property or method belongs to doesn't exist create it
+                                    if (!memberTreeParent) {
+                                        memberTreeParent = { properties: {}, methods: {} };
+                                    }
+                                    // Not 100% sure... extend the parent object doesn't have the properties to store methods or properties then create them in that object
+                                    if (!memberTreeParent[propertyAccessorString]) {
+                                        $.extend(memberTreeParent, { properties: {}, methods: {} });
+                                    }
+
+                                    // Add the name and parent to the method or property
+                                    $.extend(memberPropMeth, {
+                                        parent: i > 0 ? memberName[i] : "Geotab",
+                                        name: propertyName + (memberPropMeth.type === memberTypes.method ? "(" + (memberPropMeth.args.length > 0 ? "..." : " ") + ")" : "")
+                                    });
+
+                                    // Add the method or property to the object
+                                    if (memberTreeParent[propertyAccessorString][propertyName] !== undefined) {
+                                        //To account for overloaded methods
+                                        for (j = 1; j < 100; j += 1) {
+                                            if (memberTreeParent[propertyAccessorString][propertyName + "_" + j] === undefined) {
+                                                propertyName = propertyName + "_" + j;
+                                                memberPropMeth.anchor += "_" + j;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    memberTreeParent[propertyAccessorString][propertyName] = memberPropMeth;
+                                    return;
+                                } else if (!memberTreeCurrent) {
+                                    memberTreeCurrent = {};
+                                }
+                                // Go down a level int he tree
+                                memberTree = memberTreeCurrent;
+                            }
+                        }
+                    },
+                    z,
+                    zz;
+
+                for (z = 0, zz = objectModelMembers.length; z < zz; z += 1) {
+                    processNode(objectModelMembers[z]);
+                }
+            },
+            getRunnerLink = function (member) {
+                var example = member.example || null,
+                    code = member.code || null,
+                    sample;
+
+                if (code) {
+                    sample = {
+                        javascript: (example ? "/* " + example + " */\r\n" : "") + code,
+                        css: "",
+                        html: "",
+                        options: {
+                            js: true,
+                            css: false,
+                            html: false,
+                            console: true,
+                            output: true
+                        }
+                    };
+                    sample = btoa(encodeURIComponent(JSON.stringify(sample)));
+                    return "<a class=\"member-runner-link\" target=\"_blank\" href=\"" + RUNNER_URL + "#" + sample + "\">Try me</a>";
+                } else {
+                    return "";
+                }
+            },
+            sortMethodParams = function (parameters) {
+                var required = [],
+                    optional = [],
+                    sorter = function (a, b) {
+                        return a.name < b.name ? -1 : (a.name === b.name ? 0 : 1);
+                    };
+
+                if (parameters.length) {
+                    parameters.forEach(function (parameter) {
+                        (parameter.required ? required : optional).push(parameter);
+                    });
+
+                    required.sort(sorter);
+                    optional.sort(sorter);
+
+                    return required.concat(optional);
+                }
+                return parameters;
+            },
+            getDataType = function (argument) {
+                var type = dataTypeToClass(argument);
+                switch (type) {
+                    case dataTypes.long:
+                        return {
+                            class: type,
+                            dataType: dataTypes.string + ' {% octicon plus %}',
+                            description: "64bit integer is represented by a hex string in JSON because some languages do not support 64bit number type"
+                        };
+                    case dataTypes.date:
+                        return {
+                            class: type,
+                            dataType: dataTypes.string + ' {% octicon plus %}',
+                            description: "Date time is represented by an ISO string in UTC time (\"2000-01-01T01:00:00.000Z\")"
+                        };
+                    case dataTypes.timespan:
+                        return {
+                            class: type,
+                            dataType: dataTypes.string + ' {% octicon plus %}',
+                            description: "An time span interval represented in the format [-][d.]hh:mm:ss[.fffffff]. For example: \"2.05:02:44.928\""
+                        };
+                    case dataTypes.byteArray:
+                        return {
+                            class: type,
+                            dataType: dataTypes.string + ' {% octicon plus %}',
+                            description: "A byte array represented by a base64 encoded string"
+                        };
+                    default:
+                        return {
+                            class: type,
+                            dataType: type,
+                            description: ""
+                        };
+                }
+            },
+            memberToHtml = function (member, isObject) {
+                var memberHtmlString,
+                    paramDataType,
+                    j, jj,
+                    parameter,
+                    argument,
+                    title,
+                    property,
+                    propertiesHtmlString = "",
+                    isMethod,
+                    isEnum,
+                    pos,
+                    anchorText,
+                    anchorTextNoParents = "",
+                    memberParameters,
+                    getMemberPropertiesRecursive = function (member, processedProperties) {
+                        var baseTypeLookupValues, baseTypeMember, i,
+                            keys = Object.keys(member.properties).sort();
+                        //Add all the supported properties to html string
+                        for (j = 0; j < keys.length; j += 1) {
+                            property = member.properties[keys[j]];
+                            property.name = property.name.charAt(0).toLowerCase() + property.name.slice(1);
+                            if (property.supported && !processedProperties[property.name]) {
+                                propertiesHtmlString += "<tr>";
+                                propertiesHtmlString += "<td nowrap class='member-parameters-list-param " + (isEnum ? "enum-property" : "") + "'>" + property.name + "</td>";
+                                if (property.args) {
+                                    paramDataType = getDataType(property.args);
+                                    propertiesHtmlString += "<td><div class='member-parameters-list-type dataType " + paramDataType.class + "'><em class='' title='" + paramDataType.description + "'>" + paramDataType.dataType + "</em></div></td>";
+                                } else {
+                                    propertiesHtmlString += "<td class='member-parameters-list-type'>&nbsp;</td>";
+                                }
+                                propertiesHtmlString += "<td class='member-parameters-list-description'>" + property.summary + (property.remarks ? ("<br><span class='warnIcon'></span><span class='remarks'>" + property.remarks + "</span>") : "") + "</td>";
+                                propertiesHtmlString += "</tr>";
+
+                            }
+                            processedProperties[property.name] = true;
+                        }
+                        if (member.baseType) {
+                            let indexOf = member.baseType.indexOf("[");
+                            baseTypeLookupValues = member.baseType.substring(0, indexOf > 0 ? indexOf : member.baseType.length)
+.replace("T:", "").replace("`1", "").split(".");
+                            i = 0;
+                            if (baseTypeLookupValues[i] == "Geotab") {
+                                i++;
+                            }
+                            baseTypeMember = memberDictionary[baseTypeLookupValues[i]];
+                            for (i++; i < baseTypeLookupValues.length; i++) {
+                                baseTypeMember = baseTypeMember[baseTypeLookupValues[i]];
+                            }
+                            if (baseTypeMember) {
+                                getMemberPropertiesRecursive(baseTypeMember, processedProperties);
+                            }
+                        }
+                    };
+
+                if (!member.name) {
+                    return "";
+                }
+
+                isEnum = member.isEnum();
+                memberHtmlString = '<div class="member"><div class="member-info">';
+                memberParameters = member.parameters;
+                jj = memberParameters.length;
+                isMethod = member.type === memberTypes.method;
+                anchorTextNoParents = GetNameWithoutCheckmateReference(member.anchor);
+
+                memberHtmlString += "<span class='member-type'>" + (isEnum ? "Enum" : (member.type === memberTypes.object ? "Object" : (isMethod ? "Method" : ""))) + "</span>";
+
+                // Runner Args - only do for methods of DataStore and WebMethods. Do it here so we can do an enum and object lookup on the completed member dictionary.
+                memberHtmlString += !isObject && (member.parent === "DataStore" || member.parent === "WebMethods") ? getRunnerLink(member) : "";
+                memberHtmlString += '<h3 class="member-name" id="' + anchorTextNoParents + '">' + member.name + (member.isBeta ? ' <span class="beta">Beta</span> ' : '') + '</h3>';
+                // memberHtmlString += '<p class="member-namespace">' + (!isMethod ? member.nameSpace : '') + '</p>';
+                memberHtmlString += '<p class="member-description">' + member.summary + '</p>';
+                memberHtmlString += member.remarks ? ('<p class="member-remarks"><span class="warnIcon"></span>' + member.remarks + '</p>') : "";
+                //Add MyAdmin Required Roles to DOM
+                if (referenceType === 'MyAdmin') {
+                    memberHtmlString += member.roles? ("<dl class='member-parameters-list'><dt class='member-parameters-list-roles'>Required Roles</dt>" + 
+                    "<dd class='member-parameters-list-description-roles'>" + member.roles + "</dd></dl>") : ""};
+                //Parameters
+                if (!isObject) {
+                    //Returns
+                    if (member.returns) {
+                        memberHtmlString += "<dl class='member-parameters-list'><dt class='member-parameters-list-returns'>Returns</dt>";
+                        memberHtmlString += "<dd class='member-parameters-list-description-returns'>" + member.returns + "</dd></dl>";
+                    }
+                    if (jj || member.args.length) {
+                        for (j = 0; j < jj; j += 1) {
+                            memberParameters[j].dataType = member.args[j];
+                        }
+                        memberParameters = sortMethodParams(memberParameters);
+                        memberHtmlString += '<div class="member-parameters"><h4><a href="#">Parameters</a></h4><div class="slideContainer"><table class="member-parameters-list">';
+                        for (j = 0; j < jj; j += 1) {
+                            parameter = memberParameters[j];
+                            argument = memberParameters[j].dataType;
+                            title = (!!parameter.required ? "required" : "optional");
+                            let icon = !!parameter.required ? ' *' : "";
+                            if (!!parameter.beta) {
+                                icon += " <span class='beta'>Beta</span>";
+                            }
+                            memberHtmlString += "<tr>";
+                            memberHtmlString += "<td nowrap class='member-parameters-list-param " + title + "' title='" + title + "'>" + parameter.name + icon + "</td>";
+                            paramDataType = argument ? getDataType(argument) : {};
+                            memberHtmlString += "<td><div class='member-parameters-list-type dataType " + paramDataType.class + "'><em class='' title='" + paramDataType.description + "'>" + paramDataType.dataType + "</em></div></td>";
+                            memberHtmlString += "<td class='member-parameters-list-description'>" + parameter.description + (parameter.remarks ? ("<br><span class='warnIcon'></span><span class='remarks'>" + parameter.remarks + "</span>") : "") + "</td>";
+                            memberHtmlString += "</tr>";
+                        }
+                        memberHtmlString += '</table></div></div>';
+                    }
+                } else if (isObject && (!$.isEmptyObject(member.properties) || member.baseType)) {
+                    getMemberPropertiesRecursive(member, {});
+                    // If there is properties to add then add them
+                    if (propertiesHtmlString.length > 0) {
+                        memberHtmlString += '<div class="member-parameters"><h4><a href="#">';
+                        memberHtmlString += isEnum ? "Values" : "Properties";
+                        memberHtmlString += '</a></h4><div style="display:none;" class="slideContainer"><table class="member-parameters-list">';
+                        memberHtmlString += propertiesHtmlString;
+                        memberHtmlString += '</table></div></div>';
+                    }
+                }
+                memberHtmlString += '</div></div>';
+                return memberHtmlString;
+            },
+            addSearchTag = function (searchTagsArray, member) {
+                searchTagsArray.push({
+                    label: member.name,
+                    anchor: GetNameWithoutCheckmateReference(member.anchor),
+                    category: getMemberTypeString(member.type) + "s",
+                    isBeta: member.isBeta
+                });
+            },
+            sortAndAddMembersToPage = function (memberDictionary, htmlArray) {
+                var i, member, keys = Object.keys(memberDictionary || {}).sort();
+
+                for (i = 0; i < keys.length; ++i) {
+                    member = memberDictionary[keys[i]];
+                    // If the member contains a constructor it is an object
+                    if (member) {
+                        if (member.type === memberTypes.method && member.name !== CONSTRUCTOR_IDENTIFIER + "(...)" && member.supported) {
+                            addSearchTag(memberSearchTags, member);
+                            htmlArray.push(memberToHtml(member, false));
+                        } else if (member.type === memberTypes.object && member.supported) {
+                            addSearchTag(memberSearchTags, member);
+                            htmlArray.push(memberToHtml(member, true));
+                        }
+                    }
+                }
+            },
+            extend = function () {
+                var length = arguments.length,
+                    src, srcKeys, srcAttr,
+                    fullCopy = false,
+                    resAttr,
+                    isUsualObject = function (obj) {
+                        return (obj || "").toString() === "[object Object]";
+                    },
+                    res = arguments[0], i = 1, j;
+
+                if (typeof res === "boolean") {
+                    fullCopy = res;
+                    res = arguments[1];
+                    i++;
+                }
+                while (i !== length) {
+                    src = arguments[i];
+                    srcKeys = Object.keys(src || {});
+                    for (j = 0; j < srcKeys.length; j++) {
+                        srcAttr = src[srcKeys[j]];
+                        if (fullCopy && (isUsualObject(srcAttr) || Array.isArray(srcAttr))) {
+                            resAttr = res[srcKeys[j]];
+                            resAttr = res[srcKeys[j]] = (isUsualObject(resAttr) || Array.isArray(resAttr)) ? resAttr : (Array.isArray(srcAttr) ? [] : {});
+                            extend(fullCopy, resAttr, srcAttr);
+                        } else {
+                            res[srcKeys[j]] = src[srcKeys[j]];
+                        }
+                    }
+                    i++;
+                }
+                return res;
+            },
+            renderMethods = function () {
+                if (referenceType === 'MyAdmin') {
+                    var allMethods = extend(true, {}, memberDictionary["Internal"]["MyAdmin"]["Api"]["Handlers"]["Legacy"]["MyAdminApiService"]["methods"]);
+                } else {
+                    var allMethods = extend(true, {}, memberDictionary["CheckmateServer"]["Web"]["WebMethods"]["methods"], memberDictionary["Checkmate"]["Database"]["DataStore"]["methods"]);
+                }
+                methodsArray = [];
+                sortAndAddMembersToPage(allMethods, methodsArray);
+                membersHtml.innerHTML = methodsArray.join("");
+                setUpAccordions("dataStoreMembers");
+            },
+            renderObjects = function () {
+                // For sorting by name independent of namespacing
+                if (referenceType === 'MyAdmin') {
+                    var allObjects = extend(true, {},
+                        memberDictionary["MyAdminApiLib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"], 
+                        memberDictionary["Checkmate"]["ObjectModel"],
+                        memberDictionary["Internal"]["MyAdmin"]["APILib"]["MyAdmin"]["MyAdminApi"]["ObjectModel"],
+                        memberDictionary["Internal"]["ObjectModel"]["Engines"]);
+                } else {
+                    var allObjects = extend(true, {}, {
+                    API: memberDictionary["Checkmate"]["API"]
+                },
+                    memberDictionary["Checkmate"]["Database"],
+                    memberDictionary["Checkmate"]["ObjectModel"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["AddIns"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Engine"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Exceptions"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Files"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Fuel"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Geographical"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Captcha"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Jurisdictional"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Registration"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Tachograph"]["Files"],
+                    memberDictionary["Checkmate"]["ObjectModel"]["Web"],
+                    memberDictionary["Checkmate"]["Settings"],
+                    memberDictionary["Checkmate"]["Web"],
+                    memberDictionary["Checkmate"]["Security"],
+                    memberDictionary["Drawing"]);
+                }
+
+                objectsArray = [];
+                sortAndAddMembersToPage(allObjects, objectsArray);
+                objectMembersHtml.innerHTML = objectsArray.join("");
+                setUpAccordions("objectMembers");
+            },
+            setUpAccordions = function (parentSelector) {
+                var parent = document.getElementById(parentSelector);
+
+                Array.prototype.forEach.call(parent ? parent.querySelectorAll(".member-parameters h4") : [], function (el) {
+                    el.addEventListener("click", function (e) {
+                        var options = this.nextElementSibling;
+                        options.style.display = (options.style.display === "none" ? "block" : "none");
+                        e.preventDefault();
+                    }, false);
+                });
+            },
+            GetNameWithoutCheckmateReference = function (name){
+                var pos = name.lastIndexOf(".");
+                var anchorTextNoParents = pos > 0 ? name.substr(pos + 1, name.length) : "";
+                anchorTextNoParents = anchorTextNoParents.length > 0 ? anchorTextNoParents : name;
+                anchorTextNoParents = anchorTextNoParents.replace("Async1", "1").replace("Async","");
+                return anchorTextNoParents;
+            },
+            loading = document.getElementById("loading-content"),
+            main = document.getElementById("main"),
+            nav = document.getElementById("navigation"),
+            search = document.getElementById("api-reference-search");
+
+        /** Main **/
+        // Create Dictionary of Members from the XML file
+
+        createDictionaryOfMembers(members, pullTextWithLinked, memberDictionary);
+
+        // Add DataStore Methods then objects to page
+        renderMethods();
+        renderObjects();
+
+        loading.style.display = "none";
+        main.style.display = "block";
+        search.style.display = "block";
+        autocomplete.render(memberSearchTags);
+        window.document.addEventListener("scroll", function (e) {
+            autocomplete.close();
+        }, false);
+
+        // fire domcontent loaded event
+        var DOMContentLoaded_event = document.createEvent("Event")
+        DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+        window.document.dispatchEvent(DOMContentLoaded_event)
+    };
+
+    document.body.addEventListener("touchmove", function (e) { }, false);
+</script>
