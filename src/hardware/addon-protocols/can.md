@@ -75,7 +75,7 @@ Issued by the GO device upon receipt of Third-Party Data from the external devic
 
 ### Msg Type 0x81: Third-Party Device ID
 
-Issued by the external device upon power-up, once every second until an Acknowledge message (Msg Type 0x02) is received.
+Issued by the external device upon powerup once every second until an Acknowledge message (Msg Type 0x02) is received.
 
 | CAN ID Breakdown | Value |
 | --- | --- |

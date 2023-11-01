@@ -164,7 +164,7 @@ Issued by the GO device every 2 seconds to a connected Enhanced Hours Of Service
 3. If Road Speed from the engine is not available, GPS speed is used.
 4. Increase of odometer since the most recent ignition on. If Odometer is not available, GPS device distance is used.
 5. Time passed since the most recent ignition on.
-6. Driver ID only available when using the IOX-NFC.
+6. Driver ID is only available when using the IOX-NFC.
 
 #### *Conversions*
 
