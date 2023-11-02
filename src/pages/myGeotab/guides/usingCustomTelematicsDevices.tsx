@@ -12,9 +12,8 @@ To get started with the registration process, please refer to the <a href="https
 
 const deviceManagement: ReactNode =
     <div className="paragraph">
-Geotab uses MyAdmin API to manage devices and uses Data Intake Gateway to intake device data
-
-
+Geotab uses MyAdmin API to manage devices and uses Data Intake Gateway to intake device data.
+<br></br>
 <img src={myAdminAndDIGFlow} className="usingCustomTelematicsDevices__deviceManagementIMG" alt="Navigate to MyAdmin introduction" />
 <br></br>
 To manage devices, the following MyAdmin API calls are most frequently used:
