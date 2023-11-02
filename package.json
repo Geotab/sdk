@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "http://geotab.github.io/sdk",
   "dependencies": {
-    "@geotab/react-component-library": "^1.0.32",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,6 +11,7 @@
     "@types/node": "^16.18.54",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.7",
+    "@geotab/react-component-library": "^1.0.32",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.4",
     "react-dom": "^18.2.0",
