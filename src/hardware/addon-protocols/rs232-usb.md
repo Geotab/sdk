@@ -363,7 +363,7 @@ This is a request-response message. It can be issued by the External Device when
 
 ### Msg Type 0x86: Binary Data Packet
 
-Sent by the external device when sending messages with less than 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
+Sent by the external device when sending messages with less than or equal to 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the data was accepted into the modem's socket buffer.
 
 |   | Bytes | Position |
 | --- | --- | --- |
