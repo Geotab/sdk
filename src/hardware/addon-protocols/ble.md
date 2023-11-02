@@ -4,11 +4,11 @@ permalink: /hardware/addon-protocols/ble/
 title: Add-On Protocol - BLE
 --- 
 
-External devices can communicate with the Geotab GO device through the Third-Party Bluetooth Low Energy (BLE) protocol below. The hardware interface will be the [IOX-BT](https://support.geotab.com/ioxs/installation/doc/iox-bt).
+External devices can communicate with the Geotab GO device through the Third-Party Bluetooth Low Energy (BLE) protocol described on this page. The hardware interface is the [IOX-BT](https://support.geotab.com/ioxs/installation/doc/iox-bt).
 
-The IOX-BT is a read-only BLE sensor hub that supports up to 200 in-range beacons and will detect in/out of range for any Bluetooth beacon with a public MAC Address. However, sending any other data points requires the beacon to conform to the below specified Geotab BLE protocol. Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
+The IOX-BT is a read-only BLE sensor hub that supports up to 200 in-range beacons and will detect in/out of range for any Bluetooth beacon with a public MAC Address. However, sending any other data points requires the beacon to conform to the specified Geotab BLE protocol. Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
 
-Because it can only read packets, no handshake is required. Two way communication and device pairing are not possible.
+Because it can only read packets, no handshake is required. Two-way communication and device pairings are not possible.
 
 ## Advertising Packet
 
@@ -38,7 +38,7 @@ Because it can only read packets, no handshake is required. Two way communicatio
 
 ### Optional Information Types
 
-These information types are optional and are not part of the required packet structure. Each entry must be preceded by the corresponding information identifier byte. If multiple information entries are used in the same advertisement packet, they should be arranged in an incrementing order based on their information identifier. The identifiers in the table below are those that are currently defined. Geotab will define new identifiers for any new sensors as required. You must use the IDs as defined by Geotab. If there is undefined data, contact us via the Help Desk and we will define the data and send you the required ID.
+These information types are optional and are not part of the required packet structure. Each entry must be preceded by the corresponding information identifier byte. If multiple information entries are used in the same advertisement packet, they should be arranged in an incrementing order based on their information identifier. The currently defined identifiers are listed in the table below. Geotab will define new identifiers for any new sensors, as required. You must use the IDs as defined by Geotab. If there is undefined data, contact us via the Help Desk and we will define the data and send you the required ID.
 
 | Information identifier | Description | Unit type | Length (bytes) | Units |
 | --- | --- | --- | --- | --- |
@@ -101,25 +101,25 @@ For all information types that use the FP24 format, a new log will be generated 
 
 ### Generic Byte
 
-The Generic Byte type can store one byte of data (0 to 255). It could be used to count the number of times a button is pressed. Or simply store the state of a toggle (0 or 1) switch. A new log will be generated on any change of data.
+The Generic Byte type can store one byte of data (0 to 255). It can be used to count the number of times a button is pressed, or simply store the state of a toggle switch (0 or 1). Any data changes will generate a new log.
 
 ### Generic Timer
 
-The Generic Timer allows keeping track of an elapsed time. The Units Of Time are not specifically defined and can be chosen by the implementor. If may make sense to measure some durations in hours, while others may warrant seconds. The Units Of Time may continuously increment. A new log will not be saved until a new event counter value is reported. The Generic Timer can be associated with other data types. For example, you could associate Generic Timer 1 with temperature to indicating the time when a chosen temperature threshold was exceeded.
+The Generic Timer allows keeping track of an elapsed time. The Units Of Time are not specifically defined and can be chosen by the implementor. It may make sense to measure some durations in hours, while others may warrant seconds. The Units Of Time may continuously increment. A new log will not be saved until a new event counter value is reported. The Generic Timer can be associated with other data types. For example, you can associate Generic Timer 1 with temperature to indicate the time when a chosen temperature threshold was exceeded.
 
 ### Wakeup Event
 
-A custom parameter is used to configure the IOX-BT to wakeup periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This periodic wakeup can be enabled using the following custom parameter:
+A custom parameter is used to configure the IOX-BT to wake up periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This periodic wakeup can be enabled using the following custom parameter:
 ```
 <Parameter Description='Enable Periodic Bluetooth Wakeup' Offset='167' Bytes='80' IsEnabled='true'/>
 ```
 The implementor of this protocol should increase the frequency of advertisements sent during an attempted wakeup event. A 100ms advertisement interval that persists for a minimum of 1 minute is recommended.
 
-When sending the wakeup event as part of the advertisement data a value of 0x00 means "no event". Anything greater than 0 that has not already been reported on will cause the GO to wakeup and report on the beacon advertisements. The event is only used as an indication for reporting the changes in the rest of the advertisement data. The actual contents of the alert event byte will not be sent/reported.
+When sending the wakeup event as part of the advertisement data, a value of 0x00 means "no event". Anything greater than 0 that has not already been reported will cause the GO device to wake up and report on the beacon advertisements. The event is only used as an indication for reporting any changes in the rest of the advertisement data. The actual contents of the alert event byte will not be sent/reported.
 
 ### Custom Data
 
-Arbitrary data can be placed in the custom data segment. The data will not be interpreted by MyGeotab, but will be accessible through the API. The onus is on the implementor to extract and interpret the data. The data must be preceded by the length. The length is limited by the amount of data that can fit in the optional information section. The maximum custom data length is 18 bytes. A new log will be generated on any change in the data.
+Arbitrary data can be placed in the custom data segment. The data will not be interpreted by MyGeotab, but will be accessible through the API. The onus is on the implementor to extract and interpret the data. The data must be preceded by the length. The length is limited by the amount of data that can fit in the optional information section. The maximum custom data length is 18 bytes. Any data changes will generate a new log.
 
 | Offset | Description |
 | --- | --- |
