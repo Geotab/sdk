@@ -6,22 +6,22 @@ title: IO Expander Protocol
 
 ## General Description
 
-The GO device and the Input-Output Expander (IOX) are connected in a dedicated CAN network. All communication is between the GO device and the IOX. IOXs do not talk to each other. Communications can be of the form: GO device to all IOXs, GO device to individual IOX, or individual IOX to GO device. Readers are recommended to find examples from [CAN IOX Sample Communication Session](https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing) as they read through the rest of this page.
+The GO device and Input-Output Expanders (IOX) are connected in a dedicated CAN network. All communication is between the GO device and any connected IOXs - in particular, IOXs do not communicate with other IOXs. The following communication scenarios exist: GO device to all connected IOXs; GO device to an individual IOX; and an individual IOX to GO device. Readers are encouraged to look at examples from [CAN IOX Sample Communication Session](https://docs.google.com/document/d/1BExcPst5bNzv-IZGX6ZbPeHK5MO1s2AI0rqzEhHbNZ4/edit?usp=sharing) as they read through the rest of this page.
 
 ### Identification
 This document describes the <span style="color:red">IOX Expander Protocol version 1.2</span>.
 
-All messages are supported since IOX Expander Protocol version 1.0 unless stated otherwise.
+All messages since IOX Expander Protocol version 1.0 are supported, unless stated otherwise.
 
 ### Interoperability
 
-Third party IOX Add-ons rely on the messages and protocol defined in this document in order to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time Geotab may make changes to such messages and protocol which could potentially impact third party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practicable in the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
+Third-party IOX Add-ons rely on the messages and protocols defined in this document to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time, Geotab may make changes to such messages and protocols which can potentially impact third-party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practical given the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.
 
 Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the 
 [MIME passthrough messages]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
 
 ### Serial Number
-Each custom IOX is assigned a 4 byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number shall also be reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used for differentiating each IOX which exists on the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and is included in bits 15 - 0 of the Arbitration ID.
+Each custom IOX is assigned a 4-byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number are reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used to differentiate each IOX connected to the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and are included in bits 15 - 0 of the Arbitration ID.
 
 Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:
 1. Generate a random 4 byte value.
@@ -53,20 +53,20 @@ The GO device sends messages with ID 0x0000 meant for all IOXs, or with an ID be
 IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.
 
 ### IOX ID
-Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrator shall report the IOX ID in byte 7 of the Poll Response (0x02).
+Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrators shall report the IOX ID in byte 7 of the Poll Response (0x02).
 
 ### Acknowledge Process
 
 1. Each IOX should receive an ACK from the GO device for every message sent. If an ACK is not received within 150 ms, the IOX should repeat the message before sending anything else.
-2. The IOX must respond to the poll request within 500ms.
+2. The IOX must respond to the poll request within 500 ms.
 
 ## Polling
 
-After powering up, the GO device will poll all IOXs every 7 seconds. Each IOX must respond to this poll by obeying the ACK rules. Unless otherwise described, most commands can only be sent after the first poll (handshake) is completed with the GO.
+After powering up, the GO device will poll all IOXs every 7 seconds. Each IOX must respond to this poll by obeying the ACK rules. Unless otherwise described, most commands can only be sent after the first poll (handshake) is completed with the GO device.
 
 ### Device Removed
 
-If the GO device fails to see an IOX that used to be connected (i.e. the IOX was disconnected), the GO device will remove the IOX from its internal database after 5 attempts (35 seconds) and will make the slot available for a new IOX that can be connected at any time.
+If the GO device fails to detect an IOX that used to be connected (that is, the IOX was disconnected), the GO device will remove the IOX from its internal database after 5 attempts (35 seconds) and will make the slot available for a new IOX that can be connected at any time.
 
 ### New Device
 
@@ -77,14 +77,14 @@ Any IOX that is connected to the GO device must respond to the poll request. The
 An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.
 
 ## Waking up the GO Device
-Every 1 second, the GO wakes up for 2ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1ms until the GO notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
+Every 1 second, the GO wakes up for 2 ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an [RX Data (0x0C)](#rx-data-0x0c) message every 1 ms until the GO device notices the activity and sends the [Wakeup (0x04)](#wakeup-0x04) message to the IOX.
 
 
 ## Commands
 
 ### Reset (0x00)
 
-Directed to all devices. Instructs all devices to reset and behave as if they have just powered up. IOXs should throw out any setup information they might have received, de-assert hardware control lines, and open their relays.
+Directed to all devices. Instructs all devices to reset and behave as if they have just powered up. IOXs should discard any setup information they might have received, de-assert hardware control lines, and open their relays.
 
 ### Poll (0x01)
 
@@ -92,7 +92,7 @@ Sent by the GO device in a broadcast fashion to all units to check if they are t
 
 ### Poll Response (0x02)
 
-Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The first poll-response after power up (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll-responses (when Byte 0 Bit 0 is 0) only contain the first byte.
+Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The first poll response after powerup (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll responses (when Byte 0 Bit 0 is 0) only contain the first byte.
 
 #### Payload — Poll Response
 
@@ -110,7 +110,7 @@ Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The fi
 | 6 | Reserved |
 | 7 | 150 to 199 <br> IOX ID. Please contact Geotab to get one assigned. |
 
-When the &quot;Go to Sleep&quot; command is received, and before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.
+When the &quot;Go to Sleep&quot; command is received, but before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.
 
 ### Additional Info (0x03)
 
@@ -128,7 +128,7 @@ Sent by the IOX after an ACK for the first poll is received. This message is not
 
 ### Wakeup (0x04)
 
-Wakes up all the IOXs from Sleep Mode. Will be sent by the GO at least twice within a space of 50 ms. Currently the GO device sends this message 5 times with 10ms between.
+Wakes up all the IOXs from Sleep Mode. Is sent by the GO at least twice within a space of 50 ms. Currently the GO device sends this message 5 times with 10 ms intervals.
 
 ### Sleep (0x05)
 
@@ -147,7 +147,7 @@ Data sent from the GO device to the addressed IOX. The contents of this payload 
 ### RX Data (0x0C)
 
 Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as [MIME]({{site.baseurl}}/hardware/developing-an-iox/mime-protocol/).
-The 0x0C message series start with a Information Type 1 - Packet Wrapper [0x25 message](#iox-requeststatus-0x25), and also ends with one.
+The 0x0C message series start and end with a Information Type 1 - Packet Wrapper [0x25 message](#iox-requeststatus-0x25).
 
 #### Payload — RX Data
 
@@ -157,18 +157,18 @@ The 0x0C message series start with a Information Type 1 - Packet Wrapper [0x25 m
 
 ### Acknowledge (0x14)
 
-Sent by the GO to indicate that a message is being acknowledged. The ACK to an Rx Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50ms. The IOX will send the next frame at the end of this period and depending on the flow control bit of the ACK, it will either keep on sending or delay another 50ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchange the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.
+Sent by the GO to indicate that a message is being acknowledged. The ACK to an RX Data message (0x0C) could include 1 byte of data. This data is used for streaming flow control. When the 80% watermark of the receive buffer has been reached, the flow control bit will tell the IOX to hold off sending for 50 ms. The IOX will send the next frame at the end of this period and, depending on the flow control bit of the ACK, it will either continue sending or delay another 50 ms, thus repeating the process. The GO device will clear the flow control bit whenever the buffer is below the 20% watermark. If transferring data as part of a wrapped packet exchange, the streaming watermark can be ignored. The buffers will not overflow so long as the length limit and the modem result are honored. This byte is only sent when needed.
 
 #### Payload
 
 | Byte #     | Byte Description |
 | --- | --- |
-| 0 - Bit 0 | 0 = Clear to send more Rx Data. <br> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
+| 0 - Bit 0 | 0 = Clear to send more RX Data. <br> 1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. |
 | 1 - Bit 1-7 | Reserved |
 
 ### Application Specific Data (0x1C)
 
-Sent by the GO device after a packet wrapped passthrough message attempt to the server. A 'rejected' response from the modem typically means it is not connected. If the message is 'accepted' this means it was added to the modem's TCP socket buffer. It is not a confirmation that the message was successfully sent.
+Sent by the GO device after a packet wrapped passthrough message attempt to the server. A 'rejected' response from the modem typically means it is not connected. If the message is 'accepted', this means it was added to the modem's TCP socket buffer. It is NOT a confirmation that the message was successfully sent.
 
 #### Type 0: Modem Transmission Result
 
@@ -201,7 +201,7 @@ Used to request the GO log normal status data.
 
 #### Log Type: 3 (PriorityDataRecord)
 
-Used to request the GO log status data and additionally send via Iridium if available.
+Used to request the GO log status data and also send via Iridium, if available.
 
 | Data | Description |
 | --- | --- |
@@ -318,7 +318,7 @@ Further details can be found here: [Add-On Protocol - BLE]({{site.baseurl}}/hard
 
 #### Type 11 Curve Logging
 
-This message can be used to send the 4byte (int32_t) data that is curve logged by the GO. Additional information about curve logging can be found here: [Curve Logging](https://github.com/Geotab/curve)
+This message can be used to send the 4-byte (int32_t) data that is curve logged by the GO. Additional information about curve logging can be found here: [Curve Logging](https://github.com/Geotab/curve)
 
 | Byte # | Curve Logging |
 | --- | --- |
@@ -340,7 +340,7 @@ This message can be used to send the 4byte (int32_t) data that is curve logged b
 
 #### Type 12 Logging With Timestamp
 
-This message can be used to send status data along with a provided timestamp. 
+This message can be used to send status data with a timestamp. 
 Possible use cases:
 1. Store data in the IOX while the GO device is asleep and send all data after waking up
 2. Run the curve logging algorithm in the IOX and send those points to be transmitted to MyGeotab.  
@@ -358,7 +358,7 @@ Additional information about curve logging can be found here: [Curve Logging](ht
 
 Supported from Add-On protocol version 1.2.
 
-This message allows an IOX to send a protobuf encoded payload to the GO. It supports a publish/subscribe model of vehicle status information. The GO responds with GO Multi-Frame Data (0x27) - Type 13.
+This message allows an IOX to send a protobuf-encoded payload to the GO device. It supports a publish/subscribe model of vehicle status information. The GO device responds with GO Multi-Frame Data (0x27) - Type 13.
 [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto). The currently supported topics are:
 
 | Topic | 
@@ -388,7 +388,7 @@ This message allows an IOX to send a protobuf encoded payload to the GO. It supp
 
 ### Buzzer Beep (0x24)
 
-Sent from an IOX to the GO to request the buzzer beep with the given parameters. 
+Sent from an IOX to the GO device to request the buzzer beep with the given parameters. 
 
 #### Payload
 
@@ -412,7 +412,7 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 
 #### Information Type 0 — Busy
 
-This message is used to inform the GO device that the issuing IOX is busy with some critical tasks and the GO should not enter the sleep state. The IOX should send this message again to release the GO when it has completed its critical tasks.
+This message indicates to the GO device that the issuing IOX is busy with a critical task and that the GO should not enter the sleep state. The IOX should send this message again to release the GO device once it has completed its critical tasks.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -421,11 +421,11 @@ This message is used to inform the GO device that the issuing IOX is busy with s
 
 #### Information Type 1 - Packet Wrapper
 
-This is used to send a packet of up to 1023 bytes of binary data through the GO to MyGeotab.
+This is used to send a packet of up to 1023 bytes of binary data through the GO device to MyGeotab.
 
-Usage:
+Use cases:
 1. Send Packet Wrapper - Beginning of data packet (0).
-2. Multiple Rx Data (0x0C) messages until the entire bypass binary data is sent. Pay attention to the Acknowledge (0x14) message responded from GO if the GO Receive-Buffer is ready to accept the next Rx Data (0x0C) message. The streaming flow control bit in the ACK is not relevant for this type of exchange and can be ignored.
+2. Multiple RX Data (0x0C) messages until the entire bypass binary data is sent. Pay attention to the Acknowledge (0x14) message responded from GO if the GO Receive-Buffer is ready to accept the next RX Data (0x0C) message. The streaming flow control bit in the ACK is not relevant for this type of exchange and can be ignored.
 3. Send Packet Wrapper - End of data packet (1).
 4. At the end, GO sends confirmation with a Application Specific Data (0x1C) Type 0 (Modem transmission result) message to indicate if the packet has been accepted within 6 seconds.
 
@@ -436,7 +436,7 @@ Usage:
 
 #### Information Type 2 - Request GO Device Data Message
 
-This message is used by an IOX which requires vehicle information from the GO device. This will cause GO to respond with GO Multi-Frame Data (0x27) - Type 2 message.
+This message is used by an IOX which requires vehicle information from the GO device. The GO device responds with a GO Multi-Frame Data (0x27) - Type 2 message.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -445,7 +445,7 @@ This message is used by an IOX which requires vehicle information from the GO de
 
 #### Information Type 3 - Connect and Send Records
 
-This message requests the GO modem initiate a connection to the server. 
+This message requests the GO modem initiate a connection to the server.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -454,7 +454,7 @@ This message requests the GO modem initiate a connection to the server.
 
 #### Information Type 4 - Request VIN Message
 
-An IOX uses this message to request the vehicle VIN number from GO. The GO will respond with GO Multi-frame Data (0x27) - Type 3 message.  
+An IOX uses this message to request the vehicle's VIN from the GO device. The GO device responds with a GO Multi-frame Data (0x27) - Type 3 message.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -465,7 +465,7 @@ An IOX uses this message to request the vehicle VIN number from GO. The GO will 
 
 Supported from protocol version 1.1.
 
-Sent from the IOX to the GO requesting the identification information. The will respond with a GO Multi-Frame Data (0x27) - Type 12 message.
+Sent from the IOX to the GO device requesting the identification information. The GO device responds with a GO Multi-Frame Data (0x27) - Type 12 message.
 
 | Parameter Type | Description |
 | --- | --- |
@@ -475,7 +475,7 @@ Sent from the IOX to the GO requesting the identification information. The will 
 
 ### GO Status Information (0x26)
 
-Sent from the GO to the IOX to pass information the IOX may need. This is a broadcast message. It is sent once any corresponding information type changes.
+Sent from the GO device to the IOX to pass information the IOX may need. This is a broadcast message. It is sent once any corresponding information type changes.
 
 #### Payload
 
@@ -501,7 +501,7 @@ Sent from the GO to the IOX to pass information the IOX may need. This is a broa
 
 ### GO Multi-Frame Data (0x27)
 
-Sent from the GO to the IOX when the GO wants to transfer data that can not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.
+Sent from the GO device to the IOX when the GO device wants to transfer data that does not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.
 
 #### Payload First Frame
 
@@ -533,7 +533,7 @@ Sent from the GO to the IOX when the GO wants to transfer data that can not fit 
 
 #### Type 2 GO Device Data
 
-Sent in response to IOX Request(0x25) message with Type Request GO Device Data Message (0x02).
+Sent in response to an IOX Request(0x25) message with a Type Request GO Device Data Message (0x02).
 
 | Bytes | GO Device Data |
 | --- | --- |
@@ -553,7 +553,7 @@ Sent in response to IOX Request(0x25) message with Type Request GO Device Data M
 
 #### Type 3 VIN
 
-Sent in response to IOX Request(0x25) message with Type Request VIN (0x04).
+Sent in response to an IOX Request(0x25) message with Type Request VIN (0x04).
 
 | Bytes | GO Device Data |
 | --- | --- |
@@ -593,7 +593,7 @@ Sent in response to IOX Request/Status (0x25) - Type 12.
 
 Supported from protocol version 1.2.
 
-This message allows an GO to send a protobuf encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13.
+This message allows a GO device to send a protobuf-encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13.
 [Protobuf Schema](https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto).
 
 
