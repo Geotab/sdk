@@ -34,9 +34,9 @@ Message identification is done with an arbitration ID.
 
 The Arbitration ID Field for IOX Messages:
 
-| Bits | 28 to 22 | 21 to 16 | 15 to 0 |
+| Bits | 29 to 24 | 23 to 17 | 16 to 1 |
 | --- | --- | --- | --- |
-| Contents | Reserved: 0 | Message: 0–63 | All IOXs: 0 <br> Individual IOX Address ID: 1–65535 |
+| Contents | Reserved: 0 | Message: 0–127 | All IOXs: 0 <br> Individual IOX Address ID: 1–65535 |
 
 0x1F800000 IO\_EXPANDER\_RESERVED\_MASK
 
@@ -670,7 +670,7 @@ GO -> IOX: Acknowledge (0x14)
 note over GO: Each frame is ACKed
 / note over IOX: Each frame has a 1 byte frame counter
 note over IOX: Header\n1 byte: Type = 4\n2 bytes: Data Length = 15
-note over IOX: Payload\n1 byte: Curve Function\n\tAdd = 2, Save = 3\n2 bytes: Data ID\n4 bytes: Data\n1 byte: Length\n2 bytes: Allowed Error\n2 bytes: Estimate Error\n2 bytes: Data Interval\n1 byte: Smoothing Coefficient
+note over IOX: Payload\n1 byte: Curve Function\n\tAdd = 2, Save = 3\n2 bytes: Data ID\n4 bytes: Data\n1 byte: Length\n2 bytes: Allowed Error\n2 bytes: Estimate Error\n2 bytes: Deprecated\n1 byte: Smoothing Coefficient
 @enduml
 -->
 
@@ -733,7 +733,7 @@ note over GO: AddOn Wrapper - 2 byte data length\n1 byte: STX\n1 byte: Type = 0x
 IOX -> GO: IOX Request/Status (0x25)\nType 1 - Packet Wrapper
 note over IOX: 2 bytes: Type = 1\n1 byte: Beginning = 0
 loop N/8 times with up to 8 bytes of data in each frame
-GO <- IOX: TX Data (0x0C)
+GO <- IOX: RX Data (0x0C)
 end
 IOX -> GO: IOX Request/Status (0x25)\nType 1 - Packet Wrapper
 note over IOX: 2 bytes: Type = 1\n1 byte: End = 1
