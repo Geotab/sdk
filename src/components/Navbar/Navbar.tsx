@@ -23,6 +23,9 @@ export default function Navbar() {
         <div>
           <Link to="/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
         </div>
+        <div>
+          <Link to="/usingGoDevices">Using GO Devices</Link>
+        </div>
       </div>
       <div>
         API Reference

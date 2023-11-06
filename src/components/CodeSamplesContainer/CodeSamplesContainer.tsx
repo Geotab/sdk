@@ -1,84 +1,52 @@
 
-import { Tabs } from "@geotab/react-component-library";
+import { TabConfig, Tabs } from "@geotab/react-component-library";
 import CodeSample from "./CodeSample";
 
-
-interface CodeSamplesContainerProps {
-  props: {
-      javascript: {
-          code: string;
-      };
-      csharp: {
-          code: string;
-      };
-      java: {
-        code: string;
-    };
-     python: {
-      code: string;
-    } ;
-  };
+export interface CodeSamples {
+  javascript?: string,
+  csharp?: string,
+  java?: string,
+  python?: string
 }
-/**
- * Renders a component that displays code Examples in different programming languages.
- *
- * @param {CodeSamplesContainerProps} props - An object containing code examples for various programming languages.
- * Example usage:
- * <CodeSamplesContainer
- *    props ={{
- *     javascript: {
- *       code: `// Your JavaScript code here`
- *     },
- *     csharp: {
- *       code: `// Your C# code here`
- *     },
- *     java: {
- *       code: `// Your Java code here`
- *     },
- *     python: {
- *       code: `// Your Python code here`
- *     },
- *   }}
- * />
- *
- */
 
-export default function CodeSamplesContainer({props}: CodeSamplesContainerProps): JSX.Element {
+const languages: Record<string, string> = {
+  javascript: "JavaScript",
+  csharp: "C #",
+  java: "Java",
+  python: "Python"
+}
 
-    return ( 
-      <div>
-          <h2>Try me</h2>
-          <Tabs tabs={[
-            {
-              content: CodeSample({
-                language: "javascript",
-                code:  props.javascript.code,
-              }),
-              name: "Javascript"
-            },
-            {
-              content: CodeSample({
-                language: "csharp",
-                code:  props.csharp.code,
-              }),
-              name: "C#"
-            },
-            {
-              content: CodeSample({
-                language: "java",
-                code:  props.java.code,
-              }),
-              name: "Java"
-            },
-            {
-              content: CodeSample({
-                language: "python",
-                code:  props.python.code,
-              }),
-              name: "Python"
-            }
-            ]}
-          />
-    </div>
+
+/*Renders a component that displays code Examples in different programming languages.
+
+@param { CodeSamples } props - An object containing code examples for various programming languages.
+Example usage:
+const samples: CodeSamples = {
+ javascript: `// Your JavaScript code here`,
+ csharp: `// Your C# code here`,
+ java: `// Your Java code here`,
+ python: `## Your Python code here`
+};
+<CodeSamplesContainer {...samples}></CodeSamplesContainer>
+};*/
+
+
+export default function CodeSamplesContainer(props: CodeSamples): JSX.Element {
+  let tabsArray: TabConfig[] = [];
+  Object.keys(props).map((language) => {
+    tabsArray.push(
+      {
+        content: <CodeSample language={language} code={props[language as keyof CodeSamples]!}></CodeSample>,
+        name: languages[language as keyof CodeSamples]
+      }
     );
+  });
+
+  return (
+    <div>
+      <h2 className="subtitle">Try me</h2>
+      <Tabs tabs={tabsArray}
+      />
+    </div>
+  );
 }
