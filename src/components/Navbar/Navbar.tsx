@@ -21,6 +21,9 @@ export default function Navbar() {
           <Link to="/gettingStarted">Getting Started</Link>
         </div>
         <div>
+          <Link to="/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
+        </div>
+        <div>
           <Link to="/usingGoDevices">Using GO Devices</Link>
         </div>
       </div>

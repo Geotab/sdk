@@ -21,7 +21,7 @@ const deviceHierarchy: ReactNode = <div className="paragraph">
 const apiToAddVehicles: ReactNode = <div className="paragraph">
     <p>Geotab has a robust API that allows third-party developers to create their own applications that use data from Geotab hardware.
         A partner using Geotab hardware with their own software must use the API to add their Geotab devices to the database, as discussed above.</p>
-    <h2>Adding a single device</h2>
+    <h2>Adding a Single Device</h2>
     <p>C# API</p>
     <CodeSample
         language="csharp"
@@ -63,7 +63,7 @@ api.call("Add", {
     <p>Both the C# and JavaScript examples contain a comprehensive demonstration of how to add multiple devices to a database.
         This can be used as a starting point for additional development.
     </p>
-    <h2>Enable in-vehicle features</h2>
+    <h2>Enable In-Vehicle Features</h2>
     <p>To enable or disable vehicle features, the appropriate properties of the Device/GoDevice object must be set.
         For example, to enable beeping before adding the device to MyGeotab, the C# example above would be changed to:<br></br></p>
     <CodeSample
@@ -100,7 +100,7 @@ export default function UsingGoDevices() {
                     <IconChevronRightSmall></IconChevronRightSmall>
                     <span>Using GO Devices</span>
                 </div>
-                <h1 className="title">Using GO devices in your software</h1>
+                <h1 className="title">Using GO Devices In Your Software</h1>
             </div>
             <div className="paragraph">
                 Geotab offers an option where the GO device hardware can be used without using the MyGeotab fleet management software.
@@ -110,9 +110,9 @@ export default function UsingGoDevices() {
             </div>
 
             <Accordion summary="Overview" p={overview}></Accordion>
-            <Accordion summary="Device hierarchy" p={deviceHierarchy}></Accordion>
-            <Accordion summary="API to add vehicles" p={apiToAddVehicles}></Accordion>
-            <Accordion summary="API to extract data" p={apiToExtractData}></Accordion>
+            <Accordion summary="Device Hierarchy" p={deviceHierarchy}></Accordion>
+            <Accordion summary="API To Add Vehicles" p={apiToAddVehicles}></Accordion>
+            <Accordion summary="API To Extract Data" p={apiToExtractData}></Accordion>
         </div>
     );
 };

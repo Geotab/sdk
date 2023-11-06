@@ -3,6 +3,8 @@ export default function CodeSampleStyle(): Record<string, string> {
         fontSize: "12px",
         fontWeight: "400",
         lineHeight: "16px",
-        textAlign: "left"
-    };
+        textAlign: "left",
+        padding: "24px",
+        borderRadius: "8px"
+};
 }
