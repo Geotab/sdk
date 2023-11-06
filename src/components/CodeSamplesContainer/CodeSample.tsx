@@ -1,10 +1,11 @@
 import copyCode from "./CopyCode";
-import { CodeBlock} from 'react-code-blocks';
+import { CodeBlock, sunburst} from 'react-code-blocks';
 import './CodeSample.scss';
 import copyIcon from "./CopyIcon";
 import CustomTheme from "./CustomTheme";
-import CodeSampleTheme from "./CodeSampleTheme";
+import CodeSampleStyle from "./CodeSampleStyle";
 import { Button, ButtonVariant,useToast } from "@geotab/react-component-library";
+import "../../App.scss";
 
 //Documentation for react-code-blocks: https://www.npmjs.com/package/react-code-blocks
 
@@ -28,13 +29,13 @@ export default function CodeSample(props: CodeSampleProps): JSX.Element{
     };
 
     return (
-    <div>
+    <div className="snippetBox">
       <CodeBlock
           text={props.code}
           language= {props.language}
           showLineNumbers={false}
-          theme={	CustomTheme() }
-          customStyle={ CodeSampleTheme() }
+          theme={	sunburst }
+          customStyle={ CodeSampleStyle() }
       />
 
       <Button variant = {ButtonVariant.Secondary} className="copyButton" onClick={handleCopyClick} >

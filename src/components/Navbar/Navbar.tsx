@@ -26,6 +26,12 @@ export default function Navbar(props: any) {
             <div>
               <Link to="/gettingStarted">Getting Started</Link>
             </div>
+        <div>
+          <Link to="/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
+        </div>
+        <div>
+          <Link to="/usingGoDevices">Using GO Devices</Link>
+        </div>
           </div>
           <div>
             API Reference

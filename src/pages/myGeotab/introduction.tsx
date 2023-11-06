@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Accordion from "../../components/Accordion/Accordion";
+import { IconChevronRightSmall } from "@geotab/react-component-library";
 import Page from "../../components/Page/Page";
 
 const deviceData: ReactNode =
@@ -89,8 +90,16 @@ const softwareToolkit: ReactNode =
 
 export default function Introduction() {
     return (
-        <Page section="MyGeotab">
+        // <Page section="MyGeotab">
+        <div className="pageContent">
+            <div className="grayBackground">
+            <div className="breadCrumb">
+                    <span>MYG</span>
+                    <IconChevronRightSmall></IconChevronRightSmall>
+                    <span>Introduction</span>
+                </div>
             <h1 className="title">Introduction</h1>
+            </div>
             <div className="paragraph">
                 The MyGeotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab.
                 Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
@@ -111,6 +120,7 @@ export default function Introduction() {
             <Accordion summary="Integrating with MyGeotab" p={integratingWithMyG}></Accordion>
             <Accordion summary="Integrating custom telematics tracking devices into MyGeotab" p={customDevices}></Accordion>
             <Accordion summary="Technical Software Toolkit" p={softwareToolkit}></Accordion>
-        </Page>
+        </div>
+        // </Page>
     );
 };
