@@ -32,7 +32,7 @@ const UseCases: ReactNode = <div className="paragraph">
 //
 const AddInConfiguration: ReactNode = <div className="paragraph">
     <p>Each Add-In created will have one configuration file. The configuration file is a JSON file (<a href="http://www.json.org">http://www.json.org</a>) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.</p>
-    <h3>Table 1 — Add-In configuration file keys/values</h3>
+    <h3>Table 1 — Add-In Configuration File Keys/ Values</h3>
     <div className="table-container">
         <table>
             <thead>
@@ -113,7 +113,7 @@ const AddInConfiguration: ReactNode = <div className="paragraph">
 const ExampleAddInConfiguration: ReactNode = <div className="paragraph">
     <p>The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.</p>
 
-    <h3>Listing 1 — A simple Add-In configuration JSON file</h3>
+    <h3>Listing 1 — A Simple Add-In Configuration JSON File</h3>
 
     <CodeSample
         language="json"
@@ -184,7 +184,7 @@ const ExampleAddInConfiguration: ReactNode = <div className="paragraph">
         <p>A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.</p>
     </div>
 
-    <h3>Table 2 — Menu item</h3>
+    <h3>Table 2 — Menu Item</h3>
 
     <div className="table-container">
         <table>
@@ -225,7 +225,7 @@ const ExampleAddInConfiguration: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <h3>Table 3 — Parent menu item</h3>
+    <h3>Table 3 — Parent Menu Item</h3>
 
     <div className="table-container">
         <table>
@@ -299,11 +299,11 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
         }]
     }`}></CodeSample>
 
-    <h3>Referencing source items</h3>
+    <h3>Referencing Source Items</h3>
 
     <p>Each Add-In can define zero or more <em>items</em> as part of its configuration file. An item is a collection of keys and values which represent a page or a button.</p>
 
-    <h3>Table 4 — Button item</h3>
+    <h3>Table 4 — Button Item</h3>
 
     <div className="table-container">
         <table>
@@ -344,7 +344,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl"), Brazilian Portuguese ("pt-BR"), Dutch ("nl"), Italian ("it"), Simplified Chinese ("zh-Hans"), Thai ("th"), Indonesian ("id"), Czech ("cs"), Swedish ("sv"), Turkish ("tr"), and Malay ("ms").</p>
+    <p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl"), Brazilian Portuguese ("pt-BR"), Dutch ("nl"), Italian ("it"), Simplified Chinese ("zh-Hans"), Thai ("th"), Indonesian ("id"), Czech ("cs"), Swedish ("sv"), Turkish ("tr"), Malay (`"ms"`), and French France (`"fr-FR"`).</p>
 
     <div className="side-note">
         <p>Reference to the image can be an external URL such as: <code className="small-code-sample">https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In.</p>
@@ -372,11 +372,11 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
         <p><code className="small-code-sample">https://my-web-server.com/pathToAddIn/index.html</code></p>
     </div>
 
-    <h3>Embedding source code</h3>
+    <h3>Embedding Source Code</h3>
 
     <p>When developing a custom page or button Add-In, you have the option to embed the source code for your project in the JSON configuration file. When using this method, there is no requirement to host your own HTML, CSS, or JavaScript files as they will be converted into strings and written inside the configuration file itself.</p>
 
-    <h3>Listing 3 — Add-In configuration file using embedded source code</h3>
+    <h3>Listing 3 — Add-In Configuration File Using Embedded Source Code</h3>
 
     <CodeSample
         language="json"
@@ -405,7 +405,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
 
     <p>The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.</p>
 
-    <h3>Listing 4 — Absolute path to image in HTML</h3>
+    <h3>Listing 4 — Absolute Path to Image in HTML</h3>
 
     <p>Referencing an external image using an absolute URL in the HTML or CSS.</p>
 
@@ -413,7 +413,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
         language="html"
         code={`<img src="https://mycompany.com/images/customImage.png" alt="CustomImage" />`}></CodeSample>
 
-    <h3>Listing 5 — Absolute path to image in CSS</h3>
+    <h3>Listing 5 — Absolute Path to Image in CSS</h3>
 
     <CodeSample
         language="css"
@@ -421,7 +421,7 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
     background: url('https://mycompany.com/images/customImage.png') no-repeat; 
 }`}></CodeSample>
 
-    <h3>Listing 6 — Add-In configuration file with Base64 encoded image</h3>
+    <h3>Listing 6 — Add-In Configuration File with Base64 Encoded Image</h3>
 
     <p>The other method is to embed the images along with the rest of the source code in the markup. First, the images will need to be encoded using <a href="http://en.wikipedia.org/wiki/Base64">Base64 encoding</a>, then the references to the image files replaced with the encoded version directly in the HTML or CSS.</p>
 
@@ -459,9 +459,9 @@ const ThirdPartyLibraries: ReactNode = <div className="paragraph">
 
     <p>References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.</p>
 
-    <h3>Listing 8 — Avoiding CSS naming conflicts</h3>
+    <h3>Listing 8 — Avoiding CSS Naming Conflicts</h3>
 
-    <p>When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab’s outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.</p>
+    <p>When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab's outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.</p>
 
     <CodeSample
         language="html"
@@ -518,7 +518,7 @@ const PageLifecycle: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <h3>Visual diagram</h3>
+    <h3>Visual Diagram</h3>
 
     <p>Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the <em>focus</em> method will be called. Finally, when the user is navigating away from your custom page Add-In, the <em>blur</em> method will be called, completing the Add-In lifecycle.</p>
 
@@ -531,13 +531,13 @@ const PageLifecycle: ReactNode = <div className="paragraph">
         <figcaption>Image 2 — Add-In lifecycle workflow diagram</figcaption>
     </figure>
 
-    <h3>Lifecycle implementation</h3>
+    <h3>Lifecycle Implementation</h3>
 
     <p>The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined, and the optional <em>focus</em> and <em>blur</em> methods will be called due to the <code className="small-code-sample">callback</code> method being called in the <code className="small-code-sample">initialize</code> method.</p>
 
     <p>Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix <code className="small-code-sample">geotab.addin</code> (note that the namespace is not hyphenated). In the example below, the full namespace is <code className="small-code-sample">geotab.addin.myCustomPage1</code>.</p>
 
-    <h3>Listing 9 — HTML and JavaScript entry point example</h3>
+    <h3>Listing 9 — HTML and JavaScript Entry Point Example</h3>
 
     <CodeSample
         language="html"
@@ -580,7 +580,7 @@ const PageLifecycle: ReactNode = <div className="paragraph">
 const CustomButtonAddIns: ReactNode = <div className="paragraph">
     <p>Custom button Add-Ins allow you to extend the capabilities of a built-in Geotab page by appending a new button to the top menu of the page. When a user clicks the custom button Add-In, the JavaScript method that has been defined will be called. This JavaScript method has access to the event which was generated by the click, the Geotab API under the credentials of the current user, and the page state variables.</p>
 
-    <h3>Button Add-In configuration file</h3>
+    <h3>Button Add-In Configuration File</h3>
 
     <p>The following example adds a custom button Add-In to the live map page. When clicked, the button will redirect the user to the vehicles page. Use this example as a starting point for creating your own custom button Add-Ins.</p>
 
@@ -595,7 +595,7 @@ const CustomButtonAddIns: ReactNode = <div className="paragraph">
         <figcaption>Image 3 — Custom button Add-In on the live map page</figcaption>
     </figure>
 
-    <h3>Use cases</h3>
+    <h3>Use Cases</h3>
 
     <p>The action your custom button Add-In performs is decided by your specific business requirement. The following are example actions that can be implemented:</p>
 
@@ -606,7 +606,7 @@ const CustomButtonAddIns: ReactNode = <div className="paragraph">
         <li>Automated execution of a sequence of actions</li>
     </ul>
 
-    <h3>Listing 10 — Custom button Add-In configuration file</h3>
+    <h3>Listing 10 — Custom Button Add-In Configuration File</h3>
 
     <p>Almost any page is available to have a custom button Add-In added to it. Use a web browser's address bar to find the correct value for the Page property. Geotab pages will have a trailing hash (“#”) symbol followed by the page name. Determine the page name and then set the “page” value of your custom button Add-In configuration file to that value.</p>
 
@@ -635,7 +635,7 @@ const JavaScriptButtonAction: ReactNode = <div className="paragraph">
 
     <div className="side-note"><p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p></div>
 
-    <h3>Listing 12 — Custom button click method</h3>
+    <h3>Listing 12 — Custom Button Click Method</h3>
 
     <CodeSample
         language="javascript"
@@ -646,7 +646,7 @@ const JavaScriptButtonAction: ReactNode = <div className="paragraph">
 
     <p>The state object is a powerful tool for creating navigational components by changing the current page state. The state object has access to a number of methods as follows:</p>
 
-    <h3>Table 6 - Geotab page state methods</h3>
+    <h3>Table 6 - Geotab Page State Methods</h3>
 
     <div className="table-container">
         <table>
