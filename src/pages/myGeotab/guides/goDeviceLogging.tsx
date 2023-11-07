@@ -51,10 +51,8 @@ const technicalDetails: ReactNode = <div className="paragraph">
         <li>Another event triggered the running of the curve.</li>
     </ul>
     <p>Below is a list of parameters that utilize the curve algorithm for data logging.</p>
-</div>
-
-const engineDataLogging: ReactNode = <div className="paragraph">
-    <h2>Curve Logging On Engine Data</h2>
+    <h2>Engine Data Logging</h2>
+    <h3>Curve Logging On Engine Data</h3>
     <p>
         Where appropriate engine data is logged using the curve-based algorithm. The following is a list of the engine data now logged using the curve-based logic:
     </p>
@@ -202,7 +200,6 @@ export default function GoDeviceLogging() {
 
             <Accordion summary="Logging Accurately" p={loggingAccurately}></Accordion>
             <Accordion summary="Technical Details" p={technicalDetails}></Accordion>
-            <Accordion summary="Engine Data Logging" p={engineDataLogging}></Accordion>
         </div>
     );
 };
