@@ -10,13 +10,13 @@ interface AccordianContents {
 export default function Accordion(props: AccordianContents) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronDown></IconChevronDown> : <IconChevronUp></IconChevronUp>;
+    let Icon: ReactNode = expanded ? <IconChevronDown className="icon-arrow"></IconChevronDown> : <IconChevronUp className="icon-arrow"></IconChevronUp>;
 
     function handleToggle(): void {
         setExpanded(!expanded);
     };
 
-    return (<details>
+    return (<details open>
         <summary onClick={handleToggle}>
             {props.summary}
             {Icon}
