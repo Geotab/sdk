@@ -10,7 +10,7 @@ interface InformationalBoxProps {
 export default function InformationalBox(props: InformationalBoxProps) {
     return (
         <div className="informational-box">
-            <div>
+            <div className="icon-container">
                 <IconException />
             </div>
             <div>
