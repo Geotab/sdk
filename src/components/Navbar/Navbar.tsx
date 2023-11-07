@@ -1,7 +1,7 @@
 
-import React, { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuContext } from '../../menuContext';
+import MenuContext from "../../menuContext";
 
 export default function Navbar() {
 
@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <div>
       <div>
-        <Link to="/introduction">Introduction</Link>
+        <Link to="/myGeotabIntroduction">Introduction</Link>
       </div>
       <div>
         <Link to="/whatsNew">What's New</Link>
@@ -19,6 +19,12 @@ export default function Navbar() {
         Guides
         <div>
           <Link to="/gettingStarted">Getting Started</Link>
+        </div>
+        <div>
+          <Link to="/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
+        </div>
+        <div>
+          <Link to="/usingGoDevices">Using GO Devices</Link>
         </div>
       </div>
       <div>
