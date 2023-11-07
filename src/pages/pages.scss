@@ -1,6 +1,6 @@
 @import "../variables";
 
-.pageContent{
+.pageContent {
   padding: 8px 24px 24px 24px;
 }
 
@@ -11,6 +11,10 @@
 
 .text--medium {
   font-size: $font-size-medium;
+}
+
+.pageContent {
+  padding: 32px 24px;
 }
 
 // Page-specific styles
@@ -43,30 +47,38 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    outline: 1px solid #C0CCD8;
-    background: #FFF;
-    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.04);
-
+    outline: 1px solid $button-outline;
+    background: $button-bg;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.04);
 
     &:hover {
-      outline: 1px solid #C0CCD8;
-      background: #FFF;
-      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.20);
+      outline: 1px solid $button-outline;
+      background: $button-bg;
+      box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
     }
 
     &:focus,
     &:active {
       border-radius: 4px;
-      outline: 2px solid #0078D3;
-      background: #F9FAFB;
-      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.20);
+      outline: 2px solid $button-outline--focus;
+      background: $button-bg--focus;
+      box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
+    }
+  }
+
+  &__text-container {
+
+    margin-right: 8px;
+
+    .subtitle p {
+      margin-block-end: 0;
     }
   }
 }
 
 .usingCustomTelematicsDevices {
 
-  &__deviceManagementIMG{
+  &__deviceManagementIMG {
     padding: 0.25rem;
     background-color: $lightGray;
     border: 1px solid #DEE2E6;
@@ -89,6 +101,32 @@ ul {
   margin-block-start: 0px
 }
 
+.table-container {
+  border-radius: 4px;
+  border: 1px solid $table-border;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 16px 0;
+}
+
+
+tbody tr {
+  border-top: 1px solid $table-border;
+  border-radius: 4px;
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: left;
+}
+
 .paragraph {
   font-weight: 400;
   font-size: 14px;
@@ -106,7 +144,7 @@ ul {
 
 .subtitle {
   font-weight: 300;
-  font-size: 20px;
+  font-size: $font-size-medium;
   line-height: 28px;
 }
 
@@ -135,4 +173,10 @@ a {
 
 .grayBackground {
   background-color: $lightGray;
+}
+
+.small-code-sample {
+  color: $code-color;
+  background-color: $code-bg;
+  padding: 4px;
 }
