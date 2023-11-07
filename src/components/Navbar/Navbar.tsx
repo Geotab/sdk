@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
       </div>
       <div>
-        Add Ins
+        Add-Ins
         <div>
           <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link>
         </div>

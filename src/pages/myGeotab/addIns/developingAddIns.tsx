@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { IconChevronRightSmall } from "@geotab/react-component-library";
 import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
@@ -828,8 +829,17 @@ const AddInIconValidator: ReactNode = <div className="paragraph">
 
 export default function DevelopingAddIns() {
     return (
-        <div className="grayBackground pageContent">
-            <h1 className="title">Developing Add-Ins</h1>
+        <div className="pageContent">
+            <div className="grayBackground">
+                <div className="breadCrumb">
+                    <span>MYG</span>
+                    <IconChevronRightSmall></IconChevronRightSmall>
+                    <span>Add-Ins</span>
+                    <IconChevronRightSmall></IconChevronRightSmall>
+                    <span>Developing Add-Ins</span>
+                </div>
+                <h1 className="title">Developing Add-Ins</h1>
+            </div>
             <div className="paragraph">
                 <p>Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. <a href="https://github.com/Geotab/sdk-addin-samples">Click here</a> to find the sample Add-Ins.</p>
                 <InformationalBox>
