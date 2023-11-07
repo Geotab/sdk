@@ -7,6 +7,7 @@ import MyGeotabWhatsNew from "./pages/myGeotab/whatsNew";
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
 import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTelematicsDevices";
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
+import GoDeviceLogging from "./pages/myGeotab/guides/goDeviceLogging";
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/whatsNew" Component={MyGeotabWhatsNew} />
           <Route path="/gettingStarted" Component={MyGeotabGettingStarted} />
           <Route path="/usingGoDevices" Component={UsingGoDevices} />
+          <Route path="/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/methods" Component={MyGeotabMethods} />
           <Route path="/objects" Component={MyGeotabObjects} />
           <Route path="/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />

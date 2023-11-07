@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import "../../../pages/pages.scss";
 import myAdminAndDIGFlow from "../../../assets/images/myGeotab/usingCustomTelematicsDevices/myAdminAndDIGFlow.jpg";
+import { IconChevronRightSmall } from "@geotab/react-component-library";
 
 
 
@@ -43,10 +44,19 @@ const sendingData: ReactNode =
 
 export default function usingCustomTelematicsDevices() {
     return (
-        <div className="grayBackground pageContent">
-            <h1 className="title">Using Custom Telematics Devices</h1>
+        <div className="pageContent">
+            <div className="grayBackground">
+                <div className="breadCrumb">
+                    <span>MYG</span>
+                    <IconChevronRightSmall></IconChevronRightSmall>
+                    <span>Guides</span>
+                    <IconChevronRightSmall></IconChevronRightSmall>
+                    <span>Using Custom Telematics Devices</span>
+                </div>
+                <h1 className="title">Using Custom Telematics Devices</h1>
+            </div>
             <div className="paragraph">
-            Geotab provides the ability to integrate non-GO device telematics devices into the platform. These devices are defined as any telematics device that is not manufactured or sold by Geotab but is used in conjunction with Geotab's fleet management application.
+                Geotab provides the ability to integrate non-GO device telematics devices into the platform. These devices are defined as any telematics device that is not manufactured or sold by Geotab but is used in conjunction with Geotab's fleet management application.
             </div>
 
             <Accordion summary="Getting Started" p={gettingStarted}></Accordion>

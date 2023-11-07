@@ -26,6 +26,9 @@ export default function Navbar() {
         <div>
           <Link to="/usingGoDevices">Using GO Devices</Link>
         </div>
+        <div>
+          <Link to="/goDeviceLogging">GO Device Logging</Link>
+        </div>
       </div>
       <div>
         API Reference
