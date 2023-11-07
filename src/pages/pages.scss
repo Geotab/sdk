@@ -175,26 +175,6 @@ a {
   background-color: $lightGray;
 }
 
-.side-note {
-  display: flex;
-  padding: 16px;
-  align-items: center;
-  gap: 16px;
-  align-self: stretch;
-  border-radius: 4px;
-  background: $side-note-bg;
-  margin: 16px 0;
-
-  p {
-    color: $side-note-color;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
-    letter-spacing: 0.32px;
-  }
-}
-
 .small-code-sample {
   color: $code-color;
   background-color: $code-bg;

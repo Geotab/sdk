@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import Accordion from "./../../../components/Accordion/Accordion";
-import CodeSample from "./../../../components/CodeSamplesContainer/CodeSample";
+import Accordion from "../../../components/Accordion/Accordion";
+import InformationalBox from "../../../components/InformationalBox/InformationalBox";
+import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import navigationMenuImage from "./../../../assets/images/developingAddIns/developing-addins_0.png";
 import navigationSubmenuImage from "./../../../assets/images/developingAddIns/developing-addins_1.png";
 import flowChartImage from "./../../../assets/images/developingAddIns/developing-addins_2.png";
@@ -24,9 +25,9 @@ const UseCases: ReactNode = <div className="paragraph">
     <h3>Requirements</h3>
     <p>The Add-Ins created must have their source code stored externally using your own hosting provider or your own servers.</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>Referenced files must be publicly accessible via HTTPS and all hosted resources must be on a server that supports TLS 1.2 or higher.</p>
-    </div>
+    </InformationalBox>
 </div>;
 
 //
@@ -102,9 +103,9 @@ const AddInConfiguration: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>If you do not know your MyGeotab Add-In key, please contact your authorized Geotab reseller for support.</p>
-    </div>
+    </InformationalBox>
 
     <p>The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab's servers.</p>
 </div>;
@@ -180,9 +181,9 @@ const ExampleAddInConfiguration: ReactNode = <div className="paragraph">
 
     <p>Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the menu.</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.</p>
-    </div>
+    </InformationalBox>
 
     <h3>Table 2 — Menu Item</h3>
 
@@ -346,9 +347,9 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
 
     <p>At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English ("en"), French ("fr"), German ("de"), Spanish ("es"), Japanese ("ja"), Polish ("pl"), Brazilian Portuguese ("pt-BR"), Dutch ("nl"), Italian ("it"), Simplified Chinese ("zh-Hans"), Thai ("th"), Indonesian ("id"), Czech ("cs"), Swedish ("sv"), Turkish ("tr"), Malay (`"ms"`), and French France (`"fr-FR"`).</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>Reference to the image can be an external URL such as: <code className="small-code-sample">https://mysite.com/images/icon.png;</code> or a link to the image from the images folder of your Add-In.</p>
-    </div>
+    </InformationalBox>
 
     <p>When using the items property to include your source code exclusively, you can set the files property an empty object using <code className="small-code-sample">{`{ }`}</code> as seen in Listing 1.</p>
 
@@ -368,9 +369,9 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
 
     <p>For example, the following is an invalid absolute URL due to its dashes and will not be loaded correctly by MyGeotab:</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p><code className="small-code-sample">https://my-web-server.com/pathToAddIn/index.html</code></p>
-    </div>
+    </InformationalBox>
 
     <h3>Embedding Source Code</h3>
 
@@ -397,9 +398,9 @@ const CreatingSubmenu: ReactNode = <div className="paragraph">
     }
 }`}></CodeSample>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>Please be aware that some characters may need to use HTML escape characters (<a href="http://www.w3schools.com/charsets/ref_html_8859.asp">HTML ISO-8859-1 Reference</a>) and <a href="http://dev.w3.org/html5/html-author/charref">Character Reference</a> for the overall JSON object to be validated.</p>
-    </div>
+    </InformationalBox>
 
     <p>By reproducing the previous example, there would be two folders, one named "js" and the other "css". Inside the folders are two JavaScript files and one CSS stylesheet; respectively.</p>
 
@@ -522,9 +523,9 @@ const PageLifecycle: ReactNode = <div className="paragraph">
 
     <p>Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user explicitly refreshes their web browser. When the user interface is ready, the <em>focus</em> method will be called. Finally, when the user is navigating away from your custom page Add-In, the <em>blur</em> method will be called, completing the Add-In lifecycle.</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>It's important to call the <code className="small-code-sample">callback</code> passed into <code className="small-code-sample">initialize</code> <em>after</em> all work is complete. Keep in mind the asynchronous nature of JavaScript.</p>
-    </div>
+    </InformationalBox>
 
     <figure>
         <img src={flowChartImage} alt="Image 2 — Add-In lifecycle workflow diagram" />
@@ -586,9 +587,9 @@ const CustomButtonAddIns: ReactNode = <div className="paragraph">
 
     <p>The exact position of the custom button Add-In within a built-in page is defined by the developer. For instance, in Image 3, a new button labeled <em>Perform Action</em> is added to the toolbar of the live map page.</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>This example uses external references to the source code. Similar to custom page Add-Ins, the Files property of the configuration file can be used to embed the source code on the Geotab servers.</p>
-    </div>
+    </InformationalBox>
 
     <figure>
         <img src={mapImage} alt="Image 3 — Custom button Add-In on the live map page" />
@@ -633,7 +634,9 @@ const CustomButtonAddIns: ReactNode = <div className="paragraph">
 const JavaScriptButtonAction: ReactNode = <div className="paragraph">
     <p>When a custom button Add-In is clicked by a user, it will execute a predefined method from the JavaScript file referenced. This method provides the button action with access to the generated event, the Geotab API as the signed-in user, and the page state.</p>
 
-    <div className="side-note"><p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p></div>
+    <InformationalBox>
+        <p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p>
+    </InformationalBox>
 
     <h3>Listing 12 — Custom Button Click Method</h3>
 
@@ -699,16 +702,18 @@ const JavaScriptButtonAction: ReactNode = <div className="paragraph">
         </table>
     </div>
 
-    <div className="side-note"><p>The second parameter to the <code className="small-code-sample">gotoPage</code> method is optional and is used for query string parameters.</p></div>
+    <InformationalBox>
+        <p>The second parameter to the <code className="small-code-sample">gotoPage</code> method is optional and is used for query string parameters.</p>
+    </InformationalBox>
 </div>;
 
 //
 const CompleteIntegrationExample: ReactNode = <div className="paragraph">
     <p>Using all the concepts outlined in this document, the following is a complete integration example which creates a custom page Add-In with real-world functionality. In this example, the custom page has JavaScript methods that make requests using the Geotab API to retrieve the current vehicles on your account. The result of the API request is shown on the custom page in a list. Finally, when the user leaves the page, the custom page performs cleanup during the lifecycle methods.</p>
 
-    <div className="side-note">
+    <InformationalBox>
         <p>For the purpose of this example, the integrationExample.css and integrationExample.js are empty files.</p>
-    </div>
+    </InformationalBox>
 
     <h3>Source Code</h3>
 
@@ -827,9 +832,9 @@ export default function DevelopingAddIns() {
             <h1 className="title">Developing Add-Ins</h1>
             <div className="paragraph">
                 <p>Add-Ins are used to extend the functionality provided by MyGeotab and Geotab Drive. An Add-In is JavaScript, HTML and CSS loaded into the MyGeotab or Geotab Drive portal and resides directly inside the user interface. This allows third-parties to create a seamless user experience and provide solutions that would otherwise require the user to visit a different website altogether. <a href="https://github.com/Geotab/sdk-addin-samples">Click here</a> to find the sample Add-Ins.</p>
-                <div className="side-note">
+                <InformationalBox>
                     <p>The add-in generator is a great developer tool that allows integrators to create scaffolded add-in projects. You can learn more about the generator and all of its features by going into the <a href="https://github.com/Geotab/generator-addin">generator-addin repository</a>.</p>
-                </div>
+                </InformationalBox>
             </div>
             <Accordion summary="Geotab Add-Ins Can Be of Two Types" p={GeotabAddInTypes}></Accordion>
             <Accordion summary="Use Cases" p={UseCases}></Accordion>
