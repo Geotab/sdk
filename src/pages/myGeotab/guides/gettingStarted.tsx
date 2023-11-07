@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import { IconChevronRightSmall } from "@geotab/react-component-library";
+import "../../../pages/pages.scss";
 
 const stepsToGetStarted: ReactNode = (
   <div className="paragraph">
@@ -47,62 +48,81 @@ const whatsNext: ReactNode = (
     There are several other items in the SDK to help you get started:
     <ul>
       <li>
-        <a hrefLang="../concepts">Concepts</a>{" "}
-        {/* TODO: Need to replace this with routing to the Concepts page*/} — Be
-        sure to read through this before building your application
-      </li>
-      <li>
-        <a hrefLang="../using-in-javascript">Using in JavaScript</a>{" "}
-        {/* TODO: Need to replace this with routing to Using in Javascript page*/}
-      </li>
-      <li>
-        <a hrefLang="../using-in-dotnet">Using in .NET</a>{" "}
-        {/* TODO: Need to replace this with routing to Using in Dotnet page*/}
-      </li>
-      <li>
-        <a hrefLang="../using-in-java">Using in Java</a>
-      </li>{" "}
-      {/* TODO: Need to replace this with routing to Using in Java page*/}
-      <li>
-        <a href="https://community.geotab.com/s/?language=en_US">
-          Support Alert
-        </a>
+        <a href="https://geotab.github.io/sdk/software/guides/concepts">
+          Concepts
+        </a>{" "}
+        {/* TODO: Need to replace this with routing to "../concepts" when created */}
         — Be sure to read through this before building your application
       </li>
       <li>
-        <a hrefLang="../api/reference">API Reference</a> — The reference
-        documentation that explains what each API call does and documents the
-        parameters and results for each call
+        <a href="https://geotab.github.io/sdk/software/guides/using-in-javascript">
+          Using in JavaScript
+        </a>{" "}
+        {/* TODO: Need to replace this with routing to "../using-in-javascript" when created*/}
       </li>
-      {/* TODO: Need to replace this with routing to api/reference page*/}
+      <li>
+        <a href="https://geotab.github.io/sdk/software/guides/using-in-dotnet">
+          Using in .NET
+        </a>{" "}
+        {/* TODO: Need to replace this with routing to "../using-in-dotnet" when created*/}
+      </li>
+      <li>
+        <a href="https://geotab.github.io/sdk/software/guides/using-in-java">
+          {/* TODO: Need to replace this with routing to "../using-in-java" when created*/}
+          Using in Java
+        </a>{" "}
+      </li>
+      <li>
+        <a href="https://community.geotab.com/s/?language=en_US">
+          Support Alert
+        </a>{" "}
+        — Be sure to read through this before building your application
+      </li>
+      <li>
+        <a href="https://geotab.github.io/sdk/software/api/reference">
+          API Reference
+        </a>{" "}
+        {/* TODO: Need to replace this with routing to api/reference page when created*/}
+        — The reference documentation that explains what each API call does and
+        documents the parameters and results for each call
+      </li>
       <li>
         <a href="https://geotab.github.io/sdk/software/api/runner.html">
           API Runner
-        </a>
+        </a>{" "}
         — An easy way to “play” with the API. Click on the “Runner” link from
         the API Reference. It is a tool that can be used to make method calls to
         a MyGeotab server and see what the results look like
       </li>
-      <div>
-        Note: Remember you are not in a sandbox — you are executing API commands
-        against a real database. For example, removing a Device via the API will
-        really delete that device from the database!
-      </div>
-      <li>
-        <a hrefLang="../../js-samples">JavaScript</a> or{" "}
-         {/* TODO: Need to replace this with routing to js-samples page*/}
-        <a href="https://github.com/Geotab/sdk-dotnet-samples">.NET</a> Code
-        samples. https://github.com/Geotab/sdk-dotnet-samples
-      </li>
-      <div>
-        For additional support{" "}
-        <a href="https://helpdesk.geotab.com/forums/21798473-Community-Forum?geotabsdk=forums">
-          use the SDK forums
-        </a>
-        . A number of solutions have already been provided in the forums. They
-        are monitored by Geotab staff and other users of the SDK.
-      </div>
     </ul>
+    <p>
+      {" "}
+      {/*NOTE: possibly adjust spacing for this element or keep as it? */}
+      Note: Remember you are not in a sandbox — you are executing API commands
+      against a real database. For example, removing a Device via the API will
+      really delete that device from the database!
+    </p>
+    <ul>
+      <li>
+        <a href="https://geotab.github.io/sdk/software/js-samples">
+          JavaScript
+        </a>{" "}
+        or{" "}
+        {/* TODO: Need to replace this with routing to js-samples page when created*/}
+        <a href="https://github.com/Geotab/sdk-dotnet-samples">.NET</a> Code
+        samples. The JavaScript sample are “live” and can be run against your
+        database hosted on my.geotab.com. The .NET examples are downloadable and
+        can be compiled and run against your MyGeotab server.
+      </li>
+    </ul>
+    <p>
+      For additional support{" "}
+      <a href="https://helpdesk.geotab.com/forums/21798473-Community-Forum?geotabsdk=forums">
+        use the SDK forums
+      </a>
+      . A number of solutions have already been provided in the forums. They are
+      monitored by Geotab staff and other users of the SDK.
+    </p>
   </div>
 );
 
@@ -137,19 +157,10 @@ export default function UsingGoDevices() {
         </p>
       </div>
 
-      <Accordion
-        summary="Steps To Get Started"
-        p={stepsToGetStarted}
-      ></Accordion>
-      <Accordion
-        summary="Plug In A Geotab GO Device"
-        p={plugInAGeotabGoDevice}
-      ></Accordion>
-      <Accordion
-        summary="Register A New Database"
-        p={registerANewDatabase}
-      ></Accordion>
-      <Accordion summary="What's Next?" p={whatsNext}></Accordion>
+      <Accordion summary="Steps To Get Started" p={stepsToGetStarted} />
+      <Accordion summary="Plug In A Geotab GO Device" p={plugInAGeotabGoDevice} />
+      <Accordion summary="Register A New Database" p={registerANewDatabase} />
+      <Accordion summary="What's Next?" p={whatsNext} />
     </div>
   );
 }
