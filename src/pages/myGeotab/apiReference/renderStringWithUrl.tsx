@@ -14,49 +14,63 @@ export default function RenderStringWithLinks(text: string) {
             return;
         }
 
-        const seeTagRegex = /<see cref="([^"]*)"/g;
+        const seeTagRegex = /<see cref="([^"]*)"[^>]*>/g;
         const isListItem = line.trim().startsWith('- ');
 
-        // Use a regular expression to remove the dashes
         const content = isListItem ? line.replace(/^\s*-\s*/, '') : line;
 
-        let match;
         let currentIndex = 0;
         const segments: JSX.Element[] = [];
 
+        let match;
         while ((match = seeTagRegex.exec(content)) !== null) {
-            segments.push(<span key={currentIndex++}>{content.slice(currentIndex, match.index)}</span>);
-            const cref = match[1];
-            const link = `/your-link-here/${cref}`; // Replace with your actual URL
-            segments.push(<a key={currentIndex++} href={link}>{cref}</a>);
+            const start = currentIndex;
+            const end = match.index;
+            if (start < end) {
+                segments.push(<span key={`span-${currentIndex}`}>{content.slice(start, end)}</span>);
+            }
+
+            let cref = match[1].split('.');
+            let linkText = cref[cref.length - 1].replace(/[^a-zA-Z]/g, '');
+            const link = `#${linkText}`; // Replace with your actual URL
+            segments.push(<a key={`a-${currentIndex}`} href={link}>{linkText}</a>);
             currentIndex = seeTagRegex.lastIndex;
         }
 
-        segments.push(<span key={currentIndex}>{content.slice(currentIndex) || ''}</span>);
+        // Handle the case where a dash follows a <see> tag
+        if (isListItem && currentIndex < content.length && content[currentIndex] === '-') {
+            currentIndex++; // Skip the dash
+        }
+
+        const remainingText = content.slice(currentIndex).replace(/\/>/g, '');
+
+        if (remainingText) {
+            segments.push(<span key={`span-${currentIndex}`}>{remainingText}</span>);
+        }
 
         if (isListItem) {
             if (!inList) {
                 inList = true;
                 listItems = [];
             }
-            listItems.push(<li key={listItems.length}>{segments}</li>);
+            listItems.push(<li key={`li-${listItems.length}`}>{segments}</li>);
         } else {
             inList = false;
             if (listItems.length > 0) {
                 renderedText.push(
-                <ul key={renderedText.length}>
-                    {listItems}
-                </ul>
+                    <ul key={`ul-${renderedText.length}`}>
+                        {listItems}
+                    </ul>
                 );
                 listItems = [];
             }
-            renderedText.push(<p key={index}>{segments}</p>);
+            renderedText.push(<p key={`p-${index}`}>{segments}</p>);
         }
     });
 
     if (listItems.length > 0) {
         renderedText.push(
-            <ul key={renderedText.length}>
+            <ul key={`ul-${renderedText.length}`}>
                 {listItems}
             </ul>
         );

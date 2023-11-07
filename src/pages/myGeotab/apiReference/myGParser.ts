@@ -152,11 +152,18 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             let tagName = item[i].attributes.name.nodeValue.split('.');
                             let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                             if (json[objectName]) {
-                                // console.log('------Member Name------');
-                                // console.log(memberName);
-                                // console.log(item[i]);
-                                // should have a list of dictionaries
-                                // dictionary structure will be name, description, type as the keys
+                                console.log('----' + objectName + '----');
+                                for (let j = 0; j < item[i].childNodes.length; j++) {
+                                    console.log(item[i].childNodes[j].nodeName);
+                                    
+                                    if (item[i].childNodes[j].nodeName === 'summary') {
+                                        console.log(item[i].childNodes[j].nodeValue);
+                                    }
+                                    if (item[i].childNodes[j].nodeName === 'value') {
+                                        
+                                    }
+                                }
+
                             }
                         }
                     }
