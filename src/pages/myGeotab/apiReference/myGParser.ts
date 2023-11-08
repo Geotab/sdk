@@ -1,3 +1,4 @@
+import { OuterExpressionKinds } from "typescript";
 
 function extractSubstrings(input: string): string {
     const webMethodsMatch = input.match(/WebMethods\.([a-zA-Z]+)/);
@@ -143,21 +144,57 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                             if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
                                                 summaryText += summaryChildren[k].outerHTML;
                                             }
+                                            if (summaryChildren[k].nodeName === 'para') {
+                                                // console.log(summaryChildren[k].childNodes);
+                                                for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
+                                                    if (summaryChildren[k].childNodes[l].nodeName === '#text') {
+                                                        summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
+                                                    }
+                                                    if (summaryChildren[k].childNodes[l].nodeName === 'see') {
+                                                        summaryText += summaryChildren[k].childNodes[l].outerHTML;
+                                                    }
+                                                }
+                                                
+                                                if (k !== summaryChildren.length - 1) {
+                                                    summaryText += '\n';
+                                                }
+                                            }
+                                            if (summaryChildren[k].nodeName === 'list') {
+                                                // in lists we have item tags and each item tag has a description tag within it
+                                                // console.log(summaryChildren[k].childNodes);
+                                                let listItems = summaryChildren[k].childNodes;
+                                                for (let l = 0; l < listItems.length; l++) {
+                                                    if (listItems[l].hasChildNodes) {
+                                                        if (objectName === 'TextMessage') {
+                                                            console.log(listItems[l]);
+                                                            console.log(listItems[l].childNodes);
+                                                        }
+                                                        for (let m = 0; m < listItems[l].childNodes.length; m++) {
+                                                            if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                                summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].outerHTML;
+                                                            } else {
+                                                                summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
+                                                            }   
+                                                        }
+                                                    }
+                                                } 
+                                            }
                                         }
                                         json[objectName].description = summaryText.trimStart();
                                     } 
                                 }
+                                
                             } 
                         } else if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel'))) {
                             let tagName = item[i].attributes.name.nodeValue.split('.');
                             let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                             if (json[objectName]) {
-                                console.log('----' + objectName + '----');
+                                // console.log('----' + objectName + '----');
                                 for (let j = 0; j < item[i].childNodes.length; j++) {
-                                    console.log(item[i].childNodes[j].nodeName);
+                                    // console.log(item[i].childNodes[j].nodeName);
                                     
                                     if (item[i].childNodes[j].nodeName === 'summary') {
-                                        console.log(item[i].childNodes[j].nodeValue);
+                                        // console.log(item[i].childNodes[j]);
                                     }
                                     if (item[i].childNodes[j].nodeName === 'value') {
                                         
