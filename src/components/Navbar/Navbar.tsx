@@ -21,10 +21,13 @@ export default function Navbar() {
           <Link to="/myGeotab/guides/gettingStarted">Getting Started</Link>
         </div>
         <div>
-          <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
+          <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
         </div>
         <div>
-          <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
+          <Link to="/myGeotab/guides/goDeviceLogging">GO Device Logging</Link>
+        </div>
+        <div>
+          <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
         </div>
       </div>
       <div>
