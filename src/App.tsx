@@ -10,6 +10,7 @@ import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTel
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
 
 import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
+import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
 
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
+          <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
