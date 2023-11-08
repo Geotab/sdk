@@ -32,6 +32,9 @@ export default function Navbar() {
         <div>
           <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link>
         </div>
+        <div>
+          <Link to="/goDeviceLogging">GO Device Logging</Link>
+        </div>
       </div>
       <div>
         API Reference
