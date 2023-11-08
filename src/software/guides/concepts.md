@@ -761,7 +761,7 @@ For optimal performance, we advise limiting to 100 nested requests.
 This is relevant when processing requests large response sizes, for instance, Get<StatusData> over an extended period.
 Similarly, using chunking to manage high-volume requests improves process control and optimizes response management.
 
-That being said, the system does not enforce a hard limit on the number of requests in a multicall at this point. 
+That being said, the system does not enforce a hard limit on the number of requests in a multicall at this point.
 
 **What if the call doesn't return a result?**
 
