@@ -26,8 +26,8 @@ const registerANewDatabase: ReactNode = (
     <ol>
       <li>
         To register, browse to{" "}
-        <a href="https://my.geotab.com/registration.htm">
-          https://my.geotab.com/registration.htm
+        <a href="https://my.geotab.com/registration.html">
+          https://my.geotab.com/registration.html
         </a>
       </li>
       <li>
