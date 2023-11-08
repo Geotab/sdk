@@ -86,18 +86,18 @@ const technicalDetails: ReactNode = <div className="paragraph">
     <p>
         Vehicles will not necessarily return all of the above information; the list is based on all the supported engine protocols.  
     </p>
-    <h2>Total Fuel Used</h2>
+    <h3>Total Fuel Used</h3>
     <p>
     “Total fuel used (since telematics device install)” is generic status data. No matter how fuel information is received from a particular vehicle, be it OBD2, J1708, J1939 or another diagnostic standard, a generic Total Fuel Used record will be saved after ignition off. An additional record, “Total fuel used while idling (since telematics device install)”, which is the fuel used while road speed is 0, is also saved on ignition off. “Total fuel used (since telematics device install)” (<a hrefLang="../api/reference/#KnownId">KnownId</a> {/* TODO: Need to replace this with routing to KnownId page*/} <code className="small-code-sample">DiagnosticDeviceTotalFuelId</code>) and “Total fuel used while idling (since telematics device install)” <code className="small-code-sample">DiagnosticDeviceTotalIdleFuelId</code> are the diagnostics used to track fuel consumption.
     </p>
-    <h2>Seat Belt And Odometer</h2>
+    <h3>Seat Belt And Odometer</h3>
     <p>
         Seat belt and odometer requests are proprietary on most passenger cars. It is Geotab’s goal to support seat belt and odometer across all the major vehicle manufacturers. If you are unable to obtain seatbelt or odometer requests for your vehicle, please contact Geotab Support. You can query the percentage of seat belt, odometer and other engine based data is supported for different vehicle types via MyAdmin.
     </p>
     <p>
         Seat belt use is logged on status change: a value of 1 represents the seat belt unbuckled, while a value of 0 represents the seat belt buckled. Odometer is logged both on ignition on and ignition off and every hour.
     </p>
-    <h2>Engine Hours</h2>
+    <h3>Engine Hours</h3>
     <p>
         It is often important in fleet tracking to look at a vehicle's engine hours. While Geotab strives to support this data on as many vehicles as possible, it is sometimes not possible. As a workaround, Geotab provides two types of engine hours StatusData. It is important to distinguish between the two in order to utilize them appropriately.
     </p>
@@ -116,11 +116,11 @@ const technicalDetails: ReactNode = <div className="paragraph">
         <br></br>
         Get&lt;StatusData&gt;&lt;DiagnosticEngineHoursAdjustmentId&gt; returns a calculated engine hours value based on GPS Travel time and the last reported engine hours value (either reported by the GoDevice or manually entered). 
     </p>
-    <h2>Odometer</h2>
+    <h3>Odometer</h3>
     <p>
         It is often important in fleet management to track a vehicle’s odometer. While Geotab strives to report data as frequently and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately. 
     </p>
-    <h3>Odometer Status Data:</h3>
+    <h4>Odometer Status Data:</h4>
     <p>
         DiagnosticOdometerAdjustmentId:
         <br></br>
@@ -157,7 +157,7 @@ const technicalDetails: ReactNode = <div className="paragraph">
         <br></br>
         This is a corrected odometer reading based on the raw odometer value and the odometer manipulators. It is calculated as Odometer = [Raw Odometer * Odometer Factor] + Odometer Offset.
     </p>
-    <h3>Odometer Manipulators:</h3>
+    <h4>Odometer Manipulators:</h4>
     <p>
         Note: If applied, these manipulators will only affect future DiagnosticOdometerId records. They cannot correct existing records.
         <br></br>
