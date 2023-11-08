@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { MenuProvider } from "./menuContext";
-import "./index.css";
+import "./index.scss";
 import './App.scss';
 import App from "./App";
 
