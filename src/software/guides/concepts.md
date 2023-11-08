@@ -756,7 +756,12 @@ Yes, it is possible to use a search in a multicall.
 
 **How many request can I put in a multicall?**
 
-There is no limit on the number of requests that can be made in a multicall. When making a large number of requests it may be desirable to "chunk" the requests into several requests of a smaller and more manageable size.
+For optimal performance, we advise limiting to 100 nested requests.
+
+This is relevant when processing requests large response sizes, for instance, Get<StatusData> over an extended period.
+Similarly, using chunking to manage high-volume requests improves process control and optimizes response management.
+
+That being said, the system does not enforce a hard limit on the number of requests in a multicall at this point. 
 
 **What if the call doesn't return a result?**
 
