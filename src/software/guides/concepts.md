@@ -16,7 +16,12 @@ Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST re
 
 The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
 
+### Security
 MyGeotab API requests can only be made over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
+
+Geotab recommends that all users of Geotab APIs adhere to modern cryptography best practices. When using our libraries, we recommend that developers use algorithms and ciphers that provide the most forward secrecy and the greatest adherence to modern compliance requirements.
+
+At the time of writing this document, best practices implies that we use AES-256 (or stronger) cipher suites and algorithms with a modern cipher mode, such as GCM or CCM. We recommend utilizing modern key exchange algorithms such as DHE or ECDHE. RSA3072 or the equivalent elliptic cryptographic algorithm should be use for asymmetric cryptography. We recommend SHA3 for all hashing operations. When using modern network communications software, the latest version of TLS (TLS1.3 at the time of writing) should be used.
 
 ### Make your first API call
 
