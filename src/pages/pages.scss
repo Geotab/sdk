@@ -89,6 +89,46 @@
 
 }
 
+.mapAddins {
+
+  &__docs-service{
+    margin: 1rem 0;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-clip: border-box;
+    word-wrap: break-word;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0,0,0,.125);
+  }
+
+  &__docs-service__part {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    border-top: 1px solid rgba(0,0,0,.125);
+  }
+
+  &__docs-service__part:first-child {
+    border-top: none;
+  }
+
+  &__table-container{
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid $table-border;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: auto;
+    margin: 0;
+  }
+
+}
+
 .landing-page__text-container {
   margin-right: 8px;
 }
@@ -183,6 +223,11 @@ a {
 
 .small-code-sample {
   color: $code-color;
+  background-color: $code-bg;
+  padding: 4px;
+}
+
+.small-code-sample-two {
   background-color: $code-bg;
   padding: 4px;
 }
