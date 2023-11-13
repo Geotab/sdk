@@ -5,6 +5,29 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
 
+## November 3, 2023
+- Added property **"isIgnored"** and removed property **"isHidden"** from the [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object.
+-  [LogRecords](https://geotab.github.io/sdk/software/api/reference/#LogRecord) are no longer interpolated when no device is provided. Interpolation is now gated behind a custom code.
+- **"cycleDriving"** property was added to [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object. "CycleDriving" property is also added to the [DutyStatusViolationType](https://geotab.github.io/sdk/software/api/reference/#DutyStatusViolationType) object.
+- Removed all logic related to Viewport in [ZoneSearch](https://geotab.github.io/sdk/software/api/reference/#ZoneSearch), since it has been deprecated for some time. If a ZoneSearch is provided with Viewport, an error message is returned.
+- Added **"minYear"** parameter to [GetDaylightSavingRules](https://geotab.github.io/sdk/software/api/reference/#GetDaylightSavingRules) so that adjustment rules are returned only for the year 2000 and onward. Previously, years going back to 1920 were stored causing a large amount of wasted localstorage.
+
+## September 8, 2023
+- Fixed an error when retrieving DutyStatusLogs for all drivers.
+
+## June 2, 2023
+- Added support for the [AddIn](https://geotab.github.io/sdk/software/api/reference/#AddInSearch) search object.
+
+## May 26, 2023
+- A property called **'jobPriorities'** is added to the [User](https://geotab.github.io/sdk/software/api/reference/#User) object, it stores the list of selected job priorities.
+- A property called **'activeDefaultDashboards'** is added to the [User](https://geotab.github.io/sdk/software/api/reference/#User) object, it stores the list of default dashboards.
+- The [GetDaylightSavingRules](https://geotab.github.io/sdk/software/api/reference/#GetDaylightSavingRules) method now returns only rules from the year 2000 onwards by default.
+
+## May 19, 2023
+- Sealed objects are removed from **Nuget** package for existing objects.
+- Bug fixed by ensuring **PropertySelector** for [Device](https://geotab.github.io/sdk/software/api/reference/#Device) only returns the property added to the field id within PropertySelector.
+- New ruleset **"CanadaBCLoggingTruck"** added to the list of [HosRuleSet](https://geotab.github.io/sdk/software/api/reference/#HosRuleSet).
+
 ## 11.0
 ### Get and GetFeed for FuelUsed and FillUp
 - Get and GetFeed for [FuelUsed](https://geotab.github.io/sdk/software/api/reference/#FuelUsed) is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip’s ending date and time.
