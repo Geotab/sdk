@@ -165,10 +165,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                                 let listItems = summaryChildren[k].childNodes;
                                                 for (let l = 0; l < listItems.length; l++) {
                                                     if (listItems[l].hasChildNodes) {
-                                                        if (objectName === 'TextMessage') {
-                                                            console.log(listItems[l]);
-                                                            console.log(listItems[l].childNodes);
-                                                        }
                                                         for (let m = 0; m < listItems[l].childNodes.length; m++) {
                                                             if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
                                                                 summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].outerHTML;
@@ -188,19 +184,43 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                         } else if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel'))) {
                             let tagName = item[i].attributes.name.nodeValue.split('.');
                             let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
+                            let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
                             if (json[objectName]) {
                                 // console.log('----' + objectName + '----');
+                                let propertyDict: any = {};
+                                let descriptionText = '';
+                                propertyDict['name'] = propertyName;
                                 for (let j = 0; j < item[i].childNodes.length; j++) {
-                                    // console.log(item[i].childNodes[j].nodeName);
-                                    
                                     if (item[i].childNodes[j].nodeName === 'summary') {
-                                        // console.log(item[i].childNodes[j]);
+                                        for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
+                                            if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
+                                                descriptionText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g, ' ')
+                                            }
+                                            if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
+                                                descriptionText += item[i].childNodes[j].childNodes[k].outerHTML;
+                                            }
+                                            if (item[i].childNodes[j].childNodes[k].nodeName === 'list') {
+                                                let properyListItems = item[i].childNodes[j].childNodes[k].childNodes;
+                                                for (let l = 0; l < properyListItems.length; l++) {
+                                                    if (properyListItems[l].hasChildNodes) {
+                                                        for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
+                                                            if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                                descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].outerHTML;
+                                                            } else {
+                                                                descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
+                                                            }   
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                     if (item[i].childNodes[j].nodeName === 'value') {
                                         
                                     }
                                 }
-
+                                propertyDict['description'] = descriptionText.trimStart();
+                                json[objectName].properties.push(propertyDict);
                             }
                         }
                     }
