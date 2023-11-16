@@ -26,6 +26,9 @@ export default function Navbar() {
         <div>
           <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
         </div>
+        <div>
+          <Link to="/myGeotab/guides/powerBI">Connect to Power BI</Link>
+        </div>
       </div>
       <div>
         Add-Ins
