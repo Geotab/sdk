@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header, Navbar } from "./components";
+import { Header, Navbar, Footer } from "./components";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
@@ -57,6 +57,7 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/drive/introduction" Component={DriveIntroduction} />
         </Routes>
+        <Footer />
       </Router>
     </Toaster>
   );
