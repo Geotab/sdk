@@ -21,6 +21,7 @@ import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
 import DriveIntroduction from "./pages/drive/introduction";
 import { Toaster } from "@geotab/react-component-library";
+import MapAddins from "./pages/myGeotab/addIns/mapAddIns";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
+          <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
