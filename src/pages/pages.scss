@@ -100,13 +100,13 @@
     background-clip: border-box;
     word-wrap: break-word;
     border-radius: 0.25rem;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid $table-border;
   }
 
   &__docs-service__part {
     flex: 1 1 auto;
     padding: 1.25rem;
-    border-top: 1px solid rgba(0,0,0,.125);
+    border-top: 1px solid $table-border;
   }
 
   &__docs-service__part:first-child {
@@ -114,17 +114,18 @@
   }
 
   &__table-container{
-    display: inline-block;
-    overflow: hidden;
-    border-radius: 4px;
-    border: 1px solid $table-border;
+    @extend .table-container;
+    display: inline-block !important;
+    overflow: hidden !important;
   }
 
   &__table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: auto;
     margin: 0;
+  }
+
+  &__image {
+    width: max-content;
+    max-width: 100%;
   }
 
 }

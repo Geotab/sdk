@@ -8,7 +8,6 @@ import mapAddinSizeOnMobileImage from "./../../../assets/images/mapAddins/map-ad
 import multipleMapAddinsOnTheMapPageImage from "./../../../assets/images/mapAddins/map-add-ins-docs-4.jpg";
 import { Link } from "react-router-dom";
 
-//
 const Installation: ReactNode = <div className="paragraph">
     <p>
         Map Add-ins are installed by uploading an <Link to="/myGeotab/addIns/developingAddIns">Add-in Configuration file</Link> into MyGeotab. Click on Administration -&gt; System... -&gt; System Settings -&gt; Add-Ins -&gt; New Add-In, and upload the Add-in Configuration file. The following is an example of a Map Add-in's Configuration file:
@@ -39,12 +38,11 @@ const Installation: ReactNode = <div className="paragraph">
         <li><strong>noView</strong> - If <code className="small-code-sample-two">true</code>, the add-in will not be displayed in the right-side panel. The default value is <code className="small-code-sample-two">false</code>.</li>
         <li><strong>src</strong> - The JavaScript file reference for the Add-in. This can be an externally hosted file or uploaded into MyGeotab by dragging and dropping it into the Configuration file window.</li>
         <li><strong>style</strong> - The CSS file reference for this Add-In. This can be externally hosted or uploaded to MyGeotab.</li>
-        <li><strong>url</strong> - The HTML file reference for this Add-In. This option can be used instead of src and style. Links to CSS and JavaScript files can be made within this HTML file. All content within the &lt;body&gt; tags will be added to the Map Add-in UI &#40;&#40;<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html">Example</a>&#41;&#41;.</li>
+        <li><strong>url</strong> - The HTML file reference for this Add-In. This option can be used instead of src and style. Links to CSS and JavaScript files can be made within this HTML file. All content within the &lt;body&gt; tags will be added to the Map Add-in UI &#40;&#40;<a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html">Example</a>&#41;&#41;.</li>
     </ol>
-    <p>You can find example Map Add-ins <a href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
+    <p>You can find example Map Add-ins <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
 </div>;
-
-// 
+ 
 const Usage: ReactNode = <div className="paragraph">
     <h3>Iframe Setup</h3>
     <p>In the MyGeotab portal, Map Add-ins are loaded when the user visits the MyGeotab page containing the Add-in. For example, the Add-in in Figure #1 loads when the user visits the Map page.</p>
@@ -61,16 +59,16 @@ const Usage: ReactNode = <div className="paragraph">
     <p>The iframe panel has a fixed width of 450 pixels; the width shrinks to accomodate screens with widths below 600 pixels. The panel height is responsive, always reaching the bottom of the page.</p>
     <p>The figures below display how the panel size changes between a desktop screen and a mobile phone screen.</p>
     <figure>
-        <img src={mapAddinSizeOnDesktopImage} alt="Figure #2 - Map Add-in size on desktop." />
+        <img className="mapAddins__image" src={mapAddinSizeOnDesktopImage} alt="Figure #2 - Map Add-in size on desktop." />
         <figcaption>Figure #2 - Map Add-in size on desktop.</figcaption>
     </figure>
     <figure>
-        <img src={mapAddinSizeOnMobileImage} alt="Figure #3 - Map Add-in size on mobile." />
+        <img className="mapAddins__image" src={mapAddinSizeOnMobileImage} alt="Figure #3 - Map Add-in size on mobile." />
         <figcaption>Figure #3 - Map Add-in size on mobile.</figcaption>
     </figure>
     <p>If multiple Map Add-ins are installed, each is accessible by selecting the appropriate tab at the top of the panel. In Figure #4, there are 3 add-ins installed on the page, denoted by the 3 tabs at the top of the panel. The add-ins are titled "Live Trip History", "Tooltip", and "Vehicle Info".</p>
     <figure>
-        <img src={multipleMapAddinsOnTheMapPageImage} alt="Figure #4 - Multiple Add-ins on the Map page." />
+        <img className="mapAddins__image" src={multipleMapAddinsOnTheMapPageImage} alt="Figure #4 - Multiple Add-ins on the Map page." />
         <figcaption>Figure #4 - Multiple Add-ins on the Map page.</figcaption>
     </figure>
     <h3>Structure</h3>
@@ -88,11 +86,10 @@ const Usage: ReactNode = <div className="paragraph">
     <p>The Add-in function will be called when a user visits the Add-in by clicking on its tab. After that, the "focus" and "blur" events will be fired when the user opens or leaves the Add-in tab, respectively &#40;See Page Service&#41;.</p>
 </div>;
 
-//
 const MapAddinServices: ReactNode = <div id="services-list" className="paragraph">
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Page Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page">Example</a>)</h2>
+            <h2>Page Service (<a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page">Example</a>)</h2>
             <p>Service for getting/setting page state and moving between MyGeotab page</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -213,7 +210,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>LocalStorage Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage">Example</a>)</h2>
+            <h2>LocalStorage Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage">Example</a>)</h2>
             <p>Service to request information stored in browser LocalStorage</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -244,7 +241,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Api Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request">Example</a>)</h2>
+            <h2>Api Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request">Example</a>)</h2>
             <p>Service for requesting data from Geotab server</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -314,7 +311,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Events Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events">Example</a>)</h2>
+            <h2>Events Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events">Example</a>)</h2>
             <p>Service for catching events that happens when user interact with different entities on the map</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -696,7 +693,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Map Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map">Example</a>)</h2>
+            <h2>Map Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map">Example</a>)</h2>
             <p>Service for manipulating viewport of the map and getting updates about changed map viewport</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -844,7 +841,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Tooltip Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip">Example</a>)</h2>
+            <h2>Tooltip Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip">Example</a>)</h2>
             <p>Service for showing additional information in entities tooltip</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -1011,7 +1008,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>ActionList Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action" >Example</a>)</h2>
+            <h2>ActionList Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action" >Example</a>)</h2>
             <p>Service for showing a custom action list instead of the existing one, or adding custom buttons to existing action lists.</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -1299,7 +1296,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
     </div>
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
-            <h2>Canvas Service (<a href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements" >Example</a>)</h2>
+            <h2>Canvas Service (<a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements" >Example</a>)</h2>
             <p>Service for drawing custom shapes on the map</p>
             <h3>Methods</h3>
             <div className="mapAddins__table-container">
@@ -1714,7 +1711,7 @@ const MapAddinServices: ReactNode = <div id="services-list" className="paragraph
 
 const exampleAddins: ReactNode = <div className="paragraph">
     <p>
-        <a href="https://github.com/Geotab/sdk-map-addin-samples">Here are some examples</a> and <a href="https://github.com/Geotab/map-addins-definitions/">type definition files</a> that can help you understand how to work with Map Add-ins. Download them, unzip the files, then follow the instructions in the ReadMe document.
+        <a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples">Here are some examples</a> and <a  target="_blank" rel="noreferrer" href="https://github.com/Geotab/map-addins-definitions/">type definition files</a> that can help you understand how to work with Map Add-ins. Download them, unzip the files, then follow the instructions in the ReadMe document.
     </p>
 </div>;
 
@@ -1739,7 +1736,7 @@ export default function MapAddins() {
                     Below is an example of a Map Add-In installed within the Map page of MyGeotab. When a user clicks a vehicle on the map, this integration displays the relevant data for that vehicle.
                 </p>
                 <figure>
-        <img src={mapVehicleInfoImage} alt="Figure #1 - The &quot;Vehicle Info&quot; Map Add-in." />
+        <img className="mapAddins__image" src={mapVehicleInfoImage} alt="Figure #1 - The &quot;Vehicle Info&quot; Map Add-in." />
         <figcaption>Figure #1 - The &quot;Vehicle Info&quot; Map Add-in.</figcaption>
     </figure>
 
