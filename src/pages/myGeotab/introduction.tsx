@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import Accordion from "../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import { Page } from "../../components";
+import { PageTitleProps } from "../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 
 const deviceData: ReactNode =
     <div className="paragraph">
@@ -86,22 +88,18 @@ const softwareToolkit: ReactNode =
         Please refer to <a href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a> for further details.
     </div>;
 
+const pageTitle: PageTitleProps = {
+    "title": "Introduction",
+    "breadCrumbItems": ["MYG", "Introduction"]
+};
 
 export default function Introduction() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-            <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Introduction</span>
-                </div>
-            <h1 className="title">Introduction</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle}>
             <div className="paragraph">
                 The MyGeotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab.
                 Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
-                <br></br>
+                <br />
                 Various working examples are included in this SDK for use as a starting point with your own code e.g.:
                 <ul>
                     <li>Display vehicle trips on third-party map (for example <a href="http://leafletjs.com/">Leaflet</a> or <a href="https://developers.arcgis.com/javascript/">ArcGIS API for JavaScript</a>)</li>
@@ -118,6 +116,6 @@ export default function Introduction() {
             <Accordion summary="Integrating with MyGeotab" p={integratingWithMyG}></Accordion>
             <Accordion summary="Integrating custom telematics tracking devices into MyGeotab" p={customDevices}></Accordion>
             <Accordion summary="Technical Software Toolkit" p={softwareToolkit}></Accordion>
-        </div>
+        </Page>
     );
 };
