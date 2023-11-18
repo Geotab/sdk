@@ -1,3 +1,6 @@
 .pageContent {
     margin: 32px 24px;
-  }
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}

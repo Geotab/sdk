@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
-import { PageTitle } from "..";
+import { PageTitle, TableOfContents } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import "./pageContent.scss";
 
@@ -15,7 +15,12 @@ export default function PageContent(props: PageContentProps) {
         <div>
             <Header isLandingPage={props.isLandingPage} />
             {props.pageTitle && <PageTitle title={props.pageTitle.title} breadCrumbItems={props.pageTitle.breadCrumbItems} /> }
-            <div className="pageContent">{props.pageContent}</div>
+            <div className="pageContent">
+                <div>
+                    {props.pageContent}
+                </div>
+                <TableOfContents />
+            </div>
         </div>
     );
 }
