@@ -30,7 +30,7 @@ export default function Navbar(props: any) {
           <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
         </div>
         <div>
-          <Link to="/goDeviceLogging">GO Device Logging</Link>
+          <Link to="/myGeotab/guides/goDeviceLogging">GO Device Logging</Link>
         </div>
         <div>
           <Link to="/myGeotab/guides/powerBI">Connect to Power BI</Link>
