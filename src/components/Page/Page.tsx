@@ -4,10 +4,12 @@ import PageContent from "../PageContent/PageContent";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import "./page.scss";
 import { HeaderSections } from "../Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 
 interface PageProps {
     section: string;
     pageTitle?: PageTitleProps;
+    tableOfContents?: TableOfContentsItem[];
     children: React.ReactNode;
 }
 
@@ -17,7 +19,7 @@ export default function Page(props: PageProps) {
     return (
         <div className="page">
             {!isLandingPage && <Navbar section={props.section} />}
-            <PageContent isLandingPage={isLandingPage} pageTitle={props.pageTitle} pageContent={props.children} />
+            <PageContent isLandingPage={isLandingPage} pageTitle={props.pageTitle} pageContent={props.children} tableOfContents={props.tableOfContents} />
         </div>
     );
 }

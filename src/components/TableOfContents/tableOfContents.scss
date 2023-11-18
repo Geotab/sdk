@@ -21,24 +21,26 @@
     }
 
     & li:not(:first-of-type) {
-        padding: 8px 12px;
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-
+        
         &:not(:last-of-type) {
             margin-bottom: 4px;
         }
         
         & a {
+            padding: 8px 12px;
             font-weight: 400;
             font-size: 14px;
             line-height: 24px;
             color: $text-secondary;
             text-decoration: none;
+            display: block;
         }
 
         &:hover,
         &:focus,
+        &:focus-within,
         &:active {
             background-color: $table-of-contents-hover-background;
             border-left: 4px solid $button-outline--focus;

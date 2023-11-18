@@ -1,17 +1,29 @@
+import React from "react";
 import "./tableOfContents.scss";
 
-export default function TableOfContents() {
+export interface TableOfContentsItem {
+    summary: string;
+    elementId: string;
+    details?: React.ReactNode;
+}
+
+interface TableOfContentsProps {
+    items: TableOfContentsItem[];
+}
+
+export default function TableOfContents(props: TableOfContentsProps) {
     return (
         <ul className="tableOfContents">
             <li className="tableOfContents__heading">
                 Table of contents
             </li>
-            <li>
-                <a href="#device-data">Accessing the device's data</a>
-            </li>
-            <li>
-                <a href="#introduction">Importing, exporting and synchronizing</a>
-            </li>
+            {props.items.map((item: TableOfContentsItem) => {
+                return (
+                    <li key={item.elementId}>
+                        <a href={`#${item.elementId}`}>{item.summary}</a>
+                    </li>
+                );
+            })}
         </ul>
     );
 };

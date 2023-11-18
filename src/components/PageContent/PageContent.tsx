@@ -3,11 +3,13 @@ import Header from "../Header/Header";
 import { PageTitle, TableOfContents } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import "./pageContent.scss";
+import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 
 interface PageContentProps {
     isLandingPage: boolean;
     pageTitle?: PageTitleProps;
     pageContent: React.ReactNode;
+    tableOfContents?: TableOfContentsItem[];
 }
 
 export default function PageContent(props: PageContentProps) {
@@ -19,7 +21,7 @@ export default function PageContent(props: PageContentProps) {
                 <div>
                     {props.pageContent}
                 </div>
-                <TableOfContents />
+                {props.tableOfContents && <TableOfContents items={props.tableOfContents} />}
             </div>
         </div>
     );
