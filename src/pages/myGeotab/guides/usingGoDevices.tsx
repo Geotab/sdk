@@ -85,7 +85,7 @@ device.Id = api.CallAsync<Id>("Add", typeof (Device), new {entity = device});`
 
 const apiToExtractData: ReactNode = <div className="paragraph">
     The simplest way to extract data efficiently and reliably is to create a data feed.
-    There are special methods for this application — see the <a href="../data-feed/">Data Feed</a> documentation for a comprehensive explination of the data feed and links to example code.
+    There are special methods for this application — see the <a href="../data-feed/">Data Feed</a> documentation for a comprehensive explanation of the data feed and links to example code.
     {/*TODO: fix link */}
 </div>
 

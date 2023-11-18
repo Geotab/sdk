@@ -21,7 +21,7 @@ export default function Navbar() {
           <Link to="/myGeotab/guides/gettingStarted">Getting Started</Link>
         </div>
         <div>
-          <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
+          <Link to="/myGeotab/guides/dataFeed">Data Feed</Link>
         </div>
         <div>
           <Link to="/myGeotab/guides/goDeviceLogging">GO Device Logging</Link>
@@ -29,7 +29,10 @@ export default function Navbar() {
         <div>
           <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
         </div>
-      </div>
+        <div>
+          <Link to="/myGeotab/guides/powerBI">Connect to Power BI</Link>
+        </div>
+      </div >
       <div>
         Add-Ins
         <div>
@@ -37,6 +40,9 @@ export default function Navbar() {
         </div>
         <div>
           <Link to="/myGeotab/addIns/addInStorage">Add-In for Storage</Link>
+        </div>
+        <div>
+          <Link to="/myGeotab/addIns/mapAddins">Map Add-ins</Link>
         </div>
       </div>
       <div>
@@ -48,6 +54,6 @@ export default function Navbar() {
           <Link to="/myGeotab/apiReference/objects">Objects</Link>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
