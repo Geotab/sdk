@@ -9,7 +9,7 @@ import "./header.scss";
 export default function Header(props: any) {
   const { active, setActive } = useContext(MenuContext);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [isLanding, setIsLanding] = useState(true);
+  const [isLanding, setIsLanding] = useState(props.isLandingPage);
 
   const openSearchModal = () => {
     setSearchModalOpen(true);
