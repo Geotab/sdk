@@ -2,11 +2,10 @@
 
 .footer-container {
   display: flex;
-  height: 24px;
   padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
-  background: $actions-primary-active
+  background: $actions-primary-active;
 }
 
 .footer-container__left {
@@ -14,14 +13,22 @@
   align-items: center;
   gap: 24px;
 
-  a {
-    color: $backgrounds-content-2;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 114.286% */
-    text-decoration: none;
+  .link-container {
+    display: flex;
+    gap: 24px;
+
+    a {
+      color: $backgrounds-content-2;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      text-decoration: none;
+    }
+
+    .footer-link-divider {
+      display: flex;
+    }
   }
 }
 
@@ -32,11 +39,10 @@
 
   .footer-copyright {
     color: $backgrounds-content-2;
-    font-family: Roboto;
-    font-size: 12px;
+    font-size: $font-size-small;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 0.32px;
   }
 }

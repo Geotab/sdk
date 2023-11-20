@@ -1,5 +1,27 @@
+import React from "react";
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
+
+interface FooterLink {
+  href: string;
+  label: string;
+}
+
+const footerLinks: FooterLink[] = [
+  { href: "https://www.geotab.com/security", label: "Security" },
+  {
+    href: "https://docs.google.com/document/d/1sVygLN02w2xNovFY4q5vw-oAzfYxCd7WLhyToElgDbs/pub",
+    label: "Privacy Policy",
+  },
+  {
+    href: "https://docs.google.com/document/d/1jA8Qc8WZMhmaqdjd8Ng8rY4iMI073xCfLNt_DSP72TQ/edit#heading=h.gjdgxs",
+    label: "End User Agreement",
+  },
+  {
+    href: "https://geotab.github.io/sdk/software/guides/addin-storage/",
+    label: "Storage Preferences",
+  },
+];
 
 export default function Footer() {
   return (
@@ -7,57 +29,22 @@ export default function Footer() {
       <footer>
         <div className="footer-container">
           <div className="footer-container__left">
-            <div className="footer-logo-container">
-              {" "}
-              <LogoGeotabFooter />
-            </div>
-
-            <div>
-              {" "}
-              {/* NOTE: Will these links lead to outside resources are will the content be created  */}
-              <a
-                href="https://www.geotab.com/security"
-                aria-label="Security"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Security{" "}
-              </a>
-            </div>
-            <FooterDivider />
-            <div>
-              <a
-                href="https://docs.google.com/document/d/1sVygLN02w2xNovFY4q5vw-oAzfYxCd7WLhyToElgDbs/pub"
-                aria-label="Privacy Polocy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Privacy Policy
-              </a>
-            </div>
-            <FooterDivider />
-            <div>
-              <a
-                href="https://docs.google.com/document/d/1jA8Qc8WZMhmaqdjd8Ng8rY4iMI073xCfLNt_DSP72TQ/edit#heading=h.gjdgxs"
-                aria-label="End User Agreement"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                End User Agreement
-              </a>
-            </div>
-            <FooterDivider />
-            <div>
-              {/* TODO: Current SDK site did not have Storage Preferences link so will likely need to update this */}
-              <a
-                href="https://geotab.github.io/sdk/software/guides/addin-storage/"
-                aria-label="Storage Preferences"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Storage Preferences
-              </a>
-            </div>
+            <LogoGeotabFooter />
+            {footerLinks.map((link, index) => (
+              <div key={link.label} className="link-container">
+                <a
+                  href={link.href}
+                  aria-label={link.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+                <span className="footer-link-divider">
+                  {index < footerLinks.length - 1 && <FooterDivider />}
+                </span>
+              </div>
+            ))}
           </div>
 
           <div className="footer-container__right">
