@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header, Navbar } from "./components";
+import { Header, Navbar, Footer } from "./components";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
@@ -31,31 +31,34 @@ function App() {
       <Router>
         <Header />
         <Navbar />
-        <Routes>
-          <Route path="/" Component={LandingPage} />
-          <Route path="/sdk" Component={LandingPage} />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" Component={LandingPage} />
+            <Route path="/sdk" Component={LandingPage} />
 
-          <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
-          <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+            <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
+            <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
 
-          <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
-          <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
-          <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
-          <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
-          <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
-          <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
+            <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
+            <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
+            <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
+            <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
+            <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
+            <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
 
-          <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
-          <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
-          <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
+            <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
+            <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
+            <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
 
-          <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-          <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
+            <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
+            <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
-          <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-          <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-          <Route path="/drive/introduction" Component={DriveIntroduction} />
-        </Routes>
+            <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+            <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+            <Route path="/drive/introduction" Component={DriveIntroduction} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </Toaster>
   );
