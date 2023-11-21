@@ -91,7 +91,7 @@
 
 .mapAddins {
 
-  &__docs-service{
+  &__docs-service {
     margin: 1rem 0;
     min-width: 0;
     position: relative;
@@ -113,7 +113,7 @@
     border-top: none;
   }
 
-  &__table-container{
+  &__table-container {
     @extend .table-container;
     display: inline-block !important;
     overflow: hidden !important;
@@ -147,6 +147,7 @@ ul {
   border: 1px solid $table-border;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 table {
