@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header, Navbar, Footer } from "./components";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
@@ -28,22 +27,9 @@ function App() {
   return (
     <Toaster duration={2000} position="bottom-center">
       <Router>
-        {/* <Header /> */}
-        {/* <Navbar /> */}
-        <div className="main-content">
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
-          {/* <Route path="/myGeotabIntroduction" Component={MyGeotabIntroduction} /> */}
-          {/* <Route path="/whatsNew" Component={MyGeotabWhatsNew} /> */}
-          {/* <Route path="/gettingStarted" Component={MyGeotabGettingStarted} /> */}
-          {/* <Route path="/usingGoDevices" Component={UsingGoDevices} /> */}
-          {/* <Route path="/methods" Component={MyGeotabMethods} />
-          <Route path="/objects" Component={MyGeotabObjects} /> */}
-          {/* <Route path="/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} /> */}
-          {/* <Route path="/myAdminIntroduction" Component={MyAdminIntroduction} /> */}
-          {/* <Route path="/hardwareIntroduction" Component={HardwareIntroduction} /> */}
-          {/* <Route path="/driveIntroduction" Component={DriveIntroduction} /> */}
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
           <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
 
@@ -57,15 +43,13 @@ function App() {
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
           <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
 
-            <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-            <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
+          <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
+          <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
-            <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-            <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-            <Route path="/drive/introduction" Component={DriveIntroduction} />
-          </Routes>
-        </div>
-        {/* <Footer /> */}
+          <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/drive/introduction" Component={DriveIntroduction} />
+        </Routes>
       </Router>
     </Toaster>
   );

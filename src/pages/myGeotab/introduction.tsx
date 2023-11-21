@@ -149,14 +149,6 @@ export default function Introduction() {
             </div>
 
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} />)}
-
-            {/* <Accordion summary="Accessing the device's data" p={deviceData}></Accordion>
-            <Accordion summary="Importing, exporting and synchronizing" p={importExport}></Accordion>
-            <Accordion summary="Automating tasks" p={automatingTasks}></Accordion>
-            <Accordion summary="Working with Add-Ins" p={workingWithAddins}></Accordion>
-            <Accordion summary="Integrating with MyGeotab" p={integratingWithMyG}></Accordion>
-            <Accordion summary="Integrating custom telematics tracking devices into MyGeotab" p={customDevices}></Accordion>
-            <Accordion summary="Technical Software Toolkit" p={softwareToolkit}></Accordion> */}
         </Page>
     );
 };

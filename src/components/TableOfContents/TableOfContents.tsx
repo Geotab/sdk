@@ -27,7 +27,6 @@ export default function TableOfContents(props: TableOfContentsProps) {
             }
         });
 
-        //Get custom attribute data-section from all sections
         const sections = document.querySelectorAll('details div.paragraph');
 
         sections.forEach((section) => {
