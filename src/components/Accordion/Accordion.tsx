@@ -10,7 +10,7 @@ interface AccordianContents {
 export default function Accordion(props: AccordianContents) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronDown className="icon-arrow"></IconChevronDown> : <IconChevronUp className="icon-arrow"></IconChevronUp>;
+    let Icon: ReactNode = expanded ? <IconChevronUp className="icon-arrow"></IconChevronUp> : <IconChevronDown className="icon-arrow"></IconChevronDown>;
 
     function handleToggle(): void {
         setExpanded(!expanded);
