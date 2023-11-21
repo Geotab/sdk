@@ -1,9 +1,5 @@
 @import "../variables";
 
-.pageContent {
-  padding: 8px 24px 24px 24px;
-}
-
 .text--large {
   font-size: $font-size-large;
   margin: 0;
@@ -13,12 +9,9 @@
   font-size: $font-size-medium;
 }
 
-.pageContent {
-  padding: 32px 24px;
-}
-
 // Page-specific styles
 .landing-page {
+  margin-top: 58px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -199,19 +192,6 @@ h3 {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-}
-
-.breadCrumb {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  color: $darkBlue;
-  display: flex;
-  margin-block-end: 0px;
-}
-
-.breadCrumb span {
-  align-self: center;
 }
 
 a {

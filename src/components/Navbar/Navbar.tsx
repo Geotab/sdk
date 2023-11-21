@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MenuContext from "../../menuContext";
 
-export default function Navbar() {
+export default function Navbar(props: any) {
 
   const section = useContext(MenuContext);
 
@@ -25,6 +25,9 @@ export default function Navbar() {
         </div>
         <div>
           <Link to="/myGeotab/guides/goDeviceLogging">GO Device Logging</Link>
+        </div>
+        <div>
+          <Link to="/myGeotab/guides/usingGoDevices">Using GO Devices</Link>
         </div>
         <div>
           <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
