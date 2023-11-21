@@ -11,7 +11,7 @@ import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTel
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
 import GoDeviceLogging from "./pages/myGeotab/guides/goDeviceLogging";
 import PowerBI from "./pages/myGeotab/guides/powerBI";
-import myGeotabUrls from "./pages/myGeotab/guides/myGeotabUrls";
+import MyGeotabUrls from "./pages/myGeotab/guides/myGeotabUrls";
 
 import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 
@@ -52,7 +52,7 @@ function App() {
           <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
           <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
-          <Route path="/myGeotab/guides/myGeotabUrls" Component={myGeotabUrls} />
+          <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
 

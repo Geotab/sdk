@@ -8,7 +8,8 @@ const linkToAPage: ReactNode = <div className="paragraph">
     <p>To create a link to a page, the following URL structure is used:</p>
     <code className="small-code-sample">{`https://<serverName>/<databaseName>/#<page>,<parameters>`}</code>
     <InformationalBox>
-        <p>{`The portions of the examples noted with < and > (e.g. <serverName>) indicate where the user will enter information specific to their requirements.`}</p>
+        <p>The portions of the examples noted with {`<`} and {`>`} (e.g. <code className="small-code-sample">{`<serverName>`}</code>)
+            indicate where the user will enter information specific to their requirements.</p>
     </InformationalBox>
     <div className="table-container">
         <table>
@@ -33,7 +34,8 @@ const linkToAPage: ReactNode = <div className="paragraph">
                 </tr>
                 <tr>
                     <td>parameters</td>
-                    <td>Additional arguments to apply to the request. For example, `currentSortMode:deviceName` will sort the devices on the device list page by name.
+                    <td>Additional arguments to apply to the request. For example,  <code className="small-code-sample">{`currentSortMode:deviceName`}</code> will sort the devices on the device
+                        list page by name.
                         Note: each additional parameter is separated by a comma</td>
                 </tr>
             </tbody>
@@ -413,6 +415,7 @@ export default function myGeotabUrls() {
 
             <Accordion summary="Link To A Page" p={linkToAPage} />
             <Accordion summary="Standalone pages" p={standalonePages} />
+            <Accordion summary="Passing Parameters To A Page" p={passingParameters} />
             <Accordion summary="List Of Pages And Accepted Parameters" p={listOfPages} />
             <Accordion summary="Credentials" p={credentials} />
             <Accordion summary="Getting The Session Id Using The API" p={gettingSessionId} />
