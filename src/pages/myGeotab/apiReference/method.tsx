@@ -1,28 +1,15 @@
 // import { RouteComponentProps } from 'react-router-dom';
 
-// interface MethodProps extends RouteComponentProps<{ methodId: string }> {}
-
-// const Method: React.FC<MethodProps> = ({ location, match }) {
-//     const method = (location.state as any).method;
-
-//     return (
-//         <div>
-//             <h2>{method.name}</h2>
-//             <p>{method.description}</p>
-//             <ul>
-//                 {method.parameters.map((param: any) => (
-//                     <li key={param.id}>
-//                         <p>{param.name}</p> 
-//                         <p>{param.description}</p>
-//                     </li>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// }
-
-// export default Method;
+import { Header } from "@geotab/react-component-library";
+import { useParams } from "react-router-dom";
 
 export default function Method() {
-    
+    const { methodId } = useParams();
+
+    // console.log(methodObject);
+    return (
+        <div>
+            <Header title="Method"></Header>
+        </div>
+    )
 } 

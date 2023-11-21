@@ -14,6 +14,7 @@ import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
+import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
@@ -51,6 +52,7 @@ function App() {
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
+          <Route path="/method/:methodId" element={<MyGeotabMethod />}/> 
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
