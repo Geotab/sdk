@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header, Navbar } from "./components";
+import { Header, Navbar, Footer } from "./components";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
@@ -30,6 +30,7 @@ function App() {
       <Router>
         {/* <Header /> */}
         {/* <Navbar /> */}
+        <div className="main-content">
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
@@ -56,13 +57,15 @@ function App() {
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
           <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
 
-          <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-          <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
+            <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
+            <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
-          <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-          <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-          <Route path="/drive/introduction" Component={DriveIntroduction} />
-        </Routes>
+            <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+            <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+            <Route path="/drive/introduction" Component={DriveIntroduction} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </Toaster>
   );
