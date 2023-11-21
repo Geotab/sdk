@@ -41,7 +41,8 @@
         &:hover,
         &:focus,
         &:focus-within,
-        &:active {
+        &:active,
+        &.tableOfContents__item--active {
             background-color: $table-of-contents-hover-background;
             border-left: 4px solid $button-outline--focus;
             cursor: pointer;
