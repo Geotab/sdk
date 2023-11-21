@@ -17,7 +17,7 @@ export default function Page(props: PageProps) {
     const isLandingPage: boolean = props.section === HeaderSections.Landing;
 
     return (
-        <div className="page">
+        <div className={!isLandingPage ? "page" : ""}>
             {!isLandingPage && <Navbar section={props.section} />}
             <PageContent isLandingPage={isLandingPage} pageTitle={props.pageTitle} pageContent={props.children} tableOfContents={props.tableOfContents} />
         </div>

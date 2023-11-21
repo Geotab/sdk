@@ -65,7 +65,7 @@ function App() {
             <Route path="/drive/introduction" Component={DriveIntroduction} />
           </Routes>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </Toaster>
   );
