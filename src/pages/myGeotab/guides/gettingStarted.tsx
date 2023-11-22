@@ -7,7 +7,7 @@ import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 
 const stepsToGetStarted: ReactNode = (
-  <div className="paragraph" id="steps-to-get-started">
+  <div className="paragraph">
     For testing purposes we recommend setting up a test database and adding test
     devices to it. Remember, if you decide to test against a production
     database, data could be accidentally modified or lost.
@@ -15,7 +15,7 @@ const stepsToGetStarted: ReactNode = (
 );
 
 const plugInAGeotabGoDevice: ReactNode = (
-  <div className="paragraph" id="plug-in-a-geotab-go-device">
+  <div className="paragraph">
     Refer to the "
     <a href="https://www.geotab.com/support-documentation/">
       Geotab Support Documentation
@@ -25,7 +25,7 @@ const plugInAGeotabGoDevice: ReactNode = (
 );
 
 const registerANewDatabase: ReactNode = (
-  <div className="paragraph" id="register-a-new-database">
+  <div className="paragraph">
     <ol>
       <li>
         To register, browse to{" "}
@@ -47,7 +47,7 @@ const registerANewDatabase: ReactNode = (
 );
 
 const whatsNext: ReactNode = (
-  <div className="paragraph" id="whats-next">
+  <div className="paragraph">
     There are several other items in the SDK to help you get started:
     <ul>
       <li>
@@ -178,7 +178,7 @@ export default function UsingGoDevices() {
         </p>
       </div>
 
-      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} />)}
+      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
 }

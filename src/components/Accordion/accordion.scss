@@ -5,6 +5,10 @@ details>summary {
     line-height: 24px;
     margin-block-end: 16px;
     display: flex;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 summary::-webkit-details-marker {
@@ -17,8 +21,4 @@ details>summary>svg {
 
 details {
     margin-block-start: 16px;
-}
-
-.icon-arrow {
-    cursor: pointer;
 }
