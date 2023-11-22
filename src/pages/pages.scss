@@ -1,9 +1,5 @@
 @import "../variables";
 
-.pageContent{
-  padding: 8px 24px 24px 24px;
-}
-
 .text--large {
   font-size: $font-size-large;
   margin: 0;
@@ -15,6 +11,7 @@
 
 // Page-specific styles
 .landing-page {
+  margin-top: 58px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -43,36 +40,85 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    outline: 1px solid #C0CCD8;
-    background: #FFF;
-    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.04);
-
+    outline: 1px solid $button-outline;
+    background: $button-bg;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.04);
 
     &:hover {
-      outline: 1px solid #C0CCD8;
-      background: #FFF;
-      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.20);
+      outline: 1px solid $button-outline;
+      background: $button-bg;
+      box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
     }
 
     &:focus,
     &:active {
       border-radius: 4px;
-      outline: 2px solid #0078D3;
-      background: #F9FAFB;
-      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.20);
+      outline: 2px solid $button-outline--focus;
+      background: $button-bg--focus;
+      box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.20);
+    }
+  }
+
+  &__text-container {
+
+    margin-right: 8px;
+
+    .subtitle p {
+      margin-block-end: 0;
     }
   }
 }
 
 .usingCustomTelematicsDevices {
 
-  &__deviceManagementIMG{
+  &__deviceManagementIMG {
     padding: 0.25rem;
     background-color: $lightGray;
     border: 1px solid #DEE2E6;
     border-radius: 0.25rem;
     max-width: 100%;
     height: auto;
+  }
+
+}
+
+.mapAddins {
+
+  &__docs-service {
+    margin: 1rem 0;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-clip: border-box;
+    word-wrap: break-word;
+    border-radius: 0.25rem;
+    border: 1px solid $table-border;
+  }
+
+  &__docs-service__part {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    border-top: 1px solid $table-border;
+  }
+
+  &__docs-service__part:first-child {
+    border-top: none;
+  }
+
+  &__table-container {
+    @extend .table-container;
+    display: inline-block !important;
+    overflow: hidden !important;
+  }
+
+  &__table {
+    margin: 0;
+  }
+
+  &__image {
+    width: max-content;
+    max-width: 100%;
   }
 
 }
@@ -89,6 +135,33 @@ ul {
   margin-block-start: 0px
 }
 
+.table-container {
+  border-radius: 4px;
+  border: 1px solid $table-border;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 16px 0;
+}
+
+
+tbody tr {
+  border-top: 1px solid $table-border;
+  border-radius: 4px;
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: left;
+}
+
 .paragraph {
   font-weight: 400;
   font-size: 14px;
@@ -101,12 +174,12 @@ ul {
   font-size: 28px;
   line-height: 36px;
   margin-block-start: 8px;
-  
+  margin-block-end: 0px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 20px;
+  font-size: $font-size-medium;
   line-height: 28px;
 }
 
@@ -116,17 +189,10 @@ h2 {
   line-height: 24px;
 }
 
-.breadCrumb {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  color: $darkBlue;
-  display: flex;
-  margin-block-end: 0px;
-}
-
-.breadCrumb span {
-  align-self: center;
+h3 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 a {
@@ -135,4 +201,15 @@ a {
 
 .grayBackground {
   background-color: $lightGray;
+}
+
+.small-code-sample {
+  color: $code-color;
+  background-color: $code-bg;
+  padding: 4px;
+}
+
+.small-code-sample-two {
+  background-color: $code-bg;
+  padding: 4px;
 }

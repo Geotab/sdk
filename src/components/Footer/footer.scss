@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+
+.footer-container {
+  display: flex;
+  padding: 16px 24px;
+  justify-content: space-between;
+  align-items: center;
+  background: $actions-primary-active;
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+}
+
+.footer-container__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  .link-container {
+    display: flex;
+    gap: 24px;
+
+    a {
+      color: $backgrounds-content-2;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      text-decoration: none;
+    }
+
+    .footer-link-divider {
+      display: flex;
+    }
+  }
+}
+
+.footer-container__right {
+  width: 205px;
+  flex-shrink: 0;
+  text-align: right;
+
+  .footer-copyright {
+    color: $backgrounds-content-2;
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.32px;
+  }
+}
