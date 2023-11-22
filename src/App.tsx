@@ -14,15 +14,19 @@ import MyGeotabUrls from "./pages/myGeotab/guides/myGeotabUrls";
 
 import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
+import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
+
 import DriveIntroduction from "./pages/drive/introduction";
+import DriveAddIns from "./pages/drive/addIns/driveAddIns";
+
 import { Toaster } from "@geotab/react-component-library";
-import MapAddins from "./pages/myGeotab/addIns/mapAddIns";
+
 
 
 function App() {
@@ -45,7 +49,7 @@ function App() {
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
-          <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
+          <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
           <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
@@ -53,7 +57,9 @@ function App() {
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+
           <Route path="/drive/introduction" Component={DriveIntroduction} />
+          <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
         </Routes>
       </Router>
     </Toaster>

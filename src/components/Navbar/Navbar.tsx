@@ -48,7 +48,7 @@ export default function Navbar(props: any) {
           <Link to="/myGeotab/addIns/addInStorage">Using Add-Ins for Data Storage</Link>
         </div>
         <div>
-          <Link to="/myGeotab/addIns/mapAddins">Map Add-ins</Link>
+          <Link to="/myGeotab/addIns/mapAddIns">Map Add-Ins</Link>
         </div>
       </div>
       <div>
@@ -58,6 +58,12 @@ export default function Navbar(props: any) {
         </div>
         <div>
           <Link to="/myGeotab/apiReference/objects">Objects</Link>
+        </div>
+      </div>
+      <div>
+        Drive
+        <div>
+          <Link to="/drive/addIns/driveAddIns">Drive Add-Ins</Link>
         </div>
       </div>
     </div >
