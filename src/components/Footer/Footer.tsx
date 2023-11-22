@@ -25,33 +25,29 @@ const footerLinks: FooterLink[] = [
 
 export default function Footer() {
   return (
-    <div>
-      <footer>
-        <div className="footer-container">
-          <div className="footer-container__left">
-            <LogoGeotabFooter />
-            {footerLinks.map((link, index) => (
-              <div key={link.label} className="link-container">
-                <a
-                  href={link.href}
-                  aria-label={link.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-                <span className="footer-link-divider">
-                  {index < footerLinks.length - 1 && <FooterDivider />}
-                </span>
-              </div>
-            ))}
+    <footer className="footer-container">
+      <div className="footer-container__left">
+        <LogoGeotabFooter />
+        {footerLinks.map((link, index) => (
+          <div key={link.label} className="link-container">
+            <a
+              href={link.href}
+              aria-label={link.label}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+            <span className="footer-link-divider">
+              {index < footerLinks.length - 1 && <FooterDivider />}
+            </span>
           </div>
+        ))}
+      </div>
 
-          <div className="footer-container__right">
-            <small className="footer-copyright">Copyright © 2023 Geotab</small>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div className="footer-container__right">
+        <small className="footer-copyright">Copyright © 2023 Geotab</small>
+      </div>
+    </footer>
   );
 }
