@@ -6,7 +6,7 @@ import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
 const deviceData: ReactNode =
-    <div className="paragraph" id="device-data">
+    <div className="paragraph">
         The Geotab Data Feed API is a scalable, efficient and secure method to access all the device's data.
         <br></br>
         There are many different types of data that can be requested from the API. For example:
@@ -22,7 +22,7 @@ const deviceData: ReactNode =
     </div>;
 
 const importExport: ReactNode =
-    <div className="paragraph" id="import-export">
+    <div className="paragraph">
         Geotab has a set of pre-made applications (which include full source code) for synchronizing MyGeotab data and can be used for example to:
         <ul>
             <li>Import your customer list from a <a href="http://en.wikipedia.org/wiki/Customer_relationship_management">CRM</a> (Customer Relationship Management) system</li>
@@ -36,7 +36,7 @@ const importExport: ReactNode =
     </div>;
 
 const automatingTasks: ReactNode =
-    <div className="paragraph" id="automating-tasks">
+    <div className="paragraph">
         Common tasks that you perform online using MyGeotab can all be automated using the Geotab API. You can create time-saving scripts or automated processes such as:
         <ul>
             <li>When a new pick-up arrives, automate the dispatching by sending a text message to the vehicle's Garmin through an attached GO device</li>
@@ -45,7 +45,7 @@ const automatingTasks: ReactNode =
     </div>;
 
 const workingWithAddins: ReactNode =
-    <div className="paragraph" id="working-with-addins">
+    <div className="paragraph">
         Geotab has developed a number of Add-In products which can be easily integrated into your MyGeotab UI. The benefits of using Add-Ins are:
         <ul>
             <li>Ready availability of Add-Ins to instantly integrate into your MyGeotab and Geotab Drive. Visit the <a href="http://www.geotab.com/marketplace/">Geotab Marketplace</a> and the
@@ -55,7 +55,7 @@ const workingWithAddins: ReactNode =
     </div>;
 
 const integratingWithMyG: ReactNode =
-    <div className="paragraph" id="integrating-with-myg">
+    <div className="paragraph">
         You can integrate an embedded version of MyGeotab into your own web application. This is perfect for providing a website to your customers with insight as to where their deliveries are and when they will arrive.
         You have control of which features appear on the embedded MyGeotab to create a seamless integration between your software and ours.
         <br></br>
@@ -71,7 +71,7 @@ const integratingWithMyG: ReactNode =
     </div>;
 
 const customDevices: ReactNode =
-    <div className="paragraph" id="custom-devices">
+    <div className="paragraph">
         Custom telematics devices can have their data added into the MyGeotab database. The Geotab API is used to provision and upload the devices data.
         Additionally, data from these devices can be used in conjunction with data collected by Geotab GO devices. Contact Geotab support to have your custom telematics device added
         (each device type will receive a unique prefix code) and contact your reseller to handle billing.
@@ -83,7 +83,7 @@ const customDevices: ReactNode =
     </div>;
 
 const softwareToolkit: ReactNode =
-    <div className="paragraph" id="software-toolkit">
+    <div className="paragraph">
         The toolkit provides helpful integration resources and context which are in addition to the existing documentation and make it easier for partners to get up and running.
         <br></br>
         Please refer to <a href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a> for further details.
@@ -148,7 +148,7 @@ export default function Introduction() {
                 Keep up to date with Geotab's technical updates by subscribing to our <a href="https://www.geotab.com/subscription/">technical bulletins</a>.{/*TODO: Add info icon here*/}
             </div>
 
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} />)}
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };
