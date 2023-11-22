@@ -7,18 +7,18 @@
     border-radius: 4px;
     background: #EBF6FF;
     margin: 16px 0;
+    color: #25477B;
+
+    .icon-container {
+        display: flex;
+        align-items: center;
+    }
 
     p {
-        color: #25477B;
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
         line-height: 16px;
         letter-spacing: 0.32px;
     }
-}
-
-.icon-container {
-    display: flex;
-    align-items: center;
 }
