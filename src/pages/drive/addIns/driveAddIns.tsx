@@ -453,11 +453,11 @@ const thirdPartyFromURISchema: ReactNode =
         <p>It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to <code className="small-code-sample">window.open</code>. For example:</p>
         <CodeSample
             language="javascript"
-            code={`window.open(uriSchemaString, "_system")`}></CodeSample>
+            code={`window.open(uriSchemaString, "_system")`} />
         <p>Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:</p>
         <CodeSample
             language="javascript"
-            code={`window.open("twitter://messages", "_system")`}></CodeSample>
+            code={`window.open("twitter://messages", "_system")`} />
         <p>You can't use just <code className="small-code-sample">twitter://</code> as it's not correct and app won't open. You need to specify which page you want to open: <code className="small-code-sample">messages</code>, <code className="small-code-sample">account</code> etc.</p>
         <p>To open webpage you need to use the same method, but with this notation:</p>
         <CodeSample
