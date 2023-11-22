@@ -13,12 +13,12 @@ export default function Accordion(props: AccordionContents) {
 
     let Icon: ReactNode = expanded ? <IconChevronUp/> : <IconChevronDown/>;
 
-    function handleToggle(e: ToggleEvent) {
-        const target = e.target as HTMLDetailsElement;
-        setExpanded(target.open);
+    function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
+        const detailsElement = e.target as HTMLDetailsElement;
+        setExpanded(detailsElement.open);
     };
 
-    return (<details onToggle={() => handleToggle} open>
+    return (<details onToggle={handleToggle} open>
         <summary id={props.id}>
             {props.summary}
             {Icon}
