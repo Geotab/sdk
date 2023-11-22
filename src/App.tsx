@@ -49,7 +49,7 @@ function App() {
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
-          <Route path="/myGeotab/addIns/mapAddins" Component={MapAddins} />
+          <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
           <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
@@ -57,7 +57,9 @@ function App() {
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+
           <Route path="/drive/introduction" Component={DriveIntroduction} />
+          <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
         </Routes>
       </Router>
     </Toaster>
