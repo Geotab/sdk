@@ -4,6 +4,17 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## Dec 4, 2023
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### ApiRatePlan
+
+- In September, we added two parameters (`isAutoActivated` and `billingStartDate`) to the **GetDeviceContractsByPage** and **GetDeviceContracts** methods. As a result, we will be deprecating the `isAutoActivated`` property from the **ApiRatePlan** object.  
+
+<br/>   
+
+***
 ## October 4, 2023
 
 <h3 class="text-danger font-weight-bold">Coming Soon</h3>
