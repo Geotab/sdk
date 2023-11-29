@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import mapVehicleInfoImage from "./../../../assets/images/mapAddins/map-add-ins-docs-1.jpg";
@@ -8,7 +11,7 @@ import mapAddinSizeOnMobileImage from "./../../../assets/images/mapAddins/map-ad
 import multipleMapAddinsOnTheMapPageImage from "./../../../assets/images/mapAddins/map-add-ins-docs-4.jpg";
 import { Link } from "react-router-dom";
 
-const Installation: ReactNode = <div className="paragraph">
+const installation: ReactNode = <div className="paragraph">
     <p>
         Map Add-ins are installed by uploading an <Link to="/myGeotab/addIns/developingAddIns">Add-in Configuration file</Link> into MyGeotab. Click on Administration -&gt; System... -&gt; System Settings -&gt; Add-Ins -&gt; New Add-In, and upload the Add-in Configuration file. The following is an example of a Map Add-in's Configuration file:
     </p>
@@ -43,7 +46,7 @@ const Installation: ReactNode = <div className="paragraph">
     <p>You can find example Map Add-ins <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples">here</a>.</p>
 </div>;
  
-const Usage: ReactNode = <div className="paragraph">
+const usage: ReactNode = <div className="paragraph">
     <h3>Iframe Setup</h3>
     <p>In the MyGeotab portal, Map Add-ins are loaded when the user visits the MyGeotab page containing the Add-in. For example, the Add-in in Figure #1 loads when the user visits the Map page.</p>
     <p>Map Add-ins are loaded inside an iframe with its sandbox attribute set to "allow-scripts". This allows the Map Add-in to run custom scripts, such as the JavaScript file from the "<strong>src</strong>" parameter in the Add-in Configuration file.</p>
@@ -86,7 +89,7 @@ const Usage: ReactNode = <div className="paragraph">
     <p>The Add-in function will be called when a user visits the Add-in by clicking on its tab. After that, the "focus" and "blur" events will be fired when the user opens or leaves the Add-in tab, respectively &#40;See Page Service&#41;.</p>
 </div>;
 
-const MapAddinServices: ReactNode = <div id="services-list" className="paragraph">
+const mapAddinServices: ReactNode = <div id="services-list" className="paragraph">
     <div className="mapAddins__docs-service">
         <div className="mapAddins__docs-service__part">
             <h2>Page Service (<a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page">Example</a>)</h2>
@@ -1715,19 +1718,39 @@ const exampleAddins: ReactNode = <div className="paragraph">
     </p>
 </div>;
 
+const pageTitle: PageTitleProps = {
+    "title": "Geotab Map Add-In Overview",
+    "breadCrumbItems": ["MYG", "Add-Ins", "Map Add-ins"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "installation",
+        "summary": "Installation",
+        "details": installation
+    },
+    {
+        "elementId": "usage",
+        "summary": "Usage",
+        "details": usage
+    },
+    {
+        "elementId": "map-addin-services",
+        "summary": "Map Add-In Services",
+        "details": mapAddinServices
+    },
+    {
+        "elementId": "example-addins",
+        "summary": "Example Add-Ins",
+        "details": exampleAddins
+    }
+];
+
+
 export default function MapAddins() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-                <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Add-Ins</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Map Add-ins</span>
-                </div>
-                <h1 className="title">Geotab Map Add-In Overview</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
+          
             <div className="paragraph">
                 <p>
                     Map Add-ins are integrations embedded within the Map or Trips History pages of the MyGeotab platform. Once installed, a panel will appear on the right-side of the Map or Trips History page, containing the UI of the Map Add-in. These Add-ins can read from and operate on the map, as well as access the MyGeotab APIs. This document outlines the installation process and APIs available for Map Add-In development.
@@ -1741,10 +1764,7 @@ export default function MapAddins() {
     </figure>
 
             </div>
-            <Accordion summary="Installation" p={Installation}></Accordion>
-            <Accordion summary="Usage" p={Usage}></Accordion>
-            <Accordion summary="Map Add-In Services" p={MapAddinServices}></Accordion>
-            <Accordion summary="Example Add-Ins" p={exampleAddins}></Accordion>
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 };
