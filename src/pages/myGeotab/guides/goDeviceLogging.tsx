@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import loggingAccuratelyGraph from "../../../assets/images/myGeotab/goDeviceLogging/go-device-logging_0.png";
 
 const loggingAccurately: ReactNode = <div className="paragraph">
@@ -118,7 +121,7 @@ const technicalDetails: ReactNode = <div className="paragraph">
     </p>
     <h3>Odometer</h3>
     <p>
-        It is often important in fleet management to track a vehicle’s odometer. While Geotab strives to report data as frequently and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately. 
+        It is often important in fleet management to track a vehicle's odometer. While Geotab strives to report data as frequently and on as many vehicles as possible, this is not always possible. As a workaround, Geotab provides three types of Odometer StatusData. It is important to distinguish between the three in order to utilize them appropriately. 
     </p>
     <h4>Odometer Status Data:</h4>
     <p>
@@ -172,19 +175,27 @@ const technicalDetails: ReactNode = <div className="paragraph">
     </p>
 </div>
 
+const pageTitle: PageTitleProps = {
+    "title": "GO Device logging",
+    "breadCrumbItems": ["MYG", "Guides", "GO Device logging"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "logging-accurately",
+        "summary": "Logging accurately",
+        "details": loggingAccurately
+    },
+    {
+        "elementId": "technical-details",
+        "summary": "Technical Details",
+        "details": technicalDetails
+    }
+];
+
 export default function GoDeviceLogging() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-                <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Guides</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>GO Device Logging</span>
-                </div>
-                <h1 className="title">GO Device Logging</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 GO devices use intelligent patented logging algorithms to decide when to record speed, position, and other engine information. The device is constantly monitoring various inputs, for example: second-by-second GPS data, hundreds of accelerometer readings per second, and engine diagnostic inputs. The device monitors the data and determines the appropriate time to store a value.
             </div>
@@ -197,9 +208,7 @@ export default function GoDeviceLogging() {
                     <li>Increased data costs by logging redundant information (for example, recording data for a vehicle that is not moving or moving in a straight line at a constant speed).</li>
                 </ul>
             </div>
-
-            <Accordion summary="Logging Accurately" p={loggingAccurately}></Accordion>
-            <Accordion summary="Technical Details" p={technicalDetails}></Accordion>
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 };
