@@ -1878,6 +1878,8 @@ const Update1804: ReactNode = (
 	</div>
 );
 
+//ToDo: Update CD reference link
+//ToDo: Update object link
 const Update1803: ReactNode = (
 	<div className="paragraph" id="1803">
 		<ul>
@@ -1894,6 +1896,7 @@ const Update1803: ReactNode = (
 	</div>
 );
 
+//ToDo: Update all object links 
 const Update1802: ReactNode = (
 	<div className="paragraph" id="1802">
 		<ul>
@@ -2053,6 +2056,8 @@ const Update1707: ReactNode = (
 	</div>
 );
 
+//ToDo: Update helpdesk link
+//ToDo: Update API Wrapper link (this links to my112.geotab.com...)
 const Update1706: ReactNode = (
 	<div className="paragraph" id="1706">
 		<ul>
@@ -2121,7 +2126,629 @@ const Update1704: ReactNode = (
 		</ul>
 	</div>
 );
+
+const Update1703: ReactNode = (
+	<div className="paragraph" id="1703">
+		<ul>
+			<li>
+				<p>DevicePlan: Added: D2GODriverChallengeStandard <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+			</li>
+			<li>
+				<p>HosRuleSet.cs Added: America7DayNo34h, America8DayNo34h, AmericaShortHaulNo34h, AmericaShortHaul8DayNo34h, BrazilShortHaul <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+			</li>
+			<li>
+				<p>SecurityRole.cs Added: ReassignData <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+			</li>
+			<li>
+				<p>TimeZoneId: it was possible to add a user or device with “Unknown” time zone ID. This was only possible using the API and “Unknown” is not returned via the GetTimeZones method or a valid Olson time zone. The ability to add users and devices with “Unknown” as been removed and all users and devices with this time zone ID have been changed to “Etc/GMT”</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1702: ReactNode = (
+	<div className="paragraph" id="1702">
+		<ul>
+			<li>
+				<p>FuelTransactionProvider: Added - “Voyager”, “UltramarCST”</p>
+			</li>
+			<li>
+				<p>SecurityIdentifier: Added - “PurchaseMarketplacePaidItems” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+			</li>
+			<li>
+				<p>SecurityRole: Added: “TripTypeChangeInsert”, “TripTypeChangeRemove”, “CustomReportSendError” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+			</li>
+			<li>
+				<p>Fix: nuget package issue making API requests from Azure WebJob</p>
+			</li>
+			<li>
+				<p>Fix: TimeZoneInfoAdjustmentRule serialization (result of GetDaylightSavingRules)</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1701: ReactNode = (
+	<div className="paragraph" id="1701">
+		<ul>
+			<li>
+				<p>Added “Hardware” section to SDK</p>
+			</li>
+			<li>
+				<p>Nuget: Replace usage of Microsoft.Net.Http with System.Net.Http (WebRequest =&gt; HttpClient)</p>
+			</li>
+			<li>
+				<p>DiagnosticSearch: Added DiagnosticType property to search by the type of diagnostic. Ex, only GoFault diagnostics.</p>
+			</li>
+			<li>
+				<p>Added “ExpiredPasswordException” object. This exception can be thrown if a user makes a request while their ChangePassword flag is true. The user must change their password before they are able to successfully make further requests</p>
+			</li>
+			<li>
+				<p>SecurityRole: Added “ReportHosAvailability” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+			</li>
+			<li>
+				<p>If you are using the .net nuget package and plan to use the new “HOS Only” device plan you must update to nuget package version 5.7.1701 or greater to ensure compatibility.</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1612: ReactNode = (
+	<div className="paragraph" id="1612">
+		<ul>
+			<li>
+				<p>Id refactoring - The ID object has been refactored in the .NET SDK. See <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">this forum post</a> for details.</p>
+			</li>
+			<li>
+				<p>Updated description of GoCurveAuxiliary (GO4v3, GO6, GO7) properties: ImmobilizeUnit: With ImmobilizeUnit being true, it is used to define the delay before the driver identification reminder is sent out if the driver key has not been not swiped. The maximum value of this property is 255. When it is less or equal to 180, it indicates the number of seconds of the delay. When it is greater than 180, the delay increases 30 seconds for every increment of one of this property. For example, 180 indicates 180 seconds, 181 indicates 210 seconds, and 182 indicates 240 seconds. ImmobilizeArming: A value mainly used for enable or disable driver identification reminder. If it is used in conjunction with vehicle relay circuits, it can force the driver to swipe the driver key before starting the vehicle.</p>
+			</li>
+		</ul>
+	</div>
+);
+
+//ToDo: Update SDK Concepts link
+const Update1611: ReactNode = (
+	<div className="paragraph" id="1611">
+		<ul>
+			<li>
+				<p>Authentication rate limiting being phased in. See this <a href="https://www.geotab.com/blog/api-call-limits/">Blog Post</a> for more details. Added “Rate Limiting” section to <a href="/sdk/software/guides/concepts/">SDK Concepts</a>.</p>
+			</li>
+			<li>
+				<p>KnownId - Added: “DiagnosticDieselExhaustFluidId”, ”DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”</p>
+			</li>
+			<li>
+				<p>KnownId - Removed: “DiagnosticBluetoothBeaconOutOfRangeId”</p>
+			</li>
+			<li>
+				<p>Trailer - Added “Groups” property. Trailers can now be added to groups.</p>
+			</li>
+			<li>
+				<p>TrailerSearch - Added property groups. Search for Trailers that are members of these GroupSearch(s) one of it’s children or one of it’s parents.</p>
+			</li>
+			<li>
+				<p>*SecurityIdentifier - Added: “RepairDVIR”</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1610: ReactNode = (
+	<div className="paragraph" id="1610">
+		<ul>
+			<li>
+				<p>KnownId - Added: “DiagnosticDieselExhaustFluidId”, “DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”</p>
+			</li>
+			<li>
+				<p>HosRuleSet - Added: “Florida7Day”, “Florida8Day”, “FloridaShortHaul7Day”, “FloridaShortHaul8Day”</p>
+			</li>
+		</ul>
+		<h2>New Objects</h2>
+		<ul>
+			<li>
+				OverLimitException: Thrown when a user has exceeded the query limit of an API (currently only applies to authentication). Previously, if a user reached this limit, an InvalidUserException would have been thrown.
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1609: ReactNode = (
+	<div className="paragraph" id="1609">
+		<ul>
+			<li>KnownId - “DiagnosticRamFailure” name fixed to be “DiagnosticRamFailureId”</li>
+		</ul>
+	</div>
+);
+
+const Update1608: ReactNode = (
+	<div className="paragraph" id="1608">
+		<ul>
+			<li>
+				<p>MessageContentType - Added: “DriverWhiteList”</p>
+			</li>
+			<li>
+				<p>DutyStatusLogType - Added: “PC” (Personal conveyance driver status), “YM” (Yard move driver status), “WT” (Wait time oil well driver status).</p>
+			</li>
+			<li>
+				<p>FuelTransaction - Added “ProductType” property.</p>
+			</li>
+			<li>
+				<p>FuelTransactionProvider - Added “WexLegacy”, “Fuelman” and “Comdata”.</p>
+			</li>
+			<li>
+				<p>GoDevice - Added “GoTalkLanguage” property.</p>
+			</li>
+			<li>
+				<p>User - Added “IsYardMoveEnabled” and “IsPersonalConveyanceEnabled” properties.</p>
+			</li>
+			<li>
+				<p>HosRuleSet - Added “OilWell7Day”, “OilWell7DayBig”, “OilWell8Day”, “OilWell8DayBig”, “AmericaTexas”, “AmericaTexasShortHaul”, “OilTransportTexas”, “OilWellTexas”, “AmericaShortHaul8Day”, “AmericaShortHaulPassenger8Day”, “OilTransportShortHaul8Day”, “AmericaTexasShortHaul8Day”</p>
+			</li>
+			<li>
+				<p>KnownId - Added “DiagnosticSystemAlertId”</p>
+			</li>
+			<li>
+				<p>TimeZoneInfo - Adjusted to support recently updated Windows times zones and the latest version of <a href="http://www.unicode.org/cldr/charts/dev/supplemental/zone_tzid.html">IANA/Windows</a> maped time zones. <a href="https://docs.google.com/document/d/1kjIhyqpgOg1wNHi3JkvV7uXVBzhl5stlZZxIVjXs1Fc/edit#">Click here for more info</a></p>
+			</li>
+		</ul>
+		<h2>New Objects</h2>
+		<ul>
+			<li>
+				<p>DriverWhiteListContent</p>
+			</li>
+			<li>
+				<p>GoTalkLanguage</p>
+			</li>
+			<li>
+				<p>FuelTransactionProductType</p>
+			</li>
+		</ul>
+		<p>For detailed information on new features please review the API Reference.</p>
+		<p><em>*.Net users will require a dll update</em></p>
+	</div>
+);
+
+const Update1607: ReactNode = (
+	<div className="paragraph" id="1607">
+		<ul>
+			<li>
+				Performance and maintenance enhancements.
+			</li>
+		</ul>	
+	</div>
+);
+
+const Update1606: ReactNode = (
+	<div className="paragraph" id="1606">
+		<ul>
+			<li>
+				<p>DiagnosticTypes - Added “GoFault”</p>
+			</li>
+			<li>
+				<p>FuelTransactionProvider - Added “WexCustomer”, “Drive” and “FuelTracker”</p>
+			</li>
+			<li>
+				<p>SecurityIdentifier - Added “EventOccurrenceList”,”ViewCertificates”,”ManageCertificates”</p>
+			</li>
+			<li>
+				<p>HosRuleSet - Added “AmericaSalesperson”</p>
+			</li>
+			<li>
+				<p>.Net: MachineSettings - Fix to work with ASP.Net Web API projects</p>
+			</li>
+			<li>
+				<p>.Net: DataToComponenet - Updated “Equals” method to compare payloads for equality</p>
+			</li>
+			<li>
+				<p>.Net: DutyStatusOrigin - removed unused “Serializable” attribute</p>
+			</li>
+			<li>
+				<p>.Net - Changes in API.cs to use HttpClient instead of HttpWebRequest in order to support .Net core in the future.</p>
+			</li>
+			<li>
+				<p>dll requires .Net Framework version v4.6+</p>
+			</li>
+		</ul>
+		<h2>New APIs</h2>
+		<ul>
+			<li>
+				<p>GetDirections</p>
+			</li>
+			<li>
+				<p>OptimizeWaypoints</p>
+			</li>
+		</ul>
+		<h2>New Objects</h2>
+		<ul>
+			<li>
+				<p>Directions</p>
+			</li>
+			<li>
+				<p>Leg</p>
+			</li>
+			<li>
+				<p>Step</p>
+			</li>
+			<li>
+				<p>Waypoint</p>
+			</li>
+		</ul>
+		<p><em>*.Net users will require a dll update</em></p>		
+	</div>
+);
+
+const Update1605: ReactNode = (
+	<div className="paragraph" id="1605">
+		<ul>
+			<li>
+				Added new Units of Measure (km/L, kg/km, L/lane km, L/ton and g/m^2) ** .Net users will require a dll update*
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1604: ReactNode = (
+	<div className="paragraph" id="1604">
+		<ul>
+			<li>
+				<p>For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">latest nuget package</a>. For more information, please visit the <a href="https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice">forum discussion</a>.</p>
+			</li>
+			<li>
+				<p>Driver has a new property: viewDriversOwnDataOnly. When set to true, a driver gains the ability to view their own driving data. ** .Net users will require a dll update*</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1602: ReactNode = (
+	<div className="paragraph" id="1602">
+		<ul>
+			<li>
+				TextToSpeechContent has been renamed to GoTalkContent and RelayContent has been renamed to IoxOutputContent ** .Net users will require a dll update*
+			</li>
+		</ul>
+	</div>
+);
  
+const Update1601: ReactNode = (
+	<div className="paragraph" id="1601">
+		<ul>
+			<li>
+				<p>New recipient types added that will send even if there is a delay in data. (BeepTenTimesRapidlyAllowDelay, BeepThreeTimesAllowDelay, BeepThreeTimesRapidlyAllowDelay , TextToSpeechAllowDelay) ** .Net users will require a dll update*</p>
+			</li>
+			<li>
+				<p>Access to third party messages via API. ** .Net users will require a dll update*</p>
+			</li>
+		</ul>
+		<h2>New Objects</h2>
+		<ul>
+			<li>
+				<p>IoxAddOn</p>
+			</li>
+			<li>
+				<p>KnownIoxAddOnType</p>
+			</li>
+			<li>
+				<p>IoxAddOnSearch</p>
+			</li>
+			<li>
+				<p>IoxOutputContent</p>
+			</li>
+			<li>
+				<p>GoTalkContent</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1512: ReactNode = (
+	<div className="paragraph" id="1512">
+		<ul>
+			<li>
+				<p>Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - <em>*If you are using dll version 5.7.1508-1511 this will require a dll update.</em></p>
+			</li>
+			<li>
+				<p>New addin: Trips Streetview added to <a href="https://github.com/Geotab/addin-trips-streetview">GitHub</a></p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1511: ReactNode = (
+	<div className="paragraph" id="1511">
+		<ul>
+			<li>
+				<p>Added new security clearances for:</p>
+				<ul>
+					<li>
+						<p>ViewMarketplacePaidItems: Allow user to see paid Marketplace items</p>
+					</li>
+					<li>
+						<p>DeviceAdminDeleteUnplugReplace: Access to removing vehicle, unpluging device, and replacing device.</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<p><em>*If you are using dll version 5.7.1508-1510 this will require a dll update.</em></p>
+	</div>
+);
+
+//ToDo: Update reference link
+const Update1509: ReactNode = (
+	<div className="paragraph" id="1509">
+		<ul>
+			<li>
+				<p>New SDK. Featuring the new <a href="https://geotab.github.io/sdk/software/api/runner.html">SDK Runner</a>, new methods and objects (<a href="https://geotab.github.io/sdk/software/api/reference/">click here to see the preview items</a>)</p>
+			</li>
+			<li>
+				<p>Code snippets in the reference documentation. Now you can see working examples of the methods as they are used in the runner.</p>
+			</li>
+			<li>
+				<p>.Net users will require a .DLL update to access the latest features.</p>
+			</li>
+		</ul>
+		<h2>New Methods</h2>
+		<ul>
+			<li>
+				<p>CreateDatabase</p>
+			</li>
+			<li>
+				<p>DatabaseExists</p>
+			</li>
+			<li>
+				<p>GenerateCaptcha</p>
+			</li>
+			<li>
+				<p>GetVersionInformation</p>
+			</li>
+		</ul>
+		<h2>New Objects</h2>
+		<ul>
+			<li>
+				<p>AnnotationLog</p>
+			</li>
+			<li>
+				<p>AnnotationLogSearch</p>
+			</li>
+			<li>
+				<p>CaptchaAnswer</p>
+			</li>
+			<li>
+				<p>CaptchaException</p>
+			</li>
+			<li>
+				<p>Color</p>
+			</li>
+			<li>
+				<p>CompanyDetails</p>
+			</li>
+			<li>
+				<p>DVIRLog</p>
+			</li>
+			<li>
+				<p>DVIRLogSearch</p>
+			</li>
+			<li>
+				<p>DiagnosticCategory</p>
+			</li>
+			<li>
+				<p>DistributionList</p>
+			</li>
+			<li>
+				<p>DuplicateException</p>
+			</li>
+			<li>
+				<p>DutyStatusAvailability</p>
+			</li>
+			<li>
+				<p>DutyStatusAvailabilityDuration</p>
+			</li>
+			<li>
+				<p>DutyStatusAvailablitySearch</p>
+			</li>
+			<li>
+				<p>DutyStatusLog</p>
+			</li>
+			<li>
+				<p>DutyStatusLogSearch</p>
+			</li>
+			<li>
+				<p>DutyStatusLogType</p>
+			</li>
+			<li>
+				<p>DutyStatusViolation</p>
+			</li>
+			<li>
+				<p>DutyStatusViolationSearch</p>
+			</li>
+			<li>
+				<p>DutyStatusViolationType</p>
+			</li>
+			<li>
+				<p>EntityWithVersion</p>
+			</li>
+			<li>
+				<p>FuelEconomyUnit</p>
+			</li>
+			<li>
+				<p>FuelEvent</p>
+			</li>
+			<li>
+				<p>FuelTransaction</p>
+			</li>
+			<li>
+				<p>FuelTransactionProvider</p>
+			</li>
+			<li>
+				<p>HosRuleSet</p>
+			</li>
+			<li>
+				<p>IncludeGroups</p>
+			</li>
+			<li>
+				<p>InvalidMyAdminUserException</p>
+			</li>
+			<li>
+				<p>MapView</p>
+			</li>
+			<li>
+				<p>NameEntity</p>
+			</li>
+			<li>
+				<p>NameEntityWithVersion</p>
+			</li>
+			<li>
+				<p>RadioDownloaderSearch</p>
+			</li>
+			<li>
+				<p>Recipient</p>
+			</li>
+			<li>
+				<p>RecipientType</p>
+			</li>
+			<li>
+				<p>RegistrationException</p>
+			</li>
+			<li>
+				<p>Search</p>
+			</li>
+			<li>
+				<p>ShipmentLog</p>
+			</li>
+			<li>
+				<p>ShipmentLogSearch</p>
+			</li>
+			<li>
+				<p>TextMessageContentType</p>
+			</li>
+			<li>
+				<p>Trailer</p>
+			</li>
+			<li>
+				<p>TrailerAttachment</p>
+			</li>
+			<li>
+				<p>TrailerAttachmentSearch</p>
+			</li>
+			<li>
+				<p>TrailerSearch</p>
+			</li>
+			<li>
+				<p>VersionInformation</p>
+			</li>
+			<li>
+				<p>VolumeUnit</p>
+			</li>
+		</ul>
+		<h2>Deprecated</h2>
+		<ul>
+			<li>
+				<p>BingMapStyle</p>
+			</li>
+			<li>
+				<p>EngineType</p>
+			</li>
+			<li>
+				<p>EngineTypeSearch</p>
+			</li>
+			<li>
+				<p>StatusDataRequestContent</p>
+			</li>
+		</ul>
+	</div>
+);
+
+//ToDo: Update reference link
+const Update1508: ReactNode = (
+	<div className="paragraph" id="1508">
+		<ul>
+			<li>
+				<p>DriverChangeSearch received new search points including: DeviceSearch, DriverSearch, FromDate and ToDate. Checkout the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
+			</li>
+			<li>
+				<p>DistributionList is now supported by the API. Checkout the <a href="/sdk/software/api/reference/">API Reference</a> for more details. Some related objects are still pending support (Notification, NotificationTemplate, BinaryData)</p>
+			</li>
+			<li>
+				<p><a href="https://github.com/Geotab/sdk-addin-samples" aria-label="Add-In examples in SDK documentation">Add-In examples</a> have been added to SDK documentation</p>
+			</li>
+			<li>
+				<p>When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendents, or both ancestors and descendents. See the ZoneSearch object in the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
+			</li>
+			<li>
+				<p>Fix documentation for object properties</p>
+			</li>
+			<li>
+				<p>Added KnownIds: DiagnosticDeviceTotalIdleFuel</p>
+			</li>
+			<li>
+				<p>Added FuelTransaction API (<em>Beta</em>)</p>
+			</li>
+			<li>
+				<p>HOS/DVIR objects supported in API. Key objects are AnnotationLog, DVIRLog, DutyStatusAvailability, DutyStatusLog, DutyStatusViolation, and ShipmentLog. Check out the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
+			</li>
+			<li>
+				<p>Added Groups property to StatusDataSearch. This allows searching for status data for devices in the supplied groups. This does not return interpolated results</p>
+			</li>
+			<li>
+				<p>Added from/to date search to UserSearch object. Checkout the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
+			</li>
+			<li>
+				<p><a href="/sdk/software/api/reference/">API Reference</a>, objects now show properties from inherited classes. For example GoDevice extends Device and will show properties of GoDevice and Device in the documentation</p>
+			</li>
+			<li>
+				<p>Geotab Announces New <a href="https://www.geotab.com/dev-channel/">DEV Channel</a> for Developers</p>
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1505: ReactNode = (
+	<div className="paragraph" id="1505">
+		<ul>
+			<li>
+				New condition types added - .Net will require dll update
+			</li>
+		</ul>
+	</div>
+);
+
+const Update1504: ReactNode = (
+	<div className="paragraph" id="1504">
+		<ul>
+			<li>
+				Add KnownId for DiagnosticDeviceTotalIdleFuelId - .Net will require dll update
+			</li>
+		</ul>
+	</div>
+);
+
+
+//ToDo: Need Faizan's feedback on these forum post URLs
+//ToDo: Update reference link
+const Update1502: ReactNode = (
+	<div className="paragraph" id="1502">
+		<ul>
+			<li>
+				<p>Get <em>all</em> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)</p>
+			</li>
+			<li>
+				<p>Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API client</p>
+			</li>
+			<li>
+				<p>Units of measure have been converted to use Known Id’s (<a href="https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId" aria-label="forum post about using known Ids">see forum post</a>)</p>
+			</li>
+			<li>
+				<p>Adding, setting and removing of some entities has been disabled via the API. Exception Event, Trip, Status Data, Fault Data, Log Record with exceptions for adding odometer and engine hours adjustments and dismissing faults</p>
+			</li>
+			<li>
+				<p>Clearer documentation of date and long values in <a href="../reference">API Reference</a></p>
+			</li>
+			<li>
+				<p>Data Feed section added to Guides portion of SDK (<a href="https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit">see document</a>)</p>
+			</li>
+		</ul>
+	</div>
+);
+
 const pageTitle: PageTitleProps = {
 	"title": "Release Notes",
 	"breadCrumbItems": ["MYG", "Release Notes"]
@@ -2197,6 +2824,186 @@ const pageSections: TableOfContentsItem[] = [
 		"elementId": "2001",
 		"summary": "5.7.2001",
 		"details": Update2001
+	},
+	{
+		"elementId": "1904",
+		"summary": "5.7.1904",
+		"details": Update1904
+	},
+	{
+		"elementId": "1903",
+		"summary": "5.7.1903",
+		"details": Update1903
+	},
+	{
+		"elementId": "1902",
+		"summary": "5.7.1902",
+		"details": Update1902
+	},
+	{
+		"elementId": "1901",
+		"summary": "5.7.1901",
+		"details": Update1901
+	},
+	{
+		"elementId": "1804Dot1",
+		"summary": "5.7.1804.1",
+		"details": Update1804Dot1
+	},
+	{
+		"elementId": "1804",
+		"summary": "5.7.1804",
+		"details": Update1804
+	},
+	{
+		"elementId": "1803",
+		"summary": "5.7.1803",
+		"details": Update1803
+	},
+	{
+		"elementId": "1802",
+		"summary": "5.7.1802",
+		"details": Update1802
+	},
+	{
+		"elementId": "1801",
+		"summary": "5.7.1801",
+		"details": Update1801
+	},
+	{
+		"elementId": "1712",
+		"summary": "5.7.1712",
+		"details": Update1712
+	},
+	{
+		"elementId": "1711",
+		"summary": "5.7.1711",
+		"details": Update1711
+	},
+	{
+		"elementId": "1709",
+		"summary": "5.7.1709",
+		"details": Update1709
+	},
+	{
+		"elementId": "1707",
+		"summary": "5.7.1707",
+		"details": Update1707
+	},
+	{
+		"elementId": "1706",
+		"summary": "5.7.1706",
+		"details": Update1706
+	},
+	{
+		"elementId": "1705",
+		"summary": "5.7.1705",
+		"details": Update1705
+	},
+	{
+		"elementId": "1704",
+		"summary": "5.7.1704",
+		"details": Update1704
+	},
+	{
+		"elementId": "1703",
+		"summary": "5.7.1703",
+		"details": Update1703
+	},
+	{
+		"elementId": "1702",
+		"summary": "5.7.1702",
+		"details": Update1702
+	},
+	{
+		"elementId": "1701",
+		"summary": "5.7.1701",
+		"details": Update1701
+	},
+	{
+		"elementId": "1612",
+		"summary": "5.7.1612",
+		"details": Update1612
+	},
+	{
+		"elementId": "1611",
+		"summary": "5.7.1611",
+		"details": Update1611
+	},
+	{
+		"elementId": "1610",
+		"summary": "5.7.1610",
+		"details": Update1610
+	},
+	{
+		"elementId": "1609",
+		"summary": "5.7.1609",
+		"details": Update1609
+	},
+	{
+		"elementId": "1608",
+		"summary": "5.7.1608",
+		"details": Update1608
+	},
+	{
+		"elementId": "1607",
+		"summary": "5.7.1607",
+		"details": Update1607
+	},
+	{
+		"elementId": "1606",
+		"summary": "5.7.1606",
+		"details": Update1606
+	},
+	{
+		"elementId": "1605",
+		"summary": "5.7.1605",
+		"details": Update1605
+	},
+	{
+		"elementId": "1602",
+		"summary": "5.7.1602",
+		"details": Update1602
+	},
+	{
+		"elementId": "1601",
+		"summary": "5.7.1601",
+		"details": Update1601
+	},
+	{
+		"elementId": "1512",
+		"summary": "5.7.1512",
+		"details": Update1512
+	},
+	{
+		"elementId": "1511",
+		"summary": "5.7.1511",
+		"details": Update1511
+	},
+	{
+		"elementId": "1509",
+		"summary": "5.7.1509",
+		"details": Update1509
+	},
+	{
+		"elementId": "1508",
+		"summary": "5.7.1508",
+		"details": Update1508
+	},
+	{
+		"elementId": "1505",
+		"summary": "5.7.1505",
+		"details": Update1505
+	},
+	{
+		"elementId": "1504",
+		"summary": "5.7.1504",
+		"details": Update1504
+	},
+	{
+		"elementId": "1502",
+		"summary": "5.7.1502",
+		"details": Update1502
 	}
 ];
 
