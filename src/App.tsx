@@ -26,6 +26,7 @@ import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
+import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 
 
 
@@ -47,6 +48,8 @@ function App() {
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
+
+          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={usingInDotnet} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
           <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
