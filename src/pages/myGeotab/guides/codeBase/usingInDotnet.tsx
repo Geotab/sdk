@@ -41,7 +41,7 @@ using Geotab.Checkmate.ObjectModel;`
         code={
             `await api.AuthenticateAsync();`
         }
-    ></CodeSample>
+    />
     <p>When the call is made to Geotab’s servers to authenticate, a token is returned for security. Behind the scenes, the Authenticate call makes a JSON-RPC request to Geotab's
         "Authenticate" method. The resulting security token and server information are stored in order to make further calls to the API.</p>
     <InformationalBox>
@@ -121,7 +121,7 @@ G80000000003    43.4620934      -79.6879883`
 </div>;
 
 const nextSteps: ReactNode = <div className="paragraph">
-    Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created
+    Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created {" "}
     <a href="https://github.com/Geotab/sdk-dotnet-samples" target="_blank" rel="noopener noreferrer">here</a>.
 </div>;
 
