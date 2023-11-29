@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import "../../../pages/pages.scss";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import myAdminAndDIGFlow from "../../../assets/images/myGeotab/usingCustomTelematicsDevices/myAdminAndDIGFlow.jpg";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
-
-
 
 const gettingStarted: ReactNode =
     <div className="paragraph">
-To get started with the registration process, please refer to the <a href="https://docs.google.com/document/d/1Mddnxc2qKBCNYvVu0-BXcyR-blPlHwa0Zun0mBzZt88/edit?usp=sharing">Custom Telematics Devices and MyGeotab</a> document.
+        To get started with the registration process, please refer to the <a target="_blank" rel="noreferrer" href="https://docs.google.com/document/d/1Mddnxc2qKBCNYvVu0-BXcyR-blPlHwa0Zun0mBzZt88/edit?usp=sharing">Custom Telematics Devices and MyGeotab</a> document.
     </div>;
 
 const deviceManagement: ReactNode =
@@ -39,30 +40,45 @@ Both calls must include a <strong>Product ID</strong>, which is a unique identif
 
 const sendingData: ReactNode =
     <div className="paragraph">
-     To intake data from a Custom Telematics Device, the usage of <a href="https://docs.google.com/document/d/15uNuPqwFcPLe6vKs_JgY5nPTy2isQ3WYUu4oyQ3cEfQ/edit#heading=h.nxfqu6pl4j28">Data Intake Gateway</a> is required. The required API calls, and recommended workflows are documented in the linked document.
+     To intake data from a Custom Telematics Device, the usage of <a target="_blank" rel="noreferrer" href="https://docs.google.com/document/d/15uNuPqwFcPLe6vKs_JgY5nPTy2isQ3WYUu4oyQ3cEfQ/edit#heading=h.nxfqu6pl4j28">Data Intake Gateway</a> is required. The required API calls, and recommended workflows are documented in the linked document.
     </div>;
+
+const pageTitle: PageTitleProps = {
+    "title": "Using Custom Telematics Devices",
+    "breadCrumbItems": ["MYG", "Guides","Using Custom Telematics Devices"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "getting-started",
+        "summary": "Getting Started",
+        "details": gettingStarted
+    },
+    {
+        "elementId": "device-management",
+        "summary": "Device Management",
+        "details": deviceManagement
+    },
+    {
+        "elementId": "automating-tasks",
+        "summary": "Custom Telematics Device Serial Numbers",
+        "details": customTelematicsDeviceSerialNumbers
+    },
+    {
+        "elementId": "working-with-addins",
+        "summary": "Sending Data",
+        "details": sendingData
+    }
+];
 
 export default function usingCustomTelematicsDevices() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-                <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Guides</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Using Custom Telematics Devices</span>
-                </div>
-                <h1 className="title">Using Custom Telematics Devices</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
+
             <div className="paragraph">
                 Geotab provides the ability to integrate non-GO device telematics devices into the platform. These devices are defined as any telematics device that is not manufactured or sold by Geotab but is used in conjunction with Geotab's fleet management application.
             </div>
-
-            <Accordion summary="Getting Started" p={gettingStarted}></Accordion>
-            <Accordion summary="Device Management" p={deviceManagement}></Accordion>
-            <Accordion summary="Custom Telematics Device Serial Numbers" p={customTelematicsDeviceSerialNumbers}></Accordion>
-            <Accordion summary="Sending Data" p={sendingData}></Accordion>
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 };
