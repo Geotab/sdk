@@ -7,19 +7,18 @@ import { TableOfContentsItem } from "../../../../components/TableOfContents/Tabl
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
 
-const nugetPackage: ReactNode = <div>
-    The <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/" target="_blank" rel="noopener noreferrer">nuget package</a> is an SDK library for accessing MyGeotab customer databases. 
+const nugetPackage: ReactNode = <div className="paragraph">
+    <p>The <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/" target="_blank" rel="noopener noreferrer">nuget package</a> is an SDK library for accessing MyGeotab customer databases. 
     It is a convenient "wrapper" around Geotab's HTTP/JSON API to allow developers focus on writing code instead of moving data over the wire. It includes tools to assist authenticating against Geotab's 
-    servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.
-    <br></br>
-    Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version
-    as the one that your database is on.
+    servers, automatically serializing/deserializing JSON, and providing definitions for Checkmate object classes.</p>
+    <p>Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version
+    as the one that your database is on.</p>
     <InformationalBox>
         <p>Quick start in <a href="../../api/clients">{/*TODO: fix link*/}API Clients</a></p>
     </InformationalBox>
 </div>
 
-const apiClass: ReactNode = <div>
+const apiClass: ReactNode = <div className="paragraph">
     <h2>Step 1: Initialize & Authentication</h2>
     <p>In order to have access to the API class, add the following to the file's includes section:</p>
     <CodeSample
@@ -121,7 +120,7 @@ G80000000003    43.4620934      -79.6879883`
     ></CodeSample>
 </div>
 
-const nextSteps: ReactNode = <div>
+const nextSteps: ReactNode = <div className="paragraph">
     Once you have a basic understanding of how the .NET SDK works, we recommend reviewing the examples that we have created
     <a href="https://github.com/Geotab/sdk-dotnet-samples" target="_blank" rel="noopener noreferrer">here</a>.
 </div>
@@ -153,8 +152,8 @@ export default function usingInDotnet() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software. All of the communication to Geotab's services is accomplished over HTTPS with data serialized in
-                <a href="http://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreferrer">JSON</a> format. The .NET library provided will automatically handle the JSON serialization 
+                The .NET SDK tools provide an easy way to integrate MyGeotab into .NET software. All of the communication to Geotab's services is accomplished over HTTPS with data serialized in 
+                {" "}<a href="http://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreferrer">JSON</a> format. The .NET library provided will automatically handle the JSON serialization 
                 and deserialization into MyGeotab objects.
             </div>
 
