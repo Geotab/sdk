@@ -1,11 +1,15 @@
 import { IconChevronRightSmall } from "@geotab/react-component-library";
 import { ReactNode } from "react";
-import Accordian from "../../../components/Accordion/Accordion";
+import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 const security: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="security">
         <p>
             MyGeotab API requests can only be made over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
         </p>
@@ -18,8 +22,11 @@ const security: ReactNode = (
     </div>
 );
 
+
+//ToDo Update Reference Page Link
+//ToDo Update Object Page Link
 const makeYourFirstAPICall: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="firstAPICall">
         <p>
             While both GET and POST requests are supported, we strongly recommend that only POST requests are used for requests that include MyGeotab credentials as parameters.
         </p>
@@ -87,7 +94,7 @@ request.send(JSON.stringify(data));`
 );
 
 const ResultsAndErrors: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="resultAndErrors">
         <p>
             Using the example above, a successful request to the server results in an object with the property “result” in the following format:
         </p>
@@ -136,7 +143,7 @@ const ResultsAndErrors: ReactNode = (
 );
 
 const Authentication: React.ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="authentication">
         <p>
             Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
         </p>
@@ -210,7 +217,7 @@ console.log(devices);
 );
 
 const Example1: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="example1">
         <p>
             In this example, an authentication request is made to my.geotab.com to log in to the database named <i>database</i>.
         </p>
@@ -240,7 +247,7 @@ const Example1: ReactNode = (
 );
 
 const Example2: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="example2">
         <p>
             The examples above demonstrate how to authenticate to get a token and make a call to Get devices. However, there are two additional scenarios to consider:
         </p>
@@ -277,7 +284,7 @@ const Example2: ReactNode = (
 );
 
 const HTTPCompression: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="httpCompression">
         <p>
             The MyGeotab API supports brotli, gzip and deflate compression. To use either of these compression methods, include the HTTP header for “Accept-Encoding”. For example:
         </p>
@@ -289,7 +296,7 @@ const HTTPCompression: ReactNode = (
 );
 
 const Limits: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="limits">
         <p>
             At Geotab, we work hard to create an open and flexible API that encourages creativity and innovation. We do this by providing tools to create powerful applications, integrations, and Add-ins, while maintaining overall system health and quality. Result and rate limits are intended to encourage API developers to use appropriate APIs for their use cases, and to safeguard against unbounded requests.
         </p>
@@ -297,7 +304,7 @@ const Limits: ReactNode = (
 );
 
 const RateLimits: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="rateLimits">
         <h2>
             Authenticate
         </h2>
@@ -388,7 +395,7 @@ X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z`
 );
 
 const ResultLimits: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="resultLimits">
         <h2>
             GetFeed
         </h2>
@@ -469,7 +476,7 @@ const ResultLimits: ReactNode = (
 );
 
 const WorkingWithDates: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="workingWithDates">
         <p>
             When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> string (format <code className="small-code-sample">yyyy-MM-ddTHH:mm:ss.fffZ</code>). In addition, all dates will have to first be converted to <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> in order to ensure time zone information and daylight savings times are accounted for correctly.
         </p>
@@ -477,7 +484,7 @@ const WorkingWithDates: ReactNode = (
 );
 
 const UnitOfMeasure: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="unitOfMeasure">
         <p>
             As a general rule, MyGeotab uses the metric system for values such as speed (km/h) and distance (m). For example, if you queried the odometer reading for a vehicle, the value would be returned in meters or if you retrieved the current speed of a vehicle it would be in km/h. It does not matter in which region in the world the vehicle or user of MyGeotab system is located — we always return the values in metric.A simple conversion can be applied to these values should you wish to work in imperial units or other customized units instead.
         </p>
@@ -488,7 +495,7 @@ const UnitOfMeasure: ReactNode = (
 );
 
 const Entities: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="entities">
         <p>
             All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.  
         </p>
@@ -496,7 +503,7 @@ const Entities: ReactNode = (
 );
 
 const ID: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="id">
         <p>
             An ID is used to uniquely reference entities in the API. IDs are represented by opaque strings. Generally the contents of the IDs are not significant for the user. Building logic around the value of the string should be avoided — unless it is a system ID (see the examples below).
         </p>
@@ -504,7 +511,7 @@ const ID: ReactNode = (
 );
 
 const Example4: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="example4">
         <p>
             In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:
         </p>
@@ -542,7 +549,7 @@ const Example4: ReactNode = (
 );
 
 const Example5: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="example5">
         <p>
             There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of “CompanyGroupId” rather than other characters (such as “b0a46” above). For example:
         </p>
@@ -570,8 +577,9 @@ const Example5: ReactNode = (
     </div>
 );
 
+//ToDo Update .Net and JS example links
 const BuildBlockApproach: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="buildingBlock">
         <p>
             The results of a call to our API will only contain literal values and the identities of contained objects — not the actual fully populated child objects. This provides a predictable system that efficiently serializes objects to JSON and back. Additional lookups of the nested objects will be required to retrieve additional properties of the objects.
         </p>
@@ -631,15 +639,18 @@ var deviceLookup = {
     </div>
 );
 
+//ToDo Update Methods links
 const PropertySelector: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="propertySelector">
         <p>
             <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <a href="">Get</a> and <a href="">GetFeed</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
         </p>
     </div>
 );
 
-const SupportedTypes: ReactNode = <div className="paragraph">
+//ToDo Update Reference Page Link
+//ToDo Update object links
+const SupportedTypes: ReactNode = <div className="paragraph" id="supportedTypes">
     <p>
         A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
     </p>
@@ -665,7 +676,7 @@ const SupportedTypes: ReactNode = <div className="paragraph">
     </div>
 </div>;
 
-const SupportedTypeExample: ReactNode = <div className="paragraph">
+const SupportedTypeExample: ReactNode = <div className="paragraph" id="supportedTypeExample">
     <p>
         A simple <a href="https://geotab.github.io/sdk/software/api/runner.html#sample:get-lightweight-device-response">example</a> of this can be illustrated by using the property selector with <code className="small-code-sample">Device</code>. The <code className="small-code-sample">Device</code> object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our <code className="small-code-sample">Device</code> objects to have the properties <code className="small-code-sample">Name</code> and <code className="small-code-sample">Id</code>, so we set our <code className="small-code-sample">PropertySelctor</code> object like so:
     </p>
@@ -770,7 +781,8 @@ const SupportedTypeExample: ReactNode = <div className="paragraph">
 }></CodeSample>
 </div>;
 
-const SupportEntitiesList: ReactNode = <div className="paragraph">
+//ToDo Update Object page links
+const SupportEntitiesList: ReactNode = <div className="paragraph" id="supportEntitiesList">
     <p>
         Below is a list of entities that support the PropertySelector functionality. 
     </p>
@@ -835,14 +847,14 @@ const SupportEntitiesList: ReactNode = <div className="paragraph">
 </div>;
 
 const PropertySelctorFAQ: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="propertySelectorFAQ">
         <p><b>Can I combine property selector and search?</b></p>
         <p>Yes. PropertySelector and Search work independently of each other and can be used together in the same request.</p>
     </div>
 );
 
 const MultiCall: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="multiCall">
         <p>
             A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.
         </p>
@@ -895,7 +907,7 @@ const MultiCall: ReactNode = (
 );
 
 const MultiCallBasicImplementation: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="multiCallImplementation">
         <p>
             Making a MultiCall is simple, use the method “ExecuteMultiCall” with the parameter “calls” of JSON type Array. Each call should be formatted as an Object with property “method” of type string with the method name as its value and a property “params” of type Object with the method parameters as its properties. The parent “params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.    
         </p>
@@ -941,7 +953,7 @@ const MultiCallBasicImplementation: ReactNode = (
 );
 
 const MultiCallErrors: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="multiCallErrors">
         <p>
             In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and <b>unreached calls are not run</b>. The error results includes the index of the call in the array that the exception occurred. 
         </p>
@@ -993,8 +1005,9 @@ results = {
     </div>
 );
 
+//ToDo Update Reference Page Link
 const APIClientSupport: ReactNode = (
-    <div className="paragraph">
+    <div className="paragraph" id="APIClientSupport">
         <p>
             All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API</a> clients have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:    
         </p>
@@ -1038,7 +1051,7 @@ var controllers = (List<Controller>)results[2];`
 );
 
 const MultiCallFAQ: ReactNode = (
-    <div className="javascript">
+    <div className="javascript" id="multiCallFAQ">
         <p>
             <b>Can I use a search in a multicall?</b>
         </p>
@@ -1075,21 +1088,155 @@ const MultiCallFAQ: ReactNode = (
             The index in the array of results will have a <b>null</b> value.
         </p>
     </div>
-)
+);
 
+const pageTitle: PageTitleProps = {
+    "title": "Concepts",
+    "breadCrumbItems": ["MYG", "Guides", "Concepts"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "security",
+        "summary": "Security",
+        "details": security
+    },
+    {
+        "elementId": "firstAPICall",
+        "summary": "Make Your First API Call",
+        "details": makeYourFirstAPICall
+    },
+    {
+        "elementId": "resultAndErrors",
+        "summary": "Results And Errors",
+        "details": ResultsAndErrors
+    },
+    {
+        "elementId": "authentication",
+        "summary": "Authentication",
+        "details": Authentication
+    },
+    {
+        "elementId": "example1",
+        "summary": "Example 1: Authenticate With Valid Credentials",
+        "details": Example1
+    },
+    {
+        "elementId": "example2",
+        "summary": "Example 2: Requests With Missing Databases Or With Expiring Credentials",
+        "details": Example2
+    },
+    {
+        "elementId": "httpCompression",
+        "summary": "HTTP Compression",
+        "details": HTTPCompression
+    },
+    {
+        "elementId": "limits",
+        "summary": "Limits",
+        "details": Limits
+    },
+    {
+        "elementId": "rateLimits",
+        "summary": "Rate Limits",
+        "details": RateLimits
+    },
+    {
+        "elementId": "resultLimits",
+        "summary": "Result Limits",
+        "details": ResultLimits
+    },
+    {
+        "elementId": "workingWithDates",
+        "summary": "Working With Dates",
+        "details": WorkingWithDates
+    },
+    {
+        "elementId": "unitOfMeasure",
+        "summary": "Unit Of Measure",
+        "details": UnitOfMeasure
+    },
+    {
+        "elementId": "entities",
+        "summary": "Entities",
+        "details": Entities
+    },
+    {
+        "elementId": "id",
+        "summary": "ID",
+        "details": ID
+    },
+    {
+        "elementId": "example4",
+        "summary": "Example 4",
+        "details": Example4
+    },
+    {
+        "elementId": "example5",
+        "summary": "Example 5",
+        "details": Example5
+    },
+    {
+        "elementId": "buildingBlock",
+        "summary": "Building Block Approach",
+        "details": BuildBlockApproach
+    },
+    {
+        "elementId": "propertySelector",
+        "summary": "PropertSelector BETA",
+        "details": PropertySelector
+    },
+    {
+        "elementId": "supportedTypes",
+        "summary": "Supported Types",
+        "details": SupportedTypes
+    },
+    {
+        "elementId": "supportedTypeExample",
+        "summary": "Examples",
+        "details": SupportedTypeExample
+    },
+    {
+        "elementId": "supportEntitiesList",
+        "summary": "List Of Supported Entities",
+        "details": SupportEntitiesList
+    },
+    {
+        "elementId": "propertySelectorFAQ",
+        "summary": "PropertySelector FAQ",
+        "details": PropertySelctorFAQ
+    },
+    {
+        "elementId": "multiCall",
+        "summary": "MultiCall",
+        "details": MultiCall
+    },
+    {
+        "elementId": "multiCallImplementation",
+        "summary": "Basic Implementation",
+        "details": MultiCallBasicImplementation
+    },
+    {
+        "elementId": "multiCallErrors",
+        "summary": "Errors",
+        "details": MultiCallErrors
+    },
+    {
+        "elementId": "APIClientSupport",
+        "summary": "API Client Support",
+        "details": APIClientSupport
+    },
+    {
+        "elementId": "multiCallFAQ",
+        "summary": "MultiCall FAQ",
+        "details": MultiCallFAQ
+    }
+];
+
+//ToDo Update Reference Page Link
 export default function Concepts() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-                <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Guides</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Concepts</span>
-                </div>
-                <h1 className="title">Concepts</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <p>Requests made to the Geotab API are performed over HTTPS. The current API is version 1. The version number is appended to the API endpoint URL, where the web application sends requests:</p>
                 <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
@@ -1111,32 +1258,8 @@ export default function Concepts() {
                     The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
                 </p>
             </div>
-            <Accordian summary="Security" p={security} />
-            <Accordian summary="Make Your First API Call" p={makeYourFirstAPICall} />
-            <Accordian summary="Results And Errors" p={ResultsAndErrors} />
-            <Accordian summary="Authentication" p={Authentication} />
-            <Accordian summary="Example 1: Authenticate With Valid Credentials" p={Example1} />
-            <Accordian summary="Example 2: Requests With Missing Databases Or With Expiring Credentials" p={Example2} />
-            <Accordian summary="HTTP Compression" p={HTTPCompression} />
-            <Accordian summary="Rate Limits" p={RateLimits} />
-            <Accordian summary="Result Limits" p={ResultLimits} />
-            <Accordian summary="Working With Dates" p={WorkingWithDates} />
-            <Accordian summary="Unit Of Measure" p={UnitOfMeasure} />
-            <Accordian summary="Entities" p={Entities} />
-            <Accordian summary="ID" p={ID} />
-            <Accordian summary="Example 4" p={Example4} />
-            <Accordian summary="Example 5" p={Example5} />
-            <Accordian summary="Building Block Approach" p={BuildBlockApproach} />
-            <Accordian summary="PropertySelector BETA" p={PropertySelector} />
-            <Accordian summary="Supported Types" p={SupportedTypes} />
-            <Accordian summary="Examples" p={SupportedTypeExample} />
-            <Accordian summary="PropertySelector FAQ" p={PropertySelctorFAQ} />
-            <Accordian summary="MultiCall" p={MultiCall} />
-            <Accordian summary="Basic Implementation" p={MultiCallBasicImplementation} />
-            <Accordian summary="Errors" p={MultiCallErrors} />
-            <Accordian summary="API Client Support" p={APIClientSupport} />
-            <Accordian summary="MultiCall FAQ" p={MultiCallFAQ} />
 
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 };
