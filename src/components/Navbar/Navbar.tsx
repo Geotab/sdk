@@ -40,6 +40,10 @@ export default function Navbar(props: any) {
         </div>
         <div>
           <Link to="/myGeotab/guides/mgMediaFiles">Media File - Beta</Link>
+        <div>Code Base
+          <div>
+            <Link to="/myGeotab/guides/codeBase/usingInDotnet">Using In .NET</Link>
+          </div>
         </div>
       </div >
       <div>
