@@ -9,7 +9,7 @@ import "./header.scss";
 export default function Header(props: any) {
   const { active, setActive } = useContext(MenuContext);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [isLanding, setIsLanding] = useState(true);
+  const [isLanding, setIsLanding] = useState(props.isLandingPage);
 
   const openSearchModal = () => {
     setSearchModalOpen(true);
@@ -37,7 +37,7 @@ export default function Header(props: any) {
             }`}
           >
             <Link
-              to="/myGeotabIntroduction"
+              to="/myGeotab/introduction"
               onClick={() => handleLinkClick("myGeotab")}
             >
               myGeotab
@@ -49,7 +49,7 @@ export default function Header(props: any) {
             }`}
           >
             <Link
-              to="/myAdminIntroduction"
+              to="/myAdmin/introduction"
               onClick={() => handleLinkClick("myAdmin")}
             >
               myAdmin
@@ -61,7 +61,7 @@ export default function Header(props: any) {
             }`}
           >
             <Link
-              to="/driveIntroduction"
+              to="/drive/introduction"
               onClick={() => handleLinkClick("Drive")}
             >
               Drive
@@ -73,7 +73,7 @@ export default function Header(props: any) {
             }`}
           >
             <Link
-              to="/hardwareIntroduction"
+              to="/hardware/introduction"
               onClick={() => handleLinkClick("Hardware")}
             >
               Hardware

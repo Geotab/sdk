@@ -2,22 +2,24 @@ import { ReactNode, useState } from "react";
 import { IconChevronUp, IconChevronDown } from "@geotab/react-component-library";
 import "./accordion.scss";
 
-interface AccordianContents {
+interface AccordionContents {
     summary: string;
     p: ReactNode;
+    id: string;
 }
 
-export default function Accordion(props: AccordianContents) {
+export default function Accordion(props: AccordionContents) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronDown className="icon-arrow"></IconChevronDown> : <IconChevronUp className="icon-arrow"></IconChevronUp>;
+    let Icon: ReactNode = expanded ? <IconChevronUp/> : <IconChevronDown/>;
 
-    function handleToggle(): void {
-        setExpanded(!expanded);
+    function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
+        const detailsElement = e.target as HTMLDetailsElement;
+        setExpanded(detailsElement.open);
     };
 
-    return (<details open>
-        <summary onClick={handleToggle}>
+    return (<details onToggle={handleToggle} open>
+        <summary id={props.id}>
             {props.summary}
             {Icon}
         </summary>

@@ -1,0 +1,17 @@
+.pageContent {
+    margin: 32px 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+
+    &--landing {
+        @extend .pageContent;
+        justify-content: center;
+    }
+}
+
+.pageContent--container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

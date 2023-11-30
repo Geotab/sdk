@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 import Accordion from "../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import { Page } from "../../components";
+import { PageTitleProps } from "../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
 const deviceData: ReactNode =
     <div className="paragraph">
@@ -86,22 +89,56 @@ const softwareToolkit: ReactNode =
         Please refer to <a href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a> for further details.
     </div>;
 
+const pageTitle: PageTitleProps = {
+    "title": "Introduction",
+    "breadCrumbItems": ["MYG", "Introduction"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "device-data",
+        "summary": "Accessing the device's data",
+        "details": deviceData
+    },
+    {
+        "elementId": "import-export",
+        "summary": "Importing, exporting and synchronizing",
+        "details": importExport
+    },
+    {
+        "elementId": "automating-tasks",
+        "summary": "Automating tasks",
+        "details": automatingTasks
+    },
+    {
+        "elementId": "working-with-addins",
+        "summary": "Working with Add-Ins",
+        "details": workingWithAddins
+    },
+    {
+        "elementId": "integrating-with-myg",
+        "summary": "Integrating with MyGeotab",
+        "details": integratingWithMyG
+    },
+    {
+        "elementId": "custom-devices",
+        "summary": "Integrating custom telematics tracking devices into MyGeotab",
+        "details": customDevices
+    },
+    {
+        "elementId": "software-toolkit",
+        "summary": "Technical Software Toolkit",
+        "details": softwareToolkit
+    }
+];
 
 export default function Introduction() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-            <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Introduction</span>
-                </div>
-            <h1 className="title">Introduction</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 The MyGeotab SDK (Software Development Kit) is a powerful set of tools for automating tasks and working with the data in MyGeotab.
                 Within these documents you will find information on how to develop JavaScript and C# applications, build and integrate Add-Ins and use MyGeotab with third-party systems.
-                <br></br>
+                <br />
                 Various working examples are included in this SDK for use as a starting point with your own code e.g.:
                 <ul>
                     <li>Display vehicle trips on third-party map (for example <a href="http://leafletjs.com/">Leaflet</a> or <a href="https://developers.arcgis.com/javascript/">ArcGIS API for JavaScript</a>)</li>
@@ -111,13 +148,7 @@ export default function Introduction() {
                 Keep up to date with Geotab's technical updates by subscribing to our <a href="https://www.geotab.com/subscription/">technical bulletins</a>.{/*TODO: Add info icon here*/}
             </div>
 
-            <Accordion summary="Accessing the device's data" p={deviceData}></Accordion>
-            <Accordion summary="Importing, exporting and synchronizing" p={importExport}></Accordion>
-            <Accordion summary="Automating tasks" p={automatingTasks}></Accordion>
-            <Accordion summary="Working with Add-Ins" p={workingWithAddins}></Accordion>
-            <Accordion summary="Integrating with MyGeotab" p={integratingWithMyG}></Accordion>
-            <Accordion summary="Integrating custom telematics tracking devices into MyGeotab" p={customDevices}></Accordion>
-            <Accordion summary="Technical Software Toolkit" p={softwareToolkit}></Accordion>
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 };

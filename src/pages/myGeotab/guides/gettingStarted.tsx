@@ -1,7 +1,10 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
 import "../../../pages/pages.scss";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { Page } from "../../../components";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 
 const stepsToGetStarted: ReactNode = (
   <div className="paragraph">
@@ -126,19 +129,37 @@ const whatsNext: ReactNode = (
   </div>
 );
 
+const pageTitle: PageTitleProps = {
+  "title": "Getting Started",
+  "breadCrumbItems": ["MYG", "Guides", "Getting Started"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+  {
+    "elementId": "steps-to-get-started",
+    "summary": "Steps To Get Started",
+    "details": stepsToGetStarted
+  },
+  {
+    "elementId": "plug-in-a-geotab-go-device",
+    "summary": "Plug In A Geotab GO Device",
+    "details": plugInAGeotabGoDevice
+  },
+  {
+    "elementId": "register-a-new-database",
+    "summary": "Register A New Database",
+    "details": registerANewDatabase
+  },
+  {
+    "elementId": "whats-next",
+    "summary": "What's Next?",
+    "details": whatsNext
+  }
+];
+
 export default function UsingGoDevices() {
   return (
-    <div className="pageContent">
-      <div className="grayBackground">
-        <div className="breadCrumb">
-          <span>MYG</span>
-          <IconChevronRightSmall></IconChevronRightSmall>
-          <span>Guides</span>
-          <IconChevronRightSmall></IconChevronRightSmall>
-          <span>Getting Started</span>
-        </div>
-        <h1 className="title">Getting Started</h1>
-      </div>
+    <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
       <div className="paragraph">
         <p>
           The Geotab API (Application Program Interface) is fully available to
@@ -157,10 +178,7 @@ export default function UsingGoDevices() {
         </p>
       </div>
 
-      <Accordion summary="Steps To Get Started" p={stepsToGetStarted} />
-      <Accordion summary="Plug In A Geotab GO Device" p={plugInAGeotabGoDevice} />
-      <Accordion summary="Register A New Database" p={registerANewDatabase} />
-      <Accordion summary="What's Next?" p={whatsNext} />
-    </div>
+      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+    </Page>
   );
 }
