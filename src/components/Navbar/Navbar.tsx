@@ -73,6 +73,7 @@ export default function Navbar(props: any) {
           <Link to="/drive/addIns/driveAddIns">Drive Add-Ins</Link>
         </div>
       </div>
-    </div >
+    </div>
+    </div>
   );
 }

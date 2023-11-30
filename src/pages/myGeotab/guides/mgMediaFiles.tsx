@@ -461,23 +461,21 @@ const limits: ReactNode = (
         </p>
         <h3>Rate Limit</h3>
         <p>
-          <strong>:MediaFile</strong>
-         {" "} 1000 requests per minute, per user
+          <strong>:MediaFile</strong> 1000 requests per minute, per user
         </p>
         <p>
           <strong>
             GetFeed:MediaFile, Add:MediaFile, Set:MediaFile, Remove:MediaFile
-          </strong>
-         {" "} 60 requests per minute, per user
+          </strong>{" "}
+          60 requests per minute, per user
         </p>
         <p>
-          <strong>DownloadMediaFile</strong>
-         {" "} 240 file download requests per minute, per user
+          <strong>DownloadMediaFile</strong> 240 file download requests per
+          minute, per user
         </p>
         <p>
-          <strong>UploadMediaFile</strong>
-         {" "} 60 file upload requests per minute, per user 10,000 file
-          uploads per day, per user
+          <strong>UploadMediaFile</strong> 60 file upload requests per minute,
+          per user 10,000 file uploads per day, per user
         </p>
         <h3> Size Limit</h3>
         <p>
