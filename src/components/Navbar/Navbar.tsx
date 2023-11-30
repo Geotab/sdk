@@ -38,6 +38,9 @@ export default function Navbar(props: any) {
         <div>
           <Link to="/myGeotab/guides/myGeotabUrls">Using MyGeotab URLs</Link>
         </div>
+        <div>
+          <Link to="/myGeotab/guides/mgMediaFiles">Media File - Beta</Link>
+        </div>
       </div >
       <div>
         Add-Ins
