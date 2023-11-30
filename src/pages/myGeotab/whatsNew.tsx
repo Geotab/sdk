@@ -3,12 +3,13 @@ import Accordion from '../../components/Accordion/Accordion';
 import "../../pages/pages.scss";
 import InformationalBox from '../../components/InformationalBox/InformationalBox';
 import CodeSample from  "../../components/CodeSamplesContainer/CodeSample";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
 import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
+//ToDo Update Object Links
+//ToDo Update Reference Page Link
 const Update11: ReactNode = (
 	<div className="paragraph" id="11.0">
 		<h2>Get And GetFeed For FuelUsed And FillUp</h2>
@@ -103,6 +104,7 @@ const Update11: ReactNode = (
 	</div>
 );
 
+//ToDo Update Developing Add-Ins Page
 const Update10: ReactNode = (
 	<div className="paragraph" id="10.0">
 		<h2>SDK Updates</h2>
@@ -221,6 +223,7 @@ const Update10: ReactNode = (
 	</div>
 );
 
+//ToDo Update Concepts Page Link
 const Update9: ReactNode = (
 	<div className="paragraph" id="9.0">
 		<h2>Custom Security Identifiers For Add-Ins</h2>
@@ -323,6 +326,7 @@ const Update9: ReactNode = (
 	</div>
 );
 
+//ToDo Update Reference Page Link
 const Update8: ReactNode = (
 	<div className="paragraph" id="8.0">
 		<h2>Special Note About Trailer And Device</h2>
@@ -620,6 +624,8 @@ const Update7: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Introduction Page Link
 const Update6: ReactNode = (
 	<div className="paragraph" id="6.0">
 		<ul>
@@ -798,6 +804,7 @@ const Update2103: ReactNode = (
 	</div>
 );
 
+//ToDo Update DIG URL
 const Update2102: ReactNode = (
 	<div className="paragraph" id="2102">
 		<h2>Data Intake Gateway (DIG)</h2>
@@ -927,6 +934,8 @@ const Update2101: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Method Links
 const Update2004: ReactNode = (
 	<div className="paragraph" id="2004">
 		<h2>New Media File APIPermalink</h2>
@@ -1217,6 +1226,8 @@ const Update2004: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Method Links
 const Update2003: ReactNode = (
 	<div className="paragraph" id="2003">
 		<h2>General Improvements</h2>
@@ -1322,6 +1333,10 @@ const Update2003: ReactNode = (
 );
 
 //ToDo: Add red color to Important 
+//ToDo Update Object Links
+//ToDo Update Method Links
+//ToDo Update Hardware Link
+//ToDo Update SDK Reference Link
 const Update2002: ReactNode = (
 	<div className="paragraph" id="2002">
 		<h2>NuGet</h2>
@@ -1352,7 +1367,7 @@ const Update2002: ReactNode = (
 		<h2>Interpolation</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Get1">Get</a>: <a href="/sdk/software/api/reference/#StatusData">StatusData</a>, <a href="/sdk/software/api/reference/#LogRecord">LogRecord</a> - In the v5.7.2001 release and earlier, we interpolate between points when using <code className="small-code-sample">StatusData</code> and <code className="small-code-sample">LogRecord</code> API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the <em>first/last</em> value with the <em>correct</em> dateTime.
+				<a href="/sdk/software/api/reference/#Get1">Get</a>: <a href="/sdk/software/api/reference/#StatusData">StatusData</a>, <a href="/sdk/software/api/reference/#LogRecord">LogRecord</a> - In the v5.7.2001 release and earlier, we interpolate between points when using <code className="small-code-sample">StatusData</code> and <code className="small-code-sample">LogRecord</code> API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the <i>first/last</i> value with the <i>correct</i> dateTime.
 			</li>
 		</ul>
 		<h2>Users</h2>
@@ -1495,6 +1510,8 @@ const Update2002: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Method Links
 const Update2001: ReactNode = (
 	<div className="paragraph" id="2001">
 		<ul>
@@ -1562,6 +1579,7 @@ const Update2001: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
 const Update1904: ReactNode = (
 	<div className="paragraph" id="1904">
 		<ul>
@@ -1602,6 +1620,8 @@ const Update1904: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Method Links
 const Update1903: ReactNode = (
 	<div className="paragraph" id="1903">
 		<ul>
@@ -1671,6 +1691,8 @@ const Update1903: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object Links
+//ToDo Update Concepts Page Link
 const Update1902: ReactNode = (
 	<div className="paragraph" id="1902">
 		<ul>
@@ -1775,6 +1797,7 @@ const Update1902: ReactNode = (
 	</div>
 );
 
+//ToDo Update Object links
 const Update1901: ReactNode = (
 	<div className="paragraph" id="1901">
 		<ul>
@@ -1799,16 +1822,19 @@ const Update1901: ReactNode = (
 	</div>
 );
 
+//ToDo Update API.cs link
 const Update1804Dot1: ReactNode = (
 	<div className="paragraph" id="1804Dot1">
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, Windows 10 using IIS Express possible hanging <em>synchronous</em> requests using nuget package 5.7.1803\5.7.1804.
+				<a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, Windows 10 using IIS Express possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804.
 			</li>
 		</ul>
 	</div>
 );
 
+//ToDo Update API.cs link
+//ToDo Update methods/objects links
 const Update1804: ReactNode = (
 	<div className="paragraph" id="1804">
 		<ul>
@@ -1873,7 +1899,7 @@ const Update1804: ReactNode = (
 			</li>
 		</ul>
 		<InformationalBox>
-			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <em>synchronous</em> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
+			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
 		</InformationalBox>
 	</div>
 );
@@ -1891,7 +1917,7 @@ const Update1803: ReactNode = (
 			</li>
 		</ul>
 		<InformationalBox>
-			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <em>synchronous</em> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
+			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
 		</InformationalBox>
 	</div>
 );
@@ -2065,7 +2091,7 @@ const Update1706: ReactNode = (
 				<p>DatabaseId has been removed from .net package as per the <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">December 2016 post</a></p>
 			</li>
 			<li>
-				<p>DutyStatusLogType: Added: “Authority” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+				<p>DutyStatusLogType: Added: “Authority” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
 				<p>FuelTransaction: Added: “ExternalReference”</p>
@@ -2077,7 +2103,7 @@ const Update1706: ReactNode = (
 				<p>User: Added: “AuthorityName” and “AuthorityAddress”</p>
 			</li>
 			<li>
-				<p>GetFeed of Trip now includes stop point (woohoo!) <strong>*requires server running 5.7.1706.x</strong></p>
+				<p>GetFeed of Trip now includes stop point (woohoo!) <b>*requires server running 5.7.1706.x</b></p>
 			</li>
 			<li>
 				<p><a href="https://my112.geotab.com/sdk/#/apiWrappers" aria-label="API clients section in SDK document">API Clients</a> section added to SDK documentation</p>
@@ -2093,7 +2119,7 @@ const Update1705: ReactNode = (
 	<div className="paragraph" id="1705">
 		<ul>
 			<li>
-				<p>GO8: Added preliminary support for GO8 devices <b><em>requires update of .net nuget package to correctly read/write GO8 devices</em></b></p>
+				<p>GO8: Added preliminary support for GO8 devices <b><i>requires update of .net nuget package to correctly read/write GO8 devices</i></b></p>
 			</li>
 			<li>
 				<p>IoxAddOn: Added preliminary support for IoxAddOn, IoxAddOnSearch, SerialIoxContent,KnownIoxAddOnType, IoxOutputContent, MimeContent</p>
@@ -2131,13 +2157,13 @@ const Update1703: ReactNode = (
 	<div className="paragraph" id="1703">
 		<ul>
 			<li>
-				<p>DevicePlan: Added: D2GODriverChallengeStandard <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+				<p>DevicePlan: Added: D2GODriverChallengeStandard <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>HosRuleSet.cs Added: America7DayNo34h, America8DayNo34h, AmericaShortHaulNo34h, AmericaShortHaul8DayNo34h, BrazilShortHaul <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+				<p>HosRuleSet.cs Added: America7DayNo34h, America8DayNo34h, AmericaShortHaulNo34h, AmericaShortHaul8DayNo34h, BrazilShortHaul <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>SecurityRole.cs Added: ReassignData <b><em>requires update of .net nuget package to ensure compatibility</em></b></p>
+				<p>SecurityRole.cs Added: ReassignData <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
 				<p>TimeZoneId: it was possible to add a user or device with “Unknown” time zone ID. This was only possible using the API and “Unknown” is not returned via the GetTimeZones method or a valid Olson time zone. The ability to add users and devices with “Unknown” as been removed and all users and devices with this time zone ID have been changed to “Etc/GMT”</p>
@@ -2153,10 +2179,10 @@ const Update1702: ReactNode = (
 				<p>FuelTransactionProvider: Added - “Voyager”, “UltramarCST”</p>
 			</li>
 			<li>
-				<p>SecurityIdentifier: Added - “PurchaseMarketplacePaidItems” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+				<p>SecurityIdentifier: Added - “PurchaseMarketplacePaidItems” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>SecurityRole: Added: “TripTypeChangeInsert”, “TripTypeChangeRemove”, “CustomReportSendError” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+				<p>SecurityRole: Added: “TripTypeChangeInsert”, “TripTypeChangeRemove”, “CustomReportSendError” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
 				<p>Fix: nuget package issue making API requests from Azure WebJob</p>
@@ -2184,7 +2210,7 @@ const Update1701: ReactNode = (
 				<p>Added “ExpiredPasswordException” object. This exception can be thrown if a user makes a request while their ChangePassword flag is true. The user must change their password before they are able to successfully make further requests</p>
 			</li>
 			<li>
-				<p>SecurityRole: Added “ReportHosAvailability” <strong><em>requires update of .net nuget package to ensure compatibility</em></strong></p>
+				<p>SecurityRole: Added “ReportHosAvailability” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
 				<p>If you are using the .net nuget package and plan to use the new “HOS Only” device plan you must update to nuget package version 5.7.1701 or greater to ensure compatibility.</p>
@@ -2303,7 +2329,7 @@ const Update1608: ReactNode = (
 			</li>
 		</ul>
 		<p>For detailed information on new features please review the API Reference.</p>
-		<p><em>*.Net users will require a dll update</em></p>
+		<p><i>*.Net users will require a dll update</i></p>
 	</div>
 );
 
@@ -2372,7 +2398,7 @@ const Update1606: ReactNode = (
 				<p>Waypoint</p>
 			</li>
 		</ul>
-		<p><em>*.Net users will require a dll update</em></p>		
+		<p><i>*.Net users will require a dll update</i></p>		
 	</div>
 );
 
@@ -2444,7 +2470,7 @@ const Update1512: ReactNode = (
 	<div className="paragraph" id="1512">
 		<ul>
 			<li>
-				<p>Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - <em>*If you are using dll version 5.7.1508-1511 this will require a dll update.</em></p>
+				<p>Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - <i>*If you are using dll version 5.7.1508-1511 this will require a dll update.</i></p>
 			</li>
 			<li>
 				<p>New addin: Trips Streetview added to <a href="https://github.com/Geotab/addin-trips-streetview">GitHub</a></p>
@@ -2468,7 +2494,7 @@ const Update1511: ReactNode = (
 				</ul>
 			</li>
 		</ul>
-		<p><em>*If you are using dll version 5.7.1508-1510 this will require a dll update.</em></p>
+		<p><i>*If you are using dll version 5.7.1508-1510 this will require a dll update.</i></p>
 	</div>
 );
 
@@ -2680,7 +2706,7 @@ const Update1508: ReactNode = (
 				<p>Added KnownIds: DiagnosticDeviceTotalIdleFuel</p>
 			</li>
 			<li>
-				<p>Added FuelTransaction API (<em>Beta</em>)</p>
+				<p>Added FuelTransaction API (<i>Beta</i>)</p>
 			</li>
 			<li>
 				<p>HOS/DVIR objects supported in API. Key objects are AnnotationLog, DVIRLog, DutyStatusAvailability, DutyStatusLog, DutyStatusViolation, and ShipmentLog. Check out the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
@@ -2728,7 +2754,7 @@ const Update1502: ReactNode = (
 	<div className="paragraph" id="1502">
 		<ul>
 			<li>
-				<p>Get <em>all</em> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)</p>
+				<p>Get <i>all</i> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)</p>
 			</li>
 			<li>
 				<p>Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API client</p>
@@ -3009,7 +3035,7 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function WhatsNew () {
     return (
-		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle}>
+		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
 			<div className="paragraph">
 				
 			</div>
