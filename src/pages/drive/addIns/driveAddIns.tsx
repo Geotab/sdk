@@ -11,7 +11,7 @@ import driveAddInImage from "./../../../assets/images/driveAddIns/drive-addins_0
 
 
 const overview: ReactNode =
-    <div className="paragraph" id="drive-overview">
+    <div className="paragraph">
         <p>The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.</p>
         <p>Please read the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> guide first before attempting a Geotab Drive Add-In.</p>
         <p>All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.</p>
@@ -73,7 +73,7 @@ const overview: ReactNode =
 
 
 const driveLifeCycle: ReactNode =
-    <div className="paragraph" id="drive-lifecycle-methods">
+    <div className="paragraph">
         <p>The onStartup and onShutdown properties respectively enable the <strong>startup</strong> and <strong>shutdown</strong> lifecycle methods.</p>
         <h2>Startup</h2>
         <p>When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.</p>
@@ -98,7 +98,7 @@ const driveLifeCycle: ReactNode =
 
 
 const apiAndState: ReactNode =
-    <div className="paragraph" id="drive-api-and-state">
+    <div className="paragraph">
         <p>Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.</p>
         <h2>Table 1 — Geotab Drive Additional Properties And Methods</h2>
         <div className="table-container">
@@ -446,7 +446,7 @@ const apiAndState: ReactNode =
 
 
 const thirdPartyFromURISchema: ReactNode =
-    <div className="paragraph" id="drive-third-party-uri-schema">
+    <div className="paragraph">
         <InformationalBox>
             <p>Drive app v4.1.0+</p>
         </InformationalBox>
@@ -470,7 +470,7 @@ const thirdPartyFromURISchema: ReactNode =
 
 
 const driveFromThirdParty: ReactNode =
-    <div className="paragraph" id="drive-from-third-party">
+    <div className="paragraph">
         <p>On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:</p>
         <ul>
             <li>Launch Drive,</li>
@@ -493,7 +493,7 @@ const driveFromThirdParty: ReactNode =
 
 
 const otherResources: ReactNode =
-    <div className="paragraph" id="drive-other-resources">
+    <div className="paragraph">
         <ul>
             <li>
                 <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing" target="_blank"
@@ -557,7 +557,7 @@ export default function DriveAddIns() {
                     <p>Geotab Drive Add-Ins are in preview release and subject to change</p>
                 </InformationalBox>
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} />)}
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };
