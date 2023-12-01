@@ -1,22 +1,32 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 import { Page } from "./../../../components";
 import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
+
 import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
+
 import driveAddInImage from "./../../../assets/images/driveAddIns/drive-addins_0.png";
 
-
-const overview: ReactNode =
+const driveOverview: ReactNode = (
     <div className="paragraph">
-        <p>The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.</p>
-        <p>Please read the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> guide first before attempting a Geotab Drive Add-In.</p>
-        <p>All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.</p>
+        <p>
+            The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
+        </p>
+        <p>
+            Please read the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> guide first before attempting a Geotab Drive Add-In.
+        </p>
+        <p>
+            All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.
+        </p>
         <img src={driveAddInImage} alt="Drive dashboard" />
-        <p>To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including a trailing forward slash). The menuName, url, and version will remain unchanged. For example:</p>
+        <p>
+            To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including a trailing forward slash). The menuName, url, and version will remain unchanged. For example:
+        </p>
         <h2>Listing 1 — Geotab Drive "Item" Configuration</h2>
         <CodeSample
             language="json"
@@ -30,21 +40,36 @@ const overview: ReactNode =
     }
 }]`} />
         <InformationalBox>
-            <p>The array of <strong>items</strong> also allows you to have one link item in MyGeotab, and another link item to Geotab Drive</p>
+            <p>
+                The array of <strong>items</strong> also allows you to have one link item in MyGeotab, and another link item to Geotab Drive
+            </p>
         </InformationalBox>
-        <p>There are also 2 additional properties that are optional for the configuration file that control the availability to additional page lifecycle methods, <em>onStartup</em> and <em>onShutdown</em>. These configuration properties are boolean, they can be set to <em>true</em> if they are to be used and <em>false</em> when not in use. By default these 2 properties will be set to false if not included in the configuration file.</p>
+        <p>
+            There are also 2 additional properties that are optional for the configuration file that control the availability to additional page lifecycle methods, <em>onStartup</em> and <em>onShutdown</em>. These configuration properties are boolean, they can be set to <em>true</em> if they are to be used and <em>false</em> when not in use. By default these 2 properties will be set to false if not included in the configuration file.
+        </p>
         <ol>
-            <li><p><strong>onStartup:</strong> Startup Add-Ins are executed when a driver logs in to the Drive App for the first time.</p></li>
-            <li><p><strong>onShutdown:</strong> The onShutdown property must be set to true to execute an Add-In when logging out of Geotab Drive.</p></li>
+            <li>
+                <strong>onStartup:</strong> Startup Add-Ins are executed when a driver logs in to the Drive App for the first time.
+            </li>
+            <li>
+                <strong>onShutdown:</strong> The onShutdown property must be set to true to execute an Add-In when logging out of Geotab Drive.
+            </li>
         </ol>
         <InformationalBox>
-            <p>More information about these 2 methods can be found in this {" "}
-                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing" target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="">document</a>
-                .</p>
+            <p>
+                More information about these 2 methods can be found in this {" "}
+                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Drive App Add-In SDK (Software Development Kit)">
+                    document
+                </a>
+                .
+            </p>
         </InformationalBox>
-        <p>e.g.</p>
+        <p>
+            e.g.
+        </p>
         <CodeSample
             language="json"
             code={`{
@@ -69,14 +94,18 @@ const overview: ReactNode =
     "onStartup": true,
     "onShutdown": true
 }`} />
-    </div >;
+    </div >
+);
 
-
-const driveLifeCycle: ReactNode =
+const driveLifeCycle: ReactNode = (
     <div className="paragraph">
-        <p>The onStartup and onShutdown properties respectively enable the <strong>startup</strong> and <strong>shutdown</strong> lifecycle methods.</p>
+        <p>
+            The onStartup and onShutdown properties respectively enable the <strong>startup</strong> and <strong>shutdown</strong> lifecycle methods.
+        </p>
         <h2>Startup</h2>
-        <p>When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.</p>
+        <p>
+            When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.
+        </p>
         <CodeSample
             language="javascript"
             code={`startup: function (freshApi, freshState, initializeCallback) {
@@ -84,8 +113,12 @@ const driveLifeCycle: ReactNode =
     initializeCallback();
 }`} />
         <h2>Shutdown</h2>
-        <p>Shutdown Add-Ins are executed when the final driver logs out of the Drive App. If there are co-drivers, and one of the co-drivers logs out (while other drivers remain logged in to the Drive App), the shutdown Add-In is not executed.</p>
-        <p>Additionally, the Add-In is expected to return a promise since shutdown Add-Ins have a 15-second time limit to perform their function before the Add-Ins time out and the logout process is completed. The time limit prevents the application from freezing in the middle of the logout process as a result of faulty Add-Ins.</p>
+        <p>
+            Shutdown Add-Ins are executed when the final driver logs out of the Drive App. If there are co-drivers, and one of the co-drivers logs out (while other drivers remain logged in to the Drive App), the shutdown Add-In is not executed.
+        </p>
+        <p>
+            Additionally, the Add-In is expected to return a promise since shutdown Add-Ins have a 15-second time limit to perform their function before the Add-Ins time out and the logout process is completed. The time limit prevents the application from freezing in the middle of the logout process as a result of faulty Add-Ins.
+        </p>
         <CodeSample
             language="javascript"
             code={`shutdown: function (api, state, callback) {
@@ -94,12 +127,14 @@ const driveLifeCycle: ReactNode =
         resolve() // eventually need to call this somewhere so the promise resolves
     });
 }`} />
-    </div>;
+    </div>
+);
 
-
-const apiAndState: ReactNode =
+const driveApiAndState: ReactNode = (
     <div className="paragraph">
-        <p>Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.</p>
+        <p>
+            Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
+        </p>
         <h2>Table 1 — Geotab Drive Additional Properties And Methods</h2>
         <div className="table-container">
             <table>
@@ -200,9 +235,9 @@ const apiAndState: ReactNode =
                         <td>None</td>
                         <td>Promise that resolves with a {" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">DutyStatusLog</a>{" "}
+                            <a href="#DutyStatusLog">
+                                DutyStatusLog
+                            </a>{" "}
                             object.</td>
                     </tr>
                     <tr>
@@ -211,9 +246,9 @@ const apiAndState: ReactNode =
                         <td>None</td>
                         <td>Promise that resolves with an array of {" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">DutyStatusLog</a>{" "}
+                            <a href="#DutyStatusLog">
+                                DutyStatusLog
+                            </a>{" "}
                             objects.</td>
                     </tr>
                     <tr>
@@ -222,9 +257,9 @@ const apiAndState: ReactNode =
                         <td>DutyStatusLog: Object <strong>Required properties</strong>: dateTime: String, device: Object, driver: Object, status: String, origin: String</td>
                         <td>Promise that resolves with the newly added{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">DutyStatusLog</a>{" "}
+                            <a href="#DutyStatusLog">
+                                DutyStatusLog
+                            </a>{" "}
                             object</td>
                     </tr>
                     <tr>
@@ -243,57 +278,56 @@ const apiAndState: ReactNode =
                         <td>api.mobile.shipment.get()</td>
                         <td>Gets the{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLogs</a>{" "}
+                            <a href="#ShipmentLog">
+                                ShipmentLogs
+                            </a>{" "}
                             for the device.</td>
                         <td>None</td>
                         <td>Returns an array of{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLogs</a>
+                            <a href="#ShipmentLog">
+                                ShipmentLogs</a>
                             . <em>Note that the method will return all devices that have been added and removed during the current session. The list should be filtered by the activeTo property according to the requirement.</em></td>
                     </tr>
                     <tr>
                         <td>api.mobile.shipment.add()</td>
                         <td>Adds a new{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLog</a>{" "}
+                            <a href="#ShipmentLog">
+                                ShipmentLog
+                            </a>{" "}
                         </td>
                         <td>ShipmentLog: Object <code className="small-code-sample">{`{driver: {id: '' }, activeFrom: '', dateTime: '', shipperName: '', commodity: ''}`}</code></td>
                         <td>Promise that resolves with the{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLogs</a>{" "}
+                            <a href="#ShipmentLog">
+                                ShipmentLogs
+                            </a>{" "}
                             object that was added.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.shipment.remove()</td>
                         <td>Removes the specified{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLog</a>{" "}
+                            <a href="#ShipmentLog">
+                                ShipmentLog
+                            </a>{" "}
                             by setting the activeTo datetime string to the current date.</td>
                         <td>shipmentId: String</td>
                         <td>Promise that resolves with the{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#ShipmentLog" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">ShipmentLogs</a>{" "}
+                            <a href="#ShipmentLog">
+                                ShipmentLogs
+                            </a>{" "}
                             object that was removed.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.textMessage.add()</td>
                         <td>Adds a new{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">TextMessage</a>{" "}
+                            <a href="#TextMessage">
+                                TextMessage
+                            </a>{" "}
                         </td>
                         <td>TextMessage: Object e.g. <code className="small-code-sample">{`{device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal' } }`}</code> <em>Note: isDirectionToVehicle needs to be true when using this function.</em></td>
                         <td>undefined</td>
@@ -302,32 +336,32 @@ const apiAndState: ReactNode =
                         <td>api.mobile.textMessage.get()</td>
                         <td>Returns any{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">TextMessage</a>{" "}
+                            <a href="#TextMessage">
+                                TextMessage
+                            </a>{" "}
                             received in the current session.</td>
                         <td>None</td>
                         <td>A promise that resolves with an array of{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">TextMessages</a>{" "}
+                            <a href="#TextMessage">
+                                TextMessages
+                            </a>{" "}
                         </td>
                     </tr>
                     <tr>
                         <td>api.mobile.textMessage.set()</td>
                         <td>Allows to update the properties for an existing{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">TextMessage</a>{" "}
+                            <a href="#TextMessage">
+                                TextMessage
+                            </a>{" "}
                         </td>
                         <td>TextMessage: Object e.g. <code className="small-code-sample">{`{id: 'bd1', device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal'} }`}</code> <em>Note: An existing message ID is needed to modify the message.</em></td>
                         <td>Promise that resolves with the modified{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#TextMessage" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">TextMessages</a>{" "}
+                            <a href="#TextMessage">
+                                TextMessages
+                            </a>{" "}
                         </td>
                     </tr>
                     <tr>
@@ -336,25 +370,25 @@ const apiAndState: ReactNode =
                         <td>includeAllDrivers: boolean Default: true</td>
                         <td>Promise that resolves with an array of{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#Driver" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">Driver</a>{" "}
+                            <a href="#Driver">
+                                Driver
+                            </a>{" "}
                             objects</td>
                     </tr>
                     <tr>
                         <td>api.mobile.user.getHosRuleSet()</td>
                         <td>Gets the{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#HosRuleSet" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">HosRuleSet</a>{" "}
+                            <a href="#HosRuleSet">
+                                HosRuleSet
+                            </a>{" "}
                             for the current driver</td>
                         <td>None</td>
                         <td>Promise that resolves with the{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#HosRuleSet" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">HosRuleSet</a>{" "}
+                            <a href="#HosRuleSet">
+                                HosRuleSet
+                            </a>{" "}
                             object</td>
                     </tr>
                     <tr>
@@ -363,9 +397,9 @@ const apiAndState: ReactNode =
                         <td>None</td>
                         <td>Promise that resolves with{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">DutyStatusAvailability</a>{" "}
+                            <a href="#DutyStatusAvailability">
+                                DutyStatusAvailability
+                            </a>{" "}
                             object</td>
                     </tr>
                     <tr>
@@ -374,9 +408,9 @@ const apiAndState: ReactNode =
                         <td>None</td>
                         <td>Promise that resolves with an array of{" "}
                             {/* TODO: update link */}
-                            <a href="https://geotab.github.io/sdk/software/api/reference/#DutyStatusViolation" target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="">DutyStatusViolation</a>{" "}
+                            <a href="#DutyStatusViolation">
+                                DutyStatusViolation
+                            </a>{" "}
                             objects</td>
                     </tr>
                     <tr>
@@ -442,119 +476,153 @@ const apiAndState: ReactNode =
                 </tbody>
             </table>
         </div>
-    </div>;
+    </div>
+);
 
-
-const thirdPartyFromURISchema: ReactNode =
+const driveThirdPartyFromURISchema: ReactNode = (
     <div className="paragraph">
         <InformationalBox>
-            <p>Drive app v4.1.0+</p>
+            <p>
+                Drive app v4.1.0+
+            </p>
         </InformationalBox>
-        <p>It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to <code className="small-code-sample">window.open</code>. For example:</p>
+        <p>
+            It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to <code className="small-code-sample">window.open</code>.
+        </p>
+        <p>
+            For example:
+        </p>
         <CodeSample
             language="javascript"
             code={`window.open(uriSchemaString, "_system")`} />
-        <p>Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:</p>
+        <p>
+            Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:
+        </p>
         <CodeSample
             language="javascript"
             code={`window.open("twitter://messages", "_system")`} />
-        <p>You can't use just <code className="small-code-sample">twitter://</code> as it's not correct and app won't open. You need to specify which page you want to open: <code className="small-code-sample">messages</code>, <code className="small-code-sample">account</code> etc.</p>
-        <p>To open webpage you need to use the same method, but with this notation:</p>
+        <p>
+            You can't use just <code className="small-code-sample">twitter://</code> as it's not correct and app won't open. You need to specify which page you want to open: <code className="small-code-sample">messages</code>, <code className="small-code-sample">account</code> etc.
+        </p>
+        <p>
+            To open webpage you need to use the same method, but with this notation:
+        </p>
         <CodeSample
             language="javascript"
             code={`window.open("https://google.com", "_blank")`} />
         <InformationalBox>
-            <p><code className="small-code-sample">_blank</code> is important, especially for iOS devices</p>
+            <p>
+                <code className="small-code-sample">_blank</code> is important, especially for iOS devices
+            </p>
         </InformationalBox>
-    </div>;
+    </div>
+);
 
-
-const driveFromThirdParty: ReactNode =
+const driveFromThirdParty: ReactNode = (
     <div className="paragraph">
-        <p>On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:</p>
+        <p>
+            On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:
+        </p>
         <ul>
             <li>Launch Drive,</li>
             <li>Navigate to a specified page in Drive, and</li>
             <li>Automatically log into Drive with a token (session ID, user name, and database name) retrieved by authenticating against MyGeotab's API in a third-party app</li>
         </ul>
-        <p>Deep linking is used to provide a seamless link from a third-party app into the Geotab Drive app.</p>
-        <p>On the most basic level, launching Geotab Drive to the main screen, can be executed by creating a link to:</p>
+        <p>
+            Deep linking is used to provide a seamless link from a third-party app into the Geotab Drive app.
+        </p>
+        <p>
+            On the most basic level, launching Geotab Drive to the main screen, can be executed by creating a link to:
+        </p>
         <CodeSample
             language="javascript"
             code={`geotabdrive://`} />
 
-        <p>From there, it's possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.</p>
-        <p>For more information on how to <strong>Automatic Login, Single Sign-on</strong> and <strong>Navigate to Desired Page</strong> on Geotab Drive app, please refer to {" "}
-            <a href="https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA" target="_blank"
-                rel="noopener noreferrer"
-                aria-label="">Geotab Drive Single Sign-on and Deep Linking</a>
+        <p>
+            From there, it's possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.
         </p>
-    </div>;
+        <p>
+            For more information on how to <strong>Automatic Login, Single Sign-on</strong> and <strong>Navigate to Desired Page</strong> on Geotab Drive app, please refer to {" "}
+            <a href="https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Geotab Drive Single Sign-on and Deep Linking">
+                Geotab Drive Single Sign-on and Deep Linking
+            </a>
 
+        </p>
+    </div>
+);
 
-const otherResources: ReactNode =
+const driveResources: ReactNode = (
     <div className="paragraph">
         <ul>
             <li>
-                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing" target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="">Geotab Drive Addin SDK</a>
+                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Geotab Drive Addin SDK">
+                    Geotab Drive Addin SDK
+                </a>
             </li>
             <li>
-                <a href="https://docs.google.com/document/d/19crX8xXYsYNY-NwP6PGc7LFqOk2KV1xzNgwdJ-40kb8/edit?usp=sharing" target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="">DriverRegulation (Daily Totals)</a>
+                <a href="https://docs.google.com/document/d/19crX8xXYsYNY-NwP6PGc7LFqOk2KV1xzNgwdJ-40kb8/edit?usp=sharing"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Daily Totals in the API">
+                    DriverRegulation (Daily Totals)
+                </a>
             </li>
         </ul>
-    </div>;
-
+    </div>
+);
 
 const pageTitle: PageTitleProps = {
     "title": "Drive Add-Ins",
     "breadCrumbItems": ["MYG", "Add-Ins", "Drive Add-Ins"]
 };
 
-
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "drive-overview",
+        "elementId": "drive-add-in-overview",
         "summary": "Overview",
-        "details": overview
+        "details": driveOverview
     },
     {
-        "elementId": "drive-lifecycle-methods",
+        "elementId": "drive-add-in-lifecycle-methods",
         "summary": "GEOTAB Drive Page Lifecycle Methods",
         "details": driveLifeCycle
     },
     {
-        "elementId": "drive-api-and-state",
+        "elementId": "drive-add-in-api-and-state",
         "summary": "API And State Documentation",
-        "details": apiAndState
+        "details": driveApiAndState
     },
     {
-        "elementId": "drive-third-party-uri-schema",
+        "elementId": "drive-add-in-third-party-uri-schema",
         "summary": "Opening Third - Party Applications Using URI Schema",
-        "details": thirdPartyFromURISchema
+        "details": driveThirdPartyFromURISchema
     },
     {
-        "elementId": "drive-from-third-party",
+        "elementId": "drive-add-in-from-third-party",
         "summary": "Opening Geotab Drive From Third - Party Applications",
         "details": driveFromThirdParty
     },
     {
-        "elementId": "drive-other-resources",
+        "elementId": "drive-add-in-other-resources",
         "summary": "Other Useful Resources",
-        "details": otherResources
+        "details": driveResources
     }
 ];
-
 
 export default function DriveAddIns() {
     return (
         <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <InformationalBox>
-                    <p>Geotab Drive Add-Ins are in preview release and subject to change</p>
+                    <p>
+                        Geotab Drive Add-Ins are in preview release and subject to change
+                    </p>
                 </InformationalBox>
             </div>
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
