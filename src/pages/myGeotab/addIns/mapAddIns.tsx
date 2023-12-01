@@ -276,7 +276,9 @@ const mapAddinServices: ReactNode = (
                 <td>
                   getFilterState(): Promise{"<"}
                   <a href="#IGroupFilterId_6738371814545805">IGroupFilterId</a>
-                  &#91;&#93;{">"};
+                  {"["}
+                  {"]"}
+                  {">"};
                 </td>
                 <td>Gets current company filter state</td>
               </tr>
@@ -830,7 +832,9 @@ const mapAddinServices: ReactNode = (
               </tr>
               <tr>
                 <td>device</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
                 <td>Device id object that drove this trip</td>
               </tr>
               <tr>
@@ -938,12 +942,16 @@ const mapAddinServices: ReactNode = (
               </tr>
               <tr>
                 <td>rule</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
                 <td>Rule id object of this exception</td>
               </tr>
               <tr>
                 <td>device</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
                 <td>Device id object where this exception happen</td>
               </tr>
             </tbody>
@@ -1692,7 +1700,9 @@ const mapAddinServices: ReactNode = (
             <tbody>
               <tr>
                 <td>zone</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1718,7 +1728,9 @@ const mapAddinServices: ReactNode = (
             <tbody>
               <tr>
                 <td>route</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1770,7 +1782,9 @@ const mapAddinServices: ReactNode = (
             <tbody>
               <tr>
                 <td>device</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1800,7 +1814,9 @@ const mapAddinServices: ReactNode = (
               </tr>
               <tr>
                 <td>device</td>
-                <td>&#123; id: string; &#125;</td>
+                <td>
+                  {"{"} id: string; {"}"}
+                </td>
               </tr>
               <tr>
                 <td>trip</td>
@@ -2549,7 +2565,7 @@ export default function MapAddins() {
             alt='Figure #1 - The "Vehicle Info" Map Add-in.'
           />
           <figcaption>
-            Figure #1 - The &quot;Vehicle Info&quot; Map Add-in.
+            Figure #1 - The {'"'}Vehicle Info{'"'} Map Add-in.
           </figcaption>
         </figure>
       </div>
