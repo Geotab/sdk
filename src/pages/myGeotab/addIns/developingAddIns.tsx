@@ -222,7 +222,7 @@ const exampleAddInConfiguration: ReactNode = (
                 A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
             </p>
         </InformationalBox>
-        <h2>Table 2 — Menu Item</h2>
+        <h2 id="geotab-add-in-table-2--menu-item">Table 2 — Menu Item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -281,7 +281,7 @@ const exampleAddInConfiguration: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Table 3 — Parent Menu Item</h2>
+        <h2 id="geotab-add-in-table-3--parent-menu-item">Table 3 — Parent Menu Item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -351,18 +351,17 @@ const creatingSubmenu: ReactNode = (
         </p>
         <p>
             The process consists in creating a{" "}
-            <a href="#table-3--parent-menu-item"
-                rel="noreferrer"
-                aria-label="">
+            <a href="#geotab-add-in-table-3--parent-menu-item"
+                aria-label="Scroll to Table 3 — Parent Menu Item">
                 parent menu item
             </a>{" "}
             with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values  (<em>GettingStartedLink</em>, <em>ActivityLink</em>, <em>EngineMaintenanceLink</em>, <em>ZoneAndMessagesLink</em>, <em>RuleAndGroupsLink</em>, <em>AdministrationLink</em>).
         </p>
         <p>
             To place a{" "}
-            <a href="#table-2--menu-item"
+            <a href="#geotab-add-in-table-2--menu-item"
                 rel="noreferrer"
-                aria-label="">
+                aria-label="Table 2 — Menu Item">
                 menu item
             </a>{" "}
             under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
@@ -960,7 +959,7 @@ const completeIntegrationExample: ReactNode = (
         </div>
     </body>
 </html>`} />
-        <h3>Listing 14 — Configuration file for integration example</h3>
+        <h2>Listing 14 — Configuration file for integration example</h2>
         <CodeSample
             language="json"
             code={`{
@@ -1029,7 +1028,7 @@ const addInIconValidator: ReactNode = (
             <a href="https://geotab.github.io/sdk/software/guides/developing-addins/addin-icon-validator.html"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="">
+                aria-label="MyGeotab SVG Icon Validator">
                 Launch the validator
             </a>
             .
