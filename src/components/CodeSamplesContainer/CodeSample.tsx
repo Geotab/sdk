@@ -1,5 +1,5 @@
 import copyCode from "./CopyCode";
-import { CodeBlock, sunburst} from 'react-code-blocks';
+import { CodeBlock } from 'react-code-blocks';
 import './CodeSample.scss';
 import copyIcon from "./CopyIcon";
 import CustomTheme from "./CustomTheme";
@@ -34,7 +34,7 @@ export default function CodeSample(props: CodeSampleProps): JSX.Element{
           text={props.code}
           language= {props.language}
           showLineNumbers={false}
-          theme={	sunburst }
+          theme={	CustomTheme() }
           customStyle={ CodeSampleStyle() }
       />
 
