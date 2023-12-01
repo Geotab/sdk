@@ -1,8 +1,10 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
-// import "../../../pages/pages.scss";
+import { Page } from "../../../components";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 const linkToAPage: ReactNode = <div className="paragraph">
     <p>To create a link to a page, the following URL structure is used:</p>
@@ -45,7 +47,7 @@ const linkToAPage: ReactNode = <div className="paragraph">
     <p>Browse to your database using this URL format</p>
     <code className="small-code-sample">{`https://<my3.geotab.com>/<g560>/#devices`}</code>
     <p>Note: If you are not yet logged in, you will be prompted for your credentials.</p>
-</div>
+</div>;
 
 const standalonePages: ReactNode = <div className="paragraph">
     <p>Standalone pages are used to get a my.geotab.com page without the header and side menu. This is useful when specific functionality is required,
@@ -56,7 +58,7 @@ const standalonePages: ReactNode = <div className="paragraph">
     <InformationalBox>
         <p>If you are not yet logged in, you will be prompted for your credentials.</p>
     </InformationalBox>
-</div>
+</div>;
 
 const passingParameters: ReactNode = <div className="paragraph">
     <p>Parameters are added at the end of the URL and each is separated by a comma. They work the same for both the normal and standalone page types. It is also important to note when no parameters
@@ -67,7 +69,7 @@ const passingParameters: ReactNode = <div className="paragraph">
     <br></br>
     <br></br>
     <code className="small-code-sample">{`https://<serverName>/<databaseName>/geotab/checkmate/ui/map.html#highlightGroup:b1234,liveVehicleIds:!(b21)`}</code>
-</div>
+</div>;
 
 const listOfPages: ReactNode = <div className="paragraph">
     <h2>Page: Devices</h2>
@@ -360,7 +362,7 @@ const listOfPages: ReactNode = <div className="paragraph">
     <p>Default: edit user preferences page, no parameters required.</p>
     <h3>Example</h3>
     <code className="small-code-sample">{`https://<serverName>/<databaseName>/#options`}</code>
-</div>
+</div>;
 
 const credentials: ReactNode = <div className="paragraph">
     <h2>Links That Include Username And Database</h2>
@@ -370,18 +372,18 @@ const credentials: ReactNode = <div className="paragraph">
     <p>Standalone Page Example</p>
     <code className="small-code-sample">{`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>#credentials:(database:<databaseName>,userName:'<userName>')`}</code>
     <p>We do not support passing the password credential through the URL because it is unsafe. </p>
-</div>
+</div>;
 
 const gettingSessionId: ReactNode = <div className="paragraph">
     Refer to the <a href="../concepts/#authentication">Authentication</a> section. Within that section the instructions explain the process of authenticating a user to obtain their session id.
     {/*TODO: fix link */}
-</div>
+</div>;
 
 const securitySessionId: ReactNode = <div className="paragraph">
     By using the sessionId, a valid login is created for that account. Another user will be able to fully access that account as long as the sessionId credential remain valid.
     If an application is being created where the sessionId could potentially be viewed by another party, it is advised to generate the credentials using an account with access limited only
     to the necessary data.
-</div>
+</div>;
 
 const embeddingMyGInIframe: ReactNode = <div className="paragraph">
     <h2>Trusted Domains Only</h2>
@@ -391,36 +393,64 @@ const embeddingMyGInIframe: ReactNode = <div className="paragraph">
     <p>If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business
         justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.</p>
     <p>This process can take some time as the domains need to be reviewed by Geotab's security team before being added to the approved list by the development team.</p>
-</div>
+</div>;
+
+const pageTitle: PageTitleProps = {
+    "title": "Using MyGeotab URLs",
+    "breadCrumbItems": ["MYG", "Guides", "Using MyGeotab URLs"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        "elementId": "link-to-page",
+        "summary": "Link To A Page",
+        "details": linkToAPage
+    },
+    {
+        "elementId": "standalone-pages",
+        "summary": "Standalone pages",
+        "details": standalonePages
+    },
+    {
+        "elementId": "passing-parameters",
+        "summary": "Passing Parameters To A Page",
+        "details": passingParameters
+    },
+    {
+        "elementId": "list-of-pages",
+        "summary": "List Of Pages And Accepted Parameters",
+        "details": listOfPages
+    },
+    {
+        "elementId": "credentials",
+        "summary": "Credentials",
+        "details": credentials
+    },
+    {
+        "elementId": "custom-devices",
+        "summary": "Getting The Session Id Using The API",
+        "details": gettingSessionId
+    },
+    {
+        "elementId": "security-session-id",
+        "summary": "Getting The Session Id Using The API",
+        "details": securitySessionId
+    },
+    {
+        "elementId": "embedding-myg-in-iframe",
+        "summary": "Embedding MyGeotab Inside An IFrame",
+        "details": embeddingMyGInIframe
+    }
+];
 
 export default function myGeotabUrls() {
     return (
-        <div className="pageContent">
-            <div className="grayBackground">
-                <div className="breadCrumb">
-                    <span>MYG</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Guides</span>
-                    <IconChevronRightSmall></IconChevronRightSmall>
-                    <span>Using MyGeotab URLs</span>
-                </div>
-                <h1 className="title">Using MyGeotab URLs</h1>
-            </div>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                <p>
-                    This guide explains how to format a URL (Uniform Resource Locator) to obtain access to a specific page/feature in MyGeotab.
-                    This can be used to link to MyGeotab from an Internet application, sending an email notification, third-party applications and other customized functions.
-                </p>
+                This guide explains how to format a URL (Uniform Resource Locator) to obtain access to a specific page/feature in MyGeotab.
+                This can be used to link to MyGeotab from an Internet application, sending an email notification, third-party applications and other customized functions.
             </div>
-
-            <Accordion summary="Link To A Page" p={linkToAPage} />
-            <Accordion summary="Standalone pages" p={standalonePages} />
-            <Accordion summary="Passing Parameters To A Page" p={passingParameters} />
-            <Accordion summary="List Of Pages And Accepted Parameters" p={listOfPages} />
-            <Accordion summary="Credentials" p={credentials} />
-            <Accordion summary="Getting The Session Id Using The API" p={gettingSessionId} />
-            <Accordion summary="Security Using The Session Id" p={securitySessionId} />
-            <Accordion summary="Embedding MyGeotab Inside An IFrame" p={embeddingMyGInIframe} />
-        </div>
+            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+        </Page>
     );
 }

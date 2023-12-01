@@ -18,21 +18,23 @@ const deviceData: ReactNode =
         See the full list of supported data feed types <a hrefLang="../api/reference/#GetFeed1">here</a> {/* TODO: Need to replace this with routing for feed, Add info icon here*/}
         <br></br>
         The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the database
-        (see <a href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed">here for .Net</a> or <a href="https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed">here for Java</a>).
+        (see <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed">here for .Net</a> or <a target="_blank" rel="noreferrer"
+            href="https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed">here for Java</a>).
     </div>;
 
 const importExport: ReactNode =
     <div className="paragraph">
         Geotab has a set of pre-made applications (which include full source code) for synchronizing MyGeotab data and can be used for example to:
         <ul>
-            <li>Import your customer list from a <a href="http://en.wikipedia.org/wiki/Customer_relationship_management">CRM</a> (Customer Relationship Management) system</li>
+            <li>Import your customer list from a <a target="_blank" rel="noreferrer" href="http://en.wikipedia.org/wiki/Customer_relationship_management">CRM</a>
+                {" "}(Customer Relationship Management) system</li>
             <li>Download your vehicle maintenance records into a maintenance system (DVIR)</li>
             <li>Keep your routes up to date based on the day's deliveries</li>
             <li>Synchronize your vehicle groups based on the vehicle's role in the company</li>
             <li>Track Hours of Service (HOS) for regulations compliance</li>
         </ul>
-        You can start using these tools right now by trying the <a href="https://github.com/Geotab/sdk-dotnet-samples">.Net examples</a>,
-        <a href="../js-samples/">JavaScript examples</a> and <a href="https://github.com/Geotab/sdk-java-samples">Java examples</a>. {/*TODO: fix link*/}
+        You can start using these tools right now by trying the <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples">.Net examples</a>,
+        {" "}<a href="../js-samples/">JavaScript examples</a> and <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples">Java examples</a>.
     </div>;
 
 const automatingTasks: ReactNode =
@@ -48,15 +50,16 @@ const workingWithAddins: ReactNode =
     <div className="paragraph">
         Geotab has developed a number of Add-In products which can be easily integrated into your MyGeotab UI. The benefits of using Add-Ins are:
         <ul>
-            <li>Ready availability of Add-Ins to instantly integrate into your MyGeotab and Geotab Drive. Visit the <a href="http://www.geotab.com/marketplace/">Geotab Marketplace</a> and the
-                <a href="../guides/developing-addins/">Developing Add-Ins</a> SDK page to see the available Add-Ins</li> {/*TODO: fix link*/}
+            <li>Ready availability of Add-Ins to instantly integrate into your MyGeotab and Geotab Drive. Visit the <a target="_blank" rel="noreferrer" href="http://www.geotab.com/marketplace/">
+                Geotab Marketplace</a> and the <a href="../guides/developing-addins/">Developing Add-Ins</a> SDK page to see the available Add-Ins</li> {/*TODO: fix link*/}
             <li>Versatility to create your own Add-In to customize a page or button to suit your needs</li>
         </ul>
     </div>;
 
 const integratingWithMyG: ReactNode =
     <div className="paragraph">
-        You can integrate an embedded version of MyGeotab into your own web application. This is perfect for providing a website to your customers with insight as to where their deliveries are and when they will arrive.
+        You can integrate an embedded version of MyGeotab into your own web application. This is perfect for providing a website to your customers with insight as to where their deliveries are and
+        when they will arrive.
         You have control of which features appear on the embedded MyGeotab to create a seamless integration between your software and ours.
         <br></br>
         By using single sign-on authentication with the Geotab API, you have the ability to manage several options from your MyGeotab user accounts including:
@@ -86,7 +89,8 @@ const softwareToolkit: ReactNode =
     <div className="paragraph">
         The toolkit provides helpful integration resources and context which are in addition to the existing documentation and make it easier for partners to get up and running.
         <br></br>
-        Please refer to <a href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a> for further details.
+        Please refer to <a target="_blank" rel="noreferrer" href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a>
+        {" "} for further details.
     </div>;
 
 const pageTitle: PageTitleProps = {
@@ -147,7 +151,6 @@ export default function Introduction() {
                 </ul>
                 Keep up to date with Geotab's technical updates by subscribing to our <a href="https://www.geotab.com/subscription/">technical bulletins</a>.{/*TODO: Add info icon here*/}
             </div>
-
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
