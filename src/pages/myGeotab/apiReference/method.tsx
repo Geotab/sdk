@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 export default function Method() {
     const { methodId } = useParams();
 
-    // console.log(methodObject);
+    console.log(sessionStorage);
+    console.log(methodId);
     return (
         <div>
             <Header title="Method"></Header>

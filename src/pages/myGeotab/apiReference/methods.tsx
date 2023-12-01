@@ -3,33 +3,59 @@ import { Header, Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
 import { Link } from 'react-router-dom';
+import Accordion from "../../../components/Accordion/Accordion";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
+//ToDo: Update URLs
 let request = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
 let xml: any = request.responseXML;
 
+const pageTitle: PageTitleProps = {
+    "title": "Methods",
+    "breadCrumbItems": ["MYG", "API Reference", "Methods"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+
+];
+
 const methods = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore']));
-console.log(methods);
-const methodItems = methods.map((d: any) => {
-    sessionStorage.setItem(d[0], JSON.stringify(d[1]));
+const methodItems = methods.map((methodDetails: any) => {
+    sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
+    let pageSectionObject = {
+        "elementId": methodDetails[0],
+        "summary": methodDetails[0],
+        "details": RenderStringWithUrl(methodDetails[1].description)
+    };
+
+    pageSections.push(pageSectionObject);
+
     return (
-        <div id={d[0]}>
-            <Header title={d[0]}>
-                <Link to={`/method/${d[0]}`}>
+        <div id={methodDetails[0]}>
+            <Header title={methodDetails[0]}>
+                <Link to={`/method/${methodDetails[0]}`}>
                     <Button>View</Button>
                 </Link>
             </Header>
-            <p>{RenderStringWithUrl(d[1].description)}</p>
+            <p>{RenderStringWithUrl(methodDetails[1].description)}</p>
         </div>
     )
 });
 
 export default function Methods() {
     return (
-        <div>
-            <Header title="Methods"></Header>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {methodItems}
-        </div>
+            {/* {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}></Accordion>)} */}
+        </Page>
+        // <div>
+        //     <Header title="Methods"></Header>
+        //     {methodItems}
+        // </div>
     );
 };

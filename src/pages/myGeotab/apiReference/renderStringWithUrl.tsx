@@ -77,4 +77,4 @@ export default function RenderStringWithLinks(text: string) {
     }
 
     return <div>{renderedText}</div>;
-}
+};
