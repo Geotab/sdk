@@ -47,7 +47,7 @@ const pageSections: TableOfContentsItem[] = [
   },
 ];
 
-export default function DataFeed() {
+export default function PowerBI() {
   return (
     <Page
       section={HeaderSections.MyGeotab}
