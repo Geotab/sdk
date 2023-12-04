@@ -42,6 +42,9 @@ export default function Navbar(props: any) {
           <div>
             <Link to="/myGeotab/guides/codeBase/usingInDotnet">Using In .NET</Link>
           </div>
+          <div>
+            <Link to="/myGeotab/guides/codeBase/usingInJavascript">Using In JavaScript</Link>
+          </div>
         </div>
       </div >
       <div>
