@@ -5,7 +5,7 @@ import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
-const deviceData: ReactNode =
+const deviceData: ReactNode = (
     <div className="paragraph">
         The Geotab Data Feed API is a scalable, efficient and secure method to access all the device's data.
         <br></br>
@@ -20,9 +20,10 @@ const deviceData: ReactNode =
         The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the database
         (see <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed">here for .Net</a> or <a target="_blank" rel="noreferrer"
             href="https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed">here for Java</a>).
-    </div>;
+    </div>
+);
 
-const importExport: ReactNode =
+const importExport: ReactNode = (
     <div className="paragraph">
         Geotab has a set of pre-made applications (which include full source code) for synchronizing MyGeotab data and can be used for example to:
         <ul>
@@ -35,18 +36,20 @@ const importExport: ReactNode =
         </ul>
         You can start using these tools right now by trying the <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples">.Net examples</a>,
         {" "}<a href="../js-samples/">JavaScript examples</a> and <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples">Java examples</a>.
-    </div>;
+    </div>
+);
 
-const automatingTasks: ReactNode =
+const automatingTasks: ReactNode = (
     <div className="paragraph">
         Common tasks that you perform online using MyGeotab can all be automated using the Geotab API. You can create time-saving scripts or automated processes such as:
         <ul>
             <li>When a new pick-up arrives, automate the dispatching by sending a text message to the vehicle's Garmin through an attached GO device</li>
             <li>Synchronize your customer's location with the closest vehicle when a new work order is created</li>
         </ul>
-    </div>;
+    </div>
+);
 
-const workingWithAddins: ReactNode =
+const workingWithAddins: ReactNode = (
     <div className="paragraph">
         Geotab has developed a number of Add-In products which can be easily integrated into your MyGeotab UI. The benefits of using Add-Ins are:
         <ul>
@@ -54,9 +57,10 @@ const workingWithAddins: ReactNode =
                 Geotab Marketplace</a> and the <a href="../guides/developing-addins/">Developing Add-Ins</a> SDK page to see the available Add-Ins</li> {/*TODO: fix link*/}
             <li>Versatility to create your own Add-In to customize a page or button to suit your needs</li>
         </ul>
-    </div>;
+    </div>
+);
 
-const integratingWithMyG: ReactNode =
+const integratingWithMyG: ReactNode = (
     <div className="paragraph">
         You can integrate an embedded version of MyGeotab into your own web application. This is perfect for providing a website to your customers with insight as to where their deliveries are and
         when they will arrive.
@@ -71,9 +75,10 @@ const integratingWithMyG: ReactNode =
         </ul>
         Each of the MyGeotab pages has a URL (Uniform Resource Locator) associated with the page that allows that page to be embedded in your own application or linked to.
         This is a great way to leverage MyGeotab and make it part of your services. See <a href="../guides/mygeotab-urls/">mygeotab-urls</a> for more details. {/*TODO: fix link*/}
-    </div>;
+    </div>
+);
 
-const customDevices: ReactNode =
+const customDevices: ReactNode = (
     <div className="paragraph">
         Custom telematics devices can have their data added into the MyGeotab database. The Geotab API is used to provision and upload the devices data.
         Additionally, data from these devices can be used in conjunction with data collected by Geotab GO devices. Contact Geotab support to have your custom telematics device added
@@ -83,15 +88,17 @@ const customDevices: ReactNode =
         The rich information contained in the MyGeotab reports may not be fully available. Testing of these tracking device will be required to properly integrate the data into MyGeotab.
         <br></br>
         Please refer to [Using Custom Telematics Devices](../guides/custom-telematics-devices/) for further details on using your own devices with MyGeotab.
-    </div>;
+    </div>
+);
 
-const softwareToolkit: ReactNode =
+const softwareToolkit: ReactNode = (
     <div className="paragraph">
         The toolkit provides helpful integration resources and context which are in addition to the existing documentation and make it easier for partners to get up and running.
         <br></br>
         Please refer to <a target="_blank" rel="noreferrer" href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">Geotab Integrations: Software Technical Toolkit</a>
         {" "} for further details.
-    </div>;
+    </div>
+);
 
 const pageTitle: PageTitleProps = {
     "title": "Introduction",
