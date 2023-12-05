@@ -23,6 +23,7 @@ export default function LandingPage() {
                 <li>Drive</li>
                 <li>Hardware</li>
               </ul>
+              {/* TODO: Update link */}
               <p>Please refer to <Link to="/" aria-label="View Toolkits">Toolkits</Link> for more information.</p>
             </div>
           </div>
