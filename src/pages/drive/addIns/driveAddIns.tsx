@@ -579,7 +579,7 @@ const driveResources: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Drive Add-Ins",
-    "breadCrumbItems": ["MYG", "Add-Ins", "Drive Add-Ins"]
+    "breadCrumbItems": ["Drive", "Add-Ins", "Drive Add-Ins"]
 };
 
 const pageSections: TableOfContentsItem[] = [
