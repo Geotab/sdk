@@ -38,8 +38,7 @@ export default function CodeSample(props: CodeSampleProps): JSX.Element{
           customStyle={ CodeSampleStyle() }
       />
 
-      <Button variant = {ButtonVariant.Secondary} className="copyButton" onClick={handleCopyClick} >
-          Copy
+      <Button variant = {ButtonVariant.CheveronButton} className="copyButton" onClick={handleCopyClick} ariaLabel="Copy code sample button">
           {copyIcon()}
       </Button>
 

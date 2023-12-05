@@ -2,6 +2,14 @@
     position: absolute;
     right: 8px;
     top: 8px;
+
+    & svg path {
+        fill: #ffffffb3;
+    }
+
+    &:hover svg path {
+        fill: #ffffff;
+    }
 }
 
 .snippetBox {
