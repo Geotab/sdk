@@ -1,4 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
+import { IconSearch } from "@geotab/react-component-library";
+import "./SearchModal.scss";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -49,14 +51,27 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal" role="dialog" aria-labelledby="search-modal">
-      <div className="modal-content" ref={modalRef}>
-        <input
-          ref={inputRef}
-          type="search"
-          placeholder="Search..."
-          className="search-input"
-        />
+    <div
+      className="search-modal-backdrop"
+      role="button"
+      aria-labelledby="search-modal"
+    >
+      <div className="search-modal-container" ref={modalRef}>
+        <div className="search-modal-header-container">
+          <div className="search-modal-input-field-container">
+            <div className="search-modal-input-field">
+              <div className="modal-search-icon">
+                <IconSearch />
+              </div>
+              <input
+                ref={inputRef}
+                className="modal-search-input"
+                type="search"
+                placeholder="Search"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
