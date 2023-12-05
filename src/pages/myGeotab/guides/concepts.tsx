@@ -1,4 +1,3 @@
-import { IconChevronRightSmall } from "@geotab/react-component-library";
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
@@ -9,7 +8,7 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 const security: ReactNode = (
-    <div className="paragraph" id="security">
+    <div className="paragraph">
         <p>
             MyGeotab API requests can only be made over secure connections (HTTPS). The minimum SSL/TLS version supported by the MyGeotab API is TLS v1.2.
         </p>
@@ -26,16 +25,16 @@ const security: ReactNode = (
 //ToDo Update Reference Page Link
 //ToDo Update Object Page Link
 const makeYourFirstAPICall: ReactNode = (
-    <div className="paragraph" id="firstAPICall">
+    <div className="paragraph">
         <p>
             While both GET and POST requests are supported, we strongly recommend that only POST requests are used for requests that include MyGeotab credentials as parameters.
         </p>
         <p>
             The endpoint shown below is used to invoke an API method when an HTTP POST request is used. The example that follows illustrates a POST request that returns all devices (vehicles) and their properties.
         </p>
-        <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
+        <p><code className="small-code-sample">{`https://[myserver]/apiv1`}</code></p>
         <p>
-            The method’s name and parameters are passed in the HTTP body using the <a href="https://en.wikipedia.org/wiki/JSON-RPC">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href="../../api/reference">API reference</a>.
+            The method's name and parameters are passed in the HTTP body using the <a href="https://en.wikipedia.org/wiki/JSON-RPC" target="_blank" rel="noopener noreferrer">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href="../../api/reference">API reference</a>.
         </p>
         <p>To understand which parameters must be passed, consider the following JSON object:</p>
         <CodeSample
@@ -48,7 +47,7 @@ const makeYourFirstAPICall: ReactNode = (
                     "userName":"bob@acme.com",
                     "sessionId":"1234"
                 }
-};`}></CodeSample>
+};`}/>
         <p>To understand how HTTP POST can be used to invoke a method, consider the following JavaScript example. This can be achieved from any language that supports HTTP, such as the java.net.HttpUrlConnection class in Java, or System.Net.Http.HttpClient in .Net.</p>
         <CodeSample
             language="javascript"
@@ -89,12 +88,12 @@ var data = {
 };
 
 request.send(JSON.stringify(data));`
-        }></CodeSample>
+        }/>
     </div>
 );
 
-const ResultsAndErrors: ReactNode = (
-    <div className="paragraph" id="resultAndErrors">
+const resultsAndErrors: ReactNode = (
+    <div className="paragraph">
         <p>
             Using the example above, a successful request to the server results in an object with the property “result” in the following format:
         </p>
@@ -117,7 +116,7 @@ const ResultsAndErrors: ReactNode = (
     "result":"5.7.1801.122",
     "jsonrpc":"2.0"
 }`
-}></CodeSample>
+}/>
         <p>
             However, if the request is incorrect, or an error is triggered on the server, the error is returned as an object with the property “error”. For example:
         </p>
@@ -135,15 +134,16 @@ const ResultsAndErrors: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-}></CodeSample>
+}/>
+        {/* ToDo: Update URLs later. */}
         <p>
             The properties of the error object are <a href="../../myGeotab/apiReference/objects">JsonRpcError</a>, and <a href="../../myGeotab/apiReference/objects">JsonRpcErrorData</a>. Objects are documented in the API Reference.
         </p>
     </div>
 );
 
-const Authentication: React.ReactNode = (
-    <div className="paragraph" id="authentication">
+const authentication: React.ReactNode = (
+    <div className="paragraph">
         <p>
             Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
         </p>
@@ -209,51 +209,51 @@ let devices = await call(
 );
 console.log(devices);
 })();`
-}></CodeSample>
+}/>
         <InformationalBox>
             <p>Database, user and password must be set for successful authentiation.</p>
         </InformationalBox>
     </div>
 );
 
-const Example1: ReactNode = (
-    <div className="paragraph" id="example1">
+const example1: ReactNode = (
+    <div className="paragraph">
         <p>
             In this example, an authentication request is made to my.geotab.com to log in to the database named <i>database</i>.
         </p>
         <ol>
             <li>
-                The <code className="small-code-sample">Authenticate</code> method is requested using the credentials provided.
+                The <code className="small-code-sample">{`Authenticate`}</code> method is requested using the credentials provided.
             </li>
             <li>
-                The response from the server contains two important properties — <code className="small-code-sample">path</code> and <code className="small-code-sample">credentials</code>.
+                The response from the server contains two important properties — <code className="small-code-sample">{`path`}</code> and <code className="small-code-sample">{`credentials`}</code>.
             </li>
         </ol>
         <p>
-            The path will either contain the URL of a server, or the string value <code className="small-code-sample">ThisServer</code>. Since the <i>database</i> is on my.geotab.com, it returns <i>ThisServer</i>. This means that the path is correct.
+            The path will either contain the URL of a server, or the string value <code className="small-code-sample">{`ThisServer`}</code>. Since the <i>database</i> is on my.geotab.com, it returns <i>{`ThisServer`}</i>. This means that the path is correct.
         </p>
         <p>
-            The <code className="small-code-sample">credentials</code> object contains the username, database and session ID. This object is required for all subsequent requests to the server.
+            The <code className="small-code-sample">{`credentials`}</code> object contains the username, database and session ID. This object is required for all subsequent requests to the server.
         </p>
         <ol>
             <li>
-                Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to <code className="small-code-sample">Get</code> devices from my.geotab.com. Pass the <code className="small-code-sample">credentials</code> object with the call to <code className="small-code-sample">Get</code> Device.
+                Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to <code className="small-code-sample">{`Get`}</code> devices from my.geotab.com. Pass the <code className="small-code-sample">{`credentials`}</code> object with the call to <code className="small-code-sample">{`Get`}</code> Device.
             </li>
             <li>
-                The <code className="small-code-sample">Get</code> result is returned with one device.
+                The <code className="small-code-sample">{`Get`}</code> result is returned with one device.
             </li>
         </ol>
     </div>
 );
 
-const Example2: ReactNode = (
-    <div className="paragraph" id="example2">
+const example2: ReactNode = (
+    <div className="paragraph">
         <p>
             The examples above demonstrate how to authenticate to get a token and make a call to Get devices. However, there are two additional scenarios to consider:
         </p>
         <ol>
             <li>
-                The credentials provided to <code className="small-code-sample">Authenticate</code> method are invalid.
+                The credentials provided to <code className="small-code-sample">{`Authenticate`}</code> method are invalid.
             </li>
             <li>
                 The token has eventually expired.
@@ -276,15 +276,15 @@ const Example2: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-}></CodeSample>
+}/>
         <p>
-            If the error contains an object with type <code className="small-code-sample">InvalidUserException</code>, the authentication failed or the authentication process must be repeated to obtain a fresh token.
+            If the error contains an object with type <code className="small-code-sample">{`InvalidUserException`}</code>, the authentication failed or the authentication process must be repeated to obtain a fresh token.
         </p>
     </div>
 );
 
-const HTTPCompression: ReactNode = (
-    <div className="paragraph" id="httpCompression">
+const httpCompression: ReactNode = (
+    <div className="paragraph">
         <p>
             The MyGeotab API supports brotli, gzip and deflate compression. To use either of these compression methods, include the HTTP header for “Accept-Encoding”. For example:
         </p>
@@ -295,16 +295,16 @@ const HTTPCompression: ReactNode = (
     </div>
 );
 
-const Limits: ReactNode = (
-    <div className="paragraph" id="limits">
+const limits: ReactNode = (
+    <div className="paragraph">
         <p>
             At Geotab, we work hard to create an open and flexible API that encourages creativity and innovation. We do this by providing tools to create powerful applications, integrations, and Add-ins, while maintaining overall system health and quality. Result and rate limits are intended to encourage API developers to use appropriate APIs for their use cases, and to safeguard against unbounded requests.
         </p>
     </div>
 );
 
-const RateLimits: ReactNode = (
-    <div className="paragraph" id="rateLimits">
+const rateLimits: ReactNode = (
+    <div className="paragraph">
         <h2>
             Authenticate
         </h2>
@@ -329,7 +329,7 @@ const RateLimits: ReactNode = (
             </li>
         </ol>
         <p>
-            For constant polling, we recommend polling for data at 30-second intervals. However, we understand that 30 seconds may be too infrequent for the rate of data generated by some vehicles, so we created rate limits. A rate limit of <b>1 request-per-second</b> is applied to <code className="small-code-sample">GetFeed</code> requests for each supported entity type.
+            For constant polling, we recommend polling for data at 30-second intervals. However, we understand that 30 seconds may be too infrequent for the rate of data generated by some vehicles, so we created rate limits. A rate limit of <b>1 request-per-second</b> is applied to <code className="small-code-sample">{`GetFeed`}</code> requests for each supported entity type.
         </p>
         <h2>
             CreateDatabase
@@ -341,12 +341,12 @@ const RateLimits: ReactNode = (
             OverLimitException
         </h2>
         <p>
-            When a rate limit is exceeded, an OverLimitException error is returned. A header (<code className="small-code-sample">Retry-After</code>) is also set with time remaining for the limit to reset.
+            When a rate limit is exceeded, an OverLimitException error is returned. A header (<code className="small-code-sample">{`Retry-After`}</code>) is also set with time remaining for the limit to reset.
         </p>
         <h3>
             Header Example
         </h3>
-        <code className="small-code-sample">Retry-After: 58</code>
+        <code className="small-code-sample">{`Retry-After: 58`}</code>
         <h3>
             Example
         </h3>
@@ -363,7 +363,7 @@ const RateLimits: ReactNode = (
     },
     "jsonrpc": "2.0"
 }`
-}></CodeSample>
+}/>
         <h2>
             Headers
         </h2>
@@ -372,13 +372,13 @@ const RateLimits: ReactNode = (
         </p>
         <ul>
             <li>
-                <code className="small-code-sample">X-Rate-Limit-Limit</code>: the rate limit period (eg. 1s, 1m, 12h, 1d)
+                <code className="small-code-sample">{`X-Rate-Limit-Limit`}</code>: the rate limit period (eg. 1s, 1m, 12h, 1d)
             </li>
             <li>
-                <code className="small-code-sample">X-Rate-Limit-Remaining</code>: number of request remaining
+                <code className="small-code-sample">{`X-Rate-Limit-Remaining`}</code>: number of request remaining
             </li>
             <li>
-                <code className="small-code-sample">X-Rate-Limit-Reset</code>: UTC date time (ISO 8601) when the limit resets
+                <code className="small-code-sample">{`X-Rate-Limit-Reset`}</code>: UTC date time (ISO 8601) when the limit resets
             </li>
         </ul>
         <h3>
@@ -390,24 +390,24 @@ const RateLimits: ReactNode = (
 X-Rate-Limit-Limit: 1m
 X-Rate-Limit-Remaining: 8
 X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z`
-}></CodeSample>
+}/>
     </div>
 );
 
-const ResultLimits: ReactNode = (
-    <div className="paragraph" id="resultLimits">
+const resultLimits: ReactNode = (
+    <div className="paragraph">
         <h2>
             GetFeed
         </h2>
         <p>
-            <code className="small-code-sample">GetFeed</code> is limited to 50,000 records returned in a single request.
+            <code className="small-code-sample">{`GetFeed`}</code> is limited to 50,000 records returned in a single request.
         </p>
-        <InformationalBox>For legacy compatibility, <code className="small-code-sample">GetFeed</code> does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.</InformationalBox>
+        <InformationalBox>For legacy compatibility, <code className="small-code-sample">{`GetFeed`}</code> does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.</InformationalBox>
         <h2>
             Get
         </h2>
         <p>
-            The entities listed below have <code className="small-code-sample">Get</code> limits of 50,000 results:
+            The entities listed below have <code className="small-code-sample">{`Get`}</code> limits of 50,000 results:
         </p>
         <ul>
             <li>
@@ -430,13 +430,13 @@ const ResultLimits: ReactNode = (
             </li>
         </ul>
         <p>
-            Other entities will have <code className="small-code-sample">Get</code> limits of 50,000 results in the future, along with a new parameter for pagination when the number of results exceed such limits. For easier transition to the future format, it’s recommended that you pass in a 50,000 resultsLimit in the <code className="small-code-sample">Get</code> call, along with your own way to paginate (e.g. using timestamp).
+            Other entities will have <code className="small-code-sample">{`Get`}</code> limits of 50,000 results in the future, along with a new parameter for pagination when the number of results exceed such limits. For easier transition to the future format, it's recommended that you pass in a 50,000 resultsLimit in the <code className="small-code-sample">{`Get`}</code> call, along with your own way to paginate (e.g. using timestamp).
         </p>
         <h2>
             OverLimitException
         </h2>
         <p>
-            To ensure your application doesn’t think it has every result that matches the search criteria, when in reality there are more, an error result (<code className="small-code-sample">OverLimitException</code>) may be returned in these scenarios:
+            To ensure your application doesn't think it has every result that matches the search criteria, when in reality there are more, an error result (<code className="small-code-sample">{`OverLimitException`}</code>) may be returned in these scenarios:
         </p>
         <ul>
             <li>
@@ -471,47 +471,47 @@ const ResultLimits: ReactNode = (
     },
     "jsonrpc": "2.0"
 }`
-}></CodeSample>
+}/>
     </div>
 );
 
-const WorkingWithDates: ReactNode = (
-    <div className="paragraph" id="workingWithDates">
+const workingWithDates: ReactNode = (
+    <div className="paragraph">
         <p>
-            When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> string (format <code className="small-code-sample">yyyy-MM-ddTHH:mm:ss.fffZ</code>). In addition, all dates will have to first be converted to <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> in order to ensure time zone information and daylight savings times are accounted for correctly.
+            When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">ISO 8601</a> string (format <code className="small-code-sample">{`yyyy-MM-ddTHH:mm:ss.fffZ`}</code>). In addition, all dates will have to first be converted to <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank" rel="noopener noreferrer">{`UTC`}</a> in order to ensure time zone information and daylight savings times are accounted for correctly.
         </p>
     </div>
 );
 
-const UnitOfMeasure: ReactNode = (
-    <div className="paragraph" id="unitOfMeasure">
+const unitOfMeasure: ReactNode = (
+    <div className="paragraph">
         <p>
             As a general rule, MyGeotab uses the metric system for values such as speed (km/h) and distance (m). For example, if you queried the odometer reading for a vehicle, the value would be returned in meters or if you retrieved the current speed of a vehicle it would be in km/h. It does not matter in which region in the world the vehicle or user of MyGeotab system is located — we always return the values in metric.A simple conversion can be applied to these values should you wish to work in imperial units or other customized units instead.
         </p>
         <p>
-            Please note that MyGeotab also records various other status data (e.g. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable <a href="https://www.sae.org/standards/">SAE</a> standard of the specific code for the associated unit of measure.
+            Please note that MyGeotab also records various other status data (e.g. engine data) from the vehicle and these values can be in various units of measure. The units of measure are not provided by Geotab in all cases. Refer to the applicable <a href="https://www.sae.org/standards/" target="_blank" rel="noopener noreferrer">SAE</a> standard of the specific code for the associated unit of measure.
         </p>
     </div>
 );
 
-const Entities: ReactNode = (
-    <div className="paragraph" id="entities">
+const entities: ReactNode = (
+    <div className="paragraph">
         <p>
             All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.  
         </p>
     </div>
 );
 
-const ID: ReactNode = (
-    <div className="paragraph" id="id">
+const id: ReactNode = (
+    <div className="paragraph">
         <p>
             An ID is used to uniquely reference entities in the API. IDs are represented by opaque strings. Generally the contents of the IDs are not significant for the user. Building logic around the value of the string should be avoided — unless it is a system ID (see the examples below).
         </p>
     </div>
 );
 
-const Example4: ReactNode = (
-    <div className="paragraph" id="example4">
+const example3: ReactNode = (
+    <div className="paragraph">
         <p>
             In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:
         </p>
@@ -524,7 +524,7 @@ const Example4: ReactNode = (
     "deviceType": "GO6",
     "vehicleIdentificationNumber": "1002"
 }`
-}></CodeSample>
+}/>
         <p>
             Note the “id” property with value “b0a46”. This is the unique identifier for the device (vehicle) with description “007 - Aston Martin”.
         </p>
@@ -541,15 +541,15 @@ const Example4: ReactNode = (
         }
     }
 }`
-}></CodeSample>
+}/>
         <p>
             Calling the Get method with the parameter defined above will return all trips for the vehicle “007 - Aston Martin”.
         </p>
     </div>
 );
 
-const Example5: ReactNode = (
-    <div className="paragraph" id="example5">
+const example4: ReactNode = (
+    <div className="paragraph">
         <p>
             There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of “CompanyGroupId” rather than other characters (such as “b0a46” above). For example:
         </p>
@@ -560,7 +560,7 @@ const Example5: ReactNode = (
     "name": "The Company Group",
     "children": [..]
 }`
-}></CodeSample>
+}/>
         <p>
             If the system entities do not have any properties then they are specified as strings with their ID’s name. For example the source “Obd” will be identified as “SourceObdId”.
         </p>
@@ -573,18 +573,18 @@ const Example5: ReactNode = (
     },
     "source": "SourceObdId"
 }`
-}></CodeSample>
+}/>
     </div>
 );
 
 //ToDo Update .Net and JS example links
-const BuildBlockApproach: ReactNode = (
-    <div className="paragraph" id="buildingBlock">
+const buildingBlockApproach: ReactNode = (
+    <div className="paragraph">
         <p>
             The results of a call to our API will only contain literal values and the identities of contained objects — not the actual fully populated child objects. This provides a predictable system that efficiently serializes objects to JSON and back. Additional lookups of the nested objects will be required to retrieve additional properties of the objects.
         </p>
         <p>
-            For example, an engine status data record has a device property. If 1000 engine status data records are retrieved for a device, the status data’s device property will only contain the ID of the device. An additional retrieval for the devices object will be required to obtain the status data records. This approach has several benefits:
+            For example, an engine status data record has a device property. If 1000 engine status data records are retrieved for a device, the status data's device property will only contain the ID of the device. An additional retrieval for the devices object will be required to obtain the status data records. This approach has several benefits:
         </p>
         <ul>
             <li>
@@ -629,28 +629,28 @@ var deviceLookup = {
         ...
     }
 };`
-}></CodeSample>
+}/>
         <p>
             statusDatas[i].device = deviceLookup[statusDatas[i].device.id];
         </p>
         <p>
-            Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call. This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the <a href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed">.Net</a> and <a href="https://geotab.github.io/sdk/software/js-samples/dataFeed.html">JavaScript DataFeed</a> examples.
+            Depending on the process, for some entities like diagnostics, it may be desirable to maintain a local cache from which the status/fault data can be populated. In this case it will be necessary to refresh the cache when the cache is missing the required entity making an API call. This will allow the API to get the required entity and add it to the local cache. An example of maintaining a diagnostic cache would occur when consuming a feed of data from the API. An example of this process is included in both the <a href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed" target="_blank" rel="noopener noreferrer">.Net</a> and <a href="https://geotab.github.io/sdk/software/js-samples/dataFeed.html" target="_blank" rel="noopener noreferrer">JavaScript DataFeed</a> examples.
         </p>
     </div>
 );
 
 //ToDo Update Methods links
-const PropertySelector: ReactNode = (
-    <div className="paragraph" id="propertySelector">
+const propertySelector: ReactNode = (
+    <div className="paragraph">
         <p>
-            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <a href="">Get</a> and <a href="">GetFeed</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+            <code className="small-code-sample">{`PropertySelector`}</code> is a new optional parameter that can be used with the <a href="">{`Get`}</a> and <a href="">{`GetFeed`}</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
         </p>
     </div>
 );
 
 //ToDo Update Reference Page Link
 //ToDo Update object links
-const SupportedTypes: ReactNode = <div className="paragraph" id="supportedTypes">
+const supportedTypes: ReactNode = <div className="paragraph" >
     <p>
         A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
     </p>
@@ -665,20 +665,20 @@ const SupportedTypes: ReactNode = <div className="paragraph" id="supportedTypes"
             <tbody>
                 <tr>
                     <td>Fields</td>
-                    <td>An array of string, consisting of the properties for a given <a href="">Entity</a> type for which we want to include/exclude in the entities of the result set. Refer to the <a href="../../api/reference">reference</a> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <a href="">Go9</a> is child of <a href="">Device</a>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
+                    <td>An array of string, consisting of the properties for a given <a href="">Entity</a> type for which we want to include/exclude in the entities of the result set. Refer to the <a href="../../api/reference">reference</a> page for all the properties supported for a given <code className="small-code-sample">{`Entity`}</code>. Note that the properties of an inheriting class will also be supported. (For example, <a href="">Go9</a> is child of <a href="">Device</a>, so the properties defined for <code className="small-code-sample">{`Go9`}</code> can be supplied to <code className="small-code-sample">{`Fields`}</code>.)</td>
                 </tr>
                 <tr>
                     <td>IsIncluded</td>
-                    <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <a href="">Entity</a> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
+                    <td>A boolean, which if <code className="small-code-sample">{`true`}</code>, will include the properties of a given <a href="">Entity</a> type defined in <code className="small-code-sample">{`Fields`}</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">{`Fields`}</code> will be excluded.</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>;
 
-const SupportedTypeExample: ReactNode = <div className="paragraph" id="supportedTypeExample">
+const supportedTypeExample: ReactNode = <div className="paragraph">
     <p>
-        A simple <a href="https://geotab.github.io/sdk/software/api/runner.html#sample:get-lightweight-device-response">example</a> of this can be illustrated by using the property selector with <code className="small-code-sample">Device</code>. The <code className="small-code-sample">Device</code> object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our <code className="small-code-sample">Device</code> objects to have the properties <code className="small-code-sample">Name</code> and <code className="small-code-sample">Id</code>, so we set our <code className="small-code-sample">PropertySelctor</code> object like so:
+        A simple <a href="https://geotab.github.io/sdk/software/api/runner.html#sample:get-lightweight-device-response" target="_blank" rel="noopener noreferrer">example</a> of this can be illustrated by using the property selector with <code className="small-code-sample">{`Device`}</code>. The <code className="small-code-sample">{`Device`}</code> object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our <code className="small-code-sample">{`Device`}</code> objects to have the properties <code className="small-code-sample">{`Name`}</code> and <code className="small-code-sample">{`Id`}</code>, so we set our <code className="small-code-sample">{`PropertySelctor`}</code> object like so:
     </p>
     <h2>
         Javascript
@@ -702,7 +702,7 @@ const SupportedTypeExample: ReactNode = <div className="paragraph" id="supported
         console.error("Failed:", e);
     });`
 
-}></CodeSample>
+}/>
         <h3>
             Response
         </h3>
@@ -718,7 +718,7 @@ const SupportedTypeExample: ReactNode = <div className="paragraph" id="supported
         "id": "b2"
     }
 ]`
-}></CodeSample>
+}/>
     <p>
         In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
     </p>
@@ -778,11 +778,11 @@ const SupportedTypeExample: ReactNode = <div className="paragraph" id="supported
         },
         resultsLimit = 500
     });`
-}></CodeSample>
+}/>
 </div>;
 
 //ToDo Update Object page links
-const SupportEntitiesList: ReactNode = <div className="paragraph" id="supportEntitiesList">
+const supportEntitiesList: ReactNode = <div className="paragraph">
     <p>
         Below is a list of entities that support the PropertySelector functionality. 
     </p>
@@ -847,14 +847,14 @@ const SupportEntitiesList: ReactNode = <div className="paragraph" id="supportEnt
 </div>;
 
 const PropertySelctorFAQ: ReactNode = (
-    <div className="paragraph" id="propertySelectorFAQ">
+    <div className="paragraph">
         <p><b>Can I combine property selector and search?</b></p>
         <p>Yes. PropertySelector and Search work independently of each other and can be used together in the same request.</p>
     </div>
 );
 
 const MultiCall: ReactNode = (
-    <div className="paragraph" id="multiCall">
+    <div className="paragraph">
         <p>
             A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.
         </p>
@@ -907,7 +907,7 @@ const MultiCall: ReactNode = (
 );
 
 const MultiCallBasicImplementation: ReactNode = (
-    <div className="paragraph" id="multiCallImplementation">
+    <div className="paragraph">
         <p>
             Making a MultiCall is simple, use the method “ExecuteMultiCall” with the parameter “calls” of JSON type Array. Each call should be formatted as an Object with property “method” of type string with the method name as its value and a property “params” of type Object with the method parameters as its properties. The parent “params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.    
         </p>
@@ -953,7 +953,7 @@ const MultiCallBasicImplementation: ReactNode = (
 );
 
 const MultiCallErrors: ReactNode = (
-    <div className="paragraph" id="multiCallErrors">
+    <div className="paragraph">
         <p>
             In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and <b>unreached calls are not run</b>. The error results includes the index of the call in the array that the exception occurred. 
         </p>
@@ -1007,7 +1007,7 @@ results = {
 
 //ToDo Update Reference Page Link
 const APIClientSupport: ReactNode = (
-    <div className="paragraph" id="APIClientSupport">
+    <div className="paragraph">
         <p>
             All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API</a> clients have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:    
         </p>
@@ -1051,7 +1051,7 @@ var controllers = (List<Controller>)results[2];`
 );
 
 const MultiCallFAQ: ReactNode = (
-    <div className="javascript" id="multiCallFAQ">
+    <div className="javascript">
         <p>
             <b>Can I use a search in a multicall?</b>
         </p>
@@ -1239,17 +1239,17 @@ export default function Concepts() {
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <p>Requests made to the Geotab API are performed over HTTPS. The current API is version 1. The version number is appended to the API endpoint URL, where the web application sends requests:</p>
-                <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
+                <p><code className="small-code-sample">{`https://[myserver]/apiv1`}</code></p>
                 <p>
-                    NOTE: Sample text inside <code className="small-code-sample">[</code>
+                    NOTE: Sample text inside <code className="small-code-sample">{`[`}</code>
                     and 
-                    <code className="small-code-sample">]</code>
+                    <code className="small-code-sample">{`]`}</code>
                     (e.g 
-                    <code className="small-code-sample">[myserver]</code>
+                    <code className="small-code-sample">{`[`}myserver{`]`}</code>
                     are placeholders to indicate where the user enters information unique to their requirements.
                 </p>
                 <p>
-                    API request parameters and their results are transported using the lightweight <a href="http://wwww.json.org">JSON</a> format. The <a href="../../api/reference">API Reference</a> contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
+                    API request parameters and their results are transported using the lightweight <a href="http://www.json.org" target="_blank" rel="noopener noreferrer">JSON</a> format. The <a href="../../api/reference">API Reference</a> contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
                 </p>
                 <p>
                     Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST requests use the JSON-RPC standard. When making requests that contain MyGeotab credentials, use the POST request only. This helps to minimize potential leaks into browser histories, or web server logs.
