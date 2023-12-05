@@ -10,8 +10,8 @@ import { TableOfContentsItem } from "../../components/TableOfContents/TableOfCon
 
 //ToDo Update Object Links
 //ToDo Update Reference Page Link
-const Update11: ReactNode = (
-	<div className="paragraph" id="11.0">
+const update11: ReactNode = (
+	<div className="paragraph">
 		<h2>Get And GetFeed For FuelUsed And FillUp</h2>
 		<ul>
 			<li>
@@ -105,8 +105,8 @@ const Update11: ReactNode = (
 );
 
 //ToDo Update Developing Add-Ins Page
-const Update10: ReactNode = (
-	<div className="paragraph" id="10.0">
+const update10: ReactNode = (
+	<div className="paragraph">
 		<h2>SDK Updates</h2>
 		<h3>API Runner (SDK)</h3>
 		<p>The following improvements are added:</p>
@@ -224,8 +224,8 @@ const Update10: ReactNode = (
 );
 
 //ToDo Update Concepts Page Link
-const Update9: ReactNode = (
-	<div className="paragraph" id="9.0">
+const update9: ReactNode = (
+	<div className="paragraph">
 		<h2>Custom Security Identifiers For Add-Ins</h2>
 		<p>Custom security identifiers for MyGeotab Add-ins are now available. Identifiers can be defined in the configuration.json file of Add-ins, which will then add them to the list of permissions available when editing clearances. These definitions can support multiple languages.</p>
 		<p>Administrator clearance will remain non-editable and have all custom clearances enabled by default. All other default/system clearance levels only allow editing of custom security identifiers, while keeping the system defined default identifiers non-editable.</p>
@@ -327,8 +327,8 @@ const Update9: ReactNode = (
 );
 
 //ToDo Update Reference Page Link
-const Update8: ReactNode = (
-	<div className="paragraph" id="8.0">
+const update8: ReactNode = (
+	<div className="paragraph">
 		<h2>Special Note About Trailer And Device</h2>
 		<p>We have migrated all Trailers to be Devices in all customer databases. As a result, you will see the following changes:</p>
 		<ul>
@@ -519,8 +519,8 @@ const Update8: ReactNode = (
 	</div>
 );
 
-const Update7: ReactNode = (
-	<div className="paragraph" id="7.0">
+const update7: ReactNode = (
+	<div className="paragraph">
 		<h2>Security Updates</h2>
 		<p>In an effort to increase application and API security, exception types that expose database provider or platform-specific error messages have been removed and are now represented as one of the exceptions below. Most exceptions and error messages have not changed. Exception types that were previously documented remain unchanged; however, some new exception types include non-specific, generalized messages to avoid sharing information about the underlying infrastructure. The following common exceptions are still supported.</p>
 		<ul>
@@ -626,8 +626,8 @@ const Update7: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Introduction Page Link
-const Update6: ReactNode = (
-	<div className="paragraph" id="6.0">
+const update6: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, <a href="https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US">click here</a>.
@@ -655,8 +655,8 @@ const Update6: ReactNode = (
 	</div>
 );
 
-const Update2104: ReactNode = (
-	<div className="paragraph" id="2104">
+const update2104: ReactNode = (
+	<div className="paragraph">
 		<h2>JSON Serializer Change In 5.7.2103</h2>
 		<p>Post-release update: it was recently uncovered within our development team that as of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (‘) usage within the call parameters. Integrators should now solely use double quotes (“) for this purpose. The expected error result for single quote usage with this change is as follows:</p>
 		<CodeSample
@@ -730,8 +730,8 @@ const Update2104: ReactNode = (
 	</div>
 );
 
-const Update2103: ReactNode = (
-	<div className="paragraph" id="2103">
+const update2103: ReactNode = (
+	<div className="paragraph">
 		<h2>JSON Serializer Change</h2>
 		<p>The JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (‘) usage within the call parameters. Integrators should now solely use double quotes (“) for this purpose. The expected error result for single quote usage with this change is as follows:</p>
 		<CodeSample
@@ -805,8 +805,8 @@ const Update2103: ReactNode = (
 );
 
 //ToDo Update DIG URL
-const Update2102: ReactNode = (
-	<div className="paragraph" id="2102">
+const update2102: ReactNode = (
+	<div className="paragraph">
 		<h2>Data Intake Gateway (DIG)</h2>
 		<p>DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, <a href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/">click here</a>.</p>
 		<h2>APIv1 JSON Serialization</h2>
@@ -857,8 +857,8 @@ const Update2102: ReactNode = (
 	</div>
 );
 
-const Update2101: ReactNode = (
-	<div className="paragraph" id="2101">
+const update2101: ReactNode = (
+	<div className="paragraph">
 		<h2>Map Add-In</h2>
 		<p>Map Add-ins are now fully supported, and no longer in Feature Preview. <a href="">Click here to learn more about Map Add-ins</a></p>
 		<h2>Storage API</h2>
@@ -936,8 +936,8 @@ const Update2101: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Method Links
-const Update2004: ReactNode = (
-	<div className="paragraph" id="2004">
+const update2004: ReactNode = (
+	<div className="paragraph">
 		<h2>New Media File APIPermalink</h2>
 		<p>Geotab is happy to announce a new set of APIs related to Media Files. This new API can be used to store images or video clips related to a device or driver.</p>
 		<p><a href="/sdk/software/api/reference/#MediaFile">MediaFile</a>: MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found <a href="https://github.com/Geotab/mg-media-files">here</a>.</p>
@@ -1228,8 +1228,8 @@ const Update2004: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Method Links
-const Update2003: ReactNode = (
-	<div className="paragraph" id="2003">
+const update2003: ReactNode = (
+	<div className="paragraph">
 		<h2>General Improvements</h2>
 		<p>JSON serialization improvements have been made to increase the efficiency of API calls. This is especially noticeable on API calls with large response payload. For example, calling <code className="small-code-sample">GetFeed</code> of <code className="small-code-sample">StatusData</code> with full payload (50,000 results), the average end to end time decreased from 1800 ms to 800 ms.</p>
 		<h2>TextMessage And TextMessageSearch</h2>
@@ -1337,8 +1337,8 @@ const Update2003: ReactNode = (
 //ToDo Update Method Links
 //ToDo Update Hardware Link
 //ToDo Update SDK Reference Link
-const Update2002: ReactNode = (
-	<div className="paragraph" id="2002">
+const update2002: ReactNode = (
+	<div className="paragraph">
 		<h2>NuGet</h2>
 		<p><span>! IMPORTANT</span>: A bug has been identified with Geotab.Checkmate.Objectmodel NuGet packages older than version 5.7.2002, which can lead to serialization errors when a previous version received a new device plan value. Please update to the latest NuGet package to establish compatibility.</p>
 		<h2>Map Add-In</h2>
@@ -1512,8 +1512,8 @@ const Update2002: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Method Links
-const Update2001: ReactNode = (
-	<div className="paragraph" id="2001">
+const update2001: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>AddInData (Feature Preview) - Remove requirement of <code className="small-code-sample">AddInDataId</code> for search by <code className="small-code-sample">Id</code>.</p>
@@ -1580,8 +1580,8 @@ const Update2001: ReactNode = (
 );
 
 //ToDo Update Object Links
-const Update1904: ReactNode = (
-	<div className="paragraph" id="1904">
+const update1904: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object.</p>
@@ -1622,8 +1622,8 @@ const Update1904: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Method Links
-const Update1903: ReactNode = (
-	<div className="paragraph" id="1903">
+const update1903: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a>: Added <code className="small-code-sample">EditRequestedByUser</code>.</p>
@@ -1693,8 +1693,8 @@ const Update1903: ReactNode = (
 
 //ToDo Update Object Links
 //ToDo Update Concepts Page Link
-const Update1902: ReactNode = (
-	<div className="paragraph" id="1902">
+const update1902: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p><a href="/sdk/software/api/reference/#ApplicationVersionInformation">ApplicationVersionInformation</a>: Added beta support</p>
@@ -1798,8 +1798,8 @@ const Update1902: ReactNode = (
 );
 
 //ToDo Update Object links
-const Update1901: ReactNode = (
-	<div className="paragraph" id="1901">
+const update1901: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Sun-setting support for SendEmail API. No longer available in API documentation.</p>
@@ -1823,8 +1823,8 @@ const Update1901: ReactNode = (
 );
 
 //ToDo Update API.cs link
-const Update1804Dot1: ReactNode = (
-	<div className="paragraph" id="1804Dot1">
+const update1804Dot1: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, Windows 10 using IIS Express possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804.
@@ -1835,8 +1835,8 @@ const Update1804Dot1: ReactNode = (
 
 //ToDo Update API.cs link
 //ToDo Update methods/objects links
-const Update1804: ReactNode = (
-	<div className="paragraph" id="1804">
+const update1804: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p><a href="/sdk/software/api/reference/#Add1">Add</a>/<a href="/sdk/software/api/reference/#Set1">Set</a> <a href="/sdk/software/api/reference/#Device">Device</a>: <code className="small-code-sample">ParameterVersion</code> will auto increment server side when device parameters property changed. Server must see that <code className="small-code-sample">ParameterVersion</code> has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, <code className="small-code-sample">ParameterVersion</code> required manual increment.</p>
@@ -1906,8 +1906,8 @@ const Update1804: ReactNode = (
 
 //ToDo: Update CD reference link
 //ToDo: Update object link
-const Update1803: ReactNode = (
-	<div className="paragraph" id="1803">
+const update1803: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>SecurityRole: Added <code className="small-code-sample">CertificateSet</code> permission</p>
@@ -1923,8 +1923,8 @@ const Update1803: ReactNode = (
 );
 
 //ToDo: Update all object links 
-const Update1802: ReactNode = (
-	<div className="paragraph" id="1802">
+const update1802: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a>: Added properties <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">EngineHours</code>, <code className="small-code-sample">EventRecordStatus</code>, <code className="small-code-sample">EventCode</code>, <code className="small-code-sample">EventType</code></p>
@@ -1950,8 +1950,8 @@ const Update1802: ReactNode = (
 	</div>
 );
 
-const Update1801: ReactNode = (
-	<div className="paragraph" id="1801">
+const update1801: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>KnownId - Removed: <code className="small-code-sample">UnitOfMeasureLitersPer100KilometersId</code>. Diagnostics associated with this unit of measure now use <code className="small-code-sample">UnitOfMeasureKilometersPerLiterId</code>. This will not affect any previously recorded data.</p>
@@ -1973,8 +1973,8 @@ const Update1801: ReactNode = (
 	</div>
 );
 
-const Update1712: ReactNode = (
-	<div className="paragraph" id="1712">
+const update1712: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>API.cs (.Net only) - Fix: When password and session id are supplied to constructor, session id will be used until no longer valid. Previously, session id would only be used if password was not supplied.</p>
@@ -1989,8 +1989,8 @@ const Update1712: ReactNode = (
 	</div>
 );
 
-const Update1711: ReactNode = (
-	<div className="paragraph" id="1711">
+const update1711: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>GetAddresses - Added: “hosAddresses” parameter to optionally search for ELD compliant address</p>
@@ -2014,8 +2014,8 @@ const Update1711: ReactNode = (
 	</div>
 );
 
-const Update1709: ReactNode = (
-	<div className="paragraph" id="1709">
+const update1709: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>API.cs (.Net only) - Added cancellation token parameter to AuthenticateAsync and CallAsync methods.</p>
@@ -2057,8 +2057,8 @@ const Update1709: ReactNode = (
 	</div>
 );
 
-const Update1707: ReactNode = (
-	<div className="paragraph" id="1707">
+const update1707: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Web Request Notifications: fix {'{'}zoneId{'}'} and {'{'}zoneComment{'}'} tokens would not get populated unless {'{'}zone{'}'} or {'{'}address{'}'} were also included.</p>
@@ -2084,8 +2084,8 @@ const Update1707: ReactNode = (
 
 //ToDo: Update helpdesk link
 //ToDo: Update API Wrapper link (this links to my112.geotab.com...)
-const Update1706: ReactNode = (
-	<div className="paragraph" id="1706">
+const update1706: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>DatabaseId has been removed from .net package as per the <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">December 2016 post</a></p>
@@ -2115,8 +2115,8 @@ const Update1706: ReactNode = (
 	</div>
 );
 
-const Update1705: ReactNode = (
-	<div className="paragraph" id="1705">
+const update1705: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>GO8: Added preliminary support for GO8 devices <b><i>requires update of .net nuget package to correctly read/write GO8 devices</i></b></p>
@@ -2131,8 +2131,8 @@ const Update1705: ReactNode = (
 	</div>
 );
 
-const Update1704: ReactNode = (
-	<div className="paragraph" id="1704">
+const update1704: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>DutyStatusLog - Added property: State</p>
@@ -2153,8 +2153,8 @@ const Update1704: ReactNode = (
 	</div>
 );
 
-const Update1703: ReactNode = (
-	<div className="paragraph" id="1703">
+const update1703: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>DevicePlan: Added: D2GODriverChallengeStandard <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
@@ -2172,8 +2172,8 @@ const Update1703: ReactNode = (
 	</div>
 );
 
-const Update1702: ReactNode = (
-	<div className="paragraph" id="1702">
+const update1702: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>FuelTransactionProvider: Added - “Voyager”, “UltramarCST”</p>
@@ -2194,8 +2194,8 @@ const Update1702: ReactNode = (
 	</div>
 );
 
-const Update1701: ReactNode = (
-	<div className="paragraph" id="1701">
+const update1701: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Added “Hardware” section to SDK</p>
@@ -2219,8 +2219,8 @@ const Update1701: ReactNode = (
 	</div>
 );
 
-const Update1612: ReactNode = (
-	<div className="paragraph" id="1612">
+const update1612: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Id refactoring - The ID object has been refactored in the .NET SDK. See <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">this forum post</a> for details.</p>
@@ -2233,8 +2233,8 @@ const Update1612: ReactNode = (
 );
 
 //ToDo: Update SDK Concepts link
-const Update1611: ReactNode = (
-	<div className="paragraph" id="1611">
+const update1611: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Authentication rate limiting being phased in. See this <a href="https://www.geotab.com/blog/api-call-limits/">Blog Post</a> for more details. Added “Rate Limiting” section to <a href="/sdk/software/guides/concepts/">SDK Concepts</a>.</p>
@@ -2258,8 +2258,8 @@ const Update1611: ReactNode = (
 	</div>
 );
 
-const Update1610: ReactNode = (
-	<div className="paragraph" id="1610">
+const update1610: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>KnownId - Added: “DiagnosticDieselExhaustFluidId”, “DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”</p>
@@ -2277,16 +2277,16 @@ const Update1610: ReactNode = (
 	</div>
 );
 
-const Update1609: ReactNode = (
-	<div className="paragraph" id="1609">
+const update1609: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>KnownId - “DiagnosticRamFailure” name fixed to be “DiagnosticRamFailureId”</li>
 		</ul>
 	</div>
 );
 
-const Update1608: ReactNode = (
-	<div className="paragraph" id="1608">
+const update1608: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>MessageContentType - Added: “DriverWhiteList”</p>
@@ -2333,8 +2333,8 @@ const Update1608: ReactNode = (
 	</div>
 );
 
-const Update1607: ReactNode = (
-	<div className="paragraph" id="1607">
+const update1607: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				Performance and maintenance enhancements.
@@ -2343,8 +2343,8 @@ const Update1607: ReactNode = (
 	</div>
 );
 
-const Update1606: ReactNode = (
-	<div className="paragraph" id="1606">
+const update1606: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>DiagnosticTypes - Added “GoFault”</p>
@@ -2402,8 +2402,8 @@ const Update1606: ReactNode = (
 	</div>
 );
 
-const Update1605: ReactNode = (
-	<div className="paragraph" id="1605">
+const update1605: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				Added new Units of Measure (km/L, kg/km, L/lane km, L/ton and g/m^2) ** .Net users will require a dll update*
@@ -2412,8 +2412,8 @@ const Update1605: ReactNode = (
 	</div>
 );
 
-const Update1604: ReactNode = (
-	<div className="paragraph" id="1604">
+const update1604: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">latest nuget package</a>. For more information, please visit the <a href="https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice">forum discussion</a>.</p>
@@ -2425,8 +2425,8 @@ const Update1604: ReactNode = (
 	</div>
 );
 
-const Update1602: ReactNode = (
-	<div className="paragraph" id="1602">
+const update1602: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				TextToSpeechContent has been renamed to GoTalkContent and RelayContent has been renamed to IoxOutputContent ** .Net users will require a dll update*
@@ -2435,8 +2435,8 @@ const Update1602: ReactNode = (
 	</div>
 );
  
-const Update1601: ReactNode = (
-	<div className="paragraph" id="1601">
+const update1601: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>New recipient types added that will send even if there is a delay in data. (BeepTenTimesRapidlyAllowDelay, BeepThreeTimesAllowDelay, BeepThreeTimesRapidlyAllowDelay , TextToSpeechAllowDelay) ** .Net users will require a dll update*</p>
@@ -2466,8 +2466,8 @@ const Update1601: ReactNode = (
 	</div>
 );
 
-const Update1512: ReactNode = (
-	<div className="paragraph" id="1512">
+const update1512: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - <i>*If you are using dll version 5.7.1508-1511 this will require a dll update.</i></p>
@@ -2479,8 +2479,8 @@ const Update1512: ReactNode = (
 	</div>
 );
 
-const Update1511: ReactNode = (
-	<div className="paragraph" id="1511">
+const update1511: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Added new security clearances for:</p>
@@ -2499,8 +2499,8 @@ const Update1511: ReactNode = (
 );
 
 //ToDo: Update reference link
-const Update1509: ReactNode = (
-	<div className="paragraph" id="1509">
+const update1509: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>New SDK. Featuring the new <a href="https://geotab.github.io/sdk/software/api/runner.html">SDK Runner</a>, new methods and objects (<a href="https://geotab.github.io/sdk/software/api/reference/">click here to see the preview items</a>)</p>
@@ -2684,8 +2684,8 @@ const Update1509: ReactNode = (
 );
 
 //ToDo: Update reference link
-const Update1508: ReactNode = (
-	<div className="paragraph" id="1508">
+const update1508: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>DriverChangeSearch received new search points including: DeviceSearch, DriverSearch, FromDate and ToDate. Checkout the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
@@ -2727,8 +2727,8 @@ const Update1508: ReactNode = (
 	</div>
 );
 
-const Update1505: ReactNode = (
-	<div className="paragraph" id="1505">
+const update1505: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				New condition types added - .Net will require dll update
@@ -2737,8 +2737,8 @@ const Update1505: ReactNode = (
 	</div>
 );
 
-const Update1504: ReactNode = (
-	<div className="paragraph" id="1504">
+const update1504: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				Add KnownId for DiagnosticDeviceTotalIdleFuelId - .Net will require dll update
@@ -2750,8 +2750,8 @@ const Update1504: ReactNode = (
 
 //ToDo: Need Faizan's feedback on these forum post URLs
 //ToDo: Update reference link
-const Update1502: ReactNode = (
-	<div className="paragraph" id="1502">
+const update1502: ReactNode = (
+	<div className="paragraph">
 		<ul>
 			<li>
 				<p>Get <i>all</i> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)</p>
@@ -2784,262 +2784,262 @@ const pageSections: TableOfContentsItem[] = [
 	{
 		"elementId": "11.0",
 		"summary": "11.0",
-		"details": Update11
+		"details": update11
 	},
 	{
 		"elementId": "10.0",
 		"summary": "10.0",
-		"details": Update10
+		"details": update10
 	},
 	{
 		"elementId": "9.0",
 		"summary": "9.0",
-		"details": Update9
+		"details": update9
 	},
 	{
 		"elementId": "8.0",
 		"summary": "8.0",
-		"details": Update8
+		"details": update8
 	},
 	{
 		"elementId": "7.0",
 		"summary": "7.0",
-		"details": Update7
+		"details": update7
 	},
 	{
 		"elementId": "6.0",
 		"summary": "6.0",
-		"details": Update6
+		"details": update6
 	},
 	{
 		"elementId": "2104",
 		"summary": "5.7.2104",
-		"details": Update2104
+		"details": update2104
 	},
 	{
 		"elementId": "2103",
 		"summary": "5.7.2103",
-		"details": Update2103
+		"details": update2103
 	},
 	{
 		"elementId": "2102",
 		"summary": "5.7.2102",
-		"details": Update2102
+		"details": update2102
 	},
 	{
 		"elementId": "2101",
 		"summary": "5.7.2101",
-		"details": Update2101
+		"details": update2101
 	},
 	{
 		"elementId": "2004",
 		"summary": "5.7.2104",
-		"details": Update2004
+		"details": update2004
 	},
 	{
 		"elementId": "2003",
 		"summary": "5.7.2103",
-		"details": Update2003
+		"details": update2003
 	},
 	{
 		"elementId": "2002",
 		"summary": "5.7.2002",
-		"details": Update2002
+		"details": update2002
 	},
 	{
 		"elementId": "2001",
 		"summary": "5.7.2001",
-		"details": Update2001
+		"details": update2001
 	},
 	{
 		"elementId": "1904",
 		"summary": "5.7.1904",
-		"details": Update1904
+		"details": update1904
 	},
 	{
 		"elementId": "1903",
 		"summary": "5.7.1903",
-		"details": Update1903
+		"details": update1903
 	},
 	{
 		"elementId": "1902",
 		"summary": "5.7.1902",
-		"details": Update1902
+		"details": update1902
 	},
 	{
 		"elementId": "1901",
 		"summary": "5.7.1901",
-		"details": Update1901
+		"details": update1901
 	},
 	{
 		"elementId": "1804Dot1",
 		"summary": "5.7.1804.1",
-		"details": Update1804Dot1
+		"details": update1804Dot1
 	},
 	{
 		"elementId": "1804",
 		"summary": "5.7.1804",
-		"details": Update1804
+		"details": update1804
 	},
 	{
 		"elementId": "1803",
 		"summary": "5.7.1803",
-		"details": Update1803
+		"details": update1803
 	},
 	{
 		"elementId": "1802",
 		"summary": "5.7.1802",
-		"details": Update1802
+		"details": update1802
 	},
 	{
 		"elementId": "1801",
 		"summary": "5.7.1801",
-		"details": Update1801
+		"details": update1801
 	},
 	{
 		"elementId": "1712",
 		"summary": "5.7.1712",
-		"details": Update1712
+		"details": update1712
 	},
 	{
 		"elementId": "1711",
 		"summary": "5.7.1711",
-		"details": Update1711
+		"details": update1711
 	},
 	{
 		"elementId": "1709",
 		"summary": "5.7.1709",
-		"details": Update1709
+		"details": update1709
 	},
 	{
 		"elementId": "1707",
 		"summary": "5.7.1707",
-		"details": Update1707
+		"details": update1707
 	},
 	{
 		"elementId": "1706",
 		"summary": "5.7.1706",
-		"details": Update1706
+		"details": update1706
 	},
 	{
 		"elementId": "1705",
 		"summary": "5.7.1705",
-		"details": Update1705
+		"details": update1705
 	},
 	{
 		"elementId": "1704",
 		"summary": "5.7.1704",
-		"details": Update1704
+		"details": update1704
 	},
 	{
 		"elementId": "1703",
 		"summary": "5.7.1703",
-		"details": Update1703
+		"details": update1703
 	},
 	{
 		"elementId": "1702",
 		"summary": "5.7.1702",
-		"details": Update1702
+		"details": update1702
 	},
 	{
 		"elementId": "1701",
 		"summary": "5.7.1701",
-		"details": Update1701
+		"details": update1701
 	},
 	{
 		"elementId": "1612",
 		"summary": "5.7.1612",
-		"details": Update1612
+		"details": update1612
 	},
 	{
 		"elementId": "1611",
 		"summary": "5.7.1611",
-		"details": Update1611
+		"details": update1611
 	},
 	{
 		"elementId": "1610",
 		"summary": "5.7.1610",
-		"details": Update1610
+		"details": update1610
 	},
 	{
 		"elementId": "1609",
 		"summary": "5.7.1609",
-		"details": Update1609
+		"details": update1609
 	},
 	{
 		"elementId": "1608",
 		"summary": "5.7.1608",
-		"details": Update1608
+		"details": update1608
 	},
 	{
 		"elementId": "1607",
 		"summary": "5.7.1607",
-		"details": Update1607
+		"details": update1607
 	},
 	{
 		"elementId": "1606",
 		"summary": "5.7.1606",
-		"details": Update1606
+		"details": update1606
 	},
 	{
 		"elementId": "1605",
 		"summary": "5.7.1605",
-		"details": Update1605
+		"details": update1605
 	},
 	{
 		"elementId": "1602",
 		"summary": "5.7.1602",
-		"details": Update1602
+		"details": update1602
 	},
 	{
 		"elementId": "1601",
 		"summary": "5.7.1601",
-		"details": Update1601
+		"details": update1601
 	},
 	{
 		"elementId": "1512",
 		"summary": "5.7.1512",
-		"details": Update1512
+		"details": update1512
 	},
 	{
 		"elementId": "1511",
 		"summary": "5.7.1511",
-		"details": Update1511
+		"details": update1511
 	},
 	{
 		"elementId": "1509",
 		"summary": "5.7.1509",
-		"details": Update1509
+		"details": update1509
 	},
 	{
 		"elementId": "1508",
 		"summary": "5.7.1508",
-		"details": Update1508
+		"details": update1508
 	},
 	{
 		"elementId": "1505",
 		"summary": "5.7.1505",
-		"details": Update1505
+		"details": update1505
 	},
 	{
 		"elementId": "1504",
 		"summary": "5.7.1504",
-		"details": Update1504
+		"details": update1504
 	},
 	{
 		"elementId": "1502",
 		"summary": "5.7.1502",
-		"details": Update1502
+		"details": update1502
 	}
 ];
 
-export default function WhatsNew () {
+export default function whatsNew () {
     return (
 		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
 			<div className="paragraph">
 				
 			</div>
-			{pageSections.map((section) => <Accordion summary={section.summary} p={section.details} />)}
+			{pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
 		</Page>
     );
 };
