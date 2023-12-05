@@ -40,14 +40,14 @@ const makeYourFirstAPICall: ReactNode = (
         <CodeSample
             language="javascript"
             code={
-            `{
+                `{
             "typeName":"Device",
                 "credentials": {
                     "database":"acme",
                     "userName":"bob@acme.com",
                     "sessionId":"1234"
                 }
-};`}/>
+};`} />
         <p>To understand how HTTP POST can be used to invoke a method, consider the following JavaScript example. This can be achieved from any language that supports HTTP, such as the java.net.HttpUrlConnection class in Java, or System.Net.Http.HttpClient in .Net.</p>
         <CodeSample
             language="javascript"
@@ -88,7 +88,7 @@ var data = {
 };
 
 request.send(JSON.stringify(data));`
-        }/>
+            } />
     </div>
 );
 
@@ -100,27 +100,27 @@ const resultsAndErrors: ReactNode = (
         <p>
             Generic:
         </p>
-        <CodeSample 
+        <CodeSample
             language="javascript"
             code={`{
     "result":"results",
     "jsonrpc":"2.0"
 }`
-}></CodeSample>
+            }></CodeSample>
         <p>
             Specific:
         </p>
-        <CodeSample 
+        <CodeSample
             language="javascript"
             code={`{
     "result":"5.7.1801.122",
     "jsonrpc":"2.0"
 }`
-}/>
+            } />
         <p>
             However, if the request is incorrect, or an error is triggered on the server, the error is returned as an object with the property “error”. For example:
         </p>
-        <CodeSample 
+        <CodeSample
             language="javascript"
             code={`{
     "error":{
@@ -134,7 +134,7 @@ const resultsAndErrors: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-}/>
+            } />
         {/* ToDo: Update URLs later. */}
         <p>
             The properties of the error object are <a href="../../myGeotab/apiReference/objects">JsonRpcError</a>, and <a href="../../myGeotab/apiReference/objects">JsonRpcErrorData</a>. Objects are documented in the API Reference.
@@ -150,7 +150,7 @@ const authentication: React.ReactNode = (
         <p>
             Below you can see an example making an authentication request to “my.geotab.com” that completes successfully, and then uses session to get a single device:
         </p>
-        <CodeSample 
+        <CodeSample
             language="javascript"
             code={`
 // Simple method to make calls to API
@@ -209,7 +209,7 @@ let devices = await call(
 );
 console.log(devices);
 })();`
-}/>
+            } />
         <InformationalBox>
             <p>Database, user and password must be set for successful authentiation.</p>
         </InformationalBox>
@@ -276,7 +276,7 @@ const example2: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-}/>
+            } />
         <p>
             If the error contains an object with type <code className="small-code-sample">{`InvalidUserException`}</code>, the authentication failed or the authentication process must be repeated to obtain a fresh token.
         </p>
@@ -351,8 +351,8 @@ const rateLimits: ReactNode = (
             Example
         </h3>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "error": {
         "message": "API calls quota exceeded. Maximum admitted 10 per 1m.",
         "code": -32000,
@@ -363,7 +363,7 @@ const rateLimits: ReactNode = (
     },
     "jsonrpc": "2.0"
 }`
-}/>
+            } />
         <h2>
             Headers
         </h2>
@@ -385,12 +385,12 @@ const rateLimits: ReactNode = (
             Example
         </h3>
         <CodeSample
-        language="javascript"
-        code={`
+            language="javascript"
+            code={`
 X-Rate-Limit-Limit: 1m
 X-Rate-Limit-Remaining: 8
 X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z`
-}/>
+            } />
     </div>
 );
 
@@ -459,8 +459,8 @@ const resultLimits: ReactNode = (
             Example
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "error": {
         "message": "Supplied results limit (50001) exceeds maximum limit (50000).",
         "code": -32000,
@@ -471,7 +471,7 @@ const resultLimits: ReactNode = (
     },
     "jsonrpc": "2.0"
 }`
-}/>
+            } />
     </div>
 );
 
@@ -497,7 +497,7 @@ const unitOfMeasure: ReactNode = (
 const entities: ReactNode = (
     <div className="paragraph">
         <p>
-            All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.  
+            All objects in the MyGeotab system are called entities. Entities have an ID property that is used to uniquely identify that object in the database. The ID is an opaque string value that uniquely identifies the entity and no assumption about the format or length of this ID value should be made when comparing or storing the values.
         </p>
     </div>
 );
@@ -516,15 +516,15 @@ const example3: ReactNode = (
             In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "id": "b0a46",
     "name": "007 - Aston Martin",
     "serialNumber": "GTA9000003EA",
     "deviceType": "GO6",
     "vehicleIdentificationNumber": "1002"
 }`
-}/>
+            } />
         <p>
             Note the “id” property with value “b0a46”. This is the unique identifier for the device (vehicle) with description “007 - Aston Martin”.
         </p>
@@ -532,8 +532,8 @@ const example3: ReactNode = (
             To find Trips for this vehicle all of the properties of the device do not have to be passed to the Get method. Instead, only the ID property of the device object is required. Below is an example of a valid parameter object (TripSearch) for passing into Get method. The deviceSearch with the ID property set to the value “b0a46” (as indicated in the example above) is passed.
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "typeName":"Trip",
     "search" : {
         "deviceSearch" : {
@@ -541,7 +541,7 @@ const example3: ReactNode = (
         }
     }
 }`
-}/>
+            } />
         <p>
             Calling the Get method with the parameter defined above will return all trips for the vehicle “007 - Aston Martin”.
         </p>
@@ -554,26 +554,26 @@ const example4: ReactNode = (
             There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of “CompanyGroupId” rather than other characters (such as “b0a46” above). For example:
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "id": "CompanyGroupId",
     "name": "The Company Group",
     "children": [..]
 }`
-}/>
+            } />
         <p>
             If the system entities do not have any properties then they are specified as strings with their ID’s name. For example the source “Obd” will be identified as “SourceObdId”.
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "code": "738960445",
     "engineType": {
         "id": "b2715",
     },
     "source": "SourceObdId"
 }`
-}/>
+            } />
     </div>
 );
 
@@ -604,8 +604,8 @@ const buildingBlockApproach: ReactNode = (
             In the example below it can be seen how, by creating a dictionary of devices where the key is the device ID and the value is the device object, devices can be easily “stitched” into the status data records:
         </p>
         <CodeSample
-        language="javascript"
-        code={`var statusDatas = [{
+            language="javascript"
+            code={`var statusDatas = [{
         "id": "a1",
         "device": {
             "id": "b1"
@@ -629,7 +629,7 @@ var deviceLookup = {
         ...
     }
 };`
-}/>
+            } />
         <p>
             statusDatas[i].device = deviceLookup[statusDatas[i].device.id];
         </p>
@@ -687,8 +687,8 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         Request
     </h3>
     <CodeSample
-    language="javascript"
-    code={`api.call("Get", {
+        language="javascript"
+        code={`api.call("Get", {
     "typeName": "Device",
     "propertySelector":
     {
@@ -702,11 +702,11 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         console.error("Failed:", e);
     });`
 
-}/>
-        <h3>
-            Response
-        </h3>
-        <CodeSample
+        } />
+    <h3>
+        Response
+    </h3>
+    <CodeSample
         language="javascript"
         code={`[
     {
@@ -718,7 +718,7 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         "id": "b2"
     }
 ]`
-}/>
+        } />
     <p>
         In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
     </p>
@@ -761,8 +761,8 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         C# Example
     </h2>
     <CodeSample
-    language="javascript"
-    code={`var results = await api.CallAsync<List<Device>>(
+        language="javascript"
+        code={`var results = await api.CallAsync<List<Device>>(
     "Get",
     typeof(Device),
     new
@@ -778,18 +778,18 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         },
         resultsLimit = 500
     });`
-}/>
+        } />
 </div>;
 
 //ToDo Update Object page links
-const supportEntitiesList: ReactNode = <div className="paragraph">
+const supportEntitiesList: ReactNode = (<div className="paragraph">
     <p>
-        Below is a list of entities that support the PropertySelector functionality. 
+        Below is a list of entities that support the PropertySelector functionality.
     </p>
     <div className="table-content">
         <table>
             <thead>
-                <tr>    
+                <tr>
                     <th>Entity</th>
                     <th>Supported in Release</th>
                     <th>Notes</th>
@@ -799,12 +799,12 @@ const supportEntitiesList: ReactNode = <div className="paragraph">
                 <tr>
                     <td><a href="">Device</a></td>
                     <td>8.0</td>
-                    <td>The following properties are not supported: <code className="small-code-sample">deviceFlags</code>, <code className="small-code-sample">isAuxInverted</code>, <code className="small-code-sample">deviceType</code>, <code className="small-code-sample">productId</code>, <code className="small-code-sample">autogroups</code>, <code className="small-code-sample">auxWarningSpeed</code>, <code className="small-code-sample">enableAuxWarning</code></td>
+                    <td>The following properties are not supported: <code className="small-code-sample">{`deviceFlags`}</code>, <code className="small-code-sample">{`isAuxInverted`}</code>, <code className="small-code-sample">{`deviceType`}</code>, <code className="small-code-sample">{`productId`}</code>, <code className="small-code-sample">{`autogroups`}</code>, <code className="small-code-sample">{`auxWarningSpeed`}</code>, <code className="small-code-sample">{`enableAuxWarning`}</code></td>
                 </tr>
                 <tr>
                     <td><a href="">User</a></td>
                     <td>8.0</td>
-                    <td><code className="small-code-sample">isEULAAccepted</code> and <code className="small-code-sample">acceptedEULA</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">PropertySelector</code> logic, both properties will be returned.</td>
+                    <td><code className="small-code-sample">{`isEULAAccepted`}</code> and <code className="small-code-sample">{`acceptedEULA`}</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">{`PropertySelector`}</code> logic, both properties will be returned.</td>
                 </tr>
                 <tr>
                     <td><a href="">Group</a></td>
@@ -819,7 +819,7 @@ const supportEntitiesList: ReactNode = <div className="paragraph">
                 <tr>
                     <td><a href="">LogRecord</a></td>
                     <td>8.0</td>
-                    <td><code className="small-code-sample">dateTime</code> must be included.</td>
+                    <td><code className="small-code-sample">{`dateTime`}</code> must be included.</td>
                 </tr>
                 <tr>
                     <td><a href="">Trip</a></td>
@@ -844,32 +844,32 @@ const supportEntitiesList: ReactNode = <div className="paragraph">
             </tbody>
         </table>
     </div>
-</div>;
+</div>);
 
-const PropertySelctorFAQ: ReactNode = (
+const propertySelctorFAQ: ReactNode = (
     <div className="paragraph">
         <p><b>Can I combine property selector and search?</b></p>
         <p>Yes. PropertySelector and Search work independently of each other and can be used together in the same request.</p>
     </div>
 );
 
-const MultiCall: ReactNode = (
+const multiCall: ReactNode = (
     <div className="paragraph">
         <p>
             A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs.
         </p>
         <p>
-            Why use a MultiCall?    
+            Why use a MultiCall?
         </p>
         <p>
-            Making an HTTP request over a network has overhead. This can be in the form of Network overhead, the round trip time to send and receive data over the network and HTTP overhead, the HTTP request and response headers. A MultiCall can be used to reduce amount of overhead in situations where many small requests need to be made to a server.    
+            Making an HTTP request over a network has overhead. This can be in the form of Network overhead, the round trip time to send and receive data over the network and HTTP overhead, the HTTP request and response headers. A MultiCall can be used to reduce amount of overhead in situations where many small requests need to be made to a server.
         </p>
         <p>
-            For example, if we make a request to get the count of devices. The request would be constructed in a format similar to:   
+            For example, if we make a request to get the count of devices. The request would be constructed in a format similar to:
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "method": "GetCountOf",
     "params": {
         "typeName": "Device",
@@ -880,40 +880,40 @@ const MultiCall: ReactNode = (
         }
     }
 }`
-}></CodeSample>
+            }/>
         <p>
             Response:
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "result": 2340,
     "jsonrpc": "2.0"
 }`
-}></CodeSample>
+            }/>
         <p>
-            Let’s assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. <a href="https://www.chromium.org/spdy/spdy-whitepaper/">Google’s SPDY research project white paper</a> states that <i>“typical header sizes of 700-800 bytes is common”</i>. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the “cost of doing business” when making a request over a network.
+            Let's assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. <a href="https://www.chromium.org/spdy/spdy-whitepaper/" target="_blank" rel="noopener noreferrer">Google's SPDY research project white paper</a> states that <i>“typical header sizes of 700-800 bytes is common”</i>. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the “cost of doing business” when making a request over a network.
         </p>
         <p>
             Taking the previous assumptions, what would the overhead be for making 1000 requests for road max speeds? When individual calls are made to the server for 1000 addresses; the base (minimum) HTTP and Network overhead is required for each of these calls. This would result in 80 seconds (80,000 milliseconds) of network overhead and 0.72 MB (750,000 bytes) in headers just going to and from the server. It can be clearly seen that a great deal of overhead can be generated by making small but repeated requests.
         </p>
         <p>
-            By using a MultiCall, the network and HTTP overhead remains at the cost of a single request. This brings the overhead back down to our original 80 milliseconds and 750 bytes. The server processes each request and returns an Array of results when complete.    
+            By using a MultiCall, the network and HTTP overhead remains at the cost of a single request. This brings the overhead back down to our original 80 milliseconds and 750 bytes. The server processes each request and returns an Array of results when complete.
         </p>
         <p>
-            The above illustration is an extreme example to demonstrate the benefits of using a MultiCall. A MultiCall can (and should) be used to make short running calls of 2 or more requests more efficient than individual calls.    
+            The above illustration is an extreme example to demonstrate the benefits of using a MultiCall. A MultiCall can (and should) be used to make short running calls of 2 or more requests more efficient than individual calls.
         </p>
     </div>
 );
 
-const MultiCallBasicImplementation: ReactNode = (
+const multiCallBasicImplementation: ReactNode = (
     <div className="paragraph">
         <p>
-            Making a MultiCall is simple, use the method “ExecuteMultiCall” with the parameter “calls” of JSON type Array. Each call should be formatted as an Object with property “method” of type string with the method name as its value and a property “params” of type Object with the method parameters as its properties. The parent “params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.    
+            Making a MultiCall is simple, use the method “ExecuteMultiCall” with the parameter “calls” of JSON type Array. Each call should be formatted as an Object with property “method” of type string with the method name as its value and a property “params” of type Object with the method parameters as its properties. The parent “params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.
         </p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "method": "ExecuteMultiCall",
     "params": {
         "calls": [
@@ -937,43 +937,43 @@ const MultiCallBasicImplementation: ReactNode = (
         }
     }
 }`
-}></CodeSample>
+            }/>
         <p>Response:</p>
         <CodeSample
-        language="javascript"
-        code={`{
+            language="javascript"
+            code={`{
     "result": [
         2340,
         2022
     ],
     "jsonrpc": "2.0"
 }`
-}></CodeSample>
+            }/>
     </div>
 );
 
-const MultiCallErrors: ReactNode = (
+const multiCallErrors: ReactNode = (
     <div className="paragraph">
         <p>
-            In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and <b>unreached calls are not run</b>. The error results includes the index of the call in the array that the exception occurred. 
+            In a MultiCall, each request is run on the server synchronously. If one fails, the error results are returned immediately and <b>unreached calls are not run</b>. The error results includes the index of the call in the array that the exception occurred.
         </p>
         <p>
-            To illustrate, let’s assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.
+            To illustrate, let's assume an array of calls (api.multicall([call-a, call-b, call-c])) where call-b is formatted incorrectly.
         </p>
         <CodeSample
-        language="javascript"
-        code={`var calls = [
+            language="javascript"
+            code={`var calls = [
     call-a, // ran successfully
     call-b, // error occurred, throw and return error
     call-c  // never ran
 ]`
-}></CodeSample>
+            }/>
         <p>
-            Below is an example of the error result. The <code className="small-code-sample">requestIndex</code> property contains the index of the call that failed.
+            Below is an example of the error result. The <code className="small-code-sample">{`requestIndex`}</code> property contains the index of the call that failed.
         </p>
         <CodeSample
-        language="javascript"
-        code={`results = {
+            language="javascript"
+            code={`results = {
     "error": {
         "message": "The method 'Foobar' could not be found. Verify the method name and ensure all method parameters are included.",
         "code": -32601,
@@ -985,11 +985,11 @@ const MultiCallErrors: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-}></CodeSample>
+            }/>
         <p>Alternatively, a successful MultiCall would look similar to:</p>
         <CodeSample
-        language="javascript"
-        code={`calls = [
+            language="javascript"
+            code={`calls = [
     call-a, // ran successfully
     call-b, // ran successfully
     call-c  // ran successfully
@@ -1001,22 +1001,22 @@ results = {
         [...]
     ]
 }`
-}></CodeSample>
+            }/>
     </div>
 );
 
 //ToDo Update Reference Page Link
-const APIClientSupport: ReactNode = (
+const apiClientSupport: ReactNode = (
     <div className="paragraph">
         <p>
-            All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API</a> clients have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:    
+            All of the <a href="https://geotab.github.io/sdk/software/api/clients/" target="_blank" rel="noopener noreferrer">API</a> clients have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
         </p>
         <p>
-            JavaScript API multi-call example:    
+            JavaScript API multi-call example:
         </p>
         <CodeSample
-        language="javascript"
-        code={`var calls = [
+            language="javascript"
+            code={`var calls = [
     ["Get", { typeName: "Diagnostic" }],
     ["Get", { typeName: "Source", search: {id: "SourceGeotabGoId"}}],
     ["Get", { typeName: "Controller" }]
@@ -1029,13 +1029,13 @@ api.multiCall(calls, function (results) {
 }, function (errorString) {
     alert(errorString);
 });`
-}></CodeSample>
+            }/>
         <p>
             .Net nuget package multi-call example:
         </p>
         <CodeSample
-        language="javascript"
-        code={`var calls = new object[] {
+            language="javascript"
+            code={`var calls = new object[] {
     new object[] { "Get", typeof(Diagnostic), typeof(List<Diagnostic>)},
     new object[] { "Get", typeof(Source), new { search = new SourceSearch { Id = KnownId.SourceGeotabGoId } }, typeof(List<Source>)},
     new object[] { "Get", typeof(Controller), typeof(List<Controller>)},
@@ -1046,7 +1046,7 @@ var results = api.MultiCall(calls);
 var diagnostics = (List<Diagnostic>)results[0];
 var sources = (List<Source>)results[1];
 var controllers = (List<Controller>)results[2];`
-}></CodeSample>
+            }/>
     </div>
 );
 
@@ -1056,7 +1056,7 @@ const MultiCallFAQ: ReactNode = (
             <b>Can I use a search in a multicall?</b>
         </p>
         <p>
-            Yes, it is possible to use a search in a multicall.  
+            Yes, it is possible to use a search in a multicall.
         </p>
         <p>
             <b>When shouldn’t I use a multicall?</b>
@@ -1242,9 +1242,9 @@ export default function Concepts() {
                 <p><code className="small-code-sample">{`https://[myserver]/apiv1`}</code></p>
                 <p>
                     NOTE: Sample text inside <code className="small-code-sample">{`[`}</code>
-                    and 
+                    and
                     <code className="small-code-sample">{`]`}</code>
-                    (e.g 
+                    (e.g
                     <code className="small-code-sample">{`[`}myserver{`]`}</code>
                     are placeholders to indicate where the user enters information unique to their requirements.
                 </p>
