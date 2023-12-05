@@ -631,16 +631,12 @@ const notesAndLimits: ReactNode = (
 
 const resources: ReactNode = (
     <div className="paragraph">
-        <ul>
-            <li>
-                <a href="https://github.com/Geotab/sdk-addin-samples/tree/master/storage-api-sample"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="MyGeotab Storage API Add-In Sample">
-                    Storage API Add-in Sample
-                </a>
-            </li>
-        </ul>
+        <a href="https://github.com/Geotab/sdk-addin-samples/tree/master/storage-api-sample"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="MyGeotab Storage API Add-In Sample">
+            Storage API Add-in Sample
+        </a>
     </div>
 );
 
