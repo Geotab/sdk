@@ -32,7 +32,7 @@ const makeYourFirstAPICall: ReactNode = (
         <p>
             The endpoint shown below is used to invoke an API method when an HTTP POST request is used. The example that follows illustrates a POST request that returns all devices (vehicles) and their properties.
         </p>
-        <p><code className="small-code-sample">{`https://[myserver]/apiv1`}</code></p>
+        <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
         <p>
             The method's name and parameters are passed in the HTTP body using the <a href="https://en.wikipedia.org/wiki/JSON-RPC" target="_blank" rel="noopener noreferrer">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href="../../api/reference">API reference</a>.
         </p>
@@ -155,59 +155,59 @@ const authentication: React.ReactNode = (
             code={`
 // Simple method to make calls to API
 async function call(host, method, data) {
-return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    const rpcData = JSON.stringify({
-    "method": method,
-    "params": data
-});
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        const rpcData = JSON.stringify({
+            "method": method,
+            "params": data
+        });
 
-    xhr.addEventListener("readystatechange", function() {
-        if (this.readyState === 4) {
-            let jsonRpcResponse = JSON.parse(this.responseText);
-            if (jsonRpcResponse.error) {
-            reject(new Error(\`\${jsonRpcResponse.error.data.type}: \${jsonRpcResponse.error.message}\`));
-            } else {
-            resolve(jsonRpcResponse.result);
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+                let jsonRpcResponse = JSON.parse(this.responseText);
+                if (jsonRpcResponse.error) {
+                    reject(new Error(\`\${jsonRpcResponse.error.data.type}: \${jsonRpcResponse.error.message}\`));
+                } else {
+                    resolve(jsonRpcResponse.result);
+                }
             }
-        }
+        });
+
+        xhr.open("POST", \`https://\${host}/apiv1\`);
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("cache-control", "no-cache");
+
+        xhr.send(rpcData);
     });
-
-    xhr.open("POST", \`https://\${host}/apiv1\`);
-    xhr.setRequestHeader("content-type", "application/json");
-    xhr.setRequestHeader("cache-control", "no-cache");
-
-    xhr.send(rpcData);
-});
 }
 
 (async () => {
-const authenticateHost = "my.geotab.com";
+    const authenticateHost = "my.geotab.com";
 
-// Authenticate to get a token
-let loginResult = await call(
-    authenticateHost,
-    "Authenticate", {
-        "userName": "[user@email.com]",
-        "password": "[password]",
-        "database": "[database]"
-    }
-);
-console.log(loginResult);
+    // Authenticate to get a token
+    let loginResult = await call(
+        authenticateHost,
+        "Authenticate", {
+            "userName": "[user@email.com]",
+            "password": "[password]",
+            "database": "[database]"
+        }
+    );
+    console.log(loginResult);
 
-// Use the correct host when making subsequent calls (for legacy compatibility)
-let callHost = loginResult.path === "ThisServer" ? authenticateHost : loginResult.path;
+    // Use the correct host when making subsequent calls (for legacy compatibility)
+    let callHost = loginResult.path === "ThisServer" ? authenticateHost : loginResult.path;
 
-// Call to get one device
-let devices = await call(
-    callHost,
-    "Get", {
-        "typeName": "Device",
-        "resultsLimit": 1,
-        "credentials": loginResult.credentials
-    }
-);
-console.log(devices);
+    // Call to get one device
+    let devices = await call(
+        callHost,
+        "Get", {
+            "typeName": "Device",
+            "resultsLimit": 1,
+            "credentials": loginResult.credentials
+        }
+    );
+    console.log(devices);
 })();`
             } />
         <InformationalBox>
@@ -223,24 +223,24 @@ const example1: ReactNode = (
         </p>
         <ol>
             <li>
-                The <code className="small-code-sample">{`Authenticate`}</code> method is requested using the credentials provided.
+                The <code className="small-code-sample">Authenticate</code> method is requested using the credentials provided.
             </li>
             <li>
-                The response from the server contains two important properties — <code className="small-code-sample">{`path`}</code> and <code className="small-code-sample">{`credentials`}</code>.
+                The response from the server contains two important properties — <code className="small-code-sample">path</code> and <code className="small-code-sample">credentials</code>.
             </li>
         </ol>
         <p>
-            The path will either contain the URL of a server, or the string value <code className="small-code-sample">{`ThisServer`}</code>. Since the <i>database</i> is on my.geotab.com, it returns <i>{`ThisServer`}</i>. This means that the path is correct.
+            The path will either contain the URL of a server, or the string value <code className="small-code-sample">ThisServer</code>. Since the <i>database</i> is on my.geotab.com, it returns <i>ThisServer</i>. This means that the path is correct.
         </p>
         <p>
-            The <code className="small-code-sample">{`credentials`}</code> object contains the username, database and session ID. This object is required for all subsequent requests to the server.
+            The <code className="small-code-sample">credentials</code> object contains the username, database and session ID. This object is required for all subsequent requests to the server.
         </p>
         <ol>
             <li>
-                Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to <code className="small-code-sample">{`Get`}</code> devices from my.geotab.com. Pass the <code className="small-code-sample">{`credentials`}</code> object with the call to <code className="small-code-sample">{`Get`}</code> Device.
+                Since the authentication method confirmed the path is correct, other methods can be used as well. For example, you can mak a request to <code className="small-code-sample">Get</code> devices from my.geotab.com. Pass the <code className="small-code-sample">credentials</code> object with the call to <code className="small-code-sample">Get</code> Device.
             </li>
             <li>
-                The <code className="small-code-sample">{`Get`}</code> result is returned with one device.
+                The <code className="small-code-sample">Get</code> result is returned with one device.
             </li>
         </ol>
     </div>
@@ -253,7 +253,7 @@ const example2: ReactNode = (
         </p>
         <ol>
             <li>
-                The credentials provided to <code className="small-code-sample">{`Authenticate`}</code> method are invalid.
+                The credentials provided to <code className="small-code-sample">Authenticate</code> method are invalid.
             </li>
             <li>
                 The token has eventually expired.
@@ -278,7 +278,7 @@ const example2: ReactNode = (
 }`
             } />
         <p>
-            If the error contains an object with type <code className="small-code-sample">{`InvalidUserException`}</code>, the authentication failed or the authentication process must be repeated to obtain a fresh token.
+            If the error contains an object with type <code className="small-code-sample">InvalidUserException</code>, the authentication failed or the authentication process must be repeated to obtain a fresh token.
         </p>
     </div>
 );
@@ -286,7 +286,7 @@ const example2: ReactNode = (
 const httpCompression: ReactNode = (
     <div className="paragraph">
         <p>
-            The MyGeotab API supports brotli, gzip and deflate compression. To use either of these compression methods, include the HTTP header for “Accept-Encoding”. For example:
+            The MyGeotab API supports <i>brotli</i>, <i>gzip</i> and <i>deflate</i> compression. To use either of these compression methods, include the HTTP header for “Accept-Encoding”. For example:
         </p>
         <p>
             Accept-Encoding: brotli, gzip, deflate
@@ -312,7 +312,7 @@ const rateLimits: ReactNode = (
             No more than <b>10 requests-per-minute</b> are permitted for a user. Both successful and unsuccessful Authentication requests count towards the limit.
         </p>
         <p>
-            Credentials with a password instead of, or combined with a session ID, must be authenticated. This ensures that each request where credentials are provided, are counted towards the user’s authentication limits.
+            Credentials with a password instead of, or combined with a session ID, must be authenticated. This ensures that each request where credentials are provided, are counted towards the user's authentication limits.
         </p>
         <h2>
             GetFeed
@@ -329,7 +329,7 @@ const rateLimits: ReactNode = (
             </li>
         </ol>
         <p>
-            For constant polling, we recommend polling for data at 30-second intervals. However, we understand that 30 seconds may be too infrequent for the rate of data generated by some vehicles, so we created rate limits. A rate limit of <b>1 request-per-second</b> is applied to <code className="small-code-sample">{`GetFeed`}</code> requests for each supported entity type.
+            For constant polling, we recommend polling for data at 30-second intervals. However, we understand that 30 seconds may be too infrequent for the rate of data generated by some vehicles, so we created rate limits. A rate limit of <b>1 request-per-second</b> is applied to <code className="small-code-sample">GetFeed</code> requests for each supported entity type.
         </p>
         <h2>
             CreateDatabase
@@ -341,7 +341,7 @@ const rateLimits: ReactNode = (
             OverLimitException
         </h2>
         <p>
-            When a rate limit is exceeded, an OverLimitException error is returned. A header (<code className="small-code-sample">{`Retry-After`}</code>) is also set with time remaining for the limit to reset.
+            When a rate limit is exceeded, an OverLimitException error is returned. A header (<code className="small-code-sample">Retry-After</code>) is also set with time remaining for the limit to reset.
         </p>
         <h3>
             Header Example
@@ -372,13 +372,13 @@ const rateLimits: ReactNode = (
         </p>
         <ul>
             <li>
-                <code className="small-code-sample">{`X-Rate-Limit-Limit`}</code>: the rate limit period (eg. 1s, 1m, 12h, 1d)
+                <code className="small-code-sample">X-Rate-Limit-Limit</code>: the rate limit period (eg. 1s, 1m, 12h, 1d)
             </li>
             <li>
-                <code className="small-code-sample">{`X-Rate-Limit-Remaining`}</code>: number of request remaining
+                <code className="small-code-sample">X-Rate-Limit-Remaining</code>: number of request remaining
             </li>
             <li>
-                <code className="small-code-sample">{`X-Rate-Limit-Reset`}</code>: UTC date time (ISO 8601) when the limit resets
+                <code className="small-code-sample">X-Rate-Limit-Reset</code>: UTC date time (ISO 8601) when the limit resets
             </li>
         </ul>
         <h3>
@@ -400,14 +400,14 @@ const resultLimits: ReactNode = (
             GetFeed
         </h2>
         <p>
-            <code className="small-code-sample">{`GetFeed`}</code> is limited to 50,000 records returned in a single request.
+            <code className="small-code-sample">GetFeed</code> is limited to 50,000 records returned in a single request.
         </p>
-        <InformationalBox>For legacy compatibility, <code className="small-code-sample">{`GetFeed`}</code> does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.</InformationalBox>
+        <InformationalBox>For legacy compatibility, <code className="small-code-sample">GetFeed</code> does not generate an exception when the limit provided is over 50,000. Rather, it implicitly limits results to 50,000 records.</InformationalBox>
         <h2>
             Get
         </h2>
         <p>
-            The entities listed below have <code className="small-code-sample">{`Get`}</code> limits of 50,000 results:
+            The entities listed below have <code className="small-code-sample">Get</code> limits of 50,000 results:
         </p>
         <ul>
             <li>
@@ -430,13 +430,13 @@ const resultLimits: ReactNode = (
             </li>
         </ul>
         <p>
-            Other entities will have <code className="small-code-sample">{`Get`}</code> limits of 50,000 results in the future, along with a new parameter for pagination when the number of results exceed such limits. For easier transition to the future format, it's recommended that you pass in a 50,000 resultsLimit in the <code className="small-code-sample">{`Get`}</code> call, along with your own way to paginate (e.g. using timestamp).
+            Other entities will have <code className="small-code-sample">Get</code> limits of 50,000 results in the future, along with a new parameter for pagination when the number of results exceed such limits. For easier transition to the future format, it's recommended that you pass in a 50,000 resultsLimit in the <code className="small-code-sample">{`Get`}</code> call, along with your own way to paginate (e.g. using timestamp).
         </p>
         <h2>
             OverLimitException
         </h2>
         <p>
-            To ensure your application doesn't think it has every result that matches the search criteria, when in reality there are more, an error result (<code className="small-code-sample">{`OverLimitException`}</code>) may be returned in these scenarios:
+            To ensure your application doesn't think it has every result that matches the search criteria, when in reality there are more, an error result (<code className="small-code-sample">OverLimitException</code>) may be returned in these scenarios:
         </p>
         <ul>
             <li>
@@ -478,7 +478,7 @@ const resultLimits: ReactNode = (
 const workingWithDates: ReactNode = (
     <div className="paragraph">
         <p>
-            When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">ISO 8601</a> string (format <code className="small-code-sample">{`yyyy-MM-ddTHH:mm:ss.fffZ`}</code>). In addition, all dates will have to first be converted to <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank" rel="noopener noreferrer">{`UTC`}</a> in order to ensure time zone information and daylight savings times are accounted for correctly.
+            When exchanging dates as parameters to API methods, you must ensure that they are formatted properly as an <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">ISO 8601</a> string (format <code className="small-code-sample">yyyy-MM-ddTHH:mm:ss.fffZ</code>). In addition, all dates will have to first be converted to <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank" rel="noopener noreferrer">UTC</a> in order to ensure time zone information and daylight savings times are accounted for correctly.
         </p>
     </div>
 );
@@ -562,7 +562,7 @@ const example4: ReactNode = (
 }`
             } />
         <p>
-            If the system entities do not have any properties then they are specified as strings with their ID’s name. For example the source “Obd” will be identified as “SourceObdId”.
+            If the system entities do not have any properties then they are specified as strings with their ID's name. For example the source “Obd” will be identified as “SourceObdId”.
         </p>
         <CodeSample
             language="javascript"
@@ -643,52 +643,55 @@ var deviceLookup = {
 const propertySelector: ReactNode = (
     <div className="paragraph">
         <p>
-            <code className="small-code-sample">{`PropertySelector`}</code> is a new optional parameter that can be used with the <a href="">{`Get`}</a> and <a href="">{`GetFeed`}</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <a href="">Get</a> and <a href="">GetFeed</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
         </p>
     </div>
 );
 
 //ToDo Update Reference Page Link
 //ToDo Update object links
-const supportedTypes: ReactNode = <div className="paragraph" >
-    <p>
-        A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
-    </p>
-    <div className="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Fields</td>
-                    <td>An array of string, consisting of the properties for a given <a href="">Entity</a> type for which we want to include/exclude in the entities of the result set. Refer to the <a href="../../api/reference">reference</a> page for all the properties supported for a given <code className="small-code-sample">{`Entity`}</code>. Note that the properties of an inheriting class will also be supported. (For example, <a href="">Go9</a> is child of <a href="">Device</a>, so the properties defined for <code className="small-code-sample">{`Go9`}</code> can be supplied to <code className="small-code-sample">{`Fields`}</code>.)</td>
-                </tr>
-                <tr>
-                    <td>IsIncluded</td>
-                    <td>A boolean, which if <code className="small-code-sample">{`true`}</code>, will include the properties of a given <a href="">Entity</a> type defined in <code className="small-code-sample">{`Fields`}</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">{`Fields`}</code> will be excluded.</td>
-                </tr>
-            </tbody>
-        </table>
+const supportedTypes: ReactNode = (
+    <div className="paragraph" >
+        <p>
+            A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
+        </p>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fields</td>
+                        <td>An array of string, consisting of the properties for a given <a href="">Entity</a> type for which we want to include/exclude in the entities of the result set. Refer to the <a href="../../api/reference">reference</a> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <a href="">Go9</a> is child of <a href="">Device</a>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
+                    </tr>
+                    <tr>
+                        <td>IsIncluded</td>
+                        <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <a href="">Entity</a> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>;
+);
 
-const supportedTypeExample: ReactNode = <div className="paragraph">
-    <p>
-        A simple <a href="https://geotab.github.io/sdk/software/api/runner.html#sample:get-lightweight-device-response" target="_blank" rel="noopener noreferrer">example</a> of this can be illustrated by using the property selector with <code className="small-code-sample">{`Device`}</code>. The <code className="small-code-sample">{`Device`}</code> object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our <code className="small-code-sample">{`Device`}</code> objects to have the properties <code className="small-code-sample">{`Name`}</code> and <code className="small-code-sample">{`Id`}</code>, so we set our <code className="small-code-sample">{`PropertySelctor`}</code> object like so:
-    </p>
-    <h2>
-        Javascript
-    </h2>
-    <h3>
-        Request
-    </h3>
-    <CodeSample
-        language="javascript"
-        code={`api.call("Get", {
+const supportedTypeExample: ReactNode = (
+    <div className="paragraph">
+        <p>
+            A simple <a href="https://geotab.github.io/sdk/software/api/runner.html#sample:get-lightweight-device-response" target="_blank" rel="noopener noreferrer">example</a> of this can be illustrated by using the property selector with <code className="small-code-sample">Device</code>. The <code className="small-code-sample">Device</code> object can have many properties which may not be useful to all use-cases. For example, if I have an add-in to display a list of 500 devices by name. We only want our <code className="small-code-sample">Device</code> objects to have the properties <code className="small-code-sample">Name</code> and <code className="small-code-sample">Id</code>, so we set our <code className="small-code-sample">PropertySelctor</code> object like so:
+        </p>
+        <h2>
+            Javascript
+        </h2>
+        <h3>
+            Request
+        </h3>
+        <CodeSample
+            language="javascript"
+            code={`api.call("Get", {
     "typeName": "Device",
     "propertySelector":
     {
@@ -702,13 +705,13 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         console.error("Failed:", e);
     });`
 
-        } />
-    <h3>
-        Response
-    </h3>
-    <CodeSample
-        language="javascript"
-        code={`[
+            } />
+        <h3>
+            Response
+        </h3>
+        <CodeSample
+            language="javascript"
+            code={`[
     {
         "name": "Work Truck 10",
         "id": "b1"
@@ -718,51 +721,51 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         "id": "b2"
     }
 ]`
-        } />
-    <p>
-        In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
-    </p>
-    <p>
-        Making the same call, without property selector (returning all properties) results in 41.8 kB of JSON sent over the wire and a round trip time of 320 ms.
-    </p>
-    <div className="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>using property selector</th>
-                    <th>device count</th>
-                    <th>size</th>
-                    <th>time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>false</td>
-                    <td>500</td>
-                    <td>41.8 kB</td>
-                    <td>320 ms</td>
-                </tr>
-                <tr>
-                    <td>true</td>
-                    <td>500</td>
-                    <td>5.4 kB</td>
-                    <td>45 ms</td>
-                </tr>
-                <tr>
-                    <td>Improvement</td>
-                    <td></td>
-                    <td>-36.4 kB</td>
-                    <td>-275 ms</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <h2>
-        C# Example
-    </h2>
-    <CodeSample
-        language="javascript"
-        code={`var results = await api.CallAsync<List<Device>>(
+            } />
+        <p>
+            In our example, making this call using the property selector results in the total JSON size over the wire of 5.4 kB and time of 45 ms.
+        </p>
+        <p>
+            Making the same call, without property selector (returning all properties) results in 41.8 kB of JSON sent over the wire and a round trip time of 320 ms.
+        </p>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>using property selector</th>
+                        <th>device count</th>
+                        <th>size</th>
+                        <th>time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>false</td>
+                        <td>500</td>
+                        <td>41.8 kB</td>
+                        <td>320 ms</td>
+                    </tr>
+                    <tr>
+                        <td>true</td>
+                        <td>500</td>
+                        <td>5.4 kB</td>
+                        <td>45 ms</td>
+                    </tr>
+                    <tr>
+                        <td>Improvement</td>
+                        <td></td>
+                        <td>-36.4 kB</td>
+                        <td>-275 ms</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2>
+            C# Example
+        </h2>
+        <CodeSample
+            language="javascript"
+            code={`var results = await api.CallAsync<List<Device>>(
     "Get",
     typeof(Device),
     new
@@ -778,73 +781,76 @@ const supportedTypeExample: ReactNode = <div className="paragraph">
         },
         resultsLimit = 500
     });`
-        } />
-</div>;
+            } />
+    </div>
+);
 
 //ToDo Update Object page links
-const supportEntitiesList: ReactNode = (<div className="paragraph">
-    <p>
-        Below is a list of entities that support the PropertySelector functionality.
-    </p>
-    <div className="table-content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Entity</th>
-                    <th>Supported in Release</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="">Device</a></td>
-                    <td>8.0</td>
-                    <td>The following properties are not supported: <code className="small-code-sample">{`deviceFlags`}</code>, <code className="small-code-sample">{`isAuxInverted`}</code>, <code className="small-code-sample">{`deviceType`}</code>, <code className="small-code-sample">{`productId`}</code>, <code className="small-code-sample">{`autogroups`}</code>, <code className="small-code-sample">{`auxWarningSpeed`}</code>, <code className="small-code-sample">{`enableAuxWarning`}</code></td>
-                </tr>
-                <tr>
-                    <td><a href="">User</a></td>
-                    <td>8.0</td>
-                    <td><code className="small-code-sample">{`isEULAAccepted`}</code> and <code className="small-code-sample">{`acceptedEULA`}</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">{`PropertySelector`}</code> logic, both properties will be returned.</td>
-                </tr>
-                <tr>
-                    <td><a href="">Group</a></td>
-                    <td>8.0</td>
-                    <td>N/A</td>
-                </tr>
-                <tr>
-                    <td><a href="">Rule</a></td>
-                    <td>8.0</td>
-                    <td>N/A</td>
-                </tr>
-                <tr>
-                    <td><a href="">LogRecord</a></td>
-                    <td>8.0</td>
-                    <td><code className="small-code-sample">{`dateTime`}</code> must be included.</td>
-                </tr>
-                <tr>
-                    <td><a href="">Trip</a></td>
-                    <td>9.0</td>
-                    <td>N/A</td>
-                </tr>
-                <tr>
-                    <td><a href="">TextMessage</a></td>
-                    <td>10.0</td>
-                    <td>N/A</td>
-                </tr>
-                <tr>
-                    <td><a href="">IoxAddOn</a></td>
-                    <td>10.0</td>
-                    <td>N/A</td>
-                </tr>
-                <tr>
-                    <td><a href="">IoxAddOnStatus</a></td>
-                    <td>10.0</td>
-                    <td>N/A</td>
-                </tr>
-            </tbody>
-        </table>
+const supportEntitiesList: ReactNode = (
+    <div className="paragraph">
+        <p>
+            Below is a list of entities that support the PropertySelector functionality.
+        </p>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Supported in Release</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="">Device</a></td>
+                        <td>8.0</td>
+                        <td>The following properties are not supported: <code className="small-code-sample">{`deviceFlags`}</code>, <code className="small-code-sample">{`isAuxInverted`}</code>, <code className="small-code-sample">{`deviceType`}</code>, <code className="small-code-sample">{`productId`}</code>, <code className="small-code-sample">{`autogroups`}</code>, <code className="small-code-sample">{`auxWarningSpeed`}</code>, <code className="small-code-sample">{`enableAuxWarning`}</code></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">User</a></td>
+                        <td>8.0</td>
+                        <td><code className="small-code-sample">isEULAAccepted</code> and <code className="small-code-sample">acceptedEULA</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">PropertySelector</code> logic, both properties will be returned.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Group</a></td>
+                        <td>8.0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Rule</a></td>
+                        <td>8.0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">LogRecord</a></td>
+                        <td>8.0</td>
+                        <td><code className="small-code-sample">dateTime</code> must be included.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Trip</a></td>
+                        <td>9.0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">TextMessage</a></td>
+                        <td>10.0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">IoxAddOn</a></td>
+                        <td>10.0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">IoxAddOnStatus</a></td>
+                        <td>10.0</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>);
+);
 
 const propertySelctorFAQ: ReactNode = (
     <div className="paragraph">
@@ -880,7 +886,7 @@ const multiCall: ReactNode = (
         }
     }
 }`
-            }/>
+            } />
         <p>
             Response:
         </p>
@@ -890,7 +896,7 @@ const multiCall: ReactNode = (
     "result": 2340,
     "jsonrpc": "2.0"
 }`
-            }/>
+            } />
         <p>
             Let's assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. <a href="https://www.chromium.org/spdy/spdy-whitepaper/" target="_blank" rel="noopener noreferrer">Google's SPDY research project white paper</a> states that <i>“typical header sizes of 700-800 bytes is common”</i>. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the “cost of doing business” when making a request over a network.
         </p>
@@ -937,7 +943,7 @@ const multiCallBasicImplementation: ReactNode = (
         }
     }
 }`
-            }/>
+            } />
         <p>Response:</p>
         <CodeSample
             language="javascript"
@@ -948,7 +954,7 @@ const multiCallBasicImplementation: ReactNode = (
     ],
     "jsonrpc": "2.0"
 }`
-            }/>
+            } />
     </div>
 );
 
@@ -967,9 +973,9 @@ const multiCallErrors: ReactNode = (
     call-b, // error occurred, throw and return error
     call-c  // never ran
 ]`
-            }/>
+            } />
         <p>
-            Below is an example of the error result. The <code className="small-code-sample">{`requestIndex`}</code> property contains the index of the call that failed.
+            Below is an example of the error result. The <code className="small-code-sample">requestIndex</code> property contains the index of the call that failed.
         </p>
         <CodeSample
             language="javascript"
@@ -985,7 +991,7 @@ const multiCallErrors: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-            }/>
+            } />
         <p>Alternatively, a successful MultiCall would look similar to:</p>
         <CodeSample
             language="javascript"
@@ -1001,7 +1007,7 @@ results = {
         [...]
     ]
 }`
-            }/>
+            } />
     </div>
 );
 
@@ -1009,7 +1015,7 @@ results = {
 const apiClientSupport: ReactNode = (
     <div className="paragraph">
         <p>
-            All of the <a href="https://geotab.github.io/sdk/software/api/clients/" target="_blank" rel="noopener noreferrer">API</a> clients have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
+            All of the <a href="https://geotab.github.io/sdk/software/api/clients/" target="_blank" rel="noopener noreferrer">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
         </p>
         <p>
             JavaScript API multi-call example:
@@ -1029,7 +1035,7 @@ api.multiCall(calls, function (results) {
 }, function (errorString) {
     alert(errorString);
 });`
-            }/>
+            } />
         <p>
             .Net nuget package multi-call example:
         </p>
@@ -1046,12 +1052,12 @@ var results = api.MultiCall(calls);
 var diagnostics = (List<Diagnostic>)results[0];
 var sources = (List<Source>)results[1];
 var controllers = (List<Controller>)results[2];`
-            }/>
+            } />
     </div>
 );
 
-const MultiCallFAQ: ReactNode = (
-    <div className="javascript">
+const multiCallFAQ: ReactNode = (
+    <div className="paragraph">
         <p>
             <b>Can I use a search in a multicall?</b>
         </p>
@@ -1059,7 +1065,7 @@ const MultiCallFAQ: ReactNode = (
             Yes, it is possible to use a search in a multicall.
         </p>
         <p>
-            <b>When shouldn’t I use a multicall?</b>
+            <b>When shouldn't I use a multicall?</b>
         </p>
         <ol>
             <li>
@@ -1082,7 +1088,7 @@ const MultiCallFAQ: ReactNode = (
             That being said, the system does not enforce a hard limit on the number of requests in a multicall at this point.
         </p>
         <p>
-            <b>What if the call doesn’t return a result?</b>
+            <b>What if the call doesn't return a result?</b>
         </p>
         <p>
             The index in the array of results will have a <b>null</b> value.
@@ -1102,134 +1108,134 @@ const pageSections: TableOfContentsItem[] = [
         "details": security
     },
     {
-        "elementId": "firstAPICall",
+        "elementId": "make-your-first-api-call",
         "summary": "Make Your First API Call",
         "details": makeYourFirstAPICall
     },
     {
-        "elementId": "resultAndErrors",
+        "elementId": "result-and-errors",
         "summary": "Results And Errors",
-        "details": ResultsAndErrors
+        "details": resultsAndErrors
     },
     {
         "elementId": "authentication",
         "summary": "Authentication",
-        "details": Authentication
+        "details": authentication
     },
     {
         "elementId": "example1",
         "summary": "Example 1: Authenticate With Valid Credentials",
-        "details": Example1
+        "details": example1
     },
     {
         "elementId": "example2",
         "summary": "Example 2: Requests With Missing Databases Or With Expiring Credentials",
-        "details": Example2
+        "details": example2
     },
     {
-        "elementId": "httpCompression",
+        "elementId": "http-compression",
         "summary": "HTTP Compression",
-        "details": HTTPCompression
+        "details": httpCompression
     },
     {
         "elementId": "limits",
         "summary": "Limits",
-        "details": Limits
+        "details": limits
     },
     {
-        "elementId": "rateLimits",
+        "elementId": "rate-limits",
         "summary": "Rate Limits",
-        "details": RateLimits
+        "details": rateLimits
     },
     {
-        "elementId": "resultLimits",
+        "elementId": "result-limits",
         "summary": "Result Limits",
-        "details": ResultLimits
+        "details": resultLimits
     },
     {
-        "elementId": "workingWithDates",
+        "elementId": "working-with-dates",
         "summary": "Working With Dates",
-        "details": WorkingWithDates
+        "details": workingWithDates
     },
     {
-        "elementId": "unitOfMeasure",
+        "elementId": "unit-of-measure",
         "summary": "Unit Of Measure",
-        "details": UnitOfMeasure
+        "details": unitOfMeasure
     },
     {
         "elementId": "entities",
         "summary": "Entities",
-        "details": Entities
+        "details": entities
     },
     {
         "elementId": "id",
         "summary": "ID",
-        "details": ID
+        "details": id
     },
     {
         "elementId": "example4",
         "summary": "Example 4",
-        "details": Example4
+        "details": example3
     },
     {
         "elementId": "example5",
         "summary": "Example 5",
-        "details": Example5
+        "details": example4
     },
     {
-        "elementId": "buildingBlock",
+        "elementId": "building-block-approach",
         "summary": "Building Block Approach",
-        "details": BuildBlockApproach
+        "details": buildingBlockApproach
     },
     {
-        "elementId": "propertySelector",
-        "summary": "PropertSelector BETA",
-        "details": PropertySelector
+        "elementId": "property-selector",
+        "summary": "PropertySelector BETA",
+        "details": propertySelector
     },
     {
-        "elementId": "supportedTypes",
+        "elementId": "supported-types",
         "summary": "Supported Types",
-        "details": SupportedTypes
+        "details": supportedTypes
     },
     {
-        "elementId": "supportedTypeExample",
+        "elementId": "supported-type-example",
         "summary": "Examples",
-        "details": SupportedTypeExample
+        "details": supportedTypeExample
     },
     {
-        "elementId": "supportEntitiesList",
+        "elementId": "support-entities-list",
         "summary": "List Of Supported Entities",
-        "details": SupportEntitiesList
+        "details": supportEntitiesList
     },
     {
-        "elementId": "propertySelectorFAQ",
+        "elementId": "property-selector-faq",
         "summary": "PropertySelector FAQ",
-        "details": PropertySelctorFAQ
+        "details": propertySelctorFAQ
     },
     {
-        "elementId": "multiCall",
+        "elementId": "multi-call",
         "summary": "MultiCall",
-        "details": MultiCall
+        "details": multiCall
     },
     {
-        "elementId": "multiCallImplementation",
+        "elementId": "multi-call-implementation",
         "summary": "Basic Implementation",
-        "details": MultiCallBasicImplementation
+        "details": multiCallBasicImplementation
     },
     {
-        "elementId": "multiCallErrors",
+        "elementId": "multi-call-errors",
         "summary": "Errors",
-        "details": MultiCallErrors
+        "details": multiCallErrors
     },
     {
-        "elementId": "APIClientSupport",
+        "elementId": "api-client-support",
         "summary": "API Client Support",
-        "details": APIClientSupport
+        "details": apiClientSupport
     },
     {
-        "elementId": "multiCallFAQ",
+        "elementId": "multi-call-faq",
         "summary": "MultiCall FAQ",
-        "details": MultiCallFAQ
+        "details": multiCallFAQ
     }
 ];
 
@@ -1239,13 +1245,13 @@ export default function Concepts() {
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <p>Requests made to the Geotab API are performed over HTTPS. The current API is version 1. The version number is appended to the API endpoint URL, where the web application sends requests:</p>
-                <p><code className="small-code-sample">{`https://[myserver]/apiv1`}</code></p>
+                <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
                 <p>
-                    NOTE: Sample text inside <code className="small-code-sample">{`[`}</code>
+                    NOTE: Sample text inside <code className="small-code-sample">[</code>
                     and
-                    <code className="small-code-sample">{`]`}</code>
+                    <code className="small-code-sample">]</code>
                     (e.g
-                    <code className="small-code-sample">{`[`}myserver{`]`}</code>
+                    <code className="small-code-sample">[myserver]</code>
                     are placeholders to indicate where the user enters information unique to their requirements.
                 </p>
                 <p>
