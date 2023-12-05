@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header, Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
@@ -9,6 +8,7 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 //ToDo: Update URLs
+//ToDo: Look into why the AddIn object is not correctly rendering as a URL.
 let request = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
@@ -37,7 +37,9 @@ const objectItems = objects.map((objectDetails: any) => {
     return ( 
         <div id={objectDetails[0]}>
             <Header title={objectDetails[0]}>
-                <Button>View</Button>
+                <Link to={`/myGeotab/apiReference/objects/${objectDetails[0]}`}>
+                    <Button>View</Button>
+                </Link>
             </Header>
             <p>{RenderStringWithUrl(objectDetails[1].description)}</p>
         </div>

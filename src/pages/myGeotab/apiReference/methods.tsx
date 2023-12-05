@@ -1,9 +1,7 @@
-import React from 'react';
 import { Header, Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
 import { Link } from 'react-router-dom';
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -38,7 +36,7 @@ const methodItems = methods.map((methodDetails: any) => {
     return (
         <div id={methodDetails[0]}>
             <Header title={methodDetails[0]}>
-                <Link to={`/method/${methodDetails[0]}`}>
+                <Link to={`/myGeotab/apiReference/methods/${methodDetails[0]}`}>
                     <Button>View</Button>
                 </Link>
             </Header>
