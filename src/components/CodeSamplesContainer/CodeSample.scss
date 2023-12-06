@@ -1,9 +1,47 @@
-.copyButton {
-    position: absolute;
-    bottom: 10%;
-    right: 2%;
-}
-
 .snippetBox {
     position: relative;
+    font-family: "Roboto Mono", monospace;
+}
+
+.snippetBox__toolsContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 8px;
+}
+
+.copyButton {
+    &--dark-mode {
+        & svg path {
+            fill: #ffffffb3;
+        }
+
+        &:hover svg path {
+            fill: #ffffff;
+        }
+    }
+
+    &:hover svg path {
+        fill: #5f6368;
+    }
+}
+
+.lightDarkModeToggleButton {
+    &--dark-mode {
+        & svg path {
+            fill: #ffffffb3;
+        }
+
+        &:hover svg path {
+            fill: #ffffff;
+        }
+    }
+
+    &:hover svg path {
+        fill: #5f6368;
+    }
 }

@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import { Page } from "../../../components";
+import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import DataFeedPoll from "../../../assets/images/dataFeed/data-feed_0.png";
 import "../../../pages/pages.scss";
 
@@ -78,10 +81,14 @@ const searching: ReactNode = (
     <p>
       Do not pass a search to any feed unless it specifically is mentioned in
       the{" "}
-      <a href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1">
+      {/* TODO: Need to replace this with routing to api/reference/GetFeed reference when created*/}{" "}
+      <a
+        href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         GetFeed method
       </a>{" "}
-      {/* TODO: Need to replace this with routing to api/reference/GetFeed reference when created*/}{" "}
       documentation.
     </p>
   </div>
@@ -119,21 +126,21 @@ const activeVsCalculated: ReactNode = (
       active data and calculated data.
     </p>
     <p>
-      Active data are records that are received from a source,
-      usually a Go device or user input. They are not created based off of other
-      data. These records are static; once received, they are typically not
-      updated and will not be removed by the system. For example, as new GPS
-      (LogRecord) data arrives from a device, it is stored by the system.
+      Active data are records that are received from a source, usually a Go
+      device or user input. They are not created based off of other data. These
+      records are static; once received, they are typically not updated and will
+      not be removed by the system. For example, as new GPS (LogRecord) data
+      arrives from a device, it is stored by the system.
     </p>
     <p>
-      Calculated data are records generated automatically by
-      the system, usually in response to active data that has recently been
-      received. These records are dynamic; an existing calculated data record
-      can be edited and removed by the system automatically, based on new active
-      data that was received. This processing happens in real-time as new active
-      data is received by the system. For example, as new GPS and engine data
-      arrives from a device, it is processed to create new ExceptionEvents or
-      edit/remove existing ExceptionEvents.
+      Calculated data are records generated automatically by the system, usually
+      in response to active data that has recently been received. These records
+      are dynamic; an existing calculated data record can be edited and removed
+      by the system automatically, based on new active data that was received.
+      This processing happens in real-time as new active data is received by the
+      system. For example, as new GPS and engine data arrives from a device, it
+      is processed to create new ExceptionEvents or edit/remove existing
+      ExceptionEvents.
     </p>
     <strong>Active Data Feeds</strong> (Only new data.)
     <ul>
@@ -248,20 +255,32 @@ const nextSteps: ReactNode = (
     <p>
       Once you have a basic understanding of how the Data Feed works you can
       read more about the GetFeed method and it's parameters in the{" "}
-      <a href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1">
+      {/* TODO: Need to replace this with routing to api/reference/#GetFeed1 reference when created */}{" "}
+      <a
+        href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         API Reference
       </a>{" "}
-      {/* TODO: Need to replace this with routing to api/reference/#GetFeed1 reference when created */}{" "}
       or try out the{" "}
-      <a href="https://geotab.github.io/sdk/software/js-samples/#data-feed">
+      {/* TODO: Need to replace this with routing to js-samples/data-feed reference when created */}{" "}
+      <a
+        href="https://geotab.github.io/sdk/software/js-samples/#data-feed"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         JavaScript
       </a>{" "}
-      {/* TODO: Need to replace this with routing to js-samples/data-feed reference when created */}{" "}
       and{" "}
-      <a href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed">
+      {/* NOTE: this currently points to the sdk-dotnet-samples Github repo */}{" "}
+      <a
+        href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         .NET
       </a>{" "}
-      {/* NOTE: this currently points to the sdk-dotnet-samples Github repo */}{" "}
       data feed examples.
     </p>
   </div>
@@ -269,9 +288,7 @@ const nextSteps: ReactNode = (
 
 const faq: ReactNode = (
   <div className="paragraph">
-    <strong>
-      Why do I have to poll data, can't you push it to me?
-    </strong>
+    <strong>Why do I have to poll data, can't you push it to me?</strong>
     <p>
       A push-based approach would require Geotab to connect to another
       organization and this invariably means firewall traversal is required. To
@@ -293,19 +310,76 @@ const faq: ReactNode = (
   </div>
 );
 
+const pageTitle: PageTitleProps = {
+  title: "Data Feed",
+  breadCrumbItems: ["MYG", "Guides", "Data Feed"],
+};
+
+const pageSections: TableOfContentsItem[] = [
+  {
+    elementId: "lightweight-incremental-poll",
+    summary: "Lightweight Incremental Poll",
+    details: lightweightIncrementalPoll,
+  },
+  {
+    elementId: "dealing-with-volume",
+    summary: "Dealing With Volume",
+    details: dealingWithVolume,
+  },
+  {
+    elementId: "searching",
+    summary: "Searching",
+    details: searching,
+  },
+  {
+    elementId: "caching-to-improve-performance",
+    summary: "Caching To Improve Performance",
+    details: cachingToImprovePerformance,
+  },
+  {
+    elementId: "active-vs-calculated",
+    summary: "Active Vs Calculated",
+    details: activeVsCalculated,
+  },
+  {
+    elementId: "invalidated-data",
+    summary: "Invalidated Data",
+    details: invalidatedData,
+  },
+  {
+    elementId: "trips",
+    summary: "Trips",
+    details: trips,
+  },
+  {
+    elementId: "exception-events",
+    summary: "Exception Events",
+    details: exceptionEvents,
+  },
+  {
+    elementId: "hos-and-dvir-feeds",
+    summary: "HOS and DVIR Feeds",
+    details: hosAndDVIRFeeds,
+  },
+  {
+    elementId: "next=steps",
+    summary: "Next Steps",
+    details: nextSteps,
+  },
+  {
+    elementId: "faq",
+    summary: "FAQ",
+    details: faq,
+  },
+];
+
 export default function DataFeed() {
   return (
-    <div className="pageContent">
-      <div className="grayBackground">
-        <div className="breadCrumb">
-          <span>MYG</span>
-          <IconChevronRightSmall></IconChevronRightSmall>
-          <span>Guides</span>
-          <IconChevronRightSmall></IconChevronRightSmall>
-          <span>Data Feed</span>
-        </div>
-        <h1 className="title">Data Feed</h1>
-      </div>
+    <Page
+      section={HeaderSections.MyGeotab}
+      pageTitle={pageTitle}
+      tableOfContents={pageSections}
+    >
       <div className="paragraph">
         <p>
           The data feed is the primary method used to synchronize data from the
@@ -319,17 +393,13 @@ export default function DataFeed() {
         </p>
       </div>
 
-      <Accordion summary="Lightweight Incremental Poll" p={lightweightIncrementalPoll} />
-      <Accordion summary="Dealing With Volume" p={dealingWithVolume} />
-      <Accordion summary="Searching" p={searching} />
-      <Accordion summary="Caching To Improve Performance" p={cachingToImprovePerformance} />
-      <Accordion summary="Active Vs Calculated" p={activeVsCalculated} />
-      <Accordion summary="Invalidated Data" p={invalidatedData} />
-      <Accordion summary="Trips" p={trips} />
-      <Accordion summary="Exception Events" p={exceptionEvents} />
-      <Accordion summary="HOS and DVIR Feeds" p={hosAndDVIRFeeds} />
-      <Accordion summary="Next Steps" p={nextSteps} />
-      <Accordion summary="FAQ" p={faq} />
-    </div>
+      {pageSections.map((section) => (
+        <Accordion
+          summary={section.summary}
+          p={section.details}
+          id={section.elementId}
+        />
+      ))}
+    </Page>
   );
 }
