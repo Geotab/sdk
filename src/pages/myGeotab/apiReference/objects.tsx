@@ -37,7 +37,7 @@ const objectItems = objects.map((objectDetails: any) => {
         <div className="paragraph" id={objectDetails[0]}>
             <h3 className="objects__object-title">
                 {objectDetails[0]}
-                <Link to={`/object/${objectDetails[0]}`} className="objects__view-button">
+                <Link to={`./${objectDetails[0]}`} className="objects__view-button">
                     <Button>View</Button>
                 </Link>
             </h3>
