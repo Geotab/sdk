@@ -30,6 +30,7 @@
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* Search modal header container styling*/
 .search-modal-header-container {
   display: flex;
   padding: 16px;
@@ -55,6 +56,7 @@
       gap: 8px;
       flex: 1 0 0;
     }
+
     .modal-search-input {
       display: flex;
       align-items: center;
@@ -74,14 +76,77 @@
       line-height: 16px; /* 133.333% */
       letter-spacing: 0.32px;
     }
-  }
 
-  .modal-search-icon {
-    display: flex;
-    width: 16px;
-    height: 16px;
-    padding: 0.123px 0.184px 0.169px 0.121px;
-    justify-content: center;
-    align-items: center;
+    .modal-search-icon {
+      display: flex;
+      width: 16px;
+      height: 16px;
+      padding: 0.123px 0.184px 0.169px 0.121px;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
+
+/* Search modal tabs container styling */
+.search-modal-tabs-container {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  background: #fff;
+  height: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  border-bottom: 1px solid var(--backgrounds-content-1, #f2f5f7);
+
+  .tab-search-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .tab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.32px;
+  }
+
+  .Tabs-module_TabsRoot__tfB8h {
+    background-color: #fff;
+    // width: 100%;
+    // height: 100%;
+  }
+
+  #All {
+    display: flex;
+    height: 350px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  // .Tabs-module_TabsContent__wDBJ4 {
+  //   flex-grow: 1;
+  //   border-bottom-left-radius: 8px;
+  //   border-bottom-right-radius: 8px;
+  //   outline: none;
+  //   padding: 8px 24px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center; /* Center content vertically */
+  //   align-items: center; /* Center content horizontally */
+  // }
+}
+
+/* Search modal results container styling */

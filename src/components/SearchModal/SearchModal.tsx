@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { IconSearch } from "@geotab/react-component-library";
+import { IconSearch, Tabs } from "@geotab/react-component-library";
+import { APIReferenceIcon, GuidesIcon } from "../SearchModal"; 
 import "./SearchModal.scss";
 
 interface SearchModalProps {
@@ -50,6 +51,39 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null;
 
+  const tabsContent = (
+    <Tabs
+      defaultTab=""
+      tabs={[
+        {
+          name: "All",
+          content: (
+            <div className="tab-container">
+              <div className="tab-search-icon">
+                <IconSearch width="14px" height="14px"/>
+              </div>
+              <div className="tab-content">Start typing to search</div>
+            </div>
+          ),
+          icon: IconSearch,
+          disabled: false
+        },
+        {
+          name: "API Reference",
+          content: "",
+          icon: APIReferenceIcon,
+          disabled: false
+        },
+        {
+          name: "Guides",
+          content: "",
+          icon: GuidesIcon,
+          disabled: false
+        },
+      ]}
+    />
+  );
+
   return (
     <div
       className="search-modal-backdrop"
@@ -57,6 +91,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       aria-labelledby="search-modal"
     >
       <div className="search-modal-container" ref={modalRef}>
+        {/* Search modal header container */}
         <div className="search-modal-header-container">
           <div className="search-modal-input-field-container">
             <div className="search-modal-input-field">
@@ -72,6 +107,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             </div>
           </div>
         </div>
+        {/* Search modal tabs container */}
+        <div className="search-modal-tabs-container">{tabsContent}</div>
+        {/* <div className="search-modal-tabs-container></div> */}
       </div>
     </div>
   );
