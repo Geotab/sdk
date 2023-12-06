@@ -28,6 +28,7 @@ import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 import { Toaster } from "@geotab/react-component-library";
 import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
+import ApiClients from "./pages/myGeotab/apiClients";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/sdk" Component={LandingPage} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
           <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+          <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
           <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />

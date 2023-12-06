@@ -69,6 +69,9 @@ export default function Navbar(props: any) {
         </div>
       </div>
       <div>
+        <Link to="/myGeotab/apiClients">API Clients</Link>
+      </div>
+      <div>
         Drive
         <div>
           <Link to="/drive/addIns/driveAddIns">Drive Add-Ins</Link>
