@@ -26,6 +26,7 @@ import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
+import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
 import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
@@ -52,6 +53,7 @@ function App() {
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
+          <Route path="/myGeotab/guides/mgMediaFiles" Component={MgMediaFiles} />
 
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={usingInDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
