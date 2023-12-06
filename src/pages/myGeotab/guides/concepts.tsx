@@ -38,7 +38,7 @@ const makeYourFirstAPICall: ReactNode = (
         </p>
         <p>To understand which parameters must be passed, consider the following JSON object:</p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={
                 `{
             "typeName":"Device",
@@ -95,33 +95,33 @@ request.send(JSON.stringify(data));`
 const resultsAndErrors: ReactNode = (
     <div className="paragraph">
         <p>
-            Using the example above, a successful request to the server results in an object with the property “result” in the following format:
+            Using the example above, a successful request to the server results in an object with the property "result” in the following format:
         </p>
         <p>
             Generic:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "result":"results",
     "jsonrpc":"2.0"
 }`
-            }></CodeSample>
+            }/>
         <p>
             Specific:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "result":"5.7.1801.122",
     "jsonrpc":"2.0"
 }`
-            } />
+            }/>
         <p>
-            However, if the request is incorrect, or an error is triggered on the server, the error is returned as an object with the property “error”. For example:
+            However, if the request is incorrect, or an error is triggered on the server, the error is returned as an object with the property "error”. For example:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "error":{
         "code":-32000,
@@ -134,7 +134,7 @@ const resultsAndErrors: ReactNode = (
     },
     "jsonrpc":"2.0"
 }`
-            } />
+            }/>
         {/* ToDo: Update URLs later. */}
         <p>
             The properties of the error object are <a href="../../myGeotab/apiReference/objects">JsonRpcError</a>, and <a href="../../myGeotab/apiReference/objects">JsonRpcErrorData</a>. Objects are documented in the API Reference.
@@ -148,7 +148,7 @@ const authentication: React.ReactNode = (
             Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
         </p>
         <p>
-            Below you can see an example making an authentication request to “my.geotab.com” that completes successfully, and then uses session to get a single device:
+            Below you can see an example making an authentication request to "my.geotab.com” that completes successfully, and then uses session to get a single device:
         </p>
         <CodeSample
             language="javascript"
@@ -255,7 +255,7 @@ async function call(host, method, data) {
             In these scenarios, the API request will fail returning the JSON-RPC error similar to below:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "error":{
         "code":-32000,
@@ -278,10 +278,10 @@ async function call(host, method, data) {
 const httpCompression: ReactNode = (
     <div className="paragraph">
         <p>
-            The MyGeotab API supports <i>brotli</i>, <i>gzip</i> and <i>deflate</i> compression. To use either of these compression methods, include the HTTP header for “Accept-Encoding”. For example:
+            The MyGeotab API supports <i>brotli</i>, <i>gzip</i> and <i>deflate</i> compression. To use either of these compression methods, include the HTTP header for "Accept-Encoding”. For example:
         </p>
         <p>
-            Accept-Encoding: brotli, gzip, deflate
+            <code className="small-code-sample">Accept-Encoding:</code> <code className="small-code-sample">brotli</code>, <code className="small-code-sample">gzip</code>, <code className="small-code-sample">deflate</code>
         </p>
         <InformationalBox>If you are using an API client (.Net, JavaScript, Nodejs, etc.), the header is enabled automatically.</InformationalBox>
     </div>
@@ -339,7 +339,7 @@ const limits: ReactNode = (
             Example
         </h4>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "error": {
         "message": "API calls quota exceeded. Maximum admitted 10 per 1m.",
@@ -373,7 +373,7 @@ const limits: ReactNode = (
             Example
         </h4>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`
 X-Rate-Limit-Limit: 1m
 X-Rate-Limit-Remaining: 8
@@ -443,7 +443,7 @@ X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z`
             Example
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "error": {
         "message": "Supplied results limit (50001) exceeds maximum limit (50000).",
@@ -496,7 +496,7 @@ const id: ReactNode = (
             In this example, a vehicle in the system and its ID value will be examined. Here is a partial JSON representation of a device object:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "id": "b0a46",
     "name": "007 - Aston Martin",
@@ -506,13 +506,13 @@ const id: ReactNode = (
 }`
             } />
         <p>
-            Note the “id” property with value “b0a46”. This is the unique identifier for the device (vehicle) with description “007 - Aston Martin”.
+            Note the "id” property with value "b0a46”. This is the unique identifier for the device (vehicle) with description "007 - Aston Martin”.
         </p>
         <p>
-            To find Trips for this vehicle all of the properties of the device do not have to be passed to the Get method. Instead, only the ID property of the device object is required. Below is an example of a valid parameter object (TripSearch) for passing into Get method. The deviceSearch with the ID property set to the value “b0a46” (as indicated in the example above) is passed.
+            To find Trips for this vehicle all of the properties of the device do not have to be passed to the Get method. Instead, only the ID property of the device object is required. Below is an example of a valid parameter object (TripSearch) for passing into Get method. The deviceSearch with the ID property set to the value "b0a46” (as indicated in the example above) is passed.
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "typeName":"Trip",
     "search" : {
@@ -523,14 +523,14 @@ const id: ReactNode = (
 }`
             } />
         <p>
-            Calling the Get method with the parameter defined above will return all trips for the vehicle “007 - Aston Martin”.
+            Calling the Get method with the parameter defined above will return all trips for the vehicle "007 - Aston Martin”.
         </p>
         <h2>Example 4</h2>
         <p>
-            There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of “CompanyGroupId” rather than other characters (such as “b0a46” above). For example:
+            There are certain IDs that are predefined for system entities. For example the group that has been defined as the root group of all user groups, and called the CompanyGroup, will have an ID of "CompanyGroupId” rather than other characters (such as "b0a46” above). For example:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "id": "CompanyGroupId",
     "name": "The Company Group",
@@ -538,10 +538,10 @@ const id: ReactNode = (
 }`
             } />
         <p>
-            If the system entities do not have any properties then they are specified as strings with their ID's name. For example the source “Obd” will be identified as “SourceObdId”.
+            If the system entities do not have any properties then they are specified as strings with their ID's name. For example the source "Obd” will be identified as "SourceObdId”.
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "code": "738960445",
     "engineType": {
@@ -577,7 +577,7 @@ const buildingBlockApproach: ReactNode = (
             </li>
         </ul>
         <p>
-            In the example below it can be seen how, by creating a dictionary of devices where the key is the device ID and the value is the device object, devices can be easily “stitched” into the status data records:
+            In the example below it can be seen how, by creating a dictionary of devices where the key is the device ID and the value is the device object, devices can be easily "stitched” into the status data records:
         </p>
         <CodeSample
             language="javascript"
@@ -676,7 +676,7 @@ const propertySelector: ReactNode = (
             Response
         </h4>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`[
     {
         "name": "Work Truck 10",
@@ -730,7 +730,7 @@ const propertySelector: ReactNode = (
             C# Example
         </h3>
         <CodeSample
-            language="javascript"
+            language="csharp"
             code={`var results = await api.CallAsync<List<Device>>(
     "Get",
     typeof(Device),
@@ -848,14 +848,14 @@ const multiCall: ReactNode = (
             Response:
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "result": 2340,
     "jsonrpc": "2.0"
 }`
             } />
         <p>
-            Let's assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. <a href="https://www.chromium.org/spdy/spdy-whitepaper/" target="_blank" rel="noopener noreferrer">Google's SPDY research project white paper</a> states that <i>“typical header sizes of 700-800 bytes is common”</i>. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the “cost of doing business” when making a request over a network.
+            Let's assume that it takes 100 milliseconds for this call round trip (the time from sending request to receiving the response), including 40 milliseconds to send the request, 20 ms to process the data on the server, and 40 ms for the response to be returned. <a href="https://www.chromium.org/spdy/spdy-whitepaper/" target="_blank" rel="noopener noreferrer">Google's SPDY research project white paper</a> states that <i>"typical header sizes of 700-800 bytes is common”</i>. Based on this assumption, we pay a 750 byte cost when making a request. From the example, there would be 80 ms of network overhead and 750 bytes of HTTP overhead, this is accepted as the "cost of doing business” when making a request over a network.
         </p>
         <p>
             Taking the previous assumptions, what would the overhead be for making 1000 requests for road max speeds? When individual calls are made to the server for 1000 addresses; the base (minimum) HTTP and Network overhead is required for each of these calls. This would result in 80 seconds (80,000 milliseconds) of network overhead and 0.72 MB (750,000 bytes) in headers just going to and from the server. It can be clearly seen that a great deal of overhead can be generated by making small but repeated requests.
@@ -868,7 +868,7 @@ const multiCall: ReactNode = (
         </p>
         <h2>Basic Implementation</h2>
         <p>
-            Making a MultiCall is simple, use the method “ExecuteMultiCall” with the parameter “calls” of JSON type Array. Each call should be formatted as an Object with property “method” of type string with the method name as its value and a property “params” of type Object with the method parameters as its properties. The parent “params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.
+            Making a MultiCall is simple, use the method "ExecuteMultiCall” with the parameter "calls” of JSON type Array. Each call should be formatted as an Object with property "method” of type string with the method name as its value and a property "params” of type Object with the method parameters as its properties. The parent "params” object will also need to contain the user credentials if they are required for at least one of the child methods being called. It is not necessary to include credentials with each child call.
         </p>
         <CodeSample
             language="javascript"
@@ -899,7 +899,7 @@ const multiCall: ReactNode = (
             } />
         <p>Response:</p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`{
     "result": [
         2340,
@@ -927,7 +927,7 @@ const multiCall: ReactNode = (
             Below is an example of the error result. The <code className="small-code-sample">requestIndex</code> property contains the index of the call that failed.
         </p>
         <CodeSample
-            language="javascript"
+            language="json"
             code={`results = {
     "error": {
         "message": "The method 'Foobar' could not be found. Verify the method name and ensure all method parameters are included.",
@@ -958,8 +958,9 @@ results = {
 }`
             } />
         <h2>API Client Support</h2>
+        {/* ToDo: Update the link later on before finalizing SDK site */}
         <p>
-            All of the <a href="https://geotab.github.io/sdk/software/api/clients/" target="_blank" rel="noopener noreferrer">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
+            All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
         </p>
         <p>
             JavaScript API multi-call example:
@@ -984,7 +985,7 @@ api.multiCall(calls, function (results) {
             .Net nuget package multi-call example:
         </p>
         <CodeSample
-            language="javascript"
+            language="csharp"
             code={`var calls = new object[] {
     new object[] { "Get", typeof(Diagnostic), typeof(List<Diagnostic>)},
     new object[] { "Get", typeof(Source), new { search = new SourceSearch { Id = KnownId.SourceGeotabGoId } }, typeof(List<Source>)},
