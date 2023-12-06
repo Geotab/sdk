@@ -1,7 +1,3 @@
-import React from "react";
-
-// const link = `https://geotab.github.io/sdk/software/api/reference/${cref}`;
-
 export default function RenderStringWithLinks(text: string) {
     const lines = text.split('\n');
 

@@ -1,9 +1,7 @@
-import React from 'react';
-import { Header, Button } from '@geotab/react-component-library';
+import { Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
 import { Link } from 'react-router-dom';
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -36,12 +34,13 @@ const methodItems = methods.map((methodDetails: any) => {
     pageSections.push(pageSectionObject);
 
     return (
-        <div id={methodDetails[0]}>
-            <Header title={methodDetails[0]}>
-                <Link to={`/method/${methodDetails[0]}`}>
+        <div className="paragraph" id={methodDetails[0]}>
+            <h3 className="methods__method-title">
+                {methodDetails[0]}
+                <Link to={`/method/${methodDetails[0]}`} className="methods__view-button">
                     <Button>View</Button>
                 </Link>
-            </Header>
+            </h3>
             <p>{RenderStringWithUrl(methodDetails[1].description)}</p>
         </div>
     )
@@ -51,11 +50,6 @@ export default function Methods() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {methodItems}
-            {/* {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}></Accordion>)} */}
         </Page>
-        // <div>
-        //     <Header title="Methods"></Header>
-        //     {methodItems}
-        // </div>
     );
 };

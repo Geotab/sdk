@@ -1,5 +1,4 @@
-import React from 'react';
-import { Header, Button } from '@geotab/react-component-library';
+import { Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
 import { Link } from 'react-router-dom';
@@ -35,10 +34,14 @@ const objectItems = objects.map((objectDetails: any) => {
     pageSections.push(pageSectionObject);
 
     return ( 
-        <div id={objectDetails[0]}>
-            <Header title={objectDetails[0]}>
-                <Button>View</Button>
-            </Header>
+        <div className="paragraph" id={objectDetails[0]}>
+            <h3 className="objects__object-title">
+                {objectDetails[0]}
+                <Link to={`/object/${objectDetails[0]}`} className="objects__view-button">
+                    <Button>View</Button>
+                </Link>
+            </h3>
+            <br></br>
             <p>{RenderStringWithUrl(objectDetails[1].description)}</p>
         </div>
     )
@@ -50,9 +53,5 @@ export default function Objects() {
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {objectItems}
         </Page>
-        // <div>
-        //     <Header title="Objects"></Header>
-        //     {objectItems}
-        // </div>
     );
 };
