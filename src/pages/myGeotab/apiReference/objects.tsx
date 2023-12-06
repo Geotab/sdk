@@ -41,7 +41,6 @@ const objectItems = objects.map((objectDetails: any) => {
                     <Button>View</Button>
                 </Link>
             </h3>
-            <br></br>
             <p>{RenderStringWithUrl(objectDetails[1].description)}</p>
         </div>
     )
