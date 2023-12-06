@@ -6,5 +6,5 @@ export default function CodeSampleStyle(): Record<string, string> {
         textAlign: "left",
         padding: "24px",
         borderRadius: "8px"
-};
+    };
 }
