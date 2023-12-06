@@ -15,10 +15,10 @@ const update11: ReactNode = (
 		<h2>Get And GetFeed For FuelUsed And FillUp</h2>
 		<ul>
 			<li>
-				Get and GetFeed for <a href="">FuelUsed</a> is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip’s ending date and time.
+				Get and GetFeed for <a href="">FuelUsed</a> is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip's ending date and time.
 			</li>
 			<li>
-				Get and GetFeed for <a href="">FillUp</a> is now available. The query will return fill-ups detected by MyGeotab or matching fuel transaction records, if available. Each fill-up will also be matched to a MyGeotab trip — corresponding to the trip’s ending date and time.
+				Get and GetFeed for <a href="">FillUp</a> is now available. The query will return fill-ups detected by MyGeotab or matching fuel transaction records, if available. Each fill-up will also be matched to a MyGeotab trip — corresponding to the trip's ending date and time.
 			</li>
 		</ul>
 		<h2>New Transaction Provider</h2>
@@ -130,7 +130,7 @@ const update10: ReactNode = (
 				Added the ImpersonateGpsTextMessage security identifier. When enabled, the security identifier does not validate the identity of the sender.
 			</li>
 			<li>
-				Added the ResetPassword security identifier that allows a user to reset another user’s passwords.
+				Added the ResetPassword security identifier that allows a user to reset another user's passwords.
 			</li>
 		</ul>
 		<h2>Mg-Api-Js</h2>
@@ -161,7 +161,7 @@ const update10: ReactNode = (
 				Enabled brotli compression in Nuget package API.cs requests.
 			</li>
 			<li>
-				<s>Many ObjectModel classes are marked as “sealed”. Marking a class as “sealed” prevents tampering of important classes that can compromise security or impact performance.</s>
+				<s>Many ObjectModel classes are marked as "sealed”. Marking a class as "sealed” prevents tampering of important classes that can compromise security or impact performance.</s>
 			</li>
 		</ul>
 		<InformationalBox>
@@ -207,7 +207,7 @@ const update10: ReactNode = (
 		<h2>Geotab Developers</h2>
 		<ul>
 			<li>
-				Added a section to the <a href="https://geotab.github.io/sdk/software/guides/developing-addins/">Developing Add-ins</a> page suggesting to use the generator-addin repository.
+				Added a section to the <a href="https://geotab.github.io/sdk/software/guides/developing-addins/" target="_blank" rel="noopener noreferrer">Developing Add-ins</a> page suggesting to use the generator-addin repository.
 			</li>
 		</ul>
 		<h2>SDK Samples</h2>
@@ -218,7 +218,7 @@ const update10: ReactNode = (
 		</ul>
 		<h2>SDK Add-In Samples</h2>
 		<ul>
-			<li>Added Add-In samples for the AddInData API to the <a href="https://github.com/Geotab/sdk-addin-samples">Geotab/sdk-addin-samples</a> Github repository.</li>
+			<li>Added Add-In samples for the AddInData API to the <a href="https://github.com/Geotab/sdk-addin-samples" target="_blank" rel="noopener noreferrer">Geotab/sdk-addin-samples</a> Github repository.</li>
 		</ul>
 	</div>
 );
@@ -229,11 +229,11 @@ const update9: ReactNode = (
 		<h2>Custom Security Identifiers For Add-Ins</h2>
 		<p>Custom security identifiers for MyGeotab Add-ins are now available. Identifiers can be defined in the configuration.json file of Add-ins, which will then add them to the list of permissions available when editing clearances. These definitions can support multiple languages.</p>
 		<p>Administrator clearance will remain non-editable and have all custom clearances enabled by default. All other default/system clearance levels only allow editing of custom security identifiers, while keeping the system defined default identifiers non-editable.</p>
-		<p><b>* NOTE</b>: By default, once the <code className="small-code-name">enableViewSecurityId</code> property in the configuration.json for an Add-in is set to True, a View “Add-in name” add-in identifier is created that must be enabled for users to be able to view the Add-in. More granular control needs to be set within the Add-in code for any custom identifiers added to the configuration.json.</p>
+		<p><b>* NOTE</b>: By default, once the <code className="small-code-name">enableViewSecurityId</code> property in the configuration.json for an Add-in is set to True, a View "Add-in name” add-in identifier is created that must be enabled for users to be able to view the Add-in. More granular control needs to be set within the Add-in code for any custom identifiers added to the configuration.json.</p>
 		<h2>IP Rate LimitsPermalink</h2>
 		<ul>
 			<li>
-				Added new rate limits for API requests for endpoints that do not require authentication. See <a href="https://docs.google.com/document/d/1sUKaOKjVT23qvaCITMseIMqGUhQzlr7xDhq1EjrseYE/edit#heading=h.ygvbrm3xiv4u">this announcement</a> for more information.
+				Added new rate limits for API requests for endpoints that do not require authentication. See <a href="https://docs.google.com/document/d/1sUKaOKjVT23qvaCITMseIMqGUhQzlr7xDhq1EjrseYE/edit#heading=h.ygvbrm3xiv4u" target="_blank" rel="noopener noreferrer">this announcement</a> for more information.
 			</li>
 		</ul>
 		<h2>Updates</h2>
@@ -252,7 +252,7 @@ const update9: ReactNode = (
 		<h3>PropertySelector</h3>
 		<ul>
 			<li>
-				Added the optional  <code className="small-code-sample">PropertySelector</code> parameter that is used with the <code className="small-code-sample">Get</code> and <code className="small-code-sample">GetFeed</code> methods to include or exclude specific properties for entity types requested. Detailed information can be found on the <a href="https://geotab.github.io/sdk/software/guides/concepts/#propertyselector-beta">Geotab Developers</a> site.
+				Added the optional  <code className="small-code-sample">PropertySelector</code> parameter that is used with the <code className="small-code-sample">Get</code> and <code className="small-code-sample">GetFeed</code> methods to include or exclude specific properties for entity types requested. Detailed information can be found on the <a href="https://geotab.github.io/sdk/software/guides/concepts/#propertyselector-beta" target="_blank" rel="noopener noreferrer">Geotab Developers</a> site.
 			</li>
 		</ul>
 		<h3>DriverWhiteListContent / DriverAuthListContent</h3>
@@ -348,7 +348,7 @@ const update8: ReactNode = (
 				Calling Get Device now returns devices that are in the <code className="small-code-sample">xGroupTrailerId</code> built-in group as part of the response.
 			</li>
 			<li>
-				If the Customer wants only vehicles to be returned when calling Get Device, and not trailers, they should specify groupSearch: <code className="small-code-sample">{'{“id”:”GroupVehicleId”}'}</code>.
+				If the Customer wants only vehicles to be returned when calling Get Device, and not trailers, they should specify groupSearch: <code className="small-code-sample">{'{"id”:”GroupVehicleId”}'}</code>.
 			</li>
 			<li>
 				Calling Add Trailer with the <code className="small-code-sample">GroupTrailerId</code> or <code className="small-code-sample">GroupVehicleId</code> built-in groups will throw an error.
@@ -357,9 +357,9 @@ const update8: ReactNode = (
 		<InformationalBox>
 			<p><b>! IMPORTANT</b>: Calling Set Device and removing the <code className="small-code-sample">GroupVehicleId</code> or <code className="small-code-sample">GroupTrailerId</code> built-in groups will prevent the vehicle or trailer from being shown on the relevant selection screens on the Drive App. Calling Set Device and switching the group from <code className="small-code-sample">GroupTrailerId</code> built-in group to <code className="small-code-sample">GroupVehicleId</code> built-in group or vice versa will not be allowed. This is a temporary restriction in the 8.0 release, and we intend to remove this check in a future release.</p>
 		</InformationalBox>
-		<p>See <a href="https://docs.google.com/presentation/d/1C0CBY4qaJKHx3J-fdB-YZzxbilQoleqjv8WsyFIZhEE/edit#slide=id.gdb284aa95f_0_61">this slide deck</a> to understand more about why this change was made, and how this may impact you.</p>
+		<p>See <a href="https://docs.google.com/presentation/d/1C0CBY4qaJKHx3J-fdB-YZzxbilQoleqjv8WsyFIZhEE/edit#slide=id.gdb284aa95f_0_61" target="_blank" rel="noopener noreferrer">this slide deck</a> to understand more about why this change was made, and how this may impact you.</p>
 		<h2>Special Note About EV Powertrain Groups</h2>
-		<p>This new built-in group structure automatically classifies electric vehicles (EV) based on their unique powertrain types: Plug-in Hybrid (PHEV), Battery Electric Vehicle (BEV), or Fuel Cell Electric Vehicle (FCEV). <a href="https://docs.google.com/document/d/1W9_Y1XukkaRKQDfJ-RH2YsUptSkUPazx_E4UjfOcKoU/edit">See MyGeotab Version 8.0 SDK Announcement - New built-in groups for EV powertrain identification for additional details.</a></p>
+		<p>This new built-in group structure automatically classifies electric vehicles (EV) based on their unique powertrain types: Plug-in Hybrid (PHEV), Battery Electric Vehicle (BEV), or Fuel Cell Electric Vehicle (FCEV). <a href="https://docs.google.com/document/d/1W9_Y1XukkaRKQDfJ-RH2YsUptSkUPazx_E4UjfOcKoU/edit" target="_blank" rel="noopener noreferrer">See MyGeotab Version 8.0 SDK Announcement - New built-in groups for EV powertrain identification for additional details.</a></p>
 		<h2>Updates</h2>
 		<h3>AddInData</h3>
 		<ul>
@@ -400,7 +400,7 @@ const update8: ReactNode = (
 		<h3>GroupRelations</h3>
 		<ul>
 			<li>
-				Improved description of <code className="small-code-sample">GroupRelations</code> in <a href="https://geotab.github.io/sdk/software/api/reference/">API Reference</a>.
+				Improved description of <code className="small-code-sample">GroupRelations</code> in <a href="https://geotab.github.io/sdk/software/api/reference/" target="_blank" rel="noopener noreferrer">API Reference</a>.
 			</li>
 		</ul>
 		<h3>Group</h3>
@@ -630,7 +630,7 @@ const update6: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, <a href="https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US">click here</a>.
+				Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, <a href="https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US" target="_blank" rel="noopener noreferrer">click here</a>.
 			</li>
 			<li>
 				Added <a href="">WifiHotspot</a> capability, with Interface to configure hotspot settings on telematics devices.
@@ -658,7 +658,7 @@ const update6: ReactNode = (
 const update2104: ReactNode = (
 	<div className="paragraph">
 		<h2>JSON Serializer Change In 5.7.2103</h2>
-		<p>Post-release update: it was recently uncovered within our development team that as of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (‘) usage within the call parameters. Integrators should now solely use double quotes (“) for this purpose. The expected error result for single quote usage with this change is as follows:</p>
+		<p>Post-release update: it was recently uncovered within our development team that as of MyGeotab release 5.7.2103, the JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:</p>
 		<CodeSample
 		language="javascript"
 		code={`{
@@ -681,8 +681,8 @@ const update2104: ReactNode = (
 	"jsonrpc":"2.0",
 	"requestIndex":0
 }`
-}></CodeSample>
-		<p>The new Serializer logic only accepts property names and string values in double quotes because that format is required by the <a href="https://datatracker.ietf.org/doc/html/rfc8259">RFC8259</a> specification and is the only format considered to be valid JSON.</p>
+}/>
+		<p>The new Serializer logic only accepts property names and string values in double quotes because that format is required by the <a href="https://datatracker.ietf.org/doc/html/rfc8259" target="_blank" rel="noopener noreferrer">RFC8259</a> specification and is the only format considered to be valid JSON.</p>
 		<h2>New Stock Groups Available</h2>
 		<ul>
 			<li>
@@ -721,7 +721,7 @@ const update2104: ReactNode = (
 		<p>Added <code className="small-code-sample">IsHidden</code> and <code className="small-code-sample">IsRequired</code> properties.</p>
 		<ul>
 			<li>
-				<code className="small-code-sample">IsHidden</code> is a boolean value indicating whether a defect is hidden in the UI. Used to determine if “other” should be shown or not.
+				<code className="small-code-sample">IsHidden</code> is a boolean value indicating whether a defect is hidden in the UI. Used to determine if "other” should be shown or not.
 			</li>
 			<li>
 				<code className="small-code-sample">IsRequired</code> is a boolean value indicating whether a defect must be signed off. Used to determine if the part must be explicitly marked as having defect(s) or not.
@@ -733,7 +733,7 @@ const update2104: ReactNode = (
 const update2103: ReactNode = (
 	<div className="paragraph">
 		<h2>JSON Serializer Change</h2>
-		<p>The JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (‘) usage within the call parameters. Integrators should now solely use double quotes (“) for this purpose. The expected error result for single quote usage with this change is as follows:</p>
+		<p>The JSON Serializer responsible for parsing API calls has changed to no longer allow single quote (') usage within the call parameters. Integrators should now solely use double quotes (") for this purpose. The expected error result for single quote usage with this change is as follows:</p>
 		<CodeSample
 		language="javascript"
 		code={`{
@@ -756,8 +756,8 @@ const update2103: ReactNode = (
 	"jsonrpc":"2.0",
 	"requestIndex":0
 }`
-}></CodeSample>
-		<p>The new Serializer logic only accepts property names and string values in double quotes because that format is required by the <a href="https://datatracker.ietf.org/doc/html/rfc8259">RFC8259</a> specification and is the only format considered to be valid JSON.</p>
+}/>
+		<p>The new Serializer logic only accepts property names and string values in double quotes because that format is required by the <a href="https://datatracker.ietf.org/doc/html/rfc8259" target="_blank" rel="noopener noreferrer">RFC8259</a> specification and is the only format considered to be valid JSON.</p>
 		<h2>Add/Set FuelTransactionPermalink</h2>
 		<p>Fuel transactions must be unique when comparing all fields (excluding sourceData) against existing transactions.</p>
 		<h2>CompanyDetails</h2>
@@ -786,7 +786,7 @@ const update2103: ReactNode = (
 		<h2>ExceptionEventState</h2>
 		<p>New object representing the state of the exception event. Possible states are <code className="small-code-sample">Valid</code> and <code className="small-code-sample">Invalid</code>.</p>
 		<h2>Generator Add-In</h2>
-		<p><a href="https://github.com/Geotab/generator-addin">Generator-addin</a> updated to mock drive add-in camera API features.</p>
+		<p><a href="https://github.com/Geotab/generator-addin" target="_blank" rel="noopener noreferrer">Generator-addin</a> updated to mock drive add-in camera API features.</p>
 		<h2>Group</h2>
 		<p>Group objects in some instances had <code className="small-code-sample">color</code> and <code className="small-code-sample">children</code> properties partially populated when nested in another object (ex device.groups). This is fixed, so they are no longer populated when groups are nested in group linked entities.</p>
 		<h2>HosRuleSet</h2>
@@ -808,7 +808,7 @@ const update2103: ReactNode = (
 const update2102: ReactNode = (
 	<div className="paragraph">
 		<h2>Data Intake Gateway (DIG)</h2>
-		<p>DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, <a href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/">click here</a>.</p>
+		<p>DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, <a href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/" target="_blank" rel="noopener noreferrer">click here</a>.</p>
 		<h2>APIv1 JSON Serialization</h2>
 		<p>To reduce the duration of process-intensive requests with large JSON payloads, the MyGeotab JSON-RPC API now uses System.Text.Json instead of Newtonsoft.JSON to serialize JSON data sent using the API. This change includes backward compatibility with Newtonsoft.JSON, with the following exception: Numbers with decimals will no longer be serialized using the decimal followed by a zero, if it is a whole number.</p>
 		<h2>Nuget Package</h2>
@@ -962,7 +962,7 @@ const update2004: ReactNode = (
 		<h3>FaultDataSearch</h3>
 		<p>Added searching by Diagnostic Code, Diagnostic Name, Diagnostic Source Name, Diagnostic Source Id, FaultState and Controller Id.</p>
 		<h3>Generator-Addin</h3>
-		<p>Added groups filter to <a href="https://github.com/Geotab/generator-addin">generator-addin</a>.</p>
+		<p>Added groups filter to <a href="https://github.com/Geotab/generator-addin" target="_blank" rel="noopener noreferrer">generator-addin</a>.</p>
 		<h3>HOSRuleSet</h3>
 		<p><b>Added</b>: <code className="small-code-sample">America7DaySleeper</code>, <code className="small-code-sample">America7DayBigSleeper</code>, <code className="small-code-sample">America8DaySleeper</code>, <code className="small-code-sample">America8DayBigSleeper</code>, <code className="small-code-sample">OilTransport7DaySleeper</code>, <code className="small-code-sample">OilTransport7DayBigSleeper</code>, <code className="small-code-sample">OilTransport8DaySleeper</code>, <code className="small-code-sample">OilTransport8DayBigSleeper</code>, <code className="small-code-sample">America7DayNo34hSleeper</code>, <code className="small-code-sample">America8DayNo34hSleeper</code>, <code className="small-code-sample">AmericaNoRestRequirement7DaySleeper</code>, <code className="small-code-sample">AmericaNoRestRequirement7DayBigSleeper</code>, <code className="small-code-sample">AmericaNoRestRequirement8DaySleeper</code>, <code className="small-code-sample">AmericaNoRestRequirement8DayBigSleeper</code>, <code className="small-code-sample">OilWell7DaySleeper</code>, <code className="small-code-sample">OilWell7DayBigSleeper</code>, <code className="small-code-sample">OilWell8DaySleeper</code>, <code className="small-code-sample">OilWell8DayBigSleeper</code>, <code className="small-code-sample">OilTransportNoRestRequirement7DaySleeper</code>, <code className="small-code-sample">OilTransportNoRestRequirement7DayBigSleeper</code>, <code className="small-code-sample">OilTransportNoRestRequirement8DaySleeper</code>, <code className="small-code-sample">OilTransportNoRestRequirement8DayBigSleeper</code>, <code className="small-code-sample">OilWellNoRestRequirement7DaySleeper</code>, <code className="small-code-sample">OilWellNoRestRequirement7DayBigSleeper</code>, <code className="small-code-sample">OilWellNoRestRequirement8DaySleeper</code>, <code className="small-code-sample">OilWellNoRestRequirement8DayBigSleeper</code>, <code className="small-code-sample">AlaskaProperty7DaySleeper</code>, <code className="small-code-sample">AlaskaProperty8DaySleeper</code></p>
 		<h3>Removed BETA Attribute On The Following</h3>
@@ -1110,7 +1110,7 @@ const update2004: ReactNode = (
 			</li>
 		</ul>
 		<h2>Java SDK (Feature Preview)</h2>
-		<p>We work hard to create fast and flexible tools that make sense for your business, and your feedback is an essential part of that process. With this in mind, we are previewing our new Java SDK, and we want you to tell us how we did! So go ahead – test the kit, join our Community Developer Discussions to help us improve our product, and get to know our users.</p>
+		<p>We work hard to create fast and flexible tools that make sense for your business, and your feedback is an essential part of that process. With this in mind, we are previewing our new Java SDK, and we want you to tell us how we did! So go ahead - test the kit, join our Community Developer Discussions to help us improve our product, and get to know our users.</p>
 		<p>The Java SDK offers an easy way to integrate MyGeotab into Java software. All communication with Geotab services is accomplished using HTTPS with serialized data in JSON format. The Java library provides Java objects representing MyGeotab entities and automatically handles their JSON serialization and deserialization.</p>
 		<p>The Java SDK is available as a Maven Dependency Library from the Maven Central Repository and includes documentation with information and usage samples for your new kit.</p>
 		<p>You can find Java-based API usage samples at https://github.com/Geotab/sdk-java-samples</p>
@@ -1309,13 +1309,13 @@ const update2003: ReactNode = (
 		<h2>FuelTransaction</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#FuelTransaction">FuelTransaction</a> - Added <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code>. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction’s <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code> properties defaults to NoDevice and UnknownDriver.
+				<a href="/sdk/software/api/reference/#FuelTransaction">FuelTransaction</a> - Added <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code>. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code> properties defaults to NoDevice and UnknownDriver.
 			</li>
 		</ul>
 		<h2>DVIRLog</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a> - Added <code className="small-code-sample">AuthorityName</code>, <code className="small-code-sample">AuthorityAddress</code>, <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">LoadHeight</code>, <code className="small-code-sample">LoadWidth</code> and <code className="small-code-sample">IsInspectedByDriver</code>. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user’s corresponding fields are at the time. Odometer currently only applies to the entered <code className="small-code-sample">Hubometer</code> value for Trailer DVIRs.
+				<a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a> - Added <code className="small-code-sample">AuthorityName</code>, <code className="small-code-sample">AuthorityAddress</code>, <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">LoadHeight</code>, <code className="small-code-sample">LoadWidth</code> and <code className="small-code-sample">IsInspectedByDriver</code>. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered <code className="small-code-sample">Hubometer</code> value for Trailer DVIRs.
 			</li>
 		</ul>
 		<h2>ConditionType</h2>
@@ -1327,7 +1327,7 @@ const update2003: ReactNode = (
 		<h2>WebServerInvoker (Nuget Only)</h2>
 		<p>This method has been changed to use generics instead of passing type in, and returning an object, that needs to be cast. For example, <code className="small-code-sample">var version = (string)(await invoker.InvokeAsync("GetVersion", typeof(string)));</code> is now <code className="small-code-sample">var version = await invoker.InvokeAsync&lt;string&gt;("GetVersion");</code></p>
 		<InformationalBox>
-			<p>While not an officially supported component, it’s possible <code className="small-code-sample">WebServerInvoker</code> is being used by some integrations. For this reason we thought it worth mentioning this change.</p>
+			<p>While not an officially supported component, it's possible <code className="small-code-sample">WebServerInvoker</code> is being used by some integrations. For this reason we thought it worth mentioning this change.</p>
 		</InformationalBox>
 	</div>
 );
@@ -1353,7 +1353,7 @@ const update2002: ReactNode = (
 		"script": "..."
 	}
 }`
-}></CodeSample>
+}/>
 		<p>You can now hide Vehicle State and Groups information from the tooltip when hovering or selecting vehicles on the Map. See the example below.</p>
 		<CodeSample
 		language="javascript"
@@ -1363,7 +1363,7 @@ const update2002: ReactNode = (
 		groups: false
 	}
 });`
-}></CodeSample>
+}/>
 		<h2>Interpolation</h2>
 		<ul>
 			<li>
@@ -1461,7 +1461,7 @@ const update2002: ReactNode = (
 				Can now toggle blur and focus events to simulate leaving and re-visiting the Add-In page.
 			</li>
 			<li>
-				For more information visit GitHub: <a href="https://github.com/Geotab/generator-addin" target="_blank">https://github.com/Geotab/generator-addin</a>
+				For more information visit GitHub: <a href="https://github.com/Geotab/generator-addin" target="_blank" rel="noopener noreferrer">https://github.com/Geotab/generator-addin</a>
 			</li>
 		</ul>
 		<h2>Mg-Api-Js Version 2.0</h2>
@@ -1480,7 +1480,7 @@ const update2002: ReactNode = (
 				Optional lower-level control over http response.
 			</li>
 			<li>
-				For more information visit GitHub: <a href="https://github.com/Geotab/mg-api-js" target="_blank">https://github.com/Geotab/mg-api-js</a>
+				For more information visit GitHub: <a href="https://github.com/Geotab/mg-api-js" target="_blank" rel="noopener noreferrer">https://github.com/Geotab/mg-api-js</a>
 			</li>
 		</ul>
 		<h2>Other SDK Updates</h2>
@@ -1519,19 +1519,19 @@ const update2001: ReactNode = (
 				<p>AddInData (Feature Preview) - Remove requirement of <code className="small-code-sample">AddInDataId</code> for search by <code className="small-code-sample">Id</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#AuditSearch">AuditSearch</a>, <a href="/sdk/software/api/reference/#DeviceSearch">DeviceSearch</a>, <a href="/sdk/software/api/reference/#ShipmentLogSearch">ShipmentLogSearch</a>, <a href="/sdk/software/api/reference/#UserSearch">UserSearch</a>, <a href="/sdk/software/api/reference/#ZoneSearch">ZoneSearch</a> - Added new search by list of <code className="small-code-sample">Keywords</code>. This allows searching “or” across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against <code className="small-code-sample">Comment</code>, <code className="small-code-sample">LicensePlate</code>, <code className="small-code-sample">Name</code>, <code className="small-code-sample">SerialNumber</code> and <code className="small-code-sample">VehicleIdentificationNumber</code> matching the provided keywords. Keywords strings support wildcard character (<code className="small-code-sample">%</code>).</p>
+				<p><a href="/sdk/software/api/reference/#AuditSearch">AuditSearch</a>, <a href="/sdk/software/api/reference/#DeviceSearch">DeviceSearch</a>, <a href="/sdk/software/api/reference/#ShipmentLogSearch">ShipmentLogSearch</a>, <a href="/sdk/software/api/reference/#UserSearch">UserSearch</a>, <a href="/sdk/software/api/reference/#ZoneSearch">ZoneSearch</a> - Added new search by list of <code className="small-code-sample">Keywords</code>. This allows searching "or” across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against <code className="small-code-sample">Comment</code>, <code className="small-code-sample">LicensePlate</code>, <code className="small-code-sample">Name</code>, <code className="small-code-sample">SerialNumber</code> and <code className="small-code-sample">VehicleIdentificationNumber</code> matching the provided keywords. Keywords strings support wildcard character (<code className="small-code-sample">%</code>).</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#BinaryData">BinaryData</a> (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.</p>
 			</li>
 			<li>
-				<p>Calculated Engine Hours Search - As mentioned in 5.7.1904 What’s New, <code className="small-code-sample">DiagnosticEngineHoursAdjustmentId</code> is now interpolated using trips and <code className="small-code-sample">DiagnosticIgnitionId</code> values when a search includes a from/toDate value(s) to provide exact values by default.</p>
+				<p>Calculated Engine Hours Search - As mentioned in 5.7.1904 What's New, <code className="small-code-sample">DiagnosticEngineHoursAdjustmentId</code> is now interpolated using trips and <code className="small-code-sample">DiagnosticIgnitionId</code> values when a search includes a from/toDate value(s) to provide exact values by default.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#CompanyDetails">CompanyDetails</a> - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from <code className="small-code-sample">CreateDatabase</code> method.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Device">Device</a> - <code className="small-code-sample">HardwareId</code> is no longer returned as part of Device object. For more information regarding this change, please refer to this <a href="https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property">community post</a>.</p>
+				<p><a href="/sdk/software/api/reference/#Device">Device</a> - <code className="small-code-sample">HardwareId</code> is no longer returned as part of Device object. For more information regarding this change, please refer to this <a href="https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property" target="_blank" rel="noopener noreferrer">community post</a>.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DVIRDefect">DVIRDefect</a> - Providing <code className="small-code-sample">RepairUser</code> and <code className="small-code-sample">RepairDateTime</code> are no longer supported for unrepaired <code className="small-code-sample">DVIRDefect</code>.</p>
@@ -1573,7 +1573,7 @@ const update2001: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#User">User</a> - Added <code className="small-code-sample">MaxPCDistancePerDay</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#UserSearch">UserSearch</a> - Added “negatable” search of <code className="small-code-sample">FistName</code>, <code className="small-code-sample">LastName</code> and <code className="small-code-sample">Name</code> properties. If the first character of this search property is ‘!’, then the API will know to negate the search logic. For example: <code className="small-code-sample">field = "!John%"</code>, is equivalent to: <code className="small-code-sample">WHERE NOT LIKE 'John%'</code>.</p>
+				<p><a href="/sdk/software/api/reference/#UserSearch">UserSearch</a> - Added "negatable” search of <code className="small-code-sample">FistName</code>, <code className="small-code-sample">LastName</code> and <code className="small-code-sample">Name</code> properties. If the first character of this search property is ‘!', then the API will know to negate the search logic. For example: <code className="small-code-sample">field = "!John%"</code>, is equivalent to: <code className="small-code-sample">WHERE NOT LIKE 'John%'</code>.</p>
 			</li>
 		</ul>
 	</div>
@@ -1584,7 +1584,7 @@ const update1904: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data’s scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object.</p>
+				<p>AddInData (Feature Preview) - Groups are now optional for AddInData objects, currently in Feature preview. Previously, groups were a required property for the AddInData object. This limited the potential usage of AddInData as there are situations where data should be available to all users regardless of scope, and some users were not able to access data when they belonged to groups outside the data's scope. Removing this restriction means any user is now allowed to get an AddInData object if no group is specified for the object.</p>
 			</li>
 			<li>
 				<p>API.cs (nuget only) - Now implements IApi interface. This allows for simpler unit testing of integration code using mocks.</p>
@@ -1611,7 +1611,7 @@ const update1904: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#LoginResult">LoginResult</a> - Removed unsupported legacy property <code className="small-code-sample">SecurityToken</code>. This property duplicated the supported property <code className="small-code-sample">Credentials</code>. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Rule">Rule</a> - Fix, don’t allow adding Rules without Conditions.</p>
+				<p><a href="/sdk/software/api/reference/#Rule">Rule</a> - Fix, don't allow adding Rules without Conditions.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a> - Added <code className="small-code-sample">ViewGroups</code>.</p>
@@ -1709,7 +1709,7 @@ const update1902: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#DefectSeverity">DefectSeverity</a>: Added <code className="small-code-sample">Unregulated</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Device">Device</a>: Adding a device will now force the ActiveTo property to max date. Setting a device’s ActiveTo property to a future date, but not max date, will force the value to max date.</p>
+				<p><a href="/sdk/software/api/reference/#Device">Device</a>: Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DeviceType">DeviceType</a>: Added <code className="small-code-sample">GO9</code></p>
@@ -1730,7 +1730,7 @@ const update1902: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#DutyStatusAvailability">DutyStatusAvailability</a>: Added properties <code className="small-code-sample">CycleRest</code>, <code className="small-code-sample">DutySinceCycleRest</code>, <code className="small-code-sample">Is16HourExemptionAvailable</code>, <code className="small-code-sample">IsAdverseDrivingExemptionAvailable</code>, <code className="small-code-sample">IsOffDutyDeferralExemptionAvailable</code></p>
 			</li>
 			<li>
-				<p>DutyStatusAvailabilityDuration: Removed from documentionation, will be obsoleted in future</p>
+				<p>DutyStatusAvailabilityDuration: Removed from documentation, will be obsoleted in future</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DutyStatusViolationType">DutyStatusViolationType</a>: Added <code className="small-code-sample">CycleRest</code> and <code className="small-code-sample">DutySinceCycleRest</code></p>
@@ -1782,7 +1782,7 @@ const update1902: ReactNode = (
 			</li>
 		</ul>
 		<h2>Result And Rate Limits</h2>
-		<p>For an in-depth description of the result in rate limit changes in 5.7.1902 and future releases see <a href="https://www.geotab.com/blog/result-and-rate-limits/">this blog post</a></p>
+		<p>For an in-depth description of the result in rate limit changes in 5.7.1902 and future releases see <a href="https://www.geotab.com/blog/result-and-rate-limits/" target="_blank" rel="noopener noreferrer">this blog post</a></p>
 		<ul>
 			<li>
 				<p><a href="/sdk/software/guides/concepts/#limits">Concepts</a> section updated to reflect new result and rate limits.</p>
@@ -1842,16 +1842,16 @@ const update1804: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#Add1">Add</a>/<a href="/sdk/software/api/reference/#Set1">Set</a> <a href="/sdk/software/api/reference/#Device">Device</a>: <code className="small-code-sample">ParameterVersion</code> will auto increment server side when device parameters property changed. Server must see that <code className="small-code-sample">ParameterVersion</code> has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, <code className="small-code-sample">ParameterVersion</code> required manual increment.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, in certian senario changing <code className="small-code-sample">Timeout</code> property could abort the action on timeout and not cancel underlying request.</p>
+				<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, in certain senario changing <code className="small-code-sample">Timeout</code> property could abort the action on timeout and not cancel underlying request.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#CustomVehicleDevice">CustomVehicleDevice</a>: Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.</p>
 				<ul>
 					<li>
-						<p>Improved support for calculated odometer and raw odometer with third-party diagnostic KnownId <code className="small-code-sample">DiagnosticThirdPartyOdometerId</code> and <code className="small-code-sample">OdometerAdjusmentId</code></p>
+						<p>Improved support for calculated odometer and raw odometer with third-party diagnostic KnownId <code className="small-code-sample">DiagnosticThirdPartyOdometerId</code> and <code className="small-code-sample">OdometerAdjustmentId</code></p>
 					</li>
 					<li>
-						<p>Improved support for calculated engine hours with third-party diagnostic KnownId <code className="small-code-sample">DiagnosticThirdPartyEngineRunTimeId</code> and <code className="small-code-sample">EngineHoursAdjusmentId</code></p>
+						<p>Improved support for calculated engine hours with third-party diagnostic KnownId <code className="small-code-sample">DiagnosticThirdPartyEngineRunTimeId</code> and <code className="small-code-sample">EngineHoursAdjustmentId</code></p>
 					</li>
 					<li>
 						<p><code className="small-code-sample">VehicleIdentificationNumber</code> property moved from CustomDevice to CustomVehicleDevice</p>
@@ -1871,7 +1871,7 @@ const update1804: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#DeviceType">DeviceType</a>: Added <code className="small-code-sample">CustomVehicleDevice</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DriverChange">DriverChange</a>: DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id’s will be invalidated and assigned a new GUID Id’s. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.</p>
+				<p><a href="/sdk/software/api/reference/#DriverChange">DriverChange</a>: DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#DutyStatusLogType">DutyStatusLogType</a>: Added <code className="small-code-sample">ExemptionOffDutyDeferral</code>.</p>
@@ -1892,7 +1892,7 @@ const update1804: ReactNode = (
 				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Values <code className="small-code-sample">AlarmSoundList</code>, <code className="small-code-sample">Tracking</code>, <code className="small-code-sample">CreateNewSqlDatabase</code>, <code className="small-code-sample">EngineControllerList</code>, <code className="small-code-sample">PurgeSettings</code>, <code className="small-code-sample">SendImmobilizationInstruction</code> are obsolete and will be removed in version 1806+.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityRole">SecurityRole</a>: Added <code className="small-code-sample">SupportTicketInsert</code>, <code className="small-code-sample">TrainingTicketInser</code>, <code className="small-code-sample">SupportTicketSet</code>, <code className="small-code-sample">TrainingTicketSetUser</code>, <code className="small-code-sample">LoginFailure</code>, <code className="small-code-sample">UserLockout</code>, <code className="small-code-sample">UserUnlocked</code>, <code className="small-code-sample">ShipmentLogInsert</code>, <code className="small-code-sample">ShipmentLogSet</code>, <code className="small-code-sample">ShipmentLogRemove</code>, <code className="small-code-sample">TrailerAttachmentInsert</code>, <code className="small-code-sample">TrailerAttachmentSet</code>, <code className="small-code-sample">TrailerAttachmentRemove</code>.</p>
+				<p><a href="/sdk/software/api/reference/#SecurityRole">SecurityRole</a>: Added <code className="small-code-sample">SupportTicketInsert</code>, <code className="small-code-sample">TrainingTicketInsert</code>, <code className="small-code-sample">SupportTicketSet</code>, <code className="small-code-sample">TrainingTicketSetUser</code>, <code className="small-code-sample">LoginFailure</code>, <code className="small-code-sample">UserLockout</code>, <code className="small-code-sample">UserUnlocked</code>, <code className="small-code-sample">ShipmentLogInsert</code>, <code className="small-code-sample">ShipmentLogSet</code>, <code className="small-code-sample">ShipmentLogRemove</code>, <code className="small-code-sample">TrailerAttachmentInsert</code>, <code className="small-code-sample">TrailerAttachmentSet</code>, <code className="small-code-sample">TrailerAttachmentRemove</code>.</p>
 			</li>
 			<li>
 				<p><a href="/sdk/software/api/reference/#ZoneSearch">ZoneSearch</a>: Added <code className="small-code-sample">FromDate</code> and <code className="small-code-sample">ToDate</code> search properties providing ability to filter zones by their active dates.</p>
@@ -1946,7 +1946,7 @@ const update1802: ReactNode = (
 			</li>
 		</ul>
 		<h2>Notice</h2>
-		<p>An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serailizaion failure when a new DiagnosticType is introduced. The issue has been addressed in nuget package v<a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">5.7.1802</a>. To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)</p>
+		<p>An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serialization failure when a new DiagnosticType is introduced. The issue has been addressed in nuget package v<a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">5.7.1802</a>. To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)</p>
 	</div>
 );
 
@@ -1969,7 +1969,7 @@ const update1801: ReactNode = (
 		<h2>Notice</h2>
 		<p>In early 2018 the following legacy properties will be removed:</p>
 		<p><b>Authenticate</b>: <code className="small-code-sample">userLogin</code> parameter. This was kept around for compatibility with legacy (5.6.* and lower) integrations. It has not been publicly exposed or documented since version 5.6 of MyGeotab. It is planned to be removed as a valid parameter in version 5.7.1803. The <code className="small-code-sample">userName</code> parameter is the standard supported property that should be used.</p>
-		<p><b>LoginResult</b>: <code className="small-code-sample">securityToken</code> property. LoginResult is the object returned by the Authenticate method. It’s property <code className="small-code-sample">securityToken</code> was kept around for compatibility with legacy (5.6.* and lower) integrations. It has not been publicly exposed or documented since version 5.6 of MyGeotab. It is planned to be removed as a valid parameter in version 5.7.1803. The property <code className="small-code-sample">credentials</code> is the standard supported property that shares the same value.</p>
+		<p><b>LoginResult</b>: <code className="small-code-sample">securityToken</code> property. LoginResult is the object returned by the Authenticate method. It's property <code className="small-code-sample">securityToken</code> was kept around for compatibility with legacy (5.6.* and lower) integrations. It has not been publicly exposed or documented since version 5.6 of MyGeotab. It is planned to be removed as a valid parameter in version 5.7.1803. The property <code className="small-code-sample">credentials</code> is the standard supported property that shares the same value.</p>
 	</div>
 );
 
@@ -1980,10 +1980,10 @@ const update1712: ReactNode = (
 				<p>API.cs (.Net only) - Fix: When password and session id are supplied to constructor, session id will be used until no longer valid. Previously, session id would only be used if password was not supplied.</p>
 			</li>
 			<li>
-				<p>FuelTaxDetail - Added properties: ”IsEnterOdometerInterpolated”, “IsExitOdometerInterpolated”, “HourlyIsOdometerInterpolated”</p>
+				<p>FuelTaxDetail - Added properties: ”IsEnterOdometerInterpolated”, "IsExitOdometerInterpolated”, "HourlyIsOdometerInterpolated”</p>
 			</li>
 			<li>
-				<p>User - Removed property: “MenuCollapsedNotified”</p>
+				<p>User - Removed property: "MenuCollapsedNotified”</p>
 			</li>
 		</ul>
 	</div>
@@ -1993,16 +1993,16 @@ const update1711: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>GetAddresses - Added: “hosAddresses” parameter to optionally search for ELD compliant address</p>
+				<p>GetAddresses - Added: "hosAddresses” parameter to optionally search for ELD compliant address</p>
 			</li>
 			<li>
-				<p>UnitOfMeaure - Added: Kilowatt hours (“UnitOfMeasureKiloWattHoursId”)</p>
+				<p>UnitOfMeasure - Added: Kilowatt hours ("UnitOfMeasureKiloWattHoursId”)</p>
 			</li>
 			<li>
-				<p>SecurityIdentifier - Added “ViewBinaryData”, “ManageAddInData”, “ViewAddInData”</p>
+				<p>SecurityIdentifier - Added "ViewBinaryData”, "ManageAddInData”, "ViewAddInData”</p>
 			</li>
 			<li>
-				<p>HosRuleSet - Added “CarrierExemption”</p>
+				<p>HosRuleSet - Added "CarrierExemption”</p>
 			</li>
 			<li>
 				<p>.Net SDK samples updated to target netcoreapp2.0</p>
@@ -2021,28 +2021,28 @@ const update1709: ReactNode = (
 				<p>API.cs (.Net only) - Added cancellation token parameter to AuthenticateAsync and CallAsync methods.</p>
 			</li>
 			<li>
-				<p>DutyStatusLog - Added “Malfunction” property - The DutyStatusMalfunctionType of the DutyStatusLog record. As a flag it can be both a diagnostic and malfunction state which is used to mark status based records (e.g. “D”, “SB”) as having a diagnostic or malfunction present at time of recording.</p>
+				<p>DutyStatusLog - Added "Malfunction” property - The DutyStatusMalfunctionType of the DutyStatusLog record. As a flag it can be both a diagnostic and malfunction state which is used to mark status based records (e.g. "D”, "SB”) as having a diagnostic or malfunction present at time of recording.</p>
 			</li>
 			<li>
-				<p>DutyStatusLog - Added “Sequence” property - The sequence number, which is used to generate the sequence ID.</p>
+				<p>DutyStatusLog - Added "Sequence” property - The sequence number, which is used to generate the sequence ID.</p>
 			</li>
 			<li>
-				<p>DutyStatusLogType - Added “EnginePowerup”, “EngineShutdown”, “EnginePowerupPC”, “EngineShutdownPC”, “PowerCompliance”, “EngineSyncCompliance”, “TimingCompliance”, “PositioningCompliance”, “DataRecordingCompliance”, “DataTransferCompliance”, “OtherCompliance”, “MissingElementCompliance”, “UnidentifiedDrivingCompliance”, “INT_PC”, “INT_D”.</p>
+				<p>DutyStatusLogType - Added "EnginePowerup”, "EngineShutdown”, "EnginePowerupPC”, "EngineShutdownPC”, "PowerCompliance”, "EngineSyncCompliance”, "TimingCompliance”, "PositioningCompliance”, "DataRecordingCompliance”, "DataTransferCompliance”, "OtherCompliance”, "MissingElementCompliance”, "UnidentifiedDrivingCompliance”, "INT_PC”, "INT_D”.</p>
 			</li>
 			<li>
-				<p>Controller - Added short integer “CodeId” property, which will replace the “Code” property. New “AnyController” for J1708 engine diagnostics to allow replacing those engine diagnostics identical except for the controller with one diagnostic. J1708 engine diagnostics for 58 separate SIDs were updated.</p>
+				<p>Controller - Added short integer "CodeId” property, which will replace the "Code” property. New "AnyController” for J1708 engine diagnostics to allow replacing those engine diagnostics identical except for the controller with one diagnostic. J1708 engine diagnostics for 58 separate SIDs were updated.</p>
 			</li>
 			<li>
-				<p>CustomDevice - Added “VehicleIdentificationNumber” property.</p>
+				<p>CustomDevice - Added "VehicleIdentificationNumber” property.</p>
 			</li>
 			<li>
-				<p>FuelTaxDetail - Added “Driver” property.</p>
+				<p>FuelTaxDetail - Added "Driver” property.</p>
 			</li>
 			<li>
-				<p>DriverChangeSearch - Added “IncludeOverlappedChanges” property - A value indicating whether to include the last driver change before the from date or the most recent driver change (if the from date is not provided).</p>
+				<p>DriverChangeSearch - Added "IncludeOverlappedChanges” property - A value indicating whether to include the last driver change before the from date or the most recent driver change (if the from date is not provided).</p>
 			</li>
 			<li>
-				<p>InvalidUserException - Message changed from to “Incorrect MyGeotab login credentials…” to “Incorrect login credentials…”.</p>
+				<p>InvalidUserException - Message changed from to "Incorrect MyGeotab login credentials…” to "Incorrect login credentials…”.</p>
 			</li>
 		</ul>
 		<h2>New Objects</h2>
@@ -2064,16 +2064,16 @@ const update1707: ReactNode = (
 				<p>Web Request Notifications: fix {'{'}zoneId{'}'} and {'{'}zoneComment{'}'} tokens would not get populated unless {'{'}zone{'}'} or {'{'}address{'}'} were also included.</p>
 			</li>
 			<li>
-				<p>Documentation: API Reference updated to include default value and max length of object properties in their descriptions. Default values are automatically used when adding an entity and those properties have no value assigned (are null). For example, adding a Group with color = null, will add group with default color “Blue”. If a property has no default value, it is required when calling “Add”.</p>
+				<p>Documentation: API Reference updated to include default value and max length of object properties in their descriptions. Default values are automatically used when adding an entity and those properties have no value assigned (are null). For example, adding a Group with color = null, will add group with default color "Blue”. If a property has no default value, it is required when calling "Add”.</p>
 			</li>
 			<li>
-				<p>Set operations now retain the value of missing (null) properties. A positive effect of this change is that is remedies a long existing issue that could occur when a server is a newer version (ex 5.7.1704) than client nuget package (ex 5.7.1701) which is making requests to it. The issue could arise when a new Enum value was added and exists only in the server’s code base, not client client nuget package. When the unknown Enum was received by the client, it could not be deserialiezed into an Enum value and would throw an exception. Starting in nuget package version 5.7.1707.x, the unknown Enum value will be deserialiezed to null. This means the object can round trip” on “Set” because the server will now (starting at version 5.7.1707) fill in the null value with the existing saved value of the property.</p>
+				<p>Set operations now retain the value of missing (null) properties. A positive effect of this change is that is remedies a long existing issue that could occur when a server is a newer version (ex 5.7.1704) than client nuget package (ex 5.7.1701) which is making requests to it. The issue could arise when a new Enum value was added and exists only in the server's code base, not client client nuget package. When the unknown Enum was received by the client, it could not be deserialized into an Enum value and would throw an exception. Starting in nuget package version 5.7.1707.x, the unknown Enum value will be deserialiezed to null. This means the object can round trip” on "Set” because the server will now (starting at version 5.7.1707) fill in the null value with the existing saved value of the property.</p>
 			</li>
 			<li>
-				<p>Added: JsonRpcError, JsonRpcErrorData - to better align JSON-RPC errors with the JSON-RPC 2.0 specification. Non-standard (now legacy) error properties have been deprecated. This should not affect nuget package users as the API.cs object serialized the JSON-RPC error results as Exceptions which are thrown. This may affect users consuming the raw JSON-RPC result of requests. It’s recommended to update usages to the official, standardized, properties as outlined in the API Reference. Of note: the new objects exposes “requestIndex” property which is the index at which a “multicall” failed.</p>
+				<p>Added: JsonRpcError, JsonRpcErrorData - to better align JSON-RPC errors with the JSON-RPC 2.0 specification. Non-standard (now legacy) error properties have been deprecated. This should not affect nuget package users as the API.cs object serialized the JSON-RPC error results as Exceptions which are thrown. This may affect users consuming the raw JSON-RPC result of requests. It's recommended to update usages to the official, standardized, properties as outlined in the API Reference. Of note: the new objects exposes "requestIndex” property which is the index at which a "multicall” failed.</p>
 			</li>
 			<li>
-				<p>Added: User/Driver objects now have property “IsDriver” to clearly indicate when a user is a driver. This also makes it easier to save a user who is no longer a driver, set the property to false and save.</p>
+				<p>Added: User/Driver objects now have property "IsDriver” to clearly indicate when a user is a driver. This also makes it easier to save a user who is no longer a driver, set the property to false and save.</p>
 			</li>
 			<li>
 				<p>Added: FuelTaxDetail - A new entity which provides API access to calculated fuel tax data. In the past this data was only available via the IFTA Report in MyGeotab where it was calculated on the fly. Fuel tax details are now processed using live data and stored in the database and they can be access using the API via Get and GetFeed methods. Full documentation coming soon.</p>
@@ -2088,25 +2088,25 @@ const update1706: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>DatabaseId has been removed from .net package as per the <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">December 2016 post</a></p>
+				<p>DatabaseId has been removed from .net package as per the <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes" target="_blank" rel="noopener noreferrer">December 2016 post</a></p>
 			</li>
 			<li>
-				<p>DutyStatusLogType: Added: “Authority” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
+				<p>DutyStatusLogType: Added: "Authority” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>FuelTransaction: Added: “ExternalReference”</p>
+				<p>FuelTransaction: Added: "ExternalReference”</p>
 			</li>
 			<li>
-				<p>FuelTransactionSearch: Added: “ExternalReference” and “Provider”</p>
+				<p>FuelTransactionSearch: Added: "ExternalReference” and "Provider”</p>
 			</li>
 			<li>
-				<p>User: Added: “AuthorityName” and “AuthorityAddress”</p>
+				<p>User: Added: "AuthorityName” and "AuthorityAddress”</p>
 			</li>
 			<li>
 				<p>GetFeed of Trip now includes stop point (woohoo!) <b>*requires server running 5.7.1706.x</b></p>
 			</li>
 			<li>
-				<p><a href="https://my112.geotab.com/sdk/#/apiWrappers" aria-label="API clients section in SDK document">API Clients</a> section added to SDK documentation</p>
+				<p><a href="https://my112.geotab.com/sdk/#/apiWrappers" aria-label="API clients section in SDK document" target="_blank" rel="noopener noreferrer">API Clients</a> section added to SDK documentation</p>
 			</li>
 			<li>
 				<p>Geotab.Reflection package no longer a dependency of Geotab.Checkmate.Objectmodel nuget package</p>
@@ -2125,7 +2125,7 @@ const update1705: ReactNode = (
 				<p>IoxAddOn: Added preliminary support for IoxAddOn, IoxAddOnSearch, SerialIoxContent,KnownIoxAddOnType, IoxOutputContent, MimeContent</p>
 			</li>
 			<li>
-				<p>TextMessageSearch: Added search by: “ParentTextMessageId”</p>
+				<p>TextMessageSearch: Added search by: "ParentTextMessageId”</p>
 			</li>
 		</ul>
 	</div>
@@ -2147,7 +2147,7 @@ const update1704: ReactNode = (
 				<p>Fix, API.cs proxy support. New constructor that accepts HttpMessageHandler, deprecated constructor that accepts IWebProxy and Proxy property</p>
 			</li>
 			<li>
-				<p>Fix, content type of API response headers changed from “text/html” to “application/json”</p>
+				<p>Fix, content type of API response headers changed from "text/html” to "application/json”</p>
 			</li>
 		</ul>
 	</div>
@@ -2166,7 +2166,7 @@ const update1703: ReactNode = (
 				<p>SecurityRole.cs Added: ReassignData <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>TimeZoneId: it was possible to add a user or device with “Unknown” time zone ID. This was only possible using the API and “Unknown” is not returned via the GetTimeZones method or a valid Olson time zone. The ability to add users and devices with “Unknown” as been removed and all users and devices with this time zone ID have been changed to “Etc/GMT”</p>
+				<p>TimeZoneId: it was possible to add a user or device with "Unknown” time zone ID. This was only possible using the API and "Unknown” is not returned via the GetTimeZones method or a valid Olson time zone. The ability to add users and devices with "Unknown” as been removed and all users and devices with this time zone ID have been changed to "Etc/GMT”</p>
 			</li>
 		</ul>
 	</div>
@@ -2176,13 +2176,13 @@ const update1702: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>FuelTransactionProvider: Added - “Voyager”, “UltramarCST”</p>
+				<p>FuelTransactionProvider: Added - "Voyager”, "UltramarCST”</p>
 			</li>
 			<li>
-				<p>SecurityIdentifier: Added - “PurchaseMarketplacePaidItems” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
+				<p>SecurityIdentifier: Added - "PurchaseMarketplacePaidItems” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>SecurityRole: Added: “TripTypeChangeInsert”, “TripTypeChangeRemove”, “CustomReportSendError” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
+				<p>SecurityRole: Added: "TripTypeChangeInsert”, "TripTypeChangeRemove”, "CustomReportSendError” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
 				<p>Fix: nuget package issue making API requests from Azure WebJob</p>
@@ -2198,7 +2198,7 @@ const update1701: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>Added “Hardware” section to SDK</p>
+				<p>Added "Hardware” section to SDK</p>
 			</li>
 			<li>
 				<p>Nuget: Replace usage of Microsoft.Net.Http with System.Net.Http (WebRequest =&gt; HttpClient)</p>
@@ -2207,13 +2207,13 @@ const update1701: ReactNode = (
 				<p>DiagnosticSearch: Added DiagnosticType property to search by the type of diagnostic. Ex, only GoFault diagnostics.</p>
 			</li>
 			<li>
-				<p>Added “ExpiredPasswordException” object. This exception can be thrown if a user makes a request while their ChangePassword flag is true. The user must change their password before they are able to successfully make further requests</p>
+				<p>Added "ExpiredPasswordException” object. This exception can be thrown if a user makes a request while their ChangePassword flag is true. The user must change their password before they are able to successfully make further requests</p>
 			</li>
 			<li>
-				<p>SecurityRole: Added “ReportHosAvailability” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
+				<p>SecurityRole: Added "ReportHosAvailability” <b><i>requires update of .net nuget package to ensure compatibility</i></b></p>
 			</li>
 			<li>
-				<p>If you are using the .net nuget package and plan to use the new “HOS Only” device plan you must update to nuget package version 5.7.1701 or greater to ensure compatibility.</p>
+				<p>If you are using the .net nuget package and plan to use the new "HOS Only” device plan you must update to nuget package version 5.7.1701 or greater to ensure compatibility.</p>
 			</li>
 		</ul>
 	</div>
@@ -2223,7 +2223,7 @@ const update1612: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>Id refactoring - The ID object has been refactored in the .NET SDK. See <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes">this forum post</a> for details.</p>
+				<p>Id refactoring - The ID object has been refactored in the .NET SDK. See <a href="https://helpdesk.geotab.com/hc/en-us/community/posts/255601466--NET-SDK-ID-Object-Changes" target="_blank" rel="noopener noreferrer">this forum post</a> for details.</p>
 			</li>
 			<li>
 				<p>Updated description of GoCurveAuxiliary (GO4v3, GO6, GO7) properties: ImmobilizeUnit: With ImmobilizeUnit being true, it is used to define the delay before the driver identification reminder is sent out if the driver key has not been not swiped. The maximum value of this property is 255. When it is less or equal to 180, it indicates the number of seconds of the delay. When it is greater than 180, the delay increases 30 seconds for every increment of one of this property. For example, 180 indicates 180 seconds, 181 indicates 210 seconds, and 182 indicates 240 seconds. ImmobilizeArming: A value mainly used for enable or disable driver identification reminder. If it is used in conjunction with vehicle relay circuits, it can force the driver to swipe the driver key before starting the vehicle.</p>
@@ -2237,22 +2237,22 @@ const update1611: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>Authentication rate limiting being phased in. See this <a href="https://www.geotab.com/blog/api-call-limits/">Blog Post</a> for more details. Added “Rate Limiting” section to <a href="/sdk/software/guides/concepts/">SDK Concepts</a>.</p>
+				<p>Authentication rate limiting being phased in. See this <a href="https://www.geotab.com/blog/api-call-limits/" target="_blank" rel="noopener noreferrer">Blog Post</a> for more details. Added "Rate Limiting” section to <a href="/sdk/software/guides/concepts/">SDK Concepts</a>.</p>
 			</li>
 			<li>
-				<p>KnownId - Added: “DiagnosticDieselExhaustFluidId”, ”DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”</p>
+				<p>KnownId - Added: "DiagnosticDieselExhaustFluidId”, ”DiagnosticDieselParticulateFilterLampId”, "DiagnosticPowerTakeoffEngagedId”, "DiagnosticPowerTakeoffTotalFuelUsedId”</p>
 			</li>
 			<li>
-				<p>KnownId - Removed: “DiagnosticBluetoothBeaconOutOfRangeId”</p>
+				<p>KnownId - Removed: "DiagnosticBluetoothBeaconOutOfRangeId”</p>
 			</li>
 			<li>
-				<p>Trailer - Added “Groups” property. Trailers can now be added to groups.</p>
+				<p>Trailer - Added "Groups” property. Trailers can now be added to groups.</p>
 			</li>
 			<li>
-				<p>TrailerSearch - Added property groups. Search for Trailers that are members of these GroupSearch(s) one of it’s children or one of it’s parents.</p>
+				<p>TrailerSearch - Added property groups. Search for Trailers that are members of these GroupSearch(s) one of it's children or one of it's parents.</p>
 			</li>
 			<li>
-				<p>*SecurityIdentifier - Added: “RepairDVIR”</p>
+				<p>*SecurityIdentifier - Added: "RepairDVIR”</p>
 			</li>
 		</ul>
 	</div>
@@ -2262,10 +2262,10 @@ const update1610: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>KnownId - Added: “DiagnosticDieselExhaustFluidId”, “DiagnosticDieselParticulateFilterLampId”, “DiagnosticPowerTakeoffEngagedId”, “DiagnosticPowerTakeoffTotalFuelUsedId”</p>
+				<p>KnownId - Added: "DiagnosticDieselExhaustFluidId”, "DiagnosticDieselParticulateFilterLampId”, "DiagnosticPowerTakeoffEngagedId”, "DiagnosticPowerTakeoffTotalFuelUsedId”</p>
 			</li>
 			<li>
-				<p>HosRuleSet - Added: “Florida7Day”, “Florida8Day”, “FloridaShortHaul7Day”, “FloridaShortHaul8Day”</p>
+				<p>HosRuleSet - Added: "Florida7Day”, "Florida8Day”, "FloridaShortHaul7Day”, "FloridaShortHaul8Day”</p>
 			</li>
 		</ul>
 		<h2>New Objects</h2>
@@ -2280,7 +2280,7 @@ const update1610: ReactNode = (
 const update1609: ReactNode = (
 	<div className="paragraph">
 		<ul>
-			<li>KnownId - “DiagnosticRamFailure” name fixed to be “DiagnosticRamFailureId”</li>
+			<li>KnownId - "DiagnosticRamFailure” name fixed to be "DiagnosticRamFailureId”</li>
 		</ul>
 	</div>
 );
@@ -2289,31 +2289,31 @@ const update1608: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>MessageContentType - Added: “DriverWhiteList”</p>
+				<p>MessageContentType - Added: "DriverWhiteList”</p>
 			</li>
 			<li>
-				<p>DutyStatusLogType - Added: “PC” (Personal conveyance driver status), “YM” (Yard move driver status), “WT” (Wait time oil well driver status).</p>
+				<p>DutyStatusLogType - Added: "PC” (Personal conveyance driver status), "YM” (Yard move driver status), "WT” (Wait time oil well driver status).</p>
 			</li>
 			<li>
-				<p>FuelTransaction - Added “ProductType” property.</p>
+				<p>FuelTransaction - Added "ProductType” property.</p>
 			</li>
 			<li>
-				<p>FuelTransactionProvider - Added “WexLegacy”, “Fuelman” and “Comdata”.</p>
+				<p>FuelTransactionProvider - Added "WexLegacy”, "Fuelman” and "Comdata”.</p>
 			</li>
 			<li>
-				<p>GoDevice - Added “GoTalkLanguage” property.</p>
+				<p>GoDevice - Added "GoTalkLanguage” property.</p>
 			</li>
 			<li>
-				<p>User - Added “IsYardMoveEnabled” and “IsPersonalConveyanceEnabled” properties.</p>
+				<p>User - Added "IsYardMoveEnabled” and "IsPersonalConveyanceEnabled” properties.</p>
 			</li>
 			<li>
-				<p>HosRuleSet - Added “OilWell7Day”, “OilWell7DayBig”, “OilWell8Day”, “OilWell8DayBig”, “AmericaTexas”, “AmericaTexasShortHaul”, “OilTransportTexas”, “OilWellTexas”, “AmericaShortHaul8Day”, “AmericaShortHaulPassenger8Day”, “OilTransportShortHaul8Day”, “AmericaTexasShortHaul8Day”</p>
+				<p>HosRuleSet - Added "OilWell7Day”, "OilWell7DayBig”, "OilWell8Day”, "OilWell8DayBig”, "AmericaTexas”, "AmericaTexasShortHaul”, "OilTransportTexas”, "OilWellTexas”, "AmericaShortHaul8Day”, "AmericaShortHaulPassenger8Day”, "OilTransportShortHaul8Day”, "AmericaTexasShortHaul8Day”</p>
 			</li>
 			<li>
-				<p>KnownId - Added “DiagnosticSystemAlertId”</p>
+				<p>KnownId - Added "DiagnosticSystemAlertId”</p>
 			</li>
 			<li>
-				<p>TimeZoneInfo - Adjusted to support recently updated Windows times zones and the latest version of <a href="http://www.unicode.org/cldr/charts/dev/supplemental/zone_tzid.html">IANA/Windows</a> maped time zones. <a href="https://docs.google.com/document/d/1kjIhyqpgOg1wNHi3JkvV7uXVBzhl5stlZZxIVjXs1Fc/edit#">Click here for more info</a></p>
+				<p>TimeZoneInfo - Adjusted to support recently updated Windows times zones and the latest version of <a href="http://www.unicode.org/cldr/charts/dev/supplemental/zone_tzid.html" target="_blank" rel="noopener noreferrer">IANA/Windows</a> mapped time zones. <a href="https://docs.google.com/document/d/1kjIhyqpgOg1wNHi3JkvV7uXVBzhl5stlZZxIVjXs1Fc/edit#" target="_blank" rel="noopener noreferrer">Click here for more info</a></p>
 			</li>
 		</ul>
 		<h2>New Objects</h2>
@@ -2347,25 +2347,25 @@ const update1606: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>DiagnosticTypes - Added “GoFault”</p>
+				<p>DiagnosticTypes - Added "GoFault”</p>
 			</li>
 			<li>
-				<p>FuelTransactionProvider - Added “WexCustomer”, “Drive” and “FuelTracker”</p>
+				<p>FuelTransactionProvider - Added "WexCustomer”, "Drive” and "FuelTracker”</p>
 			</li>
 			<li>
-				<p>SecurityIdentifier - Added “EventOccurrenceList”,”ViewCertificates”,”ManageCertificates”</p>
+				<p>SecurityIdentifier - Added "EventOccurrenceList”,”ViewCertificates”,”ManageCertificates”</p>
 			</li>
 			<li>
-				<p>HosRuleSet - Added “AmericaSalesperson”</p>
+				<p>HosRuleSet - Added "AmericaSalesperson”</p>
 			</li>
 			<li>
 				<p>.Net: MachineSettings - Fix to work with ASP.Net Web API projects</p>
 			</li>
 			<li>
-				<p>.Net: DataToComponenet - Updated “Equals” method to compare payloads for equality</p>
+				<p>.Net: DataToComponenet - Updated "Equals” method to compare payloads for equality</p>
 			</li>
 			<li>
-				<p>.Net: DutyStatusOrigin - removed unused “Serializable” attribute</p>
+				<p>.Net: DutyStatusOrigin - removed unused "Serializable” attribute</p>
 			</li>
 			<li>
 				<p>.Net - Changes in API.cs to use HttpClient instead of HttpWebRequest in order to support .Net core in the future.</p>
@@ -2416,7 +2416,7 @@ const update1604: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">latest nuget package</a>. For more information, please visit the <a href="https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice">forum discussion</a>.</p>
+				<p>For security reasons, TLS 1.2 is being enforced on all servers. To fix the integration, please update to at least .NET 4.5 and use the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/" target="_blank" rel="noopener noreferrer">latest nuget package</a>. For more information, please visit the <a href="https://helpdesk.geotab.com/entries/108236723-TLS1-2-Upgrade-Notice" target="_blank" rel="noopener noreferrer">forum discussion</a>.</p>
 			</li>
 			<li>
 				<p>Driver has a new property: viewDriversOwnDataOnly. When set to true, a driver gains the ability to view their own driving data. ** .Net users will require a dll update*</p>
@@ -2473,7 +2473,7 @@ const update1512: ReactNode = (
 				<p>Fixed operator overloading for Id object in .Net dll (id1 == id2 is the same as id1.Equals(id2)) - <i>*If you are using dll version 5.7.1508-1511 this will require a dll update.</i></p>
 			</li>
 			<li>
-				<p>New addin: Trips Streetview added to <a href="https://github.com/Geotab/addin-trips-streetview">GitHub</a></p>
+				<p>New addin: Trips Streetview added to <a href="https://github.com/Geotab/addin-trips-streetview" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 			</li>
 		</ul>
 	</div>
@@ -2503,7 +2503,7 @@ const update1509: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>New SDK. Featuring the new <a href="https://geotab.github.io/sdk/software/api/runner.html">SDK Runner</a>, new methods and objects (<a href="https://geotab.github.io/sdk/software/api/reference/">click here to see the preview items</a>)</p>
+				<p>New SDK. Featuring the new <a href="https://geotab.github.io/sdk/software/api/runner.html" target="_blank" rel="noopener noreferrer">SDK Runner</a>, new methods and objects (<a href="https://geotab.github.io/sdk/software/api/reference/" target="_blank" rel="noopener noreferrer">click here to see the preview items</a>)</p>
 			</li>
 			<li>
 				<p>Code snippets in the reference documentation. Now you can see working examples of the methods as they are used in the runner.</p>
@@ -2697,7 +2697,7 @@ const update1508: ReactNode = (
 				<p><a href="https://github.com/Geotab/sdk-addin-samples" aria-label="Add-In examples in SDK documentation">Add-In examples</a> have been added to SDK documentation</p>
 			</li>
 			<li>
-				<p>When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendents, or both ancestors and descendents. See the ZoneSearch object in the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
+				<p>When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendants, or both ancestors and descendants. See the ZoneSearch object in the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
 			</li>
 			<li>
 				<p>Fix documentation for object properties</p>
@@ -2721,7 +2721,7 @@ const update1508: ReactNode = (
 				<p><a href="/sdk/software/api/reference/">API Reference</a>, objects now show properties from inherited classes. For example GoDevice extends Device and will show properties of GoDevice and Device in the documentation</p>
 			</li>
 			<li>
-				<p>Geotab Announces New <a href="https://www.geotab.com/dev-channel/">DEV Channel</a> for Developers</p>
+				<p>Geotab Announces New <a href="https://www.geotab.com/dev-channel/" target="_blank" rel="noopener noreferrer">DEV Channel</a> for Developers</p>
 			</li>
 		</ul>
 	</div>
@@ -2754,13 +2754,13 @@ const update1502: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p>Get <i>all</i> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly">see forum post</a>)</p>
+				<p>Get <i>all</i> zones now populating points correctly (<a href="https://helpdesk.geotab.com/entries/26004844-Get-Zone-return-distinct-points" aria-label="forum post about zones populating points correctly" target="_blank" rel="noopener noreferrer">see forum post</a>)</p>
 			</li>
 			<li>
 				<p>Fixed TimeZoneInfo isDaylightSavingsSupported always false using .Net API client</p>
 			</li>
 			<li>
-				<p>Units of measure have been converted to use Known Id’s (<a href="https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId" aria-label="forum post about using known Ids">see forum post</a>)</p>
+				<p>Units of measure have been converted to use Known Id's (<a href="https://helpdesk.geotab.com/entries/52897090-MyGeotab-SDK-Update-KnownId" aria-label="forum post about using known Ids" target="_blank" rel="noopener noreferrer">see forum post</a>)</p>
 			</li>
 			<li>
 				<p>Adding, setting and removing of some entities has been disabled via the API. Exception Event, Trip, Status Data, Fault Data, Log Record with exceptions for adding odometer and engine hours adjustments and dismissing faults</p>
@@ -2769,7 +2769,7 @@ const update1502: ReactNode = (
 				<p>Clearer documentation of date and long values in <a href="../reference">API Reference</a></p>
 			</li>
 			<li>
-				<p>Data Feed section added to Guides portion of SDK (<a href="https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit">see document</a>)</p>
+				<p>Data Feed section added to Guides portion of SDK (<a href="https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit" target="_blank" rel="noopener noreferrer">see document</a>)</p>
 			</li>
 		</ul>
 	</div>
@@ -2833,12 +2833,12 @@ const pageSections: TableOfContentsItem[] = [
 	},
 	{
 		"elementId": "2004",
-		"summary": "5.7.2104",
+		"summary": "5.7.2004",
 		"details": update2004
 	},
 	{
 		"elementId": "2003",
-		"summary": "5.7.2103",
+		"summary": "5.7.2003",
 		"details": update2003
 	},
 	{
@@ -3041,9 +3041,6 @@ const pageSections: TableOfContentsItem[] = [
 export default function whatsNew () {
     return (
 		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-			<div className="paragraph">
-				
-			</div>
 			{pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
 		</Page>
     );
