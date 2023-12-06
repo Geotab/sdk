@@ -123,6 +123,28 @@
 
 }
 
+.methods {
+  &__method-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__view-button {
+    text-decoration: none;
+  }
+}
+
+.objects {
+  &__object-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__view-button {
+    text-decoration: none;
+  }
+}
+
 .landing-page__text-container {
   margin-right: 8px;
 }
