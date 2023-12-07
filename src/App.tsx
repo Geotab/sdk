@@ -22,6 +22,7 @@ import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
+import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -70,6 +71,7 @@ function App() {
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
