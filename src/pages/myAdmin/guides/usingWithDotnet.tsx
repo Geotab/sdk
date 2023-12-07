@@ -91,7 +91,7 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function usingWithDotnet() {
     return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle}>
+        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
         </Page>
     )
