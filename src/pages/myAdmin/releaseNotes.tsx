@@ -694,7 +694,7 @@ const updateApril112022: ReactNode = (
         This API is for Partners who produce third-party products only.
       </li>
     </ul>
-    <h2>Shutdown complete — disabled GET requests used for authentication</h2>
+    <h2>Shutdown Complete — Disabled GET Requests Used for Authentication</h2>
     <ul>
       <li>
         For several months, we have communicated that we will disable <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests to the MyAdmin API for increased security.
@@ -712,13 +712,13 @@ const updateApril112022: ReactNode = (
 const updateMarch252022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
-    <h2>Updated character limit for Reseller Reference</h2>
+    <h2>Updated Character Limit for Reseller Reference</h2>
     <ul>
       <li>
         We've made changes to our current character limit for the Reseller Reference field. We have increased the limit from 250 characters to 500 characters.
       </li>
     </ul>
-    <h2>Shutdown imminent — disable GET requests used for authentication</h2>
+    <h2>Shutdown Imminent — Disable GET Requests Used for Authentication</h2>
     <ul>
       <li>
         Effective March 31, 2022, GET requests will be disabled. POST requests will continue to be supported. If GET requests are used for authentication purposes, users will receive the following error message: “405 Method Not Allowed.”
@@ -737,7 +737,7 @@ const updateFebruary282022: ReactNode = (
       </li>
     </ul>
     <p className="tag__coming-soon">Coming Soon</p>
-    <h2>Disable GET Requests used for Authentication</h2>
+    <h2>Disable GET Requests Used for Authentication</h2>
     <ul>
       <li>
         In an upcoming release, <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests will be disabled to the MyAdmin API for increased security.
@@ -768,7 +768,7 @@ const updateJanuary312022: ReactNode = (
       </li>
     </ul>
     <p className="tag__coming-soon">Coming Soon</p>
-    <h2>Disable GET Requests used for Authentication</h2>
+    <h2>Disable GET Requests Used for Authentication</h2>
     <ul>
       <li>
         In an upcoming release, <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests will be disabled to the MyAdmin API for increased security.
