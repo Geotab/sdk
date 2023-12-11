@@ -82,6 +82,12 @@ export default function Navbar(props: any) {
           <Link to="/drive/addIns/driveAddIns">Drive Add-Ins</Link>
         </div>
       </div>
+      <div>
+        MyAdmin
+        <div>
+          <Link to="/myAdmin/introduction">MyAdmin SDK Introduction</Link>
+        </div>
+      </div>
     </div>
     </div>
   );
