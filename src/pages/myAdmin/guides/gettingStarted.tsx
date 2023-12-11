@@ -22,7 +22,7 @@ const accessApi: ReactNode = (
         <p>
             The API supports POST requests only.
         </p>
-        <h3>Test Environment</h3>
+        <h2>Test Environment</h2>
         <p>
             A sandbox environment is a testing environment that is available to developers who wish to test their application before making API calls to the live system. The test environment can be accessed at:
         </p>
@@ -107,7 +107,7 @@ const pageSections: TableOfContentsItem[] =
     }, {
 
         "elementId": "myadmin-whats-next",
-        "summary": "What's next?",
+        "summary": "What's Next?",
         "details": whatsNext
     }];
 
