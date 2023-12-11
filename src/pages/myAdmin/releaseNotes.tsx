@@ -6,9 +6,6 @@ import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
 import Accordion from "../../components/Accordion/Accordion";
-import CodeSample from "../../components/CodeSamplesContainer/CodeSample";
-import InformationalBox from "../../components/InformationalBox/InformationalBox";
-
 
 const updateDecember042023: ReactNode = (
   <div className="paragraph">
@@ -22,7 +19,6 @@ const updateDecember042023: ReactNode = (
   </div>
 );
 
-
 const updateOctober042023: ReactNode = (
   <div className="paragraph">
     <p className="tag__coming-soon">Coming Soon</p>
@@ -34,7 +30,6 @@ const updateOctober042023: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateSeptember052023: ReactNode = (
   <div className="paragraph">
@@ -84,7 +79,6 @@ const updateSeptember052023: ReactNode = (
   </div>
 );
 
-
 const updateJuly292023: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -125,7 +119,6 @@ const updateJuly292023: ReactNode = (
   </div>
 );
 
-
 const updateJuly102023: ReactNode = (
   <div className="paragraph">
     <p className="tag__coming-soon">Coming Soon</p>
@@ -157,7 +150,6 @@ const updateJuly102023: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateJuly012023: ReactNode = (
   <div className="paragraph">
@@ -230,7 +222,6 @@ const updateJuly012023: ReactNode = (
   </div>
 );
 
-
 const updateMay292023: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -242,7 +233,6 @@ const updateMay292023: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateMarch272023: ReactNode = (
   <div className="paragraph">
@@ -256,7 +246,6 @@ const updateMarch272023: ReactNode = (
   </div>
 );
 
-
 const updateMarch062023: ReactNode = (
   <div className="paragraph">
     <p className="tag__coming-soon">Coming Soon</p>
@@ -268,7 +257,6 @@ const updateMarch062023: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateFebruary132023: ReactNode = (
   <div className="paragraph">
@@ -285,7 +273,6 @@ const updateFebruary132023: ReactNode = (
   </div>
 );
 
-
 const updateJanuary232023: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -300,7 +287,6 @@ const updateJanuary232023: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateDecember122022: ReactNode = (
   <div className="paragraph">
@@ -329,7 +315,6 @@ const updateDecember122022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateDecember052022: ReactNode = (
   <div className="paragraph">
@@ -368,7 +353,6 @@ const updateDecember052022: ReactNode = (
   </div>
 );
 
-
 const updateNovember142022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -401,7 +385,6 @@ const updateNovember142022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateSeptember192022: ReactNode = (
   <div className="paragraph">
@@ -462,7 +445,6 @@ const updateSeptember192022: ReactNode = (
   </div>
 );
 
-
 const updateSeptember122022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -513,7 +495,6 @@ const updateSeptember122022: ReactNode = (
   </div>
 );
 
-
 const updateAugust172022: ReactNode = (
   <div className="paragraph">
     <p className="tag__coming-soon">Coming Soon</p>
@@ -553,7 +534,6 @@ const updateAugust172022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateJuly112022: ReactNode = (
   <div className="paragraph">
@@ -595,7 +575,6 @@ const updateJuly112022: ReactNode = (
   </div>
 );
 
-
 const updateJune202022: ReactNode = (
   <div className="paragraph">
     <p className="tag__coming-soon">Coming Soon</p>
@@ -610,7 +589,6 @@ const updateJune202022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateJune062022: ReactNode = (
   <div className="paragraph">
@@ -655,7 +633,6 @@ const updateJune062022: ReactNode = (
   </div>
 );
 
-
 const updateMay162022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -696,7 +673,6 @@ const updateMay162022: ReactNode = (
   </div>
 );
 
-
 const updateApril112022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -733,7 +709,6 @@ const updateApril112022: ReactNode = (
   </div>
 );
 
-
 const updateMarch252022: ReactNode = (
   <div className="paragraph">
     <p className="tag__updates">Updates</p>
@@ -751,7 +726,6 @@ const updateMarch252022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateFebruary282022: ReactNode = (
   <div className="paragraph">
@@ -774,7 +748,6 @@ const updateFebruary282022: ReactNode = (
     </ul>
   </div>
 );
-
 
 const updateJanuary312022: ReactNode = (
   <div className="paragraph">
