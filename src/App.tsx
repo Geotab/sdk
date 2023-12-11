@@ -32,6 +32,7 @@ import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
+import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 
 
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
