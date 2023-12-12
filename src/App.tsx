@@ -22,7 +22,7 @@ import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
-import Ble from "./pages/hardware/guides/ble";
+import Ble from "./pages/hardware/protocolReference/ble";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -72,7 +72,7 @@ function App() {
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
-          <Route path="/hardware/guides/ble" Component={Ble} />
+          <Route path="/hardware/protocolReference/ble" Component={Ble} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />

@@ -1011,7 +1011,7 @@ const advertisingPacket: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Add-On Protocol - BLE",
-    "breadCrumbItems": ["Hardware", "Protocols", "BLE"]
+    "breadCrumbItems": ["Hardware", "Protocol Reference", "BLE"]
 };
 
 const pageSections: TableOfContentsItem[] = [
