@@ -1599,7 +1599,7 @@ const appendices: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Add-On Protocol - RS232 & USB",
-    "breadCrumbItems": ["Hardware", "Guides", "RS232 & USB"]
+    "breadCrumbItems": ["Hardware", "Protocol Reference", "RS232 & USB"]
 };
 
 const pageSections: TableOfContentsItem[] = [

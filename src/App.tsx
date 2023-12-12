@@ -22,7 +22,7 @@ import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
-import Rs232Usb from "./pages/hardware/guides/rs232Usb";
+import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -71,7 +71,7 @@ function App() {
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-          <Route path="/hardware/guides/rs232-usb" Component={Rs232Usb} />
+          <Route path="/hardware/protocolReference/rs232-usb" Component={Rs232Usb} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
