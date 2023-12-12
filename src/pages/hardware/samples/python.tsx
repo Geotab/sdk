@@ -187,7 +187,7 @@ const pageSections: TableOfContentsItem[] = [
 export default function Python() {
   return (
     <Page
-      section={HeaderSections.MyGeotab}
+      section={HeaderSections.Hardware}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
     >
