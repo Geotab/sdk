@@ -157,7 +157,7 @@ input[type="search"]::-webkit-search-results-decoration {
     flex-direction: column;
     flex: 1;
     width: 100%;
-    height: -webkit-fill-available;
+    height: 100%;
     max-height: 366px; /* Set a max-height to prevent overflow */
     overflow-y: auto;
 
@@ -328,14 +328,17 @@ input[type="search"]::-webkit-search-results-decoration {
 .Tabs-module_TabsContent__wDBJ4[data-state="active"] {
   display: flex;
   padding: 8px;
+  height: 400px;
   justify-content: center;
   align-items: center;
   gap: 8px;
   align-self: stretch;
   background-color: #fff;
 
-  /* Add a specific height only when .has-results is not active */
-  &:not(.has-results) {
-    height: 400px;
+  &.tab-container .has.results {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    height: auto;
   }
 }

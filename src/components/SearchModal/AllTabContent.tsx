@@ -28,13 +28,13 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
   };
 
   useEffect(() => {
-    if (inputValue.trim() !== "") { // Check if input is not empty or just spaces
+    if (inputValue.trim() !== "") {
       const results = fetchSearchResults(inputValue);
       setHasResults(results.length > 0);
       setSearchResults(results);
     } else {
       setHasResults(false);
-      setSearchResults([]); // Clear results when input is empty
+      setSearchResults([]);
     }
   }, [inputValue]);
 
@@ -52,17 +52,16 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
           <>
             {hasResults ? (
               <div className="custom-styling-for-results">
-                {/* Render custom styling when there are results */}
                 <ul className="horizontal-results-list">
                   {searchResults.map((item) => (
-                    <div className="results-item-container">
-                      <li key={item.id}>
+                    <div key={item.id} className="results-item-container">
+                      <li>
                         <div className="results-icon-container">
                           <APIReferenceIcon />
                         </div>
                         <div className="result-search-name">
-                          <span className='result-item-title'>{item.title}</span>
-                          <span className='result-item-group'>{item.group}</span>
+                          <span className="result-item-title">{item.title}</span>
+                          <span className="result-item-group">{item.group}</span>
                         </div>
                       </li>
                     </div>
@@ -71,11 +70,7 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
               </div>
             ) : (
               <div className="tab-search-not-found">
-                {/* Render the "tab-search-not-found" when there are no results */}
-                <img
-                  src={SearchNotFoundGraphic}
-                  alt="Search not found graphic"
-                />
+                <img src={SearchNotFoundGraphic} alt="Search not found graphic" />
                 <p>
                   No results found for <strong>"{inputValue}"</strong>
                 </p>
