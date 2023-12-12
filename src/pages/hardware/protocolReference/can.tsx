@@ -357,7 +357,7 @@ const appendix: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Add-On Protocol - CAN",
-    "breadCrumbItems": ["Hardware", "Guides", "CAN"]
+    "breadCrumbItems": ["Hardware", "Protocol Reference", "CAN"]
 };
 
 const pageSections: TableOfContentsItem[] = [
