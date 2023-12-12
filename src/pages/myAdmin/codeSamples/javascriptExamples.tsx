@@ -72,7 +72,7 @@ const pageTitle: PageTitleProps = {
 
 export default function JavascriptExamples() {
   return (
-    <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle}>
+    <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
       <div className="paragraph">
         <p>
           The example below demonstrates a simple JavaScript application that
