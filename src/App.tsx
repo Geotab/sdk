@@ -18,6 +18,7 @@ import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
+import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import HardwareIntroduction from "./pages/hardware/introduction";
@@ -26,8 +27,11 @@ import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
+import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
 import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
+import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
+import ApiClients from "./pages/myGeotab/apiClients";
 
 
 
@@ -40,6 +44,7 @@ function App() {
           <Route path="/sdk" Component={LandingPage} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
           <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+          <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
           <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
@@ -49,8 +54,10 @@ function App() {
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
+          <Route path="/myGeotab/guides/mgMediaFiles" Component={MgMediaFiles} />
 
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={usingInDotnet} />
+          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
@@ -58,6 +65,7 @@ function App() {
           <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
 
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
+          <Route path="/method/:methodId" element={<MyGeotabMethod />}/> 
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />

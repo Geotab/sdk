@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { MenuProvider } from "./menuContext";
-import "./index.css";
+import "./index.scss";
 import './App.scss';
 import App from "./App";
+import { CodeSampleLightDarkModeProvider } from "./components/CodeSamplesContainer/CodeSampleLightDarkModeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <MenuProvider>
-      <App />
+      <CodeSampleLightDarkModeProvider>
+        <App />
+      </CodeSampleLightDarkModeProvider>
     </MenuProvider>
   </React.StrictMode>
 );
