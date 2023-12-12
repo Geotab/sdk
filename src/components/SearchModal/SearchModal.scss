@@ -24,10 +24,29 @@
   width: 705px;
   height: 520px;
   border-radius: 8px;
-  background: var(--backgrounds-main, #fff);
+  background: $background-main;
 
   /* Dropshadow_Default */
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* clears the ‘X’ from Internet Explorer -> https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb*/
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
 
 /* Search modal header container styling*/
@@ -47,8 +66,8 @@
     align-self: stretch;
 
     border-radius: 4px;
-    border: 1px solid var(--borders-general, #c0ccd8);
-    background: var(--backgrounds-main, #fff);
+    border: 1px solid $borders-general;
+    background: $background-main;
 
     .search-modal-input-field {
       display: flex;
@@ -65,11 +84,26 @@
       outline: none;
 
       overflow: hidden;
-      color: var(--text-placeholder, #8da4b9);
-      font-feature-settings: "clig" off, "liga" off;
+      color: $text-placeholder;
       text-overflow: ellipsis;
       white-space: nowrap;
 
+      /* caption-01 */
+      font-size: $font-size-small;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+      letter-spacing: 0.32px;
+    }
+
+    /* Add the custom styling for the inputted text */
+    .search-modal-input-field.has-value .modal-search-input {
+      overflow: hidden;
+      color: $text-primary;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      /* caption-01 */
       font-size: $font-size-small;
       font-style: normal;
       font-weight: 400;
@@ -79,11 +113,17 @@
 
     .modal-search-icon {
       display: flex;
-      width: 16px;
-      height: 16px;
-      padding: 0.123px 0.184px 0.169px 0.121px;
       justify-content: center;
       align-items: center;
+    }
+
+    .clear-search-button {
+      display: flex;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 8px;
     }
   }
 }
@@ -93,16 +133,17 @@
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  background: #fff;
+  background: $background-main;
   height: 100%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
-  border-bottom: 1px solid var(--backgrounds-content-1, #f2f5f7);
+  border-bottom: 1px solid $backgrounds-content-1;
 
   .tab-search-icon {
-    width: 14px;
-    height: 14px;
+    width: 11.771px;
+    height: 11.781px;
+    flex-shrink: 0;
   }
 
   .tab-container {
@@ -118,13 +159,80 @@
     letter-spacing: 0.32px;
   }
 
-  .Tabs-module_TabsRoot__tfB8h {
-    background-color: #fff;
-    // width: 100%;
-    // height: 100%;
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: $actions-secondary-default;
+
+    /* Desktop/caption-01 */
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.32px;
+
+    .has-value {
+      display: flex;
+      height: 16px;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1 0 0;
+      overflow: hidden;
+      color: $text-primary;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      /* caption-01 */
+
+      font-size: $font-size-small;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+      letter-spacing: 0.32px;
+    }
   }
 
-  #All {
+  .tab-search-not-found {
+    color: $actions-secondary-default;
+    text-align: center;
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.32px;
+  }
+
+  .modal-search-icon.hidden {
+    display: none;
+  }
+
+  /* NOTE: The Geotab tab component renders the content of the tabs as below and so far, the only way to properly add custom styling is by targeting the specific class and data-state or it will apply styling to all tab components horizontally
+  <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r9h:-trigger-All" id="All" tabindex="0" class="Tabs-module_TabsContent__wDBJ4" style=""><div class="tab-container"><div class="tab-search-icon"></div></div></div>*/
+
+  .Tabs-module_TabsRoot__tfB8h {
+    background-color: $background-main;
+  }
+
+  .Tabs-module_tabsWrapper__vprxe {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    margin: 0px;
+    border-bottom: 1px solid $backgrounds-content-1;
+  }
+
+  .Tabs-module_tabsContainer__LLjH7 {
+    margin: 0px 16px;
+    border-bottom: 1px solid $backgrounds-content-1;
+  }
+
+  .Tabs-module_TabsContent__wDBJ4:not([data-state="active"]) {
+    display: none; 
+  }
+
+  .Tabs-module_TabsContent__wDBJ4[data-state="active"] {
     display: flex;
     height: 350px;
     padding: 8px;
@@ -132,21 +240,6 @@
     align-items: center;
     gap: 8px;
     align-self: stretch;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background-color: $background-main;
   }
-
-  // .Tabs-module_TabsContent__wDBJ4 {
-  //   flex-grow: 1;
-  //   border-bottom-left-radius: 8px;
-  //   border-bottom-right-radius: 8px;
-  //   outline: none;
-  //   padding: 8px 24px;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center; /* Center content vertically */
-  //   align-items: center; /* Center content horizontally */
-  // }
 }
-
-/* Search modal results container styling */

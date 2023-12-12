@@ -1,7 +1,7 @@
 import * as React from "react";
 import { LogoProps } from "@geotab/react-component-library";
 
-export const ClearSearchInputXIcon = React.forwardRef<SVGSVGElement, LogoProps>(() => {
+export const IconClearSearch = React.forwardRef<SVGSVGElement, LogoProps>(() => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,3 @@ export const ClearSearchInputXIcon = React.forwardRef<SVGSVGElement, LogoProps>(
   );
 });
 
-ClearSearchInputXIcon.displayName = "ClearSearchInputXIcon";

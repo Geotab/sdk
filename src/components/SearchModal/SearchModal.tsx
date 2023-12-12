@@ -1,6 +1,9 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import { IconSearch, Tabs } from "@geotab/react-component-library";
-import { APIReferenceIcon, GuidesIcon } from "../SearchModal"; 
+import { APIReferenceIcon, GuidesIcon, IconClearSearch } from "../SearchModal";
+import AllTabContent from "./AllTabContent";
+import APIReferenceContent from "./APIReferenceContent";
+import GuidesContent from "./GuidesContent";
 import "./SearchModal.scss";
 
 interface SearchModalProps {
@@ -11,6 +14,7 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [inputValue, setInputValue] = useState("");
 
   const handleOutsideClick = useCallback(
     (event: MouseEvent) => {
@@ -51,39 +55,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null;
 
-  const tabsContent = (
-    <Tabs
-      defaultTab=""
-      tabs={[
-        {
-          name: "All",
-          content: (
-            <div className="tab-container">
-              <div className="tab-search-icon">
-                <IconSearch width="14px" height="14px"/>
-              </div>
-              <div className="tab-content">Start typing to search</div>
-            </div>
-          ),
-          icon: IconSearch,
-          disabled: false
-        },
-        {
-          name: "API Reference",
-          content: "",
-          icon: APIReferenceIcon,
-          disabled: false
-        },
-        {
-          name: "Guides",
-          content: "",
-          icon: GuidesIcon,
-          disabled: false
-        },
-      ]}
-    />
-  );
-
   return (
     <div
       className="search-modal-backdrop"
@@ -91,25 +62,59 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       aria-labelledby="search-modal"
     >
       <div className="search-modal-container" ref={modalRef}>
-        {/* Search modal header container */}
         <div className="search-modal-header-container">
           <div className="search-modal-input-field-container">
-            <div className="search-modal-input-field">
+            <div
+              className={`search-modal-input-field ${inputValue ? "has-value" : ""
+                }`}
+            >
               <div className="modal-search-icon">
-                <IconSearch />
+                <IconSearch width="16px" height="16px" />
               </div>
               <input
                 ref={inputRef}
                 className="modal-search-input"
                 type="search"
                 placeholder="Search"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
               />
+              {inputValue && (
+                <button
+                  className="clear-search-button"
+                  onClick={() => setInputValue("")}
+                >
+                  <IconClearSearch />
+                </button>
+              )}
             </div>
           </div>
         </div>
-        {/* Search modal tabs container */}
-        <div className="search-modal-tabs-container">{tabsContent}</div>
-        {/* <div className="search-modal-tabs-container></div> */}
+        <div className="search-modal-tabs-container">
+          <Tabs
+            defaultTab=""
+            tabs={[
+              {
+                name: "All",
+                content: <AllTabContent inputValue={inputValue} />,
+                icon: IconSearch,
+                disabled: false,
+              },
+              {
+                name: "API Reference",
+                content: <APIReferenceContent inputValue={inputValue} />,
+                icon: APIReferenceIcon,
+                disabled: false,
+              },
+              {
+                name: "Guides",
+                content: <GuidesContent inputValue={inputValue} />,
+                icon: GuidesIcon,
+                disabled: false,
+              },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
