@@ -1,5 +1,9 @@
 @import "../../variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 .search-modal-backdrop {
   box-sizing: border-box;
   display: flex;
@@ -16,7 +20,7 @@
 }
 
 .search-modal-container {
-  background-color: $lightGray;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -24,9 +28,7 @@
   width: 705px;
   height: 520px;
   border-radius: 8px;
-  background: $background-main;
-
-  /* Dropshadow_Default */
+  background-color: $background-main;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -49,114 +51,204 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-/* Search modal header container styling*/
+/* Search Modal Header Styles */
 .search-modal-header-container {
   display: flex;
-  padding: 16px;
   flex-direction: column;
-  align-items: flex-start;
+  padding: 16px;
   gap: 8px;
   align-self: stretch;
-
-  .search-modal-input-field-container {
-    display: flex;
-    padding: 8px;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-
-    border-radius: 4px;
-    border: 1px solid $borders-general;
-    background: $background-main;
-
-    .search-modal-input-field {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex: 1 0 0;
-    }
-
-    .modal-search-input {
-      display: flex;
-      align-items: center;
-      flex: 1 0 0;
-      border: none;
-      outline: none;
-
-      overflow: hidden;
-      color: $text-placeholder;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      /* caption-01 */
-      font-size: $font-size-small;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px; /* 133.333% */
-      letter-spacing: 0.32px;
-    }
-
-    /* Add the custom styling for the inputted text */
-    .search-modal-input-field.has-value .modal-search-input {
-      overflow: hidden;
-      color: $text-primary;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      /* caption-01 */
-      font-size: $font-size-small;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px; /* 133.333% */
-      letter-spacing: 0.32px;
-    }
-
-    .modal-search-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .clear-search-button {
-      display: flex;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      margin-left: 8px;
-    }
-  }
 }
 
-/* Search modal tabs container styling */
+.search-modal-input-field-container {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid $borders-general;
+  background-color: $background-main;
+}
+
+.search-modal-input-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+}
+
+.modal-search-input {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  color: $text-placeholder;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: $font-size-small;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.32px;
+}
+
+/* Add the custom styling for the inputted text */
+.search-modal-input-field.has-value .modal-search-input {
+  overflow: hidden;
+  color: $text-primary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clear-search-button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+/* Search Modal Tabs Styles */
 .search-modal-tabs-container {
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  background: $background-main;
-  height: 100%;
+  align-items: stretch;
+  background-color: $background-main;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-
   border-bottom: 1px solid $backgrounds-content-1;
+  overflow: auto; // Allow for vertical overflow
+}
 
-  .tab-search-icon {
-    width: 11.771px;
-    height: 11.781px;
-    flex-shrink: 0;
+.tab-search-icon {
+  display: flex;
+  height: 13px;
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  height: auto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  overflow: auto;
+
+  &.has-results {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    height: -webkit-fill-available;
+    max-height: 366px; /* Set a max-height to prevent overflow */
+    overflow-y: auto;
+
+    /* Styling for WebKit scrollbar */
+    &::-webkit-scrollbar {
+      width: 9px;
+      height: 226px;
+      border-radius: 5px;
+      background: #c1c1c1;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 99px;
+      background: #fafafa;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1; /* Thumb color */
+      border-radius: 5px; /* Rounded corners */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #c1c1c1; /* Hover state color */
+    }
   }
 
-  .tab-container {
+  .results-item-container {
     display: flex;
-    flex-direction: column;
+    padding: 8px;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    align-self: stretch;
 
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 133.333% */
-    letter-spacing: 0.32px;
+    .results-icon-container {
+      display: flex;
+      padding: 8px;
+      align-items: center;
+      gap: 12px;
+      align-self: stretch;
+    }
+
+    .result-search-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1 0 0;
+
+      .result-item-title {
+        color: $text-secondary;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
+
+      .result-item-group {
+        color: $text-secondary;
+        text-align: center;
+        font-size: $font-size-small;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; /* 133.333% */
+        letter-spacing: 0.32px;
+      }
+    }
+  }
+
+  .custom-styling-for-results {
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        display: flex;
+        padding: 8px;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+        border-radius: 8px;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
   }
 
   .tab-content {
@@ -207,39 +299,43 @@ input[type="search"]::-webkit-search-results-decoration {
   .modal-search-icon.hidden {
     display: none;
   }
+}
 
-  /* NOTE: The Geotab tab component renders the content of the tabs as below and so far, the only way to properly add custom styling is by targeting the specific class and data-state or it will apply styling to all tab components horizontally
+/* NOTE: The Geotab tab component renders the content of the tabs as below and so far, the only way to properly add custom styling is by targeting the specific class and data-state or it will apply styling to all tab components horizontally
   <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r9h:-trigger-All" id="All" tabindex="0" class="Tabs-module_TabsContent__wDBJ4" style=""><div class="tab-container"><div class="tab-search-icon"></div></div></div>*/
 
-  .Tabs-module_TabsRoot__tfB8h {
-    background-color: $background-main;
-  }
+.Tabs-module_TabsRoot__tfB8h {
+  background-color: $background-main;
+}
 
-  .Tabs-module_tabsWrapper__vprxe {
-    display: flex;
-    align-items: flex-start;
-    align-self: stretch;
-    margin: 0px;
-    border-bottom: 1px solid $backgrounds-content-1;
-  }
+.Tabs-module_tabsWrapper__vprxe {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  margin: 0px;
+  border-bottom: 1px solid $backgrounds-content-1;
+}
 
-  .Tabs-module_tabsContainer__LLjH7 {
-    margin: 0px 16px;
-    border-bottom: 1px solid $backgrounds-content-1;
-  }
+.Tabs-module_tabsContainer__LLjH7 {
+  margin: 0px 16px;
+  border-bottom: 1px solid $backgrounds-content-1;
+}
 
-  .Tabs-module_TabsContent__wDBJ4:not([data-state="active"]) {
-    display: none; 
-  }
+.Tabs-module_TabsContent__wDBJ4:not([data-state="active"]) {
+  display: none;
+}
 
-  .Tabs-module_TabsContent__wDBJ4[data-state="active"] {
-    display: flex;
-    height: 350px;
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-    background-color: $background-main;
+.Tabs-module_TabsContent__wDBJ4[data-state="active"] {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  background-color: #fff;
+
+  /* Add a specific height only when .has-results is not active */
+  &:not(.has-results) {
+    height: 400px;
   }
 }
