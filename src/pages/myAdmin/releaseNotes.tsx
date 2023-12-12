@@ -9,7 +9,6 @@ import Accordion from "../../components/Accordion/Accordion";
 
 const updateDecember042023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>ApiRatePlan</h2>
     <ul>
       <li>
@@ -21,7 +20,6 @@ const updateDecember042023: ReactNode = (
 
 const updateOctober042023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>PostOrder</h2>
     <ul>
       <li>
@@ -33,7 +31,6 @@ const updateOctober042023: ReactNode = (
 
 const updateSeptember052023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>GetDeviceContractsByPage & GetDeviceContracts</h2>
     <ul>
       <li>
@@ -81,7 +78,6 @@ const updateSeptember052023: ReactNode = (
 
 const updateJuly292023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>MyAdminAPIUser</h2>
     <ul>
       <li>
@@ -121,7 +117,6 @@ const updateJuly292023: ReactNode = (
 
 const updateJuly102023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>GetOnlineOrderStatus</h2>
     <ul>
       <li>
@@ -153,7 +148,6 @@ const updateJuly102023: ReactNode = (
 
 const updateJuly012023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>ProvisionDevicesBulk</h2>
     <ul>
       <li>
@@ -163,7 +157,6 @@ const updateJuly012023: ReactNode = (
         To help you manage large quantities of devices, we've added a new <strong>ProvisionDevicesBulk</strong> method to provision multiple third-party custom telematics devices or OEM in bulk with an optional quantity field.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>GetDeviceContractsByPage and GetDeviceContracts</h2>
     <ul>
       <li>
@@ -224,7 +217,6 @@ const updateJuly012023: ReactNode = (
 
 const updateMay292023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>GetPartnerDeviceContractsAsync</h2>
     <ul>
       <li>
@@ -236,7 +228,6 @@ const updateMay292023: ReactNode = (
 
 const updateMarch272023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>ApiDeviceContract</h2>
     <ul>
       <li>
@@ -248,7 +239,6 @@ const updateMarch272023: ReactNode = (
 
 const updateMarch062023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>ApiDeviceContract</h2>
     <ul>
       <li>
@@ -260,7 +250,6 @@ const updateMarch062023: ReactNode = (
 
 const updateFebruary132023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>GetPartnerDeviceContractsAsync</h2>
     <ul>
       <li>
@@ -275,7 +264,6 @@ const updateFebruary132023: ReactNode = (
 
 const updateJanuary232023: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>EditUserContact</h2>
     <ul>
       <li>
@@ -290,7 +278,6 @@ const updateJanuary232023: ReactNode = (
 
 const updateDecember122022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>DeviceContractsByPage</h2>
     <ul>
       <li>
@@ -306,7 +293,6 @@ const updateDecember122022: ReactNode = (
         The <code className="small-code-sample">OrderSource</code> parameter allows you to view a list of orders based on the channel used to place the order: MyAdmin, Marketplace, or API.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>EditUserContact</h2>
     <ul>
       <li>
@@ -318,7 +304,6 @@ const updateDecember122022: ReactNode = (
 
 const updateDecember052022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>DeviceContractTransactions</h2>
     <ul>
       <li>
@@ -343,7 +328,6 @@ const updateDecember052022: ReactNode = (
         The <strong>ForceChangePasswordForUsersAysync</strong> requires the <code className="small-code-sample">apikey</code>, <code className="small-code-sample">sessionID</code>, and a list of usernames <code className="small-code-sample">userNames</code>, and you must toggle <code className="small-code-sample">forceChangePassword</code> to True or False.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>EditUserContact</h2>
     <ul>
       <li>
@@ -355,7 +339,6 @@ const updateDecember052022: ReactNode = (
 
 const updateNovember142022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>ApiOnlineOrder</h2>
     <ul>
       <li>
@@ -388,7 +371,6 @@ const updateNovember142022: ReactNode = (
 
 const updateSeptember192022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>ApiDeviceContract</h2>
     <ul>
       <li>
@@ -413,7 +395,6 @@ const updateSeptember192022: ReactNode = (
         To search for orders that match an exact PO number, use double quotation marks.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>End of Life — MyAdmin APIs for Third-party Device Data Ingestion</h2>
     <ul>
       <li>
@@ -447,7 +428,6 @@ const updateSeptember192022: ReactNode = (
 
 const updateSeptember122022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>GetDeviceContracts</h2>
     <ul>
       <li>
@@ -457,7 +437,6 @@ const updateSeptember122022: ReactNode = (
         The API now identifies the Rate Plan of a specific device in real time, as opposed to only the deivce mode
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Moving the MyAdmin SDK Site</h2>
     <ul>
       <li>
@@ -497,7 +476,6 @@ const updateSeptember122022: ReactNode = (
 
 const updateAugust172022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Moving the MyAdmin SDK Site</h2>
     <ul>
       <li>
@@ -537,7 +515,6 @@ const updateAugust172022: ReactNode = (
 
 const updateJuly112022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Moving the MyAdmin SDK Site</h2>
     <ul>
       <li>
@@ -577,7 +554,6 @@ const updateJuly112022: ReactNode = (
 
 const updateJune202022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Orders</h2>
     <ul>
       <li>
@@ -592,7 +568,6 @@ const updateJune202022: ReactNode = (
 
 const updateJune062022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>ApiOrderHeader</h2>
     <ul>
       <li>
@@ -608,7 +583,6 @@ const updateJune062022: ReactNode = (
         When using these parameters, the other two parameters — <code className="small-code-sample">fromDate</code> and <code className="small-code-sample">toDate</code> — are not required.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Monthly Billing</h2>
     <ul>
       <li>
@@ -635,14 +609,12 @@ const updateJune062022: ReactNode = (
 
 const updateMay162022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>OnlineOrderStatus</h2>
     <ul>
       <li>
         The <strong>GetOnlineOrderStatus</strong> API has been updated to include a new parameter, <code className="small-code-sample">includeCancelledOrders</code>, which allows you to include cancelled orders in the search results.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>ApiOrderHeader</h2>
     <ul>
       <li>
@@ -675,7 +647,6 @@ const updateMay162022: ReactNode = (
 
 const updateApril112022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>PartnerDeviceContractsAsync</h2>
     <ul>
       <li>
@@ -711,7 +682,6 @@ const updateApril112022: ReactNode = (
 
 const updateMarch252022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>Updated Character Limit for Reseller Reference</h2>
     <ul>
       <li>
@@ -729,14 +699,12 @@ const updateMarch252022: ReactNode = (
 
 const updateFebruary282022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>DeviceContracts</h2>
     <ul>
       <li>
         The <strong>GetDeviceContracts</strong> method search functionality has been updated to support searching for OEM devices based on full or partial Purchase Order (PO) numbers.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Disable GET Requests Used for Authentication</h2>
     <ul>
       <li>
@@ -751,7 +719,6 @@ const updateFebruary282022: ReactNode = (
 
 const updateJanuary312022: ReactNode = (
   <div className="paragraph">
-    <p className="tag__updates">Updates</p>
     <h2>Generate Serial Numbers in Bulk</h2>
     <ul>
       <li>
@@ -767,7 +734,6 @@ const updateJanuary312022: ReactNode = (
         The NuGet package now includes common elements from the MyGeotab SDK. We leverage .NET Core instructions, so in order to use the new package any integrations using the old .NET Framework instructions must be updated.
       </li>
     </ul>
-    <p className="tag__coming-soon">Coming Soon</p>
     <h2>Disable GET Requests Used for Authentication</h2>
     <ul>
       <li>
