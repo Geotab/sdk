@@ -130,7 +130,7 @@ const pageSections: TableOfContentsItem[] = [
 export default function UsingWithJavascript() {
   return (
     <Page
-      section={HeaderSections.MyGeotab}
+      section={HeaderSections.MyAdmin}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
     >
