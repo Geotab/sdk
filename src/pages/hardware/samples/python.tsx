@@ -18,18 +18,18 @@ const spoofAnExternalDevice: ReactNode = (
 import time
       
 def checksum(message):
- b0 = 0
- b1 = 0   
- for i in range(0, len(message)):
-  b0 += int(message[i])
-  b1 += b0
- return bytes([b0%256, b1%256])
+    b0 = 0
+    b1 = 0   
+    for i in range(0, len(message)):
+        b0 += int(message[i])
+        b1 += b0
+    return bytes([b0%256, b1%256])
       
 def createMessage(message):
- message = bytes([0x02]) + message
- check = checksum(message)
- message = message + check + bytes([0x03])
- return message
+    message = bytes([0x02]) + message
+    check = checksum(message)
+    message = message + check + bytes([0x03])
+    return message
       
 # look for ttyUSB in Linux (ls /dev/tty\*)
 # with serial.Serial(port="/dev/ttyUSB0", baudrate = 9600, timeout=1) as tester:
@@ -42,36 +42,36 @@ print("['0x55']")
 tester.write(bytes([0x55]))
 print("waiting for handshake request...")
 readback = tester.read(6)
-      
+   
 print([hex(b) for b in readback])
       
 if len(readback) == 6 and readback[1] == 1:
- print("handshake request received")
- # send the handshake response
- deviceID = 4208 #4208 is a test Device ID
- handshakeResponse = createMessage(bytes([0x81, 4, deviceID%256, (deviceID >> 8)%256, 0, 0]))
- print("sending handshake response")
- print([hex(b) for b in handshakeResponse])
- tester.write(handshakeResponse)
- time.sleep(1)
- # send some status data
- statusDataID = 35349 #status data id of "Test engine measurement / fake data"
- dataValue = 200 #data value of 10 will show on MyGeotab (because of the conversion factor of 0.1 and offset of -10)
+    print("handshake request received")
+    # send the handshake response
+    deviceID = 4208 #4208 is a test Device ID
+    handshakeResponse = createMessage(bytes([0x81, 4, deviceID%256, (deviceID >> 8)%256, 0, 0]))
+    print("sending handshake response")
+    print([hex(b) for b in handshakeResponse])
+    tester.write(handshakeResponse)
+    time.sleep(1)
+    # send some status data
+    statusDataID = 35349 #status data id of "Test engine measurement / fake data"
+    dataValue = 200 #data value of 10 will show on MyGeotab (because of the conversion factor of 0.1 and offset of -10)
       
- dataMessage = createMessage(bytes([0x80, 6, statusDataID%256, (statusDataID >> 8)%256, dataValue%256, (dataValue >> 8)%256, 0, 0]))
+    dataMessage = createMessage(bytes([0x80, 6, statusDataID%256, (statusDataID >> 8)%256, dataValue%256, (dataValue >> 8)%256, 0, 0]))
       
- print("sending status data")
- print([hex(b) for b in dataMessage])
- tester.write(dataMessage)
- print("waiting for data ACK...")
- readback = tester.read(6)
+    print("sending status data")
+    print([hex(b) for b in dataMessage])
+    tester.write(dataMessage)
+    print("waiting for data ACK...")
+    readback = tester.read(6)
       
- print([hex(b) for b in readback])
+    print([hex(b) for b in readback])
       
- if len(readback) == 6 and readback[1] == 2:
-  print("data ACK received")
+    if len(readback) == 6 and readback[1] == 2:
+        print("data ACK received")
 else:
-  print("invalid response")`}
+    print("invalid response")`}
     />
     <p>If the script executes successfully against an awake (ideally with Ignition On) GO device, the output should resemble:</p>
     <CodeSample
@@ -108,18 +108,18 @@ const spoofAGODevice: ReactNode = (
 import time
 
 def checksum(message):
- b0 = 0
- b1 = 0
- for i in range(0, len(message)):
-  b0 += int(message[i])
-  b1 += b0
- return bytes([b0%256, b1%256])
+    b0 = 0
+    b1 = 0
+    for i in range(0, len(message)):
+        b0 += int(message[i])
+        b1 += b0
+    return bytes([b0%256, b1%256])
 
 def createMessage(message):
- message = bytes([0x02]) + message
- check = checksum(message)
- message = message + check + bytes([0x03])
- return message
+    message = bytes([0x02]) + message
+    check = checksum(message)
+    message = message + check + bytes([0x03])
+    return message
 
 # look for ttyUSB in Linux (ls /dev/tty\*)
 # with serial.Serial(port="/dev/ttyUSB1", baudrate = 9600, timeout = 60) as tester:
@@ -131,37 +131,36 @@ print("waiting for sync char...")
 readback = tester.read(1)
 
 if len(readback) and readback[0] == 0x55:
- print("sync char received")
- print([hex(b) for b in readback])
+    print("sync char received")
+    print([hex(b) for b in readback])
 
- handshakeRequest = createMessage(bytes([0x1, 0]))
- print("sending handshake request")
- print([hex(b) for b in handshakeRequest])
- tester.write(handshakeRequest)
+    handshakeRequest = createMessage(bytes([0x1, 0]))
+    print("sending handshake request")
+    print([hex(b) for b in handshakeRequest])
+    tester.write(handshakeRequest)
 
- print("waiting for handshake response...")
- readback = tester.read(10)
- print([hex(b) for b in readback])
+    print("waiting for handshake response...")
+    readback = tester.read(10)
+    print([hex(b) for b in readback])
 
- if len(readback) == 10 and readback[1] == 0x81:
-  print("handshake response received")
+    if len(readback) == 10 and readback[1] == 0x81:
+        print("handshake response received")
 
-  while(1):
-   print("waiting for status data...")
-   readback = tester.read(12)
-   print([hex(b) for b in readback])
+        while(1):
+            print("waiting for status data...")
+            readback = tester.read(12)
+            print([hex(b) for b in readback])
 
-   if len(readback) == 12 and readback[1] == 0x80:
-    print("status data received")
-    statusDataID = readback[3] + (readback[4] << 8)
-    dataValue = readback[5] + (readback[6] << 8)
-
-    print("status data id: " + str(statusDataID) + ", value: " + str(dataValue))
-    ackMessage = createMessage(bytes([0x2, 0x0]))
-    print("sending ack")
-    print([hex(b) for b in ackMessage])
-    tester.write(ackMessage)
-    break`}
+            if len(readback) == 12 and readback[1] == 0x80:
+                print("status data received")
+                statusDataID = readback[3] + (readback[4] << 8)
+                dataValue = readback[5] + (readback[6] << 8)
+                print("status data id: " + str(statusDataID) + ", value: " + str(dataValue))
+                ackMessage = createMessage(bytes([0x2, 0x0]))
+                print("sending ack")
+                print([hex(b) for b in ackMessage])
+                tester.write(ackMessage)
+                break`}
      />
   </div>
 );
