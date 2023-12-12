@@ -15,11 +15,23 @@ interface AllTabContentProps {
   inputValue: string;
 }
 
+const highlightMatch = (text: string, query: string) => {
+  const regex = new RegExp(`(${query})`, "gi");
+  return text.split(regex).map((part, index) =>
+    regex.test(part) ? (
+      <span className="search-result-match" key={index}>
+        {part}
+      </span>
+    ) : (
+      <span key={index}>{part}</span>
+    )
+  );
+};
+
 const AllTabContent = ({ inputValue }: AllTabContentProps) => {
   const [hasResults, setHasResults] = useState(false);
   const [searchResults, setSearchResults] = useState<ApiReferenceItem[]>([]);
 
-  // Function to fetch search results
   const fetchSearchResults = (query: string) => {
     const lowercaseQuery = query.toLowerCase();
     return apiReferenceData.filter((item) =>
@@ -60,8 +72,12 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
                           <APIReferenceIcon />
                         </div>
                         <div className="result-search-name">
-                          <span className="result-item-title">{item.title}</span>
-                          <span className="result-item-group">{item.group}</span>
+                          <span className="result-item-title">
+                            {highlightMatch(item.title, inputValue)}
+                          </span>
+                          <span className="result-item-group">
+                            {highlightMatch(item.group, inputValue)}
+                          </span>
                         </div>
                       </li>
                     </div>
@@ -70,7 +86,10 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
               </div>
             ) : (
               <div className="tab-search-not-found">
-                <img src={SearchNotFoundGraphic} alt="Search not found graphic" />
+                <img
+                  src={SearchNotFoundGraphic}
+                  alt="Search not found graphic"
+                />
                 <p>
                   No results found for <strong>"{inputValue}"</strong>
                 </p>

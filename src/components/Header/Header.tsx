@@ -91,6 +91,7 @@ export default function Header(props: any) {
             placeholder="Search..."
             onClick={openSearchModal}
             className="header-search-bar-input"
+            readOnly
           />
         </div>
       </div>

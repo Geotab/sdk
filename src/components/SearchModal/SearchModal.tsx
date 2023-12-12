@@ -18,10 +18,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const handleOutsideClick = useCallback(
     (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         onClose();
       }
     },
@@ -56,16 +53,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="search-modal-backdrop"
-      role="button"
-      aria-labelledby="search-modal"
-    >
+    <div className="search-modal-backdrop" role="button" aria-labelledby="search-modal">
       <div className="search-modal-container" ref={modalRef}>
         <div className="search-modal-header-container">
           <div className="search-modal-input-field-container">
             <div
-              className={`search-modal-input-field ${inputValue ? "has-value" : ""
+              className={`search-modal-input-field ${inputValue ? "search-has-value" : ""
                 }`}
             >
               <div className="modal-search-icon">
