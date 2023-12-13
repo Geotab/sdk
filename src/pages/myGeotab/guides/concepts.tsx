@@ -281,7 +281,7 @@ const httpCompression: ReactNode = (
             The MyGeotab API supports <i>brotli</i>, <i>gzip</i> and <i>deflate</i> compression. To use either of these compression methods, include the HTTP header for "Accept-Encoding”. For example:
         </p>
         <p>
-            <code className="small-code-sample">Accept-Encoding:</code> <code className="small-code-sample">brotli</code>, <code className="small-code-sample">gzip</code>, <code className="small-code-sample">deflate</code>
+            <code className="small-code-sample">Accept-Encoding: brotli, gzip, deflate</code>
         </p>
         <InformationalBox>If you are using an API client (.Net, JavaScript, Nodejs, etc.), the header is enabled automatically.</InformationalBox>
     </div>
@@ -373,7 +373,7 @@ const limits: ReactNode = (
             Example
         </h4>
         <CodeSample
-            language="json"
+            language="text"
             code={`
 X-Rate-Limit-Limit: 1m
 X-Rate-Limit-Remaining: 8
@@ -517,7 +517,7 @@ const id: ReactNode = (
     "typeName":"Trip",
     "search" : {
         "deviceSearch" : {
-        "id" : "b0a46"
+            "id" : "b0a46"
         }
     }
 }`
