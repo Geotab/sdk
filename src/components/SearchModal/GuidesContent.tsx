@@ -12,12 +12,10 @@ const GuidesContent = ({ inputValue }: GuidesTab) => {
     <div className="tab-container">
       <div className="tab-content">
         {inputValue === "" ? (
-          <>
-            <div className="tab-search-icon">
-              <IconSearch width="14px" height="14px" />
-            </div>
-            <span>Search Guides</span>
-          </>
+          <div className="empty-search-container">
+            <IconSearch width="13px" height="12px" />
+            <span>Start typing to search guides</span>
+          </div>
         ) : (
           <div className="tab-search-not-found">
             <img src={SearchNotFoundGraphic} alt="Search not found graphic" />

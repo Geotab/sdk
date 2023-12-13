@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IconSearch } from "@geotab/react-component-library";
-import SearchNotFoundGraphic from "./assets/SearchNotFoundGraphic.svg";
 import { APIReferenceIcon } from "./assets/APIReferenceIcon";
+import SearchNotFoundGraphic from "./assets/SearchNotFoundGraphic.svg";
 import apiReferenceData from "./mockSearchData";
 import "./SearchModal.scss";
 
@@ -40,63 +40,55 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
   };
 
   useEffect(() => {
-    if (inputValue.trim() !== "") {
-      const results = fetchSearchResults(inputValue);
-      setHasResults(results.length > 0);
-      setSearchResults(results);
-    } else {
+    const trimmedInputValue = inputValue.trim();
+    if (trimmedInputValue === "") {
       setHasResults(false);
       setSearchResults([]);
+    } else {
+      const results = fetchSearchResults(trimmedInputValue);
+      setHasResults(results.length > 0);
+      setSearchResults(results);
     }
   }, [inputValue]);
 
   return (
-    <div className={`tab-container ${hasResults ? "has-results" : ""}`}>
+    <div className={`tab-container ${hasResults ? "search-has-results" : ""}`}>
       <div className="tab-content">
         {inputValue === "" ? (
-          <>
-            <div className="tab-search-icon">
-              <IconSearch width="13px" height="12px" />
-            </div>
+          <div className="empty-search-container">
+            <IconSearch width="11.771px" height="11/781px" />
             <span>Start typing to search</span>
-          </>
-        ) : (
-          <>
-            {hasResults ? (
-              <div className="custom-styling-for-results">
-                <ul className="horizontal-results-list">
-                  {searchResults.map((item) => (
-                    <div key={item.id} className="results-item-container">
-                      <li>
-                        <div className="results-icon-container">
-                          <APIReferenceIcon />
-                        </div>
-                        <div className="result-search-name">
-                          <span className="result-item-title">
-                            {highlightMatch(item.title, inputValue)}
-                          </span>
-                          <span className="result-item-group">
-                            {highlightMatch(item.group, inputValue)}
-                          </span>
-                        </div>
-                      </li>
+          </div>
+        ) : hasResults ? (
+          <div className="custom-styling-for-results">
+            <ul className="horizontal-results-list">
+              {searchResults.map((item) => (
+                <div key={item.id} className="results-item-container">
+                  <li>
+                    <div className="results-icon-container">
+                      <APIReferenceIcon width="20px" height="20px" />
                     </div>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div className="tab-search-not-found">
-                <img
-                  src={SearchNotFoundGraphic}
-                  alt="Search not found graphic"
-                />
-                <p>
-                  No results found for <strong>"{inputValue}"</strong>
-                </p>
-                <p>Try using different keywords, or broadening your search.</p>
-              </div>
-            )}
-          </>
+                    <div className="result-search-name">
+                      <span className="result-item-title">
+                        {highlightMatch(item.title, inputValue)}
+                      </span>
+                      <span className="result-item-group">
+                        {highlightMatch(item.group, inputValue)}
+                      </span>
+                    </div>
+                  </li>
+                </div>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="tab-search-not-found">
+            <img src={SearchNotFoundGraphic} alt="Search not found graphic" />
+            <p>
+              No results found for <span className="search-not-found-text">"{inputValue}"</span>
+            </p>
+            <p>Try using different keywords, or broadening your search.</p>
+          </div>
         )}
       </div>
     </div>
