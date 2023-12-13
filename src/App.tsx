@@ -22,6 +22,8 @@ import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 import MyGeotabObject from "./pages/myGeotab/apiReference/object"
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
+
 import HardwareIntroduction from "./pages/hardware/introduction";
 
 import DriveIntroduction from "./pages/drive/introduction";
@@ -33,6 +35,7 @@ import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
+import Python from "./pages/hardware/samples/python";
 
 
 
@@ -71,7 +74,11 @@ function App() {
           <Route path="/myGeotab/apiReference/objects/:objectId" element={<MyGeotabObject />}/> 
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
+
+
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/hardware/samples/python" Component={Python} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
