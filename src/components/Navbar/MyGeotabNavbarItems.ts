@@ -23,73 +23,73 @@ export type SideNavigationMenuItemType = {
 export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
   {
     id: 0,
-    label: 'Introduction',
-    route: '/myGeotab/introduction',
+    label: "Introduction",
+    route: "/myGeotab/introduction",
     level: 0,
     order: 1,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconCircleInfo,
-    onClick: () => alert('Introduction clicked')
+    onClick: () => alert("Introduction clicked")
   },
   {
     id: 1,
-    label: 'Release Notes',
-    route: '/myGeotab/whatsNew',
+    label: "Release Notes",
+    route: "/myGeotab/whatsNew",
     level: 0,
     order: 2,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconStar,
-    onClick: () => alert('Installation clicked')
+    onClick: () => alert("Installation clicked")
   },
   {
     id: 2,
-    label: 'Guides',
+    label: "Guides",
     level: 0,
     order: 3,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconDocument,
     children: []
   },
   {
     id: 3,
-    label: 'Add-Ins',
+    label: "Add-Ins",
     level: 0,
     order: 4,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconPuzzlePiece,
     children: []
   },
   {
     id: 4,
-    label: 'API Reference',
+    label: "API Reference",
     level: 0,
     order: 5,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconDocumentWithMagnifyingGlass,
     children: []
   },
   {
     id: 5,
-    label: 'API Clients',
+    label: "API Clients",
     level: 0,
     order: 6,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconHexagonGear,
-    onClick: () => alert('API Clients clicked')
+    onClick: () => alert("API Clients clicked")
   },
   {
     id: 6,
-    label: 'Code Samples',
+    label: "Code Samples",
     level: 0,
     order: 7,
-    userTypes: ['admin', 'user'],
-    roles: ['admin', 'user'],
+    userTypes: ["admin", "user"],
+    roles: ["admin", "user"],
     Icon: IconCodeBox,
     children: []
   }

@@ -23,42 +23,42 @@ type SideNavigationMenuItemType = {
 export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
     {
         id: 0,
-        label: 'Introduction',
-        route: '/myGeotab/introduction',
+        label: "Introduction",
+        route: "/myGeotab/introduction",
         level: 0,
         order: 1,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconCircleInfo,
-        onClick: () => alert('Introduction clicked')
+        onClick: () => alert("Introduction clicked")
     },
     {
         id: 1,
-        label: 'Guides',
+        label: "Guides",
         level: 0,
         order: 2,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconDocument,
         children: []
     },
     {
         id: 2,
-        label: 'Protocol Reference',
+        label: "Protocol Reference",
         level: 0,
         order: 3,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconDocumentWithMagnifyingGlass,
         children: []
     },
     {
         id: 3,
-        label: 'Code Samples',
+        label: "Code Samples",
         level: 0,
         order: 4,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconCodeBox,
         children: []
     }

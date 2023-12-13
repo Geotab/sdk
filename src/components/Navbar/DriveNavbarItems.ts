@@ -23,22 +23,22 @@ type SideNavigationMenuItemType = {
 export const DriveNavbarItems: SideNavigationMenuItemType[] = [
     {
         id: 0,
-        label: 'Introduction',
-        route: '/myGeotab/introduction',
+        label: "Introduction",
+        route: "/myGeotab/introduction",
         level: 0,
         order: 1,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconCircleInfo,
-        onClick: () => alert('Introduction clicked')
+        onClick: () => alert("Introduction clicked")
     },
     {
         id: 1,
-        label: 'Add-Ins',
+        label: "Add-Ins",
         level: 0,
         order: 2,
-        userTypes: ['admin', 'user'],
-        roles: ['admin', 'user'],
+        userTypes: ["admin", "user"],
+        roles: ["admin", "user"],
         Icon: IconPuzzlePiece,
         children: []
     }
