@@ -52,7 +52,7 @@ Each Add-In created will have one configuration file. The configuration file is 
 
 The Add-In configuration file can specify the contents using either the Items, Files property, or a combination of both. It is recommended to use Items and externally referencing the source code to make development and debugging easier. When ready, the code can be embedded directly on Geotab's servers.
 
-## Example Add-In configuration file
+### Example Add-In configuration file
 
 The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.
 
@@ -76,6 +76,8 @@ The Add-In configuration file below demonstrates how to define a simple Add-In w
 ```
 
 Test the example above by navigating to Administration → System → System Settings → Add-Ins. Select New Add-In and paste the example in the configuration tab. Be sure to select save then refresh the page.
+
+### Page Add-in Navigation Menu Location
 
 Each Add-In can create a navigation entry in the left hand side menu. This allows quick and easy access to all of the Add-Ins. The placement of the navigation entry for the Add-In is specified in the configuration file, relative to another built-in navigation entry. In the section below, a navigation entry is placed directly after the Activity entry. A user with English as their interface language will see "English Menu Text" as the label. Note that we show only two properties for brevity.
 
@@ -115,12 +117,44 @@ Navigation entries cannot be set at the third level (sub-sub-menu) and below. If
 
 > A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
 
+### Redesigned Left-hand Navigation Menu
+There's a new navigation menu that's currently accessible via **Feature Preview**, this new navigation menu requires the new `category` menu item property for page add-in items.
+
+Possible category IDs:
+- `ProductivityId`
+- `ComplianceId`
+- `SafetyId`
+- `MaintenanceId`
+- `SustainabilityId`
+- `PeopleId`
+- `AddIns`
+- `GroupsAndRulesId`
+- `ReportsId`
+- `GettingStartedLinkId`
+- `SystemId`
+
+If you would like to place it inside a sub menu, then fill in the sub menu’s name as the 'category' value. The values can be found below: 
+- `PublicWorksId`
+- `HOSId`
+- `DiagnosticsId`
+- `RoutesId`
+- `AdvancedRoutingId`
+- `BasicRoutingId`
+- `TachographId`
+- `InstallationId`
+- `ReportSetupId`
+- `ZonesId`
+
+
+> [MyGeotab Add-ins: Introducing the Redesigned Left-hand Navigation Menu](https://docs.google.com/document/d/1zWboQArdttoMrVwNILe4vTh0hEKiBgI8Ch2vEcshlYE/edit?usp=sharing): This document goes into more details about the new menu.
+
 ### Table 2 — Menu item
 
 | **Name** | **Description** | **Type** |
 | --- | --- | --- |
 | URL | A URL to the HTML page to load when clicking on this menu item. | String |
 | path | Specifies where in the menu hierarchy this menu item should reside. It will follow the menuId specified or become a child item if a trailing slash is provided, such as `"ActivityLink/"`. | String |
+| category | Specifies where in the new navigation menu the item should reside. It will become a child item of the specified category ID, such as `"ProductivityId/"`. | String |
 | menuName | An object containing key value pairs for the text that appears on the menu item. The key is the language and the value is the text, for example: `{"EN", "New menu item"}`. | Object |
 | icon | (To be deprecated June 04 2021) A URL to the image (svg, png, jpg, etc.) that is placed in front of the menu item. Note that the current image size is 32x32 but it is recommended that SVG icons are used to allow for scaling. This property is to be deprecated and replaced by svgIcon for versions 2102 onward. During transition period, if both icon and svgIcon exist, svgIcon will higher priority ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/))   | String |
 | svgIcon | A URL to the svg image that is placed in front of the menu item. Since the image file type is a vector, you only need submit one file in any color. The icon file will be updated to the appropriate colors ([details here](https://www.geotab.com/blog/mygeotab-add-in-icons-specs/)). A validator is available [here](#add-in-icon-validator)   | String |
@@ -174,8 +208,6 @@ To place a [menu item](#table-2--menu-item) under a parent menu item you will us
 ### Referencing source items
 
 Each Add-In can define zero or more _items_ as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
-
-
 
 ### Table 4 — Button item
 
