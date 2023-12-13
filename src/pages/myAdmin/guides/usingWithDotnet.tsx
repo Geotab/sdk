@@ -89,7 +89,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function usingWithDotnet() {
+export default function UsingWithDotnet() {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
