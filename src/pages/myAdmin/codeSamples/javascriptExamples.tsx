@@ -94,7 +94,7 @@ export default function JavascriptExamples() {
         <p>
           <strong>Note</strong>: The Success callback receives the object
           returned by the API as a parameter. The{" "}
-          <a href="../../api/reference">{/*To do: fix link */}Reference</a> page
+          <a href="../../api/reference">{/*TODO: fix link */}Reference</a> page
           provides details about the objects returned by each method. In the
           example above, the error callback is called if the login fails. The
           error callback receives two parameters: an error message and an
