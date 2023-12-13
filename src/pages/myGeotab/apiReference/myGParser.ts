@@ -1,5 +1,3 @@
-import { OuterExpressionKinds } from "typescript";
-
 function extractSubstrings(input: string): string {
     const webMethodsMatch = input.match(/WebMethods\.([a-zA-Z]+)/);
     const dataStoreMatch = input.match(/DataStore\.([a-zA-Z]+)/);
@@ -21,7 +19,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
             for (let i = 0; i < item.length; i++) {
                 if (item[i].nodeName === "member") {
                     if (itemType === 'method' && itemStrings.some(method => item[i].attributes.name.nodeValue.includes(method))) {
-                        let methodName = extractSubstrings(item[i].attributes.name.nodeValue);
+                        let methodName = extractSubstrings(item[i].attributes.name.nodeValue).replace(/Async$/,"");
                         if (!json[methodName]) {
                             json[methodName] = {
                                 "description": "",
@@ -125,7 +123,8 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
 
                         if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel'))) {
                             let tagName = item[i].attributes.name.nodeValue.split('.');
-                            let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
+                            let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
+                            // console.log(objectName);
                             if (!json[objectName]) {
                                 json[objectName] = {
                                     "description": "",
@@ -224,8 +223,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                         }
                     }
-                    // console.log(item[i].attributes.name.nodeValue.split('.')[-1]);
-                    // if (itemType === 'object' && json.hasOwnProperty())
                 }
             }
         }

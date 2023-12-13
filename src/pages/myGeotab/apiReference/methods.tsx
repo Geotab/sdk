@@ -1,6 +1,7 @@
 import { Button } from '@geotab/react-component-library';
 import myGParser from './myGParser';
 import RenderStringWithUrl from './renderStringWithUrl';
+import sortAlphabetical from './sortAlphabetical';
 import { Link } from 'react-router-dom';
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -22,7 +23,7 @@ const pageSections: TableOfContentsItem[] = [
 
 ];
 
-const methods = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore']));
+const methods = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore'])).sort(sortAlphabetical);
 const methodItems = methods.map((methodDetails: any) => {
     sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
     let pageSectionObject = {

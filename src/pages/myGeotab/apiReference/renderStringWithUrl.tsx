@@ -19,6 +19,7 @@ export default function RenderStringWithLinks(text: string) {
         const segments: JSX.Element[] = [];
 
         let match;
+        console.log(content);
         while ((match = seeTagRegex.exec(content)) !== null) {
             const start = currentIndex;
             const end = match.index;
