@@ -74,7 +74,7 @@
   &__deviceManagementIMG {
     padding: 0.25rem;
     background-color: $lightGray;
-    border: 1px solid #DEE2E6;
+    border: 1px solid $img-border;
     border-radius: 0.25rem;
     max-width: 100%;
     height: auto;
@@ -82,7 +82,7 @@
 
 }
 
-.mapAddins {
+.mapAddins, .mgMediaFiles {
 
   &__docs-service {
     margin: 1rem 0;
@@ -121,6 +121,28 @@
     max-width: 100%;
   }
 
+}
+
+.methods {
+  &__method-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__view-button {
+    text-decoration: none;
+  }
+}
+
+.objects {
+  &__object-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__view-button {
+    text-decoration: none;
+  }
 }
 
 .landing-page__text-container {
