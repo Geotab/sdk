@@ -7,10 +7,26 @@ import {
   SideNavigationMenuItem
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
+import { HeaderSections } from "../Header/headerSectionsEnum";
+import { MyGeotabNavbarItems, SideNavigationMenuItemType } from "./MyGeotabNavbarItems";
+import { MyAdminNavbarItems } from "./MyAdminNavbarItems";
+import { DriveNavbarItems } from "./DriveNavbarItems";
+import { HardwareNavbarItems } from "./HardwareNavbarItems";
+import { TertiaryNavbarItems } from "./TertiaryNavbarItems";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { useNavigate } from "react-router";
 
 export default function Navbar(props: any) {
+  const navBarMapping: { [key: string]: SideNavigationMenuItemType[] } = {
+    [HeaderSections.MyGeotab]: MyGeotabNavbarItems,
+    [HeaderSections.MyAdmin]: MyAdminNavbarItems,
+    [HeaderSections.Drive]: DriveNavbarItems,
+    [HeaderSections.Hardware]: HardwareNavbarItems,
+    '': []
+  };
+  console.log(navBarMapping);
+  console.log(active);
+
   const navigate = useNavigate();
   const handleLogoClick = () => navigate('/sdk');
 
@@ -20,6 +36,11 @@ export default function Navbar(props: any) {
         <SideNavigationCollapseProvider>
           <SideNavigation>
             <SideNavigation.Main Logo={LogoGeotabSDK} onLogoClick={handleLogoClick} />
+            {/* <SideNavigation.Primary menuItems={MyGeotabNavbarItems} /> */}
+            <SideNavigation.Primary menuItems={navBarMapping[active]} />
+            {/* It's necessary to pass in an empty array for the Secondary section so that the nav bar displays properly */}
+            <SideNavigation.Secondary menuItems={[]} />
+            <SideNavigation.Tertiary menuItems={TertiaryNavbarItems} />
           </SideNavigation>
         </SideNavigationCollapseProvider>
       </Tooltip.Provider>
