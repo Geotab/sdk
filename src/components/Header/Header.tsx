@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { IconSearch } from "./IconSearch";
 import SearchModal from "../../components/Header/SearchModal";
 import "./header.scss";
+import { HeaderSections } from "./headerSectionsEnum";
 
 export default function Header(props: any) {
   const { active, setActive } = useContext(MenuContext);
@@ -33,48 +34,48 @@ export default function Header(props: any) {
         <div className="header-menu-tabs">
           <div
             className={`header-menu-tab ${
-              active === "myGeotab" ? "active-button" : ""
+              active === HeaderSections.MyGeotab ? "active-button" : ""
             }`}
           >
             <Link
               to="/myGeotab/introduction"
-              onClick={() => handleLinkClick("myGeotab")}
+              onClick={() => handleLinkClick(HeaderSections.MyGeotab)}
             >
               myGeotab
             </Link>
           </div>
           <div
             className={`header-menu-tab ${
-              active === "myAdmin" ? "active-button" : ""
+              active === HeaderSections.MyAdmin ? "active-button" : ""
             }`}
           >
             <Link
               to="/myAdmin/introduction"
-              onClick={() => handleLinkClick("myAdmin")}
+              onClick={() => handleLinkClick(HeaderSections.MyAdmin)}
             >
               myAdmin
             </Link>
           </div>
           <div
             className={`header-menu-tab ${
-              active === "Drive" ? "active-button" : ""
+              active === HeaderSections.Drive ? "active-button" : ""
             }`}
           >
             <Link
               to="/drive/introduction"
-              onClick={() => handleLinkClick("Drive")}
+              onClick={() => handleLinkClick(HeaderSections.Drive)}
             >
               Drive
             </Link>
           </div>
           <div
             className={`header-menu-tab ${
-              active === "Hardware" ? "active-button" : ""
+              active === HeaderSections.Hardware ? "active-button" : ""
             }`}
           >
             <Link
               to="/hardware/introduction"
-              onClick={() => handleLinkClick("Hardware")}
+              onClick={() => handleLinkClick(HeaderSections.Hardware)}
             >
               Hardware
             </Link>

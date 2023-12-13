@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { MenuContext } from "../../menuContext";
+import { useContext, useEffect } from "react";
+import MenuContext from "../../menuContext";
 import {
   SideNavigation,
   SideNavigationCollapseProvider,
@@ -17,6 +16,12 @@ import * as Tooltip from "@radix-ui/react-tooltip";
 import { useNavigate } from "react-router";
 
 export default function Navbar(props: any) {
+  const { active, setActive } = useContext(MenuContext);
+
+  useEffect(() => {
+    setActive(props.section);
+  });
+
   const navBarMapping: { [key: string]: SideNavigationMenuItemType[] } = {
     [HeaderSections.MyGeotab]: MyGeotabNavbarItems,
     [HeaderSections.MyAdmin]: MyAdminNavbarItems,
@@ -28,7 +33,7 @@ export default function Navbar(props: any) {
   console.log(active);
 
   const navigate = useNavigate();
-  const handleLogoClick = () => navigate('/sdk');
+  const handleLogoClick = () => navigate("/sdk");
 
   return (
     <div>
