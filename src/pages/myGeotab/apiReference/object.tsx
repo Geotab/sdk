@@ -14,19 +14,6 @@ export default function Object() {
     const objectDescription = storedObjectData.description;
     const properties = storedObjectData.properties;
 
-    const PropertyTable: ReactNode = <div className="paragraph">
-        <table className="table-container">
-            <tbody>
-                {properties.map((property: any) => 
-                    <tr>
-                        <td>{property.name}</td>
-                        <td>{RenderStringWithUrl(property.description)}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    </div>
-
     const propertyParagaphs: ReactNode = (
         <div className="paragraph">
             {properties.map((property: any) =>
