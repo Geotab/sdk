@@ -21,6 +21,10 @@ export default function Navbar(props: any) {
           <Link to="/myGeotab/guides/gettingStarted">Getting Started</Link>
         </div>
         <div>
+          <Link to="/myGeotab/guides/concepts">Concepts</Link>
+        </div>
+        <div>
+          <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
           <Link to="/myGeotab/guides/dataFeed">Data Feed</Link>
         </div>
         <div>
