@@ -103,7 +103,7 @@ export default function JavascriptExamples() {
           <code className="small-code-sample">GetDevicePlans</code> — is an array of <code className="small-code-sample">ApiDevicePlans</code>. The device object,
           returned by <code className="small-code-sample">LookupDevice</code>, is an <code className="small-code-sample">ApiDeviceInstallResult</code>. For more
           information, see{" "}
-          <a href="../../api/reference"> {/*To do: fix link */}Reference</a>.{" "}
+          <a href="../../api/reference"> {/*TODO: fix link */}Reference</a>.{" "}
         </p>
         <img src={myadminApiExample} alt="MyAdmin Api Example" className="javascriptExamples__myadminApiExampleIMG" />
       </div>
