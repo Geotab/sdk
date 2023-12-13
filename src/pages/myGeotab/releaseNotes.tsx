@@ -3038,7 +3038,7 @@ const pageSections: TableOfContentsItem[] = [
 	}
 ];
 
-export default function whatsNew () {
+export default function ReleaseNotes() {
     return (
 		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
 			{pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
