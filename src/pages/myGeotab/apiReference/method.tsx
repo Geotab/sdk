@@ -40,8 +40,8 @@ export default function Method() {
     </div>
 
     const pageTitle: PageTitleProps = {
-        "title": methodId,
-        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId]
+        "title": methodId + "(...)",
+        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + "(...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [

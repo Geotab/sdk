@@ -36,7 +36,7 @@ const methodItems = methods.map((methodDetails: any) => {
     return (
         <div className="paragraph" id={methodDetails[0]}>
             <h3 className="methods__method-title">
-                {methodDetails[0]}
+                {methodDetails[0] + "(...)"}
                 <Link to={`./${methodDetails[0]}`} className="methods__view-button">
                     <Button>View</Button>
                 </Link>

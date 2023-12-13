@@ -27,6 +27,17 @@ export default function Object() {
         </table>
     </div>
 
+    const propertyParagaphs: ReactNode = (
+        <div className="paragraph">
+            {properties.map((property: any) =>
+                <div>
+                    <h3>{property.name}</h3>
+                    <p>{RenderStringWithUrl(property.description)}</p>
+                </div>
+            )}
+        </div>
+    )
+
     const pageTitle: PageTitleProps = {
         "title": objectId,
         "breadCrumbItems": ["MYG", "API Reference", "Objects", objectId]
@@ -40,7 +51,7 @@ export default function Object() {
         {
             "elementId": "properties",
             "summary": "Properties",
-            "details": PropertyTable
+            "details": propertyParagaphs
         }
     ];
 
