@@ -111,6 +111,11 @@ input[type="search"]::-webkit-search-results-decoration {
   align-items: center;
 }
 
+.modal-search-icon > svg {
+  width: 16px;
+  height: 16px;
+}
+
 .clear-search-button {
   display: flex;
   background: none;
@@ -194,12 +199,9 @@ input[type="search"]::-webkit-search-results-decoration {
       align-self: stretch;
       border-radius: 8px;
 
-      .results-icon-container {
-        display: flex;
-        padding: 8px;
-        align-items: center;
-        gap: 12px;
-        align-self: stretch;
+      .results-icon-container > svg {
+        width: 20px;
+        height: 20px;
       }
 
       .result-search-name {
@@ -272,6 +274,11 @@ input[type="search"]::-webkit-search-results-decoration {
       flex-direction: column;
       align-items: center;
       gap: 8px;
+    }
+
+    .empty-search-container > svg {
+      width: 11.771px;
+      height: 11.781px;
     }
 
     .has-value {

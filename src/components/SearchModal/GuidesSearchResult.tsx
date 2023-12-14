@@ -7,13 +7,13 @@ interface GuidesTab {
   inputValue: string;
 }
 
-const GuidesContent = ({ inputValue }: GuidesTab) => {
+const GuidesSearchResult = ({ inputValue }: GuidesTab) => {
   return (
     <div className="tab-container">
       <div className="tab-content">
         {inputValue === "" ? (
           <div className="empty-search-container">
-            <IconSearch width="13px" height="12px" />
+            <IconSearch className="empty-search-icon" />
             <span>Start typing to search guides</span>
           </div>
         ) : (
@@ -28,4 +28,4 @@ const GuidesContent = ({ inputValue }: GuidesTab) => {
   );
 };
 
-export default GuidesContent;
+export default GuidesSearchResult;

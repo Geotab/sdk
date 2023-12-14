@@ -11,7 +11,7 @@ interface ApiReferenceItem {
   group: string;
 }
 
-interface AllTabContentProps {
+interface AllSearchResultContentProps {
   inputValue: string;
 }
 
@@ -28,7 +28,7 @@ const highlightMatch = (text: string, query: string) => {
   );
 };
 
-const AllTabContent = ({ inputValue }: AllTabContentProps) => {
+const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => {
   const [hasResults, setHasResults] = useState(false);
   const [searchResults, setSearchResults] = useState<ApiReferenceItem[]>([]);
 
@@ -56,7 +56,7 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
       <div className="tab-content">
         {inputValue === "" ? (
           <div className="empty-search-container">
-            <IconSearch width="11.771px" height="11/781px" />
+              <IconSearch />
             <span>Start typing to search</span>
           </div>
         ) : hasResults ? (
@@ -66,7 +66,7 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
                 <div key={item.id} className="results-item-container">
                   <li>
                     <div className="results-icon-container">
-                      <APIReferenceIcon width="20px" height="20px" />
+                      <APIReferenceIcon />
                     </div>
                     <div className="result-search-name">
                       <span className="result-item-title">
@@ -95,4 +95,4 @@ const AllTabContent = ({ inputValue }: AllTabContentProps) => {
   );
 };
 
-export default AllTabContent;
+export default AllSearchResultContent;

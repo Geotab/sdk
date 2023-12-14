@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { IconSearch, Tabs } from "@geotab/react-component-library";
 import { APIReferenceIcon, GuidesIcon, IconClearSearch } from "../SearchModal";
-import AllTabContent from "./AllTabContent";
-import APIReferenceContent from "./APIReferenceContent";
-import GuidesContent from "./GuidesContent";
+import AllSearchResultContent from "./AllSearchResultContent";
+import APISearchResults from "./APISearchResults";
+import GuidesSearchResult from "./GuidesSearchResult";
 import "./SearchModal.scss";
 
 interface SearchModalProps {
@@ -69,7 +69,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 }`}
             >
               <div className="modal-search-icon">
-                <IconSearch width="16px" height="16px"/>
+                <IconSearch />
               </div>
               <input
                 ref={inputRef}
@@ -96,19 +96,19 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             tabs={[
               {
                 name: "All",
-                content: <AllTabContent inputValue={inputValue} />,
+                content: <AllSearchResultContent inputValue={inputValue} />,
                 icon: IconSearch,
                 disabled: false,
               },
               {
                 name: "API Reference",
-                content: <APIReferenceContent inputValue={inputValue} />,
+                content: <APISearchResults inputValue={inputValue} />,
                 icon: APIReferenceIcon,
                 disabled: false,
               },
               {
                 name: "Guides",
-                content: <GuidesContent inputValue={inputValue} />,
+                content: <GuidesSearchResult inputValue={inputValue} />,
                 icon: GuidesIcon,
                 disabled: false,
               },
