@@ -54,6 +54,9 @@ export default function Navbar(props: any) {
           <div>
             <Link to="/myGeotab/guides/codeBase/usingInJavascript">Using In JavaScript</Link>
           </div>
+          <div>
+            <Link to="/myGeotab/guides/usingTheDataConnector">Using The Data Connector</Link>
+          </div>
         </div>
       </div >
       <div>
