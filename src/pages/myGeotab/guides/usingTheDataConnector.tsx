@@ -199,7 +199,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": endpoint
     },
     {
-        "elementId": "tableSchema",
+        "elementId": "table-schema",
         "summary": "Table Schema",
         "details": tableSchema
     }
