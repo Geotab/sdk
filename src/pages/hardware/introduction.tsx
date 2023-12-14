@@ -83,8 +83,8 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
       transfer from GO device to Add-On.
     </p>
 
-    <div className="table-container">
-      <table>
+    <div className="hardwareIntroduction__table-container">
+      <table className="hardwareIntroduction__table center-tableItem">
         <thead>
           <tr>
             <th>IOX Type</th>
@@ -202,11 +202,12 @@ const requestingSampleHardware: ReactNode = (
     If you would like to request Geotab hardware for testing or development,
     here are your options:
     <ul>
-      <li>If you are already working with a Geotab reseller
-        or a Geotab employee, please procure hardware with their help.</li>
       <li>
-        Otherwise,
-        please submit{" "}
+        If you are already working with a Geotab reseller or a Geotab employee,
+        please procure hardware with their help.
+      </li>
+      <li>
+        Otherwise, please submit{" "}
         <a
           target="_blank"
           rel="noreferrer"
@@ -214,6 +215,7 @@ const requestingSampleHardware: ReactNode = (
         >
           this form
         </a>
+        .
       </li>
     </ul>
   </div>
@@ -254,7 +256,6 @@ export default function Introduction() {
       pageTitle={pageTitle}
       tableOfContents={pageSections}
     >
-      <div className="paragraph"></div>
       {pageSections.map((section) => (
         <Accordion
           summary={section.summary}
