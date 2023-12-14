@@ -69,9 +69,9 @@
   }
 }
 
-.usingCustomTelematicsDevices, .javascriptExamples {
+.usingCustomTelematicsDevices, .javascriptExamples, .hardwareDesignGuide {
 
-  &__deviceManagementIMG, &__myadminApiExampleIMG {
+  &__deviceManagementIMG, &__myadminApiExampleIMG, &__hardwareDesignIMG {
     padding: 0.25rem;
     background-color: $lightGray;
     border: 1px solid $img-border;
@@ -82,7 +82,7 @@
 
 }
 
-.mapAddins, .mgMediaFiles {
+.mapAddins, .mgMediaFiles, .hardwareDesignGuide {
 
   &__docs-service {
     margin: 1rem 0;
