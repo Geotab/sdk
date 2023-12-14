@@ -13,7 +13,7 @@ const overview: ReactNode = (
       serialized in JSON format. A request consists of three properties:
     </p>
     <CodeSample
-      language="javascript"
+      language="json"
       code={`id: -1 - this ID is ignored
 method: '<method name>'
 params: [parameters required by the method serialized as JSON]`}
