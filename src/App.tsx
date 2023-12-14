@@ -25,6 +25,7 @@ import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import Ble from "./pages/hardware/protocolReference/ble";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -81,6 +82,8 @@ function App() {
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
+
+          <Route path="/hardware/protocolReference/ble" Component={Ble} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
