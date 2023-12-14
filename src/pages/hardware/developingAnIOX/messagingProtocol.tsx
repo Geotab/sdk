@@ -1326,7 +1326,7 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "generalDescription",
+        "elementId": "general-description",
         "summary": "General Description",
         "details": generalDescription
     },
@@ -1336,7 +1336,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": polling
     },
     {
-        "elementId": "wakingUpTheGoDevice",
+        "elementId": "waking-up-the-go-device",
         "summary": "Waking Up The Go Device",
         "details": wakingUpTheGoDevice
     },
@@ -1346,13 +1346,13 @@ const pageSections: TableOfContentsItem[] = [
         "details": commands
     },
     {
-        "elementId": "sequenceDiagrams",
+        "elementId": "sequence-diagrams",
         "summary": "Sequence Diagrams",
         "details": sequenceDiagrams
     }
 ];
 
-export default function messagingProtocol() {
+export default function MessagingProtocol() {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
