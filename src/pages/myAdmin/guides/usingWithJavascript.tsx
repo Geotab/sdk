@@ -100,7 +100,7 @@ const moreInformation: ReactNode = (
 
 const pageTitle: PageTitleProps = {
   title: "Using With JavaScript",
-  breadCrumbItems: ["MYA", "Using With JavaScript"],
+  breadCrumbItems: ["MYA", "Guides", "Code Base", "Using With JavaScript"]
 };
 
 const pageSections: TableOfContentsItem[] = [
