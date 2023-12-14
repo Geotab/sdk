@@ -78,8 +78,7 @@ const step2MakingCallsToOtherMethods: ReactNode = (
     </p>
     <CodeSample
       language="javascript"
-      code={`var devicePlan
-Params = {
+      code={`var devicePlanParams = {
     apiKey: apiKey,
     sessionId: sessionId
 };
