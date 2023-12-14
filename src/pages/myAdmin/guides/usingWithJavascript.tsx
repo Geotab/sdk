@@ -107,22 +107,22 @@ const pageSections: TableOfContentsItem[] = [
   {
     elementId: "overview",
     summary: "Overview",
-    details: overview,
+    details: overview
   },
   {
     elementId: "step-1:-initialization-&-authentication",
     summary: "Step 1: Initialization & Authentication",
-    details: step1InitializationAuthentication,
+    details: step1InitializationAuthentication
   },
   {
     elementId: "step-2:-making-calls-to-other-methods",
     summary: "Step 2: Making Calls To Other Methods",
-    details: step2MakingCallsToOtherMethods,
+    details: step2MakingCallsToOtherMethods
   },
   {
     elementId: "more-information",
     summary: "More Information",
-    details: moreInformation,
+    details: moreInformation
   },
 ];
 
