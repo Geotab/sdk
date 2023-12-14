@@ -87,6 +87,12 @@ export default function Navbar(props: any) {
         </div>
       </div>
       <div>
+        Hardware
+        <div>
+          <Link to="/hardware/developingAnIOX/MIMEProtocol">MIME Protocol</Link>
+        </div>
+      </div>
+      <div>
         MyAdmin
         <div>
           <Link to="/myAdmin/introduction">MyAdmin SDK Introduction</Link>

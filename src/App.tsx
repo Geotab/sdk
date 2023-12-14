@@ -26,6 +26,8 @@ import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 
+import MIMEProtocol  from "./pages/hardware/developingAnIOX/MIMEProtocol";
+
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
@@ -81,6 +83,7 @@ function App() {
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
+          <Route path="/hardware/developingAnIOX/MIMEProtocol" Component={MIMEProtocol} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
