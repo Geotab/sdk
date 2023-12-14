@@ -454,8 +454,8 @@ const advertisingPacket: ReactNode = (
                     </tr>
                 </tbody>
             </table>
-            <p>Example:</p>
         </div>
+        <p>Example:</p>
         <div className="table-container">
             <table>
                 <thead>
