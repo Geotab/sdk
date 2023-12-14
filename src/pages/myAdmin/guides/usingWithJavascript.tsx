@@ -94,7 +94,7 @@ myAdminApi().call('GetDevicePlans', devicePlanParams, function(devicePlans) {
 
 const moreInformation: ReactNode = (
   <div className="paragraph">
-  <p>For more information, see the <a href="../../code-samples/javascript-examples">{/*To do: fix link */}JavaScript Examples</a> section.</p>
+  <p>For more information, see the <a href="../../code-samples/javascript-examples">{/*TODO: fix link */}JavaScript Examples</a> section.</p>
   </div>
 );
 
