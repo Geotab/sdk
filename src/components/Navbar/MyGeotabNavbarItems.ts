@@ -27,39 +27,65 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
     route: "/myGeotab/introduction",
     level: 0,
     order: 1,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
-    Icon: IconCircleInfo,
-    onClick: () => alert("Introduction clicked")
+    userTypes: [],
+    roles: [],
+    Icon: IconCircleInfo
   },
   {
     id: 1,
     label: "Release Notes",
-    route: "/myGeotab/whatsNew",
+    route: "/myGeotab/whatsNew", //TODO: Update to new file name
     level: 0,
     order: 2,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
-    Icon: IconStar,
-    onClick: () => alert("Installation clicked")
+    userTypes: [],
+    roles: [],
+    Icon: IconStar
   },
   {
     id: 2,
     label: "Guides",
     level: 0,
     order: 3,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
+    userTypes: [],
+    roles: [],
     Icon: IconDocument,
-    children: []
+    children: [
+      {
+        id: 1,
+        label: "Getting Started",
+        route: "/myGeotab/guides/gettingStarted",
+        level: 1,
+        order: 1,
+        roles: [],
+        userTypes: [],
+      },
+      {
+        id: 2,
+        label: "Concepts",
+        route: "/myGeotab/guides/concepts",
+        level: 1,
+        order: 2,
+        roles: [],
+        userTypes: [],
+      },
+      {
+        id: 3,
+        label: "Data Feed",
+        route: "/myGeotab/guides/dataFeed",
+        level: 1,
+        order: 3,
+        roles: [],
+        userTypes: [],
+      },
+    ]
   },
   {
     id: 3,
     label: "Add-Ins",
     level: 0,
     order: 4,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
+    userTypes: [],
+    roles: [],
     Icon: IconPuzzlePiece,
     children: []
   },
@@ -68,28 +94,28 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
     label: "API Reference",
     level: 0,
     order: 5,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
+    userTypes: [],
+    roles: [],
     Icon: IconDocumentWithMagnifyingGlass,
     children: []
   },
   {
     id: 5,
     label: "API Clients",
+    route: "/myGeotab/apiClients",
     level: 0,
     order: 6,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
-    Icon: IconHexagonGear,
-    onClick: () => alert("API Clients clicked")
+    userTypes: [],
+    roles: [],
+    Icon: IconHexagonGear
   },
   {
     id: 6,
     label: "Code Samples",
     level: 0,
     order: 7,
-    userTypes: ["admin", "user"],
-    roles: ["admin", "user"],
+    userTypes: [],
+    roles: [],
     Icon: IconCodeBox,
     children: []
   }

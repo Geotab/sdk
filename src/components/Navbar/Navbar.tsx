@@ -13,14 +13,12 @@ import { DriveNavbarItems } from "./DriveNavbarItems";
 import { HardwareNavbarItems } from "./HardwareNavbarItems";
 import { TertiaryNavbarItems } from "./TertiaryNavbarItems";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar(props: any) {
   const { active, setActive } = useContext(MenuContext);
-
-  useEffect(() => {
-    setActive(props.section);
-  });
+  const navigate = useNavigate();
+  const handleLogoClick = () => navigate("/sdk");
 
   const navBarMapping: { [key: string]: SideNavigationMenuItemType[] } = {
     [HeaderSections.MyGeotab]: MyGeotabNavbarItems,
@@ -32,8 +30,32 @@ export default function Navbar(props: any) {
   console.log(navBarMapping);
   console.log(active);
 
-  const navigate = useNavigate();
-  const handleLogoClick = () => navigate("/sdk");
+  function attachOnClickHandlerToMenuItems(item: SideNavigationMenuItemType) {
+    if (item.children && item.children?.length > 0) {
+      item.children.forEach((child: SideNavigationMenuItemType) => {
+        attachOnClickHandlerToMenuItems(child);
+      });
+    } else {
+      if (item.route && !item.externalRoute && item.onClick === undefined) {
+        item.onClick = () => {
+          if (item.route) {
+            navigate(item.route);
+          }
+        };
+      }
+    }
+  }
+
+  useEffect(() => {
+    setActive(props.section);
+
+    // The navigate function (aka useNavigate hook) has to be called within the useEffect hook so that it gets executed after the component mounts, not when the component is first rendered.
+    Object.values(navBarMapping).forEach((items: SideNavigationMenuItemType[]) => {
+      items.forEach((item: SideNavigationMenuItemType) => {
+        attachOnClickHandlerToMenuItems(item);
+      });
+    });
+  });
 
   return (
     <div>
