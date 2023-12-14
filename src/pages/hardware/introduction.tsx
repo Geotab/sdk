@@ -146,8 +146,8 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
       "Custom Data", and "Binary Data". Data in all three formats may be
       retrieved via <a href="../myGeotab/introduction">API</a>. However, only
       Status Data can be queried within MyGeotab by navigating to{" "}
-      <strong>Engine &amp; Maintenance</strong> {">"}{" "}
-      <strong>Engine &amp; Device…</strong> {">"} <strong>Measurements</strong>.
+      <strong>Engine {"&"} Maintenance</strong> {">"}{" "}
+      <strong>Engine {"&"} Device…</strong> {">"} <strong>Measurements</strong>.
       Only with Status Data, it is possible to create meaningful reports or
       leverage the rules engine via MyGeotab.
     </p>
@@ -223,29 +223,29 @@ const requestingSampleHardware: ReactNode = (
 
 const pageTitle: PageTitleProps = {
   title: "Hardware Development Kit",
-  breadCrumbItems: ["Hardware", "Hardware Introduction"],
+  breadCrumbItems: ["Hardware", "Hardware Introduction"]
 };
 
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "introduction",
     summary: "Introduction",
-    details: introduction,
+    details: introduction
   },
   {
     elementId: "integrating-with-the-input-output-expander-iox",
     summary: "Integrating with the Input-Output Expander (IOX)",
-    details: integratingWithTheInputOutputExpanderIOX,
+    details: integratingWithTheInputOutputExpanderIOX
   },
   {
     elementId: "technical-hardware-toolkit",
     summary: "Technical Hardware Toolkit",
-    details: technicalHardwareToolkit,
+    details: technicalHardwareToolkit
   },
   {
     elementId: "requesting-sample-hardware",
     summary: "Requesting sample hardware",
-    details: requestingSampleHardware,
+    details: requestingSampleHardware
   },
 ];
 
