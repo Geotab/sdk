@@ -19,7 +19,6 @@ export default function RenderStringWithLinks(text: string) {
         const segments: JSX.Element[] = [];
 
         let match;
-        console.log(content);
         while ((match = seeTagRegex.exec(content)) !== null) {
             const start = currentIndex;
             const end = match.index;
@@ -29,7 +28,7 @@ export default function RenderStringWithLinks(text: string) {
 
             let cref = match[1].split('.');
             let linkText = cref[cref.length - 1].replace(/[^a-zA-Z]/g, '');
-            const link = `#${linkText}`; // Replace with your actual URL
+            const link = `#${linkText}`;
             segments.push(<a key={`a-${currentIndex}`} href={link}>{linkText}</a>);
             currentIndex = seeTagRegex.lastIndex;
         }
@@ -37,6 +36,22 @@ export default function RenderStringWithLinks(text: string) {
         // Handle the case where a dash follows a <see> tag
         if (isListItem && currentIndex < content.length && content[currentIndex] === '-') {
             currentIndex++; // Skip the dash
+        }
+
+        // Handle the case where the content contains an <a> tag
+        const anchorTagRegex = /<a href="([^"]*)">(.*?)<\/a>/g;
+        let anchorMatch;
+        while ((anchorMatch = anchorTagRegex.exec(content)) !== null) {
+            const start = currentIndex;
+            const end = anchorMatch.index;
+            if (start < end) {
+                segments.push(<span key={`span-${currentIndex}`}>{content.slice(start, end)}</span>);
+            }
+
+            const link = anchorMatch[1];
+            const linkText = anchorMatch[2];
+            segments.push(<a key={`a-${currentIndex}`} href={link}>{linkText}</a>);
+            currentIndex = anchorTagRegex.lastIndex;
         }
 
         const remainingText = content.slice(currentIndex).replace(/\/>/g, '');

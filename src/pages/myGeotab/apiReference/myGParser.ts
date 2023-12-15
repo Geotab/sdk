@@ -117,110 +117,110 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                         } 
                     }
-                    if (itemType === 'object') {
+                    // itemType === 'method' && itemStrings.some(method => item[i].attributes.name.nodeValue.includes(method))
                         // not all objects have basetype as a parameter in their tags
                         // perhaps the string needs to be hardcoded here in this file instead of passed in an array from the other file
-
-                        if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel'))) {
-                            let tagName = item[i].attributes.name.nodeValue.split('.');
-                            let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
-                            // console.log(objectName);
-                            if (!json[objectName]) {
-                                json[objectName] = {
-                                    "description": "",
-                                    "properties": []
-                                }
+                    if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.API')))) {
+                        let tagName = item[i].attributes.name.nodeValue.split('.');
+                        let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
+                        // console.log(objectName);
+                        if (!json[objectName]) {
+                            json[objectName] = {
+                                "description": "",
+                                "properties": []
                             }
+                        }
+                        for (let j = 0; j < item[i].childNodes.length; j++) {
+                            if (item[i].childNodes[j].nodeName === 'summary') {
+                                if (item[i].childNodes[j].hasChildNodes()) {
+                                    let summaryChildren = item[i].childNodes[j].childNodes;
+                                    let summaryText: string = '';
+                                    for (let k = 0; k < summaryChildren.length; k++) {
+                                        if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
+                                            summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
+                                        }
+                                        if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
+                                            summaryText += summaryChildren[k].outerHTML;
+                                        }
+                                        if (summaryChildren[k].nodeName === 'para') {
+                                            // console.log(summaryChildren[k].childNodes);
+                                            for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
+                                                if (summaryChildren[k].childNodes[l].nodeName === '#text') {
+                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
+                                                }
+                                                if (summaryChildren[k].childNodes[l].nodeName === 'see') {
+                                                    summaryText += summaryChildren[k].childNodes[l].outerHTML;
+                                                }
+                                            }
+                                            
+                                            if (k !== summaryChildren.length - 1) {
+                                                summaryText += '\n';
+                                            }
+                                        }
+                                        if (summaryChildren[k].nodeName === 'list') {
+                                            // in lists we have item tags and each item tag has a description tag within it
+                                            // console.log(summaryChildren[k].childNodes);
+                                            let listItems = summaryChildren[k].childNodes;
+                                            for (let l = 0; l < listItems.length; l++) {
+                                                if (listItems[l].hasChildNodes) {
+                                                    for (let m = 0; m < listItems[l].childNodes.length; m++) {
+                                                        if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                            summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].outerHTML;
+                                                        } else {
+                                                            summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
+                                                        }   
+                                                    }
+                                                }
+                                            } 
+                                        }
+                                    }
+                                    json[objectName].description = summaryText.trimStart();
+                                } 
+                            }
+                            
+                        } //M:Geotab.Checkmate.API
+                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('M:Geotab.Checkmate.API.#ctor')))) {
+                        let tagName = item[i].attributes.name.nodeValue.split('.');
+                        let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
+                        console.log(tagName);
+                        console.log(objectName);
+                        let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
+                        if (json[objectName]) {
+                            // console.log('----' + objectName + '----');
+                            let propertyDict: any = {};
+                            let descriptionText = '';
+                            propertyDict['name'] = propertyName;
                             for (let j = 0; j < item[i].childNodes.length; j++) {
                                 if (item[i].childNodes[j].nodeName === 'summary') {
-                                    if (item[i].childNodes[j].hasChildNodes()) {
-                                        let summaryChildren = item[i].childNodes[j].childNodes;
-                                        let summaryText: string = '';
-                                        for (let k = 0; k < summaryChildren.length; k++) {
-                                            if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
-                                                summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
-                                            }
-                                            if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
-                                                summaryText += summaryChildren[k].outerHTML;
-                                            }
-                                            if (summaryChildren[k].nodeName === 'para') {
-                                                // console.log(summaryChildren[k].childNodes);
-                                                for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
-                                                    if (summaryChildren[k].childNodes[l].nodeName === '#text') {
-                                                        summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
-                                                    }
-                                                    if (summaryChildren[k].childNodes[l].nodeName === 'see') {
-                                                        summaryText += summaryChildren[k].childNodes[l].outerHTML;
-                                                    }
-                                                }
-                                                
-                                                if (k !== summaryChildren.length - 1) {
-                                                    summaryText += '\n';
-                                                }
-                                            }
-                                            if (summaryChildren[k].nodeName === 'list') {
-                                                // in lists we have item tags and each item tag has a description tag within it
-                                                // console.log(summaryChildren[k].childNodes);
-                                                let listItems = summaryChildren[k].childNodes;
-                                                for (let l = 0; l < listItems.length; l++) {
-                                                    if (listItems[l].hasChildNodes) {
-                                                        for (let m = 0; m < listItems[l].childNodes.length; m++) {
-                                                            if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                                summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].outerHTML;
-                                                            } else {
-                                                                summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
-                                                            }   
-                                                        }
-                                                    }
-                                                } 
-                                            }
+                                    for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
+                                            descriptionText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g, ' ')
                                         }
-                                        json[objectName].description = summaryText.trimStart();
-                                    } 
-                                }
-                                
-                            } 
-                        } else if (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel'))) {
-                            let tagName = item[i].attributes.name.nodeValue.split('.');
-                            let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
-                            let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
-                            if (json[objectName]) {
-                                // console.log('----' + objectName + '----');
-                                let propertyDict: any = {};
-                                let descriptionText = '';
-                                propertyDict['name'] = propertyName;
-                                for (let j = 0; j < item[i].childNodes.length; j++) {
-                                    if (item[i].childNodes[j].nodeName === 'summary') {
-                                        for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
-                                            if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                                descriptionText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g, ' ')
-                                            }
-                                            if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
-                                                descriptionText += item[i].childNodes[j].childNodes[k].outerHTML;
-                                            }
-                                            if (item[i].childNodes[j].childNodes[k].nodeName === 'list') {
-                                                let properyListItems = item[i].childNodes[j].childNodes[k].childNodes;
-                                                for (let l = 0; l < properyListItems.length; l++) {
-                                                    if (properyListItems[l].hasChildNodes) {
-                                                        for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
-                                                            if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                                descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].outerHTML;
-                                                            } else {
-                                                                descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
-                                                            }   
-                                                        }
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
+                                            descriptionText += item[i].childNodes[j].childNodes[k].outerHTML;
+                                        }
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === 'list') {
+                                            let properyListItems = item[i].childNodes[j].childNodes[k].childNodes;
+                                            for (let l = 0; l < properyListItems.length; l++) {
+                                                if (properyListItems[l].hasChildNodes) {
+                                                    for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
+                                                        if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                            descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].outerHTML;
+                                                        } else {
+                                                            descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
+                                                        }   
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                    if (item[i].childNodes[j].nodeName === 'value') {
-                                        
-                                    }
                                 }
-                                propertyDict['description'] = descriptionText.trimStart();
-                                json[objectName].properties.push(propertyDict);
+                                if (item[i].childNodes[j].nodeName === 'value') {
+                                    
+                                }
                             }
+                            propertyDict['description'] = descriptionText.trimStart();
+                            json[objectName].properties.push(propertyDict);
                         }
                     }
                 }
