@@ -6,3 +6,4 @@ export * from './IconDocumentWithMagnifyingGlass';
 export * from './IconHexagonGear';
 export * from './IconPuzzlePiece';
 export * from './IconStar';
+export * from './IconMyAShort';

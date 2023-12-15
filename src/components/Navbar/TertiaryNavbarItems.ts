@@ -1,7 +1,7 @@
 import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconProps, IconQuestionSupport, LogoMyAdmin } from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";
-import { IconCodeTerminal } from "./icons";
+import { IconCodeTerminal, IconMyAShort } from "./icons";
 
 // TODO: Eventually remove and import from library
 type SideNavigationMenuItemType = {
@@ -27,8 +27,8 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
         externalRoute: "https://geotab.github.io/sdk/software/api/runner.html",
         level: 0,
         order: 0,
-        userTypes: ["admin", "user"],
-        roles: ["admin", "user"],
+        userTypes: [],
+        roles: [],
         Icon: IconCodeTerminal,
         // TODO: UPDATE THE URL IF NEEDED
         onClick: () => window.open("https://geotab.github.io/sdk/software/api/runner.html", "_blank")
@@ -39,8 +39,8 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
     //     route: "/myGeotab/whatsNew",
     //     level: 0,
     //     order: 0,
-    //     userTypes: ["admin", "user"],
-    //     roles: ["admin", "user"],
+    //     userTypes: [],
+    //     roles: [],
     //     Icon: IconGrid,
     //     onClick: () => alert("Installation clicked")
     // },
@@ -50,8 +50,8 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
         route: "/GeotabApps",
         level: 0,
         order: 1,
-        userTypes: ["admin", "user"],
-        roles: ["admin", "user"],
+        userTypes: [],
+        roles: [],
         Icon: IconGrid,
         children: [
             {
@@ -69,8 +69,8 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 externalRoute: "https://my.geotab.com/",
                 level: 1,
                 order: 1,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
+                userTypes: [],
+                roles: [],
                 Icon: IconMyGShort,
                 onClick: () => window.open("https://my.geotab.com/", "_blank")
             },
@@ -80,10 +80,10 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 externalRoute: "https://myadmin.geotab.com/",
                 level: 1,
                 order: 2,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
+                userTypes: [],
+                roles: [],
                 // TODO: Get MyAdmin short icon
-                Icon: LogoMyAdmin,
+                Icon: IconMyAShort,
                 onClick: () => window.open("https://myadmin.geotab.com/", "_blank")
             },
             {
@@ -92,21 +92,21 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 externalRoute: "https://marketplace.geotab.com/",
                 level: 1,
                 order: 3,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
+                userTypes: [],
+                roles: [],
                 Icon: IconMarketplace,
                 onClick: () => window.open("https://marketplace.geotab.com/", "_blank")
             },
             {
                 id: 5,
                 label: "Drive App",
-                externalRoute: "/InternalTools",
+                externalRoute: "https://my.geotab.com/drive/",
                 level: 1,
                 order: 4,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
+                userTypes: [],
+                roles: [],
                 Icon: IconGeotabDrive,
-                onClick: () => alert("clicked")
+                onClick: () => window.open("https://my.geotab.com/drive/", "_blank")
             },
             {
                 id: 6,
@@ -120,34 +120,35 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
             {
                 id: 7,
                 label: "Geotab.com",
-                externalRoute: "/Geotabcom",
+                externalRoute: "https://www.geotab.com/",
                 level: 1,
                 order: 6,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
-                onClick: () => alert("clicked")
+                userTypes: [],
+                roles: [],
+                onClick: () => window.open("https://www.geotab.com/", "_blank")
             },
             {
                 id: 8,
                 label: "Geotab Support",
-                externalRoute: "/GeotabSupport",
+                externalRoute: "https://community.geotab.com/s/?language=en_US",
                 level: 1,
                 order: 7,
-                userTypes: ["admin", "user"],
-                roles: ["admin", "user"],
-                onClick: () => alert("clicked")
+                userTypes: [],
+                roles: [],
+                onClick: () => window.open("https://community.geotab.com/s/?language=en_US", "_blank")
             }
         ],
     },
     {
         id: 2,
         label: "Help & Support",
+        externalRoute: "https://community.geotab.com/s/integrators-hub?language=en_US",
         route: "/myGeotab/whatsNew",
         level: 0,
         order: 2,
-        userTypes: ["admin", "user"],
-        roles: ["admin", "user"],
+        userTypes: [],
+        roles: [],
         Icon: IconQuestionSupport,
-        onClick: () => alert("Installation clicked")
+        onClick: () => window.open("https://community.geotab.com/s/integrators-hub?language=en_US", "_blank")
     }
 ];
