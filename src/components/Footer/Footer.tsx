@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
 
@@ -28,15 +28,7 @@ const footerLinks: FooterLink[] = [
 ];
 
 export default function Footer() {
-  const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentYear(new Date().getFullYear());
-    }, 1000 * 60 * 60 * 24 * 30); // Update every month
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer-container">
