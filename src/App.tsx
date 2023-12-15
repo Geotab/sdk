@@ -25,6 +25,7 @@ import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import Ble from "./pages/hardware/protocolReference/ble";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -35,6 +36,7 @@ import UsingWithDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
+import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import Python from "./pages/hardware/samples/python";
 import HardwareDesignGuide from "./pages/hardware/developingIOX/hardwareDesignGuide";
@@ -76,6 +78,7 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
           <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
@@ -83,6 +86,8 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
           <Route path="/hardware/developingIOX/hardwareDesignGuide" Component={HardwareDesignGuide} />
+
+          <Route path="/hardware/protocolReference/ble" Component={Ble} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />

@@ -79,10 +79,9 @@
     max-width: 100%;
     height: auto;
   }
-
 }
 
-.mapAddins, .mgMediaFiles, .hardwareDesignGuide {
+.mapAddins, .mgMediaFiles, .hardwareIntroduction, .hardwareDesignGuide {
 
   &__docs-service {
     margin: 1rem 0;
@@ -120,7 +119,13 @@
     width: max-content;
     max-width: 100%;
   }
+}
 
+.center-tableItem {
+  th, td {
+    text-align: center;
+    align-items: center;
+  }
 }
 
 .methods {
@@ -219,6 +224,7 @@ h3 {
 
 a {
   color: $brightBlue;
+  text-decoration: none;
 }
 
 .grayBackground {
