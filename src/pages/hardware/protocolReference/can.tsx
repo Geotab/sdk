@@ -58,7 +58,7 @@ const integrationProcess: ReactNode = (
         <p>Each piece of information related to the third-party device must be sent individually and have its own Status Data ID as part of the message.</p>
         <p>Note: See <a href="#appendix-a-raw-message-data-example-for-iox-can">Appendix A</a> for an example of raw message data.</p>
         <h3 id="handshake">Handshake</h3>
-        <p>An initial Handshake <strong>is required</strong> in order for the GO device to accept MyGeotab API calls to produce CAN messages from the IOX-CAN. Vehicle ignition must be on during the \
+        <p>An initial Handshake <strong>is required</strong> in order for the GO device to accept MyGeotab API calls to produce CAN messages from the IOX-CAN. Vehicle ignition must be on during the
             handshake process.</p>
         <ol>
             <li>
