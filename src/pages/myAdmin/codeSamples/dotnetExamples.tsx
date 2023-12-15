@@ -7,7 +7,7 @@ import { CodeSample } from "../../../components/CodeSamplesContainer";
 import Accordion from "./../../../components/Accordion/Accordion";
 import "../../../pages/pages.scss";
 
-const dotnetCodeExampleSnippet1: ReactNode = (
+const dotnetExampleCodeSnippet1: ReactNode = (
     <div className="paragraph">
         <p>
             The first example is a method that authenticates with the MyAdmin API,
@@ -79,7 +79,7 @@ const dotnetCodeExampleSnippet1: ReactNode = (
     </div>
 );
 
-const dotnetCodeExampleSnippet2: ReactNode = (
+const dotnetExampleCodeSnippet2: ReactNode = (
     <div className="paragraph">
         <p>
             The second example demonstrates how to query the MyAdmin API to get
@@ -116,19 +116,19 @@ const dotnetCodeExampleSnippet2: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": ".NET Examples",
-    "breadCrumbItems": ["MYA", "Code Samples", ".NET Examples"],
+    "breadCrumbItems": ["MYA", "Code Samples", ".NET Examples"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "dotnet-code-example-snippet1",
+        "elementId": "dotnet-example-code-snippet1",
         "summary": "Example 1",
-        "details": dotnetCodeExampleSnippet1,
+        "details": dotnetExampleCodeSnippet1
     },
     {
-        "elementId": "dotnet-code-example-snippet2",
+        "elementId": "dotnet-example-code-snippet2",
         "summary": "Example 2",
-        "details": dotnetCodeExampleSnippet2,
+        "details": dotnetExampleCodeSnippet2
     },
 ];
 
@@ -138,7 +138,6 @@ export default function DotnetExamples() {
             <div className="paragraph">
                 Here are a few examples to help you get started.
             </div>
-
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
