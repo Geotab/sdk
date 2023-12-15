@@ -1,0 +1,370 @@
+@import "../../variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+/* SearchModal.tsx styles */
+.search-modal-backdrop {
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 705px;
+  height: 520px;
+  border-radius: 8px;
+  background-color: $background-main;
+  box-shadow: $dropshadow-default;
+}
+
+/* Search Modal Header Styles */
+.search-modal-header-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.search-modal-input-field-container {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid $borders-general;
+  background-color: $background-main;
+}
+
+.search-modal-input-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+}
+
+.modal-search-input {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  color: $text-placeholder;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: $font-size-small;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  /* 133.333% */
+  letter-spacing: 0.32px;
+}
+
+/* clears the default ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* clears the default ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Add the custom styling for the user inputted text */
+.search-modal-input-field.search-has-value .modal-search-input {
+  overflow: hidden;
+  color: $text-primary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-search-icon > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.clear-search-button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.search-result-match {
+  color: $text-secondary;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration-line: underline;
+}
+
+/* Search Modal Tabs Styles */
+.search-modal-tabs-container {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: stretch;
+  background-color: $background-main;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom: 1px solid $backgrounds-content-1;
+  overflow: auto;
+
+  .tab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    height: auto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.32px;
+    overflow: auto;
+
+    &.search-has-results {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+
+      /* Styling for WebKit scrollbar */
+      &::-webkit-scrollbar {
+        width: 9px;
+        height: 226px;
+        border-radius: 5px;
+        background: #c1c1c1;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 99px;
+        background: #fafafa;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #c1c1c1;
+        border-radius: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #c1c1c1;
+      }
+    }
+
+    .results-item-container {
+      display: flex;
+      padding: 8px;
+      align-items: center;
+      gap: 12px;
+      align-self: stretch;
+      border-radius: 8px;
+
+      .results-icon-container > svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .result-search-name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1 0 0;
+
+        .result-item-title {
+          color: $text-secondary;
+          text-align: center;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          /* 171.429% */
+        }
+
+        .result-item-group {
+          color: $text-secondary;
+          text-align: center;
+          font-size: $font-size-small;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 16px;
+          /* 133.333% */
+          letter-spacing: 0.32px;
+        }
+      }
+    }
+
+    .custom-styling-for-results {
+      overflow-y: auto;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        li {
+          display: flex;
+          padding: 8px;
+          align-items: center;
+          gap: 12px;
+          align-self: stretch;
+          border-radius: 8px;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    display: flex;
+    color: $actions-secondary-default;
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 133.333% */
+    letter-spacing: 0.32px;
+
+    .empty-search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .empty-search-container > svg {
+      width: 11.771px;
+      height: 11.781px;
+    }
+
+    .has-value {
+      display: flex;
+      height: 16px;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1 0 0;
+      overflow: hidden;
+      color: $text-primary;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      font-size: $font-size-small;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      /* 133.333% */
+      letter-spacing: 0.32px;
+    }
+  }
+
+  .tab-search-not-found {
+    color: $actions-secondary-default;
+    text-align: center;
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 133.333% */
+    letter-spacing: 0.32px;
+
+    .search-not-found-text {
+      color: $actions-secondary-default;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.32px;
+    }
+  }
+
+  .modal-search-icon.hidden {
+    display: none;
+  }
+}
+
+/* NOTE: The Geotab tab component renders the content of the tabs as below and so far, the only way to properly add custom styling is by targeting the specific class and data-state or it will apply styling to all tab components horizontally
+  <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r9h:-trigger-All" id="All" tabindex="0" class="Tabs-module_TabsContent__wDBJ4" style=""><div class="tab-container"><div class="tab-search-icon"></div></div></div>*/
+
+.Tabs-module_TabsRoot__tfB8h {
+  background-color: $background-main;
+}
+
+.Tabs-module_tabsWrapper__vprxe {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  margin: 0px;
+  border-bottom: 1px solid $backgrounds-content-1;
+}
+
+.Tabs-module_tabsContainer__LLjH7 {
+  margin: 0px 16px;
+  border-bottom: 1px solid $backgrounds-content-1;
+  overflow: 0;
+}
+
+.Tabs-module_TabsContent__wDBJ4:not([data-state="active"]) {
+  display: none;
+}
+
+.Tabs-module_TabsContent__wDBJ4[data-state="active"] {
+  display: flex;
+  padding: 8px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  background-color: #fff;
+
+  &.tab-container .has.results {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    height: auto;
+  }
+}
