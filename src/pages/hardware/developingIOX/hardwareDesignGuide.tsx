@@ -4,8 +4,6 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import Accordion from "../../../components/Accordion/Accordion";
-import InformationalBox from "../../../components/InformationalBox/InformationalBox";
-import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import hardwareSystemDesignIntroImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_0.png";
 import hardwareConnectorImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_1.png";
 import miniBUSBPlugInputImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_2.png";
@@ -118,7 +116,7 @@ const powerDesign: ReactNode = (
       Reverse current to the power line must be prevented, for which a diode on the power input would be sufficient.
     </p>
     <p>
-      The third-party device must enter Sleep Mode when notified by the GO Device or when it fails to communicate with the GO Device after a reset. The current of the device in Sleep Mode should not exceed 2 mA at 12 V. The prefered Sleep Mode current is below 0.4 mA.
+      The third-party device must enter Sleep Mode when notified by the GO Device or when it fails to communicate with the GO Device after a reset. The current of the device in Sleep Mode should not exceed 2 mA at 12 V. The preferred Sleep Mode current is below 0.4 mA.
     </p>
   </div>
 );
@@ -139,7 +137,7 @@ const mechanicalDesign: ReactNode = (
     <img
       className="hardwareDesignGuide__hardwareDesignIMG"
       src={hardwareMechanicalSizeImage1}
-      alt="Figure #4 - USB mini-B plug IOX mechnical design diagram overview."
+      alt="Figure #4 - USB mini-B plug IOX mechanical design diagram overview."
     />
     <p>The suggested cable length is between 30 cm to 100 cm, which is based on the multiple devices in the daisy chain. The length of cable may be longer if the system of the application is with fewer devices. The positive and negative wire of the CAN bus need to be a twisted pair with inner shielding around just them, with a  minimum twisting ratio is 1 twist every 25.4 mm.</p>
     <p>It is suggested that you shield the whole wires and that you short the drain wires of both shields {"("}the shield for whole wires and the shield for the CAN bus{")"} to the metal body of the USB plug.</p>
@@ -155,7 +153,7 @@ const mechanicalDesign: ReactNode = (
 
 const pageTitle: PageTitleProps = {
   "title": "IOX Add-On Hardware Design Guide",
-  "breadCrumbItems": ["Hardware", "Developing an IOX", "IOX Add-On Hardware Design Guide"]
+  "breadCrumbItems": ["Hardware", "Developing an IOX", "Hardware Design Guide"]
 };
 
 const pageSections: TableOfContentsItem[] = [
@@ -177,23 +175,23 @@ const pageSections: TableOfContentsItem[] = [
   {
     "elementId": "power-design",
     "summary": "Power Design",
-    "details": powerDesign,
+    "details": powerDesign
   },
   {
     "elementId": "can-bus-communication",
     "summary": "CAN Bus Communication",
-    "details": canBusCommunication,
+    "details": canBusCommunication
   },
   {
     "elementId": "mechanical-design",
     "summary": "Mechanical Design",
-    "details": mechanicalDesign,
+    "details": mechanicalDesign
   },
 ];
 
 export default function HardwareDesignGuide() {
   return (
-    <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
+    <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
       {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
