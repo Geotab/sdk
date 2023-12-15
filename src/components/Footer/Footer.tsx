@@ -18,12 +18,18 @@ const footerLinks: FooterLink[] = [
     label: "End User Agreement",
   },
   {
+    href: "https://docs.google.com/document/d/1aFJnFYpHCN4bFe6yVhj5m5AiJClfucRhJWVSDBqRObg/edit?usp=sharing",
+    label: "API Terms of Service",
+  },
+  {
     href: "https://geotab.github.io/sdk/software/guides/addin-storage/",
     label: "Storage Preferences",
   },
 ];
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer-container">
       <div className="footer-container__left">
@@ -46,7 +52,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-container__right">
-        <small className="footer-copyright">Copyright © 2023 Geotab</small>
+        <small className="footer-copyright">Copyright © {currentYear} Geotab</small>
       </div>
     </footer>
   );
