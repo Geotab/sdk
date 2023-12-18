@@ -39,7 +39,7 @@ import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
 import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
-import Python from "./pages/hardware/samples/python";
+import Python from "./pages/hardware/codeSamples/python";
 
 
 
