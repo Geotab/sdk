@@ -938,9 +938,9 @@ const update2101: ReactNode = (
 //ToDo Update Method Links
 const update2004: ReactNode = (
 	<div className="paragraph">
-		<h2>New Media File APIPermalink</h2>
+		<h2>New Media File API</h2>
 		<p>Geotab is happy to announce a new set of APIs related to Media Files. This new API can be used to store images or video clips related to a device or driver.</p>
-		<p><a href="/sdk/software/api/reference/#MediaFile">MediaFile</a>: MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found <a href="https://github.com/Geotab/mg-media-files">here</a>.</p>
+		<p><a href="/sdk/software/api/reference/#MediaFile">MediaFile</a>: MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found <a href="https://github.com/Geotab/mg-media-files" target="_blank" rel="noopener noreferrer">here</a>.</p>
 		<p><a href="/sdk/software/api/reference/#MediaType">MediaType</a>: The type of Media.</p>
 		<p><a href="/sdk/software/api/reference/#Status">Status</a>: The status of an uploaded file.</p>
 		<p><a href="/sdk/software/api/reference/#MediaFileSearch">MediaFileSearch</a>: The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.</p>
@@ -1146,7 +1146,7 @@ const update2004: ReactNode = (
 			<li>Entity</li>
 			<li>EntityWithVersion</li>
 			<li>NameEntity</li>
-			<li>NameEtityWithVersion</li>
+			<li>NameEntityWithVersion</li>
 			<li>LoginResult</li>
 			<li>Credentials</li>
 			<li>Coordinate</li>
@@ -1325,7 +1325,7 @@ const update2003: ReactNode = (
 			</li>
 		</ul>
 		<h2>WebServerInvoker (Nuget Only)</h2>
-		<p>This method has been changed to use generics instead of passing type in, and returning an object, that needs to be cast. For example, <code className="small-code-sample">var version = (string)(await invoker.InvokeAsync("GetVersion", typeof(string)));</code> is now <code className="small-code-sample">var version = await invoker.InvokeAsync&lt;string&gt;("GetVersion");</code></p>
+		<p>This method has been changed to use generics instead of passing type in, and returning an object, that needs to be cast. For example, <code className="small-code-sample">var version = (string)(await invoker.InvokeAsync("GetVersion", typeof(string)));</code> is now <code className="small-code-sample">var version = await invoker.InvokeAsync{`<`}string{`>`}("GetVersion");</code></p>
 		<InformationalBox>
 			<p>While not an officially supported component, it's possible <code className="small-code-sample">WebServerInvoker</code> is being used by some integrations. For this reason we thought it worth mentioning this change.</p>
 		</InformationalBox>
@@ -1344,7 +1344,7 @@ const update2002: ReactNode = (
 		<h2>Map Add-In</h2>
 		<p>Users can now create a <a href="/sdk/software/guides/map-add-ins-docs/">Map Add-In</a> without using the view panel on the right. For quick tasks such as adding icons or text to the Map, simply use the <code className="small-code-sample">"noView":true</code> parameter in your configuration file.</p>
 		<CodeSample
-		language="javacript"
+		language="javascript"
 		code={`{
 	"page": "map",
 	"noView": true,
@@ -1946,7 +1946,7 @@ const update1802: ReactNode = (
 			</li>
 		</ul>
 		<h2>Notice</h2>
-		<p>An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serialization failure when a new DiagnosticType is introduced. The issue has been addressed in nuget package v<a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/">5.7.1802</a>. To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)</p>
+		<p>An issue was discovered which could cause integrations using the Geotab.Checkmate.Objectmodel nuget package v5.7.1801 and lower to encounter a serialization failure when a new DiagnosticType is introduced. The issue has been addressed in nuget package v<a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/" target="_blank" rel="noopener noreferrer">5.7.1802</a>. To ensure compatibility, it is strongly recommended that all integrations referencing the nuget package v5.7.1801 and lower update to version v5.7.1802 as soon as possible. (this issue is only relevant to .Net nuget package users)</p>
 	</div>
 );
 
@@ -2694,7 +2694,7 @@ const update1508: ReactNode = (
 				<p>DistributionList is now supported by the API. Checkout the <a href="/sdk/software/api/reference/">API Reference</a> for more details. Some related objects are still pending support (Notification, NotificationTemplate, BinaryData)</p>
 			</li>
 			<li>
-				<p><a href="https://github.com/Geotab/sdk-addin-samples" aria-label="Add-In examples in SDK documentation">Add-In examples</a> have been added to SDK documentation</p>
+				<p><a href="https://github.com/Geotab/sdk-addin-samples" aria-label="Add-In examples in SDK documentation" target="_blank" rel="noopener noreferrer">Add-In examples</a> have been added to SDK documentation</p>
 			</li>
 			<li>
 				<p>When searching for Zones you can now specify a traversal method of the group tree. You can choose to include just the specified element, just the ancestors, just the descendants, or both ancestors and descendants. See the ZoneSearch object in the <a href="/sdk/software/api/reference/">API Reference</a> for more details</p>
