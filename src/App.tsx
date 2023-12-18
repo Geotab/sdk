@@ -109,10 +109,15 @@ function App() {
           {/* Hardware Routes */}
           <Route path="/hardware" Component={HardwareIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-          <Route path="/hardware/samples/python" Component={Python} />
 
-          <Route path="/hardware/protocolReference/ble" Component={Ble} />
+          {/* Hardware > Guides Routes */}
+
+          {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
+          <Route path="/hardware/protocolReference/ble" Component={Ble} />
+
+          {/* Hardware > Code Samples Routes */}
+          <Route path="/hardware/codeSamples/python" Component={Python} />
 
           {/* =================================================== */}
           {/* Drive Routes */}

@@ -198,14 +198,6 @@ export default function Python() {
         </p>
         <code className="small-code-sample">{`pip install pyserial`}</code>
       </div>
-
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }
