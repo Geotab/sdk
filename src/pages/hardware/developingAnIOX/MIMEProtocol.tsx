@@ -36,33 +36,35 @@ const prerequisites: ReactNode = (
         <p>The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.</p>
         <h3>Binary Data Packets</h3>
         <p>To accommodate external devices with memory constraints, the packet size is adjustable when sending messages to/from MyGeotab. The packets have a maximum size of 1000 bytes.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Bytes</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sequence number [1]</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>MIME data</td>
-                    <td>x</td>
-                    <td>1</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{""}</th>
+                        <th>Bytes</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sequence number [1]</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>MIME data</td>
+                        <td>x</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p>[1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets need to be sent, the sequence number must reset to a value of 1 and continue counting.</p>
         <h3>MIME Data</h3>
         <table>
             <thead>
                 <tr>
-                    <th>&nbsp;</th>
+                    <th>{""}</th>
                     <th>Bytes</th>
                     <th>Position</th>
                 </tr>
@@ -92,103 +94,109 @@ const prerequisites: ReactNode = (
         </table>
         <h4>Acknowledge Message</h4>
         <p>When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of payload bytes received.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Bytes</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sequence Number = 0</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>MIME type length = 3</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>MIME type in ASCII = ‘ACK’</td>
-                    <td>3</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>Payload Length</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>Total Number of Payload Bytes Received</td>
-                    <td>x</td>
-                    <td>9</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{""}</th>
+                        <th>Bytes</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sequence Number = 0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>MIME type length = 3</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>MIME type in ASCII = ‘ACK’</td>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Payload Length</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Total Number of Payload Bytes Received</td>
+                        <td>x</td>
+                        <td>9</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h3>Example</h3>
         <p>This is an example of binary data packets for image data transferred using the MIME type “image/jpeg”. The image size is 83000 bytes. The packet size is 235.</p>
         <h4>First Packet:</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Bytes</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sequence number = 0</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>MIME type length = 10</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>MIME type (“image/jpeg”)</td>
-                    <td>10</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>Payload Length = 83000</td>
-                    <td>4</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Binary Payload (the first 219 bytes)</td>
-                    <td>219</td>
-                    <td>16</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{""}</th>
+                        <th>Bytes</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sequence number = 0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>MIME type length = 10</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>MIME type (“image/jpeg”)</td>
+                        <td>10</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Payload Length = 83000</td>
+                        <td>4</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Binary Payload (the first 219 bytes)</td>
+                        <td>219</td>
+                        <td>16</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4>Second Packet:</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Bytes</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sequence number = 1</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Binary Payload (the next 234 bytes)</td>
-                    <td>234</td>
-                    <td>1</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{""}</th>
+                        <th>Bytes</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sequence number = 1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Binary Payload (the next 234 bytes)</td>
+                        <td>234</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h3>MyGeotab API</h3>
         <p>To send/receive messages between MyGeotab and the external device, please download the source code of the <a href="/sdk/software/js-samples/#starter-kit">Starter Kit</a> sample, and replace the <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html" target="_blank" rel="noreferrer">Sample API</a> with the following script. The alternative is to paste the script in the <a href="/sdk/software/api/runner.html">Runner</a>.</p>
         <h4>MIME Messages From MyGeotab To The External Device:</h4>
