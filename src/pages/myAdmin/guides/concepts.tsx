@@ -7,7 +7,6 @@ import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
-import Accordion from "./../../../components/Accordion/Accordion";
 import CodeSample from "./../../../components/CodeSamplesContainer/CodeSample";
 
 const httpPostRequest: ReactNode = (

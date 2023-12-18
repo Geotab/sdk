@@ -3,7 +3,6 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import mapVehicleInfoImage from "./../../../assets/images/mapAddins/map-add-ins-docs-1.jpg";
 import mapAddinSizeOnDesktopImage from "./../../../assets/images/mapAddins/map-add-ins-docs-2.jpg";

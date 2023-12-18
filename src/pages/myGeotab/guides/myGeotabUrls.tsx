@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";

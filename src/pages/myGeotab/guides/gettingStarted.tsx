@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import "../../../pages/pages.scss";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";

@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { Page } from "../../../components";
-import Accordion from "../../../components/Accordion/Accordion";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 
 const advertisingPacket: ReactNode = (

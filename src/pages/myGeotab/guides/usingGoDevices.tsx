@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import hierarchyDiagram from "../../../assets/images/usingGoDevices/using-go-devices_0.png";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";

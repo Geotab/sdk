@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { CodeSample } from "../../../components/CodeSamplesContainer";

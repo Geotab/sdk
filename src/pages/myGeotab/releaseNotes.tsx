@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import Accordion from '../../components/Accordion/Accordion';
 import "../../pages/pages.scss";
 import InformationalBox from '../../components/InformationalBox/InformationalBox';
 import CodeSample from  "../../components/CodeSamplesContainer/CodeSample";
