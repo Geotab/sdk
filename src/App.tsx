@@ -5,6 +5,7 @@ import MyGeotabIntroduction from "./pages/myGeotab/introduction";
 import MyGeotabReleaseNotes from "./pages/myGeotab/releaseNotes";
 
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
+import MyGeotabConcepts from "./pages/myGeotab/guides/concepts";
 import DataFeed from "./pages/myGeotab/guides/dataFeed";
 import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTelematicsDevices";
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
@@ -24,16 +25,20 @@ import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import Ble from "./pages/hardware/protocolReference/ble";
+import Can from "../src/pages/hardware/protocolReference/can";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
 import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
-import usingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
+import UsingWithDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
+import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
+import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import Python from "./pages/hardware/samples/python";
 
 
@@ -50,6 +55,7 @@ function App() {
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
+          <Route path="/myGeotab/guides/concepts" Component={MyGeotabConcepts} />
           <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
           <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
@@ -59,7 +65,7 @@ function App() {
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
           <Route path="/myGeotab/guides/mgMediaFiles" Component={MgMediaFiles} />
 
-          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={usingInDotnet} />
+          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
 
@@ -72,11 +78,16 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
+          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
+          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
-
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
+
+          <Route path="/hardware/protocolReference/ble" Component={Ble} />
+          <Route path="/hardware/protocolReference/can" Component={Can} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />

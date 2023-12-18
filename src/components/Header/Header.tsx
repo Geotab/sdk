@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import MenuContext from "../../menuContext";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { Link } from "react-router-dom";
-import { IconSearch } from "./IconSearch";
-import SearchModal from "../../components/Header/SearchModal";
+import { IconSearch } from "@geotab/react-component-library"
+import SearchModal from "../SearchModal/SearchModal"
 import "./header.scss";
 
 export default function Header(props: any) {
@@ -91,6 +91,7 @@ export default function Header(props: any) {
             placeholder="Search..."
             onClick={openSearchModal}
             className="header-search-bar-input"
+            readOnly
           />
         </div>
       </div>
