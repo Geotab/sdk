@@ -179,7 +179,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                             
                         } //M:Geotab.Checkmate.API
-                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('M:Geotab.Checkmate.API.#ctor')))) {
+                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')))) {
                         let tagName = item[i].attributes.name.nodeValue.split('.');
                         let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                         console.log(tagName);
