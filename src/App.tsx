@@ -33,13 +33,14 @@ import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
 import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
-import UsingWithDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
+import UsingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
 import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
 import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
-import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
+import UsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import Python from "./pages/hardware/codeSamples/python";
+import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 
 
 
@@ -71,7 +72,7 @@ function App() {
 
           {/* MyGeotab > Guides > Code Base Routes */}
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
-          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
+          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingInDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
 
           {/* MyGeotab > Add-Ins Routes */}
