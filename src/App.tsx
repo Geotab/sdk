@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
-import MyGeotabWhatsNew from "./pages/myGeotab/whatsNew";
+import MyGeotabReleaseNotes from "./pages/myGeotab/releaseNotes";
 
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
 import MyGeotabConcepts from "./pages/myGeotab/guides/concepts";
@@ -51,7 +51,7 @@ function App() {
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
-          <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+          <Route path="/myGeotab/whatsNew" Component={MyGeotabReleaseNotes} />
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
