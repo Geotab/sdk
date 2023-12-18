@@ -133,13 +133,7 @@ export default function UsingWithJavascript() {
       pageTitle={pageTitle}
       tableOfContents={pageSections}
     >
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
+      {null}
     </Page>
   );
 }

@@ -44,7 +44,6 @@ export default function Introduction() {
         </ul>
         Data exchanged with the MyAdmin API is serialized as JSON, making the API compatible with any platform that can make HTTP requests. A .NET class library consisting of an invoker and all API objects is provided to help .NET developers interface with the API. For more information, see the {/* TODO: fix link when page is available*/} <a href="../myAdmin/guides/usingWithDotnet">Using with .NET</a> section. Also, a small JavaScript utility is also provided to facilitate interacting with the API using JavaScript. See the {/* TODO: fix link when page is available*/} <a href="../myAdmin/guides/usingWithJavaScript">Using with JavaScript</a> section for more information.
       </div>
-      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
 };

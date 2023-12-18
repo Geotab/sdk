@@ -48,10 +48,13 @@ function App() {
     <Toaster duration={2000} position="bottom-center">
       <Router>
         <Routes>
+          {/* Landing Page Routes */}
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
 
+          {/* =================================================== */}
           {/* MyGeotab Routes */}
+          <Route path="/myGeotab" Component={MyGeotabIntroduction} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
           <Route path="/myGeotab/releaseNotes" Component={MyGeotabReleaseNotes} />
 
@@ -65,6 +68,8 @@ function App() {
           <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
           <Route path="/myGeotab/guides/mediaFiles" Component={MgMediaFiles} />
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
+
+          {/* MyGeotab > Guides > Code Base Routes */}
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
@@ -85,22 +90,33 @@ function App() {
           {/* MyGeotab > Code Samples Routes */}
           {/* TODO: Need to add Code Samples > Javascript & .Net routes when the files are made */}
 
+          {/* =================================================== */}
           {/* MyAdmin Routes */}
+          <Route path="/myAdmin" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
-          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
-          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
+
+          {/* MyAdmin > Guides Routes */}
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
+          {/* MyAdmin > Guides > Code Base Routes */}
+          <Route path="/myAdmin/guides/codeBase/usingWithJavascript" Component={UsingWithJavascript} /> 
+          <Route path="/myAdmin/guides/codeBase/usingWithDotnet" Component={UsingWithDotnet} />
           
+          {/* MyAdmin > Code Samples Routes */}
+          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
+
+          {/* =================================================== */}
           {/* Hardware Routes */}
+          <Route path="/hardware" Component={HardwareIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
           <Route path="/hardware/protocolReference/can" Component={Can} />
 
+          {/* =================================================== */}
           {/* Drive Routes */}
+          <Route path="/drive" Component={DriveIntroduction} />
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
         </Routes>
