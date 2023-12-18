@@ -18,7 +18,10 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar(props: any) {
   const { active, setActive } = useContext(MenuContext);
   const navigate = useNavigate();
-  const handleLogoClick = () => navigate("/sdk");
+  const handleLogoClick = () => {
+    setActive(HeaderSections.Landing);
+    navigate("/sdk");
+  };
 
   const navBarMapping: { [key: string]: SideNavigationMenuItemType[] } = {
     [HeaderSections.MyGeotab]: MyGeotabNavbarItems,
