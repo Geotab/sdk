@@ -6,7 +6,7 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
-const overiew: ReactNode = (
+const overview: ReactNode = (
     <div className="paragraph">
         <p>This guide describes the general flow for ETL users to consume <a href="https://docs.google.com/document/d/1PEY6L5i3UlVV-5S9FaAV0MHnReCl9vgLxs_mLs26yVo/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Geotab Data Connector</a>. OData Connector implemented OData protocol V4, or you may consider it just as a RESTful service.</p>
     </div>
@@ -184,14 +184,14 @@ const tableSchema: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Using The Data Connector",
-    "breadCrumbItems": []
+    "breadCrumbItems": ["MYG", "Guides", "Using The Geotab Data Connector"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "overview",
         "summary": "Overview",
-        "details": overiew
+        "details": overview
     },
     {
         "elementId": "endpoint",
