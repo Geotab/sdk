@@ -28,6 +28,8 @@ export default function Accordion(props: AccordionContents) {
             {props.summary}
             {Icon}
         </summary>
-        {props.p}
+        <div className="detailsContent" id={props.id}>
+            {props.p}
+        </div>
     </details>);
 }
