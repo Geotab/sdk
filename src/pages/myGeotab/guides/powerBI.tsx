@@ -62,14 +62,6 @@ export default function PowerBI() {
           meaningful insights into their business.
         </p>
       </div>
-
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

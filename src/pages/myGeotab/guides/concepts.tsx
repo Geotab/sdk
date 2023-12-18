@@ -1135,8 +1135,6 @@ export default function Concepts() {
                     The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
                 </p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

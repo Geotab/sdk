@@ -157,13 +157,6 @@ export default function UsingCustomTelematicsDevices() {
         device that is not manufactured or sold by Geotab but is used in
         conjunction with Geotab's fleet management application.
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

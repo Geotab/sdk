@@ -209,8 +209,6 @@ export default function usingInJava() {
                     href="http://en.wikipedia.org/wiki/JSON">JSON</a> format. The Java library provided will automatically handle the
                 JSON serialization and deserialization into MyGeotab objects.
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

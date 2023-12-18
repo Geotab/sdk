@@ -177,8 +177,6 @@ export default function UsingGoDevices() {
           Safari.
         </p>
       </div>
-
-      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
 }

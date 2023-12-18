@@ -701,7 +701,6 @@ export default function AddInStorage() {
                     </p>
                 </InformationalBox>
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

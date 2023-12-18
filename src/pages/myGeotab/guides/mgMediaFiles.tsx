@@ -530,13 +530,6 @@ export default function MgMediaFiles() {
           </li>
         </ul>
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

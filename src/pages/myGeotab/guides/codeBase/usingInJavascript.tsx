@@ -205,7 +205,7 @@ const pageSections: TableOfContentsItem[] = [
 export default function usingInJavascript() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+            {null}
         </Page>
     );
 };

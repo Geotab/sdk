@@ -215,8 +215,6 @@ export default function ApiClients() {
                 <p>There are a number of language specific API clients that roll-up some common functionality such as authentication,
                     session management, deserialization, etc. making it easier to hit the ground running in your language of choice.</p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

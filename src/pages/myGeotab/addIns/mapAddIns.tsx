@@ -2569,13 +2569,6 @@ export default function MapAddins() {
           </figcaption>
         </figure>
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

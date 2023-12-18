@@ -392,14 +392,6 @@ export default function DataFeed() {
           resume the data feed.
         </p>
       </div>
-
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

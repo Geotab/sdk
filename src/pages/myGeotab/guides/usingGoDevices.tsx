@@ -136,7 +136,6 @@ export default function UsingGoDevices() {
                 This document covers the necessary steps to set up a customized solution. Note that the same API is used to retrieve the data from Geotab's
                 hosting solution and is identical to the regular MyGeotab configuration.
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

@@ -162,8 +162,6 @@ export default function usingInDotnet() {
                 {" "}<a href="http://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreferrer">JSON</a> format. The .NET library provided will automatically handle the JSON serialization
                 and deserialization into MyGeotab objects.
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

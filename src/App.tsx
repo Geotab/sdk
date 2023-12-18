@@ -50,45 +50,57 @@ function App() {
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
-          <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
-          <Route path="/myGeotab/whatsNew" Component={MyGeotabReleaseNotes} />
-          <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
+          {/* MyGeotab Routes */}
+          <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
+          <Route path="/myGeotab/releaseNotes" Component={MyGeotabReleaseNotes} />
+
+          {/* MyGeotab > Guides Routes */}
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
           <Route path="/myGeotab/guides/concepts" Component={MyGeotabConcepts} />
           <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
+          <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
           <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
+          <Route path="/myGeotab/guides/mediaFiles" Component={MgMediaFiles} />
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
-          <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
-          <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
-          <Route path="/myGeotab/guides/mgMediaFiles" Component={MgMediaFiles} />
-
+          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
-          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
 
+          {/* MyGeotab > Add-Ins Routes */}
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
-          <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
           <Route path="/myGeotab/addIns/addInStorage" Component={MyGeotabAddInStorage} />
+          <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
 
+          {/* MyGeotab > API Reference Routes */}
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
           <Route path="/method/:methodId" element={<MyGeotabMethod />} />
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
+          {/* MyGeotab > ApiClients Route */}
+          <Route path="/myGeotab/apiClients" Component={ApiClients} />
+
+          {/* MyGeotab > Code Samples Routes */}
+          {/* TODO: Need to add Code Samples > Javascript & .Net routes when the files are made */}
+
+          {/* MyAdmin Routes */}
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
           <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
+          
+          {/* Hardware Routes */}
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/samples/python" Component={Python} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
           <Route path="/hardware/protocolReference/can" Component={Can} />
 
+          {/* Drive Routes */}
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
         </Routes>
