@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
-import MyGeotabWhatsNew from "./pages/myGeotab/whatsNew";
+import MyGeotabReleaseNotes from "./pages/myGeotab/releaseNotes";
 
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
 import MyGeotabConcepts from "./pages/myGeotab/guides/concepts";
@@ -11,6 +11,7 @@ import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTel
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
 import GoDeviceLogging from "./pages/myGeotab/guides/goDeviceLogging";
 import PowerBI from "./pages/myGeotab/guides/powerBI";
+import UsingTheDataConnector from "./pages/myGeotab/guides/usingTheDataConnector";
 import MyGeotabUrls from "./pages/myGeotab/guides/myGeotabUrls";
 
 import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
@@ -22,10 +23,12 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import Ble from "./pages/hardware/protocolReference/ble";
+import Can from "../src/pages/hardware/protocolReference/can";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -51,7 +54,7 @@ function App() {
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
-          <Route path="/myGeotab/whatsNew" Component={MyGeotabWhatsNew} />
+          <Route path="/myGeotab/whatsNew" Component={MyGeotabReleaseNotes} />
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
@@ -64,6 +67,7 @@ function App() {
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
           <Route path="/myGeotab/guides/mgMediaFiles" Component={MgMediaFiles} />
+          <Route path="/myGeotab/guides/usingTheDataConnector" Component={UsingTheDataConnector} />
 
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
@@ -78,7 +82,8 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
+          <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
           <Route path="/myAdmin/codeSamples/dotnetExamples" Component={DotnetExamples} />
           <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
@@ -88,6 +93,7 @@ function App() {
           <Route path="/hardware/samples/python" Component={Python} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
+          <Route path="/hardware/protocolReference/can" Component={Can} />
 
           <Route path="/drive/introduction" Component={DriveIntroduction} />
           <Route path="/drive/addIns/driveAddIns" Component={DriveAddIns} />
