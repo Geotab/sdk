@@ -27,7 +27,7 @@ import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
-import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
+import HardwareIOExpanderProtocol from "./pages/hardware/guides/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
@@ -101,9 +101,9 @@ function App() {
           {/* MyAdmin Routes */}
           <Route path="/myAdmin" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+
           {/* MyAdmin > Guides Routes */}
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
-          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
@@ -120,7 +120,7 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
           {/* Hardware > Guides Routes */}
-          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
+          <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />

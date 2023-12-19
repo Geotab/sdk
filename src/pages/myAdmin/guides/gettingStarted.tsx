@@ -7,11 +7,8 @@ import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
-import Accordion from "./../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import WarningBox from "../../../components/WarningBox/WarningBox";
-
-
 
 const accessApi: ReactNode = (
     <div className="paragraph">
@@ -131,7 +128,6 @@ export default function ReleaseNotes() {
                     </p>
                 </InformationalBox>
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page >
     );
 };

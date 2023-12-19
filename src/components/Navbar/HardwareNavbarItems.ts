@@ -72,7 +72,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
             {
                 id: 0,
                 label: "RS232 & USB",
-                route: "/hardware/protocolReference/rs232&usb", //TODO: Verify route when page is created
+                route: "/hardware/protocolReference/rs232-usb",
                 level: 1,
                 order: 0,
                 roles: [],
