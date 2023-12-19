@@ -41,6 +41,7 @@ import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
 import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
+import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/samples/python";
 
 
@@ -84,7 +85,8 @@ function App() {
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
           <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
-          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet} />
+          <Route path="/myAdmin/codeSamples/dotnetExamples" Component={DotnetExamples} />
+          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
