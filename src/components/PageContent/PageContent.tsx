@@ -15,11 +15,11 @@ interface PageContentProps {
 
 export default function PageContent(props: PageContentProps) {
     return (
-        <div className="pageContent--container">
+        <div className="pageContent__container">
             <Header isLandingPage={props.isLandingPage} />
             {props.pageTitle && <PageTitle title={props.pageTitle.title} breadCrumbItems={props.pageTitle.breadCrumbItems} /> }
-            <div className={props.isLandingPage ? "pageContent--landing" : "pageContent"}>
-                <div>
+            <div className={props.isLandingPage ? "pageContent__landing" : "pageContent"}>
+                <div className={props.isLandingPage ? "" : "pageContent__scrollableArea"}>
                     {props.pageContent}
                     {!props.pageTitle?.title.toLowerCase().match(/^(methods|method|objects|object)$/) && createAccordions(props.tableOfContents || [])}
                 </div>
