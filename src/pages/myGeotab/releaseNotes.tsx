@@ -3039,8 +3039,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function ReleaseNotes() {
     return (
-		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-			{null}
-		</Page>
+		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 };

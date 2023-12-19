@@ -10,7 +10,7 @@ interface PageProps {
     section: string;
     pageTitle?: PageTitleProps;
     tableOfContents?: TableOfContentsItem[];
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export default function Page(props: PageProps) {

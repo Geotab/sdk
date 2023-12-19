@@ -90,8 +90,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function UsingWithDotnet() {
     return (
-        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {null}
-        </Page>
+        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />
     )
 };

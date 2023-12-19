@@ -254,8 +254,6 @@ export default function Introduction() {
       section={HeaderSections.Hardware}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
-    >
-      {null}
-    </Page>
+    />
   );
 }

@@ -131,8 +131,6 @@ export default function UsingWithJavascript() {
       section={HeaderSections.MyAdmin}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
-    >
-      {null}
-    </Page>
+    />
   );
 }
