@@ -1211,7 +1211,7 @@ const messagesFromExternalDevice: ReactNode = (
         </div>
         <p>The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one of these protocols. Please see
             <a href="#appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C</a> for implementation details.</p>
-        <h2>Msg Type 0x8B: Add-On protocol version request</h2>
+        <h2>Msg Type 0x8B: Add-On Protocol Version Request</h2>
         <p>Sent by the external device when requesting the Add-On protocol version number. Once the GO device receives this request, it will reply with 0x27.</p>
         <div className="table-container">
             <table>
@@ -1251,12 +1251,12 @@ const messagesFromExternalDevice: ReactNode = (
                     <tr>
                         <td>Reply: Third-Party version Ack Reply (<a href="#msg-type-0x27-add-on-version-to-external-device">Msg Type 0x27</a>)</td>
                         <td> </td>
-                        <td> </td>
+                        <td> </td>S
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x8C: Protobuf data packet</h2>
+        <h2>Msg Type 0x8C: Protobuf Data Packet</h2>
         <p>Available with Add-On protocol versions 1.2 and later. Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK.</p>
         <div className="table-container">
             <table>
@@ -1615,7 +1615,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "messages-go-device",
-        "summary": "Messages from the GO device",
+        "summary": "Messages From The GO Device",
         "details": messagesFromGoDevice
     },
     {
