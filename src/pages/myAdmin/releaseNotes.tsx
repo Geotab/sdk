@@ -389,7 +389,7 @@ const updateSeptember192022: ReactNode = (
     <h2>OnlineOrderStatus</h2>
     <ul>
       <li>
-        A new parameter, <code className="small-code-sample">poExactMatch</code>, has been added to <strong>GetOnlineOrderStatus</strong> to allow youto search for orders that match a specific PO number.
+        A new parameter, <code className="small-code-sample">poExactMatch</code>, has been added to <strong>GetOnlineOrderStatus</strong> to allow you to search for orders that match a specific PO number.
       </li>
       <li>
         To search for orders that match an exact PO number, use double quotation marks.
@@ -413,6 +413,7 @@ const updateSeptember192022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
+        {/* TODO: update link */}
         <a
           href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
           aria-label="Using Custom Telematics Devices"
@@ -434,7 +435,7 @@ const updateSeptember122022: ReactNode = (
         <strong>GetDeviceContracts</strong> has been updated for Partners that closely integrate their billing with MyAdmin
       </li>
       <li>
-        The API now identifies the Rate Plan of a specific device in real time, as opposed to only the deivce mode
+        The API now identifies the Rate Plan of a specific device in real time, as opposed to only the device mode
       </li>
     </ul>
     <h2>Moving the MyAdmin SDK Site</h2>
@@ -461,6 +462,7 @@ const updateSeptember122022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
+        {/* TODO: update link */}
         <a
           href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
           aria-label="Using Custom Telematics Devices"
@@ -500,6 +502,7 @@ const updateAugust172022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
+        {/* TODO: update link */}
         <a
           href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
           aria-label="Using Custom Telematics Devices"
@@ -539,6 +542,7 @@ const updateJuly112022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
+        {/* TODO: update link */}
         <a
           href="Using Custom Telematics Devices"
           aria-label="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
@@ -859,9 +863,6 @@ const pageSections: TableOfContentsItem[] =
 export default function ReleaseNotes() {
   return (
     <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
-      <div className="paragraph">
-        {/*  */}
-      </div>
       {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
