@@ -23,11 +23,14 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
+import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -40,6 +43,7 @@ import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
 import UsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
+import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/codeSamples/python";
 import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 
@@ -97,8 +101,9 @@ function App() {
           {/* MyAdmin Routes */}
           <Route path="/myAdmin" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-
           {/* MyAdmin > Guides Routes */}
+          <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
@@ -107,6 +112,7 @@ function App() {
           
           {/* MyAdmin > Code Samples Routes */}
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
+          <Route path="/myAdmin/codeSamples/dotnetExamples" Component={DotnetExamples} />
 
           {/* =================================================== */}
           {/* Hardware Routes */}
@@ -114,10 +120,12 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
           {/* Hardware > Guides Routes */}
+          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
+          <Route path="/hardware/protocolReference/rs232-usb" Component={Rs232Usb} />
 
           {/* Hardware > Code Samples Routes */}
           <Route path="/hardware/codeSamples/python" Component={Python} />

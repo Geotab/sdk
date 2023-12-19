@@ -1,0 +1,25 @@
+.warning-box {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 4px;
+    background-color: #f8d7da;
+    margin: 16px 0;
+    color: #721c24;
+
+
+    .icon-container {
+        display: flex;
+        align-items: center;
+    }
+
+    p {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.32px;
+    }
+}
