@@ -76,7 +76,7 @@ const minibUsbPlugInput: ReactNode = (
       src={minibUsbPlugInputImage}
       alt="Figure #3 - Mini-B USB Plug Input diagram"
     />
-    <br></br>
+    <br />
     <div className="table-container">
       <table>
         <thead>
