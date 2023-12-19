@@ -23,6 +23,7 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
@@ -80,9 +81,10 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} /> 
+          <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
-          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
+          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
