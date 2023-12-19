@@ -425,6 +425,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
+        <br></br>
         <div className="table-container">
             <table>
                 <thead>
@@ -675,6 +676,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
+        <br></br>
         <div className="table-container">
             <table>
                 <thead>
