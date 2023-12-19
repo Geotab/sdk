@@ -21,6 +21,10 @@ export default function Navbar(props: any) {
           <Link to="/myGeotab/guides/gettingStarted">Getting Started</Link>
         </div>
         <div>
+          <Link to="/myGeotab/guides/concepts">Concepts</Link>
+        </div>
+        <div>
+          <Link to="/myGeotab/guides/usingCustomTelematicsDevices">Using Custom Telematics Devices</Link>
           <Link to="/myGeotab/guides/dataFeed">Data Feed</Link>
         </div>
         <div>
@@ -49,6 +53,9 @@ export default function Navbar(props: any) {
           </div>
           <div>
             <Link to="/myGeotab/guides/codeBase/usingInJavascript">Using In JavaScript</Link>
+          </div>
+          <div>
+            <Link to="/myGeotab/guides/usingTheDataConnector">Using The Data Connector</Link>
           </div>
         </div>
       </div >
@@ -80,6 +87,12 @@ export default function Navbar(props: any) {
         Drive
         <div>
           <Link to="/drive/addIns/driveAddIns">Drive Add-Ins</Link>
+        </div>
+      </div>
+      <div>
+        MyAdmin
+        <div>
+          <Link to="/myAdmin/introduction">MyAdmin SDK Introduction</Link>
         </div>
       </div>
     </div>

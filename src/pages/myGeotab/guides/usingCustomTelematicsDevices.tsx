@@ -138,13 +138,13 @@ const pageSections: TableOfContentsItem[] = [
     details: customTelematicsDeviceSerialNumbers,
   },
   {
-    elementId: "working-with-addins",
+    elementId: "sending-data",
     summary: "Sending Data",
     details: sendingData,
   },
 ];
 
-export default function usingCustomTelematicsDevices() {
+export default function UsingCustomTelematicsDevices() {
   return (
     <Page
       section={HeaderSections.MyGeotab}
