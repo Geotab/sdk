@@ -69,58 +69,6 @@
   }
 }
 
-.usingCustomTelematicsDevices, .javascriptExamples, .hardwareDesignGuide {
-
-  &__deviceManagementIMG, &__myadminApiExampleIMG, &__hardwareDesignIMG {
-    padding: 0.25rem;
-    background-color: $lightGray;
-    border: 1px solid $img-border;
-    border-radius: 0.25rem;
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-.mapAddins, .mgMediaFiles, .hardwareIntroduction, .hardwareDesignGuide {
-
-  &__docs-service {
-    margin: 1rem 0;
-    min-width: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-clip: border-box;
-    word-wrap: break-word;
-    border-radius: 0.25rem;
-    border: 1px solid $table-border;
-  }
-
-  &__docs-service__part {
-    flex: 1 1 auto;
-    padding: 1.25rem;
-    border-top: 1px solid $table-border;
-  }
-
-  &__docs-service__part:first-child {
-    border-top: none;
-  }
-
-  &__table-container {
-    @extend .table-container;
-    display: inline-block !important;
-    overflow: hidden !important;
-  }
-
-  &__table {
-    margin: 0;
-  }
-
-  &__image {
-    width: max-content;
-    max-width: 100%;
-  }
-}
-
 .center-tableItem {
   th, td {
     text-align: center;
