@@ -27,6 +27,7 @@ import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
@@ -91,6 +92,7 @@ function App() {
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
           <Route path="/hardware/samples/python" Component={Python} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
