@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -208,7 +207,7 @@ const pageSections: TableOfContentsItem[] = [
 export default function UsingTheDataConnector() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
+            {null}
         </Page>
     );
 };

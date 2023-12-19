@@ -133,9 +133,18 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
       },
       {
         id: 9,
-        label: "Code Base",
+        label: "Using the Data Connector",
+        route: "/myGeotab/guides/usingTheDataConnector",
         level: 1,
         order: 9,
+        roles: [],
+        userTypes: []
+      },
+      {
+        id: 10,
+        label: "Code Base",
+        level: 1,
+        order: 10,
         roles: [],
         userTypes: [],
         children: [
