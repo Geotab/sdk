@@ -43,7 +43,7 @@ const generalDescription: ReactNode = (
                     <td>Message: 0-127</td>
                     <td>
                         All IOXs: 0
-                        <br></br>
+                        <br/>
                         Individual IOX Address ID: 1-65535
                     </td>
                 </tr>
@@ -109,7 +109,7 @@ const commands: ReactNode = (
                         <td>0 - Bit 0</td>
                         <td>
                             0 = Have been polled before.
-                            <br></br>
+                            <br/>
                             1 = First poll after power up.
                         </td>
                     </tr>
@@ -117,7 +117,7 @@ const commands: ReactNode = (
                         <td>0 - Bit 1</td>
                         <td>
                             0 = Not Going to Sleep.
-                            <br></br>
+                            <br/>
                             1 = Going to Sleep.
                         </td>
                     </tr>
@@ -125,7 +125,7 @@ const commands: ReactNode = (
                         <td>0 - Bit 2</td>
                         <td>
                             0 = Normal reply.
-                            <br></br>
+                            <br/>
                             1 = First poll response after wake up.
                         </td>
                     </tr>
@@ -153,13 +153,13 @@ const commands: ReactNode = (
                         <td>5</td>
                         <td>
                             Reset Reason
-                            <br></br>
+                            <br/>
                             0 = Power On Reset
-                            <br></br>
+                            <br/>
                             1 = Reset Command
-                            <br></br>
+                            <br/>
                             2 = New Firmware
-                            <br></br>
+                            <br/>
                             All others reserved.
                         </td>
                     </tr>
@@ -171,7 +171,7 @@ const commands: ReactNode = (
                         <td>7</td>
                         <td>
                             150 to 199 
-                            <br></br>
+                            <br/>
                             IOX ID. Please contact Geotab to get one assigned.
                         </td>
                     </tr>
@@ -207,9 +207,9 @@ const commands: ReactNode = (
                         <td>6</td>
                         <td>
                             Error Condition
-                            <br></br>
+                            <br/>
                             0 = No error
-                            <br></br>
+                            <br/>
                             1 = Memory allocation error
                         </td>
                     </tr>
@@ -278,7 +278,7 @@ const commands: ReactNode = (
                         <td>0 - Bit 0</td>
                         <td>
                             0 = Clear to send more RX Data.
-                            <br></br>
+                            <br/>
                             1 = Stop sending UART Data. Buffer 80% full, withhold next frame 50 ms. 
                         </td>
                     </tr>
@@ -313,7 +313,7 @@ const commands: ReactNode = (
                         <td>1</td>
                         <td>
                             0 = Rejected
-                            <br></br>
+                            <br/>
                             1 = Accepted
                         </td>
                     </tr>
@@ -410,7 +410,7 @@ const commands: ReactNode = (
                         <td>1</td>
                         <td>
                             Connected = 1
-                            <br></br>
+                            <br/>
                             Disconnected = 0
                         </td>
                     </tr>
@@ -425,7 +425,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <br></br>
+        <br/>
         <div className="table-container">
             <table>
                 <thead>
@@ -473,7 +473,7 @@ const commands: ReactNode = (
                         <td>3</td>
                         <td>
                             Fault = 1
-                            <br></br>
+                            <br/>
                             Information = 0
                         </td>
                     </tr>
@@ -481,7 +481,7 @@ const commands: ReactNode = (
                         <td>4</td>
                         <td>
                             Log Once Per Trip = 1
-                            <br></br>
+                            <br/>
                             Log Every Fault = 0
                         </td>
                     </tr>
@@ -676,7 +676,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <br></br>
+        <br/>
         <div className="table-container">
             <table>
                 <thead>
@@ -690,7 +690,7 @@ const commands: ReactNode = (
                         <td>Curve Function</td>
                         <td>
                             2 = Add Point
-                            <br></br>
+                            <br/>
                             3 = Save Curve
                         </td>
                     </tr>
@@ -705,9 +705,9 @@ const commands: ReactNode = (
                     <tr>
                         <td>Smoothing Coefficient</td>
                         <td>Applies a low pass filter to the data.
-                            <br></br>
+                            <br/>
                             0 = No filtering
-                            <br></br>
+                            <br/>
                             1-254 = Smoothing coefficient magnitude
                         </td>
                     </tr>
@@ -720,7 +720,7 @@ const commands: ReactNode = (
             <li>Store data in the IOX while the GO device is asleep and send all data after waking up</li>
             <li>
                 Run the curve logging algorithm in the IOX and send those points to be transmitted to MyGeotab. 
-                <br></br>
+                <br/>
                 Additional information about curve logging can be found here: <a href="https://github.com/Geotab/curve" target="_blank" rel="noreferrer">Curve Logging</a>
             </li>
         </ol>
@@ -902,7 +902,7 @@ const commands: ReactNode = (
                         <td>2</td>
                         <td>
                             0 = Not busy
-                            <br></br>
+                            <br/>
                             1 = Busy
                         </td>
                     </tr>
@@ -935,7 +935,7 @@ const commands: ReactNode = (
                         <td>2</td>
                         <td>
                             0 = Beginning of data packet
-                            <br></br>
+                            <br/>
                             1 = End of data packet </td>
                     </tr>
                 </tbody>
@@ -1027,11 +1027,11 @@ const commands: ReactNode = (
                         <td>2</td>
                         <td>
                             Request info:
-                            <br></br>
+                            <br/>
                             0 = GO serial number
-                            <br></br>
+                            <br/>
                             1 = GO firmware version
-                            <br></br>
+                            <br/>
                             2 = IOX protocol version
                         </td>
                     </tr>
@@ -1079,7 +1079,7 @@ const commands: ReactNode = (
                         <td>2</td>
                         <td>
                             0 = Ignition Off
-                            <br></br>
+                            <br/>
                             1 = Ignition On
                         </td>
                     </tr>
@@ -1104,7 +1104,7 @@ const commands: ReactNode = (
                         <td>2</td>
                         <td>
                             0 = Modem is not ready
-                            <br></br>
+                            <br/>
                             1 = Modem is available
                         </td>
                     </tr>
@@ -1243,17 +1243,17 @@ const commands: ReactNode = (
                         <td>19</td>
                         <td>
                             Status Flags (from LSB):
-                            <br></br>
+                            <br/>
                             1st bit: 1 = GPS Valid
-                            <br></br>
+                            <br/>
                             2nd bit: 1 = Ignition On
-                            <br></br>
+                            <br/>
                             3rd bit: 1 = Engine Bus Activity
-                            <br></br>
+                            <br/>
                             4th bit: 1 = Date/Time Valid
-                            <br></br>
+                            <br/>
                             5th bit: 1 = Speed From Engine
-                            <br></br>
+                            <br/>
                             6th bit: 1 = Odometer From Engine
                         </td>
                     </tr>
