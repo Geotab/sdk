@@ -43,7 +43,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
             {
                 id: 0,
                 label: "Design Guide",
-                route: "/hardware/guides/designGuide", //TODO: Verify route when page is created
+                route: "/hardware/guides/designGuide",
                 level: 1,
                 order: 0,
                 roles: [],
@@ -52,9 +52,18 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
             {
                 id: 1,
                 label: "Messaging Protocol",
-                route: "/hardware/guides/messagingProtocol", //TODO: Verify route when page is created
+                route: "/hardware/guides/messagingProtocol",
                 level: 1,
                 order: 1,
+                roles: [],
+                userTypes: []
+            },
+            {
+                id: 2,
+                label: "MIME Protocol",
+                route: "/hardware/guides/mimeProtocol",
+                level: 1,
+                order: 2,
                 roles: [],
                 userTypes: []
             }
