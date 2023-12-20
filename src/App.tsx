@@ -47,8 +47,7 @@ import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/codeSamples/python";
 import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
-
-
+import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 
 function App() {
   return (
@@ -123,6 +122,7 @@ function App() {
 
           {/* Hardware > Guides Routes */}
           <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
+          <Route path="/hardware/guides/hardwareDesignGuide" Component={HardwareDesignGuide} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
