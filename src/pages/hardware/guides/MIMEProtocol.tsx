@@ -61,37 +61,39 @@ const prerequisites: ReactNode = (
         </div>
         <p>[1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets need to be sent, the sequence number must reset to a value of 1 and continue counting.</p>
         <h3>MIME Data</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>{""}</th>
-                    <th>Bytes</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>MIME type length = x</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>MIME type in ASCII</td>
-                    <td>x</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Payload Length = y</td>
-                    <td>4</td>
-                    <td>1 + x</td>
-                </tr>
-                <tr>
-                    <td>Binary Payload</td>
-                    <td>y</td>
-                    <td>5 + x</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{""}</th>
+                        <th>Bytes</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MIME type length = x</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>MIME type in ASCII</td>
+                        <td>x</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Payload Length = y</td>
+                        <td>4</td>
+                        <td>1 + x</td>
+                    </tr>
+                    <tr>
+                        <td>Binary Payload</td>
+                        <td>y</td>
+                        <td>5 + x</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4>Acknowledge Message</h4>
         <p>When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of payload bytes received.</p>
         <div className="table-container">
@@ -269,7 +271,7 @@ const prerequisites: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "MIME Protocol",
-    "breadCrumbItems": ["Hardware", "Developing an IOX", "MIME Protocol"]
+    "breadCrumbItems": ["Hardware", "Guides", "MIME Protocol"]
 };
 
 const pageSections: TableOfContentsItem[] = [

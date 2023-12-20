@@ -28,7 +28,7 @@ import HardwareIntroduction from "./pages/hardware/introduction";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 
-import MIMEProtocol  from "./pages/hardware/developingAnIOX/MIMEProtocol";
+import MIMEProtocol  from "./pages/hardware/guides/MIMEProtocol";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
