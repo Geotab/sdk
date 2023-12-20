@@ -23,6 +23,7 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminReleaseNotes from "./pages/myAdmin/releaseNotes";
 import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
@@ -103,6 +104,7 @@ function App() {
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
 
           {/* MyAdmin > Guides Routes */}
+          <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
