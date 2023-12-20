@@ -44,7 +44,7 @@ import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/samples/python";
-import HardwareDesignGuide from "./pages/hardware/developingIOX/hardwareDesignGuide";
+import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 
 
 

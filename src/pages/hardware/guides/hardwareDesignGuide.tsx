@@ -219,7 +219,7 @@ const mechanicalDesign: ReactNode = (
 
 const pageTitle: PageTitleProps = {
   title: "IOX Add-On Hardware Design Guide",
-  breadCrumbItems: ["Hardware", "Developing an IOX", "Hardware Design Guide"],
+  breadCrumbItems: ["Hardware", "Guides", "Hardware Design Guide"],
 };
 
 const pageSections: TableOfContentsItem[] = [
