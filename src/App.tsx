@@ -33,6 +33,8 @@ import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
 
+import MIMEProtocol  from "./pages/hardware/guides/MIMEProtocol";
+
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
@@ -123,6 +125,7 @@ function App() {
           {/* Hardware > Guides Routes */}
           <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
           <Route path="/hardware/guides/designGuide" Component={HardwareDesignGuide} />
+          <Route path="/hardware/guides/MIMEProtocol" Component={MIMEProtocol} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
