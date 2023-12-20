@@ -30,17 +30,12 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                         }
                         for (let j = 0; j < item[i].childNodes.length; j++) {
                             if (item[i].childNodes[j].nodeName === "summary") {
-                                // within the summary there will be para elements for paragraphs, list elements for lists
-                                // will have to check for childnodes as not all summary elements have childnodes
-                                // GetVersion call is an example of this.
-                                // not all calls have para tags
                                 if (item[i].childNodes[j].hasChildNodes()) {
                                     // if there are child nodes here then we loop through them.
                                     let summaryChildren = item[i].childNodes[j].childNodes;
                                     let summaryText: string = '';
                                     for (let k = 0; k < summaryChildren.length; k++) {
                                         if (summaryChildren[k].nodeName === "para") {
-                                            // need to insert newlines between each new para element
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
                                                 if (summaryChildren[k].childNodes[l].nodeName === '#text') {
                                                     summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
@@ -49,7 +44,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                                     summaryText += summaryChildren[k].childNodes[l].outerHTML;
                                                 }
                                                 if (summaryChildren[k].childNodes[l].nodeName === 'list') {
-                                                    // in lists we have item tags and each item tag has a description tag within it
                                                     let listItems = summaryChildren[k].childNodes[l];
                                                     if (listItems.hasChildNodes) {
                                                         for (let m = 0; m < listItems.childNodes.length; m++) {
@@ -91,8 +85,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                     paramDict['required'] = true;
                                 }
                                 json[methodName].param.push(paramDict);
-                                // have a dictionary with key as name, required property, jsHide property and a description property
-                                // the dicitionary will be pushed into an array in the json obj so we have an array of dictionaries
                             }
                             if (item[i].childNodes[j].nodeName === 'returns') {
                                 let returnText: string = '';
@@ -117,13 +109,11 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                         } 
                     }
-                    // itemType === 'method' && itemStrings.some(method => item[i].attributes.name.nodeValue.includes(method))
-                        // not all objects have basetype as a parameter in their tags
-                        // perhaps the string needs to be hardcoded here in this file instead of passed in an array from the other file
+
                     if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.API')))) {
                         let tagName = item[i].attributes.name.nodeValue.split('.');
                         let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
-                        // console.log(objectName);
+
                         if (!json[objectName]) {
                             json[objectName] = {
                                 "description": "",
@@ -143,7 +133,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                             summaryText += summaryChildren[k].outerHTML;
                                         }
                                         if (summaryChildren[k].nodeName === 'para') {
-                                            // console.log(summaryChildren[k].childNodes);
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
                                                 if (summaryChildren[k].childNodes[l].nodeName === '#text') {
                                                     summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
@@ -158,8 +147,6 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                             }
                                         }
                                         if (summaryChildren[k].nodeName === 'list') {
-                                            // in lists we have item tags and each item tag has a description tag within it
-                                            // console.log(summaryChildren[k].childNodes);
                                             let listItems = summaryChildren[k].childNodes;
                                             for (let l = 0; l < listItems.length; l++) {
                                                 if (listItems[l].hasChildNodes) {
@@ -178,15 +165,12 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 } 
                             }
                             
-                        } //M:Geotab.Checkmate.API
+                        } 
                     } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')))) {
                         let tagName = item[i].attributes.name.nodeValue.split('.');
                         let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
-                        console.log(tagName);
-                        console.log(objectName);
                         let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
                         if (json[objectName]) {
-                            // console.log('----' + objectName + '----');
                             let propertyDict: any = {};
                             let descriptionText = '';
                             propertyDict['name'] = propertyName;
@@ -227,6 +211,5 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
             }
         }
     }
-    console.log(json);
     return json;
 }

@@ -13,35 +13,41 @@ export default function Method() {
     const { methodId = "" } = useParams();
     const storedMethodData = JSON.parse(sessionStorage[methodId]);
     const parameters = storedMethodData.param;
-    const returnDescription = storedMethodData.returns;
+    const returnValueDescriptions = storedMethodData.returns;
     const codeSample = storedMethodData.example;
     
-    const ParamTable: ReactNode = <div className="paragraph">
-        <table className="table-container">
-            <tbody>
-                    {parameters.map((parameter: any) => 
-                        <tr>
-                            <td>{parameter.name}</td>
-                            <td>{RenderStringWithUrl(parameter.description)}</td>
-                        </tr>
-                    )}
-            </tbody>
-        </table>
-    </div>
+    const paramTable: ReactNode = ( 
+    <div className="paragraph">
+            <table className="table-container">
+                <tbody>
+                        {parameters.map((parameter: any) => 
+                            <tr>
+                                <td>{parameter.name}</td>
+                                <td>{RenderStringWithUrl(parameter.description)}</td>
+                            </tr>
+                        )}
+                </tbody>
+            </table>
+        </div>
+    );
 
-    const ReturnDescription: ReactNode = <div className="paragraph">
-        <p>{RenderStringWithUrl(returnDescription)}</p>
-    </div>
+    const returnDescription: ReactNode = (
+        <div className="paragraph">
+            <p>{RenderStringWithUrl(returnValueDescriptions)}</p>
+        </div>
+    );
 
-    const TryMeCodeBlock: ReactNode = <div className="paragraph">
-        <CodeSample
-        language="javascript"
-        code={codeSample}></CodeSample>
-    </div>
+    const tryMeCodeBlock: ReactNode = (
+        <div className="paragraph">
+            <CodeSample
+            language="javascript"
+            code={codeSample}></CodeSample>
+        </div>
+    );
 
     const pageTitle: PageTitleProps = {
-        "title": methodId + "(...)",
-        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + "(...)"]
+        "title": methodId + " (...)",
+        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + " (...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [
@@ -52,12 +58,12 @@ export default function Method() {
         {
             "elementId": "parameters",
             "summary": "Parameters",
-            "details": ParamTable
+            "details": paramTable
         },
         {
             "elementId": "returnValue",
             "summary": "Return Value",
-            "details": ReturnDescription
+            "details": returnDescription
         },
         {
             "elementId": "codeSample",
@@ -77,7 +83,7 @@ export default function Method() {
             <Accordion summary={pageSections[2].summary} p={pageSections[2].details} id={pageSections[2].elementId}/>
             <div>
                 <summary className="heading" id="codeSample">Try Me</summary>
-                {TryMeCodeBlock}
+                {tryMeCodeBlock}
             </div>
         </Page>
     );

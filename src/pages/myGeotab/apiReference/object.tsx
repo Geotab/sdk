@@ -23,7 +23,7 @@ export default function Object() {
                 </div>
             )}
         </div>
-    )
+    );
 
     const pageTitle: PageTitleProps = {
         "title": objectId,
@@ -33,7 +33,7 @@ export default function Object() {
     const pageSections: TableOfContentsItem[] = [
         {
             "elementId": "introduction",
-            "summary": "introduction"
+            "summary": "Introduction"
         }, 
         {
             "elementId": "properties",
