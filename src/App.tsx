@@ -46,6 +46,7 @@ import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/samples/python";
+import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 
 
 
@@ -99,6 +100,7 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
           <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
           <Route path="/hardware/samples/python" Component={Python} />
+          <Route path="/hardware/developingIOX/hardwareDesignGuide" Component={HardwareDesignGuide} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
           <Route path="/hardware/protocolReference/can" Component={Can} />
