@@ -122,7 +122,7 @@ function App() {
 
           {/* Hardware > Guides Routes */}
           <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
-          <Route path="/hardware/guides/hardwareDesignGuide" Component={HardwareDesignGuide} />
+          <Route path="/hardware/guides/designGuide" Component={HardwareDesignGuide} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
