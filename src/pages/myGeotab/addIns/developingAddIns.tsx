@@ -453,7 +453,7 @@ const creatingSubmenu: ReactNode = (
         </div>
         <p>
             At least one language is required in each item definition. The following language options are currently supported in MyGeotab: English (<code className="small-code-sample">"en"</code>),
-            French (<code className="small-code-sample">"fr"</code>),
+            French Canada (<code className="small-code-sample">"fr"</code>),
             German (<code className="small-code-sample">"de"</code>),
             Spanish (<code className="small-code-sample">"es"</code>),
             Japanese (<code className="small-code-sample">"ja"</code>),

@@ -23,10 +23,12 @@ import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
+import MyAdminReleaseNotes from "./pages/myAdmin/releaseNotes";
 import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
@@ -84,14 +86,19 @@ function App() {
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
+          <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
+          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
+          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet} />
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
           <Route path="/myAdmin/guides/usingWithJavascript" Component={UsingWithJavascript} />
           <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
           <Route path="/myAdmin/codeSamples/dotnetExamples" Component={DotnetExamples} />
-          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
+          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
+          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
           <Route path="/hardware/samples/python" Component={Python} />
           <Route path="/hardware/developingIOX/hardwareDesignGuide" Component={HardwareDesignGuide} />
 
