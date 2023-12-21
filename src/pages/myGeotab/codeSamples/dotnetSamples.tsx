@@ -4,7 +4,6 @@ import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
-import Accordion from "./../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 
 const howToRunTheExamples: ReactNode = (
