@@ -49,6 +49,7 @@ import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/samples/python";
 import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
+import DotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 
 
 
@@ -78,6 +79,7 @@ function App() {
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
+          <Route path="/myGeotab/codeSamples/dotnetSamples" Component={DotnetSamples} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
           <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
