@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
-import { Page } from "../../../components";
-import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
-import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../components/Accordion/Accordion";
-import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import { CodeSample } from "../../../components/CodeSamplesContainer";
+import { Page } from "../../../../components";
+import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
+import { CodeSample } from "../../../../components/CodeSamplesContainer";
 
 const overview: ReactNode = (
   <div className="paragraph">
@@ -132,14 +131,6 @@ export default function UsingWithJavascript() {
       section={HeaderSections.MyAdmin}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
-    >
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
-    </Page>
+    />
   );
 }

@@ -4,7 +4,6 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import messageFlowDiagram from "../../../assets/images/hardware/rs232Usb/rs232-usb_0.png";
 import { Link } from "react-router-dom";
@@ -1641,8 +1640,6 @@ export default function Rs232Usb() {
                     <li><a href="https://www.geotab.com/documentation/iox-usb/" target="_blank" rel="noopener noreferrer" aria-label="IOX-USB Support Documentation">IOX-USB</a></li>
                 </ul>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

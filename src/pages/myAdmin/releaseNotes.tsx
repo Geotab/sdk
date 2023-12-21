@@ -5,8 +5,6 @@ import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
 
-import Accordion from "../../components/Accordion/Accordion";
-
 const updateDecember042023: ReactNode = (
   <div className="paragraph">
     <h2>ApiRatePlan</h2>
@@ -862,8 +860,6 @@ const pageSections: TableOfContentsItem[] =
 
 export default function ReleaseNotes() {
   return (
-    <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
-      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
-    </Page>
+    <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />
   );
 };

@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -1441,8 +1440,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function MessagingProtocol() {
     return (
-        <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
-        </Page>
+        <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />
     )
 };
