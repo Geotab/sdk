@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
@@ -397,8 +396,6 @@ export default function Can() {
                     the IOX-CAN. An initial handshake is required before messages can be produced using the IOX-CAN.</p>
                 <p>The GO device will start processing third-party data if it is properly formatted. Once processed, the third-party data will be saved and sent to MyGeotab as Status Data.</p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };
