@@ -158,7 +158,7 @@ export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
             {
                 id: 1,
                 label: ".Net",
-                route: "/myAdmin/codeSamples/dotNetExamples", // TODO: This needs to be created
+                route: "/myAdmin/codeSamples/dotNetExamples",
                 level: 1,
                 order: 1,
                 roles: [],
