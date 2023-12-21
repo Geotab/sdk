@@ -68,22 +68,21 @@ export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
                 roles: [],
                 userTypes: []
             },
-            /* // TODO: This is legacy content that might not make it 
+             // This link is here on purpose and is intended to link a MyGeotab page from the MyAdmin section
             {
                 id: 2,
-                label: "Using 3rd Party Devices",
-                route: "/myAdmin/guides/using3rdPartyDevices",
+                label: "Using Custom Telematics Devices",
+                route: "/myGeotab/guides/usingCustomTelematicsDevices",
                 level: 1,
                 order: 2,
                 roles: [],
                 userTypes: []
             },
-            */
             {
-                id: 2,
+                id: 3,
                 label: "Code Base",
                 level: 1,
-                order: 2,
+                order: 3,
                 roles: [],
                 userTypes: [],
                 children: [
@@ -99,7 +98,7 @@ export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
                     {
                         id: 1,
                         label: ".Net",
-                        route: "/myAdmin/guides/codeBase/usingWithDotNet", // TODO: This needs to be created
+                        route: "/myAdmin/guides/codeBase/usingWithDotNet",
                         level: 2,
                         order: 1,
                         roles: [],
