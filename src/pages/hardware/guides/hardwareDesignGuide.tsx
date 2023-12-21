@@ -3,7 +3,6 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import Accordion from "../../../components/Accordion/Accordion";
 import hardwareSystemDesignIntroImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_0.png";
 import hardwareConnectorImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_1.png";
 import minibUsbPlugInputImage from "./../../../assets/images/hardwareDesignGuide/hardware-design-guide_2.png";
@@ -219,40 +218,40 @@ const mechanicalDesign: ReactNode = (
 
 const pageTitle: PageTitleProps = {
   title: "IOX Add-On Hardware Design Guide",
-  breadCrumbItems: ["Hardware", "Guides", "Hardware Design Guide"],
+  breadCrumbItems: ["Hardware", "Guides", "Hardware Design Guide"]
 };
 
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "system-introduction",
     summary: "System Introduction",
-    details: systemIntroduction,
+    details: systemIntroduction
   },
   {
     elementId: "hardware-structure",
     summary: "Hardware Structure",
-    details: hardwareStructure,
+    details: hardwareStructure
   },
   {
     elementId: "mini-b-usb-plug-input",
     summary: "Mini-B USB Plug Input",
-    details: minibUsbPlugInput,
+    details: minibUsbPlugInput
   },
   {
     elementId: "power-design",
     summary: "Power Design",
-    details: powerDesign,
+    details: powerDesign
   },
   {
     elementId: "can-bus-communication",
     summary: "CAN Bus Communication",
-    details: canBusCommunication,
+    details: canBusCommunication
   },
   {
     elementId: "mechanical-design",
     summary: "Mechanical Design",
-    details: mechanicalDesign,
-  },
+    details: mechanicalDesign
+  }
 ];
 
 export default function HardwareDesignGuide() {
@@ -261,14 +260,6 @@ export default function HardwareDesignGuide() {
       section={HeaderSections.Hardware}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
-    >
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
-    </Page>
+    />
   );
 }
