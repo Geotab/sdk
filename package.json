@@ -5,7 +5,6 @@
   "homepage": "http://geotab.github.io/sdk",
   "dependencies": {
     "@geotab/react-component-library": "^1.0.79",
-    "@dev/zenith": "^0.0.26",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
