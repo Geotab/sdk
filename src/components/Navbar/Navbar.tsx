@@ -3,7 +3,7 @@ import MenuContext from "../../menuContext";
 import {
   SideNavigation,
   SideNavigationCollapseProvider,
-  SideNavigationMenuItem
+  SideNavigationMenuItem // This will be imported once it's added to the react-component-library
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { HeaderSections } from "../Header/headerSectionsEnum";
@@ -28,10 +28,8 @@ export default function Navbar(props: any) {
     [HeaderSections.MyAdmin]: MyAdminNavbarItems,
     [HeaderSections.Drive]: DriveNavbarItems,
     [HeaderSections.Hardware]: HardwareNavbarItems,
-    '': []
+    '': [] // Default value is needed for the SideNavigation component to render properly
   };
-  console.log(navBarMapping);
-  console.log(active);
 
   function attachOnClickHandlerToMenuItems(item: SideNavigationMenuItemType) {
     if (item.children && item.children?.length > 0) {
@@ -39,7 +37,7 @@ export default function Navbar(props: any) {
         attachOnClickHandlerToMenuItems(child);
       });
     } else {
-      if (item.route && !item.externalRoute && item.onClick === undefined) {
+      if (!item.externalRoute && item.onClick === undefined) {
         item.onClick = () => {
           if (item.route) {
             navigate(item.route);
