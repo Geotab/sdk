@@ -277,7 +277,7 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
       {
         id: 1,
         label: ".Net",
-        route: "/myGeotab/codeSamples/dotNetExamples", // TODO: This needs to be created
+        route: "/myGeotab/codeSamples/dotnetSamples", 
         level: 1,
         order: 1,
         roles: [],

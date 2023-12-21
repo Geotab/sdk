@@ -294,76 +294,76 @@ const dataFeed: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-  title: ".Net Examples",
-  breadCrumbItems: ["MYG", "Code Samples", ".Net Examples"],
+  title: ".Net Samples",
+  breadCrumbItems: ["MYG", "Code Samples", ".Net Samples"]
 };
 
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "how-to-run-the-examples",
     summary: "How to run the examples?",
-    details: howToRunTheExamples,
+    details: howToRunTheExamples
   },
   {
     elementId: "get-Count",
     summary: "Get count",
-    details: getCount,
+    details: getCount
   },
   {
     elementId: "extract-mileage",
     summary: "Extract mileage",
-    details: extractMileage,
+    details: extractMileage
   },
   {
     elementId: "get-logs",
     summary: "Get logs",
-    details: getLogs,
+    details: getLogs
   },
   {
     elementId: "get-fuel-tax-details-IFTA",
     summary: "Get fuel tax details (IFTA)",
-    details: getFuelTaxDetailsIFTA,
+    details: getFuelTaxDetailsIFTA
   },
   {
     elementId: "text-message",
     summary: "Text message",
-    details: textMessage,
+    details: textMessage
   },
   {
     elementId: "import-groups",
     summary: "Import groups",
-    details: importGroups,
+    details: importGroups
   },
   {
     elementId: "reconcile-groups-alpha-version",
     summary: "Reconcile groups - (Alpha version)",
-    details: reconcileGroupsAlphaVersion,
+    details: reconcileGroupsAlphaVersion
   },
   {
     elementId: "import-devices",
     summary: "Import devices",
-    details: importDevices,
+    details: importDevices
   },
   {
     elementId: "import-zones",
     summary: "Import zones",
-    details: importZones,
+    details: importZones
   },
   {
     elementId: "import-zones-from-shape-file",
     summary: "Import zones from shape file",
-    details: importZonesFromShapeFile,
+    details: importZonesFromShapeFile
   },
   {
     elementId: "import-users",
     summary: "Import users",
-    details: importUsers,
+    details: importUsers
   },
   {
     elementId: "data-feed",
     summary: "Data feed",
-    details: dataFeed,
-  },
+    details: dataFeed
+  }
 ];
 
 export default function DotnetSamples() {
@@ -380,13 +380,6 @@ export default function DotnetSamples() {
           build your own custom applications:
         </p>
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }
