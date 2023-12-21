@@ -9,14 +9,14 @@ import { CodeSample } from "../../../components/CodeSamplesContainer";
 const integrationProcess: ReactNode = (
     <div className="paragraph">
         <p>The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data CAN Protocol:</p>
-        <h2>1 - Request External Device ID</h2>
+        <h2>1 - request external device id</h2>
         <p>Contact <a href="mailto:soleng@geotab.com" target="_blank" rel="noopener noreferrer">Geotab Solution Engineering team</a> to obtain an External Device ID for your third-party device. This will
             allow us to uniquely identify your device when it connects to a GO device. Thereafter, any connection established by that type of external device will be recorded as Status Data in MyGeotab
             under the naming format "[External device name] device connected".</p>
-        <h2>2 - Request Status Data IDs</h2>
+        <h2>2 - request status data IDs</h2>
         <p>There is an extensively defined Status Data ID list which can be found at <a href="https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080"
             target="_blank" rel="noopener noreferrer">MyGeotab Diagnostics</a>. Specifics regarding Status Data ID implementations can be found on the README sheet. </p>
-        <h2>3 - Implement the Third-Party CAN Protocol</h2>
+        <h2>3 - implement the third-party CAN protocol</h2>
         <p>Implement the Third-Party CAN Protocol in the external device as described below. The CAN speed to be used will be 250K or 500K, and the external device should have its CAN transceiver set to
             normal mode. The IOX CAN will auto-baud between 250K and 500K.
         </p>
@@ -51,7 +51,7 @@ const integrationProcess: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Data Length (DLC)</h3>
+        <h3>Data length (DLC)</h3>
         <p>Indicates how many bytes of data are being sent (up to a maximum of 8).</p>
         <h3>Data</h3>
         <p>All values must be sent with the least significant byte first.</p>
@@ -363,22 +363,22 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "integration-process",
-        "summary": "Integration Process",
+        "summary": "Integration process",
         "details": integrationProcess
     },
     {
         "elementId": "messages-from-go-device",
-        "summary": "Messages From GO Device",
+        "summary": "Messages from GO device",
         "details": messagesFromGoDevice
     },
     {
         "elementId": "messages-from-external-device",
-        "summary": "Messages From External Device",
+        "summary": "Messages from external device",
         "details": messagesFromExternalDevice
     },
     {
         "elementId": "messages-from-mygeotab",
-        "summary": "Messages From MyGeotab",
+        "summary": "Messages from MyGeotab",
         "details": messagesFromMyGeotab
     },
     {

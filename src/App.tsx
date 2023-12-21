@@ -7,7 +7,7 @@ import MyGeotabReleaseNotes from "./pages/myGeotab/releaseNotes";
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
 import MyGeotabConcepts from "./pages/myGeotab/guides/concepts";
 import DataFeed from "./pages/myGeotab/guides/dataFeed";
-import usingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTelematicsDevices";
+import UsingCustomTelematicsDevices from "./pages/myGeotab/guides/usingCustomTelematicsDevices";
 import UsingGoDevices from "./pages/myGeotab/guides/usingGoDevices";
 import GoDeviceLogging from "./pages/myGeotab/guides/goDeviceLogging";
 import PowerBI from "./pages/myGeotab/guides/powerBI";
@@ -28,12 +28,12 @@ import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
-import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
+import MessagingProtocol from "./pages/hardware/guides/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
 
-import MIMEProtocol  from "./pages/hardware/guides/MIMEProtocol";
+import MimeProtocol  from "./pages/hardware/guides/mimeProtocol";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -41,8 +41,8 @@ import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 import { Toaster } from "@geotab/react-component-library";
 import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
 import UsingWithDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
-import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
-import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
+import UsingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
+import UsingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 import ApiClients from "./pages/myGeotab/apiClients";
 import UsingWithJavascript from "./pages/myAdmin/guides/usingWithJavascript";
 import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
@@ -68,7 +68,7 @@ function App() {
           <Route path="/myGeotab/guides/dataFeed" Component={DataFeed} />
           <Route path="/myGeotab/guides/usingGoDevices" Component={UsingGoDevices} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
-          <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={usingCustomTelematicsDevices} />
+          <Route path="/myGeotab/guides/usingCustomTelematicsDevices" Component={UsingCustomTelematicsDevices} />
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
           <Route path="/myGeotab/guides/goDeviceLogging" Component={GoDeviceLogging} />
           <Route path="/myGeotab/guides/MyGeotabUrls" Component={MyGeotabUrls} />
@@ -76,8 +76,8 @@ function App() {
           <Route path="/myGeotab/guides/usingTheDataConnector" Component={UsingTheDataConnector} />
 
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
-          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
-          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
+          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={UsingInJava} />
+          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={UsingInJavascript} />
 
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
           <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
@@ -100,10 +100,10 @@ function App() {
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
+          <Route path="/hardware/guides/messagingProtocol" Component={MessagingProtocol} />
           <Route path="/hardware/samples/python" Component={Python} />
-          <Route path="/hardware/guides/MIMEProtocol" Component={MIMEProtocol} />
-          <Route path="/hardware/developingIOX/hardwareDesignGuide" Component={HardwareDesignGuide} />
+          <Route path="/hardware/guides/mimeProtocol" Component={MimeProtocol} />
+          <Route path="/hardware/guides/hardwareDesignGuide" Component={HardwareDesignGuide} />
 
           <Route path="/hardware/protocolReference/ble" Component={Ble} />
           <Route path="/hardware/protocolReference/can" Component={Can} />

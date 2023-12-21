@@ -143,7 +143,7 @@ const resultsAndErrors: ReactNode = (
 );
 
 const authentication: React.ReactNode = (
-    <div className="paragraph">
+    <div id="authentication" className="paragraph">
         <p>
             Authentication is performed to obtain a session token (credentials). This token then confirms your identity for subsequent API operations. If the session expires, a new Authentication request must be made to get a new token. This approach encourages efficient use of Authentication requests, as shown in the Authentication example below.
         </p>
