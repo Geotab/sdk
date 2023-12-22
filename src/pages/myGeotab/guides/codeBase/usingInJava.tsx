@@ -5,6 +5,8 @@ import { HeaderSections } from "../../../../components/Header/headerSectionsEnum
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const mavenDependency: ReactNode = (
     <div className="paragraph">
@@ -14,14 +16,14 @@ const mavenDependency: ReactNode = (
             data over the wire. It includes tools to assist authenticating against Geotab's servers, automatically serializing/deserializing
             JSON, and providing definitions for Checkmate object classes.</p>
         <InformationalBox>
-            <p>Quick start in <a href="../../api/clients">{/*TODO: fix link*/}API Clients</a></p>
+            <p>Quick start in <Link to="/myGeotab/apiClients">API Clients</Link></p>
         </InformationalBox>
     </div>
 );
 
 const apiClass: ReactNode = (
     <div className="paragraph">
-        <h2>Step 1: Initialize & Authentication</h2>
+        <h2>Step 1: initialize & authentication</h2>
         <p>An instance of API can be constructed to be used in the code. For the most basic use case, all the data that is needed is user
             credentials and a database name:</p>
         <CodeSample
@@ -47,9 +49,9 @@ GeotabApi api = new GeotabApi(credentials);`
             The resulting security token and server information are stored in order to make further calls to the API. If the <code className="small-code-sample">{`authenticate()`}</code> call is not made
             explicit, then it will be made implicit, behind the scene, before the first api <code className="small-code-sample">{`call()`}</code>.</p>
         <InformationalBox>
-            <p>For more information regarding authentication, please review the {/*TODO: fix link*/}<a href="../concepts/#authentication">Authentication</a> documentation.</p>
+            <p>For more information regarding authentication, please review the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> documentation.</p>
         </InformationalBox>
-        <h2>Step 2: Making Calls</h2>
+        <h2>Step 2: making calls</h2>
         <p>When authenticated, calls are made to the API by invoking the <code className="small-code-sample">{`call()`}</code> method of the API class.</p>
         <p>The example below illustrates how to make a generic call to get all devices in the system.</p>
         <CodeSample
@@ -100,7 +102,7 @@ GeotabApi api = new GeotabApi(credentials);`
         </ul>
         <p>The API class automatically handles databases that are moved to different servers in the federation and expired tokens {`(`}token are typically valid for 2 weeks{`)`} by automatically
             re-authenticating and continuing.</p>
-        <h2>Example Code</h2>
+        <h2>Example code</h2>
         <p>The following is a simple console app that will search Device by serial number:</p>
         <CodeSample
             language="java"
@@ -184,17 +186,17 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "maven-dependency",
-        "summary": "Maven Dependency",
+        "summary": "Maven dependency",
         "details": mavenDependency
     },
     {
         "elementId": "api-class",
-        "summary": "API Class",
+        "summary": "API class",
         "details": apiClass
     },
     {
         "elementId": "next-steps",
-        "summary": "Next Steps",
+        "summary": "Next steps",
         "details": nextSteps
     }
 ];

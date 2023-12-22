@@ -29,11 +29,11 @@ import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import MessagingProtocol from "./pages/hardware/guides/messagingProtocol";
+import MimeProtocol  from "./pages/hardware/guides/mimeProtocol";
+import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
-
-import MimeProtocol  from "./pages/hardware/guides/mimeProtocol";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
@@ -49,7 +49,6 @@ import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/codeSamples/python";
 import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
-import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 
 function App() {
   return (
@@ -79,9 +78,9 @@ function App() {
           <Route path="/myGeotab/guides/usingTheDataConnector" Component={UsingTheDataConnector} />
 
           {/* MyGeotab > Guides > Code Base Routes */}
-          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
+          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={UsingInJavascript} />
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingInDotnet} />
-          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
+          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={UsingInJava} />
 
           {/* MyGeotab > Add-Ins Routes */}
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
@@ -123,9 +122,9 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
           {/* Hardware > Guides Routes */}
-          <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
+          <Route path="/hardware/guides/messagingProtocol" Component={MessagingProtocol} />
           <Route path="/hardware/guides/designGuide" Component={HardwareDesignGuide} />
-          <Route path="/hardware/guides/MIMEProtocol" Component={MIMEProtocol} />
+          <Route path="/hardware/guides/MIMEProtocol" Component={MimeProtocol} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />
