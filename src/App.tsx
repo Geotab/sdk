@@ -50,6 +50,7 @@ import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 import Python from "./pages/hardware/codeSamples/python";
 import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
+import DotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
 
           {/* MyGeotab > Code Samples Routes */}
           {/* TODO: Need to add Code Samples > Javascript & .Net routes when the files are made */}
+          <Route path="/myGeotab/codeSamples/dotnetSamples" Component={DotnetSamples} />
 
           {/* =================================================== */}
           {/* MyAdmin Routes */}
