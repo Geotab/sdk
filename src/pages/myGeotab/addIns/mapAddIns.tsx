@@ -54,9 +54,9 @@ const installation: ReactNode = (
       </li>
       <li>
         <strong>noView</strong> - If{" "}
-        <code className="small-code-sample-two">true</code>, the add-in will not
+        <code className="small-code-sample">true</code>, the add-in will not
         be displayed in the right-side panel. The default value is{" "}
-        <code className="small-code-sample-two">false</code>.
+        <code className="small-code-sample">false</code>.
       </li>
       <li>
         <strong>src</strong> - The JavaScript file reference for the Add-in.
