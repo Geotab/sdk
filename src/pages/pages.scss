@@ -126,6 +126,7 @@ ul {
     border-collapse: collapse;
     border-spacing: 0;
     width: auto;
+    text-align: left;
 
     thead {
       tr {
@@ -153,12 +154,11 @@ ul {
       tr:last-child {
         border-bottom: none;
       }
-    }
 
-    th,
-    td {
-      padding: 16px;
-      text-align: left;
+      td {
+        padding: 18px 12px;
+        vertical-align: middle;
+      }
     }
 
     tr {
@@ -166,11 +166,6 @@ ul {
     }
   }
 }
-
-
-
-
-
 
 .paragraph {
   font-weight: 400;
