@@ -9,8 +9,8 @@ import InformationalBox from "../../../components/InformationalBox/Informational
 const objectModel: ReactNode = (
   <div className="paragraph">
     <h3>MediaFile</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -133,8 +133,8 @@ const objectModel: ReactNode = (
       </p>
     </InformationalBox>
     <h3>MediaFileSearch</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -190,8 +190,8 @@ const objectModel: ReactNode = (
       </table>
     </div>
     <h3>Tag</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -246,8 +246,8 @@ const objectModel: ReactNode = (
 
 const supportedFileTypes: ReactNode = (
   <div className="paragraph">
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Type</th>
@@ -317,8 +317,8 @@ const security: ReactNode = (
 
 const api: ReactNode = (
   <div className="paragraph">
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Method</th>

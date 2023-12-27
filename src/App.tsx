@@ -3,6 +3,7 @@ import LandingPage from "./pages";
 
 import MyGeotabIntroduction from "./pages/myGeotab/introduction";
 import MyGeotabReleaseNotes from "./pages/myGeotab/releaseNotes";
+import ApiClients from "./pages/myGeotab/apiClients";
 
 import MyGeotabGettingStarted from "./pages/myGeotab/guides/gettingStarted";
 import MyGeotabConcepts from "./pages/myGeotab/guides/concepts";
@@ -13,6 +14,10 @@ import GoDeviceLogging from "./pages/myGeotab/guides/goDeviceLogging";
 import PowerBI from "./pages/myGeotab/guides/powerBI";
 import UsingTheDataConnector from "./pages/myGeotab/guides/usingTheDataConnector";
 import MyGeotabUrls from "./pages/myGeotab/guides/myGeotabUrls";
+import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
+import UsingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
+import UsingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
+import UsingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
 
 import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
@@ -22,10 +27,18 @@ import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
+import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
+import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
+
 import MyAdminIntroduction from "./pages/myAdmin/introduction";
 import MyAdminReleaseNotes from "./pages/myAdmin/releaseNotes";
+
 import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
+import MyAdminUsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWithJavascript";
+import MyAdminUsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
+import MyAdminJavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
+import MyAdminDotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import MessagingProtocol from "./pages/hardware/guides/messagingProtocol";
@@ -34,21 +47,12 @@ import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
+import HardwarePython from "./pages/hardware/codeSamples/python";
 
 import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
-import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
-import UsingInDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
-import UsingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
-import UsingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
-import ApiClients from "./pages/myGeotab/apiClients";
-import UsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWithJavascript";
-import JavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
-import DotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
-import Python from "./pages/hardware/codeSamples/python";
-import UsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 
 function App() {
   return (
@@ -96,25 +100,26 @@ function App() {
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           {/* MyGeotab > Code Samples Routes */}
-          {/* TODO: Need to add Code Samples > Javascript & .Net routes when the files are made */}
+          <Route path="/myGeotab/codeSamples/javascriptSamples" Component={MyGeotabJavascriptSamples} />
+          <Route path="/myGeotab/codeSamples/dotnetSamples" Component={MyGeotabDotnetSamples} />
 
           {/* =================================================== */}
           {/* MyAdmin Routes */}
           <Route path="/myAdmin" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
+          <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
 
           {/* MyAdmin > Guides Routes */}
-          <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
-          <Route path="/myAdmin/guides/codeBase/usingWithJavascript" Component={UsingWithJavascript} /> 
-          <Route path="/myAdmin/guides/codeBase/usingWithDotnet" Component={UsingWithDotnet} />
-          
+          <Route path="/myAdmin/guides/codeBase/usingWithJavascript" Component={MyAdminUsingWithJavascript} />
+          <Route path="/myAdmin/guides/codeBase/usingWithDotnet" Component={MyAdminUsingWithDotnet} />
+
           {/* MyAdmin > Code Samples Routes */}
-          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={JavascriptExamples} />
-          <Route path="/myAdmin/codeSamples/dotnetExamples" Component={DotnetExamples} />
+          <Route path="/myAdmin/codeSamples/javascriptExamples" Component={MyAdminJavascriptExamples} />
+          <Route path="/myAdmin/codeSamples/dotnetExamples" Component={MyAdminDotnetExamples} />
 
           {/* =================================================== */}
           {/* Hardware Routes */}
@@ -132,7 +137,7 @@ function App() {
           <Route path="/hardware/protocolReference/rs232-usb" Component={Rs232Usb} />
 
           {/* Hardware > Code Samples Routes */}
-          <Route path="/hardware/codeSamples/python" Component={Python} />
+          <Route path="/hardware/codeSamples/python" Component={HardwarePython} />
 
           {/* =================================================== */}
           {/* Drive Routes */}

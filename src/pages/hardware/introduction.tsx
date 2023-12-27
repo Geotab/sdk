@@ -82,8 +82,8 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
       transfer from GO device to Add-On.
     </p>
 
-    <div className="hardwareIntroduction__table-container">
-      <table className="hardwareIntroduction__table center-tableItem">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>IOX Type</th>

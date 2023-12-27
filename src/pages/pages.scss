@@ -9,6 +9,12 @@
   font-size: $font-size-medium;
 }
 
+img {
+  max-width: 100%;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+}
+
 // Page-specific styles
 .landing-page {
   margin-top: 58px;
@@ -18,6 +24,10 @@
   align-items: center;
   box-sizing: border-box;
   color: $lightBlack;
+
+  img {
+    border: none;
+  }
 
   &__left {
     width: 454px;
@@ -69,15 +79,6 @@
   }
 }
 
-.center-tableItem {
-
-  th,
-  td {
-    text-align: center;
-    align-items: center;
-  }
-}
-
 .methods {
   &__method-title {
     display: flex;
@@ -113,30 +114,57 @@ ul {
 }
 
 .table-container {
-  border-radius: 4px;
-  border: 1px solid $table-border;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
   margin: 0;
   padding: 0;
   overflow: auto;
-}
+  display: inline-block;
+  max-width: 100%;
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  margin: 16px 0;
-}
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: auto;
+    text-align: left;
 
+    thead {
+      tr {
+        margin: 12px;
 
-tbody tr {
-  border-top: 1px solid $table-border;
-  border-radius: 4px;
-}
+        th {
+          position: relative;
+          padding: 20px 12px 20px 14px;
 
-th,
-td {
-  padding: 16px;
-  text-align: left;
+          &:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 12px;
+            bottom: 12px;
+            left: 100%;
+            width: 1px;
+            background-color: $border-color;
+          }
+
+        }
+      }
+    }
+
+    tbody {
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        padding: 18px 12px;
+        vertical-align: middle;
+      }
+    }
+
+    tr {
+      border-bottom: 1px solid $border-color;
+    }
+  }
 }
 
 .paragraph {
@@ -183,11 +211,6 @@ a {
 
 .small-code-sample {
   color: $code-color;
-  background-color: $code-bg;
-  padding: 4px;
-}
-
-.small-code-sample-two {
   background-color: $code-bg;
   padding: 4px;
 }
