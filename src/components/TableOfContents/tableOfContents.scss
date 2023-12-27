@@ -3,14 +3,17 @@
 .tableOfContents {
     background-color: $page-title-background;
     border-radius: 8px;
+    float: inline-end;
+    width: 20%;
     max-width: 288px;
     height: fit-content;
     margin: 0;
     position: sticky;
     top: 5px;
-    width: 100%;
     list-style-type: none;
     padding: 0 0 8px 0;
+    max-height: 70vh;
+    overflow: auto;
 
     &__heading {
         padding: 16px 16px 8px 16px;

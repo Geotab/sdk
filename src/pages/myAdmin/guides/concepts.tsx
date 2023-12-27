@@ -7,7 +7,6 @@ import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
-import Accordion from "./../../../components/Accordion/Accordion";
 import CodeSample from "./../../../components/CodeSamplesContainer/CodeSample";
 
 const httpPostRequest: ReactNode = (
@@ -354,7 +353,6 @@ export default function Concepts() {
                     contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
                 </p>
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

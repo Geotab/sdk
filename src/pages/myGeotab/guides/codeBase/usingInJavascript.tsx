@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Page } from "../../../../components";
 import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
@@ -204,8 +203,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function usingInJavascript() {
     return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
-        </Page>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 };

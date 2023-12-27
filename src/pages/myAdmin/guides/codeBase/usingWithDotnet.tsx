@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
-import { Page } from "../../../components";
-import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
-import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import Accordion from "../../../components/Accordion/Accordion";
-import { CodeSample } from "../../../components/CodeSamplesContainer";
+import { Page } from "../../../../components";
+import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
+import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
+import { CodeSample } from "../../../../components/CodeSamplesContainer";
 
 const overview: ReactNode = (
     <div className="paragraph">
@@ -63,7 +62,7 @@ const moreInformation: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "Using With .NET",
-    "breadCrumbItems": ["MYA", "Guides", "Using With .NET"]
+    "breadCrumbItems": ["MYA", "Guides", "Code Base", "Using With .NET"]
 };
 
 const pageSections: TableOfContentsItem[] = [
@@ -91,8 +90,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function UsingWithDotnet() {
     return (
-        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
-        </Page>
+        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />
     )
 };
