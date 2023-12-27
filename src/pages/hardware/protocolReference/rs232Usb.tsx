@@ -54,7 +54,7 @@ const integrationProcess: ReactNode = (
     <div className="paragraph">
         <p>The following process should be followed when integrating a third-party device with the GO device using our Third-Party
             Data Protocol:</p>
-        <h2>Contact solutions engineering</h2>
+        <h2>Contact Solutions Engineering</h2>
         <p>Contact the <a href="mailto:soleng@geotab.com" target="_blank" rel="noopener noreferrer">Geotab Solutions Engineering team
         </a> with a detailed integration proposal, which should include:</p>
         <ul>
