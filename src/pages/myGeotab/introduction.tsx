@@ -36,7 +36,7 @@ const importExport: ReactNode = (
             <li>Track Hours of Service (HOS) for regulations compliance</li>
         </ul>
         You can start using these tools right now by trying the <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples">.Net examples</a>,
-        {" " /*TODO: missing page*/}<a href="../js-samples/">JavaScript examples</a> and <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples">Java examples</a>.
+        {" "}<Link to="/myGeotab/codeSamples/javascriptSamples">JavaScript examples</Link> and <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples">Java examples</a>.
     </div>
 );
 
