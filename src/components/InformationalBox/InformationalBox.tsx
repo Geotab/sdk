@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
-// TODO: change to new icon when available
-import { IconException } from "@geotab/react-component-library";
 import "./informationalBox.scss";
+import { IconInformation } from "./icons";
 
 interface InformationalBoxProps {
     children: ReactNode;
@@ -11,7 +10,7 @@ export default function InformationalBox(props: InformationalBoxProps) {
     return (
         <div className="informational-box">
             <div className="icon-container">
-                <IconException />
+                <IconInformation />
             </div>
             <div>
                 {props.children}
