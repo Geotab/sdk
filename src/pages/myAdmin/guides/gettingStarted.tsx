@@ -8,7 +8,6 @@ import { HeaderSections } from "./../../../components/Header/headerSectionsEnum"
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
-import WarningBox from "../../../components/WarningBox/WarningBox";
 
 const accessApi: ReactNode = (
     <div className="paragraph">
@@ -19,22 +18,21 @@ const accessApi: ReactNode = (
         <p>
             The API supports POST requests only.
         </p>
-        <h2>Test Environment</h2>
+        <h2>Test environment</h2>
         <p>
             A sandbox environment is a testing environment that is available to developers who wish to test their application before making API calls to the live system. The test environment can be accessed at:
         </p>
         <code className="small-code-sample">https://myadminapitest.geotab.com/v2/MyAdminApi.ashx</code>
         <p>
             A few methods are not supported in the test environment and will throw exceptions when called. For more information, see the{" "}
-            {/* TODO: update link */}
-            <Link to="">Reference</Link>{" "}
+            <Link to="./../../apiReference/methods">Reference</Link>{" "}
             section.
         </p>
-        <WarningBox>
+        <InformationalBox>
             <p>
                 Data in the sandbox environment is volatile. API developers should not expect data entered into the sandbox environment to persist for any amount of time.
             </p>
-        </WarningBox>
+        </InformationalBox>
     </div>
 );
 
@@ -46,14 +44,11 @@ const authenticateApi: ReactNode = (
         <code className="small-code-sample">{`{"result":{"userId":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx","sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133","lastLogonDate":"2013-11-04T15:01:00.000Z","roles":[{"comments":"Third Party Integrator role","name":"Third-Party-Integrator"}],"name":"user@geotab.com"}}`}</code>
         <p>
             The API key is found in the <code className="small-code-sample">userId</code> property and the session ID is found in the <code className="small-code-sample">sessionId</code> property. Both of these properties must be included on all other API calls. If the session ID has expired, the API will return a <code className="small-code-sample">SessionExpiredException</code> which requires a call to Authenticate to get the new session ID. For more information, see the{" "}
-            {/* TODO: update link */}
-            <Link to="">Reference</Link>{" "}
+            <Link to="./../../apiReference/methods">Reference</Link>{" "}
             section.{" "}
-            {/* TODO: update link */}
-            <Link to="">JavaScript</Link>{" "}
+            <Link to="./../../codeSamples/javascriptExamples">JavaScript</Link>{" "}
             and{" "}
-            {/* TODO: update link */}
-            <Link to="">.NET</Link>{" "}
+            <Link to="./../../codeSamples/dotNetExamples">.NET</Link>{" "}
             examples have been provided to help you get started.
         </p>
     </div>
@@ -65,21 +60,17 @@ const whatsNext: ReactNode = (
             There are several other items in the SDK to help you get started:
         </p>
         <p>
-            {/* TODO: update link */}
-            <Link to="">Concepts</Link>{" "}
+            <Link to="./../concepts">Concepts</Link>{" "}
             — Be sure to read through this before building your application.
         </p>
         <p>
-            {/* TODO: update link */}
-            <Link to="">Using with JavaScript</Link>
+            <Link to="./../codeBase/usingWithJavascript">Using with JavaScript</Link>
         </p>
         <p>
-            {/* TODO: update link */}
-            <Link to="">Using with .NET</Link>
+            <Link to="./../codeBase/usingWithDotNet">Using with .NET</Link>
         </p>
         <p>
-            {/* TODO: update link */}
-            <Link to="">API Reference</Link>{" "}
+            <Link to="./../../apiReference/methods">API Reference</Link>{" "}
             — The reference documentation that explains what each API call does and documents the parameters and results for each call.
         </p>
     </div>
@@ -104,7 +95,7 @@ const pageSections: TableOfContentsItem[] =
     }, {
 
         "elementId": "myadmin-whats-next",
-        "summary": "What's Next?",
+        "summary": "What's next?",
         "details": whatsNext
     }];
 

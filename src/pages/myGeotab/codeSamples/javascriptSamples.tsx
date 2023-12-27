@@ -467,27 +467,27 @@ const pageSections: TableOfContentsItem[] = [
 
     {
         "elementId": "javascript-example-add-driver",
-        "summary": "Add Driver",
+        "summary": "Add driver",
         "details": addDriver
     }, {
         "elementId": "javascript-example-add-zone",
-        "summary": "Add Zone",
+        "summary": "Add zone",
         "details": addZone
     }, {
         "elementId": "javascript-example-data-feed",
-        "summary": "Data Feed",
+        "summary": "Data feed",
         "details": dataFeed
     }, {
         "elementId": "javascript-example-display-odometer",
-        "summary": "Display Odometer",
+        "summary": "Display odometer",
         "details": displayOdometer
     }, {
         "elementId": "javascript-example-get-count",
-        "summary": "Get Count",
+        "summary": "Get count",
         "details": getCount
     }, {
         "elementId": "javascript-example-get-vehicle-location",
-        "summary": "Get Vehicle Location",
+        "summary": "Get vehicle location",
         "details": getVehicleLocation
     }, {
         "elementId": "javascript-example-importers",
@@ -495,19 +495,19 @@ const pageSections: TableOfContentsItem[] = [
         "details": importers
     }, {
         "elementId": "javascript-example-move-a-zone",
-        "summary": "Move a Zone",
+        "summary": "Move a zone",
         "details": moveAZone
     }, {
         "elementId": "javascript-example-poll-for-text-messages",
-        "summary": "Poll for Text Messages",
+        "summary": "Poll for text messages",
         "details": pollForTextMessages
     }, {
         "elementId": "javascript-example-send-a-text-message",
-        "summary": "Send a Text Message",
+        "summary": "Send a text message",
         "details": sendATextMessage
     }, {
         "elementId": "javascript-example-show-vehicle-trips-on-map",
-        "summary": "Show Vehicle Trips on Map",
+        "summary": "Show vehicle trips on map",
         "details": showVehicleTripsOnMap
     }, {
         "elementId": "javascript-example-embedded-urls",
@@ -515,15 +515,15 @@ const pageSections: TableOfContentsItem[] = [
         "details": EmbeddedURLs
     }, {
         "elementId": "javascript-example-status-data-sampler",
-        "summary": "Status Data Sampler",
+        "summary": "Status data sampler",
         "details": statusDataSampler
     }, {
         "elementId": "javascript-example-starter-kit",
-        "summary": "Starter Kit",
+        "summary": "Starter kit",
         "details": starterKit
     }, {
         "elementId": "javascript-example-customer-registration",
-        "summary": "Customer Registration",
+        "summary": "Customer registration",
         "details": customerRegistration
     }
 ]

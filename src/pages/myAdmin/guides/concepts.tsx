@@ -198,7 +198,7 @@ const pagination: ReactNode = (
 
         </ul>
 
-        <h2>Offset-based Pagination</h2>
+        <h2>Offset-based pagination</h2>
 
         <p>
             This type of pagination breaks the result set into indexed pages, starting at 1. Specify the desired page and results per page by passing them in the request object, like so:
@@ -239,7 +239,7 @@ const pagination: ReactNode = (
         <p>
             For <code className="small-code-sample">GET</code> requests, these values will be returned in the HTTP headers <code className="small-code-sample">Page</code>, <code className="small-code-sample">PerPage</code> and <code className="small-code-sample">Total</code>. Also for <code className="small-code-sample">GET</code> requests, a <code className="small-code-sample">Link</code> header will be returned that can be used to access the next page.
         </p>
-        <h2>Keyset-based Pagination</h2>
+        <h2>Keyset-based pagination</h2>
         <p>
             Keyset-pagination allows for more efficient retrieval of pages, and runtime is independent of the size of the collection, in contrast to offset-based pagination. Use keyset pagination, on the methods that support it, like so:
         </p>
@@ -308,17 +308,17 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] =
     [{
         "elementId": "myadmin-post-request",
-        "summary": "HTTP POST Request",
+        "summary": "HTTP POST request",
         "details": httpPostRequest
 
     }, {
         "elementId": "myadmin-results-and-errors",
-        "summary": "Results & Errors",
+        "summary": "Results & errors",
         "details": resultsAndErrors
 
     }, {
         "elementId": "myadmin-working-with-dates",
-        "summary": "Working With Dates",
+        "summary": "Working with dates",
         "details": workingWithDates
 
     }, {
@@ -348,8 +348,7 @@ export default function Concepts() {
                         JSON
                     </a>{" "}
                     format. The{" "}
-                    {/* TODO: update link */}
-                    <Link to=""> Reference</Link>{" "}
+                    <Link to="./../../apiReference/methods"> Reference</Link>{" "}
                     contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
                 </p>
             </div>

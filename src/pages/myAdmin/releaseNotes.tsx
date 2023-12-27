@@ -4,6 +4,7 @@ import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
+import { Link } from "react-router-dom";
 
 const updateDecember042023: ReactNode = (
   <div className="paragraph">
@@ -393,7 +394,7 @@ const updateSeptember192022: ReactNode = (
         To search for orders that match an exact PO number, use double quotation marks.
       </li>
     </ul>
-    <h2>End of Life — MyAdmin APIs for Third-party Device Data Ingestion</h2>
+    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -411,14 +412,10 @@ const updateSeptember192022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
-        {/* TODO: update link */}
-        <a
-          href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
-          aria-label="Using Custom Telematics Devices"
-          target="_blank"
-          rel="noopener noreferrer">
+        <Link
+          to="./../../myGeotab/guides/usingCustomTelematicsDevices">
           Using Custom Telematics Devices
-        </a>{" "}
+        </Link>{" "}
         section in the MyGeotab SDK.
       </li>
     </ul>
@@ -436,13 +433,13 @@ const updateSeptember122022: ReactNode = (
         The API now identifies the Rate Plan of a specific device in real time, as opposed to only the device mode
       </li>
     </ul>
-    <h2>Moving the MyAdmin SDK Site</h2>
+    <h2>Moving the MyAdmin SDK site</h2>
     <ul>
       <li>
         On September 17, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of Life — MyAdmin APIs for Third-party Device Data Ingestion</h2>
+    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -460,14 +457,10 @@ const updateSeptember122022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
-        {/* TODO: update link */}
-        <a
-          href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
-          aria-label="Using Custom Telematics Devices"
-          target="_blank"
-          rel="noopener noreferrer">
+        <Link
+          to="./../../myGeotab/guides/usingCustomTelematicsDevices">
           Using Custom Telematics Devices
-        </a>{" "}
+        </Link>{" "}
         section in the MyGeotab SDK.
       </li>
     </ul>
@@ -476,13 +469,13 @@ const updateSeptember122022: ReactNode = (
 
 const updateAugust172022: ReactNode = (
   <div className="paragraph">
-    <h2>Moving the MyAdmin SDK Site</h2>
+    <h2>Moving the MyAdmin SDK site</h2>
     <ul>
       <li>
         On September 17, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of Life — MyAdmin APIs for Third-party Device Data Ingestion</h2>
+    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -500,14 +493,10 @@ const updateAugust172022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
-        {/* TODO: update link */}
-        <a
-          href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
-          aria-label="Using Custom Telematics Devices"
-          target="_blank"
-          rel="noopener noreferrer">
+        <Link
+          to="./../../myGeotab/guides/usingCustomTelematicsDevices">
           Using Custom Telematics Devices
-        </a>{" "}
+        </Link>{" "}
         section in the MyGeotab SDK.
       </li>
     </ul>
@@ -516,13 +505,13 @@ const updateAugust172022: ReactNode = (
 
 const updateJuly112022: ReactNode = (
   <div className="paragraph">
-    <h2>Moving the MyAdmin SDK Site</h2>
+    <h2>Moving the MyAdmin SDK site</h2>
     <ul>
       <li>
         On August 29, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of Life — MyAdmin APIs for Third-party Device Data Ingestion</h2>
+    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -540,14 +529,10 @@ const updateJuly112022: ReactNode = (
       </li>
       <li>
         If you're a new Partner with a standalone telematics device, refer to the{" "}
-        {/* TODO: update link */}
-        <a
-          href="Using Custom Telematics Devices"
-          aria-label="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/"
-          target="_blank"
-          rel="noopener noreferrer">
+        <Link
+          to="./../../myGeotab/guides/usingCustomTelematicsDevices">
           Using Custom Telematics Devices
-        </a>{" "}
+        </Link>{" "}
         section in the MyGeotab SDK.
       </li>
     </ul>
@@ -667,7 +652,7 @@ const updateApril112022: ReactNode = (
         This API is for Partners who produce third-party products only.
       </li>
     </ul>
-    <h2>Shutdown Complete — Disabled GET Requests Used for Authentication</h2>
+    <h2>Shutdown complete — disabled GET requests used for authentication</h2>
     <ul>
       <li>
         For several months, we have communicated that we will disable <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests to the MyAdmin API for increased security.
@@ -684,13 +669,13 @@ const updateApril112022: ReactNode = (
 
 const updateMarch252022: ReactNode = (
   <div className="paragraph">
-    <h2>Updated Character Limit for Reseller Reference</h2>
+    <h2>Updated character limit for reseller reference</h2>
     <ul>
       <li>
         We've made changes to our current character limit for the Reseller Reference field. We have increased the limit from 250 characters to 500 characters.
       </li>
     </ul>
-    <h2>Shutdown Imminent — Disable GET Requests Used for Authentication</h2>
+    <h2>Shutdown imminent — disable GET requests used for authentication</h2>
     <ul>
       <li>
         Effective March 31, 2022, GET requests will be disabled. POST requests will continue to be supported. If GET requests are used for authentication purposes, users will receive the following error message: “405 Method Not Allowed.”
@@ -707,7 +692,7 @@ const updateFebruary282022: ReactNode = (
         The <strong>GetDeviceContracts</strong> method search functionality has been updated to support searching for OEM devices based on full or partial Purchase Order (PO) numbers.
       </li>
     </ul>
-    <h2>Disable GET Requests Used for Authentication</h2>
+    <h2>Disable GET requests used for authentication</h2>
     <ul>
       <li>
         In an upcoming release, <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests will be disabled to the MyAdmin API for increased security.
@@ -721,7 +706,7 @@ const updateFebruary282022: ReactNode = (
 
 const updateJanuary312022: ReactNode = (
   <div className="paragraph">
-    <h2>Generate Serial Numbers in Bulk</h2>
+    <h2>Generate serial numbers in bulk</h2>
     <ul>
       <li>
         Serial numbers can now be requested for up to 1000 custom telematics devices (with the same product code) at a time.
@@ -730,13 +715,13 @@ const updateJanuary312022: ReactNode = (
         Previously, the functionality only supported one custom telematics device at a time.
       </li>
     </ul>
-    <h2>Update to the NuGet Package</h2>
+    <h2>Update to the NuGet package</h2>
     <ul>
       <li>
         The NuGet package now includes common elements from the MyGeotab SDK. We leverage .NET Core instructions, so in order to use the new package any integrations using the old .NET Framework instructions must be updated.
       </li>
     </ul>
-    <h2>Disable GET Requests Used for Authentication</h2>
+    <h2>Disable GET requests used for authentication</h2>
     <ul>
       <li>
         In an upcoming release, <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests will be disabled to the MyAdmin API for increased security.
