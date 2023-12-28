@@ -61,7 +61,7 @@ const whatsNext: ReactNode = (
         </p>
         <p>
             <Link to="./../concepts">Concepts</Link>{" "}
-            — Be sure to read through this before building your application.
+            - Be sure to read through this before building your application.
         </p>
         <p>
             <Link to="./../codeBase/usingWithJavascript">Using with JavaScript</Link>
@@ -71,7 +71,7 @@ const whatsNext: ReactNode = (
         </p>
         <p>
             <Link to="./../../apiReference/methods">API Reference</Link>{" "}
-            — The reference documentation that explains what each API call does and documents the parameters and results for each call.
+            - The reference documentation that explains what each API call does and documents the parameters and results for each call.
         </p>
     </div>
 );

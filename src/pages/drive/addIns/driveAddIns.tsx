@@ -15,19 +15,19 @@ import driveAddInImage from "./../../../assets/images/driveAddIns/drive-addins_0
 const driveOverview: ReactNode = (
     <div className="paragraph">
         <p>
-            The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
+            The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state - so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
         </p>
         <p>
             Please read the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> guide first before attempting a Geotab Drive Add-In.
         </p>
         <p>
-            All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.
+            All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet - they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript - these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.
         </p>
         <img src={driveAddInImage} alt="Drive dashboard" />
         <p>
             To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including a trailing forward slash). The menuName, url, and version will remain unchanged. For example:
         </p>
-        <h2>Listing 1 — Geotab Drive "item" configuration</h2>
+        <h2>Listing 1 - Geotab Drive "item" configuration</h2>
         <CodeSample
             language="json"
             code={`"items": [{
@@ -135,7 +135,7 @@ const driveApiAndState: ReactNode = (
         <p>
             Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
         </p>
-        <h2>Table 1 — Geotab Drive additional properties and methods</h2>
+        <h2>Table 1 - Geotab Drive additional properties and methods</h2>
         <div className="table-container">
             <table>
                 <thead>

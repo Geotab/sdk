@@ -62,7 +62,7 @@ const addInConfiguration: ReactNode = (
             </a>
             ) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.
         </p>
-        <h2>Table 1 — Add-In configuration file keys/values</h2>
+        <h2>Table 1 - Add-In configuration file keys/values</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -150,7 +150,7 @@ const exampleAddInConfiguration: ReactNode = (
         <p>
             The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In would be specified in the referenced HTML.
         </p>
-        <h2>Listing 1 — a simple Add-In configuration JSON file</h2>
+        <h2>Listing 1 - A simple Add-In configuration JSON file</h2>
         <CodeSample
             language="json"
             code={`{
@@ -185,8 +185,8 @@ const exampleAddInConfiguration: ReactNode = (
 }`} />
 
         <figure>
-            <img src={navigationMenuImage} alt="Image 1 — Modified left-hand-side menu" />
-            <figcaption>Image 1 — Modified left-hand-side menu</figcaption>
+            <img src={navigationMenuImage} alt="Image 1 - Modified left-hand-side menu" />
+            <figcaption>Image 1 - Modified left-hand-side menu</figcaption>
         </figure>
         <p>
             The Add-In navigation entry can be placed after any of the following built-in values:
@@ -211,7 +211,7 @@ const exampleAddInConfiguration: ReactNode = (
         </p>
         <figure>
             <img src={navigationSubmenuImage} alt="Navigation entry after ZoneAndMessagesLink" />
-            <figcaption>Image 4 — Navigation entry after ZoneAndMessagesLink</figcaption>
+            <figcaption>Image 4 - Navigation entry after ZoneAndMessagesLink</figcaption>
         </figure>
         <p>
             Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the menu.
@@ -221,7 +221,7 @@ const exampleAddInConfiguration: ReactNode = (
                 A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.
             </p>
         </InformationalBox>
-        <h2 id="geotab-add-in-table-2--menu-item">Table 2 — menu item</h2>
+        <h2 id="geotab-add-in-table-2--menu-item">Table 2 - Menu item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -280,7 +280,7 @@ const exampleAddInConfiguration: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="geotab-add-in-table-3--parent-menu-item">Table 3 — parent menu item</h2>
+        <h2 id="geotab-add-in-table-3--parent-menu-item">Table 3 - Parent menu item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -346,12 +346,12 @@ const exampleAddInConfiguration: ReactNode = (
 const creatingSubmenu: ReactNode = (
     <div className="paragraph">
         <p>
-            To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.
+            To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item - with the exception of the URL property.
         </p>
         <p>
             The process consists in creating a{" "}
             <a href="#geotab-add-in-table-3--parent-menu-item"
-                aria-label="Scroll to Table 3 — Parent Menu Item">
+                aria-label="Scroll to Table 3 - Parent menu item">
                 parent menu item
             </a>{" "}
             with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values  (<em>GettingStartedLink</em>, <em>ActivityLink</em>, <em>EngineMaintenanceLink</em>, <em>ZoneAndMessagesLink</em>, <em>RuleAndGroupsLink</em>, <em>AdministrationLink</em>).
@@ -360,7 +360,7 @@ const creatingSubmenu: ReactNode = (
             To place a{" "}
             <a href="#geotab-add-in-table-2--menu-item"
                 rel="noreferrer"
-                aria-label="Table 2 — Menu Item">
+                aria-label="Table 2 - Menu item">
                 menu item
             </a>{" "}
             under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
@@ -391,7 +391,7 @@ const creatingSubmenu: ReactNode = (
         <p>
             Each Add-In can define zero or more <em>items</em> as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
         </p>
-        <h2>Table 4 — button item</h2>
+        <h2>Table 4 - Button item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -505,7 +505,7 @@ const creatingSubmenu: ReactNode = (
         <p>
             When developing a custom page or button Add-In, you have the option to embed the source code for your project in the JSON configuration file. When using this method, there is no requirement to host your own HTML, CSS, or JavaScript files as they will be converted into strings and written inside the configuration file itself.
         </p>
-        <h2>Listing 3 — Add-In configuration file using embedded source code</h2>
+        <h2>Listing 3 - Add-In configuration file using embedded source code</h2>
         <CodeSample
             language="json"
             code={`{
@@ -550,20 +550,20 @@ const creatingSubmenu: ReactNode = (
         <p>
             The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.
         </p>
-        <h2>Listing 4 — absolute path to image in HTML</h2>
+        <h2>Listing 4 - Absolute path to image in HTML</h2>
         <p>
             Referencing an external image using an absolute URL in the HTML or CSS.
         </p>
         <CodeSample
             language="html"
             code={`<img src="https://mycompany.com/images/customImage.png" alt="CustomImage" />`} />
-        <h2>Listing 5 — absolute path to image in CSS</h2>
+        <h2>Listing 5 - Absolute path to image in CSS</h2>
         <CodeSample
             language="css"
             code={`#customImage {
     background: url('https://mycompany.com/images/customImage.png') no-repeat; 
 }`} />
-        <h2>Listing 6 — Add-In configuration file with Base64 encoded image</h2>
+        <h2>Listing 6 - Add-In configuration file with Base64 encoded image</h2>
         <p>
             The other method is to embed the images along with the rest of the source code in the markup. First, the images will need to be encoded using{" "}
             <a href="http://en.wikipedia.org/wiki/Base64"
@@ -595,7 +595,7 @@ const thirdPartyLibraries: ReactNode = (
         <p>
             Add-Ins can include references to external libraries that have been custom developed or to existing libraries such as jQuery. This is performed in the traditional way by including a <code className="small-code-sample">{"<"}script{">"}</code> tag to the URL of the file.
         </p>
-        <h2>Listing 7 — referencing jQuery from an Add-In</h2>
+        <h2>Listing 7 - Referencing jQuery from an Add-In</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -610,7 +610,7 @@ const thirdPartyLibraries: ReactNode = (
         <p>
             References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.
         </p>
-        <h2>Listing 8 — avoiding CSS naming conflicts</h2>
+        <h2>Listing 8 - Avoiding CSS naming conflicts</h2>
         <p>
             When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab's outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.
         </p>
@@ -638,7 +638,7 @@ const pageLifecycle: ReactNode = (
         <p>
             Every page on Geotab's servers, including custom page Add-Ins, have the following three methods called during their lifecycle:
         </p>
-        <p>Table 5 — Add-In lifecycle methods</p>
+        <p>Table 5 - Add-In lifecycle methods</p>
         <div className="table-container">
             <table>
                 <thead>
@@ -680,8 +680,8 @@ const pageLifecycle: ReactNode = (
             </p>
         </InformationalBox>
         <figure>
-            <img src={flowChartImage} alt="Image 2 — Add-In lifecycle workflow diagram" />
-            <figcaption>Image 2 — Add-In lifecycle workflow diagram</figcaption>
+            <img src={flowChartImage} alt="Image 2 - Add-In lifecycle workflow diagram" />
+            <figcaption>Image 2 - Add-In lifecycle workflow diagram</figcaption>
         </figure>
         <h2>Lifecycle implementation</h2>
         <p>
@@ -693,7 +693,7 @@ const pageLifecycle: ReactNode = (
             Use the commented area to define and then assign variables in the scope of the Add-In. Each of the Add-Ins will need to define its own unique namespace with the prefix <code className="small-code-sample">
                 geotab.addin</code> (note that the namespace is not hyphenated). In the example below, the full namespace is <code className="small-code-sample">geotab.addin.myCustomPage1</code>.
         </p>
-        <h2>Listing 9 — HTML and JavaScript entry point example</h2>
+        <h2>Listing 9 - HTML and JavaScript entry point example</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -750,8 +750,8 @@ const customButtonAddIns: ReactNode = (
             </p>
         </InformationalBox>
         <figure>
-            <img src={mapImage} alt="Image 3 — Custom button Add-In on the live map page" />
-            <figcaption>Image 3 — Custom button Add-In on the live map page</figcaption>
+            <img src={mapImage} alt="Image 3 - Custom button Add-In on the live map page" />
+            <figcaption>Image 3 - Custom button Add-In on the live map page</figcaption>
         </figure>
         <h2>Use cases</h2>
         <p>
@@ -763,7 +763,7 @@ const customButtonAddIns: ReactNode = (
             <li>Create a new zone at the current location</li>
             <li>Automated execution of a sequence of actions</li>
         </ul>
-        <h2>Listing 10 — custom button Add-In configuration file</h2>
+        <h2>Listing 10 - Custom button Add-In configuration file</h2>
         <p>
             Almost any page is available to have a custom button Add-In added to it. Use a web browser's address bar to find the correct value for the Page property. Geotab pages will have a trailing hash (“#”) symbol followed by the page name. Determine the page name and then set the “page” value of your custom button Add-In configuration file to that value.
         </p>
@@ -796,7 +796,7 @@ const javaScriptButtonAction: ReactNode = (
                 To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.
             </p>
         </InformationalBox>
-        <h2>Listing 12 — custom button click method</h2>
+        <h2>Listing 12 - Custom button click method</h2>
         <CodeSample
             language="javascript"
             code={`geotab.customButtons.customExample1 = (event, api, state) => {
@@ -888,7 +888,7 @@ const completeIntegrationExample: ReactNode = (
             </p>
         </InformationalBox>
         <h2>Source code</h2>
-        <h2>Listing 13 — HTML and JavaScript code for integration example</h2>
+        <h2>Listing 13 - HTML and JavaScript code for integration example</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -958,7 +958,7 @@ const completeIntegrationExample: ReactNode = (
         </div>
     </body>
 </html>`} />
-        <h2>Listing 14 — configuration file for integration example</h2>
+        <h2>Listing 14 - Configuration file for integration example</h2>
         <CodeSample
             language="json"
             code={`{
@@ -1062,7 +1062,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": exampleAddInConfiguration
     }, {
         "elementId": "geotab-add-in-submenu",
-        "summary": "Listing 2 — creating submenu items",
+        "summary": "Listing 2 - Creating submenu items",
         "details": creatingSubmenu
     }, {
         "elementId": "geotab-add-in-third-party-libraries",

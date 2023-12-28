@@ -37,18 +37,18 @@ const updateSeptember052023: ReactNode = (
       </li>
       <ul>
         <li>
-          <code className="small-code-sample">isAutoActivated</code> — Returns a result that indicates whether the device was auto-activated by Geotab.
+          <code className="small-code-sample">isAutoActivated</code> - Returns a result that indicates whether the device was auto-activated by Geotab.
         </li>
         <ul>
           <li>
-            <strong>true</strong> — The device was auto-activated by Geotab.
+            <strong>true</strong> - The device was auto-activated by Geotab.
           </li>
           <li>
-            <strong>false</strong> — The device has yet to be activated or was activated from being installed in an asset.
+            <strong>false</strong> - The device has yet to be activated or was activated from being installed in an asset.
           </li>
         </ul>
         <li>
-          <code className="small-code-sample">billingStartDate</code> — Returns the date when the device was activated.
+          <code className="small-code-sample">billingStartDate</code> - Returns the date when the device was activated.
         </li>
       </ul>
     </ul>
@@ -59,10 +59,10 @@ const updateSeptember052023: ReactNode = (
       </li>
       <ul>
         <li>
-          <strong>CalculateVinOemEligibilitiesAsync</strong> — Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
+          <strong>CalculateVinOemEligibilitiesAsync</strong> - Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
         </li>
         <li>
-          <strong>GetOemSupportEligibilityForMakeAsync</strong> — Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
+          <strong>GetOemSupportEligibilityForMakeAsync</strong> - Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
         </li>
       </ul>
     </ul>
@@ -90,10 +90,10 @@ const updateJuly292023: ReactNode = (
       </li>
       <ul>
         <li>
-          <strong>CalculateVinOemEligibilitiesAsync</strong> — Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
+          <strong>CalculateVinOemEligibilitiesAsync</strong> - Returns a result that indicates whether a VIN in a specific region is eligible for OEM connectivity services.
         </li>
         <li>
-          <strong>GetOemSupportEligibilityForMakeAsync</strong> — Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
+          <strong>GetOemSupportEligibilityForMakeAsync</strong> - Returns a result that indicates whether a vehicle make and model in a specific region is eligible for OEM connectivity services.
         </li>
       </ul>
     </ul>
@@ -104,10 +104,10 @@ const updateJuly292023: ReactNode = (
       </li>
       <ul>
         <li>
-          <strong>true</strong> — The database name already exists
+          <strong>true</strong> - The database name already exists
         </li>
         <li>
-          <strong>false</strong> — The database name does not exist
+          <strong>false</strong> - The database name does not exist
         </li>
       </ul>
     </ul>
@@ -166,13 +166,13 @@ const updateJuly012023: ReactNode = (
       </li>
       <ul>
         <li>
-          <strong>Yes</strong> — The device was automatically activated by Geotab.
+          <strong>Yes</strong> - The device was automatically activated by Geotab.
         </li>
         <li>
-          <strong>No</strong> — The device was activated by installation.
+          <strong>No</strong> - The device was activated by installation.
         </li>
         <li>
-          <strong>Not Available</strong> — The device has been shipped, but has not been installed, or auto-activated.
+          <strong>Not Available</strong> - The device has been shipped, but has not been installed, or auto-activated.
           <br />
           <strong>NOTE</strong>: For devices shipped prior to the release of this feature, <strong>Not Available</strong> will be displayed.
         </li>
@@ -184,12 +184,12 @@ const updateJuly012023: ReactNode = (
       </li>
       <ul>
         <li>
-          <strong>Date</strong> — Displays the date that the device was auto - activated, installed, or transferred from another Partner.
+          <strong>Date</strong> - Displays the date that the device was auto - activated, installed, or transferred from another Partner.
           <br />
           <strong>NOTE</strong>: Plan changes for devices will not impact this date.
         </li>
         <li>
-          <strong>Not Available</strong> — Indicates that a device has been shipped, but has not been installed, or auto - activated.
+          <strong>Not Available</strong> - Indicates that a device has been shipped, but has not been installed, or auto - activated.
           <br />
           <strong>NOTE</strong>: For devices shipped prior to the release of this feature, <strong>Not Available</strong> will be displayed.
         </li>
@@ -205,10 +205,10 @@ const updateJuly012023: ReactNode = (
         In an upcoming release, we will be adding the following parameters to the <strong>GetOnlineOrderStatus</strong> API:
       </li>
       <li>
-        <code className="small-code-sample">promoCode</code> — Returns the promo code used when the order was placed, if applicable.
+        <code className="small-code-sample">promoCode</code> - Returns the promo code used when the order was placed, if applicable.
       </li>
       <li>
-        <code className="small-code-sample">rateCode</code> — Returns the promo code used for a monthly Rate Plan subscription when the order was placed, if applicable.
+        <code className="small-code-sample">rateCode</code> - Returns the promo code used for a monthly Rate Plan subscription when the order was placed, if applicable.
       </li>
     </ul>
   </div>
@@ -394,7 +394,7 @@ const updateSeptember192022: ReactNode = (
         To search for orders that match an exact PO number, use double quotation marks.
       </li>
     </ul>
-    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
+    <h2>End of life - MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -439,7 +439,7 @@ const updateSeptember122022: ReactNode = (
         On September 17, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
+    <h2>End of life - MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -475,7 +475,7 @@ const updateAugust172022: ReactNode = (
         On September 17, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
+    <h2>End of life - MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -511,7 +511,7 @@ const updateJuly112022: ReactNode = (
         On August 29, 2022, the current MyAdmin SDK site will be deprecated, and the MyAdmin SDK will be merged with the MyGeotab SDK site to create a centralized point of information related to integrating with Geotab.
       </li>
     </ul>
-    <h2>End of life — MyAdmin APIs for third-party device data ingestion</h2>
+    <h2>End of life - MyAdmin APIs for third-party device data ingestion</h2>
     <ul>
       <li>
         On September 30, 2022, the MyAdmin APIs for third-party device data ingestion into MyGeotab will be permanently discontinued. After this date, MyGeotab will be unable to receive data from any devices that have not migrated to DIG.
@@ -564,10 +564,10 @@ const updateJune062022: ReactNode = (
     <h2>GetDeviceContracts</h2>
     <ul>
       <li>
-        We've added two new parameters — <code className="small-code-sample">ordersAddedFrom</code> and <code className="small-code-sample">ordersAddedTo</code> — to the <strong>GetDeviceContracts</strong> method, so you can retrieve a list of OEM Purchase Order(PO) numbers added during the specific date range.
+        We've added two new parameters - <code className="small-code-sample">ordersAddedFrom</code> and <code className="small-code-sample">ordersAddedTo</code> - to the <strong>GetDeviceContracts</strong> method, so you can retrieve a list of OEM Purchase Order(PO) numbers added during the specific date range.
       </li>
       <li>
-        When using these parameters, the other two parameters — <code className="small-code-sample">fromDate</code> and <code className="small-code-sample">toDate</code> — are not required.
+        When using these parameters, the other two parameters - <code className="small-code-sample">fromDate</code> and <code className="small-code-sample">toDate</code> - are not required.
       </li>
     </ul>
     <h2>Monthly Billing</h2>
@@ -652,7 +652,7 @@ const updateApril112022: ReactNode = (
         This API is for Partners who produce third-party products only.
       </li>
     </ul>
-    <h2>Shutdown complete — disabled GET requests used for authentication</h2>
+    <h2>Shutdown complete - Disabled GET requests used for authentication</h2>
     <ul>
       <li>
         For several months, we have communicated that we will disable <strong>Authenticate</strong> and <strong>RegisterNewUser</strong> GET requests to the MyAdmin API for increased security.
@@ -675,7 +675,7 @@ const updateMarch252022: ReactNode = (
         We've made changes to our current character limit for the Reseller Reference field. We have increased the limit from 250 characters to 500 characters.
       </li>
     </ul>
-    <h2>Shutdown imminent — disable GET requests used for authentication</h2>
+    <h2>Shutdown imminent - Disable GET requests used for authentication</h2>
     <ul>
       <li>
         Effective March 31, 2022, GET requests will be disabled. POST requests will continue to be supported. If GET requests are used for authentication purposes, users will receive the following error message: “405 Method Not Allowed.”
