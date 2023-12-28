@@ -183,7 +183,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "the-call-method-arguments",
-        "summary": "The call method arguments",
+        "summary": "The Call method arguments",
         "details": theCallMethodArguments
     },
     {
