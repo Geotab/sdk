@@ -956,7 +956,7 @@ results = {
     ]
 }`
             } />
-        <h2>API Client Support</h2>
+        <h2 id="api-client-support">API Client Support</h2> {/* This has an id because there's a link to this section in the Using in Javascript page */}
         {/* ToDo: Update the link later on before finalizing SDK site */}
         <p>
             All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
