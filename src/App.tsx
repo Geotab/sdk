@@ -27,6 +27,8 @@ import MyAdminReleaseNotes from "./pages/myAdmin/releaseNotes";
 import MyAdminGettingStarted from "./pages/myAdmin/guides/gettingStarted";
 import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
+import MyAdminMethods from "./pages/myAdmin/apiReference/methods";
+
 import HardwareIntroduction from "./pages/hardware/introduction";
 import HardwareIOExpanderProtocol from "./pages/hardware/guides/messagingProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
@@ -110,6 +112,9 @@ function App() {
           <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
+          
+          {/* MyAdmin > API Reference Routes */}
+          <Route path="/myAdmin/apiReference/methods" Component={MyAdminMethods} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
           <Route path="/myAdmin/guides/codeBase/usingWithJavascript" Component={UsingWithJavascript} /> 

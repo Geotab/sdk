@@ -52,5 +52,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "gh-pages": "^6.0.0",
     "sass": "^1.69.0"
-  }
+  },
+  "proxy": "https://myadmin.geotab.com"
 }
