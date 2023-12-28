@@ -23,7 +23,7 @@ const nugetPackage: ReactNode = (
 
 const apiClass: ReactNode = (
     <div className="paragraph">
-        <h2>Step 1: initialize & authentication</h2>
+        <h2>Step 1: Initialize & authentication</h2>
         <p>In order to have access to the API class, add the following to the file's includes section:</p>
         <CodeSample
             language="csharp"
@@ -51,7 +51,7 @@ using Geotab.Checkmate.ObjectModel;`
         <InformationalBox>
             <p>For more information regarding authentication, please review the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> documentation.</p>
         </InformationalBox>
-        <h2>Step 2: making calls</h2>
+        <h2>Step 2: Making calls</h2>
         <p >When authenticated, calls are made to the API by invoking the <code className="small-code-sample">{`Call`}</code> method of the API class.</p>
         <p>The example below illustrates how to make a generic call to get all devices in the system.</p>
         <code className="small-code-sample">{`List<Device> devices = await api.CallAsync<List<Device>>("Get", typeof(Device));`}</code>

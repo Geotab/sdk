@@ -1387,7 +1387,7 @@ const messagesFromExternalDevice: ReactNode = (
 
 const appendices: ReactNode = (
     <div className="paragraph">
-        <h2>Appendix A: raw message data example for IOX-USB & IOX-RS232</h2>
+        <h2>Appendix A: Raw message data example for IOX-USB & IOX-RS232</h2>
         <code className="small-code-sample">Handshake Sync from External Device<br />
             0x55... 0x55... 0x55<br /><br />
             Handshake Request from GO device<br />
@@ -1402,9 +1402,9 @@ const appendices: ReactNode = (
             Third-Party Data Acknowledge from GO device<br />
             0x02, 0x02, 0x00, 0x04, 0x0A, 0x03<br />
         </code>
-        <h2 id="appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B: sample message flow for IOX-USB & IOX-RS232</h2>
+        <h2 id="appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B: Sample message flow for IOX-USB & IOX-RS232</h2>
         <img src={messageFlowDiagram} alt=""></img>
-        <h2 id="appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C: using binary data messages to transfer MIME data</h2>
+        <h2 id="appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C: Using binary data messages to transfer MIME data</h2>
         <p>MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in <Link to="/hardware/guides/mimeProtocol">MIME passthrough messages</Link>.</p>
         <p>The Message Flow is similar to that outlined in <a href="#appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B</a>, with the following variations:</p>
         <ol>

@@ -23,7 +23,7 @@ const mavenDependency: ReactNode = (
 
 const apiClass: ReactNode = (
     <div className="paragraph">
-        <h2>Step 1: initialize & authentication</h2>
+        <h2>Step 1: Initialize & authentication</h2>
         <p>An instance of API can be constructed to be used in the code. For the most basic use case, all the data that is needed is user
             credentials and a database name:</p>
         <CodeSample
@@ -51,7 +51,7 @@ GeotabApi api = new GeotabApi(credentials);`
         <InformationalBox>
             <p>For more information regarding authentication, please review the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> documentation.</p>
         </InformationalBox>
-        <h2>Step 2: making calls</h2>
+        <h2>Step 2: Making calls</h2>
         <p>When authenticated, calls are made to the API by invoking the <code className="small-code-sample">{`call()`}</code> method of the API class.</p>
         <p>The example below illustrates how to make a generic call to get all devices in the system.</p>
         <CodeSample
