@@ -76,7 +76,7 @@ const integrationProcess: ReactNode = (
 
 const messagesFromGoDevice: ReactNode = (
     <div className="paragraph">
-        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02: Third-Party Data Acknowledge</h2>
+        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg type 0x02: third-party data acknowledge</h2>
         <p>Issued by the GO device upon receipt of Third-Party Data from the external device.</p>
         <div className="table-container">
             <table>
@@ -127,7 +127,7 @@ const messagesFromGoDevice: ReactNode = (
 
 const messagesFromExternalDevice: ReactNode = (
     <div className="paragraph">
-        <h2 id="msg-type-0x81-third-party-device-id">Msg Type 0x81: Third-Party Device ID</h2>
+        <h2 id="msg-type-0x81-third-party-device-id">Msg type 0x81: third-party device ID</h2>
         <p>Issued by the external device upon powerup once every second until an Acknowledge message (Msg Type 0x02) is received.</p>
         <div className="table-container">
             <table>
@@ -177,7 +177,7 @@ const messagesFromExternalDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg Type 0x80: Third-Party Data as Status Data</h2>
+        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg type 0x80: third-party data as status data</h2>
         <p>Issued by the external device whenever it wants Third-Party Data saved on the GO device. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <div className="table-container">
             <table>
@@ -231,9 +231,9 @@ const messagesFromExternalDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x82-free-format-third-party-data">Msg Type 0x82: Free Format Third-Party Data</h2>
+        <h2 id="msg-type-0x82-free-format-third-party-data">Msg type 0x82: free format third-party data</h2>
         <p>Currently not implemented.</p>
-        <h2 id="msg-type-0x87-third-party-data-as-priority-status-data">Msg Type 0x87: Third-Party Data as Priority Status Data</h2>
+        <h2 id="msg-type-0x87-third-party-data-as-priority-status-data">Msg type 0x87: third-party data as priority status data</h2>
         <p>Priority Status Data follows an expedited processing workflow on the GO device, but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection, if available.</p>
         <div className="table-container">
             <table>

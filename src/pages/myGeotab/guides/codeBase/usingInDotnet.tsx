@@ -16,7 +16,7 @@ const nugetPackage: ReactNode = (
         <p>Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version
             as the one that your database is on.</p>
         <InformationalBox>
-            <p>Quick start in <Link to="/myGeotab/apiClients">API Clients</Link></p>
+            <p>Quick start in <HashLink to="/myGeotab/apiClients#dotnet">API Clients</HashLink></p>
         </InformationalBox>
     </div>
 );

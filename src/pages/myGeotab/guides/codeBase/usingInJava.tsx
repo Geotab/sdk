@@ -16,7 +16,7 @@ const mavenDependency: ReactNode = (
             data over the wire. It includes tools to assist authenticating against Geotab's servers, automatically serializing/deserializing
             JSON, and providing definitions for Checkmate object classes.</p>
         <InformationalBox>
-            <p>Quick start in <Link to="/myGeotab/apiClients">API Clients</Link></p>
+            <p>Quick start in <HashLink to="/myGeotab/apiClients#java">API Clients</HashLink></p>
         </InformationalBox>
     </div>
 );
