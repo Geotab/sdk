@@ -1103,7 +1103,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": propertySelector
     },
     {
-        "elementId": "multi-call",
+        "elementId": "multicall",
         "summary": "MultiCall",
         "details": multiCall
     }
