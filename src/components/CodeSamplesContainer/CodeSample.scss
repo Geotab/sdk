@@ -1,6 +1,12 @@
+@import "../../variables.scss";
+
 .snippetBox {
     position: relative;
     font-family: "Roboto Mono", monospace;
+
+    &--dark-mode span::-webkit-scrollbar-thumb {
+        background: $dark-mode-content-color;
+    }
 }
 
 .snippetBox__toolsContainer {

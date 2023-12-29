@@ -44,7 +44,7 @@ export default function CodeSample(props: CodeSampleProps): JSX.Element {
   };
 
   return (
-    <div className="snippetBox">
+    <div className={lightMode ? "snippetBox" : "snippetBox snippetBox--dark-mode"}>
       <CodeBlock
         text={props.code}
         language={props.language}
