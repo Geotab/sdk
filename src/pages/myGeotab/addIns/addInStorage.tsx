@@ -479,7 +479,7 @@ const retrievingAddInData: ReactNode = (
             To get all customers with the name "joesmith", the appropriate <code className="small-code-sample">WHERE</code> clause will be:
         </p>
         <code className="small-code-sample">customer.name = "joesmith"</code>
-        <h2>Important operation notes for using get</h2>
+        <h2>Important operation notes for using Get</h2>
         <ul>
             <li>The <code className="small-code-sample">SELECT</code> clause must be included if the <code className="small-code-sample">WHERE</code>  clause is specified, otherwise the entire data object will be returned. </li>
             <li>The <code className="small-code-sample">GET</code> operation always returns an Array of AddInData objects, each with a unique value in the data property.</li>
@@ -654,7 +654,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": creatingAddInData
     }, {
         "elementId": "storage-add-in-retrieving",
-        "summary": "Retrieving stored addInData content",
+        "summary": "Retrieving stored AddInData content",
         "details": retrievingAddInData
     }, {
         "elementId": "storage-add-in-updating",
