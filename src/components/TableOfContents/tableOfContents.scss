@@ -23,6 +23,13 @@
         color: $table-of-contents-heading-text;
     }
 
+    & li:first-of-type {
+        position: sticky;
+        top: 0;
+        background-color: $page-title-background;
+        cursor: default;
+    }
+
     & li:not(:first-of-type) {
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
