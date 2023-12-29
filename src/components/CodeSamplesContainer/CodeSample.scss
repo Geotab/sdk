@@ -18,36 +18,24 @@
     justify-content: flex-end;
     align-items: flex-start;
     padding: 8px;
-}
 
-.copyButton {
-    &--dark-mode {
+    button {
         & svg path {
-            fill: #ffffffb3;
+            fill: $light-mode-content-color;
         }
 
         &:hover svg path {
-            fill: #ffffff;
-        }
-    }
-
-    &:hover svg path {
-        fill: #5f6368;
-    }
-}
-
-.lightDarkModeToggleButton {
-    &--dark-mode {
-        & svg path {
-            fill: #ffffffb3;
+            fill: $light-mode-content-color-hover;
         }
 
-        &:hover svg path {
-            fill: #ffffff;
-        }
-    }
+        &.snippetBox__tool--dark-mode {
+            & svg path {
+                fill: $dark-mode-content-color;
+            }
 
-    &:hover svg path {
-        fill: #5f6368;
+            &:hover svg path {
+                fill: $dark-mode-content-color-hover;
+            }
+        }
     }
 }

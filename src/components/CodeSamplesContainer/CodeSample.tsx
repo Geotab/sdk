@@ -1,8 +1,9 @@
 import copyCode from "./CopyCode";
 import { CodeBlock } from "react-code-blocks";
 import "./CodeSample.scss";
-import CopyIcon from "./CopyIcon";
-import CustomDarkModeTheme from "./CustomDarkModeTheme";
+import { IconCopy, IconDarkModeMoon, IconLightModeSun } from "./icons";
+import CustomDarkModeTheme from "./themes/CustomDarkModeTheme";
+import CustomLightModeTheme from "./themes/CustomLightModeTheme";
 import CodeSampleStyle from "./CodeSampleStyle";
 import {
   Button,
@@ -10,11 +11,8 @@ import {
   useToast,
 } from "@geotab/react-component-library";
 import "../../App.scss";
-import LightModeIcon from "./LightModeIcon";
 import { useContext } from "react";
-import DarkModeIcon from "./DarkModeIcon";
 import CodeSampleLightDarkModeContext from "./CodeSampleLightDarkModeContext";
-import CustomLightModeTheme from "./CustomLightModeTheme";
 
 //Documentation for react-code-blocks: https://www.npmjs.com/package/react-code-blocks
 
@@ -58,22 +56,22 @@ export default function CodeSample(props: CodeSampleProps): JSX.Element {
           variant={ButtonVariant.CheveronButton}
           className={
             lightMode
-              ? "lightDarkModeToggleButton"
-              : "lightDarkModeToggleButton--dark-mode"
+              ? ""
+              : "snippetBox__tool--dark-mode"
           }
           onClick={handleLightDarkModeToggleButtonClick}
           ariaLabel="Toggle light/dark mode"
         >
-          {lightMode ? DarkModeIcon() : LightModeIcon()}
+          {lightMode ? <IconDarkModeMoon/> : <IconLightModeSun/>}
         </Button>
 
         <Button
           variant={ButtonVariant.CheveronButton}
-          className={lightMode ? "copyButton" : "copyButton--dark-mode"}
+          className={lightMode ? "" : "snippetBox__tool--dark-mode"}
           onClick={handleCopyClick}
           ariaLabel="Copy code sample button"
         >
-          {CopyIcon()}
+          <IconCopy/>
         </Button>
       </div>
     </div>
