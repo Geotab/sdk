@@ -54,7 +54,10 @@ import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
 
+import { searchTest } from "./utils/generate_index";
+
 function App() {
+  searchTest();
   return (
     <Toaster duration={2000} position="bottom-center">
       <Router>
