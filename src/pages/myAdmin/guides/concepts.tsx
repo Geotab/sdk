@@ -299,6 +299,18 @@ const pagination: ReactNode = (
     </div >
 );
 
+const maximumResults: ReactNode = (
+    <div className="paragraph">
+        <p>
+            Most unpaginated endpoints (see Pagination above) will be limited to 100,000 results (as of early 2024). However, some endpoints that already return more than 100,000 results (prior to 2024) will be grandfathered-in, to preserve API backwards-compatibility. Geotab may work with integrators in the future to work towards applying record limits to these grandfathered-in endpoints as well. So, integrators are encouraged to move to paginated versions of endpoints, ideally, or to generally avoid making requests that return large numbers of results.
+        </p>
+        <p>
+            The goal of pagination and these record limits is to improve the stability/performance of the API for all.
+        </p>
+    </div>
+);
+
+
 const pageTitle: PageTitleProps = {
     "title": "Concepts",
     "breadCrumbItems":
@@ -325,7 +337,10 @@ const pageSections: TableOfContentsItem[] =
         "elementId": "myadmin-pagination",
         "summary": "Pagination",
         "details": pagination
-
+    }, {
+        "elementId": "myadmin-maximum-number-of-results",
+        "summary": "Maximum number of results",
+        "details": maximumResults
     }];
 
 export default function Concepts() {
@@ -348,7 +363,7 @@ export default function Concepts() {
                         JSON
                     </a>{" "}
                     format. The{" "}
-                    <Link to="./../../apiReference/methods"> Reference</Link>{" "}
+                    <Link to="./pages/MyAdmin/apiReference/methods"> Reference</Link>{" "}
                     contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
                 </p>
             </div>
