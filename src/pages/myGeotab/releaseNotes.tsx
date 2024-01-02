@@ -3,6 +3,7 @@ import Accordion from '../../components/Accordion/Accordion';
 import "../../pages/pages.scss";
 import InformationalBox from '../../components/InformationalBox/InformationalBox';
 import CodeSample from  "../../components/CodeSamplesContainer/CodeSample";
+import { Link } from 'react-router-dom';
 import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
@@ -15,49 +16,49 @@ const update11: ReactNode = (
 		<h2>Get and GetFeed for FuelUsed and FillUp</h2>
 		<ul>
 			<li>
-				Get and GetFeed for <a href="">FuelUsed</a> is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip's ending date and time.
+				Get and GetFeed for <Link to="/myGeotab/apiReference/objects#FuelUsed">FuelUsed</Link> is now available. The query will return fuel consumption for each MyGeotab trip — corresponding to each trip's ending date and time.
 			</li>
 			<li>
-				Get and GetFeed for <a href="">FillUp</a> is now available. The query will return fill-ups detected by MyGeotab or matching fuel transaction records, if available. Each fill-up will also be matched to a MyGeotab trip — corresponding to the trip's ending date and time.
+				Get and GetFeed for <Link to="/myGeotab/apiReference/objects#FillUp">FillUp</Link> is now available. The query will return fill-ups detected by MyGeotab or matching fuel transaction records, if available. Each fill-up will also be matched to a MyGeotab trip — corresponding to the trip's ending date and time.
 			</li>
 		</ul>
 		<h2>New transaction provider</h2>
 		<ul>
 			<li>
-				Car IQ is now available as a <a href="">fuel card provider</a>.
+				Car IQ is now available as a <Link to="/myGeotab/apiReference/objects#FuelTransactionProvider">fuel card provider</Link>.
 			</li>
 		</ul>
 		<h2>Added new MessageContentTypes</h2>
 		<ul>
 			<li>
-				<a href="">ColdChainSetpointSetContent</a> and <a href="">ColdChainFaultClearContent</a> have been added.
+				<Link to="/myGeotab/apiReference/objects#ColdChainSetpointSetContent">ColdChainSetpointSetContent</Link> and <Link to="/myGeotab/apiReference/objects#ColdChainFaultClearContent">ColdChainFaultClearContent</Link> have been added.
 			</li>
 		</ul>
 		<h2>New ConditionType Property</h2>
 		<ul>
 			<li>
-				<a href="">isValueThreshold</a> has been added.
+				<Link to="/myGeotab/apiReference/objects#ConditionType">isValueThreshold</Link> has been added.
 			</li>
 			
 		</ul>
 		<h2>New MediaFileSearch options</h2>
 		<ul>
 			<li>
-				MediaFile entries can now be <a href="">searched</a> by the solutionId property.
+				MediaFile entries can now be <Link to="/myGeotab/apiReference/objects#MediaFileSeach">searched</Link> by the solutionId property.
 			</li>
 			<li>
-				MediaFile entries can now be searched by using the <a href="">TagSearch</a> object.
+				MediaFile entries can now be searched by using the <Link to="/myGeotab/apiReference/objects#TagSearch">TagSearch</Link> object.
 			</li>
 		</ul>
 		<h2>New TextMessageSearch options</h2>
 		<ul>
 			<li>
-				<a href="">mimeTypes</a> and <a href="">channelNumbers</a> search options have been added
+				<Link to="/myGeotab/apiReference/objects#TextMessageSearch">mimeTypes</Link> and <Link to="/myGeotab/apiReference/objects#TextMessageSearch">channelNumbers</Link> search options have been added
 			</li>
 		</ul>
 		<h2>New property for DutyStatusAvailability</h2>
 		<ul>
-			<li>A new property has been added for the <a href="">DutyStatusAvailability</a> object that details the duration of the driving break. Note: This new property is available for USA rulesets only.</li>
+			<li>A new property has been added for the <Link to="/myGeotab/apiReference/objects#DutyStatusAvailability">DutyStatusAvailability</Link> object that details the duration of the driving break. Note: This new property is available for USA rulesets only.</li>
 		</ul>
 		<InformationalBox>
 			<p><b>Note</b>: This new property is available for USA rulesets only.</p>
@@ -65,13 +66,13 @@ const update11: ReactNode = (
 		<h2>Added TachographDataFile object</h2>
 		<ul>
 			<li>
-				Added the <a href="">TachographDataFile</a> object that represents a tachograph data file.
+				Added the <Link to="/myGeotab/apiReference/objects#TachographDataFile">TachographDataFile</Link> object that represents a tachograph data file.
 			</li>
 		</ul>
 		<h2>New CaptchaAnswer properties</h2>
 		<ul>
 			<li>
-				Added the <a href="">greCaptchaToken</a> and <a href="">greCaptchaAction</a> properties when using google enterprise recaptcha.
+				Added the <Link to="/myGeotab/apiReference/objects/CaptchaAnswer">greCaptchaToken</Link> and <Link to="/myGeotab/apiReference/objects/CaptchaAnswer">greCaptchaAction</Link> properties when using google enterprise recaptcha.
 			</li>
 		</ul>
 		<h2>PropertySelector fixes</h2>
@@ -207,7 +208,7 @@ const update10: ReactNode = (
 		<h2>Geotab developers</h2>
 		<ul>
 			<li>
-				Added a section to the <a href="https://geotab.github.io/sdk/software/guides/developing-addins/" target="_blank" rel="noopener noreferrer">Developing Add-ins</a> page suggesting to use the generator-addin repository.
+				Added a section to the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-ins</Link> page suggesting to use the generator-addin repository.
 			</li>
 		</ul>
 		<h2>SDK samples</h2>
@@ -252,7 +253,7 @@ const update9: ReactNode = (
 		<h3>PropertySelector</h3>
 		<ul>
 			<li>
-				Added the optional  <code className="small-code-sample">PropertySelector</code> parameter that is used with the <code className="small-code-sample">Get</code> and <code className="small-code-sample">GetFeed</code> methods to include or exclude specific properties for entity types requested. Detailed information can be found on the <a href="https://geotab.github.io/sdk/software/guides/concepts/#propertyselector-beta" target="_blank" rel="noopener noreferrer">Geotab Developers</a> site.
+				Added the optional  <code className="small-code-sample">PropertySelector</code> parameter that is used with the <code className="small-code-sample">Get</code> and <code className="small-code-sample">GetFeed</code> methods to include or exclude specific properties for entity types requested. Detailed information can be found on the <Link to="/myGeotab/guides/concepts#property-selctor">Geotab Developers</Link> site.
 			</li>
 		</ul>
 		<h3>DriverWhiteListContent / DriverAuthListContent</h3>
@@ -400,7 +401,7 @@ const update8: ReactNode = (
 		<h3>GroupRelations</h3>
 		<ul>
 			<li>
-				Improved description of <code className="small-code-sample">GroupRelations</code> in <a href="https://geotab.github.io/sdk/software/api/reference/" target="_blank" rel="noopener noreferrer">API Reference</a>.
+				Improved description of <code className="small-code-sample">GroupRelations</code> in <Link to="/myGeotab/apiReference">API Reference</Link>.
 			</li>
 		</ul>
 		<h3>Group</h3>
@@ -633,10 +634,10 @@ const update6: ReactNode = (
 				Changed the software version naming convention to use three parts (e.g. 6.0.0) from four parts (e.g. 5.7.2104.0). To learn more, <a href="https://community.geotab.com/s/feed/0D52J00008j4IghSAE?language=en_US" target="_blank" rel="noopener noreferrer">click here</a>.
 			</li>
 			<li>
-				Added <a href="">WifiHotspot</a> capability, with Interface to configure hotspot settings on telematics devices.
+				Added <Link to="/myGeotab/apiReference/objects/WifiHotspot">WifiHotspot</Link> capability, with Interface to configure hotspot settings on telematics devices.
 			</li>
 			<li>
-				The MyAdmin SDK is now available from <a href="">the SDK</a>. All pages are in the process of being converted to Markdown format.
+				The MyAdmin SDK is now available from <Link to="/myAdmin/introduction">the SDK</Link>. All pages are in the process of being converted to Markdown format.
 			</li>
 		</ul>
 		<h2>HOS</h2>
@@ -808,7 +809,7 @@ const update2103: ReactNode = (
 const update2102: ReactNode = (
 	<div className="paragraph">
 		<h2>Data Intake Gateway (DIG)</h2>
-		<p>DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, <a href="https://geotab.github.io/sdk/software/guides/custom-telematics-devices/" target="_blank" rel="noopener noreferrer">click here</a>.</p>
+		<p>DIG is our new platform for integrating custom telematics data into MyGeotab. To learn more, <Link to="/myGeotab/guides/usingCustomTelematicsDevices">click here</Link>.</p>
 		<h2>APIv1 JSON Serialization</h2>
 		<p>To reduce the duration of process-intensive requests with large JSON payloads, the MyGeotab JSON-RPC API now uses System.Text.Json instead of Newtonsoft.JSON to serialize JSON data sent using the API. This change includes backward compatibility with Newtonsoft.JSON, with the following exception: Numbers with decimals will no longer be serialized using the decimal followed by a zero, if it is a whole number.</p>
 		<h2>Nuget package</h2>
@@ -860,9 +861,9 @@ const update2102: ReactNode = (
 const update2101: ReactNode = (
 	<div className="paragraph">
 		<h2>Map Add-In</h2>
-		<p>Map Add-ins are now fully supported, and no longer in Feature Preview. <a href="">Click here to learn more about Map Add-ins</a></p>
+		<p>Map Add-ins are now fully supported, and no longer in Feature Preview. <Link to="/myGeotab/addIns/mapAddIns">Click here to learn more about Map Add-ins</Link></p>
 		<h2>Storage API</h2>
-		<p>Storage APIs are now fully supported, and no longer in Feature Preview. <a href="">Click here to learn more about Storage APIs</a></p>
+		<p>Storage APIs are now fully supported, and no longer in Feature Preview. <Link to="/myGeotab/addIns/addInStorage">Click here to learn more about Storage APIs</Link></p>
 		<h2>General SDK updates</h2>
 		<h3>DeviceStatusInfo</h3>
 		<p>The dates of GPS, status and fault records are compared and uses the latest recorded data point as the <code className="small-code-sample">DateTime</code>.</p>
@@ -940,19 +941,19 @@ const update2004: ReactNode = (
 	<div className="paragraph">
 		<h2>New Media File API</h2>
 		<p>Geotab is happy to announce a new set of APIs related to Media Files. This new API can be used to store images or video clips related to a device or driver.</p>
-		<p><a href="/sdk/software/api/reference/#MediaFile">MediaFile</a>: MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found <a href="https://github.com/Geotab/mg-media-files" target="_blank" rel="noopener noreferrer">here</a>.</p>
-		<p><a href="/sdk/software/api/reference/#MediaType">MediaType</a>: The type of Media.</p>
-		<p><a href="/sdk/software/api/reference/#Status">Status</a>: The status of an uploaded file.</p>
-		<p><a href="/sdk/software/api/reference/#MediaFileSearch">MediaFileSearch</a>: The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.</p>
-		<p><a href="/sdk/software/api/reference/#Tag">Tag</a>: A named tag to provide context to an entity.</p>
-		<p><a href="/sdk/software/api/reference/#DownloadMediaFileAsync">DownloadMediaFile</a>: Download a file for the given MediaFile. The Content type is determined by the file extension. Range headers are supported.</p>
-		<p><a href="/sdk/software/api/reference/#UploadMediaFileAsync">UploadMediaFile</a>: Upload a file for the corresponding MediaFile using multipart/form-data POST request.</p>
-		<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Added ViewMedia and ManageMedia.</p>
+		<p><Link to="/myGeotab/apiReference/objects#MediaFile">MediaFile</Link>: MediaFile is a new type used to store images or video clips related to a device or driver. More information about media files can be found <a href="https://github.com/Geotab/mg-media-files" target="_blank" rel="noopener noreferrer">here</a>.</p>
+		<p><Link to="/myGeotab/apiReference/objects#MediaType">MediaType</Link>: The type of Media.</p>
+		<p><Link to="/myGeotab/apiReference/objects#Status">Status</Link>: The status of an uploaded file.</p>
+		<p><Link to="/myGeotab/apiReference/objects#MediaFileSearch">MediaFileSearch</Link>: The object used to specify the arguments when searching for MediaFile. This will return the data describing a file, not the actual file.</p>
+		<p><Link to="/myGeotab/apiReference/objects#Tag">Tag</Link>: A named tag to provide context to an entity.</p>
+		<p><Link to="/myGeotab/apiReference/objects#DownloadMediaFileAsync">DownloadMediaFile</Link>: Download a file for the given MediaFile. The Content type is determined by the file extension. Range headers are supported.</p>
+		<p><Link to="/myGeotab/apiReference/objects#UploadMediaFileAsync">UploadMediaFile</Link>: Upload a file for the corresponding MediaFile using multipart/form-data POST request.</p>
+		<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Added ViewMedia and ManageMedia.</p>
 		<h2>General SDK updates</h2>
 		<h3>BinaryDataType</h3>
 		<p>Added <code className="small-code-sample">ThirdPartyData</code> type to allow flexible length binary data format records to be stored.</p>
 		<h3>Methods</h3>
-		<p><a href="/sdk/software/api/reference/#GetCountOf1">GetCountOf</a> method now accounts for user scope. It previously did not account for user scope, which was a bug.</p>
+		<p><Link to="/myGeotab/apiReference/methods#GetCountOf">GetCountOf</Link> method now accounts for user scope. It previously did not account for user scope, which was a bug.</p>
 		<h3>ZoneSearch</h3>
 		<p><code className="small-code-sample">Viewport</code> is obsolete and no longer officially supported. It is replaced with <code className="small-code-sample">SearchArea</code> property. This will be better represented by the type <code className="small-code-sample">BoundingBox</code>. Providing a bounding box is simpler to use because map libraries provide viewport/map bounds in this way already. Backwards compatibility will be maintained with the <code className="small-code-sample">Viewport</code> property, though no longer documented.</p>
 		<h3>BoundingBox</h3>
@@ -1234,9 +1235,9 @@ const update2003: ReactNode = (
 		<p>JSON serialization improvements have been made to increase the efficiency of API calls. This is especially noticeable on API calls with large response payload. For example, calling <code className="small-code-sample">GetFeed</code> of <code className="small-code-sample">StatusData</code> with full payload (50,000 results), the average end to end time decreased from 1800 ms to 800 ms.</p>
 		<h2>TextMessage and TextMessageSearch</h2>
 		<ul>
-			<li><a href="/sdk/software/api/reference/#TextMessage">TextMessage</a> - Added <code className="small-code-sample">Recipient</code>. This property is used to send a text message to a user.</li>
+			<li><Link to="/myGeotab/apiReference/objects#TextMessage">TextMessage</Link> - Added <code className="small-code-sample">Recipient</code>. This property is used to send a text message to a user.</li>
 			<li>
-				<a href="/sdk/software/api/reference/#TextMessageSearch">TextMessageSearch</a> - Added searching by <code className="small-code-sample">IsDelivered</code>, <code className="small-code-sample">IsRead</code>, <code className="small-code-sample">UserSearch</code>.
+				<Link to="/myGeotab/apiReference/objects#TextMessageSearch">TextMessageSearch</Link> - Added searching by <code className="small-code-sample">IsDelivered</code>, <code className="small-code-sample">IsRead</code>, <code className="small-code-sample">UserSearch</code>.
 				<ul>
 					<li><code className="small-code-sample">IsDelivered</code>, when set to true, returns all text messages that were delivered to the recipient/device.</li>
 					<li><code className="small-code-sample">IsRead</code>, when set to true, returns all text messages that were read by the recipient/device.</li>
@@ -1244,7 +1245,7 @@ const update2003: ReactNode = (
 				</ul>
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#TextMessageSearch">TextMessageSearch</a> - Added searching by <code className="small-code-sample">ContentTypes</code> and <code className="small-code-sample">IsDirectionToVehicle</code>.
+				<Link to="/myGeotab/apiReference/objects#TextMessageSearch">TextMessageSearch</Link> - Added searching by <code className="small-code-sample">ContentTypes</code> and <code className="small-code-sample">IsDirectionToVehicle</code>.
 				<ul>
 					<li><code className="small-code-sample">ContentTypes</code> searches for TextMessages based on their MessageContentType.</li>
 					<li><code className="small-code-sample">IsDirectionToVehicle</code>, when set to true, will return all text messages that were sent to the device. If set to false, it will return all text messages that were not sent to the device.</li>
@@ -1253,7 +1254,7 @@ const update2003: ReactNode = (
 		</ul>
 		<h2>SecurityIdentifier</h2>
 		<ul>
-   			<li><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a> - <code className="small-code-sample">PerformanceReport</code> has been removed.</li>
+   			<li><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link> - <code className="small-code-sample">PerformanceReport</code> has been removed.</li>
 		</ul>
 		<h2>Exception messages</h2>
 		<p>Some exception messages contained escaped Unicode characters. We have fixed these to exclude escaped characters. See the example message change below:</p>
@@ -1267,61 +1268,61 @@ const update2003: ReactNode = (
 		<h2>DiagnosticType</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DiagnosticType">DiagnosticType</a> - Added <code className="small-code-sample">GmcccFault</code> and <code className="small-code-sample">BrpFault</code>
+				<Link to="/myGeotab/apiReference/objects#DiagnosticType">DiagnosticType</Link> - Added <code className="small-code-sample">GmcccFault</code> and <code className="small-code-sample">BrpFault</code>
 			</li>
 		</ul>
 		<h2>KnownId</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#KnownId">KnownId</a> - Added <code className="small-code-sample">ControllerGmcccFaultId</code>, <code className="small-code-sample">SourceGmcccId</code>, <code className="small-code-sample">SourceGmcccObsoleteId</code>, <code className="small-code-sample">ControllerBrpFaultId</code>, <code className="small-code-sample">SourceBrpId</code>, <code className="small-code-sample">SourceBrpObsoleteId</code>
+				<Link to="/myGeotab/apiReference/objects#KnownId">KnownId</Link> - Added <code className="small-code-sample">ControllerGmcccFaultId</code>, <code className="small-code-sample">SourceGmcccId</code>, <code className="small-code-sample">SourceGmcccObsoleteId</code>, <code className="small-code-sample">ControllerBrpFaultId</code>, <code className="small-code-sample">SourceBrpId</code>, <code className="small-code-sample">SourceBrpObsoleteId</code>
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#KnownId">KnownId</a> - Added <code className="small-code-sample">NoExceptionEventId</code>, <code className="small-code-sample">NoRuleId</code>
+				<Link to="/myGeotab/apiReference/objects#KnownId">KnownId</Link> - Added <code className="small-code-sample">NoExceptionEventId</code>, <code className="small-code-sample">NoRuleId</code>
 			</li>
 		</ul>
 		<h2>Device</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Device">Device</a> - Added <code className="small-code-sample">AutoHos</code>. This property is a toggle that represents automatic generation of DutyStatusLogs for a <code className="small-code-sample">GoDevice</code> and/or a <code className="small-code-sample">CustomVehicleDevice</code>.
+				<Link to="/myGeotab/apiReference/objects#Device">Device</Link> - Added <code className="small-code-sample">AutoHos</code>. This property is a toggle that represents automatic generation of DutyStatusLogs for a <code className="small-code-sample">GoDevice</code> and/or a <code className="small-code-sample">CustomVehicleDevice</code>.
 			</li>
 		</ul>
 		<h2>DutyStatusViolation</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DutyStatusViolation">DutyStatusViolation</a> - Added <code className="small-code-sample">HoursLimit</code> and <code className="small-code-sample">DaysLimit</code>. These properties show the maximum or minimum hours and/or days limit for duty status violations.
+				<Link to="/myGeotab/apiReference/objects#DutyStatusViolation">DutyStatusViolation</Link> - Added <code className="small-code-sample">HoursLimit</code> and <code className="small-code-sample">DaysLimit</code>. These properties show the maximum or minimum hours and/or days limit for duty status violations.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#DutyStatusViolation">DutyStatusViolation</a> - Deprecated <code className="small-code-sample">Reason</code> property. This will be removed in a future version. The data in the Reason property string is now provided as <code className="small-code-sample">DaysLimit</code> and <code className="small-code-sample">HoursLimit</code> for better programmatic access.
+				<Link to="/myGeotab/apiReference/objects#DutyStatusViolation">DutyStatusViolation</Link> - Deprecated <code className="small-code-sample">Reason</code> property. This will be removed in a future version. The data in the Reason property string is now provided as <code className="small-code-sample">DaysLimit</code> and <code className="small-code-sample">HoursLimit</code> for better programmatic access.
 			</li>
 		</ul>
 		<h2>UserSearch</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#UserSearch">UserSearch</a> - Added searching by <code className="small-code-sample">LicenseNumber</code>, <code className="small-code-sample">EmployeeNumber</code>, <code className="small-code-sample">HosRuleSet</code> and <code className="small-code-sample">UserAuthenticationType</code>.
+				<Link to="/myGeotab/apiReference/objects#UserSearch">UserSearch</Link> - Added searching by <code className="small-code-sample">LicenseNumber</code>, <code className="small-code-sample">EmployeeNumber</code>, <code className="small-code-sample">HosRuleSet</code> and <code className="small-code-sample">UserAuthenticationType</code>.
 			</li>
 		</ul>
 		<h2>GetFeed DebugData</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#GetFeed1">GetFeed</a>: <a href="/sdk/software/api/reference/#DebugData">DebugData</a> - Fixed sort order issue leading to possible missed records.
+				<Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link>: <Link to="/myGeotab/apiReference/objects#DebugData">DebugData</Link> - Fixed sort order issue leading to possible missed records.
 			</li>
 		</ul>
 		<h2>FuelTransaction</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#FuelTransaction">FuelTransaction</a> - Added <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code>. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code> properties defaults to NoDevice and UnknownDriver.
+				<Link to="/myGeotab/apiReference/objects#FuelTransaction">FuelTransaction</Link> - Added <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code>. These properties add fuel transactions for a device or user, rather than a loose match by VIN, etc. If left null, the application will attempt to match the fuel transaction to a device and driver at time of an Add or a Set. If no match is found, the fuel transaction's <code className="small-code-sample">Device</code> and <code className="small-code-sample">Driver</code> properties defaults to NoDevice and UnknownDriver.
 			</li>
 		</ul>
 		<h2>DVIRLog</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a> - Added <code className="small-code-sample">AuthorityName</code>, <code className="small-code-sample">AuthorityAddress</code>, <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">LoadHeight</code>, <code className="small-code-sample">LoadWidth</code> and <code className="small-code-sample">IsInspectedByDriver</code>. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered <code className="small-code-sample">Hubometer</code> value for Trailer DVIRs.
+				<Link to="/myGeotab/apiReference/objects#DVIRLog">DVIRLog</Link> - Added <code className="small-code-sample">AuthorityName</code>, <code className="small-code-sample">AuthorityAddress</code>, <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">LoadHeight</code>, <code className="small-code-sample">LoadWidth</code> and <code className="small-code-sample">IsInspectedByDriver</code>. These properties support Canadian DVIR inspections. AuthorityName and AuthorityAddress are automatically populated based on what the user's corresponding fields are at the time. Odometer currently only applies to the entered <code className="small-code-sample">Hubometer</code> value for Trailer DVIRs.
 			</li>
 		</ul>
 		<h2>ConditionType</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#ConditionType">ConditionType</a> - Added <code className="small-code-sample">IsValueLessThanPercent</code> and <code className="small-code-sample">IsValueMoreThanPercent</code>. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
+				<Link to="/myGeotab/apiReference/objects#ConditionType">ConditionType</Link> - Added <code className="small-code-sample">IsValueLessThanPercent</code> and <code className="small-code-sample">IsValueMoreThanPercent</code>. These properties are used to create a percentage threshold for speeding violations, rather than an exact speed value under/over the current posted road speed.
 			</li>
 		</ul>
 		<h2>WebServerInvoker (Nuget only)</h2>
@@ -1341,7 +1342,7 @@ const update2002: ReactNode = (
 		<h2>NuGet</h2>
 		<p><span>! IMPORTANT</span>: A bug has been identified with Geotab.Checkmate.Objectmodel NuGet packages older than version 5.7.2002, which can lead to serialization errors when a previous version received a new device plan value. Please update to the latest NuGet package to establish compatibility.</p>
 		<h2>Map Add-In</h2>
-		<p>Users can now create a <a href="/sdk/software/guides/map-add-ins-docs/">Map Add-In</a> without using the view panel on the right. For quick tasks such as adding icons or text to the Map, simply use the <code className="small-code-sample">"noView":true</code> parameter in your configuration file.</p>
+		<p>Users can now create a <Link to="/myGeotab/addIns/mapAddIns/">Map Add-In</Link> without using the view panel on the right. For quick tasks such as adding icons or text to the Map, simply use the <code className="small-code-sample">"noView":true</code> parameter in your configuration file.</p>
 		<CodeSample
 		language="javascript"
 		code={`{
@@ -1366,79 +1367,79 @@ const update2002: ReactNode = (
 		<h2>Interpolation</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Get1">Get</a>: <a href="/sdk/software/api/reference/#StatusData">StatusData</a>, <a href="/sdk/software/api/reference/#LogRecord">LogRecord</a> - In the v5.7.2001 release and earlier, we interpolate between points when using <code className="small-code-sample">StatusData</code> and <code className="small-code-sample">LogRecord</code> API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the <i>first/last</i> value with the <i>correct</i> dateTime.
+				<Link to="/myGeotab/apiReference/methods#Get">Get</Link>: <Link to="/myGeotab/apiReference/objects#StatusData">StatusData</Link>, <Link to="/myGeotab/apiReference/objects#LogRecord">LogRecord</Link> - In the v5.7.2001 release and earlier, we interpolate between points when using <code className="small-code-sample">StatusData</code> and <code className="small-code-sample">LogRecord</code> API. When a date is requested that is less than or greater than the data, we return the first/last value with the date of the time requested. To minimize confusion, we now return the <i>first/last</i> value with the <i>correct</i> dateTime.
 			</li>
 		</ul>
 		<h2>Users</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#User">User</a> - Added the <code className="small-code-sample">IsExemptHOSEnabled</code> property to indicate whether the user is allowed to use HOS Personal Conveyance.
+				<Link to="/myGeotab/apiReference/objects#User">User</Link> - Added the <code className="small-code-sample">IsExemptHOSEnabled</code> property to indicate whether the user is allowed to use HOS Personal Conveyance.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#User">User</a> - Added <code className="small-code-sample">CompanyName</code>, <code className="small-code-sample">CompanyAddress</code>, and <code className="small-code-sample">CarrierNumber</code> properties to store company and carrier information.
+				<Link to="/myGeotab/apiReference/objects#User">User</Link> - Added <code className="small-code-sample">CompanyName</code>, <code className="small-code-sample">CompanyAddress</code>, and <code className="small-code-sample">CarrierNumber</code> properties to store company and carrier information.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#User">User</a> - Added <code className="small-code-sample">CountryCode</code>, <code className="small-code-sample">PhoneNumber</code>, and <code className="small-code-sample">PhoneNumberExtension</code> properties to assign a phone number to a selected user.
+				<Link to="/myGeotab/apiReference/objects#User">User</Link> - Added <code className="small-code-sample">CountryCode</code>, <code className="small-code-sample">PhoneNumber</code>, and <code className="small-code-sample">PhoneNumberExtension</code> properties to assign a phone number to a selected user.
 			</li>
 		</ul>	
 		<h2>Drivers</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Driver">Driver</a> - Added <code className="small-code-sample">LicenseProvince</code> and <code className="small-code-sample">LicenseNumber</code> properties.
+				<Link to="/myGeotab/apiReference/objects#Driver">Driver</Link> - Added <code className="small-code-sample">LicenseProvince</code> and <code className="small-code-sample">LicenseNumber</code> properties.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#DriverRegulation">DriverRegulation</a> - Added <code className="small-code-sample">RestBreakNeeded</code>, <code className="small-code-sample">OffDutyNeeded</code>, <code className="small-code-sample">DaySummaries</code>, <code className="small-code-sample">WorkdaySummaries</code> and <code className="small-code-sample">CycleSummaries</code> properties to DriverRegulation.
+				<Link to="/myGeotab/apiReference/objects#DriverRegulation">DriverRegulation</Link> - Added <code className="small-code-sample">RestBreakNeeded</code>, <code className="small-code-sample">OffDutyNeeded</code>, <code className="small-code-sample">DaySummaries</code>, <code className="small-code-sample">WorkdaySummaries</code> and <code className="small-code-sample">CycleSummaries</code> properties to DriverRegulation.
 			</li>
 		</ul>
 		<h2>DutyStatusLog</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a> - Added <code className="small-code-sample">DeferralStatus</code>, and <code className="small-code-sample">DeferralMinutes</code> properties to define the duty status deferral and deferral minutes.
+				<Link to="/myGeotab/apiReference/objects#DutyStatusLog">DutyStatusLog</Link> - Added <code className="small-code-sample">DeferralStatus</code>, and <code className="small-code-sample">DeferralMinutes</code> properties to define the duty status deferral and deferral minutes.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#DutyStatusLogType">DutyStatusLogType</a> - Added the <code className="small-code-sample">PC_Exempted</code> property to indicate the status of a driver.
+				<Link to="/myGeotab/apiReference/objects#DutyStatusLogType">DutyStatusLogType</Link> - Added the <code className="small-code-sample">PC_Exempted</code> property to indicate the status of a driver.
 			</li>
 		</ul>
 		<h2>DVIRLog</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a> - Added <code className="small-code-sample">LogType</code> and <code className="small-code-sample">DefectList</code> properties.
+				<Link to="/myGeotab/apiReference/objects#DVIRLog">DVIRLog</Link> - Added <code className="small-code-sample">LogType</code> and <code className="small-code-sample">DefectList</code> properties.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#DVIRLogType">DVIRLogType</a> - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new <code className="small-code-sample">Intrip</code> inspection type.
+				<Link to="/myGeotab/apiReference/objects#DVIRLogType">DVIRLogType</Link> - Most DVIRs are performed as either Pre or Post-trip inspections. To include middle-of-the day scenarios such as discovering new defects, or performing additional inspections, we have added a new <code className="small-code-sample">Intrip</code> inspection type.
 			</li>
 		</ul>
 		<h2>Rules</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#RecipientType">RecipientType</a> - Added <code className="small-code-sample">HosEnabled</code> and <code className="small-code-sample">HosDisabled</code> to <code className="small-code-sample">RecipientType</code> to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
+				<Link to="/myGeotab/apiReference/objects#RecipientType">RecipientType</Link> - Added <code className="small-code-sample">HosEnabled</code> and <code className="small-code-sample">HosDisabled</code> to <code className="small-code-sample">RecipientType</code> to automate HosEnabled/HosDisabled duty status logs using rule notifications. For example, when an exception event occurs, add an HosEnabled or HosDisabled duty status log at the same time as the event for an unidentified driver.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#ConditionType">ConditionType</a> - Added <code className="small-code-sample">NoPreDVIRCheck</code> and <code className="small-code-sample">NoPostDVIRCheck</code> to <code className="small-code-sample">ConditionType</code> when no Pre or Post-trip DVIR is performed between work days.
+				<Link to="/myGeotab/apiReference/objects#ConditionType">ConditionType</Link> - Added <code className="small-code-sample">NoPreDVIRCheck</code> and <code className="small-code-sample">NoPostDVIRCheck</code> to <code className="small-code-sample">ConditionType</code> when no Pre or Post-trip DVIR is performed between work days.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#ConditionType">ConditionType</a> - Added <code className="small-code-sample">SpeedLimitAsMeasurement</code> property to the <code className="small-code-sample">ConditionType</code> to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
+				<Link to="/myGeotab/apiReference/objects#ConditionType">ConditionType</Link> - Added <code className="small-code-sample">SpeedLimitAsMeasurement</code> property to the <code className="small-code-sample">ConditionType</code> to create rules that only apply to posted road speeds that are greater than, or less than a specified value. For example, it may be more important to alert the driver when the vehicle is travelling less than 10mph, or greater than 10mph on a highway, than it is on a city street.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#ConditionType">ConditionType</a> - The <code className="small-code-sample">NoDVIRCheck</code> <code className="small-code-sample">ConditionType</code> is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
+				<Link to="/myGeotab/apiReference/objects#ConditionType">ConditionType</Link> - The <code className="small-code-sample">NoDVIRCheck</code> <code className="small-code-sample">ConditionType</code> is obsolete and will be removed in a future version. Please use NoPreDVIRCheck and NoPostDVIRCheck.
 			</li>
 		</ul>
 		<h2>Zones</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Zone">Zone</a> - Added the <code className="small-code-sample">ZoneTypes</code> property for enumeration of zone types for a given zone.
+				<Link to="/myGeotab/apiReference/objects#Zone">Zone</Link> - Added the <code className="small-code-sample">ZoneTypes</code> property for enumeration of zone types for a given zone.
 			</li>
 		</ul>
 		<h2>Devices</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#Go9">GO9</a> - Added the <code className="small-code-sample">ObdAlertEnabled</code> property to allow users to enable/disable OBD alerts on their vehicles.
+				<Link to="/myGeotab/apiReference/objects#Go9">GO9</Link> - Added the <code className="small-code-sample">ObdAlertEnabled</code> property to allow users to enable/disable OBD alerts on their vehicles.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#GoDevice">GoDevice</a> - Added the <code className="small-code-sample">ParameterVersionOnDevice</code> property to track the current parameter version on the device. The current <code className="small-code-sample">ParameterVersion</code> property communicates the parameter version to the device; however, parameter updates are not always immediate.
+				<Link to="/myGeotab/apiReference/objects#GoDevice">GoDevice</Link> - Added the <code className="small-code-sample">ParameterVersionOnDevice</code> property to track the current parameter version on the device. The current <code className="small-code-sample">ParameterVersion</code> property communicates the parameter version to the device; however, parameter updates are not always immediate.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#Device">Device</a> - To prevent mismatches based on system clock settings, we have prevented <code className="small-code-sample">ActiveFrom</code> from being greater than <code className="small-code-sample">ActiveTo</code> when adding a device.
+				<Link to="/myGeotab/apiReference/objects#Device">Device</Link> - To prevent mismatches based on system clock settings, we have prevented <code className="small-code-sample">ActiveFrom</code> from being greater than <code className="small-code-sample">ActiveTo</code> when adding a device.
 			</li>
 		</ul>
 		<h2>Generator-Addin version 3.0</h2>
@@ -1485,13 +1486,13 @@ const update2002: ReactNode = (
 		<h2>Other SDK updates</h2>
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#BinaryDataSearch">BinaryDataSearch</a> - Search by <code className="small-code-sample">DeviceSearch.Groups</code> property using <code className="small-code-sample">BinaryDataSearch</code>.
+				<Link to="/myGeotab/apiReference/objects#BinaryDataSearch">BinaryDataSearch</Link> - Search by <code className="small-code-sample">DeviceSearch.Groups</code> property using <code className="small-code-sample">BinaryDataSearch</code>.
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a> - Added <code className="small-code-sample">SystemSettings</code> value to <code className="small-code-sample">SecurityIdentifier</code>.
+				<Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link> - Added <code className="small-code-sample">SystemSettings</code> value to <code className="small-code-sample">SecurityIdentifier</code>.
 			</li>
 			<li>
-				Removed the <code className="small-code-sample">DiagnosticCategory</code> object from the <a href="/sdk/software/api/reference">SDK reference</a> page. This is a legacy object that is no longer in use.
+				Removed the <code className="small-code-sample">DiagnosticCategory</code> object from the <Link to="/myGeotab/apiReference/methods">SDK reference</Link> page. This is a legacy object that is no longer in use.
 			</li>
 			<li>
 				Updated the ExternalDeviceShutdownDelay documentation to clarify values in minutes rather than seconds.
@@ -1500,10 +1501,10 @@ const update2002: ReactNode = (
 				Added a sample for getting fuel tax details using the <a href="/sdk/software/api/runner.html#sample:get-fuel-tax-details">API runner</a>.
 			</li>
 			<li>
-				Feature Preview items now marked as Beta in <a href="/sdk/software/api/reference">SDK reference</a>.
+				Feature Preview items now marked as Beta in <Link to="/myGeotab/apiReference/methods">SDK reference</Link>.
 			</li>
 			<li>
-				Added a hardware <a href="/sdk//hardware/hardware-add-on-data-types">Add-On Data Types</a> section to the SDK.
+				Added a hardware <a href="https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080" target="_blank" rel="noopener noreferrer">Add-On Data Types</a> section to the SDK.
 			</li>
 		</ul>
 	</div>
@@ -1518,61 +1519,61 @@ const update2001: ReactNode = (
 				<p>AddInData (Feature Preview) - Remove requirement of <code className="small-code-sample">AddInDataId</code> for search by <code className="small-code-sample">Id</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#AuditSearch">AuditSearch</a>, <a href="/sdk/software/api/reference/#DeviceSearch">DeviceSearch</a>, <a href="/sdk/software/api/reference/#ShipmentLogSearch">ShipmentLogSearch</a>, <a href="/sdk/software/api/reference/#UserSearch">UserSearch</a>, <a href="/sdk/software/api/reference/#ZoneSearch">ZoneSearch</a> - Added new search by list of <code className="small-code-sample">Keywords</code>. This allows searching "or” across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against <code className="small-code-sample">Comment</code>, <code className="small-code-sample">LicensePlate</code>, <code className="small-code-sample">Name</code>, <code className="small-code-sample">SerialNumber</code> and <code className="small-code-sample">VehicleIdentificationNumber</code> matching the provided keywords. Keywords strings support wildcard character (<code className="small-code-sample">%</code>).</p>
+				<p><Link to="/myGeotab/apiReference/objects#AuditSearch">AuditSearch</Link>, <Link to="/myGeotab/apiReference/objects#DeviceSearch">DeviceSearch</Link>, <Link to="/myGeotab/apiReference/objects#ShipmentLogSearch">ShipmentLogSearch</Link>, <Link to="/myGeotab/apiReference/objects#UserSearch">UserSearch</Link>, <Link to="/myGeotab/apiReference/objects#ZoneSearch">ZoneSearch</Link> - Added new search by list of <code className="small-code-sample">Keywords</code>. This allows searching "or” across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against <code className="small-code-sample">Comment</code>, <code className="small-code-sample">LicensePlate</code>, <code className="small-code-sample">Name</code>, <code className="small-code-sample">SerialNumber</code> and <code className="small-code-sample">VehicleIdentificationNumber</code> matching the provided keywords. Keywords strings support wildcard character (<code className="small-code-sample">%</code>).</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#BinaryData">BinaryData</a> (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.</p>
+				<p><Link to="/myGeotab/apiReference/objects#BinaryData">BinaryData</Link> (nuget only) - Fix issue deserializing enum values known to the server but unknown to older nuget package.</p>
 			</li>
 			<li>
 				<p>Calculated Engine Hours Search - As mentioned in 5.7.1904 What's New, <code className="small-code-sample">DiagnosticEngineHoursAdjustmentId</code> is now interpolated using trips and <code className="small-code-sample">DiagnosticIgnitionId</code> values when a search includes a from/toDate value(s) to provide exact values by default.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#CompanyDetails">CompanyDetails</a> - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from <code className="small-code-sample">CreateDatabase</code> method.</p>
+				<p><Link to="/myGeotab/apiReference/objects#CompanyDetails">CompanyDetails</Link> - Add documentation describing field length limits. Added more specific error messages relating to max field lengths from <code className="small-code-sample">CreateDatabase</code> method.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Device">Device</a> - <code className="small-code-sample">HardwareId</code> is no longer returned as part of Device object. For more information regarding this change, please refer to this <a href="https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property" target="_blank" rel="noopener noreferrer">community post</a>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#Device">Device</Link> - <code className="small-code-sample">HardwareId</code> is no longer returned as part of Device object. For more information regarding this change, please refer to this <a href="https://community.geotab.com/s/question/0D52J00007MIPRYSA5/sdk-notice-removal-of-device-property" target="_blank" rel="noopener noreferrer">community post</a>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DVIRDefect">DVIRDefect</a> - Providing <code className="small-code-sample">RepairUser</code> and <code className="small-code-sample">RepairDateTime</code> are no longer supported for unrepaired <code className="small-code-sample">DVIRDefect</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DVIRDefect">DVIRDefect</Link> - Providing <code className="small-code-sample">RepairUser</code> and <code className="small-code-sample">RepairDateTime</code> are no longer supported for unrepaired <code className="small-code-sample">DVIRDefect</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a> - <code className="small-code-sample">DefectList</code> must be provided with <code className="small-code-sample">DVIRLog</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DVIRLog">DVIRLog</Link> - <code className="small-code-sample">DefectList</code> must be provided with <code className="small-code-sample">DVIRLog</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GetFeed1">GetFeed</a> - Fixed corner case where it was possible to miss data in feed due to concurrency issue.</p>
+				<p><Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link> - Fixed corner case where it was possible to miss data in feed due to concurrency issue.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GetFeed1">GetFeed</a> <code className="small-code-sample">StatusData</code> - Fix, providing a search to GetFeed <code className="small-code-sample">StatusData</code> containing a <code className="small-code-sample">DiagnosticSearch</code> which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.</p>
+				<p><Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link> <code className="small-code-sample">StatusData</code> - Fix, providing a search to GetFeed <code className="small-code-sample">StatusData</code> containing a <code className="small-code-sample">DiagnosticSearch</code> which has no results within the provided limit of records will now return a feed version advanced by the results limit or remaining records when less then results limit.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Get1">Get</a> <code className="small-code-sample">Diagnostic</code> - Fix issue searching by <code className="small-code-sample">DiagnosticType.ProprietaryFault</code> or <code className="small-code-sample">DiagnosticType.LegacyFault</code> causing error result.</p>
+				<p><Link to="/myGeotab/apiReference/methods#Get">Get</Link> <code className="small-code-sample">Diagnostic</code> - Fix issue searching by <code className="small-code-sample">DiagnosticType.ProprietaryFault</code> or <code className="small-code-sample">DiagnosticType.LegacyFault</code> causing error result.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GoCurve">GoCurve</a> - Added <code className="small-code-sample">IsIoxConnectionEnabled</code>. (Adds to <code className="small-code-sample">GO4v3</code>, <code className="small-code-sample">GO5</code>, <code className="small-code-sample">GO6</code>, <code className="small-code-sample">GO7</code>, <code className="small-code-sample">GO8</code>, <code className="small-code-sample">GO9</code>)</p>
+				<p><Link to="/myGeotab/apiReference/objects#GoCurve">GoCurve</Link> - Added <code className="small-code-sample">IsIoxConnectionEnabled</code>. (Adds to <code className="small-code-sample">GO4v3</code>, <code className="small-code-sample">GO5</code>, <code className="small-code-sample">GO6</code>, <code className="small-code-sample">GO7</code>, <code className="small-code-sample">GO8</code>, <code className="small-code-sample">GO9</code>)</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Group">Group</a> (nuget only) - Removed <code className="small-code-sample">left</code> and <code className="small-code-sample">right</code> parameters from constructor and <code className="small-code-sample">Group.Get</code> method.</p>
+				<p><Link to="/myGeotab/apiReference/objects#Group">Group</Link> (nuget only) - Removed <code className="small-code-sample">left</code> and <code className="small-code-sample">right</code> parameters from constructor and <code className="small-code-sample">Group.Get</code> method.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GroupRelations">GroupRelations</a> - Added <code className="small-code-sample">AddInDatas</code> property. When <code className="small-code-sample">Group</code> linked <code className="small-code-sample">AddInData</code> (Feature Preview) is blocking a <code className="small-code-sample">Group</code> remove, a list blocking <code className="small-code-sample">AddInData</code> <code className="small-code-sample">Id</code>s will be returned in the <code className="small-code-sample">GroupRelations</code> property of <code className="small-code-sample">GroupRelationViolatedException</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#GroupRelations">GroupRelations</Link> - Added <code className="small-code-sample">AddInDatas</code> property. When <code className="small-code-sample">Group</code> linked <code className="small-code-sample">AddInData</code> (Feature Preview) is blocking a <code className="small-code-sample">Group</code> remove, a list blocking <code className="small-code-sample">AddInData</code> <code className="small-code-sample">Id</code>s will be returned in the <code className="small-code-sample">GroupRelations</code> property of <code className="small-code-sample">GroupRelationViolatedException</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#HosRuleSet">HosRuleSet</a> - Added <code className="small-code-sample">WashingtonIntrastate7Day</code>, <code className="small-code-sample">WashingtonIntrastate8Day</code>, <code className="small-code-sample">NoneCanada</code>, <code className="small-code-sample">HosRuleSetCanadaNorthOf60CycleOne</code>, <code className="small-code-sample">HosRuleSetCanadaNorthOf60CycleTwo</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#HosRuleSet">HosRuleSet</Link> - Added <code className="small-code-sample">WashingtonIntrastate7Day</code>, <code className="small-code-sample">WashingtonIntrastate8Day</code>, <code className="small-code-sample">NoneCanada</code>, <code className="small-code-sample">HosRuleSetCanadaNorthOf60CycleOne</code>, <code className="small-code-sample">HosRuleSetCanadaNorthOf60CycleTwo</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a> - Added <code className="small-code-sample">ViewGroups</code>, <code className="small-code-sample">AdministerWiFiHotspotSettings</code>, <code className="small-code-sample">ViewWiFiHotspotSettings</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link> - Added <code className="small-code-sample">ViewGroups</code>, <code className="small-code-sample">AdministerWiFiHotspotSettings</code>, <code className="small-code-sample">ViewWiFiHotspotSettings</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#TextMessage">TextMessage</a> - Proper support of active from/to dates. *Messages that have not been sent by active to date will not be sent.</p>
+				<p><Link to="/myGeotab/apiReference/objects#TextMessage">TextMessage</Link> - Proper support of active from/to dates. *Messages that have not been sent by active to date will not be sent.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#TextMessageSearch">TextMessageSearch</a> - <code className="small-code-sample">ParentTextMessageId</code> (long) is obsolete. Usage should be replaced with <code className="small-code-sample">ParentMessageId</code> (Id).</p>
+				<p><Link to="/myGeotab/apiReference/objects#TextMessageSearch">TextMessageSearch</Link> - <code className="small-code-sample">ParentTextMessageId</code> (long) is obsolete. Usage should be replaced with <code className="small-code-sample">ParentMessageId</code> (Id).</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#User">User</a> - Added <code className="small-code-sample">MaxPCDistancePerDay</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#User">User</Link> - Added <code className="small-code-sample">MaxPCDistancePerDay</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#UserSearch">UserSearch</a> - Added "negatable” search of <code className="small-code-sample">FistName</code>, <code className="small-code-sample">LastName</code> and <code className="small-code-sample">Name</code> properties. If the first character of this search property is ‘!', then the API will know to negate the search logic. For example: <code className="small-code-sample">field = "!John%"</code>, is equivalent to: <code className="small-code-sample">WHERE NOT LIKE 'John%'</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#UserSearch">UserSearch</Link> - Added "negatable” search of <code className="small-code-sample">FistName</code>, <code className="small-code-sample">LastName</code> and <code className="small-code-sample">Name</code> properties. If the first character of this search property is ‘!', then the API will know to negate the search logic. For example: <code className="small-code-sample">field = "!John%"</code>, is equivalent to: <code className="small-code-sample">WHERE NOT LIKE 'John%'</code>.</p>
 			</li>
 		</ul>
 	</div>
@@ -1589,31 +1590,31 @@ const update1904: ReactNode = (
 				<p>API.cs (nuget only) - Now implements IApi interface. This allows for simpler unit testing of integration code using mocks.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#BinaryData">BinaryDataType</a> - Added <code className="small-code-sample">SoftwareVersionFull</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#BinaryData">BinaryDataType</Link> - Added <code className="small-code-sample">SoftwareVersionFull</code></p>
 			</li>
 			<li>
 				<p>Calculated Engine Hours Search - With a custom setting (<code className="small-code-sample">ENABLEENGINEHOURSINTERPOLATION</code>) applied to your database, DiagnosticEngineHoursAdjustmentId will now be interpolated using trips and DiagnosticIgnitionId values when a search includes a from/toDate value(s) to provide exact values. To apply this custom setting to your database, please reach out to Geotab support. This will become the default behavior in v5.7.2001.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DatabaseExistsAsync">DatabaseExists</a> fixed to include databases existing in other federations.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DatabaseExistsAsync">DatabaseExists</Link> fixed to include databases existing in other federations.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FuelTransactionProductType">FuelTransactionProductType</a> - Added <code className="small-code-sample">Hydrogen</code> and <code className="small-code-sample">DieselExhaustFluid</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#FuelTransactionProductType">FuelTransactionProductType</Link> - Added <code className="small-code-sample">Hydrogen</code> and <code className="small-code-sample">DieselExhaustFluid</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FuelTransactionProvider">FuelTransactionProvider</a> - Added <code className="small-code-sample">GFN</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#FuelTransactionProvider">FuelTransactionProvider</Link> - Added <code className="small-code-sample">GFN</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#HosRuleSet">HosRuleSet</a> - Added <code className="small-code-sample">HosRuleSetCanadaCycleOneTeam</code> and <code className="small-code-sample">HosRuleSetCanadaCycleTwoTeam</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#HosRuleSet">HosRuleSet</Link> - Added <code className="small-code-sample">HosRuleSetCanadaCycleOneTeam</code> and <code className="small-code-sample">HosRuleSetCanadaCycleTwoTeam</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#LoginResult">LoginResult</a> - Removed unsupported legacy property <code className="small-code-sample">SecurityToken</code>. This property duplicated the supported property <code className="small-code-sample">Credentials</code>. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.</p>
+				<p><Link to="/myGeotab/apiReference/objects#LoginResult">LoginResult</Link> - Removed unsupported legacy property <code className="small-code-sample">SecurityToken</code>. This property duplicated the supported property <code className="small-code-sample">Credentials</code>. It was previously maintained for compatibility with MyGeotab Web Server 5.6.1 which is no longer supported.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Rule">Rule</a> - Fix, don't allow adding Rules without Conditions.</p>
+				<p><Link to="/myGeotab/apiReference/objects#Rule">Rule</Link> - Fix, don't allow adding Rules without Conditions.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a> - Added <code className="small-code-sample">ViewGroups</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link> - Added <code className="small-code-sample">ViewGroups</code>.</p>
 			</li>
 		</ul>
 	</div>
@@ -1625,64 +1626,64 @@ const update1903: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a>: Added <code className="small-code-sample">EditRequestedByUser</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLog">DutyStatusLog</Link>: Added <code className="small-code-sample">EditRequestedByUser</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a>: Locations will not be included with DutyStatusLog by default. To include locations must use <code className="small-code-sample">dutyStatusLogSearch.IncludeLocations: true</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLog">DutyStatusLog</Link>: Locations will not be included with DutyStatusLog by default. To include locations must use <code className="small-code-sample">dutyStatusLogSearch.IncludeLocations: true</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLogType">DutyStatusLogType</a>: Added <code className="small-code-sample">HosEnabled</code>, <code className="small-code-sample">HosDisabled</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLogType">DutyStatusLogType</Link>: Added <code className="small-code-sample">HosEnabled</code>, <code className="small-code-sample">HosDisabled</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a>: Added <code className="small-code-sample">RepairDate</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DVIRLog">DVIRLog</Link>: Added <code className="small-code-sample">RepairDate</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#IoxAddOn">IoxAddOn</a>: Added <code className="small-code-sample">DateTime</code> representing when the channel was set to the given value.</p>
+				<p><Link to="/myGeotab/apiReference/objects#IoxAddOn">IoxAddOn</Link>: Added <code className="small-code-sample">DateTime</code> representing when the channel was set to the given value.</p>
 			</li>
 			<li>
 				<p>Serialization: ISO date time at zero hour will now have full ISO time ex <code className="small-code-sample">1986-01-01</code> -&gt; <code className="small-code-sample">1986-01-01T00:00:00.000Z</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#HosRuleSet">HosRuleSet</a>: Added <code className="small-code-sample">AmericaShortHaul14hrWorkday</code>, <code className="small-code-sample">AmericaShortHaul8Day14hrWorkday</code>, <code className="small-code-sample">OilTransportShortHaul14hrWorkday</code>, <code className="small-code-sample">OilTransportShortHaul8Day14hrWorkday</code>, <code className="small-code-sample">CaliforniaFlammableLiquidWithRestRequirement</code>, <code className="small-code-sample">CaliforniaSchoolPupilWithRestRequirement</code>, <code className="small-code-sample">CaliforniaFarmProductWithRestRequirement</code>, <code className="small-code-sample">OilTransportCaliforniaProperty</code>, <code className="small-code-sample">OilWellCaliforniaProperty</code>, <code className="small-code-sample">AmericaSalespersonNonCdlShortHaul</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#HosRuleSet">HosRuleSet</Link>: Added <code className="small-code-sample">AmericaShortHaul14hrWorkday</code>, <code className="small-code-sample">AmericaShortHaul8Day14hrWorkday</code>, <code className="small-code-sample">OilTransportShortHaul14hrWorkday</code>, <code className="small-code-sample">OilTransportShortHaul8Day14hrWorkday</code>, <code className="small-code-sample">CaliforniaFlammableLiquidWithRestRequirement</code>, <code className="small-code-sample">CaliforniaSchoolPupilWithRestRequirement</code>, <code className="small-code-sample">CaliforniaFarmProductWithRestRequirement</code>, <code className="small-code-sample">OilTransportCaliforniaProperty</code>, <code className="small-code-sample">OilWellCaliforniaProperty</code>, <code className="small-code-sample">AmericaSalespersonNonCdlShortHaul</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#User">User</a>: Active from/to: The user property <code className="small-code-sample">ActiveTo</code> will automatically be set to max date (2050-01-01) to denote that it is active. To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of <code className="small-code-sample">ActiveTo</code> to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.</p>
+				<p><Link to="/myGeotab/apiReference/objects#User">User</Link>: Active from/to: The user property <code className="small-code-sample">ActiveTo</code> will automatically be set to max date (2050-01-01) to denote that it is active. To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of <code className="small-code-sample">ActiveTo</code> to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#CustomData">CustomData</a>: Incomplete custom data is no longer returned via GetFeed API.</p>
+				<p><Link to="/myGeotab/apiReference/objects#CustomData">CustomData</Link>: Incomplete custom data is no longer returned via GetFeed API.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GetFeed1">GetFeed</a>: Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.</p>
+				<p><Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link>: Added feeds for entities that could generate more than 50,000 records in a single request. Please take note of the limits on results.</p>
 				<ul>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Audit">Audit</a> - 50,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Audit">Audit</Link> - 50,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Device">Device</a> - 5,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Device">Device</Link> - 5,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Diagnostic">Diagnostic</a> - 50,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Diagnostic">Diagnostic</Link> - 50,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#DriverChange">DriverChange</a> - 50,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#DriverChange">DriverChange</Link> - 50,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Route">Route</a> - 10,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Route">Route</Link> - 10,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Rule">Rule</a> - 10,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Rule">Rule</Link> - 10,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#TextMessage">TextMessage</a> - 50,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#TextMessage">TextMessage</Link> - 50,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Trailer">Trailer</a> - 50,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Trailer">Trailer</Link> - 50,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#User">User</a> - 5,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#User">User</Link> - 5,000 record limit</p>
 					</li>
 					<li>
-						<p><a href="/sdk/software/api/reference/#Zone">Zone</a> - 10,000 record limit</p>
+						<p><Link to="/myGeotab/apiReference/objects#Zone">Zone</Link> - 10,000 record limit</p>
 					</li>
 				</ul>
 			</li>
@@ -1696,85 +1697,85 @@ const update1902: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p><a href="/sdk/software/api/reference/#ApplicationVersionInformation">ApplicationVersionInformation</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#ApplicationVersionInformation">ApplicationVersionInformation</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#BinaryDataType">BinaryDataType</a>: Added <code className="small-code-sample">SoftwareVersionSection1</code>, <code className="small-code-sample">SoftwareVersionSection2</code>, <code className="small-code-sample">SoftwareVersionSection3</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#BinaryDataType">BinaryDataType</Link>: Added <code className="small-code-sample">SoftwareVersionSection1</code>, <code className="small-code-sample">SoftwareVersionSection2</code>, <code className="small-code-sample">SoftwareVersionSection3</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DefectRemark">DefectRemark</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#DefectRemark">DefectRemark</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DefectSeverity">DefectSeverity</a>: Added <code className="small-code-sample">Unregulated</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DefectSeverity">DefectSeverity</Link>: Added <code className="small-code-sample">Unregulated</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Device">Device</a>: Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.</p>
+				<p><Link to="/myGeotab/apiReference/objects#Device">Device</Link>: Adding a device will now force the ActiveTo property to max date. Setting a device's ActiveTo property to a future date, but not max date, will force the value to max date.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DeviceType">DeviceType</a>: Added <code className="small-code-sample">GO9</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DeviceType">DeviceType</Link>: Added <code className="small-code-sample">GO9</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DiagnosticType">DiagnosticType</a>: Added <code className="small-code-sample">ProprietaryFault</code>, <code className="small-code-sample">LegacyFault</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DiagnosticType">DiagnosticType</Link>: Added <code className="small-code-sample">ProprietaryFault</code>, <code className="small-code-sample">LegacyFault</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DriverRegulation">DriverRegulation</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#DriverRegulation">DriverRegulation</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DtcClass">DtcClass</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#DtcClass">DtcClass</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DtcSeverity">DtcSeverity</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#DtcSeverity">DtcSeverity</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusAvailability">DutyStatusAvailability</a>: Added properties <code className="small-code-sample">CycleRest</code>, <code className="small-code-sample">DutySinceCycleRest</code>, <code className="small-code-sample">Is16HourExemptionAvailable</code>, <code className="small-code-sample">IsAdverseDrivingExemptionAvailable</code>, <code className="small-code-sample">IsOffDutyDeferralExemptionAvailable</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusAvailability">DutyStatusAvailability</Link>: Added properties <code className="small-code-sample">CycleRest</code>, <code className="small-code-sample">DutySinceCycleRest</code>, <code className="small-code-sample">Is16HourExemptionAvailable</code>, <code className="small-code-sample">IsAdverseDrivingExemptionAvailable</code>, <code className="small-code-sample">IsOffDutyDeferralExemptionAvailable</code></p>
 			</li>
 			<li>
 				<p>DutyStatusAvailabilityDuration: Removed from documentation, will be obsoleted in future</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusViolationType">DutyStatusViolationType</a>: Added <code className="small-code-sample">CycleRest</code> and <code className="small-code-sample">DutySinceCycleRest</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusViolationType">DutyStatusViolationType</Link>: Added <code className="small-code-sample">CycleRest</code> and <code className="small-code-sample">DutySinceCycleRest</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DVIRDefect">DVIRDefect</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#DVIRDefect">DVIRDefect</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#ElectricEnergyUnit">ElectricEnergyUnit</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#ElectricEnergyUnit">ElectricEnergyUnit</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#ElectricEnergyEconomyUnit">ElectricEnergyEconomyUnit</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#ElectricEnergyEconomyUnit">ElectricEnergyEconomyUnit</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FaultData">FaultData</a>: Added <code className="small-code-sample">ClassCode</code>, <code className="small-code-sample">Severity</code> and <code className="small-code-sample">SourceAddress</code> properties</p>
+				<p><Link to="/myGeotab/apiReference/objects#FaultData">FaultData</Link>: Added <code className="small-code-sample">ClassCode</code>, <code className="small-code-sample">Severity</code> and <code className="small-code-sample">SourceAddress</code> properties</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Go9">GO9</a>: Added support</p>
+				<p><Link to="/myGeotab/apiReference/objects#Go9">GO9</Link>: Added support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GroupSearch">GroupSearch</a>: Added search by <code className="small-code-sample">Reference</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#GroupSearch">GroupSearch</Link>: Added search by <code className="small-code-sample">Reference</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#HosRuleSet">HosRuleSet</a>: Added <code className="small-code-sample">CaliforniaFlammableLiquid</code>, <code className="small-code-sample">CaliforniaSchoolPupil</code>, <code className="small-code-sample">CaliforniaFarmProduct</code>, <code className="small-code-sample">OilTransportCalifornia8day</code>, <code className="small-code-sample">OilWellCalifornia8day</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#HosRuleSet">HosRuleSet</Link>: Added <code className="small-code-sample">CaliforniaFlammableLiquid</code>, <code className="small-code-sample">CaliforniaSchoolPupil</code>, <code className="small-code-sample">CaliforniaFarmProduct</code>, <code className="small-code-sample">OilTransportCalifornia8day</code>, <code className="small-code-sample">OilWellCalifornia8day</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#KnownId">KnownId</a>: Added <code className="small-code-sample">UnitOfMeasureLitersPerTonneId</code>, <code className="small-code-sample">DiagnosticStateOfChargeId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeBatteryEnergyInDuringACChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeBatteryEnergyInDuringDCChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeOnBoardChargerEnergyOutDuringACChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeOnBoardChargerEnergyInDuringACChargingInId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerAcInputVoltageId</code>, <code className="small-code-sample">DiagnosticElectricVehicleChargingStateId</code>, <code className="small-code-sample">DiagnosticElectricVehicleBatteryPowerId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerACInputPowerId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerDCOutputPowerId</code>, <code className="small-code-sample">DiagnosticElectricEnergyInId,DiagnosticElectricEnergyOutId</code>, <code className="small-code-sample">HosRuleSetCaliforniaFlammableLiquid</code>, <code className="small-code-sample">HosRuleSetCaliforniaSchoolPupil</code>, <code className="small-code-sample">HosRuleSetCaliforniaFarmProduct</code>, <code className="small-code-sample">HosRuleSetOilTransportCalifornia8day</code>, <code className="small-code-sample">HosRuleSetOilWellCalifornia8day</code>, <code className="small-code-sample">ControllerProprietaryFaultId</code>, <code className="small-code-sample">ControllerLegacyFaultId</code>, <code className="small-code-sample">SourceProprietaryId</code>, <code className="small-code-sample">SourceLegacyId</code>, <code className="small-code-sample">DiagnosticBluetoothNitricOxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothNitrogenDioxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothCarbonMonoxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothAmmoniaConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothMethaneConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothEthanolConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothHydrogenConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothCarbonDioxideConcentrationId</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#KnownId">KnownId</Link>: Added <code className="small-code-sample">UnitOfMeasureLitersPerTonneId</code>, <code className="small-code-sample">DiagnosticStateOfChargeId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeBatteryEnergyInDuringACChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeBatteryEnergyInDuringDCChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeOnBoardChargerEnergyOutDuringACChargingId</code>, <code className="small-code-sample">DiagnosticTotalLifetimeOnBoardChargerEnergyInDuringACChargingInId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerAcInputVoltageId</code>, <code className="small-code-sample">DiagnosticElectricVehicleChargingStateId</code>, <code className="small-code-sample">DiagnosticElectricVehicleBatteryPowerId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerACInputPowerId</code>, <code className="small-code-sample">DiagnosticOnBoardChargerDCOutputPowerId</code>, <code className="small-code-sample">DiagnosticElectricEnergyInId,DiagnosticElectricEnergyOutId</code>, <code className="small-code-sample">HosRuleSetCaliforniaFlammableLiquid</code>, <code className="small-code-sample">HosRuleSetCaliforniaSchoolPupil</code>, <code className="small-code-sample">HosRuleSetCaliforniaFarmProduct</code>, <code className="small-code-sample">HosRuleSetOilTransportCalifornia8day</code>, <code className="small-code-sample">HosRuleSetOilWellCalifornia8day</code>, <code className="small-code-sample">ControllerProprietaryFaultId</code>, <code className="small-code-sample">ControllerLegacyFaultId</code>, <code className="small-code-sample">SourceProprietaryId</code>, <code className="small-code-sample">SourceLegacyId</code>, <code className="small-code-sample">DiagnosticBluetoothNitricOxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothNitrogenDioxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothCarbonMonoxideConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothAmmoniaConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothMethaneConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothEthanolConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothHydrogenConcentrationId</code>, <code className="small-code-sample">DiagnosticBluetoothCarbonDioxideConcentrationId</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#MimeContent">MimeContent</a>: Added <code className="small-code-sample">ChannelNumber</code> property</p>
+				<p><Link to="/myGeotab/apiReference/objects#MimeContent">MimeContent</Link>: Added <code className="small-code-sample">ChannelNumber</code> property</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#RepairStatusType">RepairStatusType</a>: Added beta support</p>
+				<p><Link to="/myGeotab/apiReference/objects#RepairStatusType">RepairStatusType</Link>: Added beta support</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Added <code className="small-code-sample">InspectDVIR</code>, <code className="small-code-sample">CertifyDVIR</code> - Removed <code className="small-code-sample">DailyUsageReport</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Added <code className="small-code-sample">InspectDVIR</code>, <code className="small-code-sample">CertifyDVIR</code> - Removed <code className="small-code-sample">DailyUsageReport</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#User">User</a>: Added <code className="small-code-sample">ElectricEnergyEconomyUnit</code> and <code className="small-code-sample">isEmailReportEnabled</code> properties</p>
+				<p><Link to="/myGeotab/apiReference/objects#User">User</Link>: Added <code className="small-code-sample">ElectricEnergyEconomyUnit</code> and <code className="small-code-sample">isEmailReportEnabled</code> properties</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#User">User</a>: Fixed bug where <code className="small-code-sample">isDriver</code> property would be included with <code className="small-code-sample">id</code> in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.</p>
+				<p><Link to="/myGeotab/apiReference/objects#User">User</Link>: Fixed bug where <code className="small-code-sample">isDriver</code> property would be included with <code className="small-code-sample">id</code> in nested driver entities. This property is removed from nested entities. It will remain in non-nested users.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#VersionInformation">VersionInformation</a>: <code className="small-code-sample">Server</code> is obsolete and replaced with more detailed <code className="small-code-sample">Application</code> property (see <a href="/sdk/software/api/reference/#ApplicationVersionInformation">ApplicationVersionInformation</a>)</p>
+				<p><Link to="/myGeotab/apiReference/objects#VersionInformation">VersionInformation</Link>: <code className="small-code-sample">Server</code> is obsolete and replaced with more detailed <code className="small-code-sample">Application</code> property (see <Link to="/myGeotab/apiReference/objects#ApplicationVersionInformation">ApplicationVersionInformation</Link>)</p>
 			</li>
 			<li>
 				<p>.Net nuget package: Group constructor with only ID has been removed.</p>
@@ -1804,17 +1805,17 @@ const update1901: ReactNode = (
 				<p>Sun-setting support for SendEmail API. No longer available in API documentation.</p>
 			</li>
 			<li>
-				<a href="/sdk/software/api/reference/#Device">Device</a>: Active from/to:
+				<Link to="/myGeotab/apiReference/objects#Device">Device</Link>: Active from/to:
 				<ul>
 					<li>The device property <code className="small-code-sample">ActiveTo</code> will automatically be set to max date (2050-01-01) to denote that it is active.</li>
 					<li>To account for differences in Client machine time vs Server machine time, we are allowing users to set the value of <code className="small-code-sample">ActiveTo</code> to a max window of 24 hours in the future (i.e. Current Time + 24 hours). In this situation we are considering it to be historical.</li>
 				</ul>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DVIRLog">DVIRLog</a>: Added <code className="small-code-sample">Location</code> property.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DVIRLog">DVIRLog</Link>: Added <code className="small-code-sample">Location</code> property.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Added <code className="small-code-sample">ViewBusinessIntelligence</code>, <code className="small-code-sample">ActiveTrackingClearance</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Added <code className="small-code-sample">ViewBusinessIntelligence</code>, <code className="small-code-sample">ActiveTrackingClearance</code>.</p>
 			</li>
 			<li>SecurityRole: Added <code className="small-code-sample">EmailSent</code>, <code className="small-code-sample">SkipHosVerify</code>, <code className="small-code-sample">SkipHosClaimUnassigned</code>, <code className="small-code-sample">SkipDvirInspect</code>.</li>
 		</ul>
@@ -1826,7 +1827,7 @@ const update1804Dot1: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, Windows 10 using IIS Express possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804.
+				<Link to="/myGeotab/apiReference/objects#API">API.cs</Link> (.Net only): Fix bug, Windows 10 using IIS Express possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804.
 			</li>
 		</ul>
 	</div>
@@ -1838,13 +1839,13 @@ const update1804: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p><a href="/sdk/software/api/reference/#Add1">Add</a>/<a href="/sdk/software/api/reference/#Set1">Set</a> <a href="/sdk/software/api/reference/#Device">Device</a>: <code className="small-code-sample">ParameterVersion</code> will auto increment server side when device parameters property changed. Server must see that <code className="small-code-sample">ParameterVersion</code> has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, <code className="small-code-sample">ParameterVersion</code> required manual increment.</p>
+				<p><Link to="/myGeotab/apiReference/methods#Add">Add</Link>/<Link to="/myGeotab/apiReference/methods#Set">Set</Link> <Link to="/myGeotab/apiReference/objects#Device">Device</Link>: <code className="small-code-sample">ParameterVersion</code> will auto increment server side when device parameters property changed. Server must see that <code className="small-code-sample">ParameterVersion</code> has incremented to send parameters to an installed GO device (ex device beeping instructions). Previously, <code className="small-code-sample">ParameterVersion</code> required manual increment.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): Fix bug, in certain senario changing <code className="small-code-sample">Timeout</code> property could abort the action on timeout and not cancel underlying request.</p>
+				<p><Link to="/myGeotab/apiReference/objects#API">API.cs</Link> (.Net only): Fix bug, in certain senario changing <code className="small-code-sample">Timeout</code> property could abort the action on timeout and not cancel underlying request.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#CustomVehicleDevice">CustomVehicleDevice</a>: Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.</p>
+				<p><Link to="/myGeotab/apiReference/objects#CustomVehicleDevice">CustomVehicleDevice</Link>: Support of vehicle specific custom devices which provide vehicle specific properties and functionality. Custom device product ID must be of CustomVehicleDevice type. Contact your reseller for more information.</p>
 				<ul>
 					<li>
 						<p>Improved support for calculated odometer and raw odometer with third-party diagnostic KnownId <code className="small-code-sample">DiagnosticThirdPartyOdometerId</code> and <code className="small-code-sample">OdometerAdjustmentId</code></p>
@@ -1861,44 +1862,44 @@ const update1804: ReactNode = (
 				</ul>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusAvailability">DutyStatusAvailability</a>: Added BETA support for <code className="small-code-sample">Recap</code> and <code className="small-code-sample">CycleAvailabilities</code> properties</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusAvailability">DutyStatusAvailability</Link>: Added BETA support for <code className="small-code-sample">Recap</code> and <code className="small-code-sample">CycleAvailabilities</code> properties</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusAvailability">DutyStatusAvailability</a>: Replaced <code className="small-code-sample">Availabilities</code> list with separate properties: <code className="small-code-sample">Driving</code>, <code className="small-code-sample">Cycle</code>, <code className="small-code-sample">Rest</code>, <code className="small-code-sample">Duty</code>, <code className="small-code-sample">Workday</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusAvailability">DutyStatusAvailability</Link>: Replaced <code className="small-code-sample">Availabilities</code> list with separate properties: <code className="small-code-sample">Driving</code>, <code className="small-code-sample">Cycle</code>, <code className="small-code-sample">Rest</code>, <code className="small-code-sample">Duty</code>, <code className="small-code-sample">Workday</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DeviceType">DeviceType</a>: Added <code className="small-code-sample">CustomVehicleDevice</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DeviceType">DeviceType</Link>: Added <code className="small-code-sample">CustomVehicleDevice</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DriverChange">DriverChange</a>: DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DriverChange">DriverChange</Link>: DriverChange object Id property is no longer backed by integer type. It is now backed by GUID type. When update 1804 is applied to the database, all previous numeric entity Id's will be invalidated and assigned a new GUID Id's. This could pose an issue if your integration stores driver change Id and you then reference the DriverChange by that Id. Note: JSON representation of Id was previously string and remains string type.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLogType">DutyStatusLogType</a>: Added <code className="small-code-sample">ExemptionOffDutyDeferral</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLogType">DutyStatusLogType</Link>: Added <code className="small-code-sample">ExemptionOffDutyDeferral</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusViolationType">DutyStatusViolationType</a>: Added <code className="small-code-sample">DailyDriving</code>, <code className="small-code-sample">DailyRest</code>, <code className="small-code-sample">DailyDuty</code>, <code className="small-code-sample">DailyOff</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusViolationType">DutyStatusViolationType</Link>: Added <code className="small-code-sample">DailyDriving</code>, <code className="small-code-sample">DailyRest</code>, <code className="small-code-sample">DailyDuty</code>, <code className="small-code-sample">DailyOff</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#KnownId">KnownId</a>: Added <code className="small-code-sample">DiagnosticThirdPartyEngineRunTimeId</code>, <code className="small-code-sample">DiagnosticThirdPartyOdometerId</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#KnownId">KnownId</Link>: Added <code className="small-code-sample">DiagnosticThirdPartyEngineRunTimeId</code>, <code className="small-code-sample">DiagnosticThirdPartyOdometerId</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#GetFeed1">GetFeed</a> <a href="/sdk/software/api/reference/#LogRecord">LogRecord</a>: Fixed bug with inconstant results limit.</p>
+				<p><Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link> <Link to="/myGeotab/apiReference/objects#LogRecord">LogRecord</Link>: Fixed bug with inconstant results limit.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Added <code className="small-code-sample">DirectSupportAdmin</code>, <code className="small-code-sample">UserLoginStatusRead</code>, <code className="small-code-sample">UserLoginStatusSet</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Added <code className="small-code-sample">DirectSupportAdmin</code>, <code className="small-code-sample">UserLoginStatusRead</code>, <code className="small-code-sample">UserLoginStatusSet</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Values <code className="small-code-sample">AlarmSoundList</code>, <code className="small-code-sample">Tracking</code>, <code className="small-code-sample">CreateNewSqlDatabase</code>, <code className="small-code-sample">EngineControllerList</code>, <code className="small-code-sample">PurgeSettings</code>, <code className="small-code-sample">SendImmobilizationInstruction</code> are obsolete and will be removed in version 1806+.</p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Values <code className="small-code-sample">AlarmSoundList</code>, <code className="small-code-sample">Tracking</code>, <code className="small-code-sample">CreateNewSqlDatabase</code>, <code className="small-code-sample">EngineControllerList</code>, <code className="small-code-sample">PurgeSettings</code>, <code className="small-code-sample">SendImmobilizationInstruction</code> are obsolete and will be removed in version 1806+.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityRole">SecurityRole</a>: Added <code className="small-code-sample">SupportTicketInsert</code>, <code className="small-code-sample">TrainingTicketInsert</code>, <code className="small-code-sample">SupportTicketSet</code>, <code className="small-code-sample">TrainingTicketSetUser</code>, <code className="small-code-sample">LoginFailure</code>, <code className="small-code-sample">UserLockout</code>, <code className="small-code-sample">UserUnlocked</code>, <code className="small-code-sample">ShipmentLogInsert</code>, <code className="small-code-sample">ShipmentLogSet</code>, <code className="small-code-sample">ShipmentLogRemove</code>, <code className="small-code-sample">TrailerAttachmentInsert</code>, <code className="small-code-sample">TrailerAttachmentSet</code>, <code className="small-code-sample">TrailerAttachmentRemove</code>.</p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityRole">SecurityRole</Link>: Added <code className="small-code-sample">SupportTicketInsert</code>, <code className="small-code-sample">TrainingTicketInsert</code>, <code className="small-code-sample">SupportTicketSet</code>, <code className="small-code-sample">TrainingTicketSetUser</code>, <code className="small-code-sample">LoginFailure</code>, <code className="small-code-sample">UserLockout</code>, <code className="small-code-sample">UserUnlocked</code>, <code className="small-code-sample">ShipmentLogInsert</code>, <code className="small-code-sample">ShipmentLogSet</code>, <code className="small-code-sample">ShipmentLogRemove</code>, <code className="small-code-sample">TrailerAttachmentInsert</code>, <code className="small-code-sample">TrailerAttachmentSet</code>, <code className="small-code-sample">TrailerAttachmentRemove</code>.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#ZoneSearch">ZoneSearch</a>: Added <code className="small-code-sample">FromDate</code> and <code className="small-code-sample">ToDate</code> search properties providing ability to filter zones by their active dates.</p>
+				<p><Link to="/myGeotab/apiReference/objects#ZoneSearch">ZoneSearch</Link>: Added <code className="small-code-sample">FromDate</code> and <code className="small-code-sample">ToDate</code> search properties providing ability to filter zones by their active dates.</p>
 			</li>
 		</ul>
 		<InformationalBox>
-			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
+			<p><Link to="/myGeotab/apiReference/objects#API">API.cs</Link> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
 		</InformationalBox>
 	</div>
 );
@@ -1912,11 +1913,11 @@ const update1803: ReactNode = (
 				<p>SecurityRole: Added <code className="small-code-sample">CertificateSet</code> permission</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DriverChangeSearch">DriverChangeSearch</a>: Added property <code className="small-code-sample">Type</code> indicating the DriverChangeType to search for exclusively.</p>
+				<p><Link to="/myGeotab/apiReference/objects#DriverChangeSearch">DriverChangeSearch</Link>: Added property <code className="small-code-sample">Type</code> indicating the DriverChangeType to search for exclusively.</p>
 			</li>
 		</ul>
 		<InformationalBox>
-			<p><a href="/sdk/software/api/reference/#API">API.cs</a> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
+			<p><Link to="/myGeotab/apiReference/objects#API">API.cs</Link> (.Net only): There is a known issue on Windows 10 using IIS Express with possible hanging <i>synchronous</i> requests using nuget package 5.7.1803\5.7.1804. This issue is solved in 5.7.1804.1 or greater.</p>
 		</InformationalBox>
 	</div>
 );
@@ -1926,22 +1927,22 @@ const update1802: ReactNode = (
 	<div className="paragraph">
 		<ul>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLog">DutyStatusLog</a>: Added properties <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">EngineHours</code>, <code className="small-code-sample">EventRecordStatus</code>, <code className="small-code-sample">EventCode</code>, <code className="small-code-sample">EventType</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLog">DutyStatusLog</Link>: Added properties <code className="small-code-sample">Odometer</code>, <code className="small-code-sample">EngineHours</code>, <code className="small-code-sample">EventRecordStatus</code>, <code className="small-code-sample">EventCode</code>, <code className="small-code-sample">EventType</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#DutyStatusLogType">DutyStatusLogType</a>: Added <code className="small-code-sample">SituationalDrivingClear</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#DutyStatusLogType">DutyStatusLogType</Link>: Added <code className="small-code-sample">SituationalDrivingClear</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FuelTaxDetail">FuelTaxDetail</a>: Added properties <code className="small-code-sample">HourlyIsOdometerInterpolated</code>, <code className="small-code-sample">IsEnterOdometerInterpolated</code>, <code className="small-code-sample">IsExitOdometerInterpolated</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#FuelTaxDetail">FuelTaxDetail</Link>: Added properties <code className="small-code-sample">HourlyIsOdometerInterpolated</code>, <code className="small-code-sample">IsEnterOdometerInterpolated</code>, <code className="small-code-sample">IsExitOdometerInterpolated</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FuelTaxDetail">FuelTaxDetail</a>: Obsolete <code className="small-code-sample">IsClusterOdometer</code> - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.</p>
+				<p><Link to="/myGeotab/apiReference/objects#FuelTaxDetail">FuelTaxDetail</Link>: Obsolete <code className="small-code-sample">IsClusterOdometer</code> - Superseded by the IsEnterOdometerInterpolated, HourlyIsOdometerInterpolated, and IsExitOdometerInterpolated properties. Will be removed in future version.</p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#FuelTaxDetailSearch">FuelTaxDetailSearch</a>: Added properties <code className="small-code-sample">IncludeBoundaries</code>, <code className="small-code-sample">IncludeHourlyData</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#FuelTaxDetailSearch">FuelTaxDetailSearch</Link>: Added properties <code className="small-code-sample">IncludeBoundaries</code>, <code className="small-code-sample">IncludeHourlyData</code></p>
 			</li>
 			<li>
-				<p><a href="/sdk/software/api/reference/#SecurityIdentifier">SecurityIdentifier</a>: Added <code className="small-code-sample">ViewTripTypeChangeData</code>, <code className="small-code-sample">EditTripTypeChangeData</code></p>
+				<p><Link to="/myGeotab/apiReference/objects#SecurityIdentifier">SecurityIdentifier</Link>: Added <code className="small-code-sample">ViewTripTypeChangeData</code>, <code className="small-code-sample">EditTripTypeChangeData</code></p>
 			</li>
 		</ul>
 		<h2>Notice</h2>
@@ -2775,8 +2776,8 @@ const update1502: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-	"title": "Release Notes",
-	"breadCrumbItems": ["MYG", "Release Notes"]
+	"title": "RELEASE NOTES",
+	"breadCrumbItems": ["MYG", "RELEASE NOTES"]
 };
 
 const pageSections: TableOfContentsItem[] = [
