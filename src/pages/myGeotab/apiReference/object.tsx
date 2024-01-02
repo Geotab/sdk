@@ -50,7 +50,7 @@ export default function Object() {
                     {RenderStringWithUrl(objectDescription)}
                 </div>
             </div>
-            <Accordion summary={pageSections[1].summary} p={pageSections[1].details} id={pageSections[1].elementId}/>
+            {/* <Accordion summary={pageSections[1].summary} p={pageSections[1].details} id={pageSections[1].elementId}/> */}
         </Page>
     )
 };
