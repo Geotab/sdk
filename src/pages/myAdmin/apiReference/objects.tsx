@@ -14,44 +14,43 @@ request.send();
 let xml: any = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "Methods",
-    "breadCrumbItems": ["MYA", "API Reference", "Methods"]
+    "title": "Objects",
+    "breadCrumbItems": ["MYA", "API Reference", "Objects"]
 };
 
 const pageSections: TableOfContentsItem[] = [
 
 ];
 
-const methods = Object.entries(myAParser(xml, "method", ["M:Geotab.Internal.MyAdmin.Api.Handlers.Legacy.MyAdminApiService"])).sort(sortAlphabetical);
-console.log(methods);
-console.log(sessionStorage);
-const methodItems = methods.map((methodDetails: any) => {
-    sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
+const objects = Object.entries(myAParser(xml, 'object', ["T:MyAdminApiLib.Geotab.MyAdmin.MyAdminApi.ObjectModel", "P:MyAdminApiLib.Geotab.MyAdmin.MyAdminApi.ObjectModel"])).sort(sortAlphabetical);
+console.log(objects);
+const objectItems = objects.map((objectDetails: any) => {
+    sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
     let pageSectionObject = {
-        "elementId": methodDetails[0],
-        "summary": methodDetails[0],
-        "details": RenderStringWithUrl(methodDetails[1].description)
+        "elementId": objectDetails[0],
+        "summary": objectDetails[0],
+        "details": RenderStringWithUrl(objectDetails[1].description)
     };
 
     pageSections.push(pageSectionObject);
 
     return (
-        <div className="paragraph" id={methodDetails[0]}>
-            <h3 className="methods__method-title">
-                {methodDetails[0] + " (...)"}
-                <Link to={`/method/${methodDetails[0]}`} className="methods__view-button">
+        <div className="paragraph" id={objectDetails[0]}>
+            <h3 className="objects__object-title">
+                {objectDetails[0]}
+                <Link to={`./${objectDetails[0]}`} className="objects__view-button">
                     <Button>View</Button>
                 </Link>
             </h3>
-            <p>{RenderStringWithUrl(methodDetails[1].description)}</p>
+            <p>{RenderStringWithUrl(objectDetails[1].description)}</p>
         </div>
-    );
+    )
 });
 
-export default function Methods() {
+export default function Objects() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {methodItems}
+            {objectItems}
         </Page>
     );
 };
