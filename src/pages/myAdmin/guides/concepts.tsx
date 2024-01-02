@@ -363,7 +363,7 @@ export default function Concepts() {
                         JSON
                     </a>{" "}
                     format. The{" "}
-                    <Link to="./pages/MyAdmin/apiReference/methods"> Reference</Link>{" "}
+                    <Link to="/myAdmin/apiReference/methods"> Reference</Link>{" "}
                     contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
                 </p>
             </div>

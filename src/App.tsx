@@ -25,7 +25,6 @@ import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
-import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
 
 import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
@@ -39,6 +38,10 @@ import MyAdminUsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWit
 import MyAdminUsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 import MyAdminJavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import MyAdminDotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
+
+// TODO: Add MyAdmin API Reference Routes
+// import MyAdminMethods from "./pages/MyAdmin/apiReference/methods";
+// import MyAdminObjects from "./pages/MyAdmin/apiReference/objects";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
@@ -93,7 +96,6 @@ function App() {
 
           {/* MyGeotab > API Reference Routes */}
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-          <Route path="/method/:methodId" element={<MyGeotabMethod />} />
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
 
           {/* MyGeotab > ApiClients Route */}

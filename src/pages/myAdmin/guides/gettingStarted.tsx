@@ -25,7 +25,7 @@ const accessApi: ReactNode = (
         <code className="small-code-sample">https://myadminapitest.geotab.com/v2/MyAdminApi.ashx</code>
         <p>
             A few methods are not supported in the test environment and will throw exceptions when called. For more information, see the{" "}
-            <Link to="./../../apiReference/methods">Reference</Link>{" "}
+            <Link to="/myAdmin/apiReference/methods">Reference</Link>{" "}
             section.
         </p>
         <InformationalBox>
@@ -44,11 +44,11 @@ const authenticateApi: ReactNode = (
         <code className="small-code-sample">{`{"result":{"userId":"x12345x2-172x-4d04-8xx2-xx9e088c5xxx","sessionId":"cff4e88b-931b-4363-ae4f-35b5ed169133","lastLogonDate":"2013-11-04T15:01:00.000Z","roles":[{"comments":"Third Party Integrator role","name":"Third-Party-Integrator"}],"name":"user@geotab.com"}}`}</code>
         <p>
             The API key is found in the <code className="small-code-sample">userId</code> property and the session ID is found in the <code className="small-code-sample">sessionId</code> property. Both of these properties must be included on all other API calls. If the session ID has expired, the API will return a <code className="small-code-sample">SessionExpiredException</code> which requires a call to Authenticate to get the new session ID. For more information, see the{" "}
-            <Link to="./../../apiReference/methods">Reference</Link>{" "}
+            <Link to="/myAdmin/apiReference/methods">Reference</Link>{" "}
             section.{" "}
-            <Link to="./../../codeSamples/javascriptExamples">JavaScript</Link>{" "}
+            <Link to="/myAdmin/guides/codeBase/usingWithJavascript">JavaScript</Link>{" "}
             and{" "}
-            <Link to="./../../codeSamples/dotNetExamples">.NET</Link>{" "}
+            <Link to="/myAdmin/guides/codeBase/usingWithDotnet">.NET</Link>{" "}
             examples have been provided to help you get started.
         </p>
     </div>
@@ -60,17 +60,17 @@ const whatsNext: ReactNode = (
             There are several other items in the SDK to help you get started:
         </p>
         <p>
-            <Link to="./../concepts">Concepts</Link>{" "}
+            <Link to="/myAdmin/guides/concepts">Concepts</Link>{" "}
             - Be sure to read through this before building your application.
         </p>
         <p>
-            <Link to="./../codeBase/usingWithJavascript">Using with JavaScript</Link>
+            <Link to="/myAdmin/guides/codeBase/usingWithJavascript">Using with JavaScript</Link>
         </p>
         <p>
-            <Link to="./../codeBase/usingWithDotNet">Using with .NET</Link>
+            <Link to="/myAdmin/guides/codeBase/usingWithDotnet">Using with .NET</Link>
         </p>
         <p>
-            <Link to="./../../apiReference/methods">API Reference</Link>{" "}
+            <Link to="/myAdmin/apiReference/methods">API Reference</Link>{" "}
             - The reference documentation that explains what each API call does and documents the parameters and results for each call.
         </p>
     </div>
