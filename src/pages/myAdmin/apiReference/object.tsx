@@ -7,24 +7,22 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 // import "./reference.scss";
 
-export default function Method() {
-    const { methodId = "" } = useParams();
-    const storedMethodData = JSON.parse(sessionStorage[methodId]);
-    const methodDescription = storedMethodData.description;
-    const methodRemarks = storedMethodData.remarks;
-    const parameters = storedMethodData.param;
-    const returnValueDescription = storedMethodData.returns;
+export default function Object() {
+    const { objectId = "" } = useParams();
+    const storedObjectData = JSON.parse(sessionStorage[objectId]);
+    const objectDescription = storedObjectData.description;
+    const objectProperties = storedObjectData.properties;
 
-    const methodDescriptionParagaph: ReactNode = (
+
+    const objectDescriptionParagaph: ReactNode = (
         <div className="paragraph">
-            {RenderStringWithUrl(methodDescription)}
-            {RenderStringWithUrl(methodRemarks)}
+            {RenderStringWithUrl(objectDescription)}
         </div>
     )
 
-    const parameterParagaphs: ReactNode = (
+    const propertyParagaphs: ReactNode = (
         <div className="paragraph">
-            {parameters.map((property: any) =>
+            {objectProperties.map((property: any) =>
                 <div>
                     <h3>{property.name}</h3>
                     <p>{RenderStringWithUrl(property.description)}</p>
@@ -33,32 +31,21 @@ export default function Method() {
         </div>
     );
 
-    const returnParagraphs: ReactNode = (
-        <div className="paragraph">
-            {RenderStringWithUrl(returnValueDescription)}
-        </div>
-    );
-
     const pageTitle: PageTitleProps = {
-        "title": methodId + " (...)",
-        "breadCrumbItems": ["MYA", "API Reference", "Methods", methodId + " (...)"]
+        "title": objectId,
+        "breadCrumbItems": ["MYA", "API Reference", "Objects", objectId]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
             "elementId": "introduction",
             "summary": "Introduction",
-            "details": methodDescriptionParagaph
+            "details": objectDescriptionParagaph
         },
         {
             "elementId": "parameters",
             "summary": "Parameters",
-            "details": parameterParagaphs
-        },
-        {
-            "elementId": "returns",
-            "summary": "Returns",
-            "details": returnParagraphs
+            "details": propertyParagaphs
         }
     ];
     
