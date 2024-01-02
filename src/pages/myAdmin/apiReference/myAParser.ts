@@ -28,8 +28,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                             "description": "",
                                             "remarks": "",
                                             "param": [],
-                                            "returns": "",
-                                            "example": ""
+                                            "returns": ""
                                         }
                                     }
                                     for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {

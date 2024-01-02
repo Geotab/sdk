@@ -29,6 +29,7 @@ import MyAdminConcepts from "./pages/myAdmin/guides/concepts";
 
 import MyAdminMethods from "./pages/myAdmin/apiReference/methods";
 import MyAdminObjects from "./pages/myAdmin/apiReference/objects";
+import MyAdminMethod from "./pages/myAdmin/apiReference/method";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import HardwareIOExpanderProtocol from "./pages/hardware/guides/messagingProtocol";
@@ -116,6 +117,7 @@ function App() {
           
           {/* MyAdmin > API Reference Routes */}
           <Route path="/myAdmin/apiReference/methods" Component={MyAdminMethods} />
+          <Route path="/myAdmin/apiReference/methods/:methodId" element={<MyAdminMethod/> } />
           <Route path="/myAdmin/apiReference/objects" Component={MyAdminObjects} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
