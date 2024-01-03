@@ -41,13 +41,9 @@ import MyAdminJavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExa
 import MyAdminDotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
-<<<<<<< HEAD
-import HardwareIOExpanderProtocol from "./pages/hardware/developingAnIOX/messagingProtocol";
-=======
 import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
 import HardwareIOExpanderProtocol from "./pages/hardware/guides/messagingProtocol";
 import MIMEProtocol from "./pages/hardware/guides/MIMEProtocol";
->>>>>>> INTGR-123
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
@@ -129,11 +125,6 @@ function App() {
           {/* Hardware Routes */}
           <Route path="/hardware" Component={HardwareIntroduction} />
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
-<<<<<<< HEAD
-          <Route path="/hardware/developingAnIOX/messagingProtocol" Component={HardwareIOExpanderProtocol} />
-          <Route path="/hardware/samples/python" Component={Python} />
-=======
->>>>>>> INTGR-123
 
           {/* Hardware > Guides Routes */}
           <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
