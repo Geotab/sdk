@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import PageContent from "../PageContent/PageContent";
 import { PageTitleProps } from "../PageTitle/PageTitle";
-import "../../pages/pages.scss";
+import "./Page.scss";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 
