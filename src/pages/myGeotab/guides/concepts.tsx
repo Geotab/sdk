@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
+import { Link } from 'react-router-dom';
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -21,9 +22,6 @@ const security: ReactNode = (
     </div>
 );
 
-
-//ToDo Update Reference Page Link
-//ToDo Update Object Page Link
 const makeYourFirstAPICall: ReactNode = (
     <div className="paragraph">
         <p>
@@ -34,7 +32,7 @@ const makeYourFirstAPICall: ReactNode = (
         </p>
         <p><code className="small-code-sample">https://[myserver]/apiv1</code></p>
         <p>
-            The method's name and parameters are passed in the HTTP body using the <a href="https://en.wikipedia.org/wiki/JSON-RPC" target="_blank" rel="noopener noreferrer">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <a href="../../api/reference">API reference</a>.
+            The method's name and parameters are passed in the HTTP body using the <a href="https://en.wikipedia.org/wiki/JSON-RPC" target="_blank" rel="noopener noreferrer">JSON-RPC</a> format. Geotab API version 1 supports JSON-RPC version 2.0. The full set of API methods and objects returned can be viewed in the <Link to="/myGeotab/apiReference/methods">API reference</Link>.
         </p>
         <p>To understand which parameters must be passed, consider the following JSON object:</p>
         <CodeSample
@@ -135,9 +133,8 @@ const resultsAndErrors: ReactNode = (
     "jsonrpc":"2.0"
 }`
             }/>
-        {/* ToDo: Update URLs later. */}
         <p>
-            The properties of the error object are <a href="../../myGeotab/apiReference/objects">JsonRpcError</a>, and <a href="../../myGeotab/apiReference/objects">JsonRpcErrorData</a>. Objects are documented in the API Reference.
+            The properties of the error object are <Link to="/myGeotab/apiReference/objects#JsonRpcError">JsonRpcError</Link>, and <Link to="/myGeotab/apiReference/objects#JsonRpcErrorData">JsonRpcErrorData</Link>. Objects are documented in the API Reference.
         </p>
     </div>
 );
@@ -213,7 +210,7 @@ async function call(host, method, data) {
         <InformationalBox>
             <p>Database, user and password must be set for successful authentiation.</p>
         </InformationalBox>
-        <h2>Example 1: Authenticate With Valid Credentials</h2>
+        <h2>Example 1: Authenticate with valid credentials</h2>
         <p>
             In this example, an authentication request is made to my.geotab.com to log in to the database named <i>database</i>.
         </p>
@@ -239,7 +236,7 @@ async function call(host, method, data) {
                 The <code className="small-code-sample">Get</code> result is returned with one device.
             </li>
         </ol>
-        <h2>Example 2: Requests With Missing Databases Or With Expiring Credentials</h2>
+        <h2>Example 2: Requests with missing databases or with expiring credentials</h2>
         <p>
             The examples above demonstrate how to authenticate to get a token and make a call to Get devices. However, there are two additional scenarios to consider:
         </p>
@@ -292,7 +289,7 @@ const limits: ReactNode = (
         <p>
             At Geotab, we work hard to create an open and flexible API that encourages creativity and innovation. We do this by providing tools to create powerful applications, integrations, and Add-ins, while maintaining overall system health and quality. Result and rate limits are intended to encourage API developers to use appropriate APIs for their use cases, and to safeguard against unbounded requests.
         </p>
-        <h2>Rate Limits</h2>
+        <h2>Rate limits</h2>
         <h3>
             Authenticate
         </h3>
@@ -332,7 +329,7 @@ const limits: ReactNode = (
             When a rate limit is exceeded, an OverLimitException error is returned. A header (<code className="small-code-sample">Retry-After</code>) is also set with time remaining for the limit to reset.
         </p>
         <h4>
-            Header Example
+            Header example
         </h4>
         <code className="small-code-sample">{`Retry-After: 58`}</code>
         <h4>
@@ -379,7 +376,7 @@ X-Rate-Limit-Limit: 1m
 X-Rate-Limit-Remaining: 8
 X-Rate-Limit-Reset: 2019-04-26T16:13:11.9440478Z`
             } />
-        <h2>Result Limits</h2>
+        <h2>Result limits</h2>
         <h3>
             GetFeed
         </h3>
@@ -619,9 +616,9 @@ var deviceLookup = {
 const propertySelector: ReactNode = (
     <div className="paragraph">
         <p>
-            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <a href="">Get</a> and <a href="">GetFeed</a> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <Link to="/myGeotab/apiReference/methods#Get">Get</Link> and <Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
         </p>
-        <h2>Supported Types</h2>
+        <h2>Supported types</h2>
         <p>
             A limited set of objects have support for use with property selector in the beta version. These objects tend to have many properties and would provide the most benefit to reducing size over the wire.
         </p>
@@ -636,11 +633,11 @@ const propertySelector: ReactNode = (
                 <tbody>
                     <tr>
                         <td>Fields</td>
-                        <td>An array of string, consisting of the properties for a given <a href="">Entity</a> type for which we want to include/exclude in the entities of the result set. Refer to the <a href="../../api/reference">reference</a> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <a href="">Go9</a> is child of <a href="">Device</a>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
+                        <td>An array of string, consisting of the properties for a given <Link to="/myGeotab/apiReference/objects#Entity">Entity</Link> type for which we want to include/exclude in the entities of the result set. Refer to the <Link to="/myGeotab/apiReference/methods">reference</Link> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <Link to="/myGeotab/apiReference/objects#Go9">Go9</Link> is child of <Link to="/myGeotab/apiReference/objects#Device">Device</Link>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
                     </tr>
                     <tr>
                         <td>IsIncluded</td>
-                        <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <a href="">Entity</a> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
+                        <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <Link to="/myGeotab/apiReference/objects#Entity">Entity</Link> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
                     </tr>
                 </tbody>
             </table>
@@ -727,7 +724,7 @@ const propertySelector: ReactNode = (
             </table>
         </div>
         <h3>
-            C# Example
+            C# example
         </h3>
         <CodeSample
             language="csharp"
@@ -748,7 +745,7 @@ const propertySelector: ReactNode = (
         resultsLimit = 500
     });`
             } />
-        <h2>List Of Supported Entities</h2>
+        <h2>List of supported entities</h2>
         <p>
             Below is a list of entities that support the PropertySelector functionality.
         </p>
@@ -763,47 +760,47 @@ const propertySelector: ReactNode = (
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="">Device</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#Device">Device</Link></td>
                         <td>8.0</td>
                         <td>The following properties are not supported: <code className="small-code-sample">{`deviceFlags`}</code>, <code className="small-code-sample">{`isAuxInverted`}</code>, <code className="small-code-sample">{`deviceType`}</code>, <code className="small-code-sample">{`productId`}</code>, <code className="small-code-sample">{`autogroups`}</code>, <code className="small-code-sample">{`auxWarningSpeed`}</code>, <code className="small-code-sample">{`enableAuxWarning`}</code></td>
                     </tr>
                     <tr>
-                        <td><a href="">User</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#User">User</Link></td>
                         <td>8.0</td>
                         <td><code className="small-code-sample">isEULAAccepted</code> and <code className="small-code-sample">acceptedEULA</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">PropertySelector</code> logic, both properties will be returned.</td>
                     </tr>
                     <tr>
-                        <td><a href="">Group</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#Group">Group</Link></td>
                         <td>8.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><a href="">Rule</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#Rule">Rule</Link></td>
                         <td>8.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><a href="">LogRecord</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#LogRecord">LogRecord</Link></td>
                         <td>8.0</td>
                         <td><code className="small-code-sample">dateTime</code> must be included.</td>
                     </tr>
                     <tr>
-                        <td><a href="">Trip</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#Trip">Trip</Link></td>
                         <td>9.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><a href="">TextMessage</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#TextMessage">TextMessage</Link></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><a href="">IoxAddOn</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#IoxAddOn">IoxAddOn</Link></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><a href="">IoxAddOnStatus</a></td>
+                        <td><Link to="/myGeotab/apiReference/objects#IoxAddOnStatus">IoxAddOnStatus</Link></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
@@ -957,7 +954,7 @@ results = {
     ]
 }`
             } />
-        <h2>API Client Support</h2>
+        <h2>API client support</h2>
         {/* ToDo: Update the link later on before finalizing SDK site */}
         <p>
             All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
@@ -1038,8 +1035,8 @@ var controllers = (List<Controller>)results[2];`
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Concepts",
-    "breadCrumbItems": ["MYG", "Guides", "Concepts"]
+    "title": "CONCEPTS",
+    "breadCrumbItems": ["MYG", "GUIDES", "CONCEPTS"]
 };
 
 const pageSections: TableOfContentsItem[] = [
@@ -1050,12 +1047,12 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "make-your-first-api-call",
-        "summary": "Make Your First API Call",
+        "summary": "Make your first API call",
         "details": makeYourFirstAPICall
     },
     {
         "elementId": "result-and-errors",
-        "summary": "Results And Errors",
+        "summary": "Results and errors",
         "details": resultsAndErrors
     },
     {
@@ -1065,7 +1062,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "http-compression",
-        "summary": "HTTP Compression",
+        "summary": "HTTP compression",
         "details": httpCompression
     },
     {
@@ -1075,12 +1072,12 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "working-with-dates",
-        "summary": "Working With Dates",
+        "summary": "Working with dates",
         "details": workingWithDates
     },
     {
         "elementId": "unit-of-measure",
-        "summary": "Unit Of Measure",
+        "summary": "Unit of measure",
         "details": unitOfMeasure
     },
     {
@@ -1126,7 +1123,7 @@ export default function Concepts() {
                     are placeholders to indicate where the user enters information unique to their requirements.
                 </p>
                 <p>
-                    API request parameters and their results are transported using the lightweight <a href="http://www.json.org" target="_blank" rel="noopener noreferrer">JSON</a> format. The <a href="../../api/reference">API Reference</a> contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
+                    API request parameters and their results are transported using the lightweight <a href="http://www.json.org" target="_blank" rel="noopener noreferrer">JSON</a> format. The <Link to="/myGeotab/apiReference/methods">API Reference</Link> contains a list of methods that can be invoked, including the parameters they expect, and the results they return. Examples are provided below to demonstrate what the Geotab API can do.
                 </p>
                 <p>
                     Requests to the Geotab API are invoked using HTTP GET or HTTP POST. HTTP POST requests use the JSON-RPC standard. When making requests that contain MyGeotab credentials, use the POST request only. This helps to minimize potential leaks into browser histories, or web server logs.
