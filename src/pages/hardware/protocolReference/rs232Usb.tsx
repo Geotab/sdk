@@ -472,7 +472,7 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Msg type 0x24: Extended application specific data To external device</h2>
+        <h2>Msg type 0x24: Extended application specific data to external device</h2>
         <p>Sent by the GO device to the external device. Can be in response to a 0x88 message and used for payloads larger than 1 byte. Currently only used for Keyless.</p>
         <div className="table-container">
             <table>
