@@ -2,10 +2,11 @@ import { ReactNode } from "react";
 import { Page } from "../../../../components";
 import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
+import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 
 const geotabApiObject: ReactNode = (
     <div className="paragraph">
@@ -15,7 +16,7 @@ const geotabApiObject: ReactNode = (
         </p>
         <InformationalBox>
             <p>
-                Quick start in <a href="../../api/clients/#javascript">{/*TODO: fix link*/}API Clients</a>
+                Quick start in <HashLink to="/myGeotab/apiClients#javascript">API Clients</HashLink>
             </p>
         </InformationalBox>
     </div>
@@ -138,7 +139,7 @@ const theCallMethodArguments: ReactNode = (
 const multicall: ReactNode = (
     <div className="paragraph">
         <p>
-            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the {/*TODO: fix link*/}<a href="../concepts/#multicall">MultiCall</a> documentation. Additionally, you can find a JavaScript MultiCall example {/*TODO: fix link*/}<a href="../concepts/#api-client-support">here</a>.
+            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the <HashLink to="/myGeotab/guides/concepts#multicall">MultiCall</HashLink> documentation. Additionally, you can find a JavaScript MultiCall example <HashLink to="/myGeotab/guides/concepts#api-client-support">here</HashLink>.
         </p>
     </div>
 );
@@ -154,7 +155,7 @@ const aNoteAboutState: ReactNode = (
 const nextSteps: ReactNode = (
     <div className="paragraph">
         <p>
-            Once you have a basic understanding of how <i>api.js</i> and the JavaScript API work and want to learn more, you can take a look at our examples {/*TODO: fix link*/}<a href="../../codeSamples/javascript">here</a>.
+            Once you have a basic understanding of how <i>api.js</i> and the JavaScript API work and want to learn more, you can take a look at our examples <Link to="/myGeotab/codeSamples/javascriptSamples">here</Link>.
         </p>
     </div>
 );
@@ -167,22 +168,22 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "geotabapi-object",
-        "summary": "GeotabApi Object",
+        "summary": "GeotabApi object",
         "details": geotabApiObject
     },
     {
         "elementId": "creating-a-geotabapi-object",
-        "summary": "Creating a GeotabApi Object",
+        "summary": "Creating a GeotabApi object",
         "details": creatingAGeotabApiObject
     },
     {
         "elementId": "using-the-geotabapi-object",
-        "summary": "Using the GeotabApi Object",
+        "summary": "Using the GeotabApi object",
         "details": usingTheGeotabApiObject
     },
     {
         "elementId": "the-call-method-arguments",
-        "summary": "The Call Method Arguments",
+        "summary": "The Call method arguments",
         "details": theCallMethodArguments
     },
     {
@@ -192,20 +193,18 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "a-note-about-state",
-        "summary": "A Note About State",
+        "summary": "A note about state",
         "details": aNoteAboutState
     },
     {
         "elementId": "next-steps",
-        "summary": "Next Steps",
+        "summary": "Next steps",
         "details": nextSteps
     }
 ];
 
 export default function usingInJavascript() {
     return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
-        </Page>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 };

@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 
@@ -198,14 +197,6 @@ export default function Python() {
         </p>
         <code className="small-code-sample">{`pip install pyserial`}</code>
       </div>
-
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

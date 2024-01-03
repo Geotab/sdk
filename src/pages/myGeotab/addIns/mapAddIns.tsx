@@ -3,7 +3,6 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import mapVehicleInfoImage from "./../../../assets/images/mapAddins/map-add-ins-docs-1.jpg";
 import mapAddinSizeOnDesktopImage from "./../../../assets/images/mapAddins/map-add-ins-docs-2.jpg";
@@ -55,9 +54,9 @@ const installation: ReactNode = (
       </li>
       <li>
         <strong>noView</strong> - If{" "}
-        <code className="small-code-sample-two">true</code>, the add-in will not
+        <code className="small-code-sample">true</code>, the add-in will not
         be displayed in the right-side panel. The default value is{" "}
-        <code className="small-code-sample-two">false</code>.
+        <code className="small-code-sample">false</code>.
       </li>
       <li>
         <strong>src</strong> - The JavaScript file reference for the Add-in.
@@ -235,8 +234,8 @@ const mapAddinServices: ReactNode = (
           page
         </p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -300,8 +299,8 @@ const mapAddinServices: ReactNode = (
           </table>
         </div>
         <h3>Properties</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -322,8 +321,8 @@ const mapAddinServices: ReactNode = (
           </table>
         </div>
         <h3>Events</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Event name</th>
@@ -365,8 +364,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IGroupFilterId_6738371814545805">Interface IGroupFilterId</h4>
         <p>Group id object that is selected by user in company filter</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -398,8 +397,8 @@ const mapAddinServices: ReactNode = (
         </h2>
         <p>Service to request information stored in browser LocalStorage</p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -446,8 +445,8 @@ const mapAddinServices: ReactNode = (
         </h2>
         <p>Service for requesting data from Geotab server</p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -484,8 +483,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ISessionInfo_21172432221526716">Interface ISessionInfo</h4>
         <p>Current user session information</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -542,8 +541,8 @@ const mapAddinServices: ReactNode = (
           different entities on the map
         </p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -569,8 +568,8 @@ const mapAddinServices: ReactNode = (
           </table>
         </div>
         <h3>Events</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Event name</th>
@@ -637,8 +636,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IZoneEvent_5628074791384126">Interface IZoneEvent</h4>
         <p>Event object that is sent to add-in when user interacts with zone</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -663,8 +662,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IZoneEventData_4986307042482321">Interface IZoneEventData</h4>
         <p>Zone object that is sent to add-in when user interacts with zone</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -685,8 +684,8 @@ const mapAddinServices: ReactNode = (
         <p>
           Event object that is sent to add-in when user interacts with device
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -717,8 +716,8 @@ const mapAddinServices: ReactNode = (
         <p>
           Device object that is sent to add-in when user interacts with device
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -739,8 +738,8 @@ const mapAddinServices: ReactNode = (
         <p>
           Event object that is sent to add-in when user interacts with route
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -769,8 +768,8 @@ const mapAddinServices: ReactNode = (
         <p>
           Route object that is sent to add-in when user interacts with route
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -789,8 +788,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ITripEvent_45752359167584244">Interface ITripEvent</h4>
         <p>Event object that is sent to add-in when user interacts with trip</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -815,8 +814,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ITripEventData_5823825824970319">Interface ITripEventData</h4>
         <p>Trip object that is sent to add-in when user interacts with trip</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -854,8 +853,8 @@ const mapAddinServices: ReactNode = (
           Event object that is sent to add-in when user interacts with device
           exceptions
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -885,8 +884,8 @@ const mapAddinServices: ReactNode = (
           Exceptions object that is sent to add-in when user interacts with
           exception icon on the map
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -915,8 +914,8 @@ const mapAddinServices: ReactNode = (
           Exception object that is sent to add-in when user interacts with
           exception icon on the map
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -966,8 +965,8 @@ const mapAddinServices: ReactNode = (
           Event object that is sent to add-in when vehicle location on the map
           changes
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1050,8 +1049,8 @@ const mapAddinServices: ReactNode = (
           changed map viewport
         </p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -1105,8 +1104,8 @@ const mapAddinServices: ReactNode = (
           </table>
         </div>
         <h3>Events</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Event name</th>
@@ -1147,8 +1146,8 @@ const mapAddinServices: ReactNode = (
           Interface IChangedViewport
         </h4>
         <p>Current map viewport</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1176,8 +1175,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IMapBounds_6809339450241565">Interface IMapBounds</h4>
         <p>Object that represents a map bounding box.</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1207,8 +1206,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IMapLatLng_21765840131830494">Interface IMapLatLng</h4>
         <p>An object that represents longitude and latitude</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1247,8 +1246,8 @@ const mapAddinServices: ReactNode = (
         </h2>
         <p>Service for showing additional information in entities tooltip</p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -1315,8 +1314,8 @@ const mapAddinServices: ReactNode = (
           Custom map add-in tooltip options. It can be either a text information
           or an image
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1366,8 +1365,8 @@ const mapAddinServices: ReactNode = (
           Custom tooltip image options. It can be either link to external image,
           base64 image or image stored in ArrayBuffer
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1409,8 +1408,8 @@ const mapAddinServices: ReactNode = (
           Application tooltip config. Based on this config application desides
           what parts of tooltip should be rendered
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1440,8 +1439,8 @@ const mapAddinServices: ReactNode = (
           Device tooltip config to control amount of information that is shown
           in tooltip.
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1483,8 +1482,8 @@ const mapAddinServices: ReactNode = (
           or adding custom buttons to existing action lists.
         </p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -1546,8 +1545,8 @@ const mapAddinServices: ReactNode = (
           </table>
         </div>
         <h3>Events</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Event name</th>
@@ -1577,8 +1576,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IMenuActionItem_4783193308694993">Interface IMenuActionItem</h4>
         <p>Custom action button options</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1639,8 +1638,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when all types of map action menus are
           about to be shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1689,8 +1688,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when zone action menu is about to be
           shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1717,8 +1716,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when route action menu is about to be
           shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1745,8 +1744,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when location marker action menu is
           about to be shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1771,8 +1770,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when device action menu is about to be
           shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1799,8 +1798,8 @@ const mapAddinServices: ReactNode = (
           Data that is passed to add-in when trip action menu is about to be
           shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1834,8 +1833,8 @@ const mapAddinServices: ReactNode = (
           Trip data that is passed to add-in when trip action menu is about to
           be shown
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -1911,8 +1910,8 @@ const mapAddinServices: ReactNode = (
         </h2>
         <p>Service for drawing custom shapes on the map</p>
         <h3>Methods</h3>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Service Methods</th>
@@ -2002,8 +2001,8 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IPathSeg_17730033837595904">Interface IPathSeg</h4>
         <p>Segment of the path element that will be added in `d` attribute</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2043,8 +2042,8 @@ const mapAddinServices: ReactNode = (
           {">"}
         </h4>
         <p>New map element object</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Method</th>
@@ -2107,8 +2106,8 @@ const mapAddinServices: ReactNode = (
           Interface ICanvasElementStyleAttributes
         </h4>
         <p>Style properties that can be changed for every custom element</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2159,8 +2158,8 @@ const mapAddinServices: ReactNode = (
           </a>
         </h4>
         <p>Attribute of rect that can be changed for every custom element</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2211,8 +2210,8 @@ const mapAddinServices: ReactNode = (
           Text element attributes that can be changed for every custom text
           element
         </p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2255,8 +2254,8 @@ const mapAddinServices: ReactNode = (
           </a>
         </h4>
         <p>Attribute of circle that can be changed for every custom element</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2289,8 +2288,8 @@ const mapAddinServices: ReactNode = (
           </a>
         </h4>
         <p>Attribute of path that can be changed for every custom element</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2318,8 +2317,8 @@ const mapAddinServices: ReactNode = (
           </a>
         </h4>
         <p>Attribute of marker that can be changed for every custom element</p>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2430,8 +2429,8 @@ const mapAddinServices: ReactNode = (
       </div>
       <div className="mapAddins__docs-service__part">
         <h4 id="ILocation_8963072152506912">Interface ILocation</h4>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2453,8 +2452,8 @@ const mapAddinServices: ReactNode = (
       </div>
       <div className="mapAddins__docs-service__part">
         <h4 id="ICoordinate_5317711472027584">Interface ICoordinate</h4>
-        <div className="mapAddins__table-container">
-          <table className="mapAddins__table">
+        <div className="table-container">
+          <table>
             <thead>
               <tr>
                 <th>Property</th>
@@ -2569,13 +2568,6 @@ export default function MapAddins() {
           </figcaption>
         </figure>
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }
