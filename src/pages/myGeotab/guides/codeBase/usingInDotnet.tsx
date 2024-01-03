@@ -3,6 +3,7 @@ import { Page } from "../../../../components";
 import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
+import { Link } from 'react-router-dom';
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
 
@@ -14,14 +15,14 @@ const nugetPackage: ReactNode = (
         <p>Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version
             as the one that your database is on.</p>
         <InformationalBox>
-            <p>Quick start in <a href="../../api/clients">{/*TODO: fix link*/}API Clients</a></p>
+            <p>Quick start in <Link to="/myGeotab/apiClients">API Clients</Link></p>
         </InformationalBox>
     </div>
 );
 
 const apiClass: ReactNode = (
     <div className="paragraph">
-        <h2>Step 1: Initialize & Authentication</h2>
+        <h2>Step 1: Initialize & authentication</h2>
         <p>In order to have access to the API class, add the following to the file's includes section:</p>
         <CodeSample
             language="csharp"
@@ -49,7 +50,7 @@ using Geotab.Checkmate.ObjectModel;`
         <InformationalBox>
             <p>For more information regarding authentication, please review the {/*TODO: fix link*/}<a href="../concepts/#authentication">Authentication</a> documentation.</p>
         </InformationalBox>
-        <h2>Step 2: Making Calls</h2>
+        <h2>Step 2: Making calls</h2>
         <p >When authenticated, calls are made to the API by invoking the <code className="small-code-sample">{`Call`}</code> method of the API class.</p>
         <p>The example below illustrates how to make a generic call to get all devices in the system.</p>
         <code className="small-code-sample">{`List<Device> devices = await api.CallAsync<List<Device>>("Get", typeof(Device));`}</code>
@@ -66,11 +67,11 @@ using Geotab.Checkmate.ObjectModel;`
             }
         />
         <p>The last parameter to this Call method is an <a href="http://msdn.microsoft.com/en-us/library/bb397696.aspx" target="_blank" rel="noopener noreferrer">anonymous object</a> which contains the
-            parameters for the method (please review the <a href="../../api/reference/#Remove1">API reference</a> to see which parameters the method expects, and whether the parameters are required or optional).
+            parameters for the method (please review the <Link to="/myGeotab/apiReference/methods#Remove">API reference</Link> to see which parameters the method expects, and whether the parameters are required or optional).
             The parameter order is not significant, and it is acceptable to omit optional parameters. Optional parameters will revert to their default values, typically "null" or “false” values.</p>
         <p>The API class automatically handles databases that are moved to different servers in the federation and expired tokens (token are typically valid for 2 weeks) by automatically
             re-authenticating and continuing.</p>
-        <h2>Example Code</h2>
+        <h2>Example code</h2>
         <p>The following is a simple console app that will output the latitude and longitude of each device in a list of devices:</p>
         <CodeSample
             language="csharp"
@@ -131,24 +132,24 @@ const nextSteps: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Using In .NET",
-    "breadCrumbItems": ["MYG", "Guides", "Code Base", "Using In .NET"]
+    "title": "USING IN .NET",
+    "breadCrumbItems": ["MYG", "GUIDES", "CODE BASE", "USING IN .NET"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "nuget-package",
-        "summary": "Nuget Package",
+        "summary": "Nuget package",
         "details": nugetPackage
     },
     {
         "elementId": "api-class",
-        "summary": "API Class",
+        "summary": "API class",
         "details": apiClass
     },
     {
         "elementId": "next-steps",
-        "summary": "Next Steps",
+        "summary": "Next steps",
         "details": nextSteps
     }
 ];
