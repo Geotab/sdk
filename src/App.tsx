@@ -53,17 +53,6 @@ import DriveIntroduction from "./pages/drive/introduction";
 import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
-<<<<<<< HEAD
-import MgMediaFiles from "./pages/myGeotab/guides/mgMediaFiles";
-import UsingWithDotnet from "./pages/myGeotab/guides/codeBase/usingInDotnet";
-import usingInJavascript from "./pages/myGeotab/guides/codeBase/usingInJavascript";
-import usingInJava from "./pages/myGeotab/guides/codeBase/usingInJava";
-import ApiClients from "./pages/myGeotab/apiClients";
-import Python from "./pages/hardware/samples/python";
-
-
-=======
->>>>>>> INTGR-123
 
 function App() {
   return (
@@ -92,16 +81,10 @@ function App() {
           <Route path="/myGeotab/guides/powerBI" Component={PowerBI} />
           <Route path="/myGeotab/guides/usingTheDataConnector" Component={UsingTheDataConnector} />
 
-<<<<<<< HEAD
-          <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingWithDotnet} />
-          <Route path="/myGeotab/guides/codeBase/usingInJava" Component={usingInJava} />
-          <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={usingInJavascript} />
-=======
           {/* MyGeotab > Guides > Code Base Routes */}
           <Route path="/myGeotab/guides/codeBase/usingInJavascript" Component={UsingInJavascript} />
           <Route path="/myGeotab/guides/codeBase/usingInDotnet" Component={UsingInDotnet} />
           <Route path="/myGeotab/guides/codeBase/usingInJava" Component={UsingInJava} />
->>>>>>> INTGR-123
 
           {/* MyGeotab > Add-Ins Routes */}
           <Route path="/myGeotab/addIns/developingAddIns" Component={MyGeotabDevelopingAddIns} />
@@ -124,14 +107,10 @@ function App() {
           {/* MyAdmin Routes */}
           <Route path="/myAdmin" Component={MyAdminIntroduction} />
           <Route path="/myAdmin/introduction" Component={MyAdminIntroduction} />
-<<<<<<< HEAD
-          <Route path="/myAdmin/guides/usingWithDotnet" Component={UsingWithDotnet}/>
-=======
           <Route path="/myAdmin/releaseNotes" Component={MyAdminReleaseNotes} />
 
           {/* MyAdmin > Guides Routes */}
           <Route path="/myAdmin/guides/gettingStarted" Component={MyAdminGettingStarted} />
->>>>>>> INTGR-123
           <Route path="/myAdmin/guides/concepts" Component={MyAdminConcepts} />
 
           {/* MyAdmin > Guides > Code Base Routes */}
