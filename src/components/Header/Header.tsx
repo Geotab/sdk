@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import MenuContext from "../../menuContext";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { Link } from "react-router-dom";

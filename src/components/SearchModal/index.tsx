@@ -1,3 +1,3 @@
-export { APIReferenceIcon } from "./assets/APIReferenceIcon";
-export { GuidesIcon } from "./assets/GuidesIcon";
-export { IconClearSearch } from "./assets/ClearSearchInputX";
+export { APIReferenceIcon } from "./icons/IconAPIReference";
+export { GuidesIcon } from "./icons/IconGuides";
+export { IconClearSearch } from "./icons/IconClearSearch";

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { IconSearch } from "@geotab/react-component-library";
-import { APIReferenceIcon } from "./assets/APIReferenceIcon";
-import SearchNotFoundGraphic from "./assets/SearchNotFoundGraphic.svg";
+import { APIReferenceIcon } from "./icons/IconAPIReference";
+//import SearchNotFoundGraphic from "./assets/SearchNotFoundGraphic.svg";
 import apiReferenceData from "./mockSearchData";
 import "./SearchModal.scss";
 
 interface ApiReferenceItem {
   id: number;
   title: string;
-  group: string;
+  category: string;
 }
 
 interface AllSearchResultContentProps {
@@ -73,7 +73,7 @@ const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => 
                         {highlightMatch(item.title, inputValue)}
                       </span>
                       <span className="result-item-group">
-                        {highlightMatch(item.group, inputValue)}
+                        {highlightMatch(item.category, inputValue)}
                       </span>
                     </div>
                   </li>
@@ -83,7 +83,6 @@ const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => 
           </div>
         ) : (
           <div className="tab-search-not-found">
-            <img src={SearchNotFoundGraphic} alt="Search not found graphic" />
             <p>
               No results found for <span className="search-not-found-text">"{inputValue}"</span>
             </p>

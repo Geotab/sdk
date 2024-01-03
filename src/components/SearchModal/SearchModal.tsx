@@ -1,10 +1,24 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
-import { IconSearch, Tabs } from "@geotab/react-component-library";
-import { APIReferenceIcon, GuidesIcon, IconClearSearch } from "../SearchModal";
+import { useRef, useEffect, useCallback, useState } from "react";
+import { IconSearch, IconClipboard, IconServer, Tabs } from "@geotab/react-component-library";
+import { IconClearSearch } from "./icons/IconClearSearch";
 import AllSearchResultContent from "./AllSearchResultContent";
 import APISearchResults from "./APISearchResults";
 import GuidesSearchResult from "./GuidesSearchResult";
+import apiReferenceData from "./mockSearchData";
+import MiniSearch from "minisearch";
+
 import "./SearchModal.scss";
+
+
+let miniSearch = new MiniSearch({
+  fields: ["title"], // fields to index for full-text search
+  storeFields: ["title", "category"], // fields to return with search results
+  searchOptions: {
+    fuzzy: 0.2,
+    prefix: true
+  }
+});
+miniSearch.addAll(apiReferenceData);
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -22,6 +36,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
+        setInputValue("");
         onClose();
       }
     },
@@ -36,6 +51,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     },
     [onClose]
   );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+    let results = miniSearch.search(e.currentTarget.value);
+    console.log(results);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -77,7 +98,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 type="search"
                 placeholder="Search"
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleChange}
               />
               {inputValue && (
                 <button
@@ -103,13 +124,13 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {
                 name: "API Reference",
                 content: <APISearchResults inputValue={inputValue} />,
-                icon: APIReferenceIcon,
+                icon: IconServer,
                 disabled: false,
               },
               {
                 name: "Guides",
-                content: <GuidesSearchResult inputValue={inputValue} />,
-                icon: GuidesIcon,
+                content: <GuidesSearchResult inputValue={inputValue} tab="tabname" />,
+                icon: IconClipboard,
                 disabled: false,
               },
             ]}
