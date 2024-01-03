@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import "../../../pages/pages.scss";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
@@ -177,8 +176,6 @@ export default function UsingGoDevices() {
           Safari.
         </p>
       </div>
-
-      {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
     </Page>
   );
 }

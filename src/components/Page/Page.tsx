@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import PageContent from "../PageContent/PageContent";
 import { PageTitleProps } from "../PageTitle/PageTitle";
-import "./page.scss";
+import "./Page.scss";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 
@@ -10,7 +10,7 @@ interface PageProps {
     section: string;
     pageTitle?: PageTitleProps;
     tableOfContents?: TableOfContentsItem[];
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export default function Page(props: PageProps) {
