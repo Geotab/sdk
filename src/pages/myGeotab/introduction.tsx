@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../components/Accordion/Accordion";
 import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
@@ -158,7 +157,6 @@ export default function Introduction() {
                 </ul>
                 Keep up to date with Geotab's technical updates by subscribing to our <a href="https://www.geotab.com/subscription/">technical bulletins</a>.{/*TODO: Add info icon here*/}
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };
