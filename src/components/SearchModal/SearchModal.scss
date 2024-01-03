@@ -311,6 +311,10 @@ input[type="search"]::-webkit-search-results-decoration {
     /* 133.333% */
     letter-spacing: 0.32px;
 
+    img {
+      border: none;
+    }
+
     .search-not-found-text {
       color: $actions-secondary-default;
       font-size: 12px;

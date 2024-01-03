@@ -46,8 +46,8 @@ export const LogoGeotabSDK = React.forwardRef<SVGSVGElement, LogoProps>(
           fill="#25477B"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M107.467 13.8701V0.130112H107.958V13.8701H107.467Z"
           fill="#25477B"
         />

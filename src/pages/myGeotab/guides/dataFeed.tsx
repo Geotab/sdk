@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -392,14 +391,6 @@ export default function DataFeed() {
           resume the data feed.
         </p>
       </div>
-
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }
