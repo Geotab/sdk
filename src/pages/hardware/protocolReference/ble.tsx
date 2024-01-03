@@ -89,7 +89,7 @@ const advertisingPacket: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Required Data Types</h2>
+        <h2>Required data types</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -113,7 +113,7 @@ const advertisingPacket: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Optional Information Types</h2>
+        <h2>Optional information types</h2>
         <p>These information types are optional and are not part of the required packet structure. Each entry must be preceded by the corresponding information identifier byte. If multiple information
             entries are used in the same advertisement packet, they should be arranged in an incrementing order based on their information identifier. The currently defined identifiers are listed in the
             table below. Geotab will define new identifiers for any new sensors, as required. You must use the IDs as defined by Geotab. If there is undefined data, contact us via the Help Desk and we will
@@ -322,7 +322,7 @@ const advertisingPacket: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>FP24 {"("}Floating Point 24 bit{")"}</h2>
+        <h2>FP24 (floating point 24 bit)</h2>
         <p>Same as FP32 but the 8 least-significant bits dropped.</p>
         <div className="table-container">
             <table>
@@ -389,7 +389,7 @@ const advertisingPacket: ReactNode = (
         <p>{"["} -2^18, -2^17 -1 {"]"} or {"["} 2^17 +1 2^18 {"]"} rounded to a multiple of 4</p>
         <p>…</p>
         <p>Infinity at: 2^128</p>
-        <h2>FP24 Conversions:</h2>
+        <h2>FP24 conversions:</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -414,14 +414,14 @@ const advertisingPacket: ReactNode = (
         <p>For all information types that use the FP24 format, a new log will be generated for any change in the data. For example, a change in temperature from 2°C to 2.000061°C would trigger a new log.
             Some implementations may only require a reporting resolution of 1°C. If an excessive number of logs are generated, we will disable reporting on BLE data. The onus is on the implementer to choose
             an appropriate reporting resolution for their data.</p>
-        <h2>Generic Byte</h2>
+        <h2>Generic byte</h2>
         <p>The Generic Byte type can store one byte of data {"("}0 to 255{")"}. It can be used to count the number of times a button is pressed, or simply store the state of a toggle switch {"("}0 or 1{")"}. Any data
             changes will generate a new log.</p>
-        <h2>Generic Timer</h2>
+        <h2>Generic timer</h2>
         <p>The Generic Timer allows keeping track of an elapsed time. The Units Of Time are not specifically defined and can be chosen by the implementor. It may make sense to measure some durations in
             hours, while others may warrant seconds. The Units Of Time may continuously increment. A new log will not be saved until a new event counter value is reported. The Generic Timer can be
             associated with other data types. For example, you can associate Generic Timer 1 with temperature to indicate the time when a chosen temperature threshold was exceeded.</p>
-        <h2>Wakeup Event</h2>
+        <h2>Wakeup event</h2>
         <p>A custom parameter is used to configure the IOX-BT to wake up periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This
             periodic wakeup can be enabled using the following custom parameter:</p>
         <code className="small-code-sample">{`<Parameter Description='Enable Periodic Bluetooth Wakeup' Offset='167' Bytes='80' IsEnabled='true'/>`}</code>
@@ -430,7 +430,7 @@ const advertisingPacket: ReactNode = (
         <p>When sending the wakeup event as part of the advertisement data, a value of 0x00 means “no event”. Anything greater than 0 that has not already been reported will cause the GO device to wake up
             and report on the beacon advertisements. The event is only used as an indication for reporting any changes in the rest of the advertisement data. The actual contents of the alert event byte will
             not be sent/reported.</p>
-        <h2>Custom Data</h2>
+        <h2>Custom data</h2>
         <p>Arbitrary data can be placed in the custom data segment. The data will not be interpreted by MyGeotab, but will be accessible through the API. The onus is on the implementor to extract and
             interpret the data. The data must be preceded by the length. The length is limited by the amount of data that can fit in the optional information section. The maximum custom data length is 18
             bytes. Any data changes will generate a new log.</p>
@@ -487,9 +487,9 @@ const advertisingPacket: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Message Interleaving</h2>
+        <h2>Message interleaving</h2>
         <p>Message interleaving is not supported. The data types in the packet must remain consistent between advertisements.</p>
-        <h2>Example Packets</h2>
+        <h2>Example packets</h2>
         <p>Reporting temperature</p>
         <div className="table-container">
             <table>
@@ -1016,7 +1016,7 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "advertising-packet",
-        "summary": "Advertising Packet",
+        "summary": "Advertising packet",
         "details": advertisingPacket
     }
 ];

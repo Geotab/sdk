@@ -15,7 +15,7 @@ const overview: ReactNode = (
 const endpoint: ReactNode = (
     <div className="paragraph">
         <p>Before making your first call, it is strongly recommended to skip the <a href="#general-entry">general entry</a> and make the call directly to <a href="#odata-connector">OData Connector</a>. If you are not sure what the URL to call is, please contact the support team.</p>
-        <h3>General Entry</h3>
+        <h2>General Entry</h2>
         <p>Feel free to skip this section if you plan to make calls directly to OData Connector. If you have to make a call to the general entry (https://data-connector.geotab.com), make sure you are ready to handle the 302 response and make another call to the returned URL.</p>
         <p>Sample general entry response:</p>
         <CodeSample
@@ -38,10 +38,10 @@ const endpoint: ReactNode = (
 < Date: Tue, 07 Feb 2023 16:32:57 GMT
 `}/>
         <p>If you are making calls to the general entry with postman or insomnia, the 400 error code is expected since postman or insomnia redirect requests WITHOUT the auth header.</p>
-        <h3>OData Connector</h3>
+        <h2>OData Connector</h2>
         <p>Given the right url, you may test the service connection by making calls to the service root: https://odata-connector-1.geotab.com/odata/v4/svc/</p>
         <p>No credential is required for this service root.</p>
-        <h4>Curl</h4>
+        <h3>Curl</h3>
         <p>Sample request:</p>
         <CodeSample
         language="text"
@@ -117,7 +117,7 @@ const endpoint: ReactNode = (
 }
 `}/>
         <p>You can also specify a date range as the query option, for more information about the query option, see <a href="https://docs.google.com/document/d/1PEY6L5i3UlVV-5S9FaAV0MHnReCl9vgLxs_mLs26yVo/edit#heading=h.xcvdktyx0p8t" target="_blank" rel="noopener noreferrer">here</a>.</p>
-        <h4>Python</h4>
+        <h3>Python</h3>
         <p>The following example shows how to consume OData Connector with Python, feel free to use any programming language, library or framework. Dependencies:</p>
         <CodeSample
         language="python"
