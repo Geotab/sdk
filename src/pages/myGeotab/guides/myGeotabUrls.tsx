@@ -4,6 +4,7 @@ import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { HashLink } from "react-router-hash-link";
 
 const linkToAPage: ReactNode = (
     <div className="paragraph">
@@ -373,7 +374,7 @@ const listOfPages: ReactNode = (
 
 const credentials: ReactNode = (
     <div className="paragraph">
-        <h2>Links That Include Username And Database</h2>
+        <h2>Links that include username and database</h2>
         <p>It is possible to insert username and database credentials into a URL. Note that the user will be required to be logged in to utilize these types of links.</p>
         <p>MyGeotab Page Example</p>
         <code className="small-code-sample">{`https://<serverName>/<databaseName>/?('userName':'<userName>','database':<databaseName>)#<page>`}</code>
@@ -385,8 +386,7 @@ const credentials: ReactNode = (
 
 const gettingSessionId: ReactNode = (
     <div className="paragraph">
-        Refer to the <a href="../concepts/#authentication">Authentication</a> section. Within that section the instructions explain the process of authenticating a user to obtain their session id.
-        {/*TODO: fix link */}
+        Refer to the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> section. Within that section the instructions explain the process of authenticating a user to obtain their session id.
     </div>
 );
 
@@ -400,10 +400,10 @@ const securitySessionId: ReactNode = (
 
 const embeddingMyGInIframe: ReactNode = (
     <div className="paragraph">
-        <h2>Trusted Domains Only</h2>
+        <h2>Trusted domains only</h2>
         <p>Due to the risk of <a href="https://en.wikipedia.org/wiki/Clickjacking">ClickJacking</a>, MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came
             from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.</p>
-        <h3>Info For Resellers</h3>
+        <h3>Info for resellers</h3>
         <p>If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business
             justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.</p>
         <p>This process can take some time as the domains need to be reviewed by Geotab's security team before being added to the approved list by the development team.</p>
@@ -418,7 +418,7 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "link-to-page",
-        "summary": "Link To A Page",
+        "summary": "Link to a page",
         "details": linkToAPage
     },
     {
@@ -428,12 +428,12 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "passing-parameters",
-        "summary": "Passing Parameters To A Page",
+        "summary": "Passing parameters to a page",
         "details": passingParameters
     },
     {
         "elementId": "list-of-pages",
-        "summary": "List Of Pages And Accepted Parameters",
+        "summary": "List of pages and accepted parameters",
         "details": listOfPages
     },
     {
@@ -443,17 +443,17 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "custom-devices",
-        "summary": "Getting The Session Id Using The API",
+        "summary": "Getting the session id using the API",
         "details": gettingSessionId
     },
     {
         "elementId": "security-session-id",
-        "summary": "Getting The Session Id Using The API",
+        "summary": "Security using the session id",
         "details": securitySessionId
     },
     {
         "elementId": "embedding-myg-in-iframe",
-        "summary": "Embedding MyGeotab Inside An IFrame",
+        "summary": "Embedding MyGeotab inside an IFrame",
         "details": embeddingMyGInIframe
     }
 ];

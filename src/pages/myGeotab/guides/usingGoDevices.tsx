@@ -5,11 +5,12 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { Link } from "react-router-dom";
 
 const overview: ReactNode = (
     <div className="paragraph">
         Data flows from the GO device to the MyGeotab hosted solution automatically.
-        The first step is to create a database to receive the device's data (as outlined in <a href="../getting-started/">Getting Started</a>). {/* TODO: check link*/}
+        The first step is to create a database to receive the device's data (as outlined in <Link to="/myGeotab/guides/gettingStarted">Getting Started</Link>).
         Once that is complete, the device can be accessed using the APIs defined below.
     </div>
 );
@@ -28,7 +29,7 @@ const apiToAddVehicles: ReactNode = (
     <div className="paragraph">
         <p>Geotab has a robust API that allows third-party developers to create their own applications that use data from Geotab hardware.
             A partner using Geotab hardware with their own software must use the API to add their Geotab devices to the database, as discussed above.</p>
-        <h2>Adding a Single Device</h2>
+        <h2>Adding a single device</h2>
         <p>C# API</p>
         <CodeSample
             language="csharp"
@@ -65,11 +66,11 @@ api.call("Add", {
         />
         <p>The above code samples show a sample call to add a single device to a database using the C# API, JavaScript API and an HTTP request.
             Please refer to the API documentation for more information.</p>
-        <h2>Adding Multiple Devices</h2>
+        <h2>Adding multiple devices</h2>
         <p>Both the C# and JavaScript examples contain a comprehensive demonstration of how to add multiple devices to a database.
             This can be used as a starting point for additional development.
         </p>
-        <h2>Enable In-Vehicle Features</h2>
+        <h2>Enable in-vehicle features</h2>
         <p>To enable or disable vehicle features, the appropriate properties of the Device/GoDevice object must be set.
             For example, to enable beeping before adding the device to MyGeotab, the C# example above would be changed to:<br></br></p>
         <CodeSample
@@ -93,8 +94,8 @@ device.Id = api.CallAsync<Id>("Add", typeof (Device), new {entity = device});`
 const apiToExtractData: ReactNode = (
     <div className="paragraph">
         The simplest way to extract data efficiently and reliably is to create a data feed.
-        There are special methods for this application — see the <a href="../data-feed/">Data Feed</a> documentation for a comprehensive explanation of the data feed and links to example code.
-        {/*TODO: fix link */}
+        There are special methods for this application — see the <Link to="/method/GetFeed1">data feed</Link> documentation for a comprehensive explanation of the data feed and links to example code.
+        {/*TODO: is this right? */}
     </div>
 );
 
@@ -111,17 +112,17 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "device-hierarchy",
-        "summary": "Device Hierarchy",
+        "summary": "Device hierarchy",
         "details": deviceHierarchy
     },
     {
         "elementId": "api-add-vehicles",
-        "summary": "API To Add Vehicles",
+        "summary": "API to add vehicles",
         "details": apiToAddVehicles
     },
     {
         "elementId": "api-extract-data",
-        "summary": "API To Extract Data",
+        "summary": "API to extract data",
         "details": apiToExtractData
     }
 ];
