@@ -9,7 +9,7 @@ interface AccordionContents {
     id: string;
 }
 
-export function createAccordions(pageSections: TableOfContentsItem[]) {
+export function createAccordions(pageSections: TableOfContentsItem[]): JSX.Element[] {
     return pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} key={section.elementId} />);
 }
 

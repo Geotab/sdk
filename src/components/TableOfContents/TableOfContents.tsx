@@ -12,7 +12,7 @@ interface TableOfContentsProps {
 }
 
 export default function TableOfContents(props: TableOfContentsProps) {
-    const [activeSection, setActiveSection] = useState("");
+    const [activeSection, setActiveSection] = useState<string>("");
     const observer = useRef() as React.MutableRefObject<IntersectionObserver>;
 
     // useEffect hook implementation copied from:

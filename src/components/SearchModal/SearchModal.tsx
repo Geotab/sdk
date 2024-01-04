@@ -1,37 +1,42 @@
-import { useRef, useEffect, useCallback, useState } from "react";
-import { IconSearch, IconClipboard, IconServer, Tabs } from "@geotab/react-component-library";
+import { useRef, useEffect, useCallback, useState, ComponentType } from "react";
+import { IconSearch, IconClipboard, IconServer, Tabs, TabConfig, IconProps } from "@geotab/react-component-library";
 import { IconClearSearch } from "./icons/IconClearSearch";
-import AllSearchResultContent from "./AllSearchResultContent";
-import APISearchResults from "./APISearchResults";
-import GuidesSearchResult from "./GuidesSearchResult";
-import apiReferenceData from "./mockSearchData";
-import MiniSearch from "minisearch";
+import searchIndex from "./mockSearchData";
+import MiniSearch, { SearchResult } from "minisearch";
+import { SearchSections } from "./searchSectionsEnum";
 
 import "./SearchModal.scss";
-
-
-let miniSearch = new MiniSearch({
-  fields: ["title"], // fields to index for full-text search
-  storeFields: ["title", "category"], // fields to return with search results
-  searchOptions: {
-    fuzzy: 0.2,
-    prefix: true
-  }
-});
-miniSearch.addAll(apiReferenceData);
+import SearchResultTabContent from "./SearchResultTabContent";
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [inputValue, setInputValue] = useState("");
+const resultCategories: Record<string, ComponentType<IconProps>> = {
+  [SearchSections.All]: IconSearch,
+  [SearchSections.APIReference]: IconServer,
+  [SearchSections.Guides]: IconClipboard,
+}
+
+let miniSearch: MiniSearch = new MiniSearch({
+  fields: ["title", "content"], // fields to index for full-text search
+  storeFields: ["title", "category", "breadCrumb", "link"], // fields to return with search results
+  searchOptions: {
+    fuzzy: 0.2,
+    prefix: true
+  }
+});
+miniSearch.addAll(searchIndex); //TODO: should we do this asynchronously? how do we handle the UI until it's ready
+
+export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.Element | null {
+  const modalRef: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
+  const inputRef: React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement | null>(null);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   const handleOutsideClick = useCallback(
-    (event: MouseEvent) => {
+    (event: MouseEvent): void => {
       if (
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
@@ -44,18 +49,19 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   );
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
+        setInputValue("");
         onClose();
       }
     },
     [onClose]
   );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.currentTarget.value);
-    let results = miniSearch.search(e.currentTarget.value);
-    console.log(results);
+    setSearchResults(miniSearch.search(e.currentTarget.value));
+    console.log(searchResults);
   };
 
   useEffect(() => {
@@ -76,6 +82,19 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null;
 
+  let tabsArray: TabConfig[] = [];
+  Object.keys(resultCategories).map(category => {
+    let icon: ComponentType<IconProps> = resultCategories[category];
+    tabsArray.push({
+      name: category,
+      content: <SearchResultTabContent
+        inputValue={inputValue}
+        tab={category}
+        searchResults={searchResults} />,
+      icon: icon
+    });
+  });
+  
   return (
     <div
       className={`search-modal-backdrop ${isOpen ? "" : "hidden"}`}
@@ -85,10 +104,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       <div className="search-modal-container" ref={modalRef}>
         <div className="search-modal-header-container">
           <div className="search-modal-input-field-container">
-            <div
-              className={`search-modal-input-field ${inputValue && "search-has-value"
-                }`}
-            >
+            <div className={`search-modal-input-field ${inputValue && "search-has-value"}`}>
               <div className="modal-search-icon">
                 <IconSearch />
               </div>
@@ -113,27 +129,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
         <div className="search-modal-tabs-container">
           <Tabs
-            defaultTab=""
-            tabs={[
-              {
-                name: "All",
-                content: <AllSearchResultContent inputValue={inputValue} />,
-                icon: IconSearch,
-                disabled: false,
-              },
-              {
-                name: "API Reference",
-                content: <APISearchResults inputValue={inputValue} />,
-                icon: IconServer,
-                disabled: false,
-              },
-              {
-                name: "Guides",
-                content: <GuidesSearchResult inputValue={inputValue} tab="tabname" />,
-                icon: IconClipboard,
-                disabled: false,
-              },
-            ]}
+            tabs={tabsArray}
           />
         </div>
       </div>

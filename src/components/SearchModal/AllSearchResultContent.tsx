@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { IconSearch } from "@geotab/react-component-library";
-import { APIReferenceIcon } from "./icons/IconAPIReference";
+import { useState, useEffect } from "react";
+import { IconSearch, IconServer, IconClipboard } from "@geotab/react-component-library";
 //import SearchNotFoundGraphic from "./assets/SearchNotFoundGraphic.svg";
-import apiReferenceData from "./mockSearchData";
+import searchIndex from "./mockSearchData";
 import "./SearchModal.scss";
 
 interface ApiReferenceItem {
@@ -34,7 +33,7 @@ const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => 
 
   const fetchSearchResults = (query: string) => {
     const lowercaseQuery = query.toLowerCase();
-    return apiReferenceData.filter((item) =>
+    return searchIndex.filter((item: any) =>
       item.title.toLowerCase().includes(lowercaseQuery)
     );
   };
@@ -66,7 +65,7 @@ const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => 
                 <div key={item.id} className="results-item-container">
                   <li>
                     <div className="results-icon-container">
-                      <APIReferenceIcon />
+                      <IconServer />
                     </div>
                     <div className="result-search-name">
                       <span className="result-item-title">

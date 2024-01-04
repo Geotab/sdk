@@ -7,10 +7,10 @@ import SearchModal from "../SearchModal/SearchModal"
 import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
-export default function Header(props: any) {
+export default function Header(props: { isLandingPage: boolean }) {
   const { active, setActive } = useContext(MenuContext);
-  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [isLanding, setIsLanding] = useState(props.isLandingPage);
+  const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
+  const [isLanding, setIsLanding] = useState<boolean>(props.isLandingPage);
 
   const openSearchModal = () => {
     setSearchModalOpen(true);
@@ -33,9 +33,8 @@ export default function Header(props: any) {
         </div>
         <div className="header-menu-tabs">
           <div
-            className={`header-menu-tab ${
-              active === HeaderSections.MyGeotab ? "active-button" : ""
-            }`}
+            className={`header-menu-tab ${active === HeaderSections.MyGeotab ? "active-button" : ""
+              }`}
           >
             <Link
               to="/myGeotab/introduction"
@@ -45,9 +44,8 @@ export default function Header(props: any) {
             </Link>
           </div>
           <div
-            className={`header-menu-tab ${
-              active === HeaderSections.MyAdmin ? "active-button" : ""
-            }`}
+            className={`header-menu-tab ${active === HeaderSections.MyAdmin ? "active-button" : ""
+              }`}
           >
             <Link
               to="/myAdmin/introduction"
@@ -57,9 +55,8 @@ export default function Header(props: any) {
             </Link>
           </div>
           <div
-            className={`header-menu-tab ${
-              active === HeaderSections.Drive ? "active-button" : ""
-            }`}
+            className={`header-menu-tab ${active === HeaderSections.Drive ? "active-button" : ""
+              }`}
           >
             <Link
               to="/drive/introduction"
@@ -69,9 +66,8 @@ export default function Header(props: any) {
             </Link>
           </div>
           <div
-            className={`header-menu-tab ${
-              active === HeaderSections.Hardware ? "active-button" : ""
-            }`}
+            className={`header-menu-tab ${active === HeaderSections.Hardware ? "active-button" : ""
+              }`}
           >
             <Link
               to="/hardware/introduction"
