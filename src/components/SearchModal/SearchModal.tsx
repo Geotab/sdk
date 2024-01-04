@@ -60,8 +60,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.currentTarget.value);
-    setSearchResults(miniSearch.search(e.currentTarget.value));
-    console.log(searchResults);
+    let t = miniSearch.search(e.currentTarget.value);
+    setSearchResults(t);
+    console.log(t);
   };
 
   useEffect(() => {
@@ -94,7 +95,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
       icon: icon
     });
   });
-  
+
   return (
     <div
       className={`search-modal-backdrop ${isOpen ? "" : "hidden"}`}
