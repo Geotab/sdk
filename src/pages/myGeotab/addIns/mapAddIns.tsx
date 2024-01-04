@@ -9,6 +9,7 @@ import mapAddinSizeOnDesktopImage from "./../../../assets/images/mapAddins/map-a
 import mapAddinSizeOnMobileImage from "./../../../assets/images/mapAddins/map-add-ins-docs-3.jpg";
 import multipleMapAddinsOnTheMapPageImage from "./../../../assets/images/mapAddins/map-add-ins-docs-4.jpg";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const mapAddinConfigurationCodeSample = `{
     "name": "Tooltip",
@@ -54,8 +55,8 @@ const installation: ReactNode = (
       </li>
       <li>
         <strong>noView</strong> - If{" "}
-        <code className="small-code-sample">true</code>, the add-in will not
-        be displayed in the right-side panel. The default value is{" "}
+        <code className="small-code-sample">true</code>, the add-in will not be
+        displayed in the right-side panel. The default value is{" "}
         <code className="small-code-sample">false</code>.
       </li>
       <li>
@@ -77,6 +78,7 @@ const installation: ReactNode = (
           target="_blank"
           rel="noreferrer"
           href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/html"
+          aria-label="Example"
         >
           Example
         </a>
@@ -90,6 +92,7 @@ const installation: ReactNode = (
         target="_blank"
         rel="noreferrer"
         href="https://github.com/Geotab/sdk-map-addin-samples"
+        aria-label="Example Map Add-ins"
       >
         here
       </a>
@@ -100,7 +103,7 @@ const installation: ReactNode = (
 
 const usage: ReactNode = (
   <div className="paragraph">
-    <h3>Iframe Setup</h3>
+    <h3>Iframe setup</h3>
     <p>
       In the MyGeotab portal, Map Add-ins are loaded when the user visits the
       MyGeotab page containing the Add-in. For example, the Add-in in Figure #1
@@ -141,7 +144,7 @@ const usage: ReactNode = (
       your Add-In. Use only the services and methods documented here and on the
       API Reference page when interacting with a page outside the iframe.
     </p>
-    <h3>Panel Size</h3>
+    <h3>Panel size</h3>
     <p>
       The iframe panel has a fixed width of 450 pixels; the width shrinks to
       accomodate screens with widths below 600 pixels. The panel height is
@@ -200,7 +203,9 @@ const usage: ReactNode = (
       </li>
       <li>
         <strong>
-          <a href="#services-list">service</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#services-list">
+            service
+          </HashLink>
         </strong>
         - The JavaScript file reference for the Add-in.
       </li>
@@ -219,11 +224,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Page Service (
+          Page service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/page"
+            aria-label="Example"
           >
             Example
           </a>
@@ -274,7 +280,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   getFilterState(): Promise{"<"}
-                  <a href="#IGroupFilterId_6738371814545805">IGroupFilterId</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IGroupFilterId_6738371814545805">
+                    IGroupFilterId
+                  </HashLink>
                   {"["}
                   {"]"}
                   {">"};
@@ -350,7 +358,9 @@ const mapAddinServices: ReactNode = (
                 <td>filterChange</td>
                 <td>
                   groups: (
-                  <a href="#IGroupFilterId_6738371814545805">IGroupFilterId</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IGroupFilterId_6738371814545805">
+                    IGroupFilterId
+                  </HashLink>
                   []) - Updated array of filter groups
                 </td>
                 <td>
@@ -385,11 +395,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          LocalStorage Service (
+          LocalStorage service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/localStorage"
+            aria-label="Example"
           >
             Example
           </a>
@@ -433,11 +444,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Api Service (
+          Api service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/request"
+            aria-label="Example"
           >
             Example
           </a>
@@ -463,7 +475,10 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   multiCall (calls:{" "}
-                  <a href="#TApiCall_9222282930422152">TApiCall</a>[]): Promise
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TApiCall_9222282930422152">
+                    TApiCall
+                  </HashLink>
+                  []): Promise
                   {"<"}any[][]{">"};
                 </td>
                 <td>Sends multiple requests to Geotab server in one batch</td>
@@ -471,7 +486,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   getSession (): Promise{"<"}
-                  <a href="#ISessionInfo_21172432221526716">ISessionInfo</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ISessionInfo_21172432221526716">
+                    ISessionInfo
+                  </HashLink>
                   {">"};
                 </td>
                 <td>Gets current user session information</td>
@@ -526,11 +543,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Events Service (
+          Events service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/events"
+            aria-label="Example"
           >
             Example
           </a>
@@ -581,7 +599,10 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>move</td>
                 <td>
-                  data: (<a href="#ICoordinate_5317711472027584">ICoordinate</a>
+                  data: ({" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICoordinate_5317711472027584">
+                    ICoordinate
+                  </HashLink>
                   ) - Position of the pointer on the map
                 </td>
                 <td>Event is fired when user moves pointer over the map</td>
@@ -589,8 +610,11 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>over</td>
                 <td>
-                  data: (<a href="#TEventData_31142352899099124">TEventData</a>)
-                  - Main information about entity
+                  data: ({" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TEventData_31142352899099124">
+                    TEventData
+                  </HashLink>
+                  ) - Main information about entity
                 </td>
                 <td>
                   Event is fired when user moves pointer over an object on the
@@ -600,8 +624,11 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>out</td>
                 <td>
-                  data: (<a href="#TEventData_31142352899099124">TEventData</a>)
-                  - Main information about entity
+                  data: ({" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TEventData_31142352899099124">
+                    TEventData
+                  </HashLink>
+                  ) - Main information about entity
                 </td>
                 <td>
                   Event is fired when user moves pointer out of an object on the
@@ -611,8 +638,11 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>click</td>
                 <td>
-                  data: (<a href="#TEventData_31142352899099124">TEventData</a>)
-                  - Main information about entity
+                  data: ({" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TEventData_31142352899099124">
+                    TEventData
+                  </HashLink>
+                  ) - Main information about entity
                 </td>
                 <td>Event is fired when user clicks on an object on the map</td>
               </tr>
@@ -620,9 +650,9 @@ const mapAddinServices: ReactNode = (
                 <td>change</td>
                 <td>
                   data: (
-                  <a href="#TEntityEventData_22932902969493218">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TEntityEventData_22932902969493218">
                     TEntityEventData
-                  </a>
+                  </HashLink>
                   ) - Main information about entity and its state
                 </td>
                 <td>
@@ -652,7 +682,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#IZoneEventData_4986307042482321">IZoneEventData</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IZoneEventData_4986307042482321">
+                    IZoneEventData
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -700,9 +732,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#IDeviceEventData_46524687032941836">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceEventData_46524687032941836">
                     IDeviceEventData
-                  </a>
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -754,9 +786,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#IRouteEventData_7416072736483916">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IRouteEventData_7416072736483916">
                     IRouteEventData
-                  </a>
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -804,7 +836,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#ITripEventData_5823825824970319">ITripEventData</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITripEventData_5823825824970319">
+                    ITripEventData
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -869,9 +903,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#IExceptionsEventData_5042572438828359">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IExceptionsEventData_5042572438828359">
                     IExceptionsEventData
-                  </a>
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -896,9 +930,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>exceptions</td>
                 <td>
-                  <a href="#IExceptionEventData_30321984938642355">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IExceptionEventData_30321984938642355">
                     IExceptionEventData
-                  </a>
+                  </HashLink>
                   []
                 </td>
               </tr>
@@ -981,9 +1015,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>entity</td>
                 <td>
-                  <a href="#IDeviceEventData_46524687032941836">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceEventData_46524687032941836">
                     IDeviceEventData
-                  </a>
+                  </HashLink>
                 </td>
               </tr>
               <tr>
@@ -993,7 +1027,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>location</td>
                 <td>
-                  <a href="#ILocation_8963072152506912">ILocation</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ILocation_8963072152506912">
+                    ILocation
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -1004,11 +1040,25 @@ const mapAddinServices: ReactNode = (
         <h4 id="TEventData_31142352899099124">Type TEventData</h4>
         <pre>
           <code>
-            <a href="#IZoneEvent_5628074791384126">IZoneEvent</a> |{" "}
-            <a href="#IDeviceEvent_2296851980526009">IDeviceEvent</a> |{" "}
-            <a href="#IRouteEvent_2514406342647548">IRouteEvent</a> |{" "}
-            <a href="#ITripEvent_45752359167584244">ITripEvent</a> |{" "}
-            <a href="#IExceptionsEvent_5307836172275417">IExceptionsEvent</a>
+            <HashLink to="/myGeotab/addIns/mapAddIns#IZoneEvent_5628074791384126">
+              IZoneEvent
+            </HashLink>{" "}
+            |{" "}
+            <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceEvent_2296851980526009">
+              IDeviceEvent
+            </HashLink>{" "}
+            |{" "}
+            <HashLink to="/myGeotab/addIns/mapAddIns#IRouteEvent_2514406342647548">
+              IRouteEvent
+            </HashLink>{" "}
+            |{" "}
+            <HashLink to="/myGeotab/addIns/mapAddIns#ITripEvent_45752359167584244">
+              ITripEvent
+            </HashLink>{" "}
+            |{" "}
+            <HashLink to="/myGeotab/addIns/mapAddIns#IExceptionsEvent_5307836172275417">
+              IExceptionsEvent
+            </HashLink>
           </code>
         </pre>
         <p>
@@ -1020,9 +1070,9 @@ const mapAddinServices: ReactNode = (
         <h4 id="TEntityEventData_22932902969493218">Type TEntityEventData</h4>
         <pre>
           <code>
-            <a href="#IDeviceChangeEvent_12603948382694052">
+            <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceChangeEvent_12603948382694052">
               IDeviceChangeEvent
-            </a>
+            </HashLink>
           </code>
         </pre>
         <p>
@@ -1034,11 +1084,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Map Service (
+          Map service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/map"
+            aria-label="Example"
           >
             Example
           </a>
@@ -1061,15 +1112,19 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   setBounds (bounds:{" "}
-                  <a href="#IMapBounds_6809339450241565">IMapBounds</a>):
-                  Promise{"<"}boolean{">"}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMapBounds_6809339450241565">
+                    IMapBounds
+                  </HashLink>
+                  ): Promise{"<"}boolean{">"}
                 </td>
                 <td>Sets map bounds</td>
               </tr>
               <tr>
                 <td>
                   getBounds (): Promise{"<"}
-                  <a href="#IMapBounds_6809339450241565">IMapBounds</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMapBounds_6809339450241565">
+                    IMapBounds
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Gets current map bounds</td>
@@ -1127,9 +1182,9 @@ const mapAddinServices: ReactNode = (
                 <td>
                   <div>
                     viewport: (
-                    <a href="#IChangedViewport_25883856190750576">
+                    <HashLink to="/myGeotab/addIns/mapAddIns#IChangedViewport_25883856190750576">
                       IChangedViewport
-                    </a>
+                    </HashLink>
                     ) - Current map zoom and bounds
                   </div>
                 </td>
@@ -1164,7 +1219,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>bounds</td>
                 <td>
-                  <a href="#IMapBounds_6809339450241565">IMapBounds</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMapBounds_6809339450241565">
+                    IMapBounds
+                  </HashLink>
                 </td>
                 <td>Current map bounds</td>
               </tr>
@@ -1188,14 +1245,18 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>sw</td>
                 <td>
-                  <a href="#IMapLatLng_21765840131830494">IMapLatLng</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMapLatLng_21765840131830494">
+                    IMapLatLng
+                  </HashLink>
                 </td>
                 <td>The southwest corner of the bounding box.</td>
               </tr>
               <tr>
                 <td>ne</td>
                 <td>
-                  <a href="#IMapLatLng_21765840131830494">IMapLatLng</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMapLatLng_21765840131830494">
+                    IMapLatLng
+                  </HashLink>
                 </td>
                 <td>The northeast corner of the bounding box.</td>
               </tr>
@@ -1234,11 +1295,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Tooltip Service (
+          Tooltip service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/tooltip"
+            aria-label="Example"
           >
             Example
           </a>
@@ -1258,17 +1320,24 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   showAt (position:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, pattern:{" "}
-                  <a href="#ITooltip_19241812859555196">ITooltip</a>, sequence:
-                  number): void
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , pattern:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITooltip_19241812859555196">
+                    ITooltip
+                  </HashLink>
+                  , sequence: number): void
                 </td>
                 <td>Shows custom tooltip at certain position on the map</td>
               </tr>
               <tr>
                 <td>
                   show (pattern:{" "}
-                  <a href="#ITooltip_19241812859555196">ITooltip</a>, sequence:
-                  number): void
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITooltip_19241812859555196">
+                    ITooltip
+                  </HashLink>
+                  , sequence: number): void
                 </td>
                 <td>
                   Adds additional information to already shown tooltip on the
@@ -1285,9 +1354,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   setConfig (config:{" "}
-                  <a href="#ITooltipConfig_005607970137291307">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITooltipConfig_005607970137291307">
                     ITooltipConfig
-                  </a>
+                  </HashLink>
                   ): Promise{"<"}boolean{">"}
                 </td>
                 <td>
@@ -1297,9 +1366,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   getConfig (): Promise{"<"}
-                  <a href="#ITooltipConfig_005607970137291307">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITooltipConfig_005607970137291307">
                     ITooltipConfig
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Sets configuration for current application tooltip</td>
@@ -1332,7 +1401,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>image</td>
                 <td>
-                  <a href="#ITooltipImage_12510348054327536">ITooltipImage</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITooltipImage_12510348054327536">
+                    ITooltipImage
+                  </HashLink>
                 </td>
                 <td>
                   Image options that should be shown instead of text in tooltip
@@ -1421,9 +1492,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>device</td>
                 <td>
-                  <a href="#IDeviceTooltipConfig_6978511226108259">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceTooltipConfig_6978511226108259">
                     IDeviceTooltipConfig
-                  </a>
+                  </HashLink>
                 </td>
                 <td>Changes information in devices tooltip</td>
               </tr>
@@ -1467,11 +1538,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          ActionList Service (
+          ActionList service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/action"
+            aria-label="Example"
           >
             Example
           </a>
@@ -1494,11 +1566,13 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   show (position:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, title:
-                  string, items:{" "}
-                  <a href="#IMenuActionItem_4783193308694993">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , title: string, items:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IMenuActionItem_4783193308694993">
                     IMenuActionItem
-                  </a>
+                  </HashLink>
                   []): void
                 </td>
                 <td>Shows custom action menu on certain position</td>
@@ -1506,9 +1580,14 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   attachMenu (menuName:{" "}
-                  <a href="#TMenuType_5476942457483802">TMenuType</a>, handler:{" "}
-                  <a href="#TMenuHandler_4714842508362269">TMenuHandler</a>):
-                  void
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TMenuType_5476942457483802">
+                    TMenuType
+                  </HashLink>
+                  , handler:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TMenuHandler_4714842508362269">
+                    TMenuHandler
+                  </HashLink>
+                  ): void
                 </td>
                 <td>
                   Subscribes on event when one of the MyGeotab map menus is
@@ -1518,9 +1597,14 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   detachMenu (menuName:{" "}
-                  <a href="#TMenuType_5476942457483802">TMenuType</a>, handler?:{" "}
-                  <a href="#TMenuHandler_4714842508362269">TMenuHandler</a>):
-                  void
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TMenuType_5476942457483802">
+                    TMenuType
+                  </HashLink>
+                  , handler?:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TMenuHandler_4714842508362269">
+                    TMenuHandler
+                  </HashLink>
+                  ): void
                 </td>
                 <td>
                   Unsubscribes on event when one of the MyGeotab map menus is
@@ -1662,7 +1746,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>location</td>
                 <td>
-                  <a href="#ILocation_8963072152506912">ILocation</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ILocation_8963072152506912">
+                    ILocation
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -1672,7 +1758,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IMapMenuEventData_24356897535149513">
           Interface IMapMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when map action menu is about to be
@@ -1682,7 +1770,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IZoneMenuEventData_4672500566394">
           Interface IZoneMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when zone action menu is about to be
@@ -1710,7 +1800,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IRouteMenuEventData_9403032927960586">
           Interface IRouteMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when route action menu is about to be
@@ -1738,7 +1830,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IMarkerMenuEventData_490591523581543">
           Interface IMarkerMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when location marker action menu is
@@ -1764,7 +1858,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="IDeviceMenuEventData_08642871445163691">
           Interface IDeviceMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when device action menu is about to be
@@ -1792,7 +1888,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ITripMenuEventData_3804169527088357">
           Interface ITripMenuEventData extends{" "}
-          <a href="#IMenuEventData_851292153483612">IMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuEventData_851292153483612">
+            IMenuEventData
+          </HashLink>
         </h4>
         <p>
           Data that is passed to add-in when trip action menu is about to be
@@ -1820,7 +1918,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>trip</td>
                 <td>
-                  <a href="#ITripData_7739013050032089">ITripData</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ITripData_7739013050032089">
+                    ITripData
+                  </HashLink>
                 </td>
               </tr>
             </tbody>
@@ -1863,10 +1963,18 @@ const mapAddinServices: ReactNode = (
         <h4 id="TMenuHandler_4714842508362269">Type TMenuHandler</h4>
         <code>
           (menuName: string, data:{" "}
-          <a href="#TMenuEventData_1566779089066337">TMenuEventData</a>) ={">"}{" "}
-          <a href="#IMenuActionItem_4783193308694993">IMenuActionItem</a>[] |
-          Promise{"<"}
-          <a href="#IMenuActionItem_4783193308694993">IMenuActionItem</a>[]{">"}
+          <HashLink to="/myGeotab/addIns/mapAddIns#TMenuEventData_1566779089066337">
+            TMenuEventData
+          </HashLink>
+          ) ={">"}{" "}
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuActionItem_4783193308694993">
+            IMenuActionItem
+          </HashLink>
+          [] | Promise{"<"}
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMenuActionItem_4783193308694993">
+            IMenuActionItem
+          </HashLink>
+          []{">"}
         </code>
         <p>
           Function that will be called when certain action menu is about to be
@@ -1876,21 +1984,29 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="TMenuEventData_1566779089066337">Type TMenuEventData</h4>
         <code>
-          <a href="#IMapMenuEventData_24356897535149513">IMapMenuEventData</a> |{" "}
-          <a href="#IZoneMenuEventData_4672500566394">IZoneMenuEventData</a> |{" "}
-          <a href="#IRouteMenuEventData_9403032927960586">
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMapMenuEventData_24356897535149513">
+            IMapMenuEventData
+          </HashLink>{" "}
+          |{" "}
+          <HashLink to="/myGeotab/addIns/mapAddIns#IZoneMenuEventData_4672500566394">
+            IZoneMenuEventData
+          </HashLink>{" "}
+          |{" "}
+          <HashLink to="/myGeotab/addIns/mapAddIns#IRouteMenuEventData_9403032927960586">
             IRouteMenuEventData
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#IMarkerMenuEventData_490591523581543">
+          <HashLink to="/myGeotab/addIns/mapAddIns#IMarkerMenuEventData_490591523581543">
             IMarkerMenuEventData
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#IDeviceMenuEventData_08642871445163691">
+          <HashLink to="/myGeotab/addIns/mapAddIns#IDeviceMenuEventData_08642871445163691">
             IDeviceMenuEventData
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#ITripMenuEventData_3804169527088357">ITripMenuEventData</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#ITripMenuEventData_3804169527088357">
+            ITripMenuEventData
+          </HashLink>
         </code>
         <p>Data that is passed to add-in based on type of menu that is shown</p>
       </div>
@@ -1898,11 +2014,12 @@ const mapAddinServices: ReactNode = (
     <div className="mapAddins__docs-service">
       <div className="mapAddins__docs-service__part">
         <h2>
-          Canvas Service (
+          Canvas service (
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Geotab/sdk-map-addin-samples/tree/master/mapElements"
+            aria-label="Example"
           >
             Example
           </a>
@@ -1921,13 +2038,18 @@ const mapAddinServices: ReactNode = (
             <tbody>
               <tr>
                 <td>
-                  path (path: <a href="#IPathSeg_17730033837595904">IPathSeg</a>
+                  path (path:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IPathSeg_17730033837595904">
+                    IPathSeg
+                  </HashLink>
                   [], zIndex: number):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}
-                  <a href="#ICanvasPathAttributes_7903966618522675">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasPathAttributes_7903966618522675">
                     ICanvasPathAttributes
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Draws SVG path element on the map</td>
@@ -1935,13 +2057,18 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   rect (coords:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, width:
-                  number, height: number, radius: number, zIndex: number):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , width: number, height: number, radius: number, zIndex:
+                  number):{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}
-                  <a href="#ICanvasRectAttributes_9460810613546908">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasRectAttributes_9460810613546908">
                     ICanvasRectAttributes
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Draws SVG rect element on the map</td>
@@ -1949,13 +2076,17 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   circle (coords:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, radius:
-                  number, zIndex: number):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , radius: number, zIndex: number):{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}
-                  <a href="#ICanvasCircleAttributes_8903090928939335">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasCircleAttributes_8903090928939335">
                     ICanvasCircleAttributes
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Draws SVG circle element on the map</td>
@@ -1963,13 +2094,17 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   text (coords:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, text:
-                  string, zIndex: number):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , text: string, zIndex: number):{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}
-                  <a href="#ICanvasTextAttributes_919903973108549">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasTextAttributes_919903973108549">
                     ICanvasTextAttributes
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Draws SVG text element on the map</td>
@@ -1977,15 +2112,21 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   marker (coords:{" "}
-                  <a href="#TPosition_3201977562385554">TPosition</a>, width:
-                  number, height: number, source:{" "}
-                  <a href="#TMarkerSource_7275018139374292">TMarkerSource</a>,
-                  zIndex: number):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
+                  , width: number, height: number, source:{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TMarkerSource_7275018139374292">
+                    TMarkerSource
+                  </HashLink>
+                  , zIndex: number):{" "}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}
-                  <a href="#ICanvasMarkerAttributes_5404855776022532">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasMarkerAttributes_5404855776022532">
                     ICanvasMarkerAttributes
-                  </a>
+                  </HashLink>
                   {">"}
                 </td>
                 <td>Draws custom image element on the map</td>
@@ -2022,7 +2163,10 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>points</td>
                 <td>
-                  <a href="#TPathSegPoint_36185951910039704">TPathSegPoint</a>[]
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPathSegPoint_36185951910039704">
+                    TPathSegPoint
+                  </HashLink>
+                  []
                 </td>
                 <td>
                   Locations or coordinates that should be used in current
@@ -2036,9 +2180,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasElement_6459595766487005">
           Interface ICanvasElement{"<"}T extends{" "}
-          <a href="#TCanvasElementAttributes_5122011616287052">
+          <HashLink to="/myGeotab/addIns/mapAddIns#TCanvasElementAttributes_5122011616287052">
             TCanvasElementAttributes
-          </a>
+          </HashLink>
           {">"}
         </h4>
         <p>New map element object</p>
@@ -2054,7 +2198,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   change (attrs: T):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}T{">"}
                 </td>
                 <td>Changes style attributes of the current map element</td>
@@ -2070,14 +2216,18 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   attach (event:{" "}
-                  <a href="#TCanvasElementEvent_06428007861141372">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TCanvasElementEvent_06428007861141372">
                     TCanvasElementEvent
-                  </a>
+                  </HashLink>
                   , handler: (data:{" "}
-                  <a href="#ICoordinate_5317711472027584">ICoordinate</a>) =
-                  {">"}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICoordinate_5317711472027584">
+                    ICoordinate
+                  </HashLink>
+                  ) ={">"}
                   void):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}T{">"}
                 </td>
                 <td>Attaches event handler to current element event</td>
@@ -2085,14 +2235,18 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>
                   detach (event:{" "}
-                  <a href="#TCanvasElementEvent_06428007861141372">
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TCanvasElementEvent_06428007861141372">
                     TCanvasElementEvent
-                  </a>
+                  </HashLink>
                   , handler?: (data:{" "}
-                  <a href="#ICoordinate_5317711472027584">ICoordinate</a>) =
-                  {">"}
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICoordinate_5317711472027584">
+                    ICoordinate
+                  </HashLink>
+                  ) ={">"}
                   void):{" "}
-                  <a href="#ICanvasElement_6459595766487005">ICanvasElement</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElement_6459595766487005">
+                    ICanvasElement
+                  </HashLink>
                   {"<"}T{">"}
                 </td>
                 <td>Detaches event handler from current element event</td>
@@ -2153,9 +2307,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasRectAttributes_9460810613546908">
           Interface ICanvasRectAttributes extends{" "}
-          <a href="#ICanvasElementStyleAttributes_7918630799407658">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElementStyleAttributes_7918630799407658">
             ICanvasElementStyleAttributes
-          </a>
+          </HashLink>
         </h4>
         <p>Attribute of rect that can be changed for every custom element</p>
         <div className="table-container">
@@ -2191,7 +2345,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>coords</td>
                 <td>
-                  <a href="#TPosition_3201977562385554">TPosition</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
                 </td>
                 <td>Position of the element</td>
               </tr>
@@ -2202,9 +2358,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasTextAttributes_919903973108549">
           Interface ICanvasTextAttributes extends{" "}
-          <a href="#ICanvasElementStyleAttributes_7918630799407658">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElementStyleAttributes_7918630799407658">
             ICanvasElementStyleAttributes
-          </a>
+          </HashLink>
         </h4>
         <p>
           Text element attributes that can be changed for every custom text
@@ -2238,7 +2394,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>coords</td>
                 <td>
-                  <a href="#TPosition_3201977562385554">TPosition</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
                 </td>
                 <td>Position of the element</td>
               </tr>
@@ -2249,9 +2407,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasCircleAttributes_8903090928939335">
           Interface ICanvasCircleAttributes extends{" "}
-          <a href="#ICanvasElementStyleAttributes_7918630799407658">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElementStyleAttributes_7918630799407658">
             ICanvasElementStyleAttributes
-          </a>
+          </HashLink>
         </h4>
         <p>Attribute of circle that can be changed for every custom element</p>
         <div className="table-container">
@@ -2272,7 +2430,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>coords</td>
                 <td>
-                  <a href="#TPosition_3201977562385554">TPosition</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
                 </td>
                 <td>Position of the element</td>
               </tr>
@@ -2283,9 +2443,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasPathAttributes_7903966618522675">
           Interface ICanvasPathAttributes extends{" "}
-          <a href="#ICanvasElementStyleAttributes_7918630799407658">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElementStyleAttributes_7918630799407658">
             ICanvasElementStyleAttributes
-          </a>
+          </HashLink>
         </h4>
         <p>Attribute of path that can be changed for every custom element</p>
         <div className="table-container">
@@ -2301,7 +2461,10 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>path</td>
                 <td>
-                  <a href="#IPathSeg_17730033837595904">IPathSeg</a>[]
+                  <HashLink to="/myGeotab/addIns/mapAddIns#IPathSeg_17730033837595904">
+                    IPathSeg
+                  </HashLink>
+                  []
                 </td>
                 <td>path of the element</td>
               </tr>
@@ -2312,9 +2475,9 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="ICanvasMarkerAttributes_5404855776022532">
           Interface ICanvasMarkerAttributes extends{" "}
-          <a href="#ICanvasElementStyleAttributes_7918630799407658">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasElementStyleAttributes_7918630799407658">
             ICanvasElementStyleAttributes
-          </a>
+          </HashLink>
         </h4>
         <p>Attribute of marker that can be changed for every custom element</p>
         <div className="table-container">
@@ -2360,7 +2523,9 @@ const mapAddinServices: ReactNode = (
               <tr>
                 <td>coords</td>
                 <td>
-                  <a href="#TPosition_3201977562385554">TPosition</a>
+                  <HashLink to="/myGeotab/addIns/mapAddIns#TPosition_3201977562385554">
+                    TPosition
+                  </HashLink>
                 </td>
                 <td>Position of the element</td>
               </tr>
@@ -2381,8 +2546,14 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="TPathSegPoint_36185951910039704">Type TPathSegPoint</h4>
         <code>
-          <a href="#ILocation_8963072152506912">ILocation</a> |{" "}
-          <a href="#ICoordinate_5317711472027584">ICoordinate</a> | number
+          <HashLink to="/myGeotab/addIns/mapAddIns#ILocation_8963072152506912">
+            ILocation
+          </HashLink>{" "}
+          |{" "}
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICoordinate_5317711472027584">
+            ICoordinate
+          </HashLink>{" "}
+          | number
         </code>
         <p>Location or coordinate of the next point</p>
       </div>
@@ -2391,25 +2562,25 @@ const mapAddinServices: ReactNode = (
           Type TCanvasElementAttributes
         </h4>
         <code>
-          <a href="#ICanvasRectAttributes_9460810613546908">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasRectAttributes_9460810613546908">
             ICanvasRectAttributes
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#ICanvasTextAttributes_919903973108549">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasTextAttributes_919903973108549">
             ICanvasTextAttributes
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#ICanvasCircleAttributes_8903090928939335">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasCircleAttributes_8903090928939335">
             ICanvasCircleAttributes
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#ICanvasPathAttributes_7903966618522675">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasPathAttributes_7903966618522675">
             ICanvasPathAttributes
-          </a>{" "}
+          </HashLink>{" "}
           |{" "}
-          <a href="#ICanvasMarkerAttributes_5404855776022532">
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICanvasMarkerAttributes_5404855776022532">
             ICanvasMarkerAttributes
-          </a>
+          </HashLink>
         </code>
       </div>
       <div className="mapAddins__docs-service__part">
@@ -2476,8 +2647,13 @@ const mapAddinServices: ReactNode = (
       <div className="mapAddins__docs-service__part">
         <h4 id="TPosition_3201977562385554">Type TPosition</h4>
         <code>
-          <a href="#ILocation_8963072152506912">ILocation</a> |{" "}
-          <a href="#ICoordinate_5317711472027584">ICoordinate</a>
+          <HashLink to="/myGeotab/addIns/mapAddIns#ILocation_8963072152506912">
+            ILocation
+          </HashLink>{" "}
+          |{" "}
+          <HashLink to="/myGeotab/addIns/mapAddIns#ICoordinate_5317711472027584">
+            ICoordinate
+          </HashLink>
         </code>
       </div>
     </div>
@@ -2491,6 +2667,7 @@ const exampleAddins: ReactNode = (
         target="_blank"
         rel="noreferrer"
         href="https://github.com/Geotab/sdk-map-addin-samples"
+        aria-label="Example"
       >
         Here are some examples
       </a>{" "}
@@ -2499,6 +2676,7 @@ const exampleAddins: ReactNode = (
         target="_blank"
         rel="noreferrer"
         href="https://github.com/Geotab/map-addins-definitions/"
+        aria-label="Definition type files for map add-ins"
       >
         type definition files
       </a>{" "}
@@ -2526,7 +2704,7 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "map-addin-services",
-    summary: "Map Add-In Services",
+    summary: "Map Add-In services",
     details: mapAddinServices,
   },
   {
