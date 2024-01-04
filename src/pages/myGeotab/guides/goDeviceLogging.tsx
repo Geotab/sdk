@@ -4,6 +4,7 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import loggingAccuratelyGraph from "../../../assets/images/myGeotab/goDeviceLogging/go-device-logging_0.png";
+import { HashLink } from "react-router-hash-link";
 
 const loggingAccurately: ReactNode = (
   <div className="paragraph">
@@ -30,7 +31,7 @@ const loggingAccurately: ReactNode = (
       data points. This is the basic principle that underpins the intelligent
       logging of the GO device.
     </p>
-    <h2>Position and Speed</h2>
+    <h2>Position and speed</h2>
     <p>
       The GO device monitors both position and speed at the same time, using the
       approach discussed above, to log the data. By doing so, the speed profile
@@ -38,7 +39,7 @@ const loggingAccurately: ReactNode = (
       determined. This also means the trip will be logged properly around
       corners (yielding a very accurate mileage calculation).
     </p>
-    <h2>Engine Diagnostics</h2>
+    <h2>Engine diagnostics</h2>
     <p>
       The GO device also monitors key engine diagnostic values and applies the
       approach above to log these values (data such as RPM curve, fuel level and
@@ -91,7 +92,7 @@ const technicalDetails: ReactNode = (
       the requirement is that the data between two saved GPS points will be
       acceptably linear in both position and speed.
     </p>
-    <h2>GPS Logging</h2>
+    <h2>GPS logging</h2>
     <p>The curve algorithm is run on the data in the following cases:</p>
     <ul>
       <li>The curve buffer becomes full.</li>
@@ -105,8 +106,8 @@ const technicalDetails: ReactNode = (
       Below is a list of parameters that utilize the curve algorithm for data
       logging.
     </p>
-    <h2>Engine Data Logging</h2>
-    <h3>Curve Logging On Engine Data</h3>
+    <h2>Engine data logging</h2>
+    <h3>Curve logging on engine data</h3>
     <p>
       Where appropriate engine data is logged using the curve-based algorithm.
       The following is a list of the engine data now logged using the
@@ -143,7 +144,7 @@ const technicalDetails: ReactNode = (
       Vehicles will not necessarily return all of the above information; the
       list is based on all the supported engine protocols.
     </p>
-    <h3>Total Fuel Used</h3>
+    <h3>Total fuel used</h3>
     <p>
       “Total fuel used (since telematics device install)” is generic status
       data. No matter how fuel information is received from a particular
@@ -152,14 +153,14 @@ const technicalDetails: ReactNode = (
       additional record, “Total fuel used while idling (since telematics device
       install)”, which is the fuel used while road speed is 0, is also saved on
       ignition off. “Total fuel used (since telematics device install)” (
-      <a hrefLang="../api/reference/#KnownId">KnownId</a>{" "}
+      <HashLink to="/myGeotab/apiReference/objects#KnownId">KnownId</HashLink>{" "}
       {/* TODO: Need to replace this with routing to KnownId page*/}{" "}
       <code className="small-code-sample">DiagnosticDeviceTotalFuelId</code>)
       and “Total fuel used while idling (since telematics device install)”{" "}
       <code className="small-code-sample">DiagnosticDeviceTotalIdleFuelId</code>{" "}
       are the diagnostics used to track fuel consumption.
     </p>
-    <h3>Seat Belt And Odometer</h3>
+    <h3>Seat belt and odometer</h3>
     <p>
       Seat belt and odometer requests are proprietary on most passenger cars. It
       is Geotab's goal to support seat belt and odometer across all the major
@@ -173,7 +174,7 @@ const technicalDetails: ReactNode = (
       belt unbuckled, while a value of 0 represents the seat belt buckled.
       Odometer is logged both on ignition on and ignition off and every hour.
     </p>
-    <h3>Engine Hours</h3>
+    <h3>Engine hours</h3>
     <p>
       It is often important in fleet tracking to look at a vehicle's engine
       hours. While Geotab strives to support this data on as many vehicles as
@@ -215,7 +216,7 @@ const technicalDetails: ReactNode = (
       three types of Odometer StatusData. It is important to distinguish between
       the three in order to utilize them appropriately.
     </p>
-    <h4>Odometer Status Data:</h4>
+    <h4>Odometer status data:</h4>
     <p>
       DiagnosticOdometerAdjustmentId:
       <br></br>
@@ -269,7 +270,7 @@ const technicalDetails: ReactNode = (
       the odometer manipulators. It is calculated as Odometer = [Raw Odometer *
       Odometer Factor] + Odometer Offset.
     </p>
-    <h4>Odometer Manipulators:</h4>
+    <h4>Odometer manipulators:</h4>
     <p>
       Note: If applied, these manipulators will only affect future
       DiagnosticOdometerId records. They cannot correct existing records.
@@ -291,8 +292,8 @@ const technicalDetails: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-  title: "GO Device logging",
-  breadCrumbItems: ["MYG", "Guides", "GO Device logging"],
+  title: "GO Device Logging",
+  breadCrumbItems: ["MYG", "Guides", "GO Device Logging"],
 };
 
 const pageSections: TableOfContentsItem[] = [
@@ -303,7 +304,7 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "technical-details",
-    summary: "Technical Details",
+    summary: "Technical details",
     details: technicalDetails,
   },
 ];
