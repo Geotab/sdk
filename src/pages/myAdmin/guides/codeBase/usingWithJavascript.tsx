@@ -4,6 +4,7 @@ import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import { CodeSample } from "../../../../components/CodeSamplesContainer";
+import { Link } from "react-router-dom";
 
 const overview: ReactNode = (
   <div className="paragraph">
@@ -59,11 +60,10 @@ myAdminApi().call('Authenticate', logonParams, function(user) {
       <code className="small-code-sample">logonParams</code> object and provides
       a callback function to be executed following a successful login. The
       callback function receives an ApiUser object which contains, among other
-      properties, the user's API key (userId) and session ID. See the{" "}
-      <a href="../../api/reference"> {/* ToDo: fix link */}Reference</a>{" "}
+      properties, the user's API key (userId) and session ID. See the reference{" "}
       documentation for more information on the{" "}
-      <code className="small-code-sample">Authenticate</code> method and the{" "}
-      <code className="small-code-sample">ApiUser</code> object.
+      <Link to="/myAdmin/apiReference/methods">Authenticate</Link> method and
+      the <Link to="/myAdmin/apiReference/objects">ApiUser</Link> object.
     </p>
   </div>
 );
@@ -93,35 +93,41 @@ myAdminApi().call('GetDevicePlans', devicePlanParams, function(devicePlans) {
 
 const moreInformation: ReactNode = (
   <div className="paragraph">
-  <p>For more information, see the <a href="../../code-samples/javascript-examples">{/*TODO: fix link */}JavaScript Examples</a> section.</p>
+    <p>
+      For more information, see the{" "}
+      <Link to="/myAdmin/codeSamples/javascriptExamples">
+        JavaScript Examples
+      </Link>{" "}
+      section.
+    </p>
   </div>
 );
 
 const pageTitle: PageTitleProps = {
   title: "Using With JavaScript",
-  breadCrumbItems: ["MYA", "Guides", "Code Base", "Using With JavaScript"]
+  breadCrumbItems: ["MYA", "Guides", "Code Base", "Using With JavaScript"],
 };
 
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "overview",
     summary: "Overview",
-    details: overview
+    details: overview,
   },
   {
     elementId: "step-1:-initialization-&-authentication",
-    summary: "Step 1: Initialization & Authentication",
-    details: step1InitializationAuthentication
+    summary: "Step 1: initialization & authentication",
+    details: step1InitializationAuthentication,
   },
   {
     elementId: "step-2:-making-calls-to-other-methods",
-    summary: "Step 2: Making Calls To Other Methods",
-    details: step2MakingCallsToOtherMethods
+    summary: "Step 2: making calls to other methods",
+    details: step2MakingCallsToOtherMethods,
   },
   {
     elementId: "more-information",
-    summary: "More Information",
-    details: moreInformation
+    summary: "More information",
+    details: moreInformation,
   },
 ];
 
