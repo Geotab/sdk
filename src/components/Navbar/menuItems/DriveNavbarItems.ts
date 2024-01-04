@@ -1,4 +1,3 @@
-// import { IconProps } from "@geotab/react-component-library";
 import { SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { IconCircleInfo, IconPuzzlePiece } from "../icons";
 
