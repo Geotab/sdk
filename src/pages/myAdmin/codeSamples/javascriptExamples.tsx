@@ -3,6 +3,7 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 import myadminApiExample from "../../../assets/images/javascriptExamples/myadminApiExample.png";
+import { Link } from "react-router-dom";
 
 const javascriptCodeExampleSnippet = `<html>
     <body>
@@ -94,18 +95,27 @@ export default function JavascriptExamples() {
         <p>
           <strong>Note</strong>: The Success callback receives the object
           returned by the API as a parameter. The{" "}
-          <a href="../../api/reference">{/*TODO: fix link */}Reference</a> page
+          <Link to="/myAdmin/apiReference/methods">Reference</Link> page
           provides details about the objects returned by each method. In the
           example above, the error callback is called if the login fails. The
           error callback receives two parameters: an error message and an
           “errors” object that contains an array of individual errors that
-          occurred. In the example above, the <code className="small-code-sample">devicePlans</code> object — returned by
-          <code className="small-code-sample">GetDevicePlans</code> — is an array of <code className="small-code-sample">ApiDevicePlans</code>. The device object,
-          returned by <code className="small-code-sample">LookupDevice</code>, is an <code className="small-code-sample">ApiDeviceInstallResult</code>. For more
-          information, see{" "}
-          <a href="../../api/reference"> {/*TODO: fix link */}Reference</a>.{" "}
+          occurred. In the example above, the{" "}
+          <code className="small-code-sample">devicePlans</code> object —
+          returned by
+          <code className="small-code-sample">GetDevicePlans</code> — is an
+          array of <code className="small-code-sample">ApiDevicePlans</code>.
+          The device object, returned by{" "}
+          <code className="small-code-sample">LookupDevice</code>, is an{" "}
+          <code className="small-code-sample">ApiDeviceInstallResult</code>. For
+          more information, see{" "}
+          <Link to="/myAdmin/apiReference/methods">Reference</Link>.{" "}
         </p>
-        <img src={myadminApiExample} alt="MyAdmin Api Example" className="javascriptExamples__myadminApiExampleIMG" />
+        <img
+          src={myadminApiExample}
+          alt="MyAdmin Api Example"
+          className="javascriptExamples__myadminApiExampleIMG"
+        />
       </div>
     </Page>
   );

@@ -335,7 +335,7 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "reconcile-groups-alpha-version",
-    summary: "Reconcile groups - (Alpha version)",
+    summary: "Reconcile groups - (alpha version)",
     details: reconcileGroupsAlphaVersion
   },
   {

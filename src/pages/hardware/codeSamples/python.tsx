@@ -172,12 +172,12 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "spoof-an-external-device",
-    summary: "Spoof an external Device",
+    summary: "Spoof an external device",
     details: spoofAnExternalDevice,
   },
   {
     elementId: "spoof-a-go-device",
-    summary: "Spoof a Go Device",
+    summary: "Spoof a GO device",
     details: spoofAGODevice,
   },
 ];
