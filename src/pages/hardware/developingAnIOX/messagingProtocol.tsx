@@ -1408,13 +1408,13 @@ const sequenceDiagrams: ReactNode = (
 
 const pageTitle: PageTitleProps = {
     "title": "IO Expander Protocol",
-    "breadCrumbItems": ["Hardware", "Developing An IOX", "IO Expander Protocol"]
+    "breadCrumbItems": ["HARDWARE", "GUIDES", "IO EXPANDER PROTOCOL"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "general-description",
-        "summary": "General Description",
+        "summary": "General description",
         "details": generalDescription
     },
     {
@@ -1424,7 +1424,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "waking-up-the-go-device",
-        "summary": "Waking Up The Go Device",
+        "summary": "Waking up the GO device",
         "details": wakingUpTheGoDevice
     },
     {
@@ -1434,7 +1434,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "sequence-diagrams",
-        "summary": "Sequence Diagrams",
+        "summary": "Sequence diagrams",
         "details": sequenceDiagrams
     }
 ];

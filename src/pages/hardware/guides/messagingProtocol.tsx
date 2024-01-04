@@ -3,6 +3,8 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const generalDescription: ReactNode = (
     //ToDo: Update URL for mime protocol
@@ -13,8 +15,8 @@ const generalDescription: ReactNode = (
         <p>All messages since IO Expander Protocol version 1.0 are supported, unless stated otherwise.</p>
         <h3>Interoperability</h3>
         <p>Third-party IOX Add-ons rely on the messages and protocols defined in this document to properly communicate with Geotab firmware. Geotab will endeavor to maintain support for the currently-documented messages and protocol. However, from time to time, Geotab may make changes to such messages and protocols which can potentially impact third-party IOX Add-on implementations. If Geotab makes any such changes, Geotab will use commercially reasonable efforts to provide partners with as much notice of the impending firmware changes as is practical given the circumstances. Geotab accepts no responsibility or liability for third party IOX Add-ons which fail to function properly, or at all, and any and all damages which arise, directly or indirectly, from such failures.</p>
-        <p>Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the <a href="/sdk/hardware/developing-an-iox/mime-protocol/">MIME passthrough messages</a>.</p>
-        <h3>Serial Number</h3>
+        <p>Geotab recommends that all partners who develop their own IOX Add-ons ensure they have the ability to remotely update their firmware. This can be accomplished by sending an update to the IOX Add-on using the <Link to="/hardware/guides/mimeProtocol">MIME passthrough messages</Link>.</p>
+        <h3>Serial number</h3>
         <p>Each custom IOX is assigned a 4-byte Serial Number by the integrators, similar to each car having its own VIN. The 2 Most Significant Bytes of the Serial Number are reported in bytes 3 and 4 of the Poll Response (0x02). The 2 Least Significant Bytes are used to differentiate each IOX connected to the same CAN bus (attached to the same GO device) when the GO device is sending messages targeted for a specific IOX. In other words, the 2 LSB serve as the Address ID, and are included in bits 15 - 0 of the Arbitration ID.</p>
         <p>Integrators are free to leverage any mechanism for the Serial Number assignment to each individual IOX, but Geotab recommends following the process outlined below:</p>
         <ol>
@@ -22,7 +24,7 @@ const generalDescription: ReactNode = (
             <li>Make sure that the 2 LSBs are not equal to '0000'.</li>
             <li>Make sure that you do not already have this value stored in your database of existing serial numbers.</li>
         </ol>
-        <h3>Message Structure</h3>
+        <h3>Message structure</h3>
         <p>Message identification is done with an arbitration ID.</p>
         <p>The Arbitration ID Field for IOX Messages:</p>
         <div className="table-container">
@@ -58,7 +60,7 @@ const generalDescription: ReactNode = (
         <p>IOXs always use their own ID when sending messages. They never send 0x0000. For this reason, IOXs are not produced with Serial Numbers ending in 0x0000.</p>
         <h3>IOX ID</h3>
         <p>Each model of IOX is assigned an IOX ID by Geotab, similar to each model of car having a model name. Integrators shall contact Geotab to get an IOX ID assigned. The IOX ID does not need to be included in the IOX Serial Number. Integrators shall report the IOX ID in byte 7 of the Poll Response (0x02).</p>
-        <h3>Acknowledge Process</h3>
+        <h3>Acknowledge process</h3>
         <ol>
             <li>Each IOX should receive an ACK from the GO device for every message sent. If an ACK is not received within 150 ms, the IOX should repeat the message before sending anything else.</li>
             <li>The IOX must respond to the poll request within 500 ms.</li>
@@ -69,11 +71,11 @@ const generalDescription: ReactNode = (
 const polling: ReactNode = (
     <div className="paragraph">
         <p>After powering up, the GO device will poll all IOXs every 7 seconds. Each IOX must respond to this poll by obeying the ACK rules. Unless otherwise described, most commands can only be sent after the first poll (handshake) is completed with the GO device.</p>
-        <h3>Device Removed</h3>
+        <h3>Device removed</h3>
         <p>If the GO device fails to detect an IOX that used to be connected (that is, the IOX was disconnected), the GO device will remove the IOX from its internal database after 5 attempts (35 seconds) and will make the slot available for a new IOX that can be connected at any time.</p>
-        <h3>New Device</h3>
+        <h3>New device</h3>
         <p>Any IOX that is connected to the GO device must respond to the poll request. The GO device will notice the new IOXs and add them to its internal database.</p>
-        <h3>Undocumented Messages</h3>
+        <h3>Undocumented messages</h3>
         <p>An IOX could receive messages from the GO device that are not documented here. The IOX must be capable of handling this situation by ignoring/discarding the unknown messages.</p>
     </div>
 );
@@ -81,7 +83,7 @@ const polling: ReactNode = (
 const wakingUpTheGoDevice: ReactNode = (
     //ToDo: Update URLs
     <div className="paragraph">
-        <p>Every 1 second, the GO wakes up for 2 ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an <a href="#rx-data-0x0c">RX Data (0x0C)</a> message every 1 ms until the GO device notices the activity and sends the <a href="#wakeup-0x04">Wakeup (0x04)</a> message to the IOX.</p>
+        <p>Every 1 second, the GO wakes up for 2 ms to look for CAN activity on the IOX bus. The IOX can wake up the GO by sending an <HashLink to="#rx-data-0x0c">RX Data (0x0C)</HashLink> message every 1 ms until the GO device notices the activity and sends the <HashLink to="#wakeup-0x04">Wakeup (0x04)</HashLink> message to the IOX.</p>
     </div>
 );
 
@@ -92,9 +94,9 @@ const commands: ReactNode = (
         <p>Directed to all devices. Instructs all devices to reset and behave as if they have just powered up. IOXs should discard any setup information they might have received, de-assert hardware control lines, and open their relays.</p>
         <h3>Poll (0x01)</h3>
         <p>Sent by the GO device in a broadcast fashion to all units to check if they are there.</p>
-        <h3>Poll Response (0x02)</h3>
+        <h3>Poll response (0x02)</h3>
         <p>Sent by an IOX when a poll is received. The ACK procedure must be obeyed. The first poll response after powerup (when Byte 0 Bit 0 is 1) contains all 8 bytes. All subsequent poll responses (when Byte 0 Bit 0 is 0) only contain the first byte.</p>
-        <h4>Payload - Poll Response</h4>
+        <h4>Payload - poll response</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -178,9 +180,9 @@ const commands: ReactNode = (
             </table>
         </div>
         <p>When the "Go to Sleep" command is received, but before actually going to sleep, the devices will indicate they are going to sleep through the indicated bit. This bit is cleared on wakeup.</p>
-        <h3>Additional Info (0x03)</h3>
+        <h3>Additional info (0x03)</h3>
         <p>Sent by the IOX after an ACK for the first poll is received. This message is not strictly required for operation. However, sending of this message is required if any version information is to be reported, including: Product, Hardware, Firmware Major, Firmware Minor, or Version Control.</p>
-        <h4>Payload - Additional Info</h4>
+        <h4>Payload - additional info</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -219,13 +221,13 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Wakeup (0x04)</h3>
+        <h3 id="wakeup-0x04">Wakeup (0x04)</h3>
         <p>Wakes up all the IOXs from Sleep Mode. Is sent by the GO at least twice within a space of 50 ms. Currently the GO device sends this message 5 times with 10 ms intervals.</p>
         <h3>Sleep (0x05)</h3>
         <p>Causes all IOXs to go into Sleep Mode. Devices will enter Sleep Mode no sooner than 2 seconds, and not more than 20 seconds, after receiving this command. In the meantime, they will report through the poll response that they are going to sleep.</p>
-        <h3>TX Data (0x0B)</h3>
-        <p>Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure such as <a href="/sdk/hardware/developing-an-iox/mime-protocol/">MIME</a>.</p>
-        <h4>Payload - TX Data</h4>
+        <h3>TX data (0x0B)</h3>
+        <p>Data sent from the GO device to the addressed IOX. The contents of this payload may follow a higher level protocol structure such as <Link to="/hardware/guides/mimeProtocol">MIME</Link>.</p>
+        <h4>Payload - TX data</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -242,9 +244,9 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>RX Data (0x0C)</h3>
-        <p>Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as <a href="/sdk/hardware/developing-an-iox/mime-protocol/">MIME</a>. The 0x0C message series start and end with a Information Type 1 - Packet Wrapper <a href="#iox-requeststatus-0x25">0x25 message</a>.</p>
-        <h4>Payload - RX Data</h4>
+        <h3 id="rx-data-0x0c">RX data (0x0C)</h3>
+        <p>Data sent from an IOX to the GO device. The GO will reply with an ACK. The contents of this payload may follow a higher level protocol structure such as <Link to="/hardware/guides/mimeProtocol">MIME</Link>. The 0x0C message series start and end with a Information Type 1 - Packet Wrapper <HashLink to="#iox-requeststatus-0x25">0x25 message</HashLink>.</p>
+        <h4>Payload - RX data</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -288,7 +290,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Application Specific Data (0x1C)</h3>
+        <h3>Application specific data (0x1C)</h3>
         <p>Sent by the GO device after a packet wrapped passthrough message attempt to the server. A 'rejected' response from the modem typically means it is not connected. If the message is 'accepted', this means it was added to the modem's TCP socket buffer. It is NOT a confirmation that the message was successfully sent.</p>
         <h4>Type 0: Modem Transmission Result</h4>
         <div className="table-container">
@@ -319,7 +321,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>IOX Single Frame Log Data (0x1D)</h3>
+        <h3>IOX single frame log data (0x1D)</h3>
         <p>Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <h4>Payload</h4>
         <div className="table-container">
@@ -342,7 +344,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Log Type: 0 (GenericDataRecord)</h4>
+        <h4>Log type: 0 (GenericDataRecord)</h4>
         <p>Used to request the GO log normal status data.</p>
         <div className="table-container">
             <table>
@@ -368,7 +370,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Log Type: 3 (PriorityDataRecord)</h4>
+        <h4>Log type: 3 (PriorityDataRecord)</h4>
         <p>Used to request the GO log status data and also send via Iridium, if available.</p>
         <div className="table-container">
             <table>
@@ -394,7 +396,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Log Type: 1 (ExternalDeviceConnectionStatus)</h4>
+        <h4>Log type: 1 (ExternalDeviceConnectionStatus)</h4>
         <p>Used to identify the service running on the IOX. Required to use the passthrough channel to communicate with MyGeotab.</p>
         <div className="table-container">
             <table>
@@ -452,8 +454,8 @@ const commands: ReactNode = (
         <p>Binary Data Packet Wrapping: 0: The passthrough data from MyGeotab will be passed to the external device without modification. 1: The passthrough data from MyGeotab will be wrapped in a serial protocol before being sent to the external device. Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different packet sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from MyGeotab. The maximum packet size currently supported is 1000 bytes.</p>
         <p>For payloads with a length of 0 - 255 bytes, this format is used: | | Bytes | Position | | — | — | — | | STX (0x02) | 1 | 0 | | Message Type = 0x23 | 1 | 1 | | Message Body Length = x | 1 | 2 | | Binary Data | x | 3 | | Checksum | 2 | 3+x | | ETX (0x03) | 1 | 5+x |</p>
         <p>For payloads with a length of 256 - 1000 bytes, this format is used: | | Bytes | Position | | — | — | — | | STX (0x02) | 1 | 0 | | Message Type = 0x25 | 1 | 1 | | Message Body Length = x | 2 | 2 | | Binary Data | x | 4 | | Checksum | 2 | 4+x | | ETX (0x03) | 1 | 6+x |</p>
-        <p>More details on the checksum can be found here: <a href="/sdk/hardware/addon-protocols/rs232-usb/#checksum">Add-On Protocol - RS232 {'&'} USB</a></p>
-        <h4>Log Type: 2 (GenericFaultRecord)</h4>
+        <p>More details on the checksum can be found here: <HashLink to="/hardware/protocolReference/rs232-usb/#checksum">Add-On Protocol - RS232 {'&'} USB</HashLink></p>
+        <h4>Log type: 2 (GenericFaultRecord)</h4>
         <p>Typically used to log a fault condition that needs to be escalated to a supervisor for human intervention.</p>
         <div className="table-container">
             <table>
@@ -487,9 +489,9 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>IOX Multi-Frame Log Data (0x1E)</h3>
+        <h3>IOX multi-frame log data (0x1E)</h3>
         <p>Sent from the IOX to the GO device when the IOX wants create a log that cannot fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p>
-        <h4>Payload First Frame</h4>
+        <h4>Payload first frame</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -518,7 +520,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Payload Subsequent Frames</h4>
+        <h4>Payload subsequent frames</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -539,7 +541,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Log Types</h4>
+        <h4>Log types</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -584,7 +586,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 0 Third Party Free Format Data</h4>
+        <h4>Type 0 third party free format data</h4>
         <p>The maximum size is 27 bytes. Rate limit is 500 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <div className="table-container">
             <table>
@@ -602,7 +604,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 2 Bluetooth Record</h4>
+        <h4>Type 2 bluetooth record</h4>
         <p>Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <div className="table-container">
             <table>
@@ -628,8 +630,8 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p>Further details can be found here: <a href="/sdk/hardware/addon-protocols/ble/">Add-On Protocol - BLE</a></p>
-        <h4>Type 11 Curve Logging</h4>
+        <p>Further details can be found here: <Link to="/hardware/protocolReference/ble/">Add-On Protocol - BLE</Link></p>
+        <h4>Type 11 curve logging</h4>
         <p>This message can be used to send the 4-byte (int32_t) data that is curve logged by the GO. Additional information about curve logging can be found here: <a href="https://github.com/Geotab/curve" target="_blank" rel="noreferrer">Curve Logging</a></p>
         <div className="table-container">
             <table>
@@ -713,7 +715,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 12 Logging With Timestamp</h4>
+        <h4>Type 12 logging with timestamp</h4>
         <p>This message can be used to send status data with a timestamp. Possible use cases:</p>
         <ol>
             <li>Store data in the IOX while the GO device is asleep and send all data after waking up</li>
@@ -755,7 +757,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 13 Protobuf Data</h4>
+        <h4>Type 13 protobuf data</h4>
         <p>Supported from Add-On protocol version 1.2.</p>
         <p>This message allows an IOX to send a protobuf-encoded payload to the GO device. It supports a publish/subscribe model of vehicle status information. The GO device responds with GO Multi-Frame Data (0x27) - Type 13. <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto" target="_blank" rel="noreferrer">Protobuf Schema</a>. The currently supported topics are:</p>
         <div className="table-container">
@@ -832,7 +834,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Buzzer Beep (0x24)</h3>
+        <h3>Buzzer beep (0x24)</h3>
         <p>Sent from an IOX to the GO device to request the buzzer beep with the given parameters.</p>
         <h4>Payload</h4>
         <div className="table-container">
@@ -859,7 +861,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>IOX Request/Status (0x25)</h3>
+        <h3>IOX request/status (0x25)</h3>
         <p>Sent from the IOX to the GO device to inform the GO device of events or status changes.</p>
         <h4>Payload</h4>
         <div className="table-container">
@@ -882,7 +884,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 0 - Busy</h3>
+        <h3>Information type 0 - busy</h3>
         <p>This message indicates to the GO device that the issuing IOX is busy with a critical task and that the GO should not enter the sleep state. The IOX should send this message again to release the GO device once it has completed its critical tasks.</p>
         <div className="table-container">
             <table>
@@ -908,7 +910,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 1 - Packet Wrapper</h3>
+        <h3>Information type 1 - packet wrapper</h3>
         <p>This is used to send a packet of up to 1023 bytes of binary data through the GO device to MyGeotab.</p>
         <p>Use cases:</p>
         <ol>
@@ -940,7 +942,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 2 - Request GO Device Data Message</h3>
+        <h3>Information type 2 - request GO device data message</h3>
         <p>This message is used by an IOX which requires vehicle information from the GO device. The GO device responds with a GO Multi-Frame Data (0x27) - Type 2 message.</p>
         <div className="table-container">
             <table>
@@ -962,7 +964,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 3 - Connect And Send Records</h3>
+        <h3>Information type 3 - connect and send records</h3>
         <p>This message requests the GO modem initiate a connection to the server.</p>
         <div className="table-container">
             <table>
@@ -984,7 +986,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 4 - Request VIN Message</h3>
+        <h3>Information type 4 - request VIN message</h3>
         <p>An IOX uses this message to request the vehicle's VIN from the GO device. The GO device responds with a GO Multi-frame Data (0x27) - Type 3 message.</p>
         <div className="table-container">
             <table>
@@ -1006,7 +1008,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Information Type 12 - Request Identification Of Go Device, Versions</h3>
+        <h3>Information type 12 - request identification of GO device, versions</h3>
         <p>Supported from protocol version 1.1.</p>
         <p>Sent from the IOX to the GO device requesting the identification information. The GO device responds with a GO Multi-Frame Data (0x27) - Type 12 message.</p>
         <div className="table-container">
@@ -1037,7 +1039,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>GO Status Information (0x26)</h3>
+        <h3>GO status information (0x26)</h3>
         <p>Sent from the GO device to the IOX to pass information the IOX may need. This is a broadcast message. It is sent once any corresponding information type changes.</p>
         <h4>Payload</h4>
         <div className="table-container">
@@ -1060,7 +1062,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Information Type 0 - Ignition</h4>
+        <h4>Information type 0 - ignition</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -1085,7 +1087,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Information Type 1 - Modem Availability</h4>
+        <h4>Information type 1 - modem availability</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -1110,9 +1112,9 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>GO Multi-Frame Data (0x27)</h3>
+        <h3>GO multi-frame data (0x27)</h3>
         <p>Sent from the GO device to the IOX when the GO device wants to transfer data that does not fit into a single CAN frame. The first frame contains the Type and Length. All frames start with a Frame Counter that is an incrementing sequence number. The first frame always starts with 0x00.</p>
-        <h4>Payload First Frame</h4>
+        <h4>Payload first frame</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -1141,7 +1143,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Payload Subsequent Frames</h4>
+        <h4>Payload subsequent frames</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -1162,7 +1164,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Info Types</h4>
+        <h4>Info types</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -1203,7 +1205,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 2 GO Device Data</h4>
+        <h4>Type 2 GO device data</h4>
         <p>Sent in response to an IOX Request(0x25) message with a Type Request GO Device Data Message (0x02).</p>
         <div className="table-container">
             <table>
@@ -1301,7 +1303,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 12 GO Info</h4>
+        <h4>Type 12 GO info</h4>
         <p>Supported from protocol version 1.1. Sent in response to IOX Request/Status (0x25) - Type 12.</p>
         <h5>Payload Id = 0</h5>
         <div className="table-container">
@@ -1382,7 +1384,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Type 13 Protobuf Data</h4>
+        <h4>Type 13 protobuf data</h4>
         <p>Supported from protocol version 1.2.</p>
         <p>This message allows a GO device to send a protobuf-encoded payload to the IOX. It supports a publish/subscribe model of vehicle status information. It is a response to GO Multi-Frame Data (0x1E) - Type 13. <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto" target="_blank" rel="noreferrer">Protobuf Schema</a>.</p>
     </div>
@@ -1394,9 +1396,9 @@ const sequenceDiagrams: ReactNode = (
         <p><img src="https://geotab.github.io/sdk/hardware/developing-an-iox/uml_handshake.png" alt=""/></p>
         <h3>Sleep/Wake</h3>
         <p><img src="https://geotab.github.io/sdk/hardware/developing-an-iox/uml_sleep_wake.png" alt=""/></p>
-        <h3>Data Logging</h3>
+        <h3>Data logging</h3>
         <p><img src="https://geotab.github.io/sdk/hardware/developing-an-iox/uml_data_logging.png" alt=""/></p>
-        <h3>GO Info</h3>
+        <h3>GO info</h3>
         <p><img src="https://geotab.github.io/sdk/hardware/developing-an-iox/uml_go_info.png" alt=""/></p>
         <h3>PubSub</h3>
         <p><img src="https://geotab.github.io/sdk/hardware/developing-an-iox/uml_pubsub.png" alt=""/></p>
@@ -1406,14 +1408,14 @@ const sequenceDiagrams: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "IO Expander Protocol",
-    "breadCrumbItems": ["Hardware", "Guides", "IO Expander Protocol"]
+    "title": "IO EXPANDER PROTOCOL",
+    "breadCrumbItems": ["HARDWARE", "GUIDES", "IO EXPANDER PROTOCOL"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "general-description",
-        "summary": "General Description",
+        "summary": "General description",
         "details": generalDescription
     },
     {
@@ -1423,7 +1425,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "waking-up-the-go-device",
-        "summary": "Waking Up The Go Device",
+        "summary": "Waking up the GO device",
         "details": wakingUpTheGoDevice
     },
     {
@@ -1433,7 +1435,7 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         "elementId": "sequence-diagrams",
-        "summary": "Sequence Diagrams",
+        "summary": "Sequence diagrams",
         "details": sequenceDiagrams
     }
 ];
