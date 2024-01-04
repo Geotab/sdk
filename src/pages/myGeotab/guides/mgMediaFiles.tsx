@@ -106,7 +106,7 @@ const objectModel: ReactNode = (
       </table>
     </div>
     <p>*Required when adding</p>
-    <h4>Solution Id</h4>
+    <h4>Solution id</h4>
     <p>
       A SolutionId must be created before the Storage API methods can be used
       within your solution. This encoded GUID is used to register and identify
@@ -120,6 +120,7 @@ const objectModel: ReactNode = (
         target="_blank"
         rel="noreferrer"
         href="https://geotab.github.io/sdk/software/api/runner.html#sample:generate-addin-guid"
+        aria-label="Generate addIn guid example"
       >
         example
       </a>
@@ -295,7 +296,7 @@ const security: ReactNode = (
       <code className="small-code-sample">MediaFile</code> and{" "}
       <code className="small-code-sample">Tag</code> related requests.
     </p>
-    <h3>Security Clearances</h3>
+    <h3>Security clearances</h3>
     <p>
       There are two security clearances applying to media files. By default only
       administrator clearance will be able to modify files, while clearances
@@ -426,12 +427,12 @@ const api: ReactNode = (
 
 const limits: ReactNode = (
   <div className="paragraph">
-    <h3>Result Limit</h3>
+    <h3>Result limit</h3>
     <p>
       A maximum of 10,000 MediaFile objects will be returned from Get:MediaFile
       and/or GetFeed:MediaFile requests.
     </p>
-    <h3>Rate Limit</h3>
+    <h3>Rate limit</h3>
     <p>
       <b>:MediaFile</b> 1000 requests per minute, per user
     </p>
@@ -449,7 +450,7 @@ const limits: ReactNode = (
       <b>UploadMediaFile</b> 60 file upload requests per minute, per
       user 10,000 file uploads per day, per user
     </p>
-    <h3> Size Limit</h3>
+    <h3> Size limit</h3>
     <p>
       Image files (.png, .jpg, .gif, .webp) are limited to 10MB. Video files
       (.mp4) are limited to 50MB.
@@ -471,12 +472,12 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "object-model",
-    summary: "Object Model",
+    summary: "Object model",
     details: objectModel,
   },
   {
     elementId: "supported-file-types",
-    summary: "Supported File Types",
+    summary: "Supported file types",
     details: supportedFileTypes,
   },
   {
@@ -519,7 +520,7 @@ export default function MgMediaFiles() {
             <code className="small-code-sample">Remove</code>,{" "}
             <code className="small-code-sample">GetFeed</code>).
           </li>
-          <br></br>
+          <br />
           <li>
             The binary data of the media file. This the the actual file, for
             example a jpeg image. The binary files are interacted with using
