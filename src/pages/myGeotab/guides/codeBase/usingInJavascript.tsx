@@ -139,7 +139,7 @@ const theCallMethodArguments: ReactNode = (
 const multicall: ReactNode = (
     <div className="paragraph">
         <p>
-            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the <HashLink to="/myGeotab/guides/concepts#authentication">MultiCall</HashLink> documentation. Additionally, you can find a JavaScript MultiCall example <HashLink to="/myGeotab/guides/concepts#api-client-support">here</HashLink>.
+            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the <HashLink to="/myGeotab/guides/concepts#multicall">MultiCall</HashLink> documentation. Additionally, you can find a JavaScript MultiCall example <HashLink to="/myGeotab/guides/concepts#api-client-support">here</HashLink>.
         </p>
     </div>
 );

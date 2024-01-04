@@ -41,9 +41,9 @@ import MyAdminJavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExa
 import MyAdminDotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
+import MessagingProtocol from "./pages/hardware/guides/messagingProtocol";
+import MimeProtocol  from "./pages/hardware/guides/mimeProtocol";
 import HardwareDesignGuide from "./pages/hardware/guides/hardwareDesignGuide";
-import HardwareIOExpanderProtocol from "./pages/hardware/guides/messagingProtocol";
-import MIMEProtocol from "./pages/hardware/guides/MIMEProtocol";
 import Ble from "./pages/hardware/protocolReference/ble";
 import Can from "../src/pages/hardware/protocolReference/can";
 import Rs232Usb from "./pages/hardware/protocolReference/rs232Usb";
@@ -127,9 +127,9 @@ function App() {
           <Route path="/hardware/introduction" Component={HardwareIntroduction} />
 
           {/* Hardware > Guides Routes */}
-          <Route path="/hardware/guides/messagingProtocol" Component={HardwareIOExpanderProtocol} />
+          <Route path="/hardware/guides/messagingProtocol" Component={MessagingProtocol} />
           <Route path="/hardware/guides/designGuide" Component={HardwareDesignGuide} />
-          <Route path="/hardware/guides/MIMEProtocol" Component={MIMEProtocol} />
+          <Route path="/hardware/guides/MIMEProtocol" Component={MimeProtocol} />
 
           {/* Hardware > Protocol Reference Routes */}
           <Route path="/hardware/protocolReference/can" Component={Can} />

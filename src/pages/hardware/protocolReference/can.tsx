@@ -8,14 +8,14 @@ import { CodeSample } from "../../../components/CodeSamplesContainer";
 const integrationProcess: ReactNode = (
     <div className="paragraph">
         <p>The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data CAN Protocol:</p>
-        <h2>1 - Request External Device ID</h2>
+        <h2>1 - Request external device ID</h2>
         <p>Contact <a href="mailto:soleng@geotab.com" target="_blank" rel="noopener noreferrer">Geotab Solution Engineering team</a> to obtain an External Device ID for your third-party device. This will
             allow us to uniquely identify your device when it connects to a GO device. Thereafter, any connection established by that type of external device will be recorded as Status Data in MyGeotab
             under the naming format "[External device name] device connected".</p>
-        <h2>2 - Request Status Data IDs</h2>
+        <h2>2 - Request status data IDs</h2>
         <p>There is an extensively defined Status Data ID list which can be found at <a href="https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080"
             target="_blank" rel="noopener noreferrer">MyGeotab Diagnostics</a>. Specifics regarding Status Data ID implementations can be found on the README sheet. </p>
-        <h2>3 - Implement the Third-Party CAN Protocol</h2>
+        <h2>3 - Implement the third-party CAN protocol</h2>
         <p>Implement the Third-Party CAN Protocol in the external device as described below. The CAN speed to be used will be 250K or 500K, and the external device should have its CAN transceiver set to
             normal mode. The IOX CAN will auto-baud between 250K and 500K.
         </p>
@@ -50,7 +50,7 @@ const integrationProcess: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Data Length (DLC)</h3>
+        <h3>Data length (DLC)</h3>
         <p>Indicates how many bytes of data are being sent (up to a maximum of 8).</p>
         <h3>Data</h3>
         <p>All values must be sent with the least significant byte first.</p>
@@ -76,7 +76,7 @@ const integrationProcess: ReactNode = (
 
 const messagesFromGoDevice: ReactNode = (
     <div className="paragraph">
-        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02: Third-Party Data Acknowledge</h2>
+        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg type 0x02: Third-party data acknowledge</h2>
         <p>Issued by the GO device upon receipt of Third-Party Data from the external device.</p>
         <div className="table-container">
             <table>
@@ -127,7 +127,7 @@ const messagesFromGoDevice: ReactNode = (
 
 const messagesFromExternalDevice: ReactNode = (
     <div className="paragraph">
-        <h2 id="msg-type-0x81-third-party-device-id">Msg Type 0x81: Third-Party Device ID</h2>
+        <h2 id="msg-type-0x81-third-party-device-id">Msg type 0x81: Third-party device ID</h2>
         <p>Issued by the external device upon powerup once every second until an Acknowledge message (Msg Type 0x02) is received.</p>
         <div className="table-container">
             <table>
@@ -177,7 +177,7 @@ const messagesFromExternalDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg Type 0x80: Third-Party Data as Status Data</h2>
+        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg type 0x80: Third-party data as status data</h2>
         <p>Issued by the external device whenever it wants Third-Party Data saved on the GO device. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <div className="table-container">
             <table>
@@ -231,9 +231,9 @@ const messagesFromExternalDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x82-free-format-third-party-data">Msg Type 0x82: Free Format Third-Party Data</h2>
+        <h2 id="msg-type-0x82-free-format-third-party-data">Msg type 0x82: Free format third-party data</h2>
         <p>Currently not implemented.</p>
-        <h2 id="msg-type-0x87-third-party-data-as-priority-status-data">Msg Type 0x87: Third-Party Data as Priority Status Data</h2>
+        <h2 id="msg-type-0x87-third-party-data-as-priority-status-data">Msg type 0x87: Third-party data as priority status data</h2>
         <p>Priority Status Data follows an expedited processing workflow on the GO device, but will otherwise be treated the same as the 0x80 Status Data message. It will also be logged using an Iridium modem connection, if available.</p>
         <div className="table-container">
             <table>
@@ -329,7 +329,7 @@ const messagesFromMyGeotab: ReactNode = (
 
 const appendix: ReactNode = (
     <div className="paragraph">
-        <h2 id="appendix-a-raw-message-data-example-for-iox-can">Appendix A: Raw Message Data Example For IOX-CAN</h2>
+        <h2 id="appendix-a-raw-message-data-example-for-iox-can">Appendix A: Raw message data example for IOX-CAN</h2>
         <code className="small-code-sample">
             Third-Party Device ID from external device (4208 is a test Device ID).<br />
             (Device ID: 4208 = 0x1070)<br />
@@ -362,22 +362,22 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "integration-process",
-        "summary": "Integration Process",
+        "summary": "Integration process",
         "details": integrationProcess
     },
     {
         "elementId": "messages-from-go-device",
-        "summary": "Messages From GO Device",
+        "summary": "Messages from GO device",
         "details": messagesFromGoDevice
     },
     {
         "elementId": "messages-from-external-device",
-        "summary": "Messages From External Device",
+        "summary": "Messages from external device",
         "details": messagesFromExternalDevice
     },
     {
         "elementId": "messages-from-mygeotab",
-        "summary": "Messages From MyGeotab",
+        "summary": "Messages from MyGeotab",
         "details": messagesFromMyGeotab
     },
     {
