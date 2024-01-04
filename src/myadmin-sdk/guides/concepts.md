@@ -221,3 +221,9 @@ To get the next page, pass in the cursor returned in the result object of the pr
 ```    
 
 For `GET` requests, use the query parameter `cursor`.
+
+## Maximum Number of Results
+
+Most unpaginated endpoints (see Pagination above) will be limited to 100,000 results (as of early 2024). However, some endpoints that already return more than 100,000 results (prior to 2024) will be grandfathered-in, to preserve API backwards-compatibility. Geotab may work with integrators in the future to work towards applying record limits to these grandfathered-in endpoints as well. So, integrators are encouraged to move to paginated versions of endpoints, ideally, or to generally avoid making requests that return large numbers of results.
+
+The goal of pagination and these record limits is to improve the stability/performance of the API for all.
