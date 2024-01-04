@@ -1,24 +1,5 @@
-import { IconProps } from "@geotab/react-component-library";
-// import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
-import { ComponentType } from "react";
-import { IconCircleInfo, IconCodeBox, IconDocument, IconDocumentWithMagnifyingGlass, IconStar } from "./icons";
-
-// TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
-    id: number;
-    isTitle?: boolean;
-    label: string;
-    route?: string;
-    externalRoute?: string;
-    level: number;
-    order: number;
-    userTypes: string[];
-    roles: string[];
-    Icon?: ComponentType<IconProps>;
-    Pill?: ComponentType<any>;
-    onClick?: (value?: unknown) => void;
-    children?: SideNavigationMenuItemType[];
-};
+import { SideNavigationMenuItemType } from "@geotab/react-component-library";
+import { IconCircleInfo, IconCodeBox, IconDocument, IconDocumentWithMagnifyingGlass, IconStar } from "../icons";
 
 export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
     {

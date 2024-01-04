@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import MenuContext from "../../menuContext";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
 export default function Header(props: any) {
-  const { active, setActive } = useContext(MenuContext);
+  const { activeSiteSection, setActiveSiteSection } = useContext(MenuContext);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
   const [isLanding, setIsLanding] = useState(props.isLandingPage);
 
@@ -21,7 +21,7 @@ export default function Header(props: any) {
   };
 
   const handleLinkClick = (target: string) => {
-    setActive(target);
+    setActiveSiteSection(target);
     setIsLanding(false);
   };
 
@@ -34,7 +34,7 @@ export default function Header(props: any) {
         <div className="header-menu-tabs">
           <div
             className={`header-menu-tab ${
-              active === HeaderSections.MyGeotab ? "active-button" : ""
+              activeSiteSection === HeaderSections.MyGeotab ? "active-button" : ""
             }`}
           >
             <Link
@@ -46,7 +46,7 @@ export default function Header(props: any) {
           </div>
           <div
             className={`header-menu-tab ${
-              active === HeaderSections.MyAdmin ? "active-button" : ""
+              activeSiteSection === HeaderSections.MyAdmin ? "active-button" : ""
             }`}
           >
             <Link
@@ -58,7 +58,7 @@ export default function Header(props: any) {
           </div>
           <div
             className={`header-menu-tab ${
-              active === HeaderSections.Drive ? "active-button" : ""
+              activeSiteSection === HeaderSections.Drive ? "active-button" : ""
             }`}
           >
             <Link
@@ -70,7 +70,7 @@ export default function Header(props: any) {
           </div>
           <div
             className={`header-menu-tab ${
-              active === HeaderSections.Hardware ? "active-button" : ""
+              activeSiteSection === HeaderSections.Hardware ? "active-button" : ""
             }`}
           >
             <Link

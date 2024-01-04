@@ -1,24 +1,5 @@
-import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconProps, IconQuestionSupport } from "@geotab/react-component-library";
-// import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
-import { ComponentType } from "react";
-import { IconCodeTerminal, IconMyAShort } from "./icons";
-
-// TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
-    id: number;
-    isTitle?: boolean;
-    label: string;
-    route?: string;
-    externalRoute?: string;
-    level: number;
-    order: number;
-    userTypes: string[];
-    roles: string[];
-    Icon?: ComponentType<IconProps>;
-    Pill?: ComponentType<any>;
-    onClick?: (value?: unknown) => void;
-    children?: SideNavigationMenuItemType[];
-};
+import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconQuestionSupport, SideNavigationMenuItemType } from "@geotab/react-component-library";
+import { IconCodeTerminal, IconMyAShort } from "../icons";
 
 export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
     {
@@ -33,17 +14,6 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
         // TODO: UPDATE THE URL IF NEEDED
         onClick: () => window.open("https://geotab.github.io/sdk/software/api/runner.html", "_blank")
     },
-    // {
-    //     id: 1,
-    //     label: "Geotab Apps",
-    //     route: "/myGeotab/whatsNew",
-    //     level: 0,
-    //     order: 0,
-    //     userTypes: [],
-    //     roles: [],
-    //     Icon: IconGrid,
-    //     onClick: () => alert("Installation clicked")
-    // },
     {
         id: 1,
         label: "Geotab Apps",
