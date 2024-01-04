@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { Page } from "../../../../components";
 import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
-import Accordion from "../../../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
@@ -162,8 +161,6 @@ export default function usingInDotnet() {
                 {" "}<a href="http://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreferrer">JSON</a> format. The .NET library provided will automatically handle the JSON serialization
                 and deserialization into MyGeotab objects.
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

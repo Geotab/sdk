@@ -3,7 +3,6 @@ import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
-import Accordion from "../../components/Accordion/Accordion";
 
 const introduction: ReactNode = (
   <div className="paragraph">
@@ -83,8 +82,8 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
       transfer from GO device to Add-On.
     </p>
 
-    <div className="hardwareIntroduction__table-container">
-      <table className="hardwareIntroduction__table center-tableItem">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>IOX Type</th>
@@ -255,14 +254,6 @@ export default function Introduction() {
       section={HeaderSections.Hardware}
       pageTitle={pageTitle}
       tableOfContents={pageSections}
-    >
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
-    </Page>
+    />
   );
 }

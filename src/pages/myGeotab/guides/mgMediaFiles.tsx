@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -10,8 +9,8 @@ import InformationalBox from "../../../components/InformationalBox/Informational
 const objectModel: ReactNode = (
   <div className="paragraph">
     <h3>MediaFile</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -134,8 +133,8 @@ const objectModel: ReactNode = (
       </p>
     </InformationalBox>
     <h3>MediaFileSearch</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -191,8 +190,8 @@ const objectModel: ReactNode = (
       </table>
     </div>
     <h3>Tag</h3>
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Property</th>
@@ -247,8 +246,8 @@ const objectModel: ReactNode = (
 
 const supportedFileTypes: ReactNode = (
   <div className="paragraph">
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Type</th>
@@ -318,8 +317,8 @@ const security: ReactNode = (
 
 const api: ReactNode = (
   <div className="paragraph">
-    <div className="mgMediaFiles__table-container">
-      <table className="mgMediaFiles__table">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             <th>Method</th>
@@ -530,13 +529,6 @@ export default function MgMediaFiles() {
           </li>
         </ul>
       </div>
-      {pageSections.map((section) => (
-        <Accordion
-          summary={section.summary}
-          p={section.details}
-          id={section.elementId}
-        />
-      ))}
     </Page>
   );
 }

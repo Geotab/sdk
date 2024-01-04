@@ -27,7 +27,7 @@ export default function TableOfContents(props: TableOfContentsProps) {
             }
         });
 
-        const sections = document.querySelectorAll('details summary');
+        const sections = document.querySelectorAll('details summary, details div.detailsContent');
 
         sections.forEach((section) => {
             observer.current.observe(section);

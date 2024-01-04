@@ -2,9 +2,7 @@ import { ReactNode } from "react";
 import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
-import Accordion from "../../components/Accordion/Accordion";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
-import InformationalBox from "../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../components/CodeSamplesContainer/CodeSample";
 
 const dotnet: ReactNode = (
@@ -215,8 +213,6 @@ export default function ApiClients() {
                 <p>There are a number of language specific API clients that roll-up some common functionality such as authentication,
                     session management, deserialization, etc. making it easier to hit the ground running in your language of choice.</p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
+<<<<<<< HEAD
 import Accordion from "../../../components/Accordion/Accordion";
+=======
+>>>>>>> INTGR-123
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -289,8 +292,12 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function Concepts() {
     return (
+<<<<<<< HEAD
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
+=======
+        <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />
+>>>>>>> INTGR-123
     );
 };

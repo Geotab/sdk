@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { Page } from "../../../components";
-import Accordion from "../../../components/Accordion/Accordion";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 
 const advertisingPacket: ReactNode = (
@@ -1035,8 +1034,6 @@ export default function Ble() {
                     the GO device will stop taking data from the IOX.</p>
                 <p>Because it can only read packets, no handshake is required. Two-way communication and device pairings are not possible.</p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

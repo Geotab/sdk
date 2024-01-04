@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -466,7 +465,6 @@ export default function myGeotabUrls() {
                 This guide explains how to format a URL (Uniform Resource Locator) to obtain access to a specific page/feature in MyGeotab.
                 This can be used to link to MyGeotab from an Internet application, sending an email notification, third-party applications and other customized functions.
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 }

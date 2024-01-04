@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import hierarchyDiagram from "../../../assets/images/usingGoDevices/using-go-devices_0.png";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -136,7 +135,6 @@ export default function UsingGoDevices() {
                 This document covers the necessary steps to set up a customized solution. Note that the same API is used to retrieve the data from Geotab's
                 hosting solution and is identical to the regular MyGeotab configuration.
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

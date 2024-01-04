@@ -5,7 +5,6 @@ import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
 
-import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 
@@ -1124,7 +1123,6 @@ export default function DevelopingAddIns() {
                     </p>
                 </InformationalBox>
             </div>
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

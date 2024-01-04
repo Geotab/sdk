@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Page } from "../../../components";
@@ -957,7 +956,7 @@ results = {
     ]
 }`
             } />
-        <h2>API Client Support</h2>
+        <h2 id="api-client-support">API Client Support</h2> {/* This has an id because there's a link to this section in the Using in Javascript page */}
         {/* ToDo: Update the link later on before finalizing SDK site */}
         <p>
             All of the <a href="https://geotab.github.io/sdk/software/api/clients/">API clients</a> have native support for making multi-calls. Below are examples of making multi-calls using the Javascript and .Net wrappers:
@@ -1104,7 +1103,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": propertySelector
     },
     {
-        "elementId": "multi-call",
+        "elementId": "multicall",
         "summary": "MultiCall",
         "details": multiCall
     }
@@ -1135,8 +1134,6 @@ export default function Concepts() {
                     The following sections explain how to construct HTTP GET and POST requests to the Geotab API.
                 </p>
             </div>
-
-            {pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} />)}
         </Page>
     );
 };

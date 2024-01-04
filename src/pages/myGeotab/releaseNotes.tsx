@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import Accordion from '../../components/Accordion/Accordion';
 import "../../pages/pages.scss";
 import InformationalBox from '../../components/InformationalBox/InformationalBox';
 import CodeSample from  "../../components/CodeSamplesContainer/CodeSample";
@@ -3040,8 +3039,6 @@ const pageSections: TableOfContentsItem[] = [
 
 export default function ReleaseNotes() {
     return (
-		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-			{pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId}/>)}
-		</Page>
+		<Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 };
