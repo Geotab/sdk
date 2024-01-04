@@ -4,7 +4,7 @@ import {
   SideNavigation,
   SideNavigationCollapseProvider,
   SideNavigationMenuItemType,
-  TooltipProvider
+  TooltipProvider,
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { HeaderSections } from "../Header/headerSectionsEnum";
@@ -24,7 +24,7 @@ interface NavbarProps {
 export default function Navbar({ section }: NavbarProps): JSX.Element {
   const { activeSiteSection, setActiveSiteSection } = useContext(MenuContext);
   const navigate = useNavigate();
-  const handleLogoClick = () => {
+  const handleLogoClick = (): void => {
     setActiveSiteSection(HeaderSections.Landing);
     navigate("/sdk");
   };
@@ -41,12 +41,12 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
     item: SideNavigationMenuItemType
   ): void {
     if (item.children && item.children?.length > 0) {
-      item.children.forEach((child: SideNavigationMenuItemType) => {
+      item.children.forEach((child: SideNavigationMenuItemType): void => {
         attachOnClickHandlerToMenuItems(child);
       });
     } else {
       if (!item.externalRoute && item.onClick === undefined) {
-        item.onClick = () => {
+        item.onClick = (): void => {
           if (item.route) {
             navigate(item.route);
           }
@@ -77,7 +77,9 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
               Logo={LogoGeotabSDK}
               onLogoClick={handleLogoClick}
             />
-            <SideNavigation.Primary menuItems={navBarMapping[activeSiteSection]} />
+            <SideNavigation.Primary
+              menuItems={navBarMapping[activeSiteSection]}
+            />
             {/* It's necessary to pass in an empty array for the Secondary section so that the nav bar displays properly */}
             <SideNavigation.Secondary menuItems={[]} />
             <SideNavigation.Tertiary menuItems={TertiaryNavbarItems} />
