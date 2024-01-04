@@ -55,13 +55,13 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
     }
   }
 
-  useEffect(() => {
+  useEffect((): void => {
     setActiveSiteSection(section);
 
     // The navigate function (aka useNavigate hook) has to be called within the useEffect hook so that it gets executed after the component mounts, not when the component is first rendered.
     Object.values(navBarMapping).forEach(
-      (items: SideNavigationMenuItemType[]) => {
-        items.forEach((item: SideNavigationMenuItemType) => {
+      (items: SideNavigationMenuItemType[]): void => {
+        items.forEach((item: SideNavigationMenuItemType): void => {
           attachOnClickHandlerToMenuItems(item);
         });
       }
