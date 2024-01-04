@@ -214,3 +214,16 @@ a {
   background-color: $code-bg;
   padding: 4px;
 }
+
+.button-secondary {
+  color: $text-primary;
+  background-color: $button-bg;
+  border: 1px solid $button-outline;
+  font-size: $font-size-small;
+  display: inline-block;
+  border-radius: 4px;
+  padding: 8px;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  margin: 0 12px 6px 0;
+}
