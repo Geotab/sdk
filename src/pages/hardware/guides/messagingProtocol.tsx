@@ -321,7 +321,7 @@ const commands: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>IOX single frame log data (0x1D)</h3>
+        <h3 id="iox-single-frame-log-data-0x1d">IOX single frame log data (0x1D)</h3>
         <p>Sent from the IOX to the GO device when the IOX wants to create a log that can fit into a single CAN frame. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
         <h4>Payload</h4>
         <div className="table-container">
