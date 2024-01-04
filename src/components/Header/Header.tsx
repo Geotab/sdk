@@ -7,20 +7,24 @@ import SearchModal from "../SearchModal/SearchModal"
 import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
-export default function Header(props: any) {
+interface HeaderProps {
+  isLandingPage: boolean;
+}
+
+export default function Header({ isLandingPage }: HeaderProps): JSX.Element {
   const { activeSiteSection, setActiveSiteSection } = useContext(MenuContext);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [isLanding, setIsLanding] = useState(props.isLandingPage);
+  const [isLanding, setIsLanding] = useState(isLandingPage);
 
-  const openSearchModal = () => {
+  const openSearchModal = (): void => {
     setSearchModalOpen(true);
   };
 
-  const closeSearchModal = () => {
+  const closeSearchModal = (): void => {
     setSearchModalOpen(false);
   };
 
-  const handleLinkClick = (target: string) => {
+  const handleLinkClick = (target: string): void => {
     setActiveSiteSection(target);
     setIsLanding(false);
   };

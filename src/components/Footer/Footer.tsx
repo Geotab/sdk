@@ -1,4 +1,3 @@
-import React from "react";
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
 
@@ -27,7 +26,7 @@ const footerLinks: FooterLink[] = [
   },
 ];
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();
 
   return (
