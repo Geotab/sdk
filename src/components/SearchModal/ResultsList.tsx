@@ -1,7 +1,9 @@
 import { IconClipboard, IconServer, IconChevronRightSmall } from "@geotab/react-component-library";
 import { SearchResult } from "minisearch";
-import "./SearchModal.scss";
 import { Link } from "react-router-dom";
+import { pullText } from "./utils/searchUtils";
+
+import "./SearchModal.scss";
 
 //["MYG", "Guides", "Concepts"]
 const makeBreadCrumb = (crumbs: string[]): JSX.Element[] => {
@@ -32,6 +34,7 @@ export default function ResultsList(props: { results: SearchResult[] }): JSX.Ele
                                 <div className="result-item-group">
                                     {makeBreadCrumb(item.breadCrumb)}
                                 </div>
+                                <div>{pullText(item.id, item.terms[0])}</div>
                             </div>
                         </li>
                     </div>

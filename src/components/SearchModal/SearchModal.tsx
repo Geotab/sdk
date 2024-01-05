@@ -20,14 +20,31 @@ const resultCategories: Record<string, ComponentType<IconProps>> = {
 }
 
 let miniSearch: MiniSearch = new MiniSearch({
-  fields: ["title", "content"], // fields to index for full-text search
+  fields: ["title", "content", "headers"], // fields to index for full-text search
   storeFields: ["title", "category", "breadCrumb", "link"], // fields to return with search results
   searchOptions: {
     fuzzy: 0.2,
-    prefix: true
+    prefix: true,
+    boost: {
+      "title": 3,
+      "headers": 2
+    }
   }
 });
 miniSearch.addAll(searchIndex); //TODO: should we do this asynchronously? how do we handle the UI until it's ready
+
+const highlightMatch = (text: string, query: string) => {
+  const regex = new RegExp(`(${query})`, "gi");
+  return text.split(regex).map((part, index) =>
+    regex.test(part) ? (
+      <span className="search-result-match" key={index}>
+        {part}
+      </span>
+    ) : (
+      <span key={index}>{part}</span>
+    )
+  );
+};
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.Element | null {
   const modalRef: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
@@ -59,7 +76,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(e.currentTarget.value);
+    setInputValue(e.currentTarget.value.trim());
     let t = miniSearch.search(e.currentTarget.value);
     setSearchResults(t);
     console.log(t);
