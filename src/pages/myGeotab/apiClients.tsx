@@ -7,7 +7,7 @@ import CodeSample from "../../components/CodeSamplesContainer/CodeSample";
 
 const dotnet: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Install the <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/"
             target="_blank" rel="noopener noreferrer">NuGet package</a> from the package manager console:</p>
         <code className="small-code-sample">{`Install-Package Geotab.Checkmate.ObjectModel`}</code>
@@ -28,7 +28,7 @@ var devices = await api.CallAsync<List<Device>>("Get", typeof(Device), new { res
 
 const java: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Add the <a target="_blank" rel="noopener noreferrer" href="https://mvnrepository.com/artifact/com.geotab/java-sdk">
             maven dependency</a></p>
         <p><strong>Using it in code</strong></p>
@@ -61,7 +61,7 @@ Optional<List<Device>> result = api.call(request, DeviceListResponse.class);`
 
 const javascript: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Install the Bower package from the command line:</p>
         <code className="small-code-sample">{`$ bower install --save mg-api-js`}</code>
         <p><strong>Using it in code</strong> {`(`}more on <a target="_blank" rel="noopener noreferrer"
@@ -93,7 +93,7 @@ api.call('Get', {
 
 const nodejs: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Install the <a target="_blank" rel="noopener noreferrer" href="https://www.npmjs.com/package/mg-api-node#getting-started">
             NPM package</a> from the command line:</p>
         <p><strong>Using it in code</strong> {`(`}more on <a target="_blank" rel="noopener noreferrer"
@@ -126,7 +126,7 @@ api.call('Get', {
 
 const python: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Install the library and command line tool:</p>
         <code className="small-code-sample">{`$ pip install mygeotab`}</code>
         <p><strong>Using it in code</strong> {`(`}more on <a target="_blank" rel="noopener noreferrer"
@@ -146,7 +146,7 @@ api.get('Device', resultsLimit=1)`
 
 const php: ReactNode = (
     <div className="paragraph">
-        <h2>Quick Start</h2>
+        <h2>Quick start</h2>
         <p>Install the composer package from the command line:</p>
         <code className="small-code-sample">{`$ composer require geotab/mygeotab-php`}</code>
         <p><strong>Using it in code</strong> {`(`}more on <a target="_blank" rel="noopener noreferrer"

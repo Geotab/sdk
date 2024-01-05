@@ -5,6 +5,8 @@ import { HeaderSections } from "../../../../components/Header/headerSectionsEnum
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const nugetPackage: ReactNode = (
     <div className="paragraph">
@@ -14,14 +16,14 @@ const nugetPackage: ReactNode = (
         <p>Please remember to regularly check for Geotab.Checkmate.ObjectModel nuget package updates. Ideally, your integration should use the same Geotab.Checkmate.ObjectModel nuget package version
             as the one that your database is on.</p>
         <InformationalBox>
-            <p>Quick start in <a href="../../api/clients">{/*TODO: fix link*/}API Clients</a></p>
+            <p>Quick start in <HashLink to="/myGeotab/apiClients#dotnet">API Clients</HashLink></p>
         </InformationalBox>
     </div>
 );
 
 const apiClass: ReactNode = (
     <div className="paragraph">
-        <h2>Step 1: Initialize & Authentication</h2>
+        <h2>Step 1: Initialize & authentication</h2>
         <p>In order to have access to the API class, add the following to the file's includes section:</p>
         <CodeSample
             language="csharp"
@@ -44,12 +46,12 @@ using Geotab.Checkmate.ObjectModel;`
                 `await api.AuthenticateAsync();`
             }
         />
-        <p>When the call is made to Geotab’s servers to authenticate, a token is returned for security. Behind the scenes, the Authenticate call makes a JSON-RPC request to Geotab's
+        <p>When the call is made to Geotab's servers to authenticate, a token is returned for security. Behind the scenes, the Authenticate call makes a JSON-RPC request to Geotab's
             "Authenticate" method. The resulting security token and server information are stored in order to make further calls to the API.</p>
         <InformationalBox>
-            <p>For more information regarding authentication, please review the {/*TODO: fix link*/}<a href="../concepts/#authentication">Authentication</a> documentation.</p>
+            <p>For more information regarding authentication, please review the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> documentation.</p>
         </InformationalBox>
-        <h2>Step 2: Making Calls</h2>
+        <h2>Step 2: Making calls</h2>
         <p >When authenticated, calls are made to the API by invoking the <code className="small-code-sample">{`Call`}</code> method of the API class.</p>
         <p>The example below illustrates how to make a generic call to get all devices in the system.</p>
         <code className="small-code-sample">{`List<Device> devices = await api.CallAsync<List<Device>>("Get", typeof(Device));`}</code>
@@ -70,7 +72,7 @@ using Geotab.Checkmate.ObjectModel;`
             The parameter order is not significant, and it is acceptable to omit optional parameters. Optional parameters will revert to their default values, typically "null" or “false” values.</p>
         <p>The API class automatically handles databases that are moved to different servers in the federation and expired tokens (token are typically valid for 2 weeks) by automatically
             re-authenticating and continuing.</p>
-        <h2>Example Code</h2>
+        <h2>Example code</h2>
         <p>The following is a simple console app that will output the latitude and longitude of each device in a list of devices:</p>
         <CodeSample
             language="csharp"
@@ -138,17 +140,17 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         "elementId": "nuget-package",
-        "summary": "Nuget Package",
+        "summary": "Nuget package",
         "details": nugetPackage
     },
     {
         "elementId": "api-class",
-        "summary": "API Class",
+        "summary": "API class",
         "details": apiClass
     },
     {
         "elementId": "next-steps",
-        "summary": "Next Steps",
+        "summary": "Next steps",
         "details": nextSteps
     }
 ];
