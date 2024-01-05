@@ -1,4 +1,3 @@
-import React from "react";
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
 
@@ -14,12 +13,8 @@ const footerLinks: FooterLink[] = [
     label: "Privacy Policy",
   },
   {
-    href: "https://docs.google.com/document/d/1jA8Qc8WZMhmaqdjd8Ng8rY4iMI073xCfLNt_DSP72TQ/edit#heading=h.gjdgxs",
-    label: "End User Agreement",
-  },
-  {
     href: "https://docs.google.com/document/d/1aFJnFYpHCN4bFe6yVhj5m5AiJClfucRhJWVSDBqRObg/edit?usp=sharing",
-    label: "API Terms of Service",
+    label: "Terms of Service",
   },
   {
     href: "https://geotab.github.io/sdk/software/guides/addin-storage/",
