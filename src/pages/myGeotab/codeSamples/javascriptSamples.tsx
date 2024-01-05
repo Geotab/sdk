@@ -10,7 +10,7 @@ import InformationalBox from "../../../components/InformationalBox/Informational
 const addDriver: ReactNode = (
     <div className="paragraph">
         <p>
-            Demonstrates how to add Drivers to your database.
+            Demonstrates how to add drivers to your database.
             <br />
             <a
                 href="https://geotab.github.io/sdk/software/js-samples/addDriver.html"
@@ -34,7 +34,7 @@ const addDriver: ReactNode = (
 const addZone: ReactNode = (
     <div className="paragraph">
         <p>
-            Demonstrates how to add Zones (geofences) your database.
+            Demonstrates how to add zones (geofences) your database.
             <br />
             <a
                 href="https://geotab.github.io/sdk/software/js-samples/addZone.html"
@@ -58,7 +58,7 @@ const addZone: ReactNode = (
 const dataFeed: ReactNode = (
     <div className="paragraph">
         <p>
-            How to use the GetFeed method and retrieve a continuous stream of GPS, Engine Status and Fault data. This is the most efficient and recommended way of getting an ongoing copy of the data reported by a vehicle.
+            How to use the GetFeed method and retrieve a continuous stream of GPS, engine status and fault data. This is the most efficient and recommended way of getting an ongoing copy of the data reported by a vehicle.
             <br />
             <a
                 href="https://geotab.github.io/sdk/software/js-samples/dataFeed.html"
@@ -163,7 +163,7 @@ const importers: ReactNode = (
             Tools that demonstrate how to bulk import different entity types into your database via comma-delimited text values.
         </p>
         <ul>
-            <li>Import Devices -{" "}
+            <li>Import devices -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importDevices.html"
                     target="_blank"
@@ -179,9 +179,11 @@ const importers: ReactNode = (
                     aria-label="Source for importing devices">
                     Source
                 </a></li>
-            <li>Import Groups -{" "}
+            <li>Import groups -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importGroups.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Demo for importing groups">
                     Demo
                 </a>
@@ -193,7 +195,7 @@ const importers: ReactNode = (
                     aria-label="Source for importing groups">
                     Source
                 </a></li>
-            <li>Import Hos Logs -{" "}
+            <li>Import hos logs -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importHosLogs.html"
                     target="_blank"
@@ -209,9 +211,11 @@ const importers: ReactNode = (
                     aria-label="Source for importing hos logs">
                     Source
                 </a></li>
-            <li>Import Route Plan -{" "}
+            <li>Import route plan -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importRoutePlan.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Demo for importing route plan">
                     Demo
                 </a>
@@ -223,9 +227,11 @@ const importers: ReactNode = (
                     aria-label="Source for importing route plan">
                     Source
                 </a></li>
-            <li>Import Routes -{" "}
+            <li>Import routes -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importRoutes.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Demo for importing routes">
                     Demo
                 </a>
@@ -237,7 +243,7 @@ const importers: ReactNode = (
                     aria-label="Source for importing routes">
                     Source
                 </a></li>
-            <li>Import Users -{" "}
+            <li>Import users -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importUsers.html"
                     target="_blank"
@@ -253,7 +259,7 @@ const importers: ReactNode = (
                     aria-label="Source for importing users">
                     Source
                 </a></li>
-            <li>Import Zones -{" "}
+            <li>Import zones -{" "}
                 <a
                     href="https://geotab.github.io/sdk/software/js-samples/importZones.html"
                     target="_blank"
@@ -348,7 +354,7 @@ const sendATextMessage: ReactNode = (
 const showVehicleTripsOnMap: ReactNode = (
     <div className="paragraph">
         <p>
-            Building upon the showVehicleToday.html example, this demonstrates some of the features of MyGeotab. You will learn how to retrieve vehicles and their trips for any date and show the trips on a map.
+            You will learn how to retrieve vehicles and their trips for any date and show the trips on a map.
             <br />
             <a
                 href="https://geotab.github.io/sdk/software/js-samples/showTrips.html"
@@ -467,11 +473,11 @@ const pageSections: TableOfContentsItem[] = [
 
     {
         "elementId": "javascript-example-add-driver",
-        "summary": "Add driver",
+        "summary": "Add a driver",
         "details": addDriver
     }, {
         "elementId": "javascript-example-add-zone",
-        "summary": "Add zone",
+        "summary": "Add a zone",
         "details": addZone
     }, {
         "elementId": "javascript-example-data-feed",
@@ -483,7 +489,7 @@ const pageSections: TableOfContentsItem[] = [
         "details": displayOdometer
     }, {
         "elementId": "javascript-example-get-count",
-        "summary": "Get count",
+        "summary": "Get a count of vehicles and users",
         "details": getCount
     }, {
         "elementId": "javascript-example-get-vehicle-location",

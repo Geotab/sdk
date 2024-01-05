@@ -27,10 +27,13 @@ const httpPostRequest: ReactNode = (
                 JSON-RPC
             </a>{" "}
             version 1.0. The following is a JavaScript example that shows how HTTP POST can be used to invoke a method.
-            <p><strong>Note</strong>: This can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.HttpWebRequest in Microsoft .NET.</p>
-            <CodeSample
-                language="javascript"
-                code={`var request = new XMLHttpRequest();
+        </p>
+        <p>
+            <strong>Note</strong>: This can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.HttpWebRequest in Microsoft .NET.
+        </p>
+        <CodeSample
+            language="javascript"
+            code={`var request = new XMLHttpRequest();
 request.open("POST", "https://myadminapi.geotab.com/v2/MyAdminApi.ashx", true);
 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 request.onreadystatechange = function () {
@@ -72,9 +75,8 @@ var apiMethod = {
    }
 };
 request.send("JSON-RPC=" + encodeURIComponent(JSON.stringify(apiMethod)));`}
-            />
-        </p>
-    </div>
+        />
+    </div >
 );
 
 const resultsAndErrors: ReactNode = (

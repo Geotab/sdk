@@ -71,7 +71,7 @@ const creatingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Id">
+                            <HashLink to="/myGeotab/apiReference/objects#Id">
                                 Id
                             </HashLink>
                         </td>
@@ -79,7 +79,7 @@ const creatingAddInData: ReactNode = (
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Id">
+                            <HashLink to="/myGeotab/apiReference/objects#Id">
                                 AddInId
                             </HashLink>
                         </td>
@@ -87,7 +87,7 @@ const creatingAddInData: ReactNode = (
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Group">
+                            <HashLink to="/myGeotab/apiReference/objects#Group">
                                 Groups
                             </HashLink>
                         </td>
@@ -229,7 +229,7 @@ const retrievingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Id">
+                            <HashLink to="/myGeotab/apiReference/objects#Id">
                                 Id
                             </HashLink>
                         </td>
@@ -237,7 +237,7 @@ const retrievingAddInData: ReactNode = (
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Id">
+                            <HashLink to="/myGeotab/apiReference/objects#Id">
                                 AddInId
                             </HashLink>
                         </td>
@@ -245,7 +245,7 @@ const retrievingAddInData: ReactNode = (
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="./../../apiReference/objects#Group">
+                            <HashLink to="/myGeotab/apiReference/objects#Group">
                                 Groups
                             </HashLink>
                         </td>
