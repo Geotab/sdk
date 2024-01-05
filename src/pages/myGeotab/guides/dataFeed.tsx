@@ -3,6 +3,7 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { HashLink } from "react-router-hash-link";
 import DataFeedPoll from "../../../assets/images/dataFeed/data-feed_0.png";
 import "../../../pages/pages.scss";
 
@@ -17,7 +18,7 @@ const lightweightIncrementalPoll: ReactNode = (
       are all extremely small.
     </p>
     <p>
-      Here is a small trace showing &lt; 100 bytes for an empty poll request
+      Here is a small trace showing {'<'} 100 bytes for an empty poll request
       with a response time of 19ms. The last request contains a payload with 2
       GPS coordinates.
     </p>
@@ -80,14 +81,7 @@ const searching: ReactNode = (
     <p>
       Do not pass a search to any feed unless it specifically is mentioned in
       the{" "}
-      {/* TODO: Need to replace this with routing to api/reference/GetFeed reference when created*/}{" "}
-      <a
-        href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GetFeed method
-      </a>{" "}
+      <HashLink to="/myGeotab/apiReference/methods#GetFeedAsync">GetFeed method</HashLink>{" "}
       documentation.
     </p>
   </div>
@@ -254,25 +248,11 @@ const nextSteps: ReactNode = (
     <p>
       Once you have a basic understanding of how the Data Feed works you can
       read more about the GetFeed method and it's parameters in the{" "}
-      {/* TODO: Need to replace this with routing to api/reference/#GetFeed1 reference when created */}{" "}
-      <a
-        href="https://geotab.github.io/sdk/software/api/reference/#GetFeed1"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        API Reference
-      </a>{" "}
+      <HashLink to="/myGeotab/apiReference/methods#GetFeedAsync">API Reference</HashLink>{" "}
       or try out the{" "}
-      {/* TODO: Need to replace this with routing to js-samples/data-feed reference when created */}{" "}
-      <a
-        href="https://geotab.github.io/sdk/software/js-samples/#data-feed"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        JavaScript
-      </a>{" "}
+      <HashLink to="/myGeotab/codeSamples/javascriptSamples#javascript-example-data-feed">JavaScript</HashLink>{" "}
       and{" "}
-      {/* NOTE: this currently points to the sdk-dotnet-samples Github repo */}{" "}
+      {" "}
       <a
         href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed"
         target="_blank"
@@ -317,12 +297,12 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "lightweight-incremental-poll",
-    summary: "Lightweight Incremental Poll",
+    summary: "Lightweight incremental poll",
     details: lightweightIncrementalPoll,
   },
   {
     elementId: "dealing-with-volume",
-    summary: "Dealing With Volume",
+    summary: "Dealing with volume",
     details: dealingWithVolume,
   },
   {
@@ -332,17 +312,17 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "caching-to-improve-performance",
-    summary: "Caching To Improve Performance",
+    summary: "Caching to improve performance",
     details: cachingToImprovePerformance,
   },
   {
     elementId: "active-vs-calculated",
-    summary: "Active Vs Calculated",
+    summary: "Active vs calculated",
     details: activeVsCalculated,
   },
   {
     elementId: "invalidated-data",
-    summary: "Invalidated Data",
+    summary: "Invalidated data",
     details: invalidatedData,
   },
   {
@@ -352,17 +332,17 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "exception-events",
-    summary: "Exception Events",
+    summary: "Exception events",
     details: exceptionEvents,
   },
   {
     elementId: "hos-and-dvir-feeds",
-    summary: "HOS and DVIR Feeds",
+    summary: "HOS and DVIR feeds",
     details: hosAndDVIRFeeds,
   },
   {
     elementId: "next=steps",
-    summary: "Next Steps",
+    summary: "Next steps",
     details: nextSteps,
   },
   {

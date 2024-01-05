@@ -34,14 +34,14 @@ const gettingStarted: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-  title: "Connect To Power BI",
+  title: "Connect to Power BI",
   breadCrumbItems: ["MYG", "Guides", "Power BI"],
 };
 
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "getting-started",
-    summary: "Getting Started",
+    summary: "Getting started",
     details: gettingStarted,
   },
 ];

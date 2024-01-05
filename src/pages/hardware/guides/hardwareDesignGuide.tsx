@@ -224,32 +224,32 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
   {
     elementId: "system-introduction",
-    summary: "System Introduction",
+    summary: "System introduction",
     details: systemIntroduction
   },
   {
     elementId: "hardware-structure",
-    summary: "Hardware Structure",
+    summary: "Hardware structure",
     details: hardwareStructure
   },
   {
     elementId: "mini-b-usb-plug-input",
-    summary: "Mini-B USB Plug Input",
+    summary: "Mini-B USB plug input",
     details: minibUsbPlugInput
   },
   {
     elementId: "power-design",
-    summary: "Power Design",
+    summary: "Power design",
     details: powerDesign
   },
   {
     elementId: "can-bus-communication",
-    summary: "CAN Bus Communication",
+    summary: "CAN bus communication",
     details: canBusCommunication
   },
   {
     elementId: "mechanical-design",
-    summary: "Mechanical Design",
+    summary: "Mechanical design",
     details: mechanicalDesign
   }
 ];
