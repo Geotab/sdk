@@ -3,6 +3,7 @@ import Accordion from "../../../components/Accordion/Accordion";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Link } from 'react-router-dom';
+import { HashLink } from "react-router-hash-link";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -134,7 +135,7 @@ const resultsAndErrors: ReactNode = (
 }`
             }/>
         <p>
-            The properties of the error object are <Link to="/myGeotab/apiReference/objects#JsonRpcError">JsonRpcError</Link>, and <Link to="/myGeotab/apiReference/objects#JsonRpcErrorData">JsonRpcErrorData</Link>. Objects are documented in the API Reference.
+            The properties of the error object are <HashLink to="/myGeotab/apiReference/objects#JsonRpcError">JsonRpcError</HashLink>, and <HashLink to="/myGeotab/apiReference/objects#JsonRpcErrorData">JsonRpcErrorData</HashLink>. Objects are documented in the API Reference.
         </p>
     </div>
 );
@@ -616,7 +617,7 @@ var deviceLookup = {
 const propertySelector: ReactNode = (
     <div className="paragraph">
         <p>
-            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <Link to="/myGeotab/apiReference/methods#Get">Get</Link> and <Link to="/myGeotab/apiReference/methods#GetFeed">GetFeed</Link> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
+            <code className="small-code-sample">PropertySelector</code> is a new optional parameter that can be used with the <HashLink to="/myGeotab/apiReference/methods#Get">Get</HashLink> and <HashLink to="/myGeotab/apiReference/methods#GetFeed">GetFeed</HashLink> methods to selectively include or exclude specific properties for entity type requested. This provides a mechanism to reduce the amount of data sent over the wire and can significantly reduce call times.
         </p>
         <h2>Supported types</h2>
         <p>
@@ -633,11 +634,11 @@ const propertySelector: ReactNode = (
                 <tbody>
                     <tr>
                         <td>Fields</td>
-                        <td>An array of string, consisting of the properties for a given <Link to="/myGeotab/apiReference/objects#Entity">Entity</Link> type for which we want to include/exclude in the entities of the result set. Refer to the <Link to="/myGeotab/apiReference/methods">reference</Link> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <Link to="/myGeotab/apiReference/objects#Go9">Go9</Link> is child of <Link to="/myGeotab/apiReference/objects#Device">Device</Link>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
+                        <td>An array of string, consisting of the properties for a given <HashLink to="/myGeotab/apiReference/objects#Entity">Entity</HashLink> type for which we want to include/exclude in the entities of the result set. Refer to the <Link to="/myGeotab/apiReference/methods">reference</Link> page for all the properties supported for a given <code className="small-code-sample">Entity</code>. Note that the properties of an inheriting class will also be supported. (For example, <Link to="/myGeotab/apiReference/objects#Go9">Go9</Link> is child of <Link to="/myGeotab/apiReference/objects#Device">Device</Link>, so the properties defined for <code className="small-code-sample">Go9</code> can be supplied to <code className="small-code-sample">Fields</code>.)</td>
                     </tr>
                     <tr>
                         <td>IsIncluded</td>
-                        <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <Link to="/myGeotab/apiReference/objects#Entity">Entity</Link> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
+                        <td>A boolean, which if <code className="small-code-sample">true</code>, will include the properties of a given <HashLink to="/myGeotab/apiReference/objects#Entity">Entity</HashLink> type defined in <code className="small-code-sample">Fields</code> for the entities of the result set. Otherwise, if this boolean is false, the properties defined in <code className="small-code-sample">Fields</code> will be excluded.</td>
                     </tr>
                 </tbody>
             </table>
@@ -760,47 +761,47 @@ const propertySelector: ReactNode = (
                 </thead>
                 <tbody>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#Device">Device</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#Device">Device</HashLink></td>
                         <td>8.0</td>
                         <td>The following properties are not supported: <code className="small-code-sample">{`deviceFlags`}</code>, <code className="small-code-sample">{`isAuxInverted`}</code>, <code className="small-code-sample">{`deviceType`}</code>, <code className="small-code-sample">{`productId`}</code>, <code className="small-code-sample">{`autogroups`}</code>, <code className="small-code-sample">{`auxWarningSpeed`}</code>, <code className="small-code-sample">{`enableAuxWarning`}</code></td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#User">User</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#User">User</HashLink></td>
                         <td>8.0</td>
                         <td><code className="small-code-sample">isEULAAccepted</code> and <code className="small-code-sample">acceptedEULA</code> are tied to each other, so if either property is set to be returned based on the <code className="small-code-sample">PropertySelector</code> logic, both properties will be returned.</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#Group">Group</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#Group">Group</HashLink></td>
                         <td>8.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#Rule">Rule</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#Rule">Rule</HashLink></td>
                         <td>8.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#LogRecord">LogRecord</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#LogRecord">LogRecord</HashLink></td>
                         <td>8.0</td>
                         <td><code className="small-code-sample">dateTime</code> must be included.</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#Trip">Trip</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#Trip">Trip</HashLink></td>
                         <td>9.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#TextMessage">TextMessage</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#TextMessage">TextMessage</HashLink></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#IoxAddOn">IoxAddOn</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#IoxAddOn">IoxAddOn</HashLink></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
-                        <td><Link to="/myGeotab/apiReference/objects#IoxAddOnStatus">IoxAddOnStatus</Link></td>
+                        <td><HashLink to="/myGeotab/apiReference/objects#IoxAddOnStatus">IoxAddOnStatus</HashLink></td>
                         <td>10.0</td>
                         <td>N/A</td>
                     </tr>
