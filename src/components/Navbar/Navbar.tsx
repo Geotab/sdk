@@ -13,7 +13,7 @@ export default function Navbar(props: any) {
         <Link to="/myGeotab/introduction">Introduction</Link>
       </div>
       <div>
-        <Link to="/myGeotab/whatsNew">What's New</Link>
+        <Link to="/myGeotab/whatsNew">Release Notes</Link>
       </div>
       <div>
         Guides

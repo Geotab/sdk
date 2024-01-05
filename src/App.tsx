@@ -51,7 +51,7 @@ function App() {
           <Route path="/" Component={LandingPage} />
           <Route path="/sdk" Component={LandingPage} />
           <Route path="/myGeotab/introduction" Component={MyGeotabIntroduction} />
-          <Route path="/myGeotab/whatsNew" Component={MyGeotabReleaseNotes} />
+          <Route path="/myGeotab/releaseNotes" Component={MyGeotabReleaseNotes} />
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
 
           <Route path="/myGeotab/guides/gettingStarted" Component={MyGeotabGettingStarted} />
