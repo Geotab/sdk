@@ -1,6 +1,6 @@
 import { searchIndex } from "../mockSearchData"
 
-const EXCERPT_CHAR_LENGTH: number = 20;
+const EXCERPT_CHAR_LENGTH: number = 200;
 
 const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, remainingLength: number, foundIndex: number): number => {
     let half: number = Math.floor(remainingLength / 2);
@@ -28,14 +28,20 @@ export const pullText = (searchId: number, matchTerm: string): string => {
         if (numCharsAhead + numCharsAfter <= numRemainingChars) {
             return contentString;
         }
-        excerpt += contentString.substring(findStartingStringIndex(numCharsAhead, numCharsAfter, numRemainingChars, stringIndex), stringIndex);
+        let excerptStartingIndex: number = findStartingStringIndex(numCharsAhead, numCharsAfter, numRemainingChars, stringIndex);
+        if (excerptStartingIndex > 0) {
+            excerpt += "...";
+        }
+        excerpt += contentString.substring(excerptStartingIndex, stringIndex);
         numRemainingChars -= excerpt.length;
         excerpt += matchTerm;
-        excerpt += contentString.substring(stringIndex + matchTerm.length, numRemainingChars);
+        excerpt += contentString.substring(stringIndex + matchTerm.length, stringIndex + matchTerm.length + numRemainingChars);
+        if (!(numCharsAhead < Math.floor((EXCERPT_CHAR_LENGTH - matchTerm.length) / 2))) {
+            excerpt += "...";
+        }
         return excerpt;
     }
     //if there's no match in the page content, return the first portion of the page
-    console.log(contentString.substring(0, EXCERPT_CHAR_LENGTH));
-    return contentString.substring(0, EXCERPT_CHAR_LENGTH);
+    return contentString.substring(0, EXCERPT_CHAR_LENGTH) + "...";
 };
 
