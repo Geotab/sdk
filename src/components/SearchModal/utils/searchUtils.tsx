@@ -29,14 +29,15 @@ export const pullText = (searchId: number, matchTerm: string): string => {
             return contentString;
         }
         let excerptStartingIndex: number = findStartingStringIndex(numCharsAhead, numCharsAfter, numRemainingChars, stringIndex);
-        if (excerptStartingIndex > 0) {
-            excerpt += "...";
-        }
         excerpt += contentString.substring(excerptStartingIndex, stringIndex);
         numRemainingChars -= excerpt.length;
+        if (excerptStartingIndex > 0) {
+            excerpt = "..." + excerpt;
+        }
         excerpt += matchTerm;
         excerpt += contentString.substring(stringIndex + matchTerm.length, stringIndex + matchTerm.length + numRemainingChars);
-        if (!(numCharsAhead < Math.floor((EXCERPT_CHAR_LENGTH - matchTerm.length) / 2))) {
+        let a = excerpt.length - excerpt.indexOf(matchTerm); 
+        if ((excerpt.length - excerpt.indexOf(matchTerm) - matchTerm.length) !== numCharsAfter) {
             excerpt += "...";
         }
         return excerpt;
