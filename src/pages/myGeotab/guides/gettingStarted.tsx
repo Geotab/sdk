@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
-import "../../../pages/pages.scss";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
+import { Link } from "react-router-dom";
+import "../../../pages/pages.scss";
 
 const stepsToGetStarted: ReactNode = (
   <div className="paragraph">
@@ -16,7 +17,7 @@ const stepsToGetStarted: ReactNode = (
 const plugInAGeotabGoDevice: ReactNode = (
   <div className="paragraph">
     Refer to the "
-    <a href="https://www.geotab.com/support-documentation/">
+    <a href="https://www.geotab.com/support-documentation/" target="_blank" rel="noopener noreferrer">
       Geotab Support Documentation
     </a>
     " for detailed instructions on how to install a device.
@@ -28,7 +29,7 @@ const registerANewDatabase: ReactNode = (
     <ol>
       <li>
         To register, browse to{" "}
-        <a href="https://my.geotab.com/registration.html">
+        <a href="https://my.geotab.com/registration.html" target="_blank" rel="noopener noreferrer">
           https://my.geotab.com/registration.html
         </a>
       </li>
@@ -50,46 +51,31 @@ const whatsNext: ReactNode = (
     There are several other items in the SDK to help you get started:
     <ul>
       <li>
-        <a href="https://geotab.github.io/sdk/software/guides/concepts">
-          Concepts
-        </a>{" "}
-        {/* TODO: Need to replace this with routing to "../concepts" when created */}
+        <Link to="/myGeotab/guides/concepts">Concepts</Link>
         — Be sure to read through this before building your application
       </li>
       <li>
-        <a href="https://geotab.github.io/sdk/software/guides/using-in-javascript">
-          Using in JavaScript
-        </a>{" "}
-        {/* TODO: Need to replace this with routing to "../using-in-javascript" when created*/}
+        <Link to="/myGeotab/guides/codeBase/usingInJavascript">Using in JavaScript</Link>
       </li>
       <li>
-        <a href="https://geotab.github.io/sdk/software/guides/using-in-dotnet">
-          Using in .NET
-        </a>{" "}
-        {/* TODO: Need to replace this with routing to "../using-in-dotnet" when created*/}
+        <Link to="/myGeotab/guides/codeBase/usingInDotnet">Using in .NET</Link>
       </li>
       <li>
-        <a href="https://geotab.github.io/sdk/software/guides/using-in-java">
-          {/* TODO: Need to replace this with routing to "../using-in-java" when created*/}
-          Using in Java
-        </a>{" "}
+        <Link to="/myGeotab/guides/codeBase/usingInJava">Using in Java</Link>
       </li>
       <li>
-        <a href="https://community.geotab.com/s/?language=en_US">
+        <a href="https://community.geotab.com/s/?language=en_US" target="_blank" rel="noopener noreferrer">
           Support Alert
         </a>{" "}
         — Be sure to read through this before building your application
       </li>
       <li>
-        <a href="https://geotab.github.io/sdk/software/api/reference">
-          API Reference
-        </a>{" "}
-        {/* TODO: Need to replace this with routing to api/reference page when created*/}
+        <Link to="/myGeotab/apiReference/methods">API Reference</Link>
         — The reference documentation that explains what each API call does and
         documents the parameters and results for each call
       </li>
       <li>
-        <a href="https://geotab.github.io/sdk/software/api/runner.html">
+        <a href="https://geotab.github.io/sdk/software/api/runner.html" target="_blank" rel="noopener noreferrer">
           API Runner
         </a>{" "}
         — An easy way to “play” with the API. Click on the “Runner” link from
@@ -99,19 +85,15 @@ const whatsNext: ReactNode = (
     </ul>
     <p>
       {" "}
-      {/*NOTE: possibly adjust spacing for this element or keep as it? */}
       Note: Remember you are not in a sandbox — you are executing API commands
       against a real database. For example, removing a Device via the API will
       really delete that device from the database!
     </p>
     <ul>
       <li>
-        <a href="https://geotab.github.io/sdk/software/js-samples">
-          JavaScript
-        </a>{" "}
+        <Link to="/myGeotab/codeSamples/javascriptSamples">JavaScript</Link>{" "}
         or{" "}
-        {/* TODO: Need to replace this with routing to js-samples page when created*/}
-        <a href="https://github.com/Geotab/sdk-dotnet-samples">.NET</a> Code
+        <Link to="/myGeotab/codeSamples/dotnetSamples">.NET</Link> Code
         samples. The JavaScript sample are “live” and can be run against your
         database hosted on my.geotab.com. The .NET examples are downloadable and
         can be compiled and run against your MyGeotab server.
@@ -119,7 +101,7 @@ const whatsNext: ReactNode = (
     </ul>
     <p>
       For additional support{" "}
-      <a href="https://helpdesk.geotab.com/forums/21798473-Community-Forum?geotabsdk=forums">
+      <a href="https://helpdesk.geotab.com/forums/21798473-Community-Forum?geotabsdk=forums" target="_blank" rel="noopener noreferrer">
         use the SDK forums
       </a>
       . A number of solutions have already been provided in the forums. They are
@@ -136,22 +118,22 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
   {
     "elementId": "steps-to-get-started",
-    "summary": "Steps To Get Started",
+    "summary": "Steps to get started",
     "details": stepsToGetStarted
   },
   {
     "elementId": "plug-in-a-geotab-go-device",
-    "summary": "Plug In A Geotab GO Device",
+    "summary": "Plug in a Geotab GO device",
     "details": plugInAGeotabGoDevice
   },
   {
     "elementId": "register-a-new-database",
-    "summary": "Register A New Database",
+    "summary": "Register a new database",
     "details": registerANewDatabase
   },
   {
     "elementId": "whats-next",
-    "summary": "What's Next?",
+    "summary": "What's next?",
     "details": whatsNext
   }
 ];

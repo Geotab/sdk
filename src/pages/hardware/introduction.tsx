@@ -3,6 +3,7 @@ import { Page } from "../../components";
 import { PageTitleProps } from "../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../components/TableOfContents/TableOfContents";
+import { Link } from "react-router-dom";
 
 const introduction: ReactNode = (
   <div className="paragraph">
@@ -75,8 +76,7 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
         IOX-BT
       </a>
       , and any{" "}
-      <a href="../developing-an-iox/hardware-design-guide">Custom IOX</a>
-      {/*TODO: fix link*/}. The format of data sent through an IOX could vary
+      <Link to="/hardware/guides/designGuide">Custom IOX</Link>. The format of data sent through an IOX could vary
       with the type of IOX, which is shown in the table below. All IOXs support
       data transfer from Add-On to GO device, while some IOXs also support data
       transfer from GO device to Add-On.
@@ -143,7 +143,7 @@ const integratingWithTheInputOutputExpanderIOX: ReactNode = (
       Hardware Add-On data can be sent via any of these IOX and will be be
       transmitted to the Geotab server in several formats, namely "Status Data",
       "Custom Data", and "Binary Data". Data in all three formats may be
-      retrieved via <a href="../myGeotab/introduction">API</a>. However, only
+      retrieved via <Link to="/myGeotab/introduction">API</Link>. However, only
       Status Data can be queried within MyGeotab by navigating to{" "}
       <strong>Engine {"&"} Maintenance</strong> {">"}{" "}
       <strong>Engine {"&"} Device…</strong> {">"} <strong>Measurements</strong>.
@@ -238,7 +238,7 @@ const pageSections: TableOfContentsItem[] = [
   },
   {
     elementId: "technical-hardware-toolkit",
-    summary: "Technical Hardware Toolkit",
+    summary: "Technical hardware toolkit",
     details: technicalHardwareToolkit
   },
   {
