@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import RenderStringWithUrl from './renderStringWithUrl';
 import { useParams } from "react-router-dom";
-import Accordion from "../../../components/Accordion/Accordion";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -13,6 +12,12 @@ export default function Object() {
     const storedObjectData = JSON.parse(sessionStorage[objectId]);
     const objectDescription = storedObjectData.description;
     const properties = storedObjectData.properties;
+
+    const introductionParagraph: ReactNode = (
+        <div className="paragraph">
+            {RenderStringWithUrl(objectDescription)}
+        </div>
+    );
 
     const propertyParagaphs: ReactNode = (
         <div className="paragraph">
@@ -26,14 +31,15 @@ export default function Object() {
     );
 
     const pageTitle: PageTitleProps = {
-        "title": objectId,
-        "breadCrumbItems": ["MYG", "API Reference", "Objects", objectId]
+        "title": objectId.toUpperCase(),
+        "breadCrumbItems": ["MYG", "API REFERENCE", "OBJECTS", objectId.toUpperCase()]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
             "elementId": "introduction",
-            "summary": "Introduction"
+            "summary": "Introduction",
+            "details": introductionParagraph
         }, 
         {
             "elementId": "properties",
@@ -44,13 +50,7 @@ export default function Object() {
 
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            <div>
-                <summary className="heading" id="introduction">Introduction</summary>
-                <div className="paragraph">
-                    {RenderStringWithUrl(objectDescription)}
-                </div>
-            </div>
-            {/* <Accordion summary={pageSections[1].summary} p={pageSections[1].details} id={pageSections[1].elementId}/> */}
+
         </Page>
     )
 };

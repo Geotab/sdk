@@ -15,8 +15,8 @@ request.send();
 let xml: any = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "Objects",
-    "breadCrumbItems": ["MYG", "API Reference", "Objects"]
+    "title": "OBJECTS",
+    "breadCrumbItems": ["MYG", "API RERFENCE", "OBJECTS"]
 };
 
 const pageSections: TableOfContentsItem[] = [

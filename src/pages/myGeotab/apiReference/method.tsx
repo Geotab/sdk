@@ -16,18 +16,22 @@ export default function Method() {
     const returnValueDescriptions = storedMethodData.returns;
     const codeSample = storedMethodData.example;
     
-    const paramTable: ReactNode = ( 
-    <div className="paragraph">
-            <table className="table-container">
-                <tbody>
-                        {parameters.map((parameter: any) => 
-                            <tr>
-                                <td>{parameter.name}</td>
-                                <td>{RenderStringWithUrl(parameter.description)}</td>
-                            </tr>
-                        )}
-                </tbody>
-            </table>
+    const introductionParagraph: ReactNode = (
+        <div>
+            <div className="paragraph">
+                {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
+            </div>
+        </div>
+    )
+
+    const parameterParagaphs: ReactNode = (
+        <div className="paragraph">
+            {parameters.map((parameter: any) =>
+                <div>
+                    <h3>{parameter.name}</h3>
+                    <p>{RenderStringWithUrl(parameter.description)}</p>
+                </div>
+            )}
         </div>
     );
 
@@ -46,19 +50,20 @@ export default function Method() {
     );
 
     const pageTitle: PageTitleProps = {
-        "title": methodId + " (...)",
-        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + " (...)"]
+        "title": methodId.toUpperCase() + " (...)",
+        "breadCrumbItems": ["MYG", "API REFERENCE", "METHODS", methodId.toUpperCase() + " (...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
             "elementId": "introduction",
-            "summary": "Introduction"
+            "summary": "Introduction",
+            "details": introductionParagraph
         },
         {
             "elementId": "parameters",
             "summary": "Parameters",
-            "details": paramTable
+            "details": parameterParagaphs
         },
         {
             "elementId": "returnValue",
@@ -67,24 +72,14 @@ export default function Method() {
         },
         {
             "elementId": "codeSample",
-            "summary": "Try Me"
+            "summary": "Try Me",
+            "details": tryMeCodeBlock
         }
     ];
 
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            <div>
-                <summary className="heading" id="introduction">Introduction</summary>
-                <div className="paragraph">
-                    {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
-                </div>
-            </div>
-            <Accordion summary={pageSections[1].summary} p={pageSections[1].details} id={pageSections[1].elementId}/>
-            <Accordion summary={pageSections[2].summary} p={pageSections[2].details} id={pageSections[2].elementId}/>
-            <div>
-                <summary className="heading" id="codeSample">Try Me</summary>
-                {tryMeCodeBlock}
-            </div>
+            
         </Page>
     );
 }; 
