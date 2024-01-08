@@ -23,7 +23,7 @@ const pageSections: TableOfContentsItem[] = [
 
 ];
 
-const objects = Object.entries(myGParser(xml, 'object', ['T:Geotab.Checkmate.ObjectModel', 'T:Geotab.Checkmate.API','P:Geotab.Checkmate.ObjectModel', 'M:Geotab.Checkmate.API.#ctor'])).sort(sortAlphabetical);
+const objects = Object.entries(myGParser(xml, 'object', ['T:Geotab.Checkmate.ObjectModel', 'T:Geotab.Checkmate.API','P:Geotab.Checkmate.ObjectModel', 'M:Geotab.Checkmate.API.#ctor', 'F:Geotab.Checkmate.ObjectModel'])).sort(sortAlphabetical);
 const objectItems = objects.map((objectDetails: any) => {
     sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
     let pageSectionObject = {
@@ -46,7 +46,6 @@ const objectItems = objects.map((objectDetails: any) => {
         </div>
     )
 })
-
 
 export default function Objects() {
     return (

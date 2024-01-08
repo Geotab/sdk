@@ -166,7 +166,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                             
                         } 
-                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')))) {
+                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('F:Geotab.Checkmate.ObjectModel')))) {
                         let tagName = item[i].attributes.name.nodeValue.split('.');
                         let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                         let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');

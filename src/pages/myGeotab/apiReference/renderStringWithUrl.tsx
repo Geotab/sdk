@@ -29,16 +29,13 @@ export default function RenderStringWithLinks(text: string) {
             }
 
             let cref = match[1].split('.');
-            console.log(match);
             let linkText = cref[cref.length - 1].replace(/[^a-zA-Z]/g, '');
-            // if (cref[cref.length - 2].replace())
             let link;
             if (cref.includes('ObjectModel')) {
                 link = `/myGeotab/apiReference/objects#${linkText}`;
             } else {
                 link = `#${linkText}`;
             }
-            console.log(cref);
             
             segments.push(<HashLink to={link}>{linkText}</HashLink>);
             currentIndex = seeTagRegex.lastIndex;
