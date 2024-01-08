@@ -6,7 +6,7 @@ import { HashLink } from "react-router-hash-link";
 
 import "./SearchModal.scss";
 
-//["MYG", "Guides", "Concepts"]
+//TODO: replace with Joseph's component and add highlighting
 const makeBreadCrumb = (crumbs: string[]): JSX.Element[] => {
     let elements: JSX.Element[] = [
         <span key="bc-span-0">{crumbs[0]}</span>
@@ -32,10 +32,9 @@ const highlightMatch = (text: string, matchTerms: MatchInfo): JSX.Element[] => {
 
 const buildLink = (path: string, title: string, searchResultID: number, matchTerms: MatchInfo): JSX.Element => {
     let headerId: string | null = findHeaderId(searchResultID, matchTerms);
-    let highlightedTitle = highlightMatch(title, matchTerms);
     return headerId === null ?
-        <Link to={path}>{highlightedTitle}</Link> :
-        <HashLink to={`${path}#${headerId}`}>{highlightedTitle}</HashLink>;
+        <Link to={path}>{highlightMatch(title, matchTerms)}</Link> :
+        <HashLink to={`${path}#${headerId}`}>{highlightMatch(title, matchTerms)}</HashLink>;
 };
 
 export default function ResultsList(props: { results: SearchResult[] }): JSX.Element {

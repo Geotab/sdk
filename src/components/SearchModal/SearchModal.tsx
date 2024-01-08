@@ -33,19 +33,6 @@ let miniSearch: MiniSearch = new MiniSearch({
 });
 miniSearch.addAll(searchIndex); //TODO: should we do this asynchronously? how do we handle the UI until it's ready
 
-const highlightMatch = (text: string, query: string) => {
-  const regex = new RegExp(`(${query})`, "gi");
-  return text.split(regex).map((part, index) =>
-    regex.test(part) ? (
-      <span className="search-result-match" key={index}>
-        {part}
-      </span>
-    ) : (
-      <span key={index}>{part}</span>
-    )
-  );
-};
-
 export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.Element | null {
   const modalRef: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
   const inputRef: React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement | null>(null);
@@ -77,10 +64,15 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.currentTarget.value.trim());
-    let t = miniSearch.search(e.currentTarget.value);
-    setSearchResults(t);
-    console.log(t);
   };
+
+  //debounce for search bar
+  useEffect(() => {
+    const getSearchResults = setTimeout(() => {
+      setSearchResults(miniSearch.search(inputValue));
+    }, 400);
+    return () => clearTimeout(getSearchResults);
+  }, [inputValue]);
 
   useEffect(() => {
     if (isOpen) {
