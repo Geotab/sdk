@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -15,12 +17,8 @@ const overview: ReactNode = (
 //ToDo: Fix up URLs later.
 const endpoint: ReactNode = (
     <div className="paragraph">
-        <p>Before making your first call, it is strongly recommended to skip the <a href="#general-entry">general entry</a> and make the call directly to <a href="#odata-connector">OData Connector</a>. If you are not sure what the URL to call is, please contact the support team.</p>
-<<<<<<< HEAD
+        <p>Before making your first call, it is strongly recommended to skip the <HashLink to="/myGeotab/guides/usingTheDataConnector#general-entry">general entry</HashLink> and make the call directly to <HashLink to="/myGeotab/guides/usingTheDataConnector#odata-connector">OData Connector</HashLink>. If you are not sure what the URL to call is, please contact the support team.</p>
         <h3 id="general-entry">General entry</h3>
-=======
-        <h2>General Entry</h2>
->>>>>>> INTGR-123
         <p>Feel free to skip this section if you plan to make calls directly to OData Connector. If you have to make a call to the general entry (https://data-connector.geotab.com), make sure you are ready to handle the 302 response and make another call to the returned URL.</p>
         <p>Sample general entry response:</p>
         <CodeSample
@@ -43,11 +41,7 @@ const endpoint: ReactNode = (
 < Date: Tue, 07 Feb 2023 16:32:57 GMT
 `}/>
         <p>If you are making calls to the general entry with postman or insomnia, the 400 error code is expected since postman or insomnia redirect requests WITHOUT the auth header.</p>
-<<<<<<< HEAD
         <h3 id="odata-connector">OData Connector</h3>
-=======
-        <h2>OData Connector</h2>
->>>>>>> INTGR-123
         <p>Given the right url, you may test the service connection by making calls to the service root: https://odata-connector-1.geotab.com/odata/v4/svc/</p>
         <p>No credential is required for this service root.</p>
         <h3>Curl</h3>
