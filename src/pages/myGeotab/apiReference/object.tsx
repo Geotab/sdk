@@ -52,5 +52,5 @@ export default function Object() {
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
 
         </Page>
-    )
+    );
 };

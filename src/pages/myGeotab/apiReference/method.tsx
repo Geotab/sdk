@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import RenderStringWithUrl from './renderStringWithUrl';
 import { useParams } from "react-router-dom";
-import Accordion from "../../../components/Accordion/Accordion";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -22,7 +21,7 @@ export default function Method() {
                 {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
             </div>
         </div>
-    )
+    );
 
     const parameterParagaphs: ReactNode = (
         <div className="paragraph">
@@ -79,7 +78,7 @@ export default function Method() {
 
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-            
+
         </Page>
     );
 }; 
