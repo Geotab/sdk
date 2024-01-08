@@ -1,3 +1,4 @@
+import { MatchInfo } from "minisearch";
 import { searchIndex } from "../mockSearchData"
 
 const EXCERPT_CHAR_LENGTH: number = 200;
@@ -36,7 +37,6 @@ export const pullText = (searchId: number, matchTerm: string): string => {
         }
         excerpt += matchTerm;
         excerpt += contentString.substring(stringIndex + matchTerm.length, stringIndex + matchTerm.length + numRemainingChars);
-        let a = excerpt.length - excerpt.indexOf(matchTerm); 
         if ((excerpt.length - excerpt.indexOf(matchTerm) - matchTerm.length) !== numCharsAfter) {
             excerpt += "...";
         }
@@ -46,3 +46,21 @@ export const pullText = (searchId: number, matchTerm: string): string => {
     return contentString.substring(0, EXCERPT_CHAR_LENGTH) + "...";
 };
 
+export const findHeaderId = (searchId: number, matchTerms: MatchInfo,): string | null => {
+    let isHeaderLink: boolean = false;
+    let headerMatch: string = "";
+    for (const term in matchTerms) {
+        if (matchTerms[term].includes("headers")) {
+            isHeaderLink = true;
+            headerMatch = term;
+            break;
+        }
+    }
+    if (isHeaderLink) {
+        let i: number = searchIndex.findIndex(page => page.id === searchId);
+        let pageHeaders: string[] = searchIndex[i].headers;
+        let headerIndex = pageHeaders.findIndex(header => header.toLowerCase().includes(headerMatch));
+        return searchIndex[i].headerIds[headerIndex];
+    }
+    return null;
+};

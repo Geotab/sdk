@@ -1,7 +1,8 @@
 import { IconClipboard, IconServer, IconChevronRightSmall } from "@geotab/react-component-library";
-import { SearchResult } from "minisearch";
+import { MatchInfo, SearchResult } from "minisearch";
 import { Link } from "react-router-dom";
-import { pullText } from "./utils/searchUtils";
+import { pullText, findHeaderId } from "./utils/searchUtils";
+import { HashLink } from "react-router-hash-link";
 
 import "./SearchModal.scss";
 
@@ -17,6 +18,26 @@ const makeBreadCrumb = (crumbs: string[]): JSX.Element[] => {
     return elements;
 };
 
+const highlightMatch = (text: string, matchTerms: MatchInfo): JSX.Element[] => {
+    //search can hit on multiple different words so we add all of them to the regex
+    //we need to highlight based on matches instead of user input as fuzzy search allows for typos/partial matches
+    const expressionString: string = Object.keys(matchTerms).toString().replace(",", "|");
+    const regex = new RegExp(`(${expressionString})`, "gi");
+    return text.split(regex).map((part, index) =>
+        regex.test(part) ?
+            (<span className="search-result-match" key={index}>{part}</span>) :
+            (<span key={index}>{part}</span>)
+    );
+};
+
+const buildLink = (path: string, title: string, searchResultID: number, matchTerms: MatchInfo): JSX.Element => {
+    let headerId: string | null = findHeaderId(searchResultID, matchTerms);
+    let highlightedTitle = highlightMatch(title, matchTerms);
+    return headerId === null ?
+        <Link to={path}>{highlightedTitle}</Link> :
+        <HashLink to={`${path}#${headerId}`}>{highlightedTitle}</HashLink>;
+};
+
 export default function ResultsList(props: { results: SearchResult[] }): JSX.Element {
     return (
         <div className="custom-styling-for-results">
@@ -29,12 +50,12 @@ export default function ResultsList(props: { results: SearchResult[] }): JSX.Ele
                             </div>
                             <div className="result-search-name">
                                 <span className="result-item-title">
-                                    <Link to={item.link}>{item.title}</Link>
+                                    {buildLink(item.link, item.title, item.id, item.match)}
                                 </span>
                                 <div className="result-item-group">
                                     {makeBreadCrumb(item.breadCrumb)}
                                 </div>
-                                <div>{pullText(item.id, item.terms[0])}</div>
+                                <div>{highlightMatch(pullText(item.id, item.terms[0]), item.match)}</div>
                             </div>
                         </li>
                     </div>
