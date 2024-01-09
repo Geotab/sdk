@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from './renderStringWithUrl';
+import RenderStringWithUrl from "./renderStringWithUrl";
 import { useParams } from "react-router-dom";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
@@ -8,14 +8,14 @@ import { TableOfContentsItem } from "../../../components/TableOfContents/TableOf
 import "./reference.scss";
 
 interface ObjectProperty {
-    name: string,
-    description: string
+    name: string;
+    description: string;
 }
 
 interface ObjectData {
-    description: string,
-    properties: ObjectProperty[]
-};
+    description: string;
+    properties: ObjectProperty[];
+}
 
 export default function Object(): JSX.Element {
     const { objectId = "" } = useParams();
@@ -23,42 +23,36 @@ export default function Object(): JSX.Element {
     const objectDescription: string = storedObjectData.description;
     const properties: ObjectProperty[] = storedObjectData.properties;
 
-    const introductionParagraph: ReactNode = (
-        <div className="paragraph">
-            {RenderStringWithUrl(objectDescription)}
-        </div>
-    );
+    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(objectDescription)}</div>;
 
     const propertyParagaphs: ReactNode = (
         <div className="paragraph">
-            {properties.map((property: any) =>
+            {properties.map((property: any) => (
                 <div>
                     <h3>{property.name}</h3>
                     <p>{RenderStringWithUrl(property.description)}</p>
                 </div>
-            )}
+            ))}
         </div>
     );
 
     const pageTitle: PageTitleProps = {
-        "title": objectId,
-        "breadCrumbItems": ["MYG", "API Reference", "Objects", objectId]
+        title: objectId,
+        breadCrumbItems: ["MYG", "API Reference", "Objects", objectId]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
-            "elementId": "introduction",
-            "summary": "Introduction",
-            "details": introductionParagraph
-        }, 
+            elementId: "introduction",
+            summary: "Introduction",
+            details: introductionParagraph
+        },
         {
-            "elementId": "properties",
-            "summary": "Properties",
-            "details": propertyParagaphs
+            elementId: "properties",
+            summary: "Properties",
+            details: propertyParagaphs
         }
     ];
 
-    return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
-    );
-};
+    return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}

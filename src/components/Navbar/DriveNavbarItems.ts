@@ -4,7 +4,7 @@ import { ComponentType } from "react";
 import { IconCircleInfo, IconPuzzlePiece } from "./icons";
 
 // TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
+interface SideNavigationMenuItemType {
     id: number;
     isTitle?: boolean;
     label: string;
@@ -18,7 +18,7 @@ type SideNavigationMenuItemType = {
     Pill?: ComponentType<any>;
     onClick?: (value?: unknown) => void;
     children?: SideNavigationMenuItemType[];
-};
+}
 
 export const DriveNavbarItems: SideNavigationMenuItemType[] = [
     {

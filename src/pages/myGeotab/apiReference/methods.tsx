@@ -1,25 +1,25 @@
-import { Button } from '@geotab/react-component-library';
-import myGParser from './myGParser';
-import RenderStringWithUrl from './renderStringWithUrl';
-import sortAlphabetical from './sortAlphabetical';
-import { Link } from 'react-router-dom';
+import { Button } from "@geotab/react-component-library";
+import myGParser from "./myGParser";
+import RenderStringWithUrl from "./renderStringWithUrl";
+import sortAlphabetical from "./sortAlphabetical";
+import { Link } from "react-router-dom";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 interface ParamterDescription {
-    name: string,
-    description: string, 
-    required: boolean
-};
+    name: string;
+    description: string;
+    required: boolean;
+}
 
 interface MethodDetails {
-    description: string,
-    parameters: ParamterDescription[],
-    example: string,
-    returns: string
-};
+    description: string;
+    parameters: ParamterDescription[];
+    example: string;
+    returns: string;
+}
 
 type MethodEntry = [string, MethodDetails];
 
@@ -29,22 +29,22 @@ request.send();
 let xml: Document | null = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "Methods",
-    "breadCrumbItems": ["MYG", "API Reference", "Methods"]
+    title: "Methods",
+    breadCrumbItems: ["MYG", "API Reference", "Methods"]
 };
 
-const pageSections: TableOfContentsItem[] = [
+const pageSections: TableOfContentsItem[] = [];
 
-];
-
-const methods: MethodEntry[] = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore']) as { [key: string]: MethodDetails }).sort(sortAlphabetical);
+const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
+    sortAlphabetical
+);
 console.log(methods);
 const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
     let pageSectionObject: TableOfContentsItem = {
-        "elementId": methodDetails[0],
-        "summary": methodDetails[0],
-        "details": RenderStringWithUrl(methodDetails[1].description)
+        elementId: methodDetails[0],
+        summary: methodDetails[0],
+        details: RenderStringWithUrl(methodDetails[1].description)
     };
 
     pageSections.push(pageSectionObject);
@@ -59,7 +59,7 @@ const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
             </h3>
             <p>{RenderStringWithUrl(methodDetails[1].description)}</p>
         </div>
-    )
+    );
 });
 
 export default function Methods(): JSX.Element {
@@ -68,4 +68,4 @@ export default function Methods(): JSX.Element {
             {methodItems}
         </Page>
     );
-};
+}
