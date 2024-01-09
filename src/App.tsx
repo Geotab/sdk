@@ -26,6 +26,7 @@ import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
 import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
 import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
+import MyGeotabObject from "./pages/myGeotab/apiReference/object"
 
 import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
@@ -93,8 +94,9 @@ function App() {
 
           {/* MyGeotab > API Reference Routes */}
           <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-          <Route path="/method/:methodId" element={<MyGeotabMethod />} />
+          <Route path="/myGeotab/apiReference/methods/:methodId" element={<MyGeotabMethod />}/> 
           <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
+          <Route path="/myGeotab/apiReference/objects/:objectId" element={<MyGeotabObject />}/> 
 
           {/* MyGeotab > ApiClients Route */}
           <Route path="/myGeotab/apiClients" Component={ApiClients} />
