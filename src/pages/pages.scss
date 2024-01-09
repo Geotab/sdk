@@ -1,26 +1,16 @@
 @import "../variables";
 
-// Scrollbar styling
+// Scrollbar styling - Track & handle hover not required thus not defined
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  // background: #f1f1f1;
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #7e858b42;
+  background: $scrollbar-thumb-color;
   border-radius: 8px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  // background: #555;
 }
 
 .text--large {
