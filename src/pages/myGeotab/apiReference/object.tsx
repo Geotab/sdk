@@ -17,7 +17,7 @@ interface ObjectData {
     properties: ObjectProperty[];
 }
 
-export default function Object(): JSX.Element {
+export default function Object (): JSX.Element {
     const { objectId = "" } = useParams();
     const storedObjectData: ObjectData = JSON.parse(sessionStorage[objectId]);
     const objectDescription: string = storedObjectData.description;

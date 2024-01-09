@@ -91,7 +91,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function ReleaseNotes() {
+export default function ReleaseNotes () {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

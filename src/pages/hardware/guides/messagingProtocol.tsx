@@ -1567,6 +1567,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MessagingProtocol() {
+export default function MessagingProtocol () {
     return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

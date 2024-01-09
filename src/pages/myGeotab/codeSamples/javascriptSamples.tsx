@@ -405,7 +405,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function AddInStorage() {
+export default function AddInStorage () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

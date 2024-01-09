@@ -184,6 +184,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function HardwareDesignGuide() {
+export default function HardwareDesignGuide () {
     return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

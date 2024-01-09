@@ -1113,7 +1113,7 @@ const pageSections: TableOfContentsItem[] = [
 ];
 
 //ToDo Update Reference Page Link
-export default function Concepts() {
+export default function Concepts () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

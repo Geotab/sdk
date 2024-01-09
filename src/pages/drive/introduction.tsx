@@ -18,6 +18,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Introduction() {
+export default function Introduction () {
     return <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

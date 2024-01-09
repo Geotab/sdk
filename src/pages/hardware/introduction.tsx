@@ -186,6 +186,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Introduction() {
+export default function Introduction () {
     return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

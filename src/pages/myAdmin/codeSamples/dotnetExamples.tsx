@@ -124,7 +124,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function DotnetExamples() {
+export default function DotnetExamples () {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">Here are a few examples to help you get started.</div>

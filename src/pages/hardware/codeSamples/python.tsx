@@ -177,7 +177,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Python() {
+export default function Python () {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

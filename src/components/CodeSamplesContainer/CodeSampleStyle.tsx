@@ -1,4 +1,4 @@
-export default function CodeSampleStyle(): Record<string, string> {
+export default function CodeSampleStyle (): Record<string, string> {
     return {
         fontSize: "12px",
         fontWeight: "400",

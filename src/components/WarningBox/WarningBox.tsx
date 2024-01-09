@@ -7,7 +7,7 @@ interface warningBoxProps {
     children: ReactNode;
 }
 
-export default function WarningBox(props: warningBoxProps) {
+export default function WarningBox (props: warningBoxProps) {
     return (
         <div className="warning-box">
             <div className="icon-container">

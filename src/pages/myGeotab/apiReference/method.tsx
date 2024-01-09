@@ -21,7 +21,7 @@ interface MethodData {
     example: string;
 }
 
-export default function Method(): JSX.Element {
+export default function Method (): JSX.Element {
     const { methodId = "" } = useParams();
     const storedMethodData: MethodData = JSON.parse(sessionStorage[methodId]);
     const parameters: MethodParameter[] = storedMethodData.param;

@@ -12,7 +12,7 @@ interface TableOfContentsProps {
     items: TableOfContentsItem[];
 }
 
-export default function TableOfContents({ items }: TableOfContentsProps): JSX.Element {
+export default function TableOfContents ({ items }: TableOfContentsProps): JSX.Element {
     const [activeSection, setActiveSection] = useState<string>("");
     const pageContentScrollObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
 

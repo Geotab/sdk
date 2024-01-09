@@ -1113,7 +1113,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Ble() {
+export default function Ble () {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

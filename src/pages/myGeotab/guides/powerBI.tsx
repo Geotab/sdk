@@ -40,7 +40,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function PowerBI() {
+export default function PowerBI () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

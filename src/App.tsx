@@ -55,7 +55,7 @@ import DriveAddIns from "./pages/drive/addIns/driveAddIns";
 
 import { Toaster } from "@geotab/react-component-library";
 
-function App() {
+function App () {
     return (
         <Toaster duration={2000} position="bottom-center">
             <Router>

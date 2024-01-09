@@ -1,6 +1,5 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "./App";
 import LandingPage from "./pages";
 import { BrowserRouter } from "react-router-dom";
 

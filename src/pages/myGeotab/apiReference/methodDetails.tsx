@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import RenderStringWithUrl from "./renderStringWithUrl";
 
-export default function MethodDetail(): JSX.Element {
+export default function MethodDetail (): JSX.Element {
     const { methodId } = useParams();
 
     // Use methodId to fetch the details of the method from your data source

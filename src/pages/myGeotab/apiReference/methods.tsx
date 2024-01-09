@@ -62,7 +62,7 @@ const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     );
 });
 
-export default function Methods(): JSX.Element {
+export default function Methods (): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {methodItems}

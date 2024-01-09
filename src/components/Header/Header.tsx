@@ -7,7 +7,7 @@ import SearchModal from "../SearchModal/SearchModal";
 import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
-export default function Header(props: any) {
+export default function Header (props: any) {
     const { active, setActive } = useContext(MenuContext);
     const [isSearchModalOpen, setSearchModalOpen] = useState(false);
     const [isLanding, setIsLanding] = useState(props.isLandingPage);

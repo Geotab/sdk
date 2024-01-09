@@ -13,7 +13,7 @@ interface PageProps {
     children?: React.ReactNode;
 }
 
-export default function Page(props: PageProps) {
+export default function Page (props: PageProps) {
     const isLandingPage: boolean = props.section === HeaderSections.Landing;
 
     return (

@@ -32,7 +32,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Introduction() {
+export default function Introduction () {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

@@ -11,7 +11,7 @@ interface SearchModalProps {
     onClose: () => void;
 }
 
-export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
+export default function SearchModal ({ isOpen, onClose }: SearchModalProps) {
     const modalRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [inputValue, setInputValue] = useState("");

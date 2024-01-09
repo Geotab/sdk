@@ -489,7 +489,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function myGeotabUrls() {
+export default function myGeotabUrls () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

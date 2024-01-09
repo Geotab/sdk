@@ -271,7 +271,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function DotnetSamples() {
+export default function DotnetSamples () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

@@ -242,6 +242,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function UsingTheDataConnector() {
+export default function UsingTheDataConnector () {
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { LogoProps } from "@geotab/react-component-library";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const IconMyAShort = React.forwardRef<SVGSVGElement, LogoProps>(({ color = "currentColor", ...props }, forwardedRef) => {
     return (
         <svg width="24" height="9" viewBox="0 0 24 9" fill="none" xmlns="http://www.w3.org/2000/svg">

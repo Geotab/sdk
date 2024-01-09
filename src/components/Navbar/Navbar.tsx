@@ -3,6 +3,7 @@ import MenuContext from "../../menuContext";
 import {
     SideNavigation,
     SideNavigationCollapseProvider,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     SideNavigationMenuItem // This will be imported once it's added to the react-component-library
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
@@ -15,7 +16,7 @@ import { TertiaryNavbarItems } from "./TertiaryNavbarItems";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar(props: any) {
+export default function Navbar (props: any) {
     const { active, setActive } = useContext(MenuContext);
     const navigate = useNavigate();
     const handleLogoClick = () => {
@@ -31,7 +32,7 @@ export default function Navbar(props: any) {
         "": [] // Default value is needed for the SideNavigation component to render properly
     };
 
-    function attachOnClickHandlerToMenuItems(item: SideNavigationMenuItemType) {
+    function attachOnClickHandlerToMenuItems (item: SideNavigationMenuItemType) {
         if (item.children && item.children?.length > 0) {
             item.children.forEach((child: SideNavigationMenuItemType) => {
                 attachOnClickHandlerToMenuItems(child);

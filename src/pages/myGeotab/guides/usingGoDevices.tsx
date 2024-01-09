@@ -127,7 +127,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function UsingGoDevices() {
+export default function UsingGoDevices () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

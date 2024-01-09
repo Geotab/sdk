@@ -24,8 +24,7 @@ const highlightMatch = (text: string, query: string) => {
             </span>
         ) : (
             <span key={index}>{part}</span>
-        )
-    );
+        ));
 };
 
 const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => {

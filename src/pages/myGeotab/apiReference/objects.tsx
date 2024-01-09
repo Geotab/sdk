@@ -60,7 +60,7 @@ const objectItems: JSX.Element[] = objects.map((objectDetails: ObjectEntry) => {
     );
 });
 
-export default function Objects(): JSX.Element {
+export default function Objects (): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {objectItems}

@@ -444,7 +444,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Can() {
+export default function Can () {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

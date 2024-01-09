@@ -208,6 +208,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function usingInJavascript() {
+export default function usingInJavascript () {
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

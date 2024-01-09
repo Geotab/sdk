@@ -11,7 +11,7 @@ interface BreadCrumbProps {
     isLastOne: boolean;
 }
 
-function BreadCrumb({ name, isLastOne }: BreadCrumbProps) {
+function BreadCrumb ({ name, isLastOne }: BreadCrumbProps) {
     return (
         <div className="breadCrumbContainer__atom">
             <span>{name}</span>
@@ -20,7 +20,7 @@ function BreadCrumb({ name, isLastOne }: BreadCrumbProps) {
     );
 }
 
-export default function PageTitle({ title, breadCrumbItems }: PageTitleProps) {
+export default function PageTitle ({ title, breadCrumbItems }: PageTitleProps) {
     return (
         <div className="pageTitle">
             <div className="breadCrumbContainer">

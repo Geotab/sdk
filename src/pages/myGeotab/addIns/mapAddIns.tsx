@@ -2098,7 +2098,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MapAddins() {
+export default function MapAddins () {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
@@ -2114,7 +2114,7 @@ export default function MapAddins() {
                 <figure>
                     <img className="mapAddins__image" src={mapVehicleInfoImage} alt='Figure #1 - The "Vehicle Info" Map Add-in.' />
                     <figcaption>
-                        Figure #1 - The {'"'}Vehicle Info{'"'} Map Add-in.
+                        Figure #1 - The {"\""}Vehicle Info{"\""} Map Add-in.
                     </figcaption>
                 </figure>
             </div>

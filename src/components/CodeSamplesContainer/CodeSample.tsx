@@ -17,7 +17,7 @@ interface CodeSampleProps {
     code: string;
 }
 
-export default function CodeSample(props: CodeSampleProps): JSX.Element {
+export default function CodeSample (props: CodeSampleProps): JSX.Element {
     const { lightMode, setLightMode } = useContext(CodeSampleLightDarkModeContext);
     const toast = useToast();
 
