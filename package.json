@@ -14,6 +14,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-router-hash-link": "^2.4.9",
     "babel-preset-react-app": "^10.0.1",
+    "jsdom": "^23.2.0",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.4",
     "react-dom": "^18.2.0",
