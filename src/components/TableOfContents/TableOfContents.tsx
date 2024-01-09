@@ -13,28 +13,30 @@ interface TableOfContentsProps {
 }
 
 export default function TableOfContents({ items }: TableOfContentsProps): JSX.Element {
-    const [activeSection, setActiveSection] = useState("");
+    const [activeSection, setActiveSection] = useState<string>("");
     const pageContentScrollObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
 
     const tableOfContentsIsStickyObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
     const tableOfContentsRef = useRef() as React.MutableRefObject<HTMLUListElement>;
     const activeListItemRef = useRef() as React.MutableRefObject<HTMLLIElement>;
 
-    const TOC_HEADING_OFFSET = 46; // 46px is the total height of the header including padding/margin
+    const TOC_HEADING_OFFSET: number = 46; // 46px is the total height of the header including padding/margin
+    const PAGE_SCROLL_OBSERVER_THRESHOLD: number = 0.4; // Set the threshold to 0.4 so that the active section changes when the section is 40% visible in the viewport
+    const TABLE_OF_CONTENTS_IS_STICKY_THRESHOLD: number = 1; // Set the threshold to 1 so that the table of contents is sticky when it is 100% visible in the viewport
 
     // useEffect hook implementation copied from:
     // https://netacci.hashnode.dev/how-to-highlight-active-navigation-on-scroll-in-react#heading-intersection-observer-api
     useEffect((): { (): void } => {
-        let tableOfContentsElement = tableOfContentsRef.current;
-        
+        let tableOfContentsElement: HTMLUListElement = tableOfContentsRef.current;
+
         // Create an observer to monitor when the page content scrolls so that the table of contents reflects what the user is looking at
         pageContentScrollObserver.current = new IntersectionObserver((entries) => {
-            const visibleSection = entries.find((entry): boolean => entry.isIntersecting)?.target;
+            const visibleSection: Element | undefined = entries.find((entry): boolean => entry.isIntersecting)?.target;
 
             tableOfContentsElement = tableOfContentsRef.current;
-            let tocContainer = tableOfContentsElement?.getBoundingClientRect();
-            let activeListItemElement = activeListItemRef.current;
-            let activeItemContainer = activeListItemElement?.getBoundingClientRect();
+            let tocContainer: DOMRect = tableOfContentsElement?.getBoundingClientRect();
+            let activeListItemElement: HTMLLIElement = activeListItemRef.current;
+            let activeItemContainer: DOMRect = activeListItemElement?.getBoundingClientRect();
 
             // Update state with the visible section ID & scroll to that section in the Table of Contents
             if (visibleSection) {
@@ -57,11 +59,10 @@ export default function TableOfContents({ items }: TableOfContentsProps): JSX.El
                 }
             }
         }, {
-            // Set the threshold to 0.4 so that the active section changes when the section is 40% visible in the viewport
-            threshold: 0.4
+            threshold: PAGE_SCROLL_OBSERVER_THRESHOLD
         });
 
-        const pageSections = document.querySelectorAll('details summary, details div.detailsContent');
+        const pageSections: NodeListOf<Element> = document.querySelectorAll('details summary, details div.detailsContent');
 
         pageSections.forEach((section): void => {
             pageContentScrollObserver.current.observe(section);
@@ -70,7 +71,7 @@ export default function TableOfContents({ items }: TableOfContentsProps): JSX.El
         // Create an observer to monitor when the table of contents is sticky so that its height adjusts accordingly
         tableOfContentsIsStickyObserver.current = new IntersectionObserver(
             ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
-            { threshold: [1] }
+            { threshold: TABLE_OF_CONTENTS_IS_STICKY_THRESHOLD }
         );
         tableOfContentsIsStickyObserver.current.observe(tableOfContentsElement);
 
