@@ -8,18 +8,29 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import "./reference.scss";
 
-export default function Method() {
+interface MethodParameter {
+    name: string,
+    description: string,
+    required: boolean
+};
+
+interface MethodData {
+    description: string,
+    param: MethodParameter[],
+    returns: string,
+    example: string
+};
+
+export default function Method(): JSX.Element {
     const { methodId = "" } = useParams();
-    const storedMethodData = JSON.parse(sessionStorage[methodId]);
-    const parameters = storedMethodData.param;
-    const returnValueDescriptions = storedMethodData.returns;
-    const codeSample = storedMethodData.example;
+    const storedMethodData: MethodData = JSON.parse(sessionStorage[methodId]);
+    const parameters: MethodParameter[] = storedMethodData.param;
+    const returnValueDescriptions: string = storedMethodData.returns;
+    const codeSample: string = storedMethodData.example;
     
     const introductionParagraph: ReactNode = (
-        <div>
-            <div className="paragraph">
-                {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
-            </div>
+        <div className="paragraph">
+            {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
         </div>
     );
 
@@ -44,13 +55,13 @@ export default function Method() {
         <div className="paragraph">
             <CodeSample
             language="javascript"
-            code={codeSample}></CodeSample>
+            code={codeSample} />
         </div>
     );
 
     const pageTitle: PageTitleProps = {
-        "title": methodId.toUpperCase() + " (...)",
-        "breadCrumbItems": ["MYG", "API REFERENCE", "METHODS", methodId.toUpperCase() + " (...)"]
+        "title": methodId + " (...)",
+        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + " (...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [
@@ -66,19 +77,17 @@ export default function Method() {
         },
         {
             "elementId": "returnValue",
-            "summary": "Return Value",
+            "summary": "Return value",
             "details": returnDescription
         },
         {
             "elementId": "codeSample",
-            "summary": "Try Me",
+            "summary": "Code samples",
             "details": tryMeCodeBlock
         }
     ];
 
     return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-
-        </Page>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 }; 

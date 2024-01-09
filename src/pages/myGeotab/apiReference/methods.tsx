@@ -8,25 +8,40 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
-//ToDo: Update URLs
-let request = new XMLHttpRequest();
+interface ParamterDescription {
+    name: string,
+    description: string, 
+    required: boolean
+};
+
+interface MethodDetails {
+    description: string,
+    parameters: ParamterDescription[],
+    example: string,
+    returns: string
+};
+
+type MethodEntry = [string, MethodDetails];
+
+let request: XMLHttpRequest = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
-let xml: any = request.responseXML;
+let xml: Document | null = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "METHODS",
-    "breadCrumbItems": ["MYG", "API REFERENCE", "METHODS"]
+    "title": "Methods",
+    "breadCrumbItems": ["MYG", "API Reference", "Methods"]
 };
 
 const pageSections: TableOfContentsItem[] = [
 
 ];
 
-const methods = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore'])).sort(sortAlphabetical);
-const methodItems = methods.map((methodDetails: any) => {
+const methods: MethodEntry[] = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore']) as { [key: string]: MethodDetails }).sort(sortAlphabetical);
+console.log(methods);
+const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
-    let pageSectionObject = {
+    let pageSectionObject: TableOfContentsItem = {
         "elementId": methodDetails[0],
         "summary": methodDetails[0],
         "details": RenderStringWithUrl(methodDetails[1].description)
@@ -47,7 +62,7 @@ const methodItems = methods.map((methodDetails: any) => {
     )
 });
 
-export default function Methods() {
+export default function Methods(): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {methodItems}

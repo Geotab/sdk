@@ -8,25 +8,36 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
-//ToDo: Update URLs
-let request = new XMLHttpRequest();
+interface PropertyDescription {
+    name: string, 
+    description: string
+};
+
+interface ObjectDetails {
+    description: string,
+    properties: PropertyDescription[]
+};
+
+type ObjectEntry = [string, ObjectDetails];
+
+let request: XMLHttpRequest = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
-let xml: any = request.responseXML;
+let xml: Document | null = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "OBJECTS",
-    "breadCrumbItems": ["MYG", "API RERFENCE", "OBJECTS"]
+    "title": "Objects",
+    "breadCrumbItems": ["MYG", "API Reference", "Objects"]
 };
 
 const pageSections: TableOfContentsItem[] = [
 
 ];
 
-const objects = Object.entries(myGParser(xml, 'object', ['T:Geotab.Checkmate.ObjectModel', 'T:Geotab.Checkmate.API','P:Geotab.Checkmate.ObjectModel', 'M:Geotab.Checkmate.API.#ctor', 'F:Geotab.Checkmate.ObjectModel'])).sort(sortAlphabetical);
-const objectItems = objects.map((objectDetails: any) => {
+const objects: ObjectEntry[] = Object.entries(myGParser(xml, 'object', ['T:Geotab.Checkmate.ObjectModel', 'T:Geotab.Checkmate.API', 'P:Geotab.Checkmate.ObjectModel', 'M:Geotab.Checkmate.API.#ctor', 'F:Geotab.Checkmate.ObjectModel']) as { [key: string]: ObjectDetails }).sort(sortAlphabetical);
+const objectItems: JSX.Element[] = objects.map((objectDetails: ObjectEntry) => {
     sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
-    let pageSectionObject = {
+    let pageSectionObject: TableOfContentsItem = {
         "elementId": objectDetails[0],
         "summary": objectDetails[0],
         "details": RenderStringWithUrl(objectDetails[1].description)
@@ -45,9 +56,9 @@ const objectItems = objects.map((objectDetails: any) => {
             <p>{RenderStringWithUrl(objectDetails[1].description)}</p>
         </div>
     )
-})
+});
 
-export default function Objects() {
+export default function Objects(): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {objectItems}

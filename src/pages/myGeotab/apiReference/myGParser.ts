@@ -1,6 +1,31 @@
+interface PropertyDescription {
+    name: string;
+    description: string;
+}
+  
+interface ParameterDescription extends PropertyDescription {
+    required: boolean;
+}
+  
+interface MethodInfo {
+    description: string;
+    parameters: ParameterDescription[];
+    returns: string;
+    example: string;
+}
+  
+interface ObjectInfo {
+    description: string;
+    properties: PropertyDescription[];
+}
+  
+type ParserOutput = {
+    [name: string]: MethodInfo | ObjectInfo;
+};
+
 function extractSubstrings(input: string): string {
-    const webMethodsMatch = input.match(/WebMethods\.([a-zA-Z]+)/);
-    const dataStoreMatch = input.match(/DataStore\.([a-zA-Z]+)/);
+    const webMethodsMatch: RegExpMatchArray | null = input.match(/WebMethods\.([a-zA-Z]+)/);
+    const dataStoreMatch: RegExpMatchArray | null = input.match(/DataStore\.([a-zA-Z]+)/);
   
     if (webMethodsMatch) {
         return webMethodsMatch[1];
@@ -11,7 +36,7 @@ function extractSubstrings(input: string): string {
     }
 }
 
-export default function myGParser(xml: any, itemType: string, itemStrings: string[]) {
+export default function myGParser(xml: any, itemType: string, itemStrings: string[]): ParserOutput {
     let json: any = {};
     if (xml.hasChildNodes()) {
         if (xml.childNodes[0].nodeName === 'doc') {
@@ -19,7 +44,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
             for (let i = 0; i < item.length; i++) {
                 if (item[i].nodeName === "member") {
                     if (itemType === 'method' && itemStrings.some(method => item[i].attributes.name.nodeValue.includes(method))) {
-                        let methodName = extractSubstrings(item[i].attributes.name.nodeValue).replace(/Async$/,"");
+                        let methodName: string = extractSubstrings(item[i].attributes.name.nodeValue).replace(/Async$/,"");
                         if (!json[methodName]) {
                             json[methodName] = {
                                 "description": "",
@@ -111,8 +136,8 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                     }
 
                     if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.API')))) {
-                        let tagName = item[i].attributes.name.nodeValue.split('.');
-                        let objectName = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
+                        let tagName: string = item[i].attributes.name.nodeValue.split('.');
+                        let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
 
                         if (!json[objectName]) {
                             json[objectName] = {
@@ -167,9 +192,9 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             
                         } 
                     } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('F:Geotab.Checkmate.ObjectModel')))) {
-                        let tagName = item[i].attributes.name.nodeValue.split('.');
-                        let objectName = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
-                        let propertyName = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
+                        let tagName: string = item[i].attributes.name.nodeValue.split('.');
+                        let objectName: string = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
+                        let propertyName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
                         if (json[objectName]) {
                             let propertyDict: any = {};
                             let descriptionText = '';
@@ -212,4 +237,4 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
         }
     }
     return json;
-}
+};

@@ -7,11 +7,21 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 import "./reference.scss";
 
-export default function Object() {
+interface ObjectProperty {
+    name: string,
+    description: string
+}
+
+interface ObjectData {
+    description: string,
+    properties: ObjectProperty[]
+};
+
+export default function Object(): JSX.Element {
     const { objectId = "" } = useParams();
-    const storedObjectData = JSON.parse(sessionStorage[objectId]);
-    const objectDescription = storedObjectData.description;
-    const properties = storedObjectData.properties;
+    const storedObjectData: ObjectData = JSON.parse(sessionStorage[objectId]);
+    const objectDescription: string = storedObjectData.description;
+    const properties: ObjectProperty[] = storedObjectData.properties;
 
     const introductionParagraph: ReactNode = (
         <div className="paragraph">
@@ -31,8 +41,8 @@ export default function Object() {
     );
 
     const pageTitle: PageTitleProps = {
-        "title": objectId.toUpperCase(),
-        "breadCrumbItems": ["MYG", "API REFERENCE", "OBJECTS", objectId.toUpperCase()]
+        "title": objectId,
+        "breadCrumbItems": ["MYG", "API Reference", "Objects", objectId]
     };
 
     const pageSections: TableOfContentsItem[] = [
@@ -49,8 +59,6 @@ export default function Object() {
     ];
 
     return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
-
-        </Page>
+        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
     );
 };
