@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
-    "format": "prettier --write src/**/*.{ts.tsx} --config .prettierrc.json"
+    "format": "prettier --write src/**/*.{ts,tsx} --config .prettierrc.json"
   },
   "eslintConfig": {
     "extends": [
