@@ -33,10 +33,10 @@ export default function ResultsList(props: { results: SearchResult[] }): JSX.Ele
                 {props.results.map((item) => (
                     <li key={`search-${item.id}`}>
                         <div className="result-listing-header-container">
-                            <div>
+                            <div className={item.category === "guide" ? "guide-icon" : ""}>
                                 {item.category === "guide" ? <IconClipboard /> : <IconServer />}
                             </div>
-                            <div className="result-item-title">
+                            <div className={item.category === "guide" ? "result-item-title guide-title" : "result-item-title"}>
                                 <span>
                                     {buildLink(item.link, item.title, item.id, item.match)}
                                 </span>

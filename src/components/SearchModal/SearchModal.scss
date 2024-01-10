@@ -157,6 +157,14 @@ input[type="search"]::-webkit-search-results-decoration {
   .breadCrumbContainer {
     color: $text-secondary;
   }
+
+  .guide-title {
+    padding-left: 4px;
+  }
+
+  .guide-icon {
+    padding-left: 2px;
+  }
 }
 
 .result-item-title {
