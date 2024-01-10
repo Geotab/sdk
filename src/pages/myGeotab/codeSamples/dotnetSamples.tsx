@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+import { Button, ButtonVariant } from "@geotab/react-component-library";
+
 import { Page } from "./../../../components";
 import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "./../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "./../../../components/TableOfContents/TableOfContents";
-
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 
 const howToRunTheExamples: ReactNode = (
@@ -65,15 +66,17 @@ const getCount: ReactNode = (
       A simple console example to obtain the count of devices from a database. A
       good example to see how our authentication scheme works.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetCount"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for get count folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetCount", "_blank");
+        }}
+        ariaLabel="Source for get count folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 
@@ -83,15 +86,17 @@ const extractMileage: ReactNode = (
       An example that “extracts” vehicle mileage into a CSV or XML file. A good
       starting point for any data extraction tool.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ExtractMileage"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for extract mileage folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ExtractMileage", "_blank");
+        }}
+        ariaLabel="Source for extract mileage folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const getLogs: ReactNode = (
@@ -100,15 +105,17 @@ const getLogs: ReactNode = (
       An example that obtains the logs for a given vehicle between a range of
       dates.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetLogs"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for get logs folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetLogs", "_blank");
+        }}
+        ariaLabel="Source for get logs folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 
@@ -124,15 +131,17 @@ const getFuelTaxDetailsIFTA: ReactNode = (
         <li>Trim each detail to the time interval.</li>
       </ul>
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetFuelTaxDetails"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for get fuel tax details folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/GetFuelTaxDetails", "_blank");
+        }}
+        ariaLabel="Source for get fuel tax details folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const textMessage: ReactNode = (
@@ -140,15 +149,17 @@ const textMessage: ReactNode = (
     <p>
       An example that sends text messages to and from a GO device.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/TextMessage"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for text message folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/TextMessage", "_blank");
+        }}
+        ariaLabel="Source for text message folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const importGroups: ReactNode = (
@@ -157,15 +168,17 @@ const importGroups: ReactNode = (
       A console example that is also a group import tool. It enables a one time
       import of groups to a database from a CSV file.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportGroups"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import groups folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportGroups", "_blank");
+        }}
+        ariaLabel="Source for import groups folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const reconcileGroupsAlphaVersion: ReactNode = (
@@ -190,15 +203,17 @@ const reconcileGroupsAlphaVersion: ReactNode = (
         with caution and at your own risk.
       </p>
     </InformationalBox>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportGroupsR"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import groups R folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportGroupsR", "_blank");
+        }}
+        ariaLabel="Source for import groups R folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const importDevices: ReactNode = (
@@ -206,15 +221,17 @@ const importDevices: ReactNode = (
     <p>
       Another console example that imports devices from a CSV file.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportDevices"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import devices folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportDevices", "_blank");
+        }}
+        ariaLabel="Source for import devices folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const importZones: ReactNode = (
@@ -224,15 +241,17 @@ const importZones: ReactNode = (
       you have a list of geographic coordinates and want to quickly create zones
       around them.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportZones"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import zones folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportZones", "_blank");
+        }}
+        ariaLabel="Source for import zones folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const importZonesFromShapeFile: ReactNode = (
@@ -248,15 +267,17 @@ const importZonesFromShapeFile: ReactNode = (
       </a>{" "}
       set (.shp, .shx, .dbf) into a given database.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportZonesShapeFile"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import zones shapefile folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportZonesShapeFile", "_blank");
+        }}
+        ariaLabel="Source for import zones shapefile folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const importUsers: ReactNode = (
@@ -264,15 +285,17 @@ const importUsers: ReactNode = (
     <p>
       Another console example that imports users from a CSV file.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportUsers"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for import users folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/ImportUsers", "_blank");
+        }}
+        ariaLabel="Source for import users folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 const dataFeed: ReactNode = (
@@ -281,15 +304,17 @@ const dataFeed: ReactNode = (
       An example of retrieving GPS, Status and Fault data as a feed and
       exporting to a CSV file.
     </p>
-    <a
-      className="button-secondary"
-      href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source for data feed folder"
-    >
-      View source code
-    </a>
+    <div className="code-samples-pages__button-container">
+      <Button
+        variant={ButtonVariant.Secondary}
+        onClick={() => {
+          window.open("https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed", "_blank");
+        }}
+        ariaLabel="Source for data feed folder"
+      >
+        View source code
+      </Button>
+    </div>
   </div>
 );
 
