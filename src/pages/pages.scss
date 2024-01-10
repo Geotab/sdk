@@ -227,3 +227,13 @@ a {
   background-color: $code-bg;
   padding: 4px;
 }
+
+.code-samples-pages__button-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin: 5px 0;
+}
