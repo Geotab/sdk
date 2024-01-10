@@ -37,7 +37,7 @@ function extractSubstrings(input: string): string {
 }
 
 export default function myGParser(xml: any, itemType: string, itemStrings: string[]): ParserOutput {
-    let json: any = {};
+    let json: { [key: string]: MethodInfo | ObjectInfo } = {};
     if (xml.hasChildNodes()) {
         if (xml.childNodes[0].nodeName === 'doc') {
             let item = xml.childNodes[0].childNodes;
@@ -48,7 +48,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                         if (!json[methodName]) {
                             json[methodName] = {
                                 "description": "",
-                                "param": [],
+                                "parameters": [],
                                 "returns": "",
                                 "example": ""
                             }
@@ -109,7 +109,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 if (item[i].childNodes[j].attributes.hasOwnProperty('required')) {
                                     paramDict['required'] = true;
                                 }
-                                json[methodName].param.push(paramDict);
+                                (json[methodName] as MethodInfo).parameters.push(paramDict);
                             }
                             if (item[i].childNodes[j].nodeName === 'returns') {
                                 let returnText: string = '';
@@ -121,7 +121,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                         returnText += item[i].childNodes[j].childNodes[k].outerHTML;
                                     }
                                 }
-                                json[methodName].returns = returnText.trimStart();
+                                (json[methodName] as MethodInfo).returns = returnText.trimStart();
                             }
                             if (item[i].childNodes[j].nodeName === 'example') {
                                 let codeText: string = '';
@@ -130,7 +130,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                         codeText += item[i].childNodes[j].childNodes[k].innerHTML;
                                     }
                                 }
-                                json[methodName].example = codeText.trimStart();
+                                (json[methodName] as MethodInfo).example = codeText.trimStart();
                             }
                         } 
                     }
@@ -229,7 +229,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 }
                             }
                             propertyDict['description'] = descriptionText.trimStart();
-                            json[objectName].properties.push(propertyDict);
+                            (json[objectName] as ObjectInfo).properties.push(propertyDict);
                         }
                     }
                 }
