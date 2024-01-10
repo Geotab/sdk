@@ -13,7 +13,7 @@ interface PageContentProps {
     tableOfContents?: TableOfContentsItem[];
 }
 
-export default function PageContent (props: PageContentProps) {
+export default function PageContent(props: PageContentProps) {
     return (
         <div className="pageContent__container">
             <Header isLandingPage={props.isLandingPage} />

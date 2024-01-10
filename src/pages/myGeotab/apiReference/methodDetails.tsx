@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+// TODO: fix "Invalid type "string | undefined" of template literal expression if needed
 import React from "react";
 import { useParams } from "react-router-dom";
 import RenderStringWithUrl from "./renderStringWithUrl";
 
-export default function MethodDetail (): JSX.Element {
+export default function MethodDetail(): JSX.Element {
     const { methodId } = useParams();
 
     // Use methodId to fetch the details of the method from your data source

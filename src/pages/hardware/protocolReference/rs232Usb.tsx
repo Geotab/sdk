@@ -1838,7 +1838,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function Rs232Usb () {
+export default function Rs232Usb() {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

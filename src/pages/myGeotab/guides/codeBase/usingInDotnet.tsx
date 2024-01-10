@@ -170,7 +170,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function usingInDotnet () {
+export default function usingInDotnet() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

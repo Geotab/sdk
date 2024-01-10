@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 interface PropertyDescription {
     name: string;
     description: string;
@@ -23,7 +24,7 @@ interface ParserOutput {
     [name: string]: MethodInfo | ObjectInfo;
 }
 
-function extractSubstrings (input: string): string {
+function extractSubstrings(input: string): string {
     const webMethodsMatch: RegExpMatchArray | null = input.match(/WebMethods\.([a-zA-Z]+)/);
     const dataStoreMatch: RegExpMatchArray | null = input.match(/DataStore\.([a-zA-Z]+)/);
 
@@ -36,7 +37,7 @@ function extractSubstrings (input: string): string {
     return "";
 }
 
-export default function myGParser (xml: any, itemType: string, itemStrings: string[]): ParserOutput {
+export default function myGParser(xml: any, itemType: string, itemStrings: string[]): ParserOutput {
     let json: any = {};
     if (xml.hasChildNodes()) {
         if (xml.childNodes[0].nodeName === "doc") {
@@ -232,8 +233,7 @@ export default function myGParser (xml: any, itemType: string, itemStrings: stri
                                         }
                                     }
                                 }
-                                if (item[i].childNodes[j].nodeName === "value") {
-                                }
+                                if (item[i].childNodes[j].nodeName === "value") { /* TODO: resolve empty block statement linting issue */ }
                             }
                             propertyDict["description"] = descriptionText.trimStart();
                             json[objectName].properties.push(propertyDict);

@@ -1,4 +1,4 @@
-export default function CustomLightModeTheme (): Record<string, string> {
+export default function CustomLightModeTheme(): Record<string, string> {
     return {
         lineNumberColor: "#37474f",
         lineNumberBgColor: "#f1f3f4",

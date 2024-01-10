@@ -221,7 +221,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function GoDeviceLogging () {
+export default function GoDeviceLogging() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

@@ -48,6 +48,8 @@ const objectItems: JSX.Element[] = objects.map((objectDetails: ObjectEntry) => {
     pageSections.push(pageSectionObject);
 
     return (
+        // TODO: fix missing "key" prop for element in iterator
+        // eslint-disable-next-line react/jsx-key
         <div className="paragraph" id={objectDetails[0]}>
             <h3 className="objects__object-title">
                 {objectDetails[0]}
@@ -60,7 +62,7 @@ const objectItems: JSX.Element[] = objects.map((objectDetails: ObjectEntry) => {
     );
 });
 
-export default function Objects (): JSX.Element {
+export default function Objects(): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {objectItems}

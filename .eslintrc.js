@@ -10,7 +10,6 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "prettier",
-        // "plugin:prettier/recommended"
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
@@ -31,62 +30,61 @@ module.exports = {
         }
     },
     rules: {
-        'react/react-in-jsx-scope': 'off', // TODO: discuss if we need to turn this on and address the issue
-        'react/no-unescaped-entities': 'off', // TODO: discuss if this should be turned on and address the issue
+        'react/react-in-jsx-scope': 'off', 
+        'react/no-unescaped-entities': 'off',
+        "react-hooks/exhaustive-deps": "error",
+        "react/prop-types": [
+            2,
+            {
+                ignore: ["children"]
+            }
+        ],
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": [
             "error",
             {
-                default: "array"
+                "default": "array"
             }
         ],
         "@typescript-eslint/await-thenable": "error",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
-            "error",
+            "warn",
             {
-                vars: "local",
-                argsIgnorePattern: "^_[1-9]?$",
-                args: "after-used",
-                ignoreRestSiblings: true,
-                caughtErrors: "none"
+                "vars": "local",
+                "argsIgnorePattern": "^_[1-9]?$",
+                "args": "after-used",
+                "ignoreRestSiblings": true,
+                "caughtErrors": "none"
             }
         ],
         "@typescript-eslint/consistent-type-definitions": "error",
-        "@typescript-eslint/no-implied-eval": "error",
+        "@typescript-eslint/no-implied-eval": "off",
         "@typescript-eslint/member-delimiter-style": [
             "error",
             {
-                multiline: {
-                    delimiter: "semi",
-                    requireLast: true
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
                 },
-                singleline: {
-                    delimiter: "semi",
-                    requireLast: false
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": false
                 }
             }
         ],
         "@typescript-eslint/member-ordering": [
             "error",
             {
-                default: [
-                    "signature",
+                "default": [
                     "private-instance-field",
                     "private-static-field",
                     "private-instance-method",
-                    "private-decorated-method",
                     "private-constructor",
                     "protected-instance-method",
-                    "protected-abstract-method",
-                    "protected-constructor",
-                    "protected-abstract-method",
                     "public-constructor",
                     "public-instance-field",
-                    "public-decorated-field",
-                    "public-abstract-method",
                     "public-instance-method",
-                    "public-decorated-method",
                     "public-static-field",
                     "public-static-method"
                 ]
@@ -94,159 +92,140 @@ module.exports = {
         ],
         "@typescript-eslint/no-extraneous-class": "error",
         "@typescript-eslint/ban-types": [
-            "error",
-            {
-                types: {
-                    Number: {
-                        message: "Use number instead",
-                        fixWith: "number"
-                    },
-                    Boolean: {
-                        message: "Use boolean instead",
-                        fixWith: "boolean"
-                    },
-                    String: {
-                        message: "Use string instead",
-                        fixWith: "string"
-                    },
-                    Array: {
-                        message: "Use [] instead",
-                        fixWith: "[]"
-                    },
-                    Function: {
-                        message: "Use actual function type with arguments instead"
-                    },
-                    "{}": {
-                        message: "Use object instead",
-                        fixWith: "object"
-                    }
-                },
-                extendDefaults: false
-            }
+            "error"
         ],
-        "@typescript-eslint/no-floating-promises": "off", // should be turned on
+        "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-for-in-array": "error",
         "@typescript-eslint/no-inferrable-types": "error",
         "@typescript-eslint/no-misused-new": "error",
         "@typescript-eslint/no-namespace": "error",
-        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/no-unsafe-call": "off",
-        "@typescript-eslint/no-unsafe-argument": "off", // change to error, it's very helpful
+        "@typescript-eslint/indent": ["off"],
         "@typescript-eslint/restrict-template-expressions": [
             "error",
             {
                 allowNumber: true,
                 allowBoolean: true,
-                allowAny: true, // chagne to 'false'
+                allowAny: false,
                 allowNullish: false
             }
         ],
         "@typescript-eslint/no-empty-interface": [
             "error",
             {
-                allowSingleExtends: true
+                "allowSingleExtends": true
             }
         ],
         "@typescript-eslint/no-misused-promises": [
             "error",
             {
-                checksVoidReturn: false
+                "checksVoidReturn": false,
+                "checksConditionals": false
             }
         ],
         "@typescript-eslint/no-explicit-any": [
-            "off", // !!!change to error
+            "warn",   
             {
-                ignoreRestArgs: true,
-                fixToUnknown: false
+                "ignoreRestArgs": true,
+                "fixToUnknown": false
             }
         ],
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": "off", // !!!change to error
         "@typescript-eslint/triple-slash-reference": "off",
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/explicit-module-boundary-types": [
             "off",
             {
-                allowHigherOrderFunctions: false,
-                allowTypedFunctionExpressions: false,
-                allowDirectConstAssertionInArrowFunctions: false,
-                shouldTrackReferences: false
+                "allowHigherOrderFunctions": false,
+                "allowTypedFunctionExpressions": false,
+                "allowDirectConstAssertionInArrowFunctions": false,
+                "shouldTrackReferences": false
             }
         ],
-        "@typescript-eslint/no-this-alias": "error",
+        "@typescript-eslint/no-this-alias": "off",
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
         "@typescript-eslint/no-unnecessary-type-arguments": "error",
         "@typescript-eslint/no-unnecessary-type-assertion": "error",
+        "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/prefer-function-type": "error",
         "@typescript-eslint/prefer-namespace-keyword": "error",
         "@typescript-eslint/prefer-readonly": "error",
-        quotes: "off",
-        "@typescript-eslint/quotes": ["error", "double", { allowTemplateLiterals: true }],
+        "quotes": "off",
+        "@typescript-eslint/quotes": [
+            "error",
+            "double",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ],
         "@typescript-eslint/restrict-plus-operands": "off",
-        semi: "off",
+        "semi": "off",
         "@typescript-eslint/semi": ["error", "always"],
         "@typescript-eslint/type-annotation-spacing": ["error"],
-        "@typescript-eslint/unified-signatures": "off", // change to warning
-        "@typescript-eslint/no-var-requires": "off", // change to warning
+        "@typescript-eslint/unified-signatures": "off",   // change to warning
+        "@typescript-eslint/no-var-requires": "off",    // change to warning
         "@typescript-eslint/prefer-regexp-exec": "off", // change to warning
         "func-call-spacing": "off",
         "@typescript-eslint/func-call-spacing": ["error"],
         "@typescript-eslint/no-extra-semi": "error",
         "@typescript-eslint/no-extra-parens": "off",
+        "no-duplicate-imports": "off",
+        "@typescript-eslint/no-duplicate-imports": "error",
         "no-redeclare": "off",
         "@typescript-eslint/no-redeclare": ["error"],
-        "function-paren-newline": ["error", "multiline-arguments"],
         "brace-style": "off",
-        "@typescript-eslint/brace-style": ["error", "1tbs", { allowSingleLine: true }],
-        camelcase: [
+        "@typescript-eslint/brace-style": "off",
+        "camelcase": [
             "error",
             {
-                properties: "never",
-                ignoreImports: true,
-                allow: []
+                "properties": "never",
+                "ignoreImports": true,
+                "allow": []
             }
         ],
         "@typescript-eslint/naming-convention": [
-            "warn", // TODO: discuss if we need to set this back to "error" to be aligned with MyG dev repo
+            "error",
             {
-                selector: ["classMethod", "typeMethod", "typeProperty", "classProperty"],
-                format: ["camelCase"]
+                "selector": ["classMethod", "typeMethod", "typeProperty", "classProperty"],
+                "format": ["camelCase"]
             },
             {
-                selector: ["class", "typeAlias", "typeParameter", "enum"],
-                format: ["PascalCase"]
+                "selector": ["class", "typeAlias", "typeParameter", "enum"],
+                "format": ["PascalCase"]
+            },
+            // {
+            //     "selector": "interface",
+            //     "format": ["PascalCase"],
+            //     "prefix": ["I"]
+            // },
+            {
+                "selector": "function",
+                "modifiers": ["exported"],
+                "format": ["camelCase", "PascalCase"]
             },
             {
-                selector: "interface",
-                format: ["PascalCase"],
-                prefix: ["I"]
+                "selector": "variable",
+                "modifiers": ["const"],
+                "format": ["UPPER_CASE", "camelCase"]
             },
             {
-                selector: "function",
-                modifiers: ["exported"],
-                format: ["camelCase", "PascalCase"]
+                "selector": "variableLike",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
             },
-            {
-                selector: "variable",
-                modifiers: ["const"],
-                format: ["UPPER_CASE", "camelCase"]
-            },
-            {
-                selector: "variableLike",
-                format: ["camelCase"],
-                leadingUnderscore: "allow"
-            }
         ],
         "comma-dangle": "off",
         "@typescript-eslint/comma-dangle": ["error"],
         "default-param-last": "off",
         "@typescript-eslint/default-param-last": "off",
         "init-declarations": "off",
-        "@typescript-eslint/init-declarations": "off",
+        "@typescript-eslint/init-declarations": "off", 
         "no-invalid-this": "off",
         "@typescript-eslint/no-invalid-this": "off",
         "no-loop-func": "off",
@@ -268,18 +247,7 @@ module.exports = {
         "@typescript-eslint/no-extra-non-null-assertion": ["error"],
         "@typescript-eslint/no-non-null-asserted-optional-chain": ["error"],
         "@typescript-eslint/no-require-imports": ["error"],
-        "@typescript-eslint/consistent-generic-constructors": "error",
-        "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
-        "@typescript-eslint/no-meaningless-void-operator": "error",
-        "@typescript-eslint/no-redundant-type-constituents": "error",
-        "@typescript-eslint/no-useless-empty-export": "error",
-        "@typescript-eslint/prefer-string-starts-ends-with": "off", // turn this on
-        "@typescript-eslint/no-unnecessary-condition": [
-            "off",
-            {
-                allowConstantLoopConditions: true
-            }
-        ], // 2 change to error (very useful but more then 2800 errors and most of them can't be solved easily)
+        "@typescript-eslint/no-unnecessary-condition": "error",
         "@typescript-eslint/no-unnecessary-type-constraint": ["error"],
         "@typescript-eslint/prefer-as-const": ["error"],
         "@typescript-eslint/prefer-literal-enum-member": ["error"],
@@ -289,8 +257,8 @@ module.exports = {
         "@typescript-eslint/no-shadow": [
             "error",
             {
-                ignoreTypeValueShadow: true,
-                ignoreFunctionTypeParameterNameValueShadow: true
+                "ignoreTypeValueShadow": true,
+                "ignoreFunctionTypeParameterNameValueShadow": true
             }
         ],
         "no-throw-literal": "off",
@@ -303,178 +271,155 @@ module.exports = {
         "@typescript-eslint/no-useless-constructor": ["error"],
         "no-unused-expressions": "off",
         "@typescript-eslint/no-unused-expressions": [
-            "error",
+            "warn",
             {
-                allowShortCircuit: true,
-                allowTernary: true
+                "allowShortCircuit": true,
+                "allowTernary": true
             }
         ],
         "object-curly-spacing": "off",
-        "@typescript-eslint/object-curly-spacing": ["error", "always"],
+        "@typescript-eslint/object-curly-spacing": "off",
         "comma-spacing": "off",
         "@typescript-eslint/comma-spacing": [
             "error",
             {
-                before: false,
-                after: true
+                "before": false,
+                "after": true
             }
         ],
         "keyword-spacing": "off",
         "@typescript-eslint/keyword-spacing": [
             "error",
             {
-                before: true,
-                after: true
+                "before": true,
+                "after": true
             }
         ],
-        "space-before-function-paren": "off",
-        "@typescript-eslint/space-before-function-paren": [ // TODO: discuss if we want to set this back to 'error' like for MyG devs
-            "warn",
-            {
-                anonymous: "always",
-                named: "always",
-                asyncArrow: "always"
-            }
-        ],
+        "space-before-function-paren": "off", // decided 
+        "@typescript-eslint/space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "ignore",
+            "asyncArrow": "always"
+        }],
         "space-infix-ops": "off",
         "@typescript-eslint/space-infix-ops": ["error"],
         "array-bracket-spacing": [
-            "off", // 2 change to error
-            "always",
+            "error",
+            "never",
             {
-                objectsInArrays: false,
-                arraysInArrays: false,
-                singleValue: false
+                "objectsInArrays": false,
+                "arraysInArrays": false,
+                "singleValue": false
             }
         ],
         "key-spacing": [
             "error",
             {
-                beforeColon: false,
-                afterColon: true
+                "beforeColon": false,
+                "afterColon": true
             }
         ],
         "computed-property-spacing": [
             "error",
             "never",
             {
-                enforceForClassMembers: true
+                "enforceForClassMembers": true
             }
         ],
         "no-var": "off",
         "no-param-reassign": "error",
-        "prefer-rest-params": "error",
-        "prefer-spread": "off",
+        "prefer-rest-params": "off",
+        "prefer-spread": "off", 
         "prefer-object-spread": "error",
-        "prefer-const": [
-            "off",
-            {
-                // maybe later
-                destructuring: "any",
-                ignoreReadBeforeAssign: false
-            }
-        ],
+        "prefer-const": ["off", {
+            "destructuring": "any",
+            "ignoreReadBeforeAssign": false
+        }],
         "no-useless-rename": ["error"],
         "no-whitespace-before-property": "error",
         "space-unary-ops": "error",
-        "template-curly-spacing": ["error", "never"], // NOTE: this rule is always true in MyG dev repo but set to never in camera add-in (possibly due to conflict with prettier)
+        "template-curly-spacing": ["error", "never"],
         "template-tag-spacing": ["error", "never"],
         "space-in-parens": ["error", "never"],
         "use-isnan": "error",
-        "array-callback-return": "error",
-        "getter-return": "error",
-        "no-async-promise-executor": "error",
-        "no-await-in-loop": "error",
-        "for-direction": "error",
-        "no-class-assign": "error",
-        "no-compare-neg-zero": "error",
-        "no-const-assign": "error",
-        "no-constant-binary-expression": "error",
-        "no-constant-condition": "error",
-        "no-constructor-return": "error",
-        "no-dupe-args": "error",
-        "no-dupe-keys": "error",
-        "no-ex-assign": "error",
-        "no-fallthrough": "error",
-        "no-import-assign": "error",
-        "no-invalid-regexp": "error",
-        "no-loss-of-precision": "error",
-        "no-new-native-nonconstructor": "error",
-        "no-duplicate-imports": "error",
-        "no-new-symbol": "error",
-        "no-obj-calls": "error",
-        "no-promise-executor-return": "error",
-        "no-self-compare": "error",
-        "no-setter-return": "error",
-        "no-inner-declarations": "error",
-        "no-irregular-whitespace": "error",
-        "no-unmodified-loop-condition": "error",
-        "no-unreachable": "error",
-        "no-unreachable-loop": "error",
-        "no-unsafe-finally": "error",
-        "no-unsafe-negation": "error",
-        "no-unsafe-optional-chaining": "error",
-        "no-unused-private-class-members": "error",
-        "no-useless-backreference": "error",
-        "require-atomic-updates": "error",
-        "valid-typeof": "error",
         "no-prototype-builtins": "off",
         "block-spacing": "error",
-        "arrow-spacing": ["error", { before: true, after: true }],
+        "arrow-spacing": ["error", { "before": true, "after": true }],
         "no-trailing-spaces": "error",
         "no-underscore-dangle": [
             "error",
             {
-                enforceInMethodNames: false,
-                allow: ["__detach", "__showCrashElt", "__events", "_isEdited", "_createdDateTime", "_wfx_settings"]
+                "enforceInMethodNames": false,
+                "allow": ["__detach", "__showCrashElt", "__events", "_isEdited", "_createdDateTime", "_wfx_settings"]
             }
         ],
-        "no-restricted-globals": ["error", "name", "length", "event", "parent"],
+        "no-restricted-globals": [
+            "error",
+            "name",
+            "length",
+            "event",
+            "parent"
+        ],
         "no-unsafe-finally": "error",
-        "no-empty-function": ["error", { allow: ["arrowFunctions", "constructors", "getters", "setters", "methods"] }],
-        "no-useless-escape": "off",
-        complexity: [
+        "no-empty-function": ["error", { "allow": ["arrowFunctions", "constructors", "getters", "setters", "methods"] }],
+        "no-useless-escape": "warn",
+        "complexity": [
             "error",
             {
-                max: 20
+                "max": 16
             }
         ],
         "no-useless-catch": "error",
-        "no-extra-boolean-cast": ["error", { enforceForLogicalOperands: true }],
+        "no-extra-boolean-cast": ["error", { "enforceForLogicalOperands": true }],
         "constructor-super": "error",
         "consistent-return": "error",
-        curly: "error",
+        "curly": "error",
         "default-case": "error",
-        eqeqeq: ["error", "always"],
-        "id-blacklist": ["error", "any", "Boolean", "boolean", "Undefined", "undefined"],
-        indent: "off",
-        "@typescript-eslint/indent": [
+        "eqeqeq": [
             "error",
+            "always"
+        ],
+        "id-blacklist": [
+            "off",
+            "any",
+            "Number",
+            "number",
+            "String",
+            "string",
+            "Boolean",
+            "boolean",
+            "Undefined",
+            "undefined"
+        ],
+        "indent": [
+            "warn", 
             4,
             {
-                SwitchCase: 1,
-                FunctionDeclaration: { body: 1, parameters: 1 },
-                VariableDeclarator: 1,
-                MemberExpression: 1,
-                FunctionExpression: { parameters: 1 },
-                CallExpression: { arguments: 1 },
-                ArrayExpression: 1,
-                ObjectExpression: 1,
-                ImportDeclaration: 1,
-                flatTernaryExpressions: false,
-                offsetTernaryExpressions: false
+                "SwitchCase": 1,
+                "FunctionDeclaration": { "body": 1, "parameters": 1 },
+                "VariableDeclarator": 1,
+                "MemberExpression": 1,
+                "FunctionExpression": { "parameters": 1 },
+                "CallExpression": { "arguments": 1 },
+                "ArrayExpression": 1,
+                "ObjectExpression": 1,
+                "ImportDeclaration": 1,
+                "flatTernaryExpressions": false,
+                "offsetTernaryExpressions": false
             }
         ],
         "new-parens": "error",
-        "arrow-body-style": ["off", "as-needed"], // change to error
+        "arrow-body-style": ["error", "as-needed"],
         "id-match": "error",
-        "max-classes-per-file": ["error", 9],
+        "max-classes-per-file": [
+            "error",
+            3
+        ],
         "max-len": [
-            "warn", // TODO: discuss what is the max length (camera add-in = 160, myg = 198)
+            "error",
             {
-                ignorePattern:
-                    'class [a-zA-Z]+ implements |^[\\s\\t]*\\/\\/|^[\\s\\t]*\\{|^[\\s\\t]*"|^[\\s\\t]*`|^[\\s\\t]*<|^[\\s\\t]*\\*|translate\\(',
-                code: 198
+                "ignorePattern": "class [a-zA-Z]+ implements |^[\\s\\t]*\\/\\/|^[\\s\\t]*\\{|^[\\s\\t]*\"|^[\\s\\t]*\`|^[\\s\\t]*<|^[\\s\\t]*\\*|translate\\(",
+                "code": 198
             }
         ],
         "no-caller": "error",
@@ -484,7 +429,7 @@ module.exports = {
         "no-empty": [
             "error",
             {
-                allowEmptyCatch: true
+                "allowEmptyCatch": true
             }
         ],
         "no-eval": "error",
@@ -493,7 +438,7 @@ module.exports = {
         "no-multiple-empty-lines": [
             "error",
             {
-                max: 2
+                "max": 2
             }
         ],
         "no-case-declarations": "error",
@@ -502,22 +447,16 @@ module.exports = {
         "no-return-await": "error",
         "no-sequences": "error",
         "no-sparse-arrays": "error",
-        "no-template-curly-in-string": "error",
-        "no-multi-spaces": "error",
-        "space-before-blocks": "error",
-        "no-dupe-else-if": "error",
-        "no-else-return": ["error", { allowElseIf: false }],
-        "no-lonely-if": "error",
-        "no-unexpected-multiline": "error",
-        "wrap-iife": ["error", "inside"],
-        strict: "error",
-        "no-restricted-properties": [
-            2,
-            {
-                property: "substr",
-                message:
-                    "'substr' is deprecated for strings - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr#browser_compatibility"
+        "no-template-curly-in-string": "off",
+        "react/display-name": "off"
+    },
+    overrides: [
+        {
+            // Turning off max-len rule for static pages
+            files: ["src/pages/**/*.js", "src/pages/**/*.jsx", "src/pages/**/*.ts", "src/pages/**/*.tsx"],
+            rules: {
+                "max-len": "off"
             }
-        ]
-    }
-};
+        }
+    ]
+}

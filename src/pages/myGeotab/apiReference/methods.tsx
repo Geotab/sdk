@@ -35,9 +35,11 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [];
 
-const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
-    sortAlphabetical
-);
+const methods: MethodEntry[] = Object.entries(
+    myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as {
+        [key: string]: MethodDetails;
+    }
+).sort(sortAlphabetical);
 console.log(methods);
 const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
@@ -50,6 +52,8 @@ const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     pageSections.push(pageSectionObject);
 
     return (
+        // TODO: fix missing "key" prop for element in iterator
+        // eslint-disable-next-line react/jsx-key
         <div className="paragraph" id={methodDetails[0]}>
             <h3 className="methods__method-title">
                 {methodDetails[0] + " (...)"}
@@ -62,7 +66,7 @@ const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     );
 });
 
-export default function Methods (): JSX.Element {
+export default function Methods(): JSX.Element {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             {methodItems}

@@ -408,7 +408,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MgMediaFiles () {
+export default function MgMediaFiles() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

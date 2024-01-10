@@ -70,7 +70,7 @@ const pageTitle: PageTitleProps = {
     breadCrumbItems: ["MYA", "Code Samples", "JavaScript Examples"]
 };
 
-export default function JavascriptExamples () {
+export default function JavascriptExamples() {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
             <div className="paragraph">

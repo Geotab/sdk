@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { IconProps } from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";

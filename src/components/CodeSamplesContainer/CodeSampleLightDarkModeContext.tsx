@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { createContext, useState, ReactNode } from "react";
 
 interface CodeSampleLightDarkModeContextType {
@@ -17,7 +18,11 @@ interface CodeSampleLightDarkModeProviderProps {
 export const CodeSampleLightDarkModeProvider: React.FC<CodeSampleLightDarkModeProviderProps> = ({ children }) => {
     const [lightMode, setLightMode] = useState<boolean>(false);
 
-    return <CodeSampleLightDarkModeContext.Provider value={{ lightMode, setLightMode }}>{children}</CodeSampleLightDarkModeContext.Provider>;
+    return (
+        <CodeSampleLightDarkModeContext.Provider value={{ lightMode, setLightMode }}>
+            {children}
+        </CodeSampleLightDarkModeContext.Provider>
+    );
 };
 
 export default CodeSampleLightDarkModeContext;

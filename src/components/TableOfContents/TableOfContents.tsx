@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./tableOfContents.scss";
 import { HashLink } from "react-router-hash-link";
+import { JSX } from "react/jsx-runtime";
 
 export interface TableOfContentsItem {
     summary: string;
@@ -12,7 +13,7 @@ interface TableOfContentsProps {
     items: TableOfContentsItem[];
 }
 
-export default function TableOfContents ({ items }: TableOfContentsProps): JSX.Element {
+export default function TableOfContents({ items }: TableOfContentsProps): JSX.Element {
     const [activeSection, setActiveSection] = useState<string>("");
     const pageContentScrollObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
 
@@ -35,18 +36,18 @@ export default function TableOfContents ({ items }: TableOfContentsProps): JSX.E
                 const visibleSection: Element | undefined = entries.find((entry): boolean => entry.isIntersecting)?.target;
 
                 tableOfContentsElement = tableOfContentsRef.current;
-                let tocContainer: DOMRect = tableOfContentsElement?.getBoundingClientRect();
+                let tocContainer: DOMRect = tableOfContentsElement.getBoundingClientRect();
                 let activeListItemElement: HTMLLIElement = activeListItemRef.current;
-                let activeItemContainer: DOMRect = activeListItemElement?.getBoundingClientRect();
+                let activeItemContainer: DOMRect = activeListItemElement.getBoundingClientRect();
 
                 // Update state with the visible section ID & scroll to that section in the Table of Contents
                 if (visibleSection) {
                     setActiveSection(visibleSection.id);
 
                     // If the active table of contents item is not in the viewport, scroll to it
-                    if (activeItemContainer?.top < tocContainer?.top + TOC_HEADING_OFFSET || activeItemContainer?.bottom >= tocContainer?.bottom) {
+                    if (activeItemContainer.top < tocContainer.top + TOC_HEADING_OFFSET || activeItemContainer.bottom >= tocContainer.bottom) {
                         activeListItemElement.scrollIntoView({ block: "center", inline: "nearest" });
-                    } else if (activeItemContainer?.top >= tocContainer?.top && activeItemContainer?.bottom < tocContainer?.bottom) {
+                    } else if (activeItemContainer.top >= tocContainer.top && activeItemContainer.bottom < tocContainer.bottom) {
                         // Using "nearest" instead of any other block option, because other options will cause the main page to scroll unintentionally
                         activeListItemElement.scrollIntoView({ block: "nearest", inline: "nearest" });
                     }
@@ -80,8 +81,8 @@ export default function TableOfContents ({ items }: TableOfContentsProps): JSX.E
 
     return (
         <ul className="tableOfContents" ref={tableOfContentsRef}>
-            {items.map((item: TableOfContentsItem): JSX.Element => {
-                return (
+            {items.map(
+                (item: TableOfContentsItem): JSX.Element => (
                     <li
                         key={item.elementId}
                         className={activeSection === item.elementId ? "tableOfContents__item--active" : ""}
@@ -89,8 +90,8 @@ export default function TableOfContents ({ items }: TableOfContentsProps): JSX.E
                     >
                         <HashLink to={`#${item.elementId}`}>{item.summary}</HashLink>
                     </li>
-                );
-            })}
+                )
+            )}
         </ul>
     );
 }

@@ -1,9 +1,19 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as React from "react";
 import { LogoProps } from "@geotab/react-component-library";
 
-export const IconLightModeSun = React.forwardRef<SVGSVGElement, LogoProps>(({ color = "currentColor", ...props }, forwardedRef) => {
-    return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={forwardedRef}>
+export const IconLightModeSun = React.forwardRef<SVGSVGElement, LogoProps>(
+    ({ color = "currentColor", ...props }, forwardedRef) => (
+        <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+            ref={forwardedRef}
+        >
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -11,7 +21,7 @@ export const IconLightModeSun = React.forwardRef<SVGSVGElement, LogoProps>(({ co
                 fill={color}
             />
         </svg>
-    );
-});
+    )
+);
 
 IconLightModeSun.displayName = "IconLightModeSun";

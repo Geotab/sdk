@@ -7,7 +7,7 @@ interface InformationalBoxProps {
     children: ReactNode;
 }
 
-export default function InformationalBox (props: InformationalBoxProps) {
+export default function InformationalBox(props: InformationalBoxProps) {
     return (
         <div className="informational-box">
             <div className="icon-container">

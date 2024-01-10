@@ -10,7 +10,7 @@ import { HeaderSections } from "../components/Header/headerSectionsEnum";
 import { useContext } from "react";
 import MenuContext from "../menuContext";
 
-export default function LandingPage () {
+export default function LandingPage() {
     const { setActive } = useContext(MenuContext);
 
     const handleLinkClick = (target: string) => {

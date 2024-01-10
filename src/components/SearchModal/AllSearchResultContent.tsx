@@ -24,9 +24,11 @@ const highlightMatch = (text: string, query: string) => {
             </span>
         ) : (
             <span key={index}>{part}</span>
-        ));
+        )
+    );
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const AllSearchResultContent = ({ inputValue }: AllSearchResultContentProps) => {
     const [hasResults, setHasResults] = useState(false);
     const [searchResults, setSearchResults] = useState<ApiReferenceItem[]>([]);

@@ -212,7 +212,8 @@ const mapAddinServices: ReactNode = (
                             </tr>
                             <tr>
                                 <td>
-                                    attach {"("}eventName: string, eventHandler: {"("}serviceData: any{")"} ={">"}; void{")"}: void
+                                    attach {"("}eventName: string, eventHandler: {"("}serviceData: any{")"} ={">"}; void
+                                    {")"}: void
                                 </td>
                                 <td>Attaches event handler to service</td>
                             </tr>
@@ -885,7 +886,8 @@ const mapAddinServices: ReactNode = (
                         <tbody>
                             <tr>
                                 <td>
-                                    setBounds (bounds: <a href="#IMapBounds_6809339450241565">IMapBounds</a>): Promise{"<"}boolean{">"}
+                                    setBounds (bounds: <a href="#IMapBounds_6809339450241565">IMapBounds</a>): Promise
+                                    {"<"}boolean{">"}
                                 </td>
                                 <td>Sets map bounds</td>
                             </tr>
@@ -2098,7 +2100,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MapAddins () {
+export default function MapAddins() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
@@ -2114,7 +2116,7 @@ export default function MapAddins () {
                 <figure>
                     <img className="mapAddins__image" src={mapVehicleInfoImage} alt='Figure #1 - The "Vehicle Info" Map Add-in.' />
                     <figcaption>
-                        Figure #1 - The {"\""}Vehicle Info{"\""} Map Add-in.
+                        Figure #1 - The {'"'}Vehicle Info{'"'} Map Add-in.
                     </figcaption>
                 </figure>
             </div>

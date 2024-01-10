@@ -11,7 +11,7 @@ interface SearchModalProps {
     onClose: () => void;
 }
 
-export default function SearchModal ({ isOpen, onClose }: SearchModalProps) {
+export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     const modalRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [inputValue, setInputValue] = useState("");
@@ -55,6 +55,7 @@ export default function SearchModal ({ isOpen, onClose }: SearchModalProps) {
     }
 
     return (
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         <div className={`search-modal-backdrop ${isOpen ? "" : "hidden"}`} role="button" aria-labelledby="search-modal">
             <div className="search-modal-container" ref={modalRef}>
                 <div className="search-modal-header-container">

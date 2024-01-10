@@ -108,6 +108,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function UsingWithJavascript () {
+export default function UsingWithJavascript() {
     return <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

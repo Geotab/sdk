@@ -21,7 +21,7 @@ interface MethodData {
     example: string;
 }
 
-export default function Method (): JSX.Element {
+export default function Method(): JSX.Element {
     const { methodId = "" } = useParams();
     const storedMethodData: MethodData = JSON.parse(sessionStorage[methodId]);
     const parameters: MethodParameter[] = storedMethodData.param;
@@ -32,8 +32,8 @@ export default function Method (): JSX.Element {
 
     const parameterParagaphs: ReactNode = (
         <div className="paragraph">
-            {parameters.map((parameter: any) => (
-                <div>
+            {parameters.map((parameter: any, index: number) => (
+                <div key={index}>
                     <h3>{parameter.name}</h3>
                     <p>{RenderStringWithUrl(parameter.description)}</p>
                 </div>

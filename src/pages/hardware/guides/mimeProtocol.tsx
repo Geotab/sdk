@@ -321,6 +321,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MimeProtocol () {
+export default function MimeProtocol() {
     return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

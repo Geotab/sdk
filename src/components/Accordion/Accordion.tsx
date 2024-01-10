@@ -9,16 +9,16 @@ interface AccordionContents {
     id: string;
 }
 
-export function createAccordions (pageSections: TableOfContentsItem[]) {
+export function createAccordions(pageSections: TableOfContentsItem[]) {
     return pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} key={section.elementId} />);
 }
 
-export default function Accordion (props: AccordionContents) {
+export default function Accordion(props: AccordionContents) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronUp /> : <IconChevronDown />;
+    let icon: ReactNode = expanded ? <IconChevronUp /> : <IconChevronDown />;
 
-    function handleToggle (e: React.ChangeEvent<HTMLDetailsElement>) {
+    function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
         const detailsElement = e.target as HTMLDetailsElement;
         setExpanded(detailsElement.open);
     }
@@ -27,7 +27,7 @@ export default function Accordion (props: AccordionContents) {
         <details onToggle={handleToggle} open>
             <summary id={props.id}>
                 {props.summary}
-                {Icon}
+                {icon}
             </summary>
             <div className="detailsContent" id={props.id}>
                 {props.p}

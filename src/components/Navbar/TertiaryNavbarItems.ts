@@ -1,4 +1,12 @@
-import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconProps, IconQuestionSupport } from "@geotab/react-component-library";
+/* eslint-disable @typescript-eslint/naming-convention */
+import {
+    IconGeotabDrive,
+    IconGrid,
+    IconMarketplace,
+    IconMyGShort,
+    IconProps,
+    IconQuestionSupport
+} from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";
 import { IconCodeTerminal, IconMyAShort } from "./icons";

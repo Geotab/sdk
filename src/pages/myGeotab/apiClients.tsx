@@ -232,7 +232,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function ApiClients () {
+export default function ApiClients() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

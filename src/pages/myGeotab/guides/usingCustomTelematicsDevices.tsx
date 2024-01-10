@@ -104,7 +104,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function UsingCustomTelematicsDevices () {
+export default function UsingCustomTelematicsDevices() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

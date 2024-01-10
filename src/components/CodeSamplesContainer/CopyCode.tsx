@@ -1,3 +1,3 @@
-export default function copyCode (code: string) {
+export default function copyCode(code: string) {
     navigator.clipboard.writeText(code);
 }

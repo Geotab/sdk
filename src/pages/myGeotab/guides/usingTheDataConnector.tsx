@@ -207,7 +207,7 @@ kpiDf.head(5)
     </div>
 );
 
-const tableSchema: ReactNode = (
+const tableSchema: JSX.Element = (
     <div className="paragraph">
         <p>
             Please refer to{" "}
@@ -242,6 +242,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function UsingTheDataConnector () {
+export default function UsingTheDataConnector() {
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

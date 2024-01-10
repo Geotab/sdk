@@ -23,7 +23,7 @@ interface MethodDetails {
 
 type SortableEntry = [string, ObjectDetails | MethodDetails];
 
-export default function sortAlphabetical (a: SortableEntry, b: SortableEntry) {
+export default function sortAlphabetical(a: SortableEntry, b: SortableEntry) {
     if (a[0] < b[0]) {
         return -1;
     }

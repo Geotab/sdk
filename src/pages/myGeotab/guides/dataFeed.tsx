@@ -265,7 +265,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function DataFeed () {
+export default function DataFeed() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

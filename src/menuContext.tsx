@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { createContext, useState, ReactNode } from "react";
 
 interface MenuContextType {

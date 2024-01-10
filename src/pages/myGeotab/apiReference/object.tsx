@@ -17,7 +17,7 @@ interface ObjectData {
     properties: ObjectProperty[];
 }
 
-export default function Object (): JSX.Element {
+export default function Object(): JSX.Element {
     const { objectId = "" } = useParams();
     const storedObjectData: ObjectData = JSON.parse(sessionStorage[objectId]);
     const objectDescription: string = storedObjectData.description;
@@ -28,6 +28,8 @@ export default function Object (): JSX.Element {
     const propertyParagaphs: ReactNode = (
         <div className="paragraph">
             {properties.map((property: any) => (
+                // TODO: fix missing "key" prop for element in iterator
+                // eslint-disable-next-line react/jsx-key
                 <div>
                     <h3>{property.name}</h3>
                     <p>{RenderStringWithUrl(property.description)}</p>

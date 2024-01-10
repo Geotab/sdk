@@ -347,7 +347,7 @@ const update8: ReactNode = (
             </li>
             <li>
                 If the Customer wants only vehicles to be returned when calling Get Device, and not trailers, they should specify groupSearch:{" "}
-                <code className="small-code-sample">{"{\"id”:”GroupVehicleId”}"}</code>.
+                <code className="small-code-sample">{'{"id”:”GroupVehicleId”}'}</code>.
             </li>
             <li>
                 Calling Add Trailer with the <code className="small-code-sample">GroupTrailerId</code> or <code className="small-code-sample">GroupVehicleId</code> built-in groups will throw an
@@ -856,7 +856,8 @@ const update2103: ReactNode = (
         <h2>DutyStatusViolationType</h2>
         <p>
             Added <code className="small-code-sample">EwdRest</code>, <code className="small-code-sample">EwdWork</code>, and <code className="small-code-sample">EwdWorkExemption</code> (formerly{" "}
-            <code className="small-code-sample">Work</code> and <code className="small-code-sample">WorkExemption</code>).
+            <code className="small-code-sample">Work</code> and <code className="small-code-sample">WorkExemption</code>
+            ).
         </p>
         <h2>DVIRLogSearch</h2>
         <p>
@@ -1758,7 +1759,8 @@ const update2001: ReactNode = (
                     across multiple wildcard searchable string fields of an object in one request. For example, searching for device with keywords will search for matches against{" "}
                     <code className="small-code-sample">Comment</code>, <code className="small-code-sample">LicensePlate</code>, <code className="small-code-sample">Name</code>,{" "}
                     <code className="small-code-sample">SerialNumber</code> and <code className="small-code-sample">VehicleIdentificationNumber</code> matching the provided keywords. Keywords
-                    strings support wildcard character (<code className="small-code-sample">%</code>).
+                    strings support wildcard character (<code className="small-code-sample">%</code>
+                    ).
                 </p>
             </li>
             <li>
@@ -2690,7 +2692,8 @@ const update1707: ReactNode = (
         <ul>
             <li>
                 <p>
-                    Web Request Notifications: fix {"{"}zoneId{"}"} and {"{"}zoneComment{"}"} tokens would not get populated unless {"{"}zone{"}"} or {"{"}address{"}"} were also included.
+                    Web Request Notifications: fix {"{"}zoneId{"}"} and {"{"}zoneComment{"}"} tokens would not get populated unless {"{"}zone{"}"} or {"{"}
+                    address{"}"} were also included.
                 </p>
             </li>
             <li>
@@ -3863,6 +3866,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function ReleaseNotes () {
+export default function ReleaseNotes() {
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }
