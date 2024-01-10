@@ -61,8 +61,6 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
             <SideNavigation.Primary
               menuItems={navBarMapping[activeSiteSection]}
             />
-            {/* It's necessary to pass in an empty array for the Secondary section so that the nav bar displays a bar  */}
-            {/* <SideNavigation.Secondary menuItems={[]} /> */}
             <SideNavigation.Tertiary menuItems={TertiaryNavbarItems} />
           </SideNavigation>
         </SideNavigationCollapseProvider>
