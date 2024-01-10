@@ -1,4 +1,4 @@
-import { IconChevronRightSmall } from "@geotab/react-component-library";
+import BreadCrumb from './BreadCrumb';
 import './pageTitle.scss';
 
 export interface PageTitleProps {
@@ -6,21 +6,7 @@ export interface PageTitleProps {
     breadCrumbItems: string[];
 }
 
-interface BreadCrumbProps {
-    name: string;
-    isLastOne: boolean;
-}
-
-function BreadCrumb({ name, isLastOne }: BreadCrumbProps) {
-    return (
-        <div className="breadCrumbContainer__atom">
-            <span>{name}</span>
-            {isLastOne ? <IconChevronRightSmall className="breadCrumbContainer__chevron" /> : null}
-        </div>
-    );
-}
-
-export default function PageTitle({ title, breadCrumbItems }: PageTitleProps) {
+export default function PageTitle({ title, breadCrumbItems }: PageTitleProps) : JSX.Element {
     return (
         <div className="pageTitle">
             <div className="breadCrumbContainer">

@@ -40,8 +40,8 @@ const showContent = (inputString: string, results: SearchResult[]): JSX.Element 
 export default function SearchResultTabContent(props: TabContent): JSX.Element {
   let filteredResults: SearchResult[] = resultSwitch(props.tab, props.searchResults);
   return (
-    <div className="tab-container">
-      <div className="tab-content">
+    <div className={props.searchResults.length > 0 ? "tab-container search-results-container" : "tab-container"}>
+      <div>
         {showContent(props.inputValue, filteredResults)}
       </div>
     </div>

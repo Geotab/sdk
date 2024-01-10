@@ -14,12 +14,12 @@
 }
 
 .text--large {
-  font-size: $font-size-large;
+  font-size: $font-size-x-large;
   margin: 0;
 }
 
 .text--medium {
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
 }
 
 img {
@@ -197,7 +197,7 @@ ul {
 
 .subtitle {
   font-weight: 300;
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
   line-height: 28px;
 }
 

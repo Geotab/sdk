@@ -1,22 +1,11 @@
-import { IconClipboard, IconServer, IconChevronRightSmall } from "@geotab/react-component-library";
+import { IconClipboard, IconServer } from "@geotab/react-component-library";
 import { MatchInfo, SearchResult } from "minisearch";
 import { Link } from "react-router-dom";
 import { pullText, findHeaderId } from "./utils/searchUtils";
 import { HashLink } from "react-router-hash-link";
 
 import "./SearchModal.scss";
-
-//TODO: replace with Joseph's component and add highlighting
-const makeBreadCrumb = (crumbs: string[]): JSX.Element[] => {
-    let elements: JSX.Element[] = [
-        <span key="bc-span-0">{crumbs[0]}</span>
-    ];
-    for (let i: number = 1; i < crumbs.length; i++) {
-        elements.push(< IconChevronRightSmall key={`bc-icon-${i}`} />);
-        elements.push(<span key={`bc-span-${i}`}>{crumbs[i]}</span>);
-    }
-    return elements;
-};
+import BreadCrumb from "../PageTitle/BreadCrumb";
 
 const highlightMatch = (text: string, matchTerms: MatchInfo): JSX.Element[] => {
     //search can hit on multiple different words so we add all of them to the regex
@@ -39,25 +28,28 @@ const buildLink = (path: string, title: string, searchResultID: number, matchTer
 
 export default function ResultsList(props: { results: SearchResult[] }): JSX.Element {
     return (
-        <div className="custom-styling-for-results">
-            <ul className="horizontal-results-list">
+        <div className="search-results-container">
+            <ul>
                 {props.results.map((item) => (
-                    <div key={`search-${item.id}`} className="results-item-container">
-                        <li >
-                            <div className="results-icon-container">
+                    <li key={`search-${item.id}`}>
+                        <div className="result-listing-header-container">
+                            <div>
                                 {item.category === "guide" ? <IconClipboard /> : <IconServer />}
                             </div>
-                            <div className="result-search-name">
-                                <span className="result-item-title">
+                            <div className="result-item-title">
+                                <span>
                                     {buildLink(item.link, item.title, item.id, item.match)}
                                 </span>
-                                <div className="result-item-group">
-                                    {makeBreadCrumb(item.breadCrumb)}
+                                <div className="breadCrumbContainer">
+                                    {
+                                        item.breadCrumb.map((crumb: string, index: number) =>
+                                            <BreadCrumb name={crumb} isLastOne={index < item.breadCrumb.length - 1} key={crumb.toLowerCase().replace(/\s/g, "")} />)
+                                    }
                                 </div>
-                                <div>{highlightMatch(pullText(item.id, item.terms[0]), item.match)}</div>
                             </div>
-                        </li>
-                    </div>
+                        </div>
+                        <div>{highlightMatch(pullText(item.id, item.terms[0]), item.match)}</div>
+                    </li>
                 ))}
             </ul>
         </div>
