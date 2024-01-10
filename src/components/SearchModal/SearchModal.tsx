@@ -13,6 +13,8 @@ interface SearchModalProps {
   onClose: () => void;
 }
 
+const SEARCH_RESULTS_LIMIT: number = 50;
+
 const resultCategories: Record<string, ComponentType<IconProps>> = {
   [SearchSections.All]: IconSearch,
   [SearchSections.APIReference]: IconServer,
@@ -69,7 +71,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
   //debounce for search bar
   useEffect(() => {
     const getSearchResults = setTimeout(() => {
-      setSearchResults(miniSearch.search(inputValue));
+      setSearchResults(miniSearch.search(inputValue).slice(0, SEARCH_RESULTS_LIMIT));
     }, 400);
     return () => clearTimeout(getSearchResults);
   }, [inputValue]);
