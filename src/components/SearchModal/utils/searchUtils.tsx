@@ -28,7 +28,7 @@ const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, r
 };
 
 export const pullText = (searchId: number, matchTerm: string): string => {
-    let i: number = searchIndex.findIndex(page => page.id === searchId);
+    let i: number = searchIndex.findIndex((page: Page) => page.id === searchId);
     let contentString: string = searchIndex[i].content;
 
     let stringIndex: number = contentString.indexOf(matchTerm);
