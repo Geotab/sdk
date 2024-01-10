@@ -142,8 +142,6 @@ input[type="search"]::-webkit-search-results-decoration {
   width: 705px;
   overflow: scroll;
 
-  .search-modal-tabs-container div div[data-state="active"] div { align-self: flex-start; }
-
   ul {
     list-style-type: none;
     display: flex;

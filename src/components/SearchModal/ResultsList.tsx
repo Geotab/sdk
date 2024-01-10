@@ -3,9 +3,9 @@ import { MatchInfo, SearchResult } from "minisearch";
 import { Link } from "react-router-dom";
 import { pullText, findHeaderId } from "./utils/searchUtils";
 import { HashLink } from "react-router-hash-link";
+import BreadCrumbTrail from "../PageTitle/BreadCrumbTrail";
 
 import "./SearchModal.scss";
-import BreadCrumb from "../PageTitle/BreadCrumb";
 
 const highlightMatch = (text: string, matchTerms: MatchInfo): JSX.Element[] => {
     //search can hit on multiple different words so we add all of them to the regex
@@ -40,12 +40,7 @@ export default function ResultsList(props: { results: SearchResult[] }): JSX.Ele
                                 <span>
                                     {buildLink(item.link, item.title, item.id, item.match)}
                                 </span>
-                                <div className="breadCrumbContainer">
-                                    {
-                                        item.breadCrumb.map((crumb: string, index: number) =>
-                                            <BreadCrumb name={crumb} isLastOne={index < item.breadCrumb.length - 1} key={crumb.toLowerCase().replace(/\s/g, "")} />)
-                                    }
-                                </div>
+                                <BreadCrumbTrail crumbs={item.breadCrumb} />
                             </div>
                         </div>
                         <div>{highlightMatch(pullText(item.id, item.terms[0]), item.match)}</div>

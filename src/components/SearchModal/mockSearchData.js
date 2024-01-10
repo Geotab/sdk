@@ -37,7 +37,7 @@ export const searchIndex = [
         content: "The suggested cable length is between 30 cm to 100 cm, which is based on the multiple devices in the daisy chain. The length of cable may be longer if the system of the application is with fewer devices. The positive and negative wire of the CAN bus need to be a twisted pair with inner shielding around just them, with a minimum twisting ratio is 1 twist every 25.4 mm.",
         link: "/hardware/guides/designGuide",
         breadCrumb: ["Hardware", "Guides", "Hardware Design Guide"],
-        category: "reference"
+        category: "guide"
     },
     {
         id: 5,
@@ -48,6 +48,36 @@ export const searchIndex = [
         link: "/myGeotab/guides/concepts",
         breadCrumb: ["MYG", "Guides", "Concepts"],
         category: "guide"
+    },
+    {
+        id: 6,
+        title: "Add",
+        headers:["parameters", "return"],
+        headerIds:["parameters", "return"],
+        content: "Adds a new Entity to the database. This method is used to add the different entities to the database, for example Device, User or Zone. In addition to the credentials, the method will require a minimum of two parameters - the type of entity that is being added (typeName) and the entity itself. In most cases, the entity being added will need to be fully constructed. In other words, all its properties need to be defined. These requirements are defined in each of the entity definitions below.",
+        link: "/myGeotab/guides/concepts",
+        breadCrumb: ["MYG", "Methods", "Add"],
+        category: "reference"
+    },
+    {
+        id: 7,
+        title: "Device",
+        headers:["properties", "Rate Limit"],
+        headerIds:["properties", "rate-limit"],
+        content: "A Device represents the physical tracking device installed in the vehicle. A device and vehicle is typically synonymous since the GO tracking device is installed in a vehicle. In the case where there is no device; this is represented by 'NoDeviceId'. The device types that are supported are:.",
+        link: "/myGeotab/guides/concepts",
+        breadCrumb: ["MYG", "Objects", "Device"],
+        category: "reference"
+    },
+    {
+        id: 8,
+        title: "User",
+        headers:["properties", "Rate Limit"],
+        headerIds:["properties", "rate-limit"],
+        content: "A user of the system. A user can be a MyGeotab user or a user that is a Driver",
+        link: "/myGeotab/guides/concepts",
+        breadCrumb: ["MYG", "Objects", "User"],
+        category: "reference"
     }
 ];
 

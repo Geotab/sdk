@@ -1,12 +1,12 @@
 import { useRef, useEffect, useCallback, useState, ComponentType } from "react";
 import { IconSearch, IconClipboard, IconServer, Tabs, TabConfig, IconProps } from "@geotab/react-component-library";
 import { IconClearSearch } from "./icons/IconClearSearch";
+import SearchResultTabContent from "./SearchResultTabContent";
 import searchIndex from "./mockSearchData";
 import MiniSearch, { SearchResult } from "minisearch";
 import { SearchSections } from "./searchSectionsEnum";
 
 import "./SearchModal.scss";
-import SearchResultTabContent from "./SearchResultTabContent";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -92,16 +92,14 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
 
   if (!isOpen) return null;
 
-  let tabsArray: TabConfig[] = [];
-  Object.keys(resultCategories).map(category => {
-    let icon: ComponentType<IconProps> = resultCategories[category];
-    tabsArray.push({
+  let tabsArray: TabConfig[] = Object.keys(resultCategories).map(category => {
+    return ({
       name: category,
       content: <SearchResultTabContent
         inputValue={inputValue}
         tab={category}
         searchResults={searchResults} />,
-      icon: icon
+      icon: resultCategories[category]
     });
   });
 
