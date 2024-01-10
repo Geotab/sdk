@@ -156,8 +156,8 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
             roles: [],
             userTypes: []
           }
-        ],
-      },
+        ]
+      }
     ]
   },
   {
@@ -272,7 +272,6 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
         order: 2,
         roles: [],
         userTypes: [],
-        onClick: () => window.open("https://github.com/Geotab/sdk-java-samples", "_blank")
       },
       {
         id: 3,
@@ -281,9 +280,8 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
         level: 1,
         order: 3,
         roles: [],
-        userTypes: [],
-        onClick: () => window.open("https://github.com/Geotab/sdk-addin-samples", "_blank")
-      },
+        userTypes: []
+      }
     ]
   }
 ];

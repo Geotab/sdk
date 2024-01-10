@@ -113,8 +113,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 1,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/android-external-device-example", "_blank")
+                userTypes: []
             },
             {
                 id: 2,
@@ -123,8 +122,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 2,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/IOX-raspberryPi-demo", "_blank")
+                userTypes: []
             }
         ]
     }

@@ -8,7 +8,7 @@ import {
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { HeaderSections } from "../Header/headerSectionsEnum";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import {
   DriveNavbarItems,
   HardwareNavbarItems,
@@ -23,11 +23,19 @@ interface NavbarProps {
 
 export default function Navbar({ section }: NavbarProps): JSX.Element {
   const { activeSiteSection, setActiveSiteSection } = useContext(MenuContext);
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const handleLogoClick = (): void => {
     setActiveSiteSection(HeaderSections.Landing);
     navigate("/sdk");
   };
+
+  const handleMenuItemClick = (menuItem: SideNavigationMenuItemType): void => {
+    if (menuItem.route) {
+      navigate(menuItem.route);
+    } else if (menuItem.externalRoute) {
+      window.open(menuItem.externalRoute, "_blank");
+    }
+  }
 
   const navBarMapping: { [key: string]: SideNavigationMenuItemType[] } = {
     [HeaderSections.MyGeotab]: MyGeotabNavbarItems,
@@ -37,42 +45,15 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
     "": [] // Default value is needed for the SideNavigation component to render properly
   };
 
-  function attachOnClickHandlerToMenuItems(
-    item: SideNavigationMenuItemType
-  ): void {
-    if (item.children && item.children?.length > 0) {
-      item.children.forEach((child: SideNavigationMenuItemType): void => {
-        attachOnClickHandlerToMenuItems(child);
-      });
-    } else {
-      if (!item.externalRoute && item.onClick === undefined) {
-        item.onClick = (): void => {
-          if (item.route) {
-            navigate(item.route);
-          }
-        };
-      }
-    }
-  }
-
   useEffect((): void => {
     setActiveSiteSection(section);
-
-    // The navigate function (aka useNavigate hook) has to be called within the useEffect hook so that it gets executed after the component mounts, not when the component is first rendered.
-    Object.values(navBarMapping).forEach(
-      (items: SideNavigationMenuItemType[]): void => {
-        items.forEach((item: SideNavigationMenuItemType): void => {
-          attachOnClickHandlerToMenuItems(item);
-        });
-      }
-    );
   });
 
   return (
     <div>
       <TooltipProvider>
         <SideNavigationCollapseProvider>
-          <SideNavigation>
+          <SideNavigation onMenuItemClick={handleMenuItemClick}>
             <SideNavigation.Main
               Logo={LogoGeotabSDK}
               onLogoClick={handleLogoClick}
@@ -80,8 +61,8 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
             <SideNavigation.Primary
               menuItems={navBarMapping[activeSiteSection]}
             />
-            {/* It's necessary to pass in an empty array for the Secondary section so that the nav bar displays properly */}
-            <SideNavigation.Secondary menuItems={[]} />
+            {/* It's necessary to pass in an empty array for the Secondary section so that the nav bar displays a bar  */}
+            {/* <SideNavigation.Secondary menuItems={[]} /> */}
             <SideNavigation.Tertiary menuItems={TertiaryNavbarItems} />
           </SideNavigation>
         </SideNavigationCollapseProvider>
