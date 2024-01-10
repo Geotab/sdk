@@ -69,10 +69,10 @@ function getContent(fileContent) {
 
             return Array.from(document.body.children, element =>
                 element.textContent.replace(/\s{2,}/g, ' ').replace(/[\n\t]/g, '').replace(/\\\"/g, '"').trim()
-            ).join(". ");
+            ).join(" ");
         });
 
-        return content;
+        return content.join(" ");
     } else {
         return "";
     }
