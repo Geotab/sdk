@@ -3,6 +3,17 @@ import { searchIndex } from "../mockSearchData"
 
 const EXCERPT_CHAR_LENGTH: number = 200;
 
+type Page = {
+    id: number;
+    title: string;
+    headers: string[];
+    headerIds: string[];
+    content: string;
+    link: string;
+    breadCrumb: string[];
+    category: string;
+};
+
 const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, remainingLength: number, foundIndex: number): number => {
     let half: number = Math.floor(remainingLength / 2);
     if (numCharsAhead < half) {
@@ -57,7 +68,7 @@ export const findHeaderId = (searchId: number, matchTerms: MatchInfo,): string |
         }
     }
     if (isHeaderLink) {
-        let i: number = searchIndex.findIndex(page => page.id === searchId);
+        let i: number = searchIndex.findIndex((page: Page) => page.id === searchId);
         let pageHeaders: string[] = searchIndex[i].headers;
         let headerIndex = pageHeaders.findIndex(header => header.toLowerCase().includes(headerMatch));
         return searchIndex[i].headerIds[headerIndex];
