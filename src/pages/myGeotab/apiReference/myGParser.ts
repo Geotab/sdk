@@ -36,15 +36,15 @@ function extractSubstrings(input: string): string {
     }
 }
 
-export default function myGParser(xml: any, itemType: string, itemStrings: string[]): ParserOutput {
+export default function myGParser(xml: XMLDocument, itemType: string, itemStrings: string[]): ParserOutput {
     let json: { [key: string]: MethodInfo | ObjectInfo } = {};
     if (xml.hasChildNodes()) {
         if (xml.childNodes[0].nodeName === 'doc') {
-            let item = xml.childNodes[0].childNodes;
+            let item: NodeListOf<ChildNode> = xml.childNodes[0].childNodes;
             for (let i = 0; i < item.length; i++) {
                 if (item[i].nodeName === "member") {
-                    if (itemType === 'method' && itemStrings.some(method => item[i].attributes.name.nodeValue.includes(method))) {
-                        let methodName: string = extractSubstrings(item[i].attributes.name.nodeValue).replace(/Async$/,"");
+                    if (itemType === 'method' && itemStrings.some(method =>  (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes(method))) {
+                        let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem('name')?.nodeValue ?? "").replace(/Async$/,"");
                         if (!json[methodName]) {
                             json[methodName] = {
                                 "description": "",
@@ -63,17 +63,15 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                         if (summaryChildren[k].nodeName === "para") {
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
                                                 if (summaryChildren[k].childNodes[l].nodeName === '#text') {
-                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
+                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, ' ');
                                                 }
                                                 if (summaryChildren[k].childNodes[l].nodeName === 'see') {
-                                                    summaryText += summaryChildren[k].childNodes[l].outerHTML;
+                                                    summaryText += (summaryChildren[k].childNodes[l] as Element).outerHTML;
                                                 }
                                                 if (summaryChildren[k].childNodes[l].nodeName === 'list') {
                                                     let listItems = summaryChildren[k].childNodes[l];
-                                                    if (listItems.hasChildNodes) {
-                                                        for (let m = 0; m < listItems.childNodes.length; m++) {
-                                                            summaryText += '\n' + '- ' + listItems.childNodes[m].childNodes[0].innerHTML;
-                                                        }
+                                                    for (let m = 0; m < listItems.childNodes.length; m++) {
+                                                        summaryText += '\n' + '- ' + (listItems.childNodes[m].childNodes[0] as Element).innerHTML;
                                                     }
                                                 }
                                             }
@@ -83,30 +81,30 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                             }
                                         } else {
                                             if (summaryChildren[k].nodeName === '#text') {
-                                                summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
+                                                summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, ' ');
                                             }
                                             if (summaryChildren[k].nodeName === 'see') {
-                                                summaryText += summaryChildren[k].outerHTML;
+                                                summaryText += (summaryChildren[k] as Element).outerHTML;
                                             }
                                         }
                                     }
                                     json[methodName].description = summaryText.trimStart();
                                 } 
                             }
-                            if (item[i].childNodes[j].nodeName === "param" && !item[i].childNodes[j].attributes.hasOwnProperty('jsHide')) {
+                            if (item[i].childNodes[j].nodeName === "param" && !(item[i].childNodes[j] as Element).attributes.hasOwnProperty('jsHide')) {
                                 let paramDict: any = {};
                                 let descriptionText: string = '';
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g,  ' ');
+                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g,  ' ');
                                     }
                                     if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
-                                        descriptionText += item[i].childNodes[j].childNodes[k].outerHTML;
+                                        descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                     }
                                 }
-                                paramDict['name'] = item[i].childNodes[j].attributes.name.nodeValue;
+                                paramDict['name'] = (item[i].childNodes[j] as Element).attributes.getNamedItem('name')?.nodeValue;
                                 paramDict['description'] = descriptionText; //trimstart and remove the extra space for the see stuff todooooooooo
-                                if (item[i].childNodes[j].attributes.hasOwnProperty('required')) {
+                                if ((item[i].childNodes[j] as Element).attributes.hasOwnProperty('required')) {
                                     paramDict['required'] = true;
                                 }
                                 (json[methodName] as MethodInfo).parameters.push(paramDict);
@@ -115,10 +113,10 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 let returnText: string = '';
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                        returnText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g,  ' ');
+                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g,  ' ');
                                     }
                                     if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
-                                        returnText += item[i].childNodes[j].childNodes[k].outerHTML;
+                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                     }
                                 }
                                 (json[methodName] as MethodInfo).returns = returnText.trimStart();
@@ -127,7 +125,7 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 let codeText: string = '';
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === 'code') {
-                                        codeText += item[i].childNodes[j].childNodes[k].innerHTML;
+                                        codeText += (item[i].childNodes[j].childNodes[k] as Element).innerHTML;
                                     }
                                 }
                                 (json[methodName] as MethodInfo).example = codeText.trimStart();
@@ -135,8 +133,8 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                         } 
                     }
 
-                    if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('T:Geotab.Checkmate.API')))) {
-                        let tagName: string = item[i].attributes.name.nodeValue.split('.');
+                    if (itemType === 'object' && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('T:Geotab.Checkmate.API')))) {
+                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.split('.') ?? [];
                         let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
 
                         if (!json[objectName]) {
@@ -152,18 +150,18 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                     let summaryText: string = '';
                                     for (let k = 0; k < summaryChildren.length; k++) {
                                         if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
-                                            summaryText += summaryChildren[k].nodeValue.replace(/\s+/g, ' ');
+                                            summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, ' ');
                                         }
                                         if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
-                                            summaryText += summaryChildren[k].outerHTML;
+                                            summaryText += (summaryChildren[k] as Element).outerHTML;
                                         }
                                         if (summaryChildren[k].nodeName === 'para') {
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
                                                 if (summaryChildren[k].childNodes[l].nodeName === '#text') {
-                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue.replace(/\s+/g, ' ');
+                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, ' ');
                                                 }
                                                 if (summaryChildren[k].childNodes[l].nodeName === 'see') {
-                                                    summaryText += summaryChildren[k].childNodes[l].outerHTML;
+                                                    summaryText += (summaryChildren[k].childNodes[l] as Element).outerHTML;
                                                 }
                                             }
                                             
@@ -174,14 +172,12 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                         if (summaryChildren[k].nodeName === 'list') {
                                             let listItems = summaryChildren[k].childNodes;
                                             for (let l = 0; l < listItems.length; l++) {
-                                                if (listItems[l].hasChildNodes) {
-                                                    for (let m = 0; m < listItems[l].childNodes.length; m++) {
-                                                        if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                            summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].outerHTML;
-                                                        } else {
-                                                            summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
-                                                        }   
-                                                    }
+                                                for (let m = 0; m < listItems[l].childNodes.length; m++) {
+                                                    if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                        summaryText += '\n' + '- ' + (listItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
+                                                    } else {
+                                                        summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue?.replace(/\s+/g,  ' ');
+                                                    }   
                                                 }
                                             } 
                                         }
@@ -191,8 +187,8 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                             }
                             
                         } 
-                    } else if (itemType === 'object' && (itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('P:Geotab.Checkmate')) || itemStrings.some(object => item[i].attributes.name.nodeValue.includes('F:Geotab.Checkmate.ObjectModel')))) {
-                        let tagName: string = item[i].attributes.name.nodeValue.split('.');
+                    } else if (itemType === 'object' && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('P:Geotab.Checkmate')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('F:Geotab.Checkmate.ObjectModel')))) {
+                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.split('.') || [];
                         let objectName: string = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
                         let propertyName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
                         if (json[objectName]) {
@@ -203,22 +199,20 @@ export default function myGParser(xml: any, itemType: string, itemStrings: strin
                                 if (item[i].childNodes[j].nodeName === 'summary') {
                                     for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                         if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                            descriptionText += item[i].childNodes[j].childNodes[k].nodeValue.replace(/\s+/g, ' ')
+                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, ' ')
                                         }
                                         if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
-                                            descriptionText += item[i].childNodes[j].childNodes[k].outerHTML;
+                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                         }
                                         if (item[i].childNodes[j].childNodes[k].nodeName === 'list') {
                                             let properyListItems = item[i].childNodes[j].childNodes[k].childNodes;
                                             for (let l = 0; l < properyListItems.length; l++) {
-                                                if (properyListItems[l].hasChildNodes) {
-                                                    for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
-                                                        if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                            descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].outerHTML;
-                                                        } else {
-                                                            descriptionText += '\n' + '- ' + properyListItems[l].childNodes[m].childNodes[0].nodeValue.replace(/\s+/g,  ' ');
-                                                        }   
-                                                    }
+                                                for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
+                                                    if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
+                                                        descriptionText += '\n' + '- ' + (properyListItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
+                                                    } else {
+                                                        descriptionText += '\n' + '- ' + (properyListItems[l].childNodes[m].childNodes[0] as Element).nodeValue?.replace(/\s+/g,  ' ');
+                                                    }   
                                                 }
                                             }
                                         }
