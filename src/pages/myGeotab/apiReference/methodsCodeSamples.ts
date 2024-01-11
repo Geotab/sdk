@@ -130,12 +130,14 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
   },
   UploadMediaFile: {
     javascript: `
-        const solutionId = prompt('Enter the unique identifier of the solution (solutionId/AddInId): ')
-        const mediaFileName = prompt('Enter the name of the file (must have extension): ')
+        import axios from "axios";
+
+        const solutionId = prompt("Enter the unique identifier of the solution (solutionId/AddInId): ")
+        const mediaFileName = prompt("Enter the name of the file (must have extension): ")
     
         let mediaFileId = await api.call(
-            'Add', {
-            typeName: 'MediaFile',
+            "Add", {
+            typeName: "MediaFile",
             entity: {
                 solutionId: solutionId,
                 name: mediaFileName
@@ -159,24 +161,24 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
         let formData = new FormData();
         formData.append("JSON-RPC", encodeURIComponent(JSON.stringify(requestParams)));
     
-        // Dummy 'file' creation
+        // Dummy "file" creation
         // Create a simple 10x10 black square image
-        let canvas = document.createElement('canvas');
+        let canvas = document.createElement("canvas");
         canvas.width = 10;
         canvas.height = 10;
-        let ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'black';
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     
         canvas.toBlob(blob => {
             // Append our image file to the form data
-            formData.append('file', blob, mediaFileName);
+            formData.append("file", blob, mediaFileName);
             axios.post(api_path, formData)
                 .then(response => {
-                    console.log('Success:', response.data);
+                    console.log("Success:", response.data);
                 })
                 .catch(error => {
-                    console.error('Error:', error.response ? error.response.data : error.message);
+                    console.error("Error:", error.response ? error.response.data : error.message);
                 });
         },);        
         `,
@@ -238,7 +240,34 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
     java: "",
   },
   DownloadMediaFile: {
-    javascript: "",
+    javascript: `
+    import axios from "axios";
+
+    const mediaFileId = prompt("Enter the id of the media file: ")
+
+    const requestParams = {
+        method: "DownloadMediaFile",
+        params: {
+            mediaFile: {
+                id: mediaFileId
+            },
+            credentials: {
+                database: session.database,
+                sessionId: session.sessionId,
+                userName: session.userName
+            }
+        }
+    };
+
+    axios.post(api_path, requestParams, { responseType: "blob" })
+        .then(response => {
+            console.log("Success:", response.data);
+        })
+        .catch(error => {
+            console.error("Error:", error.response ? error.response.data : error.message);
+        });
+
+    `,
     csharp: "",
     python: `
         mediaFileId = input("Enter the id of the media file: ")
