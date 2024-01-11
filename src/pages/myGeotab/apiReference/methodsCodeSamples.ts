@@ -52,25 +52,34 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
 
   GetTimeZones: {
     javascript: "",
-    csharp: "",
+    csharp: `await api.CallAsync<List<Geotab.Checkmate.ObjectModel.TimeZoneInfo>>("GetTimeZones");`,
     python: "api.call('GetTimeZones')",
     java: "",
   },
   GetVersion: {
     javascript: "",
-    csharp: "",
+    csharp: `await api.CallAsync<string>("GetVersion");`,
     python: "api.call('GetVersion')",
     java: "",
   },
   GetVersionInformation: {
     javascript: "",
-    csharp: "",
+    csharp: `await api.CallAsync<object>("GetVersionInformation");`,
     python: "api.call('GetVersionInformation')",
     java: "",
   },
   OptimizeWaypoints: {
     javascript: "",
-    csharp: "",
+    csharp: `
+    var waypointsList = new List<Waypoint>
+    {
+        new Waypoint(new Coordinate(-80.0969, 43.2755), 0),
+        new Waypoint(new Coordinate(-80.0735, 43.298), 1),
+        new Waypoint(new Coordinate(-80.0969, 43.2755), 2)
+    };
+
+    await api.CallAsync<List<Waypoint>>("OptimizeWaypoints", new {waypoints = waypointsList});    
+    `,
     python: `api.call("OptimizeWaypoints", waypoints=[
             {
                 "coordinate": {"x": -79.78167419433593, "y": 43.51832580566406},
@@ -102,7 +111,18 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
   },
   Remove: {
     javascript: "",
-    csharp: "",
+    csharp: `
+    Console.WriteLine("Enter the name of the zone that you want to remove:");
+    string zoneName = Console.ReadLine();
+
+    var zones = await api.CallAsync<List<Zone>>("Get", typeof(Zone), new { search = new { name = $"%{zoneName}%"}});
+
+    if (zones.Count > 0) { 
+         await api.CallAsync<Zone>("Remove", typeof(Zone), new { entity = new { id = zones[0].Id } });
+    } else {
+        Console.WriteLine("There is no zone with such name");
+    }
+    `,
     python: `zone_name = input("Enter the name of the zone that you want to remove: ")
 
         zones_response = api.get("Zone", name= "%" + zone_name + "%")
@@ -115,7 +135,21 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
   },
   Set: {
     javascript: "",
-    csharp: "",
+    csharp: `
+    Console.WriteLine("Enter current zone name: ");
+    string currentZoneName = Console.ReadLine();
+
+    Console.WriteLine("Enter new zone name: ");
+    string newZoneName = Console.ReadLine();
+
+    var zones = await api.CallAsync<List<Zone>>("Get", typeof(Zone), new { search = new { name = $"%{currentZoneName}%"}});
+
+    if (zones.Count > 0) {
+        var zone = zones[0];
+        zone.Name = newZoneName;
+        await api.CallAsync<Zone>("Set", typeof(Zone), new { entity = zone });
+    }
+    `,
     python: `current_zone_name = input("Enter current zone name: ")
         new_zone_name = input("Enter new zone name: ")
       
@@ -157,7 +191,9 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
                 }
             }
         };
-    
+        
+        let api_path = "https://my.geotab.com/apiv1"
+
         let formData = new FormData();
         formData.append("JSON-RPC", encodeURIComponent(JSON.stringify(requestParams)));
     
@@ -227,7 +263,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             data = {
                 "JSON-RPC": json.dumps(request_params)
             }
-        
+            
             response = requests.post(api_path, data=data, files=files)
         
             # Check the response
@@ -258,6 +294,8 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             }
         }
     };
+
+    let api_path = "https://my.geotab.com/apiv1"
 
     axios.post(api_path, requestParams, { responseType: "blob" })
         .then(response => {
