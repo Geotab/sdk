@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from './renderStringWithUrl';
+import RenderStringWithUrl from './utils/renderStringWithUrl';
 import { useParams } from "react-router-dom";
 import { Page } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
