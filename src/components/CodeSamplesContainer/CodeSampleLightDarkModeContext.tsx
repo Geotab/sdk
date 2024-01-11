@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { createContext, useState, ReactNode } from "react";
 
 interface CodeSampleLightDarkModeContextType {
@@ -7,7 +8,7 @@ interface CodeSampleLightDarkModeContextType {
 
 const CodeSampleLightDarkModeContext = createContext<CodeSampleLightDarkModeContextType>({
     lightMode: false,
-    setLightMode: () => { },
+    setLightMode: () => {}
 });
 
 interface CodeSampleLightDarkModeProviderProps {

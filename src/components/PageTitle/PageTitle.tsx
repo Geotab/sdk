@@ -1,5 +1,5 @@
 import { IconChevronRightSmall } from "@geotab/react-component-library";
-import './pageTitle.scss';
+import "./pageTitle.scss";
 
 export interface PageTitleProps {
     title: string;
@@ -11,6 +11,7 @@ interface BreadCrumbProps {
     isLastOne: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 function BreadCrumb({ name, isLastOne }: BreadCrumbProps) {
     return (
         <div className="breadCrumbContainer__atom">
@@ -24,9 +25,13 @@ export default function PageTitle({ title, breadCrumbItems }: PageTitleProps) {
     return (
         <div className="pageTitle">
             <div className="breadCrumbContainer">
-                {
-                    breadCrumbItems.map((item, index) => <BreadCrumb name={item} isLastOne={index < breadCrumbItems.length - 1} key={item.toLowerCase().replace(/\s/g, "")} />)
-                }
+                {breadCrumbItems.map((item, index) => (
+                    <BreadCrumb
+                        name={item}
+                        isLastOne={index < breadCrumbItems.length - 1}
+                        key={item.toLowerCase().replace(/\s/g, "")}
+                    />
+                ))}
             </div>
             <h1 className="pageTitle__h1">{title}</h1>
         </div>
