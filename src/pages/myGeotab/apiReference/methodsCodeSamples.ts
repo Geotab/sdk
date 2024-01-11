@@ -1,77 +1,77 @@
 import { CodeSamples } from "../../../components/CodeSamplesContainer";
 
 export const methodsCodeSamples: Record<string, CodeSamples> = {
-    "Add": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
-        "java": "",
-    },
-    "Authenticate": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
-        "java": "",
-    },
-    "SetUserPassword": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
-        "java": "",
-    },
-    "GenerateCaptcha": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
-        "java": "",
-    },
+  Add: {
+    javascript: "",
+    csharp: "",
+    python: "",
+    java: "",
+  },
+  Authenticate: {
+    javascript: "",
+    csharp: "",
+    python: "",
+    java: "",
+  },
+  SetUserPassword: {
+    javascript: "",
+    csharp: "",
+    python: "",
+    java: "",
+  },
+  GenerateCaptcha: {
+    javascript: "",
+    csharp: "",
+    python: "",
+    java: "",
+  },
 
+  //     "api.call("Get",{"typeName":"Device",
+  //                "resultsLimit": 10,
+  //     "search": {
+  //         "fromDate": new Date().toISOString()
+  //     },
+  //     "propertySelector": {
+  //         "fields": ["id", "name"]
+  //     }
+  // });
+  // "
+  Get: {
+    javascript: "",
+    csharp:
+      'await api.CallAsync<List<Device>>("Get", typeof(Device), new { resultsLimit = 10 });',
+    python: "api.get('Device', resultsLimit=10)",
+    java: "",
+  },
+  GetAddresses: {
+    javascript: "",
+    csharp: "",
+    python: "",
+    java: "",
+  },
 
-//     "api.call("Get",{"typeName":"Device",
-//                "resultsLimit": 10,
-//     "search": {
-//         "fromDate": new Date().toISOString()
-//     },
-//     "propertySelector": {
-//         "fields": ["id", "name"]
-//     }
-// });
-// "
-    "Get": {
-        "javascript": "",
-        "csharp": "await api.CallAsync<List<Device>>(\"Get\", typeof(Device), new { resultsLimit = 10 });",
-        "python": "api.get('Device', resultsLimit=10)",
-        "java": "",
-    },
-    "GetAddresses": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
-        "java": "",
-    },
-
-    "GetTimeZones": {
-        "javascript": "",
-        "csharp": "",
-        "python": "api.call('GetTimeZones')",
-        "java": "",
-    },
-    "GetVersion": {
-        "javascript": "",
-        "csharp": "",
-        "python": "api.call('GetVersion')",
-        "java": "",
-    },
-    "GetVersionInformation": {
-        "javascript": "",
-        "csharp": "",
-        "python": "api.call('GetVersionInformation')",
-        "java": "",
-    },
-    "OptimizeWaypoints": {
-        "javascript": "",
-        "csharp": "",
-        "python": `api.call("OptimizeWaypoints", waypoints=[
+  GetTimeZones: {
+    javascript: "",
+    csharp: "",
+    python: "api.call('GetTimeZones')",
+    java: "",
+  },
+  GetVersion: {
+    javascript: "",
+    csharp: "",
+    python: "api.call('GetVersion')",
+    java: "",
+  },
+  GetVersionInformation: {
+    javascript: "",
+    csharp: "",
+    python: "api.call('GetVersionInformation')",
+    java: "",
+  },
+  OptimizeWaypoints: {
+    javascript: "",
+    csharp: "",
+    python: `api.call("OptimizeWaypoints", waypoints=[
             {
                 "coordinate": {"x": -79.78167419433593, "y": 43.51832580566406},
                 "sequence": 0,
@@ -98,12 +98,12 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
                 "description": "E"
             }
           ])`,
-        "java": "",
-    },
-    "Remove": {
-        "javascript": "",
-        "csharp": "",
-        "python": `zone_name = input("Enter the name of the zone that you want to remove: ")
+    java: "",
+  },
+  Remove: {
+    javascript: "",
+    csharp: "",
+    python: `zone_name = input("Enter the name of the zone that you want to remove: ")
 
         zones_response = api.get("Zone", name= "%" + zone_name + "%")
         
@@ -111,12 +111,12 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             remove_response = api.remove("Zone",entity = {"id": zones_response[0]["id"]})
         else:
             print("There is no zone with such name.")`,
-        "java": "",
-    },
-    "Set": {
-        "javascript": "",
-        "csharp": "",
-        "python": `current_zone_name = input("Enter current zone name: ")
+    java: "",
+  },
+  Set: {
+    javascript: "",
+    csharp: "",
+    python: `current_zone_name = input("Enter current zone name: ")
         new_zone_name = input("Enter new zone name: ")
       
         zones_response = api.get("Zone", name="%" + current_zone_name + "%")
@@ -126,13 +126,62 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
           api.set("Zone", entity=zone)
         else:
           print("There is no zone with such name.")`,
-        "java": "",
-    },
-    "UploadMediaFile": {
-        "javascript": "",
-        "csharp": "",
-        "python": 
-        `
+    java: "",
+  },
+  UploadMediaFile: {
+    javascript: `
+        const solutionId = prompt('Enter the unique identifier of the solution (solutionId/AddInId): ')
+        const mediaFileName = prompt('Enter the name of the file (must have extension): ')
+    
+        let mediaFileId = await api.call(
+            'Add', {
+            typeName: 'MediaFile',
+            entity: {
+                solutionId: solutionId,
+                name: mediaFileName
+            }
+        })
+    
+        const requestParams = {
+            method: "UploadMediaFile",
+            params: {
+                mediaFile: {
+                    id: mediaFileId
+                },
+                credentials: {
+                    database: session.database,
+                    sessionId: session.sessionId,
+                    userName: session.userName
+                }
+            }
+        };
+    
+        let formData = new FormData();
+        formData.append("JSON-RPC", encodeURIComponent(JSON.stringify(requestParams)));
+    
+        // Dummy 'file' creation
+        // Create a simple 10x10 black square image
+        let canvas = document.createElement('canvas');
+        canvas.width = 10;
+        canvas.height = 10;
+        let ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+        canvas.toBlob(blob => {
+            // Append our image file to the form data
+            formData.append('file', blob, mediaFileName);
+            axios.post(api_path, formData)
+                .then(response => {
+                    console.log('Success:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error:', error.response ? error.response.data : error.message);
+                });
+        },);        
+        `,
+    csharp: "",
+    python: `
         from PIL import Image
         import requests
         from io import BytesIO
@@ -186,12 +235,12 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             else:
                 print("Error:", response.text)
         `,
-        "java": "",
-    },
-    "DownloadMediaFile": {
-        "javascript": "",
-        "csharp": "",
-        "python": `
+    java: "",
+  },
+  DownloadMediaFile: {
+    javascript: "",
+    csharp: "",
+    python: `
         mediaFileId = input("Enter the id of the media file: ")
 
         request_params = {
@@ -226,7 +275,6 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
     
           print(f"File downloaded and saved as {filename}.")
         `,
-        "java": "",
-    }
-
+    java: "",
+  },
 };
