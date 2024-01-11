@@ -9,8 +9,8 @@ import { SearchSections } from "./searchSectionsEnum";
 import "./SearchModal.scss";
 
 interface SearchModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+    isOpen: boolean;
+    onClose: () => void;
 }
 
 const SEARCH_RESULTS_LIMIT: number = 50;
@@ -76,21 +76,21 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
     return () => clearTimeout(getSearchResults);
   }, [inputValue]);
 
-  useEffect(() => {
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("mousedown", handleOutsideClick);
-      inputRef.current?.focus();
-    } else {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("mousedown", handleOutsideClick);
-    }
+    useEffect(() => {
+        if (isOpen) {
+            window.addEventListener("keydown", handleKeyDown);
+            window.addEventListener("mousedown", handleOutsideClick);
+            inputRef.current?.focus();
+        } else {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("mousedown", handleOutsideClick);
+        }
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, [isOpen, handleOutsideClick, handleKeyDown]);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, [isOpen, handleOutsideClick, handleKeyDown]);
 
   if (!isOpen) return null;
 

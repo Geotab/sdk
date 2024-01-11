@@ -1,27 +1,24 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { createContext, useState, ReactNode } from "react";
 
 interface MenuContextType {
-  active: string;
-  setActive: (active: string) => void;
+    active: string;
+    setActive: (active: string) => void;
 }
 
 const MenuContext = createContext<MenuContextType>({
-  active: "",
-  setActive: () => {},
+    active: "",
+    setActive: () => {}
 });
 
 interface MenuProviderProps {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
-  const [active, setActive] = useState<string>("");
+    const [active, setActive] = useState<string>("");
 
-  return (
-    <MenuContext.Provider value={{ active, setActive }}>
-      {children}
-    </MenuContext.Provider>
-  );
+    return <MenuContext.Provider value={{ active, setActive }}>{children}</MenuContext.Provider>;
 };
 
 export default MenuContext;

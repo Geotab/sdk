@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { IconProps } from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";
 import { IconCircleInfo, IconCodeBox, IconDocument, IconDocumentWithMagnifyingGlass, IconStar } from "./icons";
 
 // TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
+interface SideNavigationMenuItemType {
     id: number;
     isTitle?: boolean;
     label: string;
@@ -18,7 +19,7 @@ type SideNavigationMenuItemType = {
     Pill?: ComponentType<any>;
     onClick?: (value?: unknown) => void;
     children?: SideNavigationMenuItemType[];
-};
+}
 
 export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
     {
@@ -68,7 +69,7 @@ export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
                 roles: [],
                 userTypes: []
             },
-             // This link is here on purpose and is intended to link a MyGeotab page from the MyAdmin section
+            // This link is here on purpose and is intended to link a MyGeotab page from the MyAdmin section
             {
                 id: 2,
                 label: "Using Custom Telematics Devices",

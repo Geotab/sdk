@@ -21,15 +21,17 @@ export default function Accordion(props: AccordionProps) {
     function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
         const detailsElement = e.target as HTMLDetailsElement;
         setExpanded(detailsElement.open);
-    };
+    }
 
-    return (<details onToggle={handleToggle} open>
-        <summary id={props.id}>
-            {props.summary}
-            {icon}
-        </summary>
-        <div className="detailsContent" id={props.id}>
-            {props.p}
-        </div>
-    </details>);
+    return (
+        <details onToggle={handleToggle} open>
+            <summary id={props.id}>
+                {props.summary}
+                {icon}
+            </summary>
+            <div className="detailsContent" id={props.id}>
+                {props.p}
+            </div>
+        </details>
+    );
 }

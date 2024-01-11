@@ -17,7 +17,7 @@ export default function PageContent(props: PageContentProps) {
     return (
         <div className="pageContent__container">
             <Header isLandingPage={props.isLandingPage} />
-            {props.pageTitle && <PageTitle title={props.pageTitle.title} breadCrumbItems={props.pageTitle.breadCrumbItems} /> }
+            {props.pageTitle && <PageTitle title={props.pageTitle.title} breadCrumbItems={props.pageTitle.breadCrumbItems} />}
             <div className={props.isLandingPage ? "pageContent__landing" : "pageContent"}>
                 <div className={props.isLandingPage ? "" : "pageContent__scrollableArea"}>
                     {props.pageContent}

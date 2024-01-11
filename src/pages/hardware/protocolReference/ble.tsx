@@ -62,7 +62,9 @@ const advertisingPacket: ReactNode = (
                         <td>Battery Level</td>
                     </tr>
                     <tr>
-                        <td>Optional Length{"("}11 to 31{")"}</td>
+                        <td>
+                            Optional Length{"("}11 to 31{")"}
+                        </td>
                         <td>0xXX</td>
                         <td>Optional Information identifier</td>
                     </tr>
@@ -114,10 +116,12 @@ const advertisingPacket: ReactNode = (
             </table>
         </div>
         <h2>Optional information types</h2>
-        <p>These information types are optional and are not part of the required packet structure. Each entry must be preceded by the corresponding information identifier byte. If multiple information
-            entries are used in the same advertisement packet, they should be arranged in an incrementing order based on their information identifier. The currently defined identifiers are listed in the
-            table below. Geotab will define new identifiers for any new sensors, as required. You must use the IDs as defined by Geotab. If there is undefined data, contact us via the Help Desk and we will
-            define the data and send you the required ID.</p>
+        <p>
+            These information types are optional and are not part of the required packet structure. Each entry must be preceded by the corresponding information identifier byte. If multiple
+            information entries are used in the same advertisement packet, they should be arranged in an incrementing order based on their information identifier. The currently defined identifiers
+            are listed in the table below. Geotab will define new identifiers for any new sensors, as required. You must use the IDs as defined by Geotab. If there is undefined data, contact us via
+            the Help Desk and we will define the data and send you the required ID.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -125,7 +129,9 @@ const advertisingPacket: ReactNode = (
                         <th>Information identifier</th>
                         <th>Description</th>
                         <th>Unit type</th>
-                        <th>Length {"("}bytes{")"}</th>
+                        <th>
+                            Length {"("}bytes{")"}
+                        </th>
                         <th>Units</th>
                     </tr>
                 </thead>
@@ -156,123 +162,165 @@ const advertisingPacket: ReactNode = (
                         <td>Temperature</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Degrees Celsius {"("}°C{")"}</td>
+                        <td>
+                            Degrees Celsius {"("}°C{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>8</td>
                         <td>Illuminance</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Lux {"("}lx{")"}</td>
+                        <td>
+                            Lux {"("}lx{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>9</td>
                         <td>Relative Humidity</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Percent {"("}%{")"}</td>
+                        <td>
+                            Percent {"("}%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>Barometric Pressure</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Pascals {"("}Pa{")"}</td>
+                        <td>
+                            Pascals {"("}Pa{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
                         <td>Altitude</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Meters {"("}m{")"}</td>
+                        <td>
+                            Meters {"("}m{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>12</td>
-                        <td>Particulate Matter {"("}less than 1 µm{")"}</td>
+                        <td>
+                            Particulate Matter {"("}less than 1 µm{")"}
+                        </td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Micrograms per cubic meter {"("}µg/m3{")"}</td>
+                        <td>
+                            Micrograms per cubic meter {"("}µg/m3{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>13</td>
-                        <td>Particulate Matter {"("}less than 2.5 µm{")"}</td>
+                        <td>
+                            Particulate Matter {"("}less than 2.5 µm{")"}
+                        </td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Micrograms per cubic meter {"("}µg/m3{")"}</td>
+                        <td>
+                            Micrograms per cubic meter {"("}µg/m3{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>14</td>
-                        <td>Particulate Matter {"("}less than 10 µm{")"}</td>
+                        <td>
+                            Particulate Matter {"("}less than 10 µm{")"}
+                        </td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Micrograms per cubic meter {"("}µg/m3{")"}</td>
+                        <td>
+                            Micrograms per cubic meter {"("}µg/m3{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>15</td>
                         <td>Nitric Oxide</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>16</td>
                         <td>Nitrogen Dioxide</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>17</td>
                         <td>Carbon Monoxide</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>18</td>
                         <td>Ammonia</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>19</td>
                         <td>Methane</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>20</td>
                         <td>Ethanol</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>21</td>
                         <td>Hydrogen</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>22</td>
                         <td>Carbon Dioxide</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Parts per million {"("}ppm{")"}</td>
+                        <td>
+                            Parts per million {"("}ppm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>23</td>
                         <td>Fuel Level</td>
                         <td>FP24</td>
                         <td>3</td>
-                        <td>Percent {"("}%{")"}</td>
+                        <td>
+                            Percent {"("}%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>24 to 199</td>
-                        <td>Reserved{"("}for future data types{")"}</td>
+                        <td>
+                            Reserved{"("}for future data types{")"}
+                        </td>
                         <td>FP24</td>
                         <td>3</td>
                         <td> </td>
@@ -286,14 +334,18 @@ const advertisingPacket: ReactNode = (
                     </tr>
                     <tr>
                         <td>230 to 239</td>
-                        <td>Generic Byte {"("}1 to 10{")"}</td>
+                        <td>
+                            Generic Byte {"("}1 to 10{")"}
+                        </td>
                         <td>UINT8</td>
                         <td>1</td>
                         <td>None</td>
                     </tr>
                     <tr>
                         <td>240 to 249</td>
-                        <td>Generic Timer {"("}1 to 10{")"}</td>
+                        <td>
+                            Generic Timer {"("}1 to 10{")"}
+                        </td>
                         <td>UINT8UINT16</td>
                         <td>12</td>
                         <td>Event CounterUnits Of Time</td>
@@ -384,9 +436,15 @@ const advertisingPacket: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p>{"["} -2^16, 2^16 {"]"} can be exactly represented</p>
-        <p>{"["} -2^17, -2^16 -1 {"]"} or {"["} 2^16 +1, 2^17 {"]"} rounded to a multiple of 2</p>
-        <p>{"["} -2^18, -2^17 -1 {"]"} or {"["} 2^17 +1 2^18 {"]"} rounded to a multiple of 4</p>
+        <p>
+            {"["} -2^16, 2^16 {"]"} can be exactly represented
+        </p>
+        <p>
+            {"["} -2^17, -2^16 -1 {"]"} or {"["} 2^16 +1, 2^17 {"]"} rounded to a multiple of 2
+        </p>
+        <p>
+            {"["} -2^18, -2^17 -1 {"]"} or {"["} 2^17 +1 2^18 {"]"} rounded to a multiple of 4
+        </p>
         <p>…</p>
         <p>Infinity at: 2^128</p>
         <h2>FP24 conversions:</h2>
@@ -411,29 +469,43 @@ const advertisingPacket: ReactNode = (
             </table>
         </div>
         <p>Note:</p>
-        <p>For all information types that use the FP24 format, a new log will be generated for any change in the data. For example, a change in temperature from 2°C to 2.000061°C would trigger a new log.
-            Some implementations may only require a reporting resolution of 1°C. If an excessive number of logs are generated, we will disable reporting on BLE data. The onus is on the implementer to choose
-            an appropriate reporting resolution for their data.</p>
+        <p>
+            For all information types that use the FP24 format, a new log will be generated for any change in the data. For example, a change in temperature from 2°C to 2.000061°C would trigger a
+            new log. Some implementations may only require a reporting resolution of 1°C. If an excessive number of logs are generated, we will disable reporting on BLE data. The onus is on the
+            implementer to choose an appropriate reporting resolution for their data.
+        </p>
         <h2>Generic byte</h2>
-        <p>The Generic Byte type can store one byte of data {"("}0 to 255{")"}. It can be used to count the number of times a button is pressed, or simply store the state of a toggle switch {"("}0 or 1{")"}. Any data
-            changes will generate a new log.</p>
+        <p>
+            The Generic Byte type can store one byte of data {"("}0 to 255{")"}. It can be used to count the number of times a button is pressed, or simply store the state of a toggle switch {"("}0
+            or 1{")"}. Any data changes will generate a new log.
+        </p>
         <h2>Generic timer</h2>
-        <p>The Generic Timer allows keeping track of an elapsed time. The Units Of Time are not specifically defined and can be chosen by the implementor. It may make sense to measure some durations in
-            hours, while others may warrant seconds. The Units Of Time may continuously increment. A new log will not be saved until a new event counter value is reported. The Generic Timer can be
-            associated with other data types. For example, you can associate Generic Timer 1 with temperature to indicate the time when a chosen temperature threshold was exceeded.</p>
+        <p>
+            The Generic Timer allows keeping track of an elapsed time. The Units Of Time are not specifically defined and can be chosen by the implementor. It may make sense to measure some
+            durations in hours, while others may warrant seconds. The Units Of Time may continuously increment. A new log will not be saved until a new event counter value is reported. The Generic
+            Timer can be associated with other data types. For example, you can associate Generic Timer 1 with temperature to indicate the time when a chosen temperature threshold was exceeded.
+        </p>
         <h2>Wakeup event</h2>
-        <p>A custom parameter is used to configure the IOX-BT to wake up periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping. This
-            periodic wakeup can be enabled using the following custom parameter:</p>
+        <p>
+            A custom parameter is used to configure the IOX-BT to wake up periodically to check for any wakeup events from beacons within range. The wakeup duration is 1s every 30s while sleeping.
+            This periodic wakeup can be enabled using the following custom parameter:
+        </p>
         <code className="small-code-sample">{`<Parameter Description='Enable Periodic Bluetooth Wakeup' Offset='167' Bytes='80' IsEnabled='true'/>`}</code>
-        <p>The implementor of this protocol should increase the frequency of advertisements sent during an attempted wakeup event. We recommend a 100ms advertisement interval that persists for a minimum of
-            1 minute.</p>
-        <p>When sending the wakeup event as part of the advertisement data, a value of 0x00 means “no event”. Anything greater than 0 that has not already been reported will cause the GO device to wake up
-            and report on the beacon advertisements. The event is only used as an indication for reporting any changes in the rest of the advertisement data. The actual contents of the alert event byte will
-            not be sent/reported.</p>
+        <p>
+            The implementor of this protocol should increase the frequency of advertisements sent during an attempted wakeup event. We recommend a 100ms advertisement interval that persists for a
+            minimum of 1 minute.
+        </p>
+        <p>
+            When sending the wakeup event as part of the advertisement data, a value of 0x00 means “no event”. Anything greater than 0 that has not already been reported will cause the GO device to
+            wake up and report on the beacon advertisements. The event is only used as an indication for reporting any changes in the rest of the advertisement data. The actual contents of the alert
+            event byte will not be sent/reported.
+        </p>
         <h2>Custom data</h2>
-        <p>Arbitrary data can be placed in the custom data segment. The data will not be interpreted by MyGeotab, but will be accessible through the API. The onus is on the implementor to extract and
-            interpret the data. The data must be preceded by the length. The length is limited by the amount of data that can fit in the optional information section. The maximum custom data length is 18
-            bytes. Any data changes will generate a new log.</p>
+        <p>
+            Arbitrary data can be placed in the custom data segment. The data will not be interpreted by MyGeotab, but will be accessible through the API. The onus is on the implementor to extract
+            and interpret the data. The data must be preceded by the length. The length is limited by the amount of data that can fit in the optional information section. The maximum custom data
+            length is 18 bytes. Any data changes will generate a new log.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -539,12 +611,16 @@ const advertisingPacket: ReactNode = (
                     <tr>
                         <td>9</td>
                         <td>0xC6</td>
-                        <td>Tx Power Level {"("}-58dBm{")"}</td>
+                        <td>
+                            Tx Power Level {"("}-58dBm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>0x64</td>
-                        <td>Battery Level {"("}100%{")"}</td>
+                        <td>
+                            Battery Level {"("}100%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -618,12 +694,16 @@ const advertisingPacket: ReactNode = (
                     <tr>
                         <td>9</td>
                         <td>0xC6</td>
-                        <td>Tx Power Level {"("}-58dBm{")"}</td>
+                        <td>
+                            Tx Power Level {"("}-58dBm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>0x64</td>
-                        <td>Battery Level {"("}100%{")"}</td>
+                        <td>
+                            Battery Level {"("}100%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -697,12 +777,16 @@ const advertisingPacket: ReactNode = (
                     <tr>
                         <td>9</td>
                         <td>0xC6</td>
-                        <td>Tx Power Level {"("}-58dBm{")"}</td>
+                        <td>
+                            Tx Power Level {"("}-58dBm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>0x64</td>
-                        <td>Battery Level {"("}100%{")"}</td>
+                        <td>
+                            Battery Level {"("}100%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -796,12 +880,16 @@ const advertisingPacket: ReactNode = (
                     <tr>
                         <td>9</td>
                         <td>0xC6</td>
-                        <td>Tx Power Level {"("}-58dBm{")"}</td>
+                        <td>
+                            Tx Power Level {"("}-58dBm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>0x64</td>
-                        <td>Battery Level {"("}100%{")"}</td>
+                        <td>
+                            Battery Level {"("}100%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -900,12 +988,16 @@ const advertisingPacket: ReactNode = (
                     <tr>
                         <td>9</td>
                         <td>0xC6</td>
-                        <td>Tx Power Level {"("}-58dBm{")"}</td>
+                        <td>
+                            Tx Power Level {"("}-58dBm{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>0x64</td>
-                        <td>Battery Level {"("}100%{")"}</td>
+                        <td>
+                            Battery Level {"("}100%{")"}
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -1009,15 +1101,15 @@ const advertisingPacket: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Add-On Protocol - BLE",
-    "breadCrumbItems": ["Hardware", "Protocol Reference", "BLE"]
+    title: "Add-On Protocol - BLE",
+    breadCrumbItems: ["Hardware", "Protocol Reference", "BLE"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "advertising-packet",
-        "summary": "Advertising packet",
-        "details": advertisingPacket
+        elementId: "advertising-packet",
+        summary: "Advertising packet",
+        details: advertisingPacket
     }
 ];
 
@@ -1025,15 +1117,21 @@ export default function Ble() {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                <p>External devices can communicate with the Geotab GO device through the Third-Party Bluetooth Low Energy {"("}BLE
-                    {")"} protocol described on this page. The hardware interface is the <a target="_blank" rel="noopener noreferrer"
-                        href="https://support.geotab.com/ioxs/installation/doc/iox-bt">IOX-BT</a>.</p>
-                <p>The IOX-BT is a read-only BLE sensor hub that supports up to 200 in-range beacons and will detect in/out of range
-                    for any Bluetooth beacon with a public MAC Address. However, sending any other data points requires the beacon to
-                    conform to the specified Geotab BLE protocol. Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit,
-                    the GO device will stop taking data from the IOX.</p>
+                <p>
+                    External devices can communicate with the Geotab GO device through the Third-Party Bluetooth Low Energy {"("}BLE
+                    {")"} protocol described on this page. The hardware interface is the{" "}
+                    <a target="_blank" rel="noopener noreferrer" href="https://support.geotab.com/ioxs/installation/doc/iox-bt">
+                        IOX-BT
+                    </a>
+                    .
+                </p>
+                <p>
+                    The IOX-BT is a read-only BLE sensor hub that supports up to 200 in-range beacons and will detect in/out of range for any Bluetooth beacon with a public MAC Address. However,
+                    sending any other data points requires the beacon to conform to the specified Geotab BLE protocol. Rate limit is 1200 logs per 10 minutes. If you exceed the rate limit, the GO
+                    device will stop taking data from the IOX.
+                </p>
                 <p>Because it can only read packets, no handshake is required. Two-way communication and device pairings are not possible.</p>
             </div>
         </Page>
     );
-};
+}

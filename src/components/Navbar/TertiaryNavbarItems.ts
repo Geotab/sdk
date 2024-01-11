@@ -1,10 +1,18 @@
-import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconProps, IconQuestionSupport } from "@geotab/react-component-library";
+/* eslint-disable @typescript-eslint/naming-convention */
+import {
+    IconGeotabDrive,
+    IconGrid,
+    IconMarketplace,
+    IconMyGShort,
+    IconProps,
+    IconQuestionSupport
+} from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";
 import { IconCodeTerminal, IconMyAShort } from "./icons";
 
 // TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
+interface SideNavigationMenuItemType {
     id: number;
     isTitle?: boolean;
     label: string;
@@ -18,7 +26,7 @@ type SideNavigationMenuItemType = {
     Pill?: ComponentType<any>;
     onClick?: (value?: unknown) => void;
     children?: SideNavigationMenuItemType[];
-};
+}
 
 export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
     {
@@ -61,7 +69,7 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 0,
                 roles: [],
-                userTypes: [],
+                userTypes: []
             },
             {
                 id: 2,
@@ -115,7 +123,7 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 5,
                 roles: [],
-                userTypes: [],
+                userTypes: []
             },
             {
                 id: 7,
@@ -137,7 +145,7 @@ export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
                 roles: [],
                 onClick: () => window.open("https://community.geotab.com/s/?language=en_US", "_blank")
             }
-        ],
+        ]
     },
     {
         id: 2,

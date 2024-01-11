@@ -11,8 +11,11 @@ import { HashLink } from "react-router-hash-link";
 const geotabApiObject: ReactNode = (
     <div className="paragraph">
         <p>
-            Geotab provides JavaScript developers with easy to use and consistent access to our API through the {" "}
-            <a href="https://github.com/Geotab/mg-api-js" target="_blank" rel="noopener noreferrer">GeotabApi</a> object. The GeotabAPI provides authentication handling, asynchronous method calling, error handling and MultiCall support.
+            Geotab provides JavaScript developers with easy to use and consistent access to our API through the{" "}
+            <a href="https://github.com/Geotab/mg-api-js" target="_blank" rel="noopener noreferrer">
+                GeotabApi
+            </a>{" "}
+            object. The GeotabAPI provides authentication handling, asynchronous method calling, error handling and MultiCall support.
         </p>
         <InformationalBox>
             <p>
@@ -29,20 +32,15 @@ const creatingAGeotabApiObject: ReactNode = (
         </p>
         <CodeSample
             language="html"
-            code={
-                `<script type="text/javascript" src="api.js"></script>
+            code={`<script type="text/javascript" src="api.js"></script>
 <script type="text/javascript">
     // Custom code goes here
-</script>`
-            }
+</script>`}
         />
-        <p>
-            In the main JavaScript code, initialize the GeotabApi object by providing the constructor with a callback function to handle the authentication:
-        </p>
+        <p>In the main JavaScript code, initialize the GeotabApi object by providing the constructor with a callback function to handle the authentication:</p>
         <CodeSample
             language="javascript"
-            code={
-                `var api = GeotabApi(function (authenticationCallback) {
+            code={`var api = GeotabApi(function (authenticationCallback) {
 	// Handling getting credentials. Deals with these cases:
 	//      a) No credentials yet (first page load)
 	//      b) The credentials have expired (password changed or server moved)
@@ -62,24 +60,22 @@ const creatingAGeotabApiObject: ReactNode = (
 			alert(errorString);
 		});
 	}, false);
-});`
-            }
+});`}
         />
         <p>
-            When the GeotabApi object has been set up, the first call to a method triggers the callback to get the credentials. Once the credentials have been entered by the user, <code className="small-code-sample">authenticationCallback</code> is called with the provided credentials, and then the original method result is retrieved. After this method has been called, the server, database, username, and session are all stored in localStorage.
+            When the GeotabApi object has been set up, the first call to a method triggers the callback to get the credentials. Once the credentials have been entered by the user,{" "}
+            <code className="small-code-sample">authenticationCallback</code> is called with the provided credentials, and then the original method result is retrieved. After this method has been
+            called, the server, database, username, and session are all stored in localStorage.
         </p>
     </div>
 );
 
 const usingTheGeotabApiObject: ReactNode = (
     <div className="paragraph">
-        <p>
-            The following example shows how to use the GeotabApi object to request the location of a vehicle:
-        </p>
+        <p>The following example shows how to use the GeotabApi object to request the location of a vehicle:</p>
         <CodeSample
             language="javascript"
-            code={
-                `// Sample API invocation retrieves all "Device" objects
+            code={`// Sample API invocation retrieves all "Device" objects
 var deviceId = "b93B";
 api.call("Get", {
 	typeName : "DeviceStatusInfo",
@@ -101,9 +97,7 @@ api.call("Get", {
 
 const theCallMethodArguments: ReactNode = (
     <div className="paragraph">
-        <p>
-            The Call method is used to "Call" any of the APIs that the MyGeotab SDK provides. It takes 4 arguments:
-        </p>
+        <p>The Call method is used to "Call" any of the APIs that the MyGeotab SDK provides. It takes 4 arguments:</p>
         <div className="table-container">
             <table>
                 <thead>
@@ -119,11 +113,17 @@ const theCallMethodArguments: ReactNode = (
                     </tr>
                     <tr>
                         <td>params</td>
-                        <td>The parameter object that the API method expects. For example: <code className="small-code-sample">{`{ typeName: "DeviceStatusInfo", search { deviceSearch: { id: deviceId } } }`}</code></td>
+                        <td>
+                            The parameter object that the API method expects. For example:{" "}
+                            <code className="small-code-sample">{`{ typeName: "DeviceStatusInfo", search { deviceSearch: { id: deviceId } } }`}</code>
+                        </td>
                     </tr>
                     <tr>
                         <td>callbackSuccess</td>
-                        <td>The function that will be called back if the API call succeeds. The callback function has a single argument called “result” that contains any results returned by the API call.</td>
+                        <td>
+                            The function that will be called back if the API call succeeds. The callback function has a single argument called “result” that contains any results returned by the API
+                            call.
+                        </td>
                     </tr>
                     <tr>
                         <td>callbackError</td>
@@ -132,14 +132,15 @@ const theCallMethodArguments: ReactNode = (
                 </tbody>
             </table>
         </div>
-
     </div>
 );
 
 const multicall: ReactNode = (
     <div className="paragraph">
         <p>
-            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the <HashLink to="/myGeotab/guides/concepts#multicall">MultiCall</HashLink> documentation. Additionally, you can find a JavaScript MultiCall example <HashLink to="/myGeotab/guides/concepts#api-client-support">here</HashLink>.
+            A MultiCall is a way to make several API calls against a server with a single HTTP request. This eliminates potentially expensive round trip costs. When making multiple calls, we
+            recommend leveraging MultiCalls as much as possible. For more information about MultiCalls, see the <HashLink to="/myGeotab/guides/concepts#multicall">MultiCall</HashLink> documentation.
+            Additionally, you can find a JavaScript MultiCall example <HashLink to="/myGeotab/guides/concepts#api-client-support">here</HashLink>.
         </p>
     </div>
 );
@@ -147,7 +148,10 @@ const multicall: ReactNode = (
 const aNoteAboutState: ReactNode = (
     <div className="paragraph">
         <p>
-            The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The <code className="small-code-sample">authenticationCallback</code> will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “logged out” of the server.
+            The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The{" "}
+            <code className="small-code-sample">authenticationCallback</code> will automatically be called when this situation is detected. The application will then prompt (or read from file etc.)
+            for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “logged
+            out” of the server.
         </p>
     </div>
 );
@@ -155,56 +159,55 @@ const aNoteAboutState: ReactNode = (
 const nextSteps: ReactNode = (
     <div className="paragraph">
         <p>
-            Once you have a basic understanding of how <i>api.js</i> and the JavaScript API work and want to learn more, you can take a look at our examples <Link to="/myGeotab/codeSamples/javascriptSamples">here</Link>.
+            Once you have a basic understanding of how <i>api.js</i> and the JavaScript API work and want to learn more, you can take a look at our examples{" "}
+            <Link to="/myGeotab/codeSamples/javascriptSamples">here</Link>.
         </p>
     </div>
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Using In JavaScript",
-    "breadCrumbItems": ["MYG", "Guides", "Code Base", "Using In JavaScript"]
+    title: "Using In JavaScript",
+    breadCrumbItems: ["MYG", "Guides", "Code Base", "Using In JavaScript"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "geotabapi-object",
-        "summary": "GeotabApi object",
-        "details": geotabApiObject
+        elementId: "geotabapi-object",
+        summary: "GeotabApi object",
+        details: geotabApiObject
     },
     {
-        "elementId": "creating-a-geotabapi-object",
-        "summary": "Creating a GeotabApi object",
-        "details": creatingAGeotabApiObject
+        elementId: "creating-a-geotabapi-object",
+        summary: "Creating a GeotabApi object",
+        details: creatingAGeotabApiObject
     },
     {
-        "elementId": "using-the-geotabapi-object",
-        "summary": "Using the GeotabApi object",
-        "details": usingTheGeotabApiObject
+        elementId: "using-the-geotabapi-object",
+        summary: "Using the GeotabApi object",
+        details: usingTheGeotabApiObject
     },
     {
-        "elementId": "the-call-method-arguments",
-        "summary": "The Call method arguments",
-        "details": theCallMethodArguments
+        elementId: "the-call-method-arguments",
+        summary: "The Call method arguments",
+        details: theCallMethodArguments
     },
     {
-        "elementId": "multicall",
-        "summary": "MultiCall",
-        "details": multicall
+        elementId: "multicall",
+        summary: "MultiCall",
+        details: multicall
     },
     {
-        "elementId": "a-note-about-state",
-        "summary": "A note about state",
-        "details": aNoteAboutState
+        elementId: "a-note-about-state",
+        summary: "A note about state",
+        details: aNoteAboutState
     },
     {
-        "elementId": "next-steps",
-        "summary": "Next steps",
-        "details": nextSteps
+        elementId: "next-steps",
+        summary: "Next steps",
+        details: nextSteps
     }
 ];
 
 export default function usingInJavascript() {
-    return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
-    );
-};
+    return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}
