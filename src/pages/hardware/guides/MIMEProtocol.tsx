@@ -270,8 +270,8 @@ const prerequisites: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "MIME PROTOCOL",
-    "breadCrumbItems": ["HARDWARE", "GUIDES", "MIME PROTOCOL"]
+    "title": "MIME Protocol",
+    "breadCrumbItems": ["HARDWARE", "Guides", "MIME Protocol"]
 };
 
 const pageSections: TableOfContentsItem[] = [
