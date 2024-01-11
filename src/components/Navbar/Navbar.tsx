@@ -33,7 +33,7 @@ export default function Navbar (props: any) {
     };
 
     function attachOnClickHandlerToMenuItems (item: SideNavigationMenuItemType) {
-        if (item.children && item.children?.length > 0) {
+        if (item.children && item.children.length > 0) {
             item.children.forEach((child: SideNavigationMenuItemType) => {
                 attachOnClickHandlerToMenuItems(child);
             });
