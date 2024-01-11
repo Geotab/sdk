@@ -2777,8 +2777,8 @@ const update1502: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-	"title": "RELEASE NOTES",
-	"breadCrumbItems": ["MYG", "RELEASE NOTES"]
+	"title": "Release Notes",
+	"breadCrumbItems": ["MYG", "Release Notes"]
 };
 
 const pageSections: TableOfContentsItem[] = [
