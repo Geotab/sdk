@@ -1,7 +1,7 @@
 import { SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { IconCircleInfo, IconPuzzlePiece } from "../icons";
 
-export const DriveNavbarItems: SideNavigationMenuItemType[] = [
+export const DRIVE_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "Introduction",

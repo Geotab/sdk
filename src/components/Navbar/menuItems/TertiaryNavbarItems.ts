@@ -1,7 +1,7 @@
 import { IconGeotabDrive, IconGrid, IconMarketplace, IconMyGShort, IconQuestionSupport, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { IconCodeTerminal, IconMyAShort } from "../icons";
 
-export const TertiaryNavbarItems: SideNavigationMenuItemType[] = [
+export const TERTIARY_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "API Runner",

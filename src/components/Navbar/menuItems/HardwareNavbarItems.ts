@@ -1,7 +1,7 @@
 import { SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { IconCircleInfo, IconDocument, IconDocumentWithMagnifyingGlass, IconCodeBox } from "../icons";
 
-export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
+export const HARDWARE_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "Introduction",

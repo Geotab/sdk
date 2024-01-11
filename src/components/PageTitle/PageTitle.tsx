@@ -11,6 +11,7 @@ interface BreadCrumbProps {
     isLastOne: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 function BreadCrumb({ name, isLastOne }: BreadCrumbProps): JSX.Element {
     return (
         <div className="breadCrumbContainer__atom">

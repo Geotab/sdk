@@ -1,7 +1,7 @@
 import { SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { IconCircleInfo, IconCodeBox, IconDocument, IconDocumentWithMagnifyingGlass, IconStar } from "../icons";
 
-export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
+export const MYADMIN_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "Introduction",
@@ -49,7 +49,7 @@ export const MyAdminNavbarItems: SideNavigationMenuItemType[] = [
                 roles: [],
                 userTypes: []
             },
-             // This link is here on purpose and is intended to link a MyGeotab page from the MyAdmin section
+            // This link is here on purpose and is intended to link a MyGeotab page from the MyAdmin section
             {
                 id: 2,
                 label: "Using Custom Telematics Devices",

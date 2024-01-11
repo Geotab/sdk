@@ -10,11 +10,11 @@ import { useContext } from "react";
 import MenuContext from "../menuContext";
 
 export default function LandingPage(): JSX.Element {
-  const { setActiveSiteSection } = useContext(MenuContext);
+    const { setActiveSiteSection } = useContext(MenuContext);
 
-  const handleLinkClick = (target: string): void => {
-    setActiveSiteSection(target);
-  };
+    const handleLinkClick = (target: string): void => {
+        setActiveSiteSection(target);
+    };
 
     return (
         <Page section={HeaderSections.Landing}>

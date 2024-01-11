@@ -7,8 +7,8 @@ interface MenuContextType {
 }
 
 const MenuContext = createContext<MenuContextType>({
-  activeSiteSection: "",
-  setActiveSiteSection: () => {},
+    activeSiteSection: "",
+    setActiveSiteSection: () => {}
 });
 
 interface MenuProviderProps {
@@ -16,13 +16,13 @@ interface MenuProviderProps {
 }
 
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
-  const [activeSiteSection, setActiveSiteSection] = useState<string>("");
+    const [activeSiteSection, setActiveSiteSection] = useState<string>("");
 
-  return (
-    <MenuContext.Provider value={{ activeSiteSection, setActiveSiteSection }}>
-      {children}
-    </MenuContext.Provider>
-  );
+    return (
+        <MenuContext.Provider value={{ activeSiteSection, setActiveSiteSection }}>
+            {children}
+        </MenuContext.Provider>
+    );
 };
 
 export default MenuContext;
