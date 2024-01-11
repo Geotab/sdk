@@ -3,18 +3,17 @@ import MyGeotabImage from "./../assets/images/landingPage/mygeotabImage.svg";
 import MyAdminImage from "./../assets/images/landingPage/myadminImage.svg";
 import DriveImage from "./../assets/images/landingPage/driveImage.svg";
 import HardwareImage from "./../assets/images/landingPage/hardwareImage.svg";
-
 import "./pages.scss";
 import { Page } from "../components";
 import { HeaderSections } from "../components/Header/headerSectionsEnum";
 import { useContext } from "react";
 import MenuContext from "../menuContext";
 
-export default function LandingPage() {
-    const { setActive } = useContext(MenuContext);
+export default function LandingPage(): JSX.Element {
+    const { setActiveSiteSection } = useContext(MenuContext);
 
-    const handleLinkClick = (target: string) => {
-        setActive(target);
+    const handleLinkClick = (target: string): void => {
+        setActiveSiteSection(target);
     };
 
     return (

@@ -1,35 +1,7 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { IconProps } from "@geotab/react-component-library";
-// import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
-import { ComponentType } from "react";
-import {
-    IconCircleInfo,
-    IconStar,
-    IconDocument,
-    IconPuzzlePiece,
-    IconDocumentWithMagnifyingGlass,
-    IconHexagonGear,
-    IconCodeBox
-} from "./icons";
+import { SideNavigationMenuItemType } from "@geotab/react-component-library";
+import { IconCircleInfo, IconStar, IconDocument, IconPuzzlePiece, IconDocumentWithMagnifyingGlass, IconHexagonGear, IconCodeBox } from "../icons";
 
-// TODO: Eventually remove and import from library
-export interface SideNavigationMenuItemType {
-    id: number;
-    isTitle?: boolean;
-    label: string;
-    route?: string;
-    externalRoute?: string;
-    level: number;
-    order: number;
-    userTypes: string[];
-    roles: string[];
-    Icon?: ComponentType<IconProps>;
-    Pill?: ComponentType<any>;
-    onClick?: (value?: unknown) => void;
-    children?: SideNavigationMenuItemType[];
-}
-
-export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
+export const MYGEOTAB_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "Introduction",
@@ -299,8 +271,7 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 2,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/sdk-java-samples", "_blank")
+                userTypes: []
             },
             {
                 id: 3,
@@ -309,8 +280,7 @@ export const MyGeotabNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 3,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/sdk-addin-samples", "_blank")
+                userTypes: []
             }
         ]
     }

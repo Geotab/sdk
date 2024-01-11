@@ -14,7 +14,7 @@ interface TableOfContentsProps {
 }
 
 export default function TableOfContents({ items }: TableOfContentsProps): JSX.Element {
-    const [activeSection, setActiveSection] = useState<string>("");
+    const [activeSection, setActiveSection] = useState<string>(items[0].elementId);
     const pageContentScrollObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
 
     const tableOfContentsIsStickyObserver = useRef() as React.MutableRefObject<IntersectionObserver>;
