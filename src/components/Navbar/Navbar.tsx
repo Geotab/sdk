@@ -4,7 +4,7 @@ import {
   SideNavigation,
   SideNavigationCollapseProvider,
   SideNavigationMenuItemType,
-  TooltipProvider,
+  TooltipProvider
 } from "@geotab/react-component-library";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { HeaderSections } from "../Header/headerSectionsEnum";

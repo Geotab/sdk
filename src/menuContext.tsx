@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { createContext, useState, ReactNode } from "react";
 
 interface MenuContextType {
@@ -11,7 +12,7 @@ const MenuContext = createContext<MenuContextType>({
 });
 
 interface MenuProviderProps {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {

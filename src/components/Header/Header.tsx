@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import MenuContext from "../../menuContext";
 import { LogoGeotabSDK } from "../Logo/LogoGeotabSDK";
 import { Link } from "react-router-dom";
-import { IconSearch } from "@geotab/react-component-library"
-import SearchModal from "../SearchModal/SearchModal"
+import { IconSearch } from "@geotab/react-component-library";
+import SearchModal from "../SearchModal/SearchModal";
 import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 

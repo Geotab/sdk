@@ -6,24 +6,18 @@ import { TableOfContentsItem } from "../../components/TableOfContents/TableOfCon
 // TODO: Update this page once Product Management has provided content
 
 const pageTitle: PageTitleProps = {
-  title: "Introduction",
-  breadCrumbItems: ["Drive", "Introduction"]
+    title: "Introduction",
+    breadCrumbItems: ["Drive", "Introduction"]
 };
 
 const pageSections: TableOfContentsItem[] = [
-  {
-    elementId: "introduction",
-    summary: "Introduction",
-    details: null
-  }
+    {
+        elementId: "introduction",
+        summary: "Introduction",
+        details: null
+    }
 ];
 
 export default function Introduction() {
-  return (
-    <Page
-      section={HeaderSections.Drive}
-      pageTitle={pageTitle}
-      tableOfContents={pageSections}
-    />
-  );
+    return <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }

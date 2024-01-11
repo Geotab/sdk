@@ -16,18 +16,18 @@ export function createAccordions(pageSections: TableOfContentsItem[]): ReactNode
 export default function Accordion(props: AccordionContents): JSX.Element {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let Icon: ReactNode = expanded ? <IconChevronUp /> : <IconChevronDown />;
+    let icon: ReactNode = expanded ? <IconChevronUp /> : <IconChevronDown />;
 
     function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>): void {
         const detailsElement = e.target as HTMLDetailsElement;
         setExpanded(detailsElement.open);
-    };
+    }
 
     return (
         <details onToggle={handleToggle} open>
             <summary id={props.id}>
                 {props.summary}
-                {Icon}
+                {icon}
             </summary>
             <div className="detailsContent" id={props.id}>
                 {props.p}
