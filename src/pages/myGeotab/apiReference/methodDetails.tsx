@@ -17,7 +17,7 @@ export default function MethodDetail(): JSX.Element {
     return (
         <div>
             <h2>{methodDetails.title}</h2>
-            <p>{RenderStringWithUrl(methodDetails.description)}</p>
+            <p>{RenderStringWithUrl(methodDetails.title, methodDetails.description)}</p>
         </div>
     );
 };
