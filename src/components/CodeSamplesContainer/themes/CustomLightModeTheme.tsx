@@ -34,6 +34,6 @@ export default function CustomLightModeTheme(): Record<string, string> {
         metaKeywordColor: "#1967d2",
         metaColor: "#37474f",
         functionColor: "#37474f",
-        numberColor: "#c5221f",
+        numberColor: "#c5221f"
     };
 }

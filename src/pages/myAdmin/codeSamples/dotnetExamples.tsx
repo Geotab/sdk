@@ -8,11 +8,7 @@ import "../../../pages/pages.scss";
 
 const dotnetExampleCodeSnippet1: ReactNode = (
     <div className="paragraph">
-        <p>
-            The first example is a method that authenticates with the MyAdmin API,
-            retrieves a list of device plans, and looks up the details for a specific
-            device.
-        </p>
+        <p>The first example is a method that authenticates with the MyAdmin API, retrieves a list of device plans, and looks up the details for a specific device.</p>
         <CodeSample
             language="csharp"
             code={`async Task Example1()
@@ -80,10 +76,7 @@ const dotnetExampleCodeSnippet1: ReactNode = (
 
 const dotnetExampleCodeSnippet2: ReactNode = (
     <div className="paragraph">
-        <p>
-            The second example demonstrates how to query the MyAdmin API to get
-            shipping fee information.
-        </p>
+        <p>The second example demonstrates how to query the MyAdmin API to get shipping fee information.</p>
         <CodeSample
             language="csharp"
             code={`async Task Example2()
@@ -114,29 +107,27 @@ const dotnetExampleCodeSnippet2: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": ".NET Examples",
-    "breadCrumbItems": ["MYA", "Code Samples", ".NET Examples"]
+    title: ".NET Examples",
+    breadCrumbItems: ["MYA", "Code Samples", ".NET Examples"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "dotnet-example-code-snippet1",
-        "summary": "Example 1",
-        "details": dotnetExampleCodeSnippet1
+        elementId: "dotnet-example-code-snippet1",
+        summary: "Example 1",
+        details: dotnetExampleCodeSnippet1
     },
     {
-        "elementId": "dotnet-example-code-snippet2",
-        "summary": "Example 2",
-        "details": dotnetExampleCodeSnippet2
-    },
+        elementId: "dotnet-example-code-snippet2",
+        summary: "Example 2",
+        details: dotnetExampleCodeSnippet2
+    }
 ];
 
 export default function DotnetExamples() {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
-            <div className="paragraph">
-                Here are a few examples to help you get started.
-            </div>
+            <div className="paragraph">Here are a few examples to help you get started.</div>
         </Page>
     );
 }

@@ -13,9 +13,7 @@ export default function WarningBox(props: warningBoxProps) {
             <div className="icon-container">
                 <IconException />
             </div>
-            <div>
-                {props.children}
-            </div>
+            <div>{props.children}</div>
         </div>
     );
 }
