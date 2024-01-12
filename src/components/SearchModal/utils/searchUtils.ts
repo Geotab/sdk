@@ -31,7 +31,7 @@ export const pullText = (searchId: number, matchTerm: string): string => {
 
     let stringIndex: number = contentString.indexOf(matchTerm);
     if (stringIndex >= 0) {
-        let excerpt = "";
+        let excerpt:string = "";
         let numRemainingChars: number = EXCERPT_CHAR_LENGTH - matchTerm.length;
         let numCharsAhead: number = contentString.substring(0, stringIndex).length;
         let numCharsAfter: number = contentString.substring(stringIndex + matchTerm.length).length;
