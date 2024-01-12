@@ -29,7 +29,7 @@ export default function RenderStringWithLinks(name: string, text: string): JSX.E
             }
 
             let cref: string[] = match[1].split(".");
-            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z]/g, "");
+            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z\d]/g, "");
             let link;
             if (cref.includes("ObjectModel")) {
                 link = `/myGeotab/apiReference/objects#${linkText}`;
