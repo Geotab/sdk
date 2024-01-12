@@ -1,25 +1,24 @@
-import { Button } from '@geotab/react-component-library';
-import myGParser from './myGParser';
-import RenderStringWithUrl from './renderStringWithUrl';
-import sortAlphabetical from './sortAlphabetical';
-import { Link } from 'react-router-dom';
+import { Button } from "@geotab/react-component-library";
+import myGParser from "./myGParser";
+import RenderStringWithUrl from "./renderStringWithUrl";
+import sortAlphabetical from "./sortAlphabetical";
+import { Link } from "react-router-dom";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
 interface PropertyDescription {
-    name: string, 
-    description: string
-};
+    name: string;
+    description: string;
+}
 
 interface ObjectDetails {
-    description: string,
-    properties: PropertyDescription[]
-};
+    description: string;
+    properties: PropertyDescription[];
+}
 
 type ObjectEntry = [string, ObjectDetails];
-
 
 let objectItems: JSX.Element[];
 let request: XMLHttpRequest = new XMLHttpRequest();
@@ -28,13 +27,11 @@ request.send();
 let xml: Document | null = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "Objects",
-    "breadCrumbItems": ["MYG", "API Reference", "Objects"]
+    title: "Objects",
+    breadCrumbItems: ["MYG", "API Reference", "Objects"]
 };
 
-const pageSections: TableOfContentsItem[] = [
-
-];
+const pageSections: TableOfContentsItem[] = [];
 
 if (xml === null) {
     throw new Error('Failed to load or parse data');
@@ -70,4 +67,4 @@ export default function Objects(): JSX.Element {
             {objectItems}
         </Page>
     );
-};
+}

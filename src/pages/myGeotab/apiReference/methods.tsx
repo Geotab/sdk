@@ -8,17 +8,17 @@ import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
 
-interface ParamterDescription {
-    name: string,
-    description: string, 
-    required: boolean
-};
+interface ParameterDescription {
+    name: string;
+    description: string;
+    required: boolean;
+}
 
 interface MethodDetails {
-    description: string,
-    parameters: ParamterDescription[],
-    example: string,
-    returns: string
+    description: string;
+    parameters: ParameterDescription[];
+    example: string;
+    returns: string;
 };
 
 type MethodEntry = [string, MethodDetails];
@@ -30,13 +30,11 @@ request.send();
 let xml: Document | null = request.responseXML;
 
 const pageTitle: PageTitleProps = {
-    "title": "Methods",
-    "breadCrumbItems": ["MYG", "API Reference", "Methods"]
+    title: "Methods",
+    breadCrumbItems: ["MYG", "API Reference", "Methods"]
 };
 
-const pageSections: TableOfContentsItem[] = [
-
-];
+const pageSections: TableOfContentsItem[] = [];
 
 if (xml === null) {
     console.log('');
@@ -73,4 +71,4 @@ export default function Methods(): JSX.Element {
             {methodItems}
         </Page>
     );
-};
+}

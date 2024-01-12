@@ -1,26 +1,7 @@
-import { IconProps } from "@geotab/react-component-library";
-// import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
-import { ComponentType } from "react";
-import { IconCircleInfo, IconDocument, IconDocumentWithMagnifyingGlass, IconCodeBox } from "./icons";
+import { SideNavigationMenuItemType } from "@geotab/react-component-library";
+import { IconCircleInfo, IconDocument, IconDocumentWithMagnifyingGlass, IconCodeBox } from "../icons";
 
-// TODO: Eventually remove and import from library
-type SideNavigationMenuItemType = {
-    id: number;
-    isTitle?: boolean;
-    label: string;
-    route?: string;
-    externalRoute?: string;
-    level: number;
-    order: number;
-    userTypes: string[];
-    roles: string[];
-    Icon?: ComponentType<IconProps>;
-    Pill?: ComponentType<any>;
-    onClick?: (value?: unknown) => void;
-    children?: SideNavigationMenuItemType[];
-};
-
-export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
+export const HARDWARE_NAVBAR_ITEMS: SideNavigationMenuItemType[] = [
     {
         id: 0,
         label: "Introduction",
@@ -132,8 +113,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 1,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/android-external-device-example", "_blank")
+                userTypes: []
             },
             {
                 id: 2,
@@ -142,8 +122,7 @@ export const HardwareNavbarItems: SideNavigationMenuItemType[] = [
                 level: 1,
                 order: 2,
                 roles: [],
-                userTypes: [],
-                onClick: () => window.open("https://github.com/Geotab/IOX-raspberryPi-demo", "_blank")
+                userTypes: []
             }
         ]
     }

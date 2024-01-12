@@ -58,7 +58,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 if (item[i].childNodes[j].hasChildNodes()) {
                                     // if there are child nodes here then we loop through them.
                                     let summaryChildren = item[i].childNodes[j].childNodes;
-                                    let summaryText: string = '';
+                                    let summaryText = "";
                                     for (let k = 0; k < summaryChildren.length; k++) {
                                         if (summaryChildren[k].nodeName === "para") {
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
@@ -75,9 +75,9 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                                     }
                                                 }
                                             }
-                                            
+
                                             if (k !== summaryChildren.length - 1) {
-                                                summaryText += '\n';
+                                                summaryText += "\n";
                                             }
                                         } else {
                                             if (summaryChildren[k].nodeName === '#text') {
@@ -89,11 +89,11 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                         }
                                     }
                                     json[methodName].description = summaryText.trimStart();
-                                } 
+                                }
                             }
                             if (item[i].childNodes[j].nodeName === "param" && !(item[i].childNodes[j] as Element).attributes.hasOwnProperty('jsHide')) {
                                 let paramDict: any = {};
-                                let descriptionText: string = '';
+                                let descriptionText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
                                         descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g,  ' ');
@@ -109,8 +109,8 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 }
                                 (json[methodName] as MethodInfo).parameters.push(paramDict);
                             }
-                            if (item[i].childNodes[j].nodeName === 'returns') {
-                                let returnText: string = '';
+                            if (item[i].childNodes[j].nodeName === "returns") {
+                                let returnText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
                                         returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g,  ' ');
@@ -121,8 +121,8 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 }
                                 (json[methodName] as MethodInfo).returns = returnText.trimStart();
                             }
-                            if (item[i].childNodes[j].nodeName === 'example') {
-                                let codeText: string = '';
+                            if (item[i].childNodes[j].nodeName === "example") {
+                                let codeText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === 'code') {
                                         codeText += (item[i].childNodes[j].childNodes[k] as Element).innerHTML;
