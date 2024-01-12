@@ -60,9 +60,11 @@ function getHeaderIds(fileContent) {
 }
 
 function getContent(fileContent) {
-    const pageSectionsContentRegex1 = /<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*\);/g;
-    const pageSectionsContentRegex2 = /<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*<\/Page>/g;
-    const matches = [...fileContent.matchAll(pageSectionsContentRegex1), ...fileContent.matchAll(pageSectionsContentRegex2)];
+    // Get [] of <div className="paragraph">...</div> ); elements
+    const pageSectionsContentRegex1 = /\(\s*<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*\)\s*/g;
+    // Get [] of <div className="paragraph">...</Page> elements
+    const pageSectionsContentRegex2 = /<Page([\s\S]*?)\s*<\/div>\s*<\/Page>/g;
+    const matches = [...fileContent.matchAll(pageSectionsContentRegex2), ...fileContent.matchAll(pageSectionsContentRegex1)];
 
     if (matches.length > 0) {
         let content = matches.map(match => {
@@ -70,7 +72,11 @@ function getContent(fileContent) {
             const document = dom.window.document;
 
             return Array.from(document.body.children, element =>
-                element.textContent.replace(/\s{2,}/g, ' ').replace(/[\n\t]/g, '').replace(/\\\"/g, '"').trim()
+                element.textContent
+                    .replace(/\s{2,}/g, ' ')
+                    .replace(/[\n\t]/g, '')
+                    .replace(/\\\"/g, '"')
+                    .trim()
             ).join(" ");
         });
 
