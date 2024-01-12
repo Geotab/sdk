@@ -1,6 +1,6 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import RenderStringWithUrl from './renderStringWithUrl';
+import React from "react";
+import { useParams } from "react-router-dom";
+import RenderStringWithUrl from "./renderStringWithUrl";
 
 export default function MethodDetail(): JSX.Element {
     const { methodId } = useParams();

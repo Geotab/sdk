@@ -1,8 +1,8 @@
-import { Button } from '@geotab/react-component-library';
-import myGParser from './myGParser';
-import RenderStringWithUrl from './renderStringWithUrl';
-import sortAlphabetical from './sortAlphabetical';
-import { Link } from 'react-router-dom';
+import { Button } from "@geotab/react-component-library";
+import myGParser from "./myGParser";
+import RenderStringWithUrl from "./renderStringWithUrl";
+import sortAlphabetical from "./sortAlphabetical";
+import { Link } from "react-router-dom";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
@@ -37,9 +37,9 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [];
 
 if (xml === null) {
-    console.log('');
+    console.log("");
 } else {
-    const methods: MethodEntry[] = Object.entries(myGParser(xml, 'method', ['M:CheckmateServer.Web.WebMethods', 'M:Geotab.Checkmate.Database.DataStore']) as { [key: string]: MethodDetails }).sort(sortAlphabetical);
+    const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(sortAlphabetical);
     methodItems = methods.map((methodDetails: MethodEntry) => {
         sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
         let pageSectionObject: TableOfContentsItem = {

@@ -32,19 +32,19 @@ function extractSubstrings(input: string): string {
     } else if (dataStoreMatch) {
         return dataStoreMatch[1];
     } else {
-        return '';
+        return "";
     }
 }
 
 export default function myGParser(xml: XMLDocument, itemType: string, itemStrings: string[]): ParserOutput {
     let json: { [key: string]: MethodInfo | ObjectInfo } = {};
     if (xml.hasChildNodes()) {
-        if (xml.childNodes[0].nodeName === 'doc') {
+        if (xml.childNodes[0].nodeName === "doc") {
             let item: NodeListOf<ChildNode> = xml.childNodes[0].childNodes;
             for (let i = 0; i < item.length; i++) {
                 if (item[i].nodeName === "member") {
-                    if (itemType === 'method' && itemStrings.some(method =>  (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes(method))) {
-                        let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem('name')?.nodeValue ?? "").replace(/Async$/,"");
+                    if (itemType === "method" && itemStrings.some(method =>  (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes(method))) {
+                        let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem("name")?.nodeValue ?? "").replace(/Async$/,"");
                         if (!json[methodName]) {
                             json[methodName] = {
                                 "description": "",
@@ -62,16 +62,16 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                     for (let k = 0; k < summaryChildren.length; k++) {
                                         if (summaryChildren[k].nodeName === "para") {
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
-                                                if (summaryChildren[k].childNodes[l].nodeName === '#text') {
-                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, ' ');
+                                                if (summaryChildren[k].childNodes[l].nodeName === "#text") {
+                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, " ");
                                                 }
-                                                if (summaryChildren[k].childNodes[l].nodeName === 'see') {
+                                                if (summaryChildren[k].childNodes[l].nodeName === "see") {
                                                     summaryText += (summaryChildren[k].childNodes[l] as Element).outerHTML;
                                                 }
-                                                if (summaryChildren[k].childNodes[l].nodeName === 'list') {
+                                                if (summaryChildren[k].childNodes[l].nodeName === "list") {
                                                     let listItems = summaryChildren[k].childNodes[l];
                                                     for (let m = 0; m < listItems.childNodes.length; m++) {
-                                                        summaryText += '\n' + '- ' + (listItems.childNodes[m].childNodes[0] as Element).innerHTML;
+                                                        summaryText += "\n" + "- " + (listItems.childNodes[m].childNodes[0] as Element).innerHTML;
                                                     }
                                                 }
                                             }
@@ -80,10 +80,10 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                                 summaryText += "\n";
                                             }
                                         } else {
-                                            if (summaryChildren[k].nodeName === '#text') {
-                                                summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, ' ');
+                                            if (summaryChildren[k].nodeName === "#text") {
+                                                summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, " ");
                                             }
-                                            if (summaryChildren[k].nodeName === 'see') {
+                                            if (summaryChildren[k].nodeName === "see") {
                                                 summaryText += (summaryChildren[k] as Element).outerHTML;
                                             }
                                         }
@@ -91,31 +91,31 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                     json[methodName].description = summaryText.trimStart();
                                 }
                             }
-                            if (item[i].childNodes[j].nodeName === "param" && !(item[i].childNodes[j] as Element).attributes.hasOwnProperty('jsHide')) {
+                            if (item[i].childNodes[j].nodeName === "param" && !(item[i].childNodes[j] as Element).attributes.hasOwnProperty("jsHide")) {
                                 let paramDict: any = {};
                                 let descriptionText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
-                                    if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g,  ' ');
+                                    if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
+                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g,  " ");
                                     }
-                                    if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
+                                    if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                         descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                     }
                                 }
-                                paramDict['name'] = (item[i].childNodes[j] as Element).attributes.getNamedItem('name')?.nodeValue;
-                                paramDict['description'] = descriptionText; //trimstart and remove the extra space for the see stuff todooooooooo
-                                if ((item[i].childNodes[j] as Element).attributes.hasOwnProperty('required')) {
-                                    paramDict['required'] = true;
+                                paramDict["name"] = (item[i].childNodes[j] as Element).attributes.getNamedItem("name")?.nodeValue;
+                                paramDict["description"] = descriptionText; //trimstart and remove the extra space for the see stuff todooooooooo
+                                if ((item[i].childNodes[j] as Element).attributes.hasOwnProperty("required")) {
+                                    paramDict["required"] = true;
                                 }
                                 (json[methodName] as MethodInfo).parameters.push(paramDict);
                             }
                             if (item[i].childNodes[j].nodeName === "returns") {
                                 let returnText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
-                                    if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g,  ' ');
+                                    if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
+                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g,  " ");
                                     }
-                                    if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
+                                    if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                         returnText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                     }
                                 }
@@ -124,7 +124,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                             if (item[i].childNodes[j].nodeName === "example") {
                                 let codeText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
-                                    if (item[i].childNodes[j].childNodes[k].nodeName === 'code') {
+                                    if (item[i].childNodes[j].childNodes[k].nodeName === "code") {
                                         codeText += (item[i].childNodes[j].childNodes[k] as Element).innerHTML;
                                     }
                                 }
@@ -133,9 +133,9 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                         } 
                     }
 
-                    if (itemType === 'object' && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('T:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('T:Geotab.Checkmate.API')))) {
-                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.split('.') ?? [];
-                        let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, '');
+                    if (itemType === "object" && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.ObjectModel")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.API")))) {
+                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") ?? [];
+                        let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, "");
 
                         if (!json[objectName]) {
                             json[objectName] = {
@@ -144,39 +144,39 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                             }
                         }
                         for (let j = 0; j < item[i].childNodes.length; j++) {
-                            if (item[i].childNodes[j].nodeName === 'summary') {
+                            if (item[i].childNodes[j].nodeName === "summary") {
                                 if (item[i].childNodes[j].hasChildNodes()) {
                                     let summaryChildren = item[i].childNodes[j].childNodes;
-                                    let summaryText: string = '';
+                                    let summaryText: string = "";
                                     for (let k = 0; k < summaryChildren.length; k++) {
-                                        if (summaryChildren[k].nodeName === 'text' || summaryChildren[k].nodeName === '#text') {
-                                            summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, ' ');
+                                        if (summaryChildren[k].nodeName === "text" || summaryChildren[k].nodeName === "#text") {
+                                            summaryText += summaryChildren[k].nodeValue?.replace(/\s+/g, " ");
                                         }
-                                        if (summaryChildren[k].nodeName === 'see' || summaryChildren[k].nodeName === 'a') {
+                                        if (summaryChildren[k].nodeName === "see" || summaryChildren[k].nodeName === "a") {
                                             summaryText += (summaryChildren[k] as Element).outerHTML;
                                         }
-                                        if (summaryChildren[k].nodeName === 'para') {
+                                        if (summaryChildren[k].nodeName === "para") {
                                             for (let l = 0; l < summaryChildren[k].childNodes.length; l++) {
-                                                if (summaryChildren[k].childNodes[l].nodeName === '#text') {
-                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, ' ');
+                                                if (summaryChildren[k].childNodes[l].nodeName === "#text") {
+                                                    summaryText += summaryChildren[k].childNodes[l].nodeValue?.replace(/\s+/g, " ");
                                                 }
-                                                if (summaryChildren[k].childNodes[l].nodeName === 'see') {
+                                                if (summaryChildren[k].childNodes[l].nodeName === "see") {
                                                     summaryText += (summaryChildren[k].childNodes[l] as Element).outerHTML;
                                                 }
                                             }
                                             
                                             if (k !== summaryChildren.length - 1) {
-                                                summaryText += '\n';
+                                                summaryText += "\n";
                                             }
                                         }
-                                        if (summaryChildren[k].nodeName === 'list') {
+                                        if (summaryChildren[k].nodeName === "list") {
                                             let listItems = summaryChildren[k].childNodes;
                                             for (let l = 0; l < listItems.length; l++) {
                                                 for (let m = 0; m < listItems[l].childNodes.length; m++) {
                                                     if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                        summaryText += '\n' + '- ' + (listItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
+                                                        summaryText += "\n" + "- " + (listItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
                                                     } else {
-                                                        summaryText += '\n' + '- ' + listItems[l].childNodes[m].childNodes[0].nodeValue?.replace(/\s+/g,  ' ');
+                                                        summaryText += "\n" + "- " + listItems[l].childNodes[m].childNodes[0].nodeValue?.replace(/\s+/g,  " ");
                                                     }   
                                                 }
                                             } 
@@ -187,42 +187,42 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                             }
                             
                         } 
-                    } else if (itemType === 'object' && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('P:Geotab.Checkmate.ObjectModel')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('P:Geotab.Checkmate')) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.includes('F:Geotab.Checkmate.ObjectModel')))) {
-                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem('name')?.nodeValue?.split('.') || [];
-                        let objectName: string = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, '');
-                        let propertyName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, '');
+                    } else if (itemType === "object" && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate.ObjectModel")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("F:Geotab.Checkmate.ObjectModel")))) {
+                        let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") || [];
+                        let objectName: string = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, "");
+                        let propertyName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, "");
                         if (json[objectName]) {
                             let propertyDict: any = {};
-                            let descriptionText = '';
-                            propertyDict['name'] = propertyName;
+                            let descriptionText = "";
+                            propertyDict["name"] = propertyName;
                             for (let j = 0; j < item[i].childNodes.length; j++) {
-                                if (item[i].childNodes[j].nodeName === 'summary') {
+                                if (item[i].childNodes[j].nodeName === "summary") {
                                     for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
-                                        if (item[i].childNodes[j].childNodes[k].nodeName === '#text') {
-                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, ' ')
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
+                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, " ")
                                         }
-                                        if (item[i].childNodes[j].childNodes[k].nodeName === 'see') {
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                             descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
                                         }
-                                        if (item[i].childNodes[j].childNodes[k].nodeName === 'list') {
+                                        if (item[i].childNodes[j].childNodes[k].nodeName === "list") {
                                             let properyListItems = item[i].childNodes[j].childNodes[k].childNodes;
                                             for (let l = 0; l < properyListItems.length; l++) {
                                                 for (let m = 0; m < properyListItems[l].childNodes.length; m++) {
                                                     if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
-                                                        descriptionText += '\n' + '- ' + (properyListItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
+                                                        descriptionText += "\n" + "- " + (properyListItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
                                                     } else {
-                                                        descriptionText += '\n' + '- ' + (properyListItems[l].childNodes[m].childNodes[0] as Element).nodeValue?.replace(/\s+/g,  ' ');
+                                                        descriptionText += "\n" + "- " + (properyListItems[l].childNodes[m].childNodes[0] as Element).nodeValue?.replace(/\s+/g,  " ");
                                                     }   
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                if (item[i].childNodes[j].nodeName === 'value') {
+                                if (item[i].childNodes[j].nodeName === "value") {
                                     
                                 }
                             }
-                            propertyDict['description'] = descriptionText.trimStart();
+                            propertyDict["description"] = descriptionText.trimStart();
                             (json[objectName] as ObjectInfo).properties.push(propertyDict);
                         }
                     }

@@ -34,9 +34,9 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [];
 
 if (xml === null) {
-    throw new Error('Failed to load or parse data');
+    throw new Error("Failed to load or parse data");
 } else {
-    const objects: ObjectEntry[] = Object.entries(myGParser(xml, 'object', ['T:Geotab.Checkmate.ObjectModel', 'T:Geotab.Checkmate.API', 'P:Geotab.Checkmate.ObjectModel', 'M:Geotab.Checkmate.API.#ctor', 'F:Geotab.Checkmate.ObjectModel']) as { [key: string]: ObjectDetails }).sort(sortAlphabetical);
+    const objects: ObjectEntry[] = Object.entries(myGParser(xml, "object", ["T:Geotab.Checkmate.ObjectModel", "T:Geotab.Checkmate.API", "P:Geotab.Checkmate.ObjectModel", "M:Geotab.Checkmate.API.#ctor", "F:Geotab.Checkmate.ObjectModel"]) as { [key: string]: ObjectDetails }).sort(sortAlphabetical);
     // console.log(objects);
     objectItems = objects.map((objectDetails: ObjectEntry) => {
         sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
