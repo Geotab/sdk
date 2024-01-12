@@ -16,7 +16,7 @@ function buildSearchIndex(folderPath, basePath) {
         if (stats.isDirectory()) {
             buildSearchIndex(filePath, basePath);
         } else {
-            if (filePath.endsWith('.tsx')) {
+            if (filePath.endsWith('.tsx') && !filePath.endsWith('index.tsx')) {
                 try {
                     const fileContent = fs.readFileSync(filePath, 'utf-8');
                     const relativePath = path.relative(basePath, filePath);
@@ -25,10 +25,10 @@ function buildSearchIndex(folderPath, basePath) {
                         id: count++,
                         title: getTitle(fileContent),
                         headers: getHeaders(fileContent),
-                        headersIds: getHeaderIds(fileContent),
+                        headerIds: getHeaderIds(fileContent),
                         content: getContent(fileContent),
                         link: getLink(relativePath),
-                        breadcrumb: getBreadcrumb(fileContent),
+                        breadCrumb: getBreadcrumb(fileContent),
                         category: getCategory(fileContent)
                     };
 
@@ -60,8 +60,10 @@ function getHeaderIds(fileContent) {
 }
 
 function getContent(fileContent) {
-    const pageSectionsContentRegex = /<div className="paragraph">([\s\S]*?)<\/div>\s*\);/g;
-    const matches = [...fileContent.matchAll(pageSectionsContentRegex)];
+    const pageSectionsContentRegex1 = /<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*\);/g;
+    const pageSectionsContentRegex2 = /<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*<\/Page>/g;
+    const matches = [...fileContent.matchAll(pageSectionsContentRegex1), ...fileContent.matchAll(pageSectionsContentRegex2)];
+
     if (matches.length > 0) {
         let content = matches.map(match => {
             const dom = new JSDOM(match[1].trim());
@@ -79,7 +81,7 @@ function getContent(fileContent) {
 }
 
 function getLink(relativePath) {
-    return "/" + relativePath.replace(/\\/g, '/');
+    return "/" + relativePath.replace(/\\/g, '/').replace(".tsx", "");
 }
 
 function getBreadcrumb(fileContent) {
@@ -117,7 +119,7 @@ function getCategory(fileContent) {
 
     buildSearchIndex(startFolderPath, startFolderPath);
 
-    fs.writeFile("./utils/searchIndex.js", JSON.stringify(searchIndex), (error) => {
+    fs.writeFile("./utils/searchIndex.js", `export const searchIndex = ${JSON.stringify(searchIndex)}`, (error) => {
         if (error) {
             console.error('Error writing to file:', error);
         } else {
