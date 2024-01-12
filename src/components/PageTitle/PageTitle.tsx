@@ -6,6 +6,21 @@ export interface PageTitleProps {
     breadCrumbItems: string[];
 }
 
+interface BreadCrumbProps {
+    name: string;
+    isLastOne: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function BreadCrumb({ name, isLastOne }: BreadCrumbProps): JSX.Element {
+    return (
+        <div className="breadCrumbContainer__atom">
+            <span>{name}</span>
+            {isLastOne ? <IconChevronRightSmall className="breadCrumbContainer__chevron" /> : null}
+        </div>
+    );
+}
+
 export default function PageTitle({ title, breadCrumbItems }: PageTitleProps): JSX.Element {
     return (
         <div className="pageTitle">

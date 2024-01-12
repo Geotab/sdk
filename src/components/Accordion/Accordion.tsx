@@ -18,7 +18,7 @@ export default function Accordion(props: AccordionProps) {
 
     let icon: JSX.Element = expanded ? <IconChevronUp /> : <IconChevronDown />;
 
-    function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
+    function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>): void {
         const detailsElement = e.target as HTMLDetailsElement;
         setExpanded(detailsElement.open);
     }

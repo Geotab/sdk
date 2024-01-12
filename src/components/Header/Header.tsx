@@ -7,21 +7,25 @@ import SearchModal from "../SearchModal/SearchModal";
 import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
-export default function Header(props: { isLandingPage: boolean }) {
-    const { active, setActive } = useContext(MenuContext);
-    const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
-    const [isLanding, setIsLanding] = useState<boolean>(props.isLandingPage);
+interface HeaderProps {
+    isLandingPage: boolean;
+}
 
-    const openSearchModal = () => {
+export default function Header({ isLandingPage }: HeaderProps): JSX.Element {
+    const { activeSiteSection, setActiveSiteSection } = useContext(MenuContext);
+    const [isSearchModalOpen, setSearchModalOpen] = useState(false);
+    const [isLanding, setIsLanding] = useState(isLandingPage);
+
+    const openSearchModal = (): void => {
         setSearchModalOpen(true);
     };
 
-    const closeSearchModal = () => {
+    const closeSearchModal = (): void => {
         setSearchModalOpen(false);
     };
 
-    const handleLinkClick = (target: string) => {
-        setActive(target);
+    const handleLinkClick = (target: string): void => {
+        setActiveSiteSection(target);
         setIsLanding(false);
     };
 
@@ -30,22 +34,22 @@ export default function Header(props: { isLandingPage: boolean }) {
             <div className="header-container__left">
                 <div className="header-logo-container">{isLanding && <LogoGeotabSDK className="geotab-sdk-logo" />}</div>
                 <div className="header-menu-tabs">
-                    <div className={`header-menu-tab ${active === HeaderSections.MyGeotab ? "active-button" : ""}`}>
+                    <div className={`header-menu-tab ${activeSiteSection === HeaderSections.MyGeotab ? "active-button" : ""}`}>
                         <Link to="/myGeotab/introduction" onClick={() => handleLinkClick(HeaderSections.MyGeotab)}>
                             myGeotab
                         </Link>
                     </div>
-                    <div className={`header-menu-tab ${active === HeaderSections.MyAdmin ? "active-button" : ""}`}>
+                    <div className={`header-menu-tab ${activeSiteSection === HeaderSections.MyAdmin ? "active-button" : ""}`}>
                         <Link to="/myAdmin/introduction" onClick={() => handleLinkClick(HeaderSections.MyAdmin)}>
                             myAdmin
                         </Link>
                     </div>
-                    <div className={`header-menu-tab ${active === HeaderSections.Drive ? "active-button" : ""}`}>
+                    <div className={`header-menu-tab ${activeSiteSection === HeaderSections.Drive ? "active-button" : ""}`}>
                         <Link to="/drive/introduction" onClick={() => handleLinkClick(HeaderSections.Drive)}>
                             Drive
                         </Link>
                     </div>
-                    <div className={`header-menu-tab ${active === HeaderSections.Hardware ? "active-button" : ""}`}>
+                    <div className={`header-menu-tab ${activeSiteSection === HeaderSections.Hardware ? "active-button" : ""}`}>
                         <Link to="/hardware/introduction" onClick={() => handleLinkClick(HeaderSections.Hardware)}>
                             Hardware
                         </Link>
