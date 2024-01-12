@@ -1,3 +1,3 @@
-export * from './IconCopy';
-export * from './IconDarkModeMoon';
-export * from './IconLightModeSun';
+export * from "./IconCopy";
+export * from "./IconDarkModeMoon";
+export * from "./IconLightModeSun";
