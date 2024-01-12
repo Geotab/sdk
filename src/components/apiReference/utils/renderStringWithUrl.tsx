@@ -1,6 +1,6 @@
 import { HashLink } from "react-router-hash-link";
 
-export default function RenderStringWithLinks(text: string): JSX.Element {
+export default function RenderStringWithUrl(text: string): JSX.Element {
     const lines: string[] = text.split("\n");
 
     const renderedText: JSX.Element[] = [];

@@ -1,12 +1,12 @@
 import { Button } from "@geotab/react-component-library";
 import myGParser from "./utils/myGParser";
 import RenderStringWithUrl from "./utils/renderStringWithUrl";
-import sortAlphabetical from "./utils/sortAlphabetical";
 import { Link } from "react-router-dom";
 import { Page } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import sortAlphabetical from "./utils/sortAlphabetical";
 
 interface ParameterDescription {
     name: string;

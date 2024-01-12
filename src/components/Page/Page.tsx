@@ -4,7 +4,6 @@ import PageContent from "../PageContent/PageContent";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
-import "./page.scss";
 
 interface PageProps {
     section: string;

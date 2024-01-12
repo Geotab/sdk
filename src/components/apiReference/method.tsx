@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import { useParams } from "react-router-dom";
 import CodeSample from "../CodeSamplesContainer/CodeSample";
 import { Page } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import "./reference.scss";
 
 interface MethodParameter {
@@ -83,3 +83,4 @@ export default function Method(): JSX.Element {
 
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }
+
