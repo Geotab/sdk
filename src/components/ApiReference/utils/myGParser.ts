@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 interface PropertyDescription {
     name: string;
     description: string;

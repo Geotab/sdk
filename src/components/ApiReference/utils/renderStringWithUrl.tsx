@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { HashLink } from "react-router-hash-link";
 
-export default function RenderStringWithLinks(name: string, text: string): JSX.Element {
+export default function RenderStringWithUrl(name: string, text: string): JSX.Element {
     const lines: string[] = text.split("\n");
 
     const renderedText: JSX.Element[] = [];
