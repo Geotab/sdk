@@ -29,7 +29,7 @@ function buildSearchIndex(folderPath, basePath) {
                         content: getContent(fileContent),
                         link: getLink(relativePath),
                         breadCrumb: getBreadcrumb(fileContent),
-                        category: getCategory(fileContent)
+                        category: getCategory()
                     };
 
                     searchIndex.push(searchObject);
@@ -105,15 +105,7 @@ function getBreadcrumb(fileContent) {
     }
 }
 
-function getCategory(fileContent) {
-    const pageTitleRegex = /{\s*"title"\s*:\s*"([^"]*)"|{\s*title\s*:\s*"([^"]*)"/;
-    const matches = fileContent.match(pageTitleRegex);
-
-    if (matches && (matches[1] || matches[2])) {
-        if (matches[1] === "Objects" || matches[2] === "Objects" || matches[1] === "Methods" || matches[2] === "Methods") {
-            return 'reference';
-        }
-    }
+function getCategory() {
     return 'guide';
 }
 
