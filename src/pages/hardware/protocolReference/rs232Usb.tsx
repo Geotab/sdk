@@ -6,42 +6,48 @@ import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import InformationalBox from "../../../components/InformationalBox/InformationalBox";
 import messageFlowDiagram from "../../../assets/images/hardware/rs232Usb/rs232-usb_0.png";
+import { Link } from "react-router-dom";
 
 const specialRequirements: ReactNode = (
     <div className="paragraph">
-        <h2>Enabling IOX-USB Data Transfer</h2>
-        <p>To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through
-            MyGeotab:</p>
+        <h2>Enabling IOX-USB data transfer</h2>
+        <p>To enable third-party data communication on the IOX-USB, apply the following custom parameter to the GO device through MyGeotab:</p>
         <code className="small-code-sample">{`<GoParameters><Parameter Description="Enable USB Data" Offset="164" Bytes="02"/>
         </GoParameters>`}</code>
         <InformationalBox>
             <p>The GO device will automatically upgrade to the ProPlus rate plan once third-party data transfer begins.</p>
         </InformationalBox>
-        <h2>IOX-USB Communication Consideration</h2>
-        <p>The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rate is 12 Mbit/s. The IOX-USB can use two
-            methods to enumerate a USB device:</p>
+        <h2>IOX-USB communication consideration</h2>
+        <p>The IOX-USB operates as a USB 2.0 full-speed host. The maximum data transfer rate is 12 Mbit/s. The IOX-USB can use two methods to enumerate a USB device:</p>
         <ol>
-            <li>The <a href="https://source.android.com/devices/accessories/protocol.html" target="_blank" rel="noopener noreferrer">
-                Android Open Accessory protocol (AOA)</a>. This <a href="https://github.com/Geotab/android-external-device-example"
-                    target="_blank" rel="noopener noreferrer" aria-label="Android Open Accessory Sample">sample project</a> can be used
-                as a framework.</li>
+            <li>
+                The{" "}
+                <a href="https://source.android.com/devices/accessories/protocol.html" target="_blank" rel="noopener noreferrer">
+                    Android Open Accessory protocol (AOA)
+                </a>
+                . This{" "}
+                <a href="https://github.com/Geotab/android-external-device-example" target="_blank" rel="noopener noreferrer" aria-label="Android Open Accessory Sample">
+                    sample project
+                </a>{" "}
+                can be used as a framework.
+            </li>
             <li>USB-CDC (Communications Device Class)</li>
         </ol>
-        <h2>Powering A Device Using The IOX-RS232 And IOX-USB</h2>
+        <h2>Powering a device using the IOX-RS232 and IOX-USB</h2>
         <p>Both the IOX-USB and the IOX-RS232 can provide power to an Add-On Device.</p>
         <ul>
             <li>The IOX-USB can provide 1.5A at 5V as a power output.</li>
-            <li>The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However,
-                it is not required to power the Add-On device using the IOX-RS232.</li>
+            <li>The IOX-RS232 supports 900mA at 12/24V to the external red (power) and black (ground) wires. However, it is not required to power the Add-On device using the IOX-RS232.</li>
         </ul>
-        <h2>Grounding A Device</h2>
-        <p>Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the
-            Add-On ground to the ground wire of the IOX-RS232, as this improves signal integrity.</p>
-        <h2>Serial Port Settings For Add-Ons</h2>
+        <h2>Grounding a device</h2>
+        <p>
+            Even if the Hardware Add-On has a separate connection to vehicle power and ground, it is still recommended to connect the Add-On ground to the ground wire of the IOX-RS232, as this
+            improves signal integrity.
+        </p>
+        <h2>Serial port settings for Add-Ons</h2>
         <p>Geotab recommends that RS232/USB serial ports are programmed in accordance with the following specifications:</p>
         <ul>
-            <li>Baud Rate: 9600 or 115200. Note: the device is equipped with autobaud detection, so other standard rates are
-                acceptable.</li>
+            <li>Baud Rate: 9600 or 115200. Note: the device is equipped with autobaud detection, so other standard rates are acceptable.</li>
             <li>Parity: None</li>
             <li>Stop Bits: 1</li>
             <li>Flow Control: None</li>
@@ -51,11 +57,15 @@ const specialRequirements: ReactNode = (
 
 const integrationProcess: ReactNode = (
     <div className="paragraph">
-        <p>The following process should be followed when integrating a third-party device with the GO device using our Third-Party
-            Data Protocol:</p>
+        <p>The following process should be followed when integrating a third-party device with the GO device using our Third-Party Data Protocol:</p>
         <h2>Contact Solutions Engineering</h2>
-        <p>Contact the <a href="mailto:soleng@geotab.com" target="_blank" rel="noopener noreferrer">Geotab Solutions Engineering team
-        </a> with a detailed integration proposal, which should include:</p>
+        <p>
+            Contact the{" "}
+            <a href="mailto:soleng@geotab.com" target="_blank" rel="noopener noreferrer">
+                Geotab Solutions Engineering team
+            </a>{" "}
+            with a detailed integration proposal, which should include:
+        </p>
         <ul>
             <li>A name for the integration</li>
             <li>The interfacing hardware</li>
@@ -64,49 +74,68 @@ const integrationProcess: ReactNode = (
             <li>Direction of data transfer</li>
             <li>Expected timelines for integrating</li>
         </ul>
-        <p>The Solutions Engineering team will respond with followup questions to define the integration, and assign an External
-            device ID and any Status Data IDs that would be required. </p>
-        <p>An additional resource is the <a target="_blank" rel="noopener noreferrer"
-            href="https://docs.google.com/presentation/d/1nkmDYw2tscZxKaezFm5sR3jLItI3IRJTS6JIhgg0rFU/edit#slide=id.g625282e7fc_0_0">
-            Hardware Integration Toolkit</a> with integration walkthrough.</p>
-        <h2>Using Status Data IDs</h2>
-        <p>There is an extensively defined Status Data ID list which can be found at <a target="_blank" rel="noopener noreferrer"
-            href="https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080">MyGeotab
-            Diagnostics</a>. Specifics regarding Status Data ID implementations can be found on the README sheet.</p>
+        <p>The Solutions Engineering team will respond with followup questions to define the integration, and assign an External device ID and any Status Data IDs that would be required. </p>
+        <p>
+            An additional resource is the{" "}
+            <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/presentation/d/1nkmDYw2tscZxKaezFm5sR3jLItI3IRJTS6JIhgg0rFU/edit#slide=id.g625282e7fc_0_0">
+                Hardware Integration Toolkit
+            </a>{" "}
+            with integration walkthrough.
+        </p>
+        <h2>Using status data IDs</h2>
+        <p>
+            There is an extensively defined Status Data ID list which can be found at{" "}
+            <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1sy7IOhWmFoo40_I-ruOJO8bVTMLXqHa11d0oJtaoIcE/edit#gid=1133172080">
+                MyGeotab Diagnostics
+            </a>
+            . Specifics regarding Status Data ID implementations can be found on the README sheet.
+        </p>
         <h2>Handshake</h2>
-        <p>An initial Handshake <strong>is required</strong> in order for the GO device to accept third-party data. Vehicle ignition must be on during the handshake process.</p>
+        <p>
+            An initial Handshake <strong>is required</strong> in order for the GO device to accept third-party data. Vehicle ignition must be on during the handshake process.
+        </p>
         <ol>
             <li>
-                After powering up, the GO device will enter an external device detection cycle. The external device will be powered for 72 seconds. In this interval, the GO device will
-                listen for a <a href="#handshake-sync-auto-baud-detect-for-rs232">Handshake Sync</a> from the external device. The Handshake Sync is used to indicate that an external device is present.
-                For implementations using the IOX-RS232, the Handshake Sync is also used to detect baud rate.
+                After powering up, the GO device will enter an external device detection cycle. The external device will be powered for 72 seconds. In this interval, the GO device will listen for a{" "}
+                <a href="#handshake-sync-auto-baud-detect-for-rs232">Handshake Sync</a> from the external device. The Handshake Sync is used to indicate that an external device is present. For
+                implementations using the IOX-RS232, the Handshake Sync is also used to detect baud rate.
                 <ul>
                     <li>The external device must send the Handshake Sync message once per second.</li>
-                    <li>If a Handshake Sync message is not detected from the external device after 72 seconds, the external device is powered down for 5 seconds, then powered up again to restart the
-                        detection cycle.</li>
+                    <li>
+                        If a Handshake Sync message is not detected from the external device after 72 seconds, the external device is powered down for 5 seconds, then powered up again to restart the
+                        detection cycle.
+                    </li>
                 </ul>
             </li>
-            <li>The GO device will reply to a Handshake Sync with a <a href="#msg-type-0x01-handshake-request">Handshake Request</a>.</li>
-            <li>The external device must reply with a <a href="#msg-type-0x81-handshake-confirmation">Handshake Confirmation</a> message within 2 seconds. If the external device would like an
-                acknowledgment from the GO device that it received the Handshake Confirmation message, the corresponding flag in the Handshake Confirmation message may be set.</li>
             <li>
-                After sending the Handshake Confirmation message, the external device can begin to send third-party data as required. For every <a href="#msg-type-0x80-third-party-data-as-status-data">
-                    Third-Party Data Message</a> sent, the GO device will reply with a <a href="#msg-type-0x02-third-party-data-acknowledge">Data Acknowledge message</a>.
+                The GO device will reply to a Handshake Sync with a <a href="#msg-type-0x01-handshake-request">Handshake Request</a>.
+            </li>
+            <li>
+                The external device must reply with a <a href="#msg-type-0x81-handshake-confirmation">Handshake Confirmation</a> message within 2 seconds. If the external device would like an
+                acknowledgment from the GO device that it received the Handshake Confirmation message, the corresponding flag in the Handshake Confirmation message may be set.
+            </li>
+            <li>
+                After sending the Handshake Confirmation message, the external device can begin to send third-party data as required. For every{" "}
+                <a href="#msg-type-0x80-third-party-data-as-status-data">Third-Party Data Message</a> sent, the GO device will reply with a{" "}
+                <a href="#msg-type-0x02-third-party-data-acknowledge">Data Acknowledge message</a>.
                 <ul>
                     <li>If the external device receives no response to a Third-Party Data message, it must restart the handshake process — returning to step 1 above.</li>
                 </ul>
             </li>
-            <li>The GO device may send a Handshake Request message at any time after the initial handshake. The external device must respond with a Handshake Confirmation message. If the external device
-                does not respond, it must restart the handshake process — returning to step 1 above.</li>
+            <li>
+                The GO device may send a Handshake Request message at any time after the initial handshake. The external device must respond with a Handshake Confirmation message. If the external
+                device does not respond, it must restart the handshake process — returning to step 1 above.
+            </li>
         </ol>
         <h2>Checksum</h2>
-        <p>Each message contains a 2-byte Fletcher's Checksum calculated across all the bytes of the message except the checksum itself. The checksum values are bytes, and as such overflow from 255
-            (0xFF) to 0 (0x00). The bytes used for the checksum calculation are all the bytes up to the checksum byte, including STX, LEN, TYPE, but not including ETX.</p>
+        <p>
+            Each message contains a 2-byte Fletcher's Checksum calculated across all the bytes of the message except the checksum itself. The checksum values are bytes, and as such overflow from 255
+            (0xFF) to 0 (0x00). The bytes used for the checksum calculation are all the bytes up to the checksum byte, including STX, LEN, TYPE, but not including ETX.
+        </p>
         <p>Checksum calculation pseudocode:</p>
         <CodeSample
             language="javascript"
-            code={
-                `byte ChkA = 0;
+            code={`byte ChkA = 0;
 byte ChkB = 0;
 // n is the number of bytes in the message
 // up to, but not including, the checksum
@@ -114,17 +143,16 @@ for (i = 0; i < n; i++) {
     ChkA = ChkA + MsgBuffer[i];
     ChkB = ChkB + ChkA;
 }
-// ChkA precedes ChkB in the message`
-            }
+// ChkA precedes ChkB in the message`}
         />
-        <h2>Data Endianness</h2>
+        <h2>Data endianness</h2>
         <p>All values must be sent using Little-Endian Byte Order, meaning the least significant byte is first.</p>
     </div>
 );
 
 const messagesFromGoDevice: ReactNode = (
     <div className="paragraph">
-        <h2 id="msg-type-0x01-handshake-request">Msg Type 0x01: Handshake Request</h2>
+        <h2 id="msg-type-0x01-handshake-request">Msg type 0x01: Handshake request</h2>
         <p>Issued by the GO device upon receipt of the Handshake Sync, and periodically re-sent to confirm that the external device is still connected.</p>
         <div className="table-container">
             <table>
@@ -162,14 +190,16 @@ const messagesFromGoDevice: ReactNode = (
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>Reply: Handshake Confirmation (<a href="#msg-type-0x81-handshake-confirmation">Msg Type 0x81</a>)</td>
+                        <td>
+                            Reply: Handshake Confirmation (<a href="#msg-type-0x81-handshake-confirmation">Msg Type 0x81</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02: Third-Party Data Acknowledge</h2>
+        <h2 id="msg-type-0x02-third-party-data-acknowledge">Msg type 0x02: Third-party data acknowledge</h2>
         <p>Issued by the GO device upon receipt of Third-Party Data from the External Device.</p>
         <div className="table-container">
             <table>
@@ -209,7 +239,7 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x21-go-device-data">Msg Type 0x21: GO Device Data</h2>
+        <h2 id="msg-type-0x21-go-device-data">Msg type 0x21: GO device data</h2>
         <p>Issued by the GO device every 2 seconds to a connected Enhanced Hours Of Service Device (ID: 4141), or periodically when a 0x85 request message is received.</p>
         <ul>
             <li>An Enhanced Hours Of Service Device must ACK this message with a 0x84 message.</li>
@@ -271,8 +301,21 @@ const messagesFromGoDevice: ReactNode = (
                         <td>18</td>
                     </tr>
                     <tr>
-                        <td>Status Flags (from LSB):<br />1st bit: 1 = GPS Valid<br />2nd bit: 1 = Ignition On<br />3rd bit: 1 = Engine Bus Activity<br />4th bit: 1 = Date/Time Valid<br />
-                            5th bit: 1 = Speed From Engine<br />6th bit: 1 = Odometer From Engine</td>
+                        <td>
+                            Status Flags (from LSB):
+                            <br />
+                            1st bit: 1 = GPS Valid
+                            <br />
+                            2nd bit: 1 = Ignition On
+                            <br />
+                            3rd bit: 1 = Engine Bus Activity
+                            <br />
+                            4th bit: 1 = Date/Time Valid
+                            <br />
+                            5th bit: 1 = Speed From Engine
+                            <br />
+                            6th bit: 1 = Odometer From Engine
+                        </td>
                         <td>1</td>
                         <td>22</td>
                     </tr>
@@ -317,7 +360,9 @@ const messagesFromGoDevice: ReactNode = (
                         <td>Length + 5</td>
                     </tr>
                     <tr>
-                        <td>Reply: Device Data Ack (<a href="#msg-type-0x84-device-data-ack">Msg Type 0x84</a>)</td>
+                        <td>
+                            Reply: Device Data Ack (<a href="#msg-type-0x84-device-data-ack">Msg type 0x84</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
@@ -337,9 +382,15 @@ const messagesFromGoDevice: ReactNode = (
             <table>
                 <thead>
                     <tr>
-                        <th><strong>Data</strong></th>
-                        <th><strong>Conversion</strong></th>
-                        <th><strong>Units</strong></th>
+                        <th>
+                            <strong>Data</strong>
+                        </th>
+                        <th>
+                            <strong>Conversion</strong>
+                        </th>
+                        <th>
+                            <strong>Units</strong>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -376,8 +427,11 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x22-binary-data-response">Msg Type 0x22: Binary Data Response</h2>
-        <p>Issued by the GO device upon acceptance or rejection of either a Binary Data (0x86), an Extended Application Specific Data (0x88), or an Extended Binary Data (0x8A) message from the external device.</p>
+        <h2 id="msg-type-0x22-binary-data-response">Msg type 0x22: Binary data response</h2>
+        <p>
+            Issued by the GO device upon acceptance or rejection of either a Binary Data (0x86), an Extended Application Specific Data (0x88), or an Extended Binary Data (0x8A) message from the
+            external device.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -404,7 +458,11 @@ const messagesFromGoDevice: ReactNode = (
                         <td>2</td>
                     </tr>
                     <tr>
-                        <td>Binary data transmission success<br />0 = Rejected<br />1 = Accepted</td>
+                        <td>
+                            Binary data transmission success
+                            <br />0 = Rejected
+                            <br />1 = Accepted
+                        </td>
                         <td>1</td>
                         <td>3</td>
                     </tr>
@@ -426,8 +484,12 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x23: Binary Data Packet</h2>
-        <p>Issued by the GO device upon receipt of a Binary Data packet of 255 bytes or less from MyGeotab destined for the external device. This message format is only used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes sent from MyGeotab.</p>
+        <h2>Msg type 0x23: Binary data packet</h2>
+        <p>
+            Issued by the GO device upon receipt of a Binary Data packet of 255 bytes or less from MyGeotab destined for the external device. This message format is only used if the corresponding
+            “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes sent from
+            MyGeotab.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -471,7 +533,7 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x24: Extended Application Specific Data To External Device</h2>
+        <h2>Msg type 0x24: Extended application specific data to external device</h2>
         <p>Sent by the GO device to the external device. Can be in response to a 0x88 message and used for payloads larger than 1 byte. Currently only used for Keyless.</p>
         <div className="table-container">
             <table>
@@ -516,8 +578,12 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x25: Extended Binary Data Packet</h2>
-        <p>Issued by the GO device upon receipt of a Binary Data packet of 256 bytes or more from MyGeotab destined for the external device This message format will only be used if the corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw bytes as sent from MyGeotab. The maximum length currently supported by the GO is 1000 bytes.</p>
+        <h2>Msg type 0x25: Extended binary data packet</h2>
+        <p>
+            Issued by the GO device upon receipt of a Binary Data packet of 256 bytes or more from MyGeotab destined for the external device This message format will only be used if the
+            corresponding “Binary Data Packet Wrapping” flag has been set by the external device during the Handshake Confirmation. The payload of the binary data packet message will be the raw
+            bytes as sent from MyGeotab. The maximum length currently supported by the GO is 1000 bytes.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -561,9 +627,11 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x26-Protobuf-data-packet">Msg Type 0x26: Protobuf Data Packet</h2>
-        <p>Available with add-on protocol versions 1.2 and later. Issued by the GO device in response to 0x8C. Also issued by the GO device to publish information for the topics subscribed by the Add-On
-            device.</p>
+        <h2 id="msg-type-0x26-Protobuf-data-packet">Msg type 0x26: Protobuf data packet</h2>
+        <p>
+            Available with add-on protocol versions 1.2 and later. Issued by the GO device in response to 0x8C. Also issued by the GO device to publish information for the topics subscribed by the
+            Add-On device.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -607,9 +675,14 @@ const messagesFromGoDevice: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p>The payload is protobuf-encoded. Please see <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto"
-            target="_blank" rel="noopener noreferrer">Protobuf Schema</a> for details.</p>
-        <h2 id="msg-type-0x27-add-on-version-to-external-device">Msg Type 0x27: Add-On Protocol Version To External Device</h2>
+        <p>
+            The payload is protobuf-encoded. Please see{" "}
+            <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto" target="_blank" rel="noopener noreferrer">
+                Protobuf Schema
+            </a>{" "}
+            for details.
+        </p>
+        <h2 id="msg-type-0x27-add-on-version-to-external-device">Msg type 0x27: Add-On protocol version to external device</h2>
         <p>Sent by the GO device to an external device as a reply to the Add-On protocol version request (0x8B).</p>
         <div className="table-container">
             <table>
@@ -664,7 +737,7 @@ const messagesFromGoDevice: ReactNode = (
 
 const messagesFromExternalDevice: ReactNode = (
     <div className="paragraph">
-        <h2>Handshake Sync (Auto-BAUD Detect For RS232)</h2>
+        <h2>Handshake sync (auto-BAUD detect for RS232)</h2>
         <p>Issued by an external device every second until the Handshake Request is received.</p>
         <div className="table-container">
             <table>
@@ -682,14 +755,16 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>0</td>
                     </tr>
                     <tr>
-                        <td>Reply: Handshake Request (<a href="#msg-type-0x01-handshake-request">Msg Type 0x01</a>)</td>
+                        <td>
+                            Reply: Handshake Request (<a href="#msg-type-0x01-handshake-request">Msg Type 0x01</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x81-handshake-confirmation">Msg Type 0x81: Handshake Confirmation</h2>
+        <h2 id="msg-type-0x81-handshake-confirmation">Msg type 0x81: Handshake confirmation</h2>
         <p>Issued by the external device when it receives the Handshake Request.</p>
         <div className="table-container">
             <table>
@@ -722,8 +797,17 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>3</td>
                     </tr>
                     <tr>
-                        <td>Flags<br />1st bit: Handshake Confirmation ACK<br />2nd bit: Binary Data Packet Wrapping<br />3rd bit: Self Powered External Device<br />All other bits:Reserved for
-                            future implementation, must be set to 0</td>
+                        <td>
+                            Flags
+                            <br />
+                            1st bit: Handshake Confirmation ACK
+                            <br />
+                            2nd bit: Binary Data Packet Wrapping
+                            <br />
+                            3rd bit: Self Powered External Device
+                            <br />
+                            All other bits:Reserved for future implementation, must be set to 0
+                        </td>
                         <td>2</td>
                         <td>5</td>
                     </tr>
@@ -753,11 +837,16 @@ const messagesFromExternalDevice: ReactNode = (
         <p>Self-Powered External Device:</p>
         <ul>
             <li>0: The External Device receives power from the IOX. After waking up, the IOX will restore power to the External Device and wait for the handshake to complete.</li>
-            <li>1: The External Device has its own power source. The IOX will not wait for the handshake and will assume it can initiate communication with the External Device immediately after waking up.</li>
+            <li>
+                1: The External Device has its own power source. The IOX will not wait for the handshake and will assume it can initiate communication with the External Device immediately after
+                waking up.
+            </li>
         </ul>
-        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg Type 0x80: Third-Party Data As Status Data</h2>
-        <p>Issued by the external device whenever it requires Third-Party Data to be saved on the GO device as Status Data. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the GO
-            device will stop taking data from the IOX.</p>
+        <h2 id="msg-type-0x80-third-party-data-as-status-data">Msg type 0x80: Third-party data as status data</h2>
+        <p>
+            Issued by the external device whenever it requires Third-Party Data to be saved on the GO device as Status Data. Rate limit is 100 logs per 10 minutes. If you exceed the rate limit, the
+            GO device will stop taking data from the IOX.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -804,16 +893,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>11</td>
                     </tr>
                     <tr>
-                        <td>Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)</td>
+                        <td>
+                            Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x82: Free Format Third-Party Data</h2>
-        <p>Issued by the external device whenever it wants Third-Party Data to be saved on the GO device in a free format (1 to 27 bytes) that will be saved in MyGeotab as Custom Data.
-            Rate limit is 500 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.</p>
+        <h2>Msg type 0x82: Free format third-party data</h2>
+        <p>
+            Issued by the external device whenever it wants Third-Party Data to be saved on the GO device in a free format (1 to 27 bytes) that will be saved in MyGeotab as Custom Data. Rate limit
+            is 500 logs per 10 minutes. If you exceed the rate limit, the GO device will stop taking data from the IOX.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -855,14 +948,16 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5 + x</td>
                     </tr>
                     <tr>
-                        <td>Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)</td>
+                        <td>
+                            Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2 id="msg-type-0x84-device-data-ack">Msg Type 0x84: Device Data ACK</h2>
+        <h2 id="msg-type-0x84-device-data-ack">Msg type 0x84: Device data ACK</h2>
         <p>Issued by the External Device on receipt of the GO Device Data message.</p>
         <div className="table-container">
             <table>
@@ -905,10 +1000,13 @@ const messagesFromExternalDevice: ReactNode = (
         <p>For the purpose of acknowledging the GO Device Data message when connected as an Enhanced Hours Of Service Device:</p>
         <ul>
             <li>The GO device will keep streaming the GO Device Data messages for up to 30 seconds, even if no ACK is received.</li>
-            <li>If no ACK is received in that time frame, the GO Device will send an External Device Disconnected record to the server and will wait for a new Handshake Sync request from the External Device.</li>
+            <li>
+                If no ACK is received in that time frame, the GO Device will send an External Device Disconnected record to the server and will wait for a new Handshake Sync request from the
+                External Device.
+            </li>
             <li>If the ACK message is received within the 30 seconds, the counter is re-initialized.</li>
         </ul>
-        <h2>Msg Type 0x85: Request Device Data Message</h2>
+        <h2>Msg type 0x85: Request device data message</h2>
         <p>This is a request-response message. It can be issued by the External Device whenever it wishes to receive the Device Data Info Message (0x21).</p>
         <div className="table-container">
             <table>
@@ -946,16 +1044,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>Reply: GO Device Data (<a href="#msg-type-0x21-go-device-data">Msg Type 0x21</a>)</td>
+                        <td>
+                            Reply: GO Device Data (<a href="#msg-type-0x21-go-device-data">Msg Type 0x21</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x86: Binary Data Packet</h2>
-        <p>Sent by the external device when sending messages with less than or equal to 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating
-            whether the data was accepted into the modem's socket buffer.</p>
+        <h2>Msg type 0x86: Binary data packet</h2>
+        <p>
+            Sent by the external device when sending messages with less than or equal to 255 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message
+            indicating whether the data was accepted into the modem's socket buffer.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -997,16 +1099,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5+x</td>
                     </tr>
                     <tr>
-                        <td>Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)</td>
+                        <td>
+                            Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p>The payload of the binary data needs to adhere to protocols understood by MyGeotab. MIME protocol is one of these protocols. Please see {" "}
-            <a href="#appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C</a> for implementation details.</p>
-        <h2>Msg Type 0x87: Third-Party Data As Priority Status Data</h2>
+        <p>
+            The payload of the binary data needs to adhere to protocols understood by MyGeotab. MIME protocol is one of these protocols. Please see{" "}
+            <a href="#appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C</a> for implementation details.
+        </p>
+        <h2>Msg type 0x87: Third-party data as priority status data</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -1053,16 +1159,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>11</td>
                     </tr>
                     <tr>
-                        <td>Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)</td>
+                        <td>
+                            Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x88: Extended Application Specific Data From External Device</h2>
-        <p>Extended application-specific data from external device is sent by the external device to the GO device. Can be used for payloads larger than 1 byte. There must be an associated service
-            running on the GO device that is looking for these messages. Currently only used for Keyless.</p>
+        <h2>Msg type 0x88: Extended application specific data from external device</h2>
+        <p>
+            Extended application-specific data from external device is sent by the external device to the GO device. Can be used for payloads larger than 1 byte. There must be an associated service
+            running on the GO device that is looking for these messages. Currently only used for Keyless.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1104,16 +1214,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>6+x</td>
                     </tr>
                     <tr>
-                        <td>Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)</td>
+                        <td>
+                            Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x89: Ping</h2>
-        <p>After handshaking, this message can be issued periodically by the external device to check that the GO device is active and ready. The GO device will normally reply with the Third-Party Data
-            Ack (Msg Type 0x02). If this reply is not received, the external device should reset and begin sending the Handshake Sync (0x55).</p>
+        <h2>Msg type 0x89: Ping</h2>
+        <p>
+            After handshaking, this message can be issued periodically by the external device to check that the GO device is active and ready. The GO device will normally reply with the Third-Party
+            Data Ack (Msg Type 0x02). If this reply is not received, the external device should reset and begin sending the Handshake Sync (0x55).
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1150,16 +1264,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)</td>
+                        <td>
+                            Reply: Third-Party Data Ack (<a href="#msg-type-0x02-third-party-data-acknowledge">Msg Type 0x02</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x8A: Extended Binary Data Packet</h2>
-        <p>Sent by the external device when sending messages with {"<"}= 1000 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether the
-            data was accepted into the modem's socket buffer.</p>
+        <h2>Msg type 0x8a: Extended binary data packet</h2>
+        <p>
+            Sent by the external device when sending messages with {"<"}= 1000 bytes of data content to MyGeotab. The GO device will respond with the Binary Data Response message indicating whether
+            the data was accepted into the modem's socket buffer.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1201,16 +1319,20 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>6+x</td>
                     </tr>
                     <tr>
-                        <td>Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)</td>
+                        <td>
+                            Reply: Binary Data Response (<a href="#msg-type-0x22-binary-data-response">Msg Type 0x22</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p>The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one of these protocols. Please see
-            <a href="#appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C</a> for implementation details.</p>
-        <h2>Msg Type 0x8B: Add-On Protocol Version Request</h2>
+        <p>
+            The payload of the binary data needs to adhere to protocols understood by the Geotab servers. MIME protocol is one of these protocols. Please see
+            <a href="#appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C</a> for implementation details.
+        </p>
+        <h2>Msg type 0x8b: Add-On protocol version request</h2>
         <p>Sent by the external device when requesting the Add-On protocol version number. Once the GO device receives this request, it will reply with 0x27.</p>
         <div className="table-container">
             <table>
@@ -1248,14 +1370,16 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>Reply: Third-Party version Ack Reply (<a href="#msg-type-0x27-add-on-version-to-external-device">Msg Type 0x27</a>)</td>
+                        <td>
+                            Reply: Third-Party version Ack Reply (<a href="#msg-type-0x27-add-on-version-to-external-device">Msg Type 0x27</a>)
+                        </td>
                         <td> </td>
                         <td> </td>S
                     </tr>
                 </tbody>
             </table>
         </div>
-        <h2>Msg Type 0x8C: Protobuf Data Packet</h2>
+        <h2>Msg type 0x8c: Protobuf data packet</h2>
         <p>Available with Add-On protocol versions 1.2 and later. Sent by the external device to subscribe to various topics/information. The GO device will respond with 0x26 ACK.</p>
         <div className="table-container">
             <table>
@@ -1287,7 +1411,8 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>x</td>
                         <td>3</td>
                     </tr>
-                    <tr>blank
+                    <tr>
+                        blank
                         <td>Checksum</td>
                         <td>2</td>
                         <td>3 + x</td>
@@ -1298,15 +1423,22 @@ const messagesFromExternalDevice: ReactNode = (
                         <td>5 + x</td>
                     </tr>
                     <tr>
-                        <td>Reply: Protobuf data packet (<a href="#msg-type-0x26-Protobuf-data-packet">Msg Type 0x26</a>)</td>
+                        <td>
+                            Reply: Protobuf data packet (<a href="#msg-type-0x26-Protobuf-data-packet">Msg Type 0x26</a>)
+                        </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p>The payload is protobuf-encoded. Please see <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto"
-            target="_blank" rel="noopener noreferrer">Protobuf Schema</a> for details. The currently supported topics are:</p>
+        <p>
+            The payload is protobuf-encoded. Please see{" "}
+            <a href="https://github.com/Geotab/android-external-device-example/blob/master/app/src/main/proto/iox_messaging.proto" target="_blank" rel="noopener noreferrer">
+                Protobuf Schema
+            </a>{" "}
+            for details. The currently supported topics are:
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1386,37 +1518,70 @@ const messagesFromExternalDevice: ReactNode = (
 
 const appendices: ReactNode = (
     <div className="paragraph">
-        <h2>Appendix A: Raw Message Data Example For IOX-USB & IOX-RS232</h2>
-        <code className="small-code-sample">Handshake Sync from External Device<br />
-            0x55... 0x55... 0x55<br /><br />
-            Handshake Request from GO device<br />
-            0x02, 0x01, 0x00, 0x03, 0x08, 0x03<br /><br />
-            Handshake Confirmation from External Device (4208 is a test Device ID)<br />
-            (Device ID: 4208 = 0x00001070)<br />
-            0x02, 0x81, 0x04, 0x70, 0x10, 0x00, 0x00, 0x07, 0x18, 0x03<br /><br />
-
-            Third-Party Data from External Device<br />
-            (Status Data ID: 35349 = 0x8A15, Data Value: 200 = 0x000000C8)<br />
-            0x02, 0x80, 0x06, 0x15, 0x8A, 0xC8, 0x00, 0x00, 0x00, 0xEF, 0x8C, 0x03<br /><br />
-            Third-Party Data Acknowledge from GO device<br />
-            0x02, 0x02, 0x00, 0x04, 0x0A, 0x03<br />
+        <h2>Appendix A: Raw message data example for IOX-USB & IOX-RS232</h2>
+        <code className="small-code-sample">
+            Handshake Sync from External Device
+            <br />
+            0x55... 0x55... 0x55
+            <br />
+            <br />
+            Handshake Request from GO device
+            <br />
+            0x02, 0x01, 0x00, 0x03, 0x08, 0x03
+            <br />
+            <br />
+            Handshake Confirmation from External Device (4208 is a test Device ID)
+            <br />
+            (Device ID: 4208 = 0x00001070)
+            <br />
+            0x02, 0x81, 0x04, 0x70, 0x10, 0x00, 0x00, 0x07, 0x18, 0x03
+            <br />
+            <br />
+            Third-Party Data from External Device
+            <br />
+            (Status Data ID: 35349 = 0x8A15, Data Value: 200 = 0x000000C8)
+            <br />
+            0x02, 0x80, 0x06, 0x15, 0x8A, 0xC8, 0x00, 0x00, 0x00, 0xEF, 0x8C, 0x03
+            <br />
+            <br />
+            Third-Party Data Acknowledge from GO device
+            <br />
+            0x02, 0x02, 0x00, 0x04, 0x0A, 0x03
+            <br />
         </code>
-        <h2 id="appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B: Sample Message Flow For IOX-USB & IOX-RS232</h2>
+        <h2 id="appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B: Sample message flow for IOX-USB & IOX-RS232</h2>
         <img src={messageFlowDiagram} alt=""></img>
-        <h2 id="appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C: Using Binary Data Messages To Transfer MIME Data</h2>
-        {/*TODO: fix link*/}
-        <p>MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in <a href="/sdk/hardware/developing-an-iox/mime-protocol/" >MIME passthrough messages</a>.</p>
-        <p>The Message Flow is similar to that outlined in <a href="#appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B</a>, with the following variations:</p>
+        <h2 id="appendix-c-using-binary-data-messages-to-transfer-mime-data">Appendix C: Using binary data messages to transfer MIME data</h2>
+        <p>
+            MIME-type data can be transferred from an external device to the server via the GO device. The protocol is described in{" "}
+            <Link to="/hardware/guides/mimeProtocol">MIME passthrough messages</Link>.
+        </p>
+        <p>
+            The Message Flow is similar to that outlined in <a href="#appendix-b-sample-message-flow-for-iox-usb--iox-rs232">Appendix B</a>, with the following variations:
+        </p>
         <ol>
-            <li>Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is <a href="#binary-data-packets-containing-mime-type-data">such</a></li>
+            <li>
+                Third-Party Data Message is instantiated as Binary Data Packet Containing MIME Type Data, whose format is <a href="#binary-data-packets-containing-mime-type-data">such</a>
+            </li>
             <li>Data Acknowledge Message is instantiated as Binary Data Response (0x22)</li>
-            <li>After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is <a href="#binary-data-packet-containing-mime-type-acknowledge">such</a>. Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent back from MyGeotab.</li>
+            <li>
+                After the last Binary Data Response, add a Binary Data Packet Containing MIME Type Acknowledge, whose format is{" "}
+                <a href="#binary-data-packet-containing-mime-type-acknowledge">such</a>. Once the complete payload of the MIME message is successfully received by MyGeotab, a MIME ACK will be sent
+                back from MyGeotab.
+            </li>
         </ol>
-        <p>Readers are encouraged to also read the <a href="https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing"
-            target="_blank" rel="noopener noreferrer">Geotab MIME Data Exchange Example IOX-RS232</a> to better understand of the protocol.</p>
-        <h3 id="binary-data-packets-containing-mime-type-data">Binary Data Packets Containing MIME Type Data</h3>
+        <p>
+            Readers are encouraged to also read the{" "}
+            <a href="https://docs.google.com/document/d/1a8XCgpmEEbx6KxnFxhu40XULWr2uZeAG_5aKkm-Mjnw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                Geotab MIME Data Exchange Example IOX-RS232
+            </a>{" "}
+            to better understand of the protocol.
+        </p>
+        <h3 id="binary-data-packets-containing-mime-type-data">Binary data packets containing MIME type data</h3>
         <p>This is an example of binary data packets for image data transferred using the MIME type "image/jpeg". The image size is 83000 bytes. The packet size is 250.</p>
-        <p><strong>First packet:</strong></p>
+        <p>
+            <strong>First packet:</strong>
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1443,29 +1608,59 @@ const appendices: ReactNode = (
                         <td>2</td>
                     </tr>
                     <tr>
-                        <td><strong>Sequence number = 0</strong></td>
-                        <td><strong>1</strong></td>
-                        <td><strong>3</strong></td>
+                        <td>
+                            <strong>Sequence number = 0</strong>
+                        </td>
+                        <td>
+                            <strong>1</strong>
+                        </td>
+                        <td>
+                            <strong>3</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>MIME type length = 10</strong></td>
-                        <td><strong>1</strong></td>
-                        <td><strong>4</strong></td>
+                        <td>
+                            <strong>MIME type length = 10</strong>
+                        </td>
+                        <td>
+                            <strong>1</strong>
+                        </td>
+                        <td>
+                            <strong>4</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>MIME type (“image/jpeg”)</strong></td>
-                        <td><strong>10</strong></td>
-                        <td><strong>5</strong></td>
+                        <td>
+                            <strong>MIME type (“image/jpeg”)</strong>
+                        </td>
+                        <td>
+                            <strong>10</strong>
+                        </td>
+                        <td>
+                            <strong>5</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>Payload Length = 83000</strong></td>
-                        <td><strong>4</strong></td>
-                        <td><strong>15</strong></td>
+                        <td>
+                            <strong>Payload Length = 83000</strong>
+                        </td>
+                        <td>
+                            <strong>4</strong>
+                        </td>
+                        <td>
+                            <strong>15</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>Binary Payload (the first 234 bytes)</strong></td>
-                        <td><strong>234</strong></td>
-                        <td><strong>19</strong></td>
+                        <td>
+                            <strong>Binary Payload (the first 234 bytes)</strong>
+                        </td>
+                        <td>
+                            <strong>234</strong>
+                        </td>
+                        <td>
+                            <strong>19</strong>
+                        </td>
                     </tr>
                     <tr>
                         <td>Checksum</td>
@@ -1480,7 +1675,9 @@ const appendices: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p><strong>Second packet:</strong></p>
+        <p>
+            <strong>Second packet:</strong>
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -1507,14 +1704,26 @@ const appendices: ReactNode = (
                         <td>2</td>
                     </tr>
                     <tr>
-                        <td><strong>Sequence number = 1</strong>*</td>
-                        <td><strong>1</strong></td>
-                        <td><strong>3</strong></td>
+                        <td>
+                            <strong>Sequence number = 1</strong>*
+                        </td>
+                        <td>
+                            <strong>1</strong>
+                        </td>
+                        <td>
+                            <strong>3</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>Binary Payload (the next 249 bytes)</strong></td>
-                        <td><strong>249</strong></td>
-                        <td><strong>4</strong></td>
+                        <td>
+                            <strong>Binary Payload (the next 249 bytes)</strong>
+                        </td>
+                        <td>
+                            <strong>249</strong>
+                        </td>
+                        <td>
+                            <strong>4</strong>
+                        </td>
                     </tr>
                     <tr>
                         <td>Checksum</td>
@@ -1529,7 +1738,7 @@ const appendices: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3 id="binary-data-packet-containing-mime-type-acknowledge">Binary Data Packet Containing MIME Type Acknowledge</h3>
+        <h3 id="binary-data-packet-containing-mime-type-acknowledge">Binary data packet containing MIME type acknowledge</h3>
         <div className="table-container">
             <table>
                 <thead>
@@ -1597,35 +1806,35 @@ const appendices: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Add-On Protocol - RS232 & USB",
-    "breadCrumbItems": ["Hardware", "Protocol Reference", "RS232 & USB"]
+    title: "Add-On Protocol - RS232 & USB",
+    breadCrumbItems: ["Hardware", "Protocol Reference", "RS232 & USB"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "special-requirements",
-        "summary": "Special Requirements",
-        "details": specialRequirements
+        elementId: "special-requirements",
+        summary: "Special requirements",
+        details: specialRequirements
     },
     {
-        "elementId": "integration-process",
-        "summary": "Integration Process",
-        "details": integrationProcess
+        elementId: "integration-process",
+        summary: "Integration process",
+        details: integrationProcess
     },
     {
-        "elementId": "messages-go-device",
-        "summary": "Messages From The GO Device",
-        "details": messagesFromGoDevice
+        elementId: "messages-go-device",
+        summary: "Messages from the GO device",
+        details: messagesFromGoDevice
     },
     {
-        "elementId": "messages-from-external-device",
-        "summary": "Messages From External Device",
-        "details": messagesFromExternalDevice
+        elementId: "messages-from-external-device",
+        summary: "Messages from external device",
+        details: messagesFromExternalDevice
     },
     {
-        "elementId": "appendices",
-        "summary": "Appendices",
-        "details": appendices
+        elementId: "appendices",
+        summary: "Appendices",
+        details: appendices
     }
 ];
 
@@ -1633,13 +1842,21 @@ export default function Rs232Usb() {
     return (
         <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                External devices can communicate with a Geotab GO device through the Third-Party RS232 and USB protocols linked below. Two-way communication is supported, allowing a MyGeotab API call to
-                produce messages from the IOX device to reach the external device. The hardware interface is one of the following:
+                External devices can communicate with a Geotab GO device through the Third-Party RS232 and USB protocols linked below. Two-way communication is supported, allowing a MyGeotab API
+                call to produce messages from the IOX device to reach the external device. The hardware interface is one of the following:
                 <ul>
-                    <li><a href="https://www.geotab.com/documentation/iox-rs232/" target="_blank" rel="noopener noreferrer" aria-label="IOX-RS232 Support Documentation">IOX-RS232 F/M</a></li>
-                    <li><a href="https://www.geotab.com/documentation/iox-usb/" target="_blank" rel="noopener noreferrer" aria-label="IOX-USB Support Documentation">IOX-USB</a></li>
+                    <li>
+                        <a href="https://www.geotab.com/documentation/iox-rs232/" target="_blank" rel="noopener noreferrer" aria-label="IOX-RS232 Support Documentation">
+                            IOX-RS232 F/M
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.geotab.com/documentation/iox-usb/" target="_blank" rel="noopener noreferrer" aria-label="IOX-USB Support Documentation">
+                            IOX-USB
+                        </a>
+                    </li>
                 </ul>
             </div>
         </Page>
     );
-};
+}

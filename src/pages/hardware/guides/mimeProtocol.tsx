@@ -4,7 +4,7 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 
 const mime: ReactNode = (
     <div className="paragraph">
@@ -32,9 +32,11 @@ const prerequisites: ReactNode = (
                 </ul>
             </li>
         </ul>
-        <h3>Protocol</h3>
-        <p>The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.</p>
-        <h3>Binary data packets</h3>
+        <h2>Protocol</h2>
+        <p>
+            The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.
+        </p>
+        <h2>Binary data packets</h2>
         <p>To accommodate external devices with memory constraints, the packet size is adjustable when sending messages to/from MyGeotab. The packets have a maximum size of 1000 bytes.</p>
         <div className="table-container">
             <table>
@@ -59,8 +61,11 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p>[1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets need to be sent, the sequence number must reset to a value of 1 and continue counting.</p>
-        <h3>MIME data</h3>
+        <p>
+            [1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets
+            need to be sent, the sequence number must reset to a value of 1 and continue counting.
+        </p>
+        <h2>MIME data</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -94,8 +99,11 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h4>Acknowledge message</h4>
-        <p>When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of payload bytes received.</p>
+        <h3>Acknowledge message</h3>
+        <p>
+            When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of
+            payload bytes received.
+        </p>
         <div className="table-container">
             <table>
                 <thead>
@@ -134,9 +142,9 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Example</h3>
+        <h2>Example</h2>
         <p>This is an example of binary data packets for image data transferred using the MIME type “image/jpeg”. The image size is 83000 bytes. The packet size is 235.</p>
-        <h4>First packet:</h4>
+        <h3>First packet:</h3>
         <div className="table-container">
             <table>
                 <thead>
@@ -203,8 +211,8 @@ const prerequisites: ReactNode = (
         <p>To send/receive messages between MyGeotab and the external device, please download the source code of the <HashLink to="/myGeotab/codeSamples/javascriptSamples#javascript-example-starter-kit">Starter Kit</HashLink> sample, and replace the <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html" target="_blank" rel="noreferrer">Sample API</a> with the following script. The alternative is to paste the script in the <a href="https://geotab.github.io/sdk/software/api/runner.html" target="_blank" rel="noreferrer">Runner</a>.</p>
         <h4>MIME messages from MyGeotab to the external device:</h4>
         <CodeSample
-        language="javascript"
-        code={`api.call("Add", {
+            language="javascript"
+            code={`api.call("Add", {
     "typeName": "TextMessage",
     "entity": {
         "device": {"id":device.id}, // Replace with device ID that should receive the data
@@ -223,20 +231,28 @@ const prerequisites: ReactNode = (
 }, function(e) {
     console.error("Failed:", e);
 });
-`}/>
-        <h4>Retrieving MIME data from MyGeotab:</h4>
-        <p>Once the data has been sent to the cloud, you can use the MyGeotab SDK to pull the message content out of the target database. For each MIME payload, the data is stored within a single TextMessage Object and can be retrieved using the Get method (search criteria can be added):</p>
+`}
+        />
+        <h3>Retrieving MIME data from MyGeotab:</h3>
+        <p>
+            Once the data has been sent to the cloud, you can use the MyGeotab SDK to pull the message content out of the target database. For each MIME payload, the data is stored within a single
+            TextMessage Object and can be retrieved using the Get method (search criteria can be added):
+        </p>
         <CodeSample
-        language="javascript"
-        code={`api.call("Get", {
+            language="javascript"
+            code={`api.call("Get", {
     "typeName":"TextMessage",
     "resultsLimit":10
 });
-`}/>
-        <p>The payload is stored in MyGeotab in Base64 encoded format. Decoding this payload from Base64 to bytes should yield the expected content which was passed through. In the event that the database has multiple devices sending MIME data at different times, you may want to specify the originating device and/or filter by the time interval during which MIME data was sent:</p>
+`}
+        />
+        <p>
+            The payload is stored in MyGeotab in Base64 encoded format. Decoding this payload from Base64 to bytes should yield the expected content which was passed through. In the event that the
+            database has multiple devices sending MIME data at different times, you may want to specify the originating device and/or filter by the time interval during which MIME data was sent:
+        </p>
         <CodeSample
-        language="javascript"
-        code={`api.call("Get", { // First API call is to get the ID of a device given its serial number
+            language="javascript"
+            code={`api.call("Get", { // First API call is to get the ID of a device given its serial number
     "typeName": "Device",
     "search": {
         "serialNumber": "G9##########" // Replace with your GO device serial number
@@ -265,30 +281,29 @@ const prerequisites: ReactNode = (
 }, function(deviceError) {
     console.error("Device search failed:", deviceError);
 });
-`}/>
+`}
+        />
     </div>
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "MIME Protocol",
-    "breadCrumbItems": ["HARDWARE", "Guides", "MIME Protocol"]
+    title: "MIME Protocol",
+    breadCrumbItems: ["Hardware", "Guides", "MIME Protocol"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "mime",
-        "summary": "MIME",
-        "details": mime
+        elementId: "mime",
+        summary: "MIME",
+        details: mime
     },
     {
-        "elementId": "prerequisites",
-        "summary": "Prerequisites",
-        "details": prerequisites
-    },
+        elementId: "prerequisites",
+        summary: "Prerequisites",
+        details: prerequisites
+    }
 ];
 
-export default function Concepts() {
-    return (
-        <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />
-    );
-};
+export default function MimeProtocol() {
+    return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}
