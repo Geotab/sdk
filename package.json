@@ -31,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-search": "node ./utils/buildSearchIndex.js",
+    "build-search-static": "node ./src/utils/buildSearchIndexFromStatic.js",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
     "format": "prettier --write src/**/*.{ts,tsx} --config .prettierrc.json"

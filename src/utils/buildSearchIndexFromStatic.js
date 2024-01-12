@@ -1,4 +1,4 @@
-// Usage: node .\utils\buildSearchIndex.js
+// Usage: node .\src\utils\buildSearchIndexFromStatic.js
 const fs = require('fs');
 const { JSDOM } = require('jsdom');
 const path = require('path');
@@ -60,7 +60,7 @@ function getHeaderIds(fileContent) {
 }
 
 function getContent(fileContent) {
-    // Get [] of <div className="paragraph">...</div> ); elements
+    // Get [] of <div className="paragraph">...</div> ) elements
     const pageSectionsContentRegex1 = /\(\s*<div className="paragraph">\s*([\s\S]*?)\s*<\/div>\s*\)\s*/g;
     // Get [] of <div className="paragraph">...</Page> elements
     const pageSectionsContentRegex2 = /<Page([\s\S]*?)\s*<\/div>\s*<\/Page>/g;
@@ -125,7 +125,7 @@ function getCategory(fileContent) {
 
     buildSearchIndex(startFolderPath, startFolderPath);
 
-    fs.writeFile("./utils/searchIndex.js", `export const searchIndex = ${JSON.stringify(searchIndex)}`, (error) => {
+    fs.writeFile("./src/utils/searchIndex.js", `export const searchIndex = ${JSON.stringify(searchIndex)}`, (error) => {
         if (error) {
             console.error('Error writing to file:', error);
         } else {
