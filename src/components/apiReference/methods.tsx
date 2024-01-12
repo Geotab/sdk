@@ -38,7 +38,7 @@ const pageSections: TableOfContentsItem[] = [];
 const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
     sortAlphabetical
 );
-console.log(methods);
+
 const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
     sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
     let pageSectionObject: TableOfContentsItem = {
