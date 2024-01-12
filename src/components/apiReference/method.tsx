@@ -6,6 +6,12 @@ import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 import RenderStringWithUrl from "./utils/renderStringWithUrl";
+import CodeSample from "../CodeSamplesContainer/CodeSample";
+import { Page } from "..";
+import { PageTitleProps } from "../PageTitle/PageTitle";
+import { HeaderSections } from "../Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import "./reference.scss";
 
 interface MethodParameter {
@@ -16,7 +22,7 @@ interface MethodParameter {
 
 interface MethodData {
     description: string;
-    param: MethodParameter[];
+    parameters: MethodParameter[];
     returns: string;
     example: string;
 }
@@ -24,14 +30,16 @@ interface MethodData {
 export default function Method(): JSX.Element {
     const { methodId = "" } = useParams();
     const storedMethodData: MethodData = JSON.parse(sessionStorage[methodId]);
-    const parameters: MethodParameter[] = storedMethodData.param;
+    const parameters: MethodParameter[] = storedMethodData.parameters;
     const returnValueDescriptions: string = storedMethodData.returns;
     const codeSample: string = storedMethodData.example;
 
-    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}</div>;
+    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(methodId, JSON.parse(sessionStorage[methodId]).description)}</div>;
 
     const parameterParagaphs: ReactNode = (
         <div className="paragraph">
+            {parameters.map((parameter: MethodParameter) => (
+                <div key={parameter.name}>
             {parameters.map((parameter: MethodParameter) => (
                 <div key={parameter.name}>
                     <h3>{parameter.name}</h3>

@@ -20,3 +20,4 @@ export default function MethodDetail(): JSX.Element {
         </div>
     );
 }
+

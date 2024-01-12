@@ -25,7 +25,7 @@ export default function RenderStringWithUrl(text: string): JSX.Element {
             const start: number = currentIndex;
             const end: number = match.index;
             if (start < end) {
-                segments.push(<span key={`span-${currentIndex}`}>{content.slice(start, end)}</span>);
+                segments.push(<span key={`span-${index}-${start}`}>{content.slice(start, end)}</span>);
             }
 
             let cref: string[] = match[1].split(".");
@@ -59,7 +59,7 @@ export default function RenderStringWithUrl(text: string): JSX.Element {
             const link: string = anchorMatch[1];
             const linkText: string = anchorMatch[2];
             segments.push(
-                <a key={`a-${currentIndex}`} href={link}>
+                <a key={`a-${index}-${currentIndex}`} href={link}>
                     {linkText}
                 </a>
             );
@@ -77,7 +77,8 @@ export default function RenderStringWithUrl(text: string): JSX.Element {
                 inList = true;
                 listItems = [];
             }
-            listItems.push(<li key={`li-${listItems.length}`}>{segments}</li>);
+            // console.log(`li-${name}-${index}-${segments[0].props.children}`);
+            listItems.push(<li key={`li-${name}-${index}-${segments[0].props.children}}`}>{segments}</li>);
         } else {
             inList = false;
             if (listItems.length > 0) {

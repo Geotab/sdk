@@ -20,6 +20,7 @@ interface ObjectDetails {
 
 type ObjectEntry = [string, ObjectDetails];
 
+let objectItems: JSX.Element[];
 let request: XMLHttpRequest = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
@@ -32,33 +33,41 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [];
 
-const objects: ObjectEntry[] = Object.entries(
-    myGParser(xml, "object", ["T:Geotab.Checkmate.ObjectModel", "T:Geotab.Checkmate.API", "P:Geotab.Checkmate.ObjectModel", "M:Geotab.Checkmate.API.#ctor", "F:Geotab.Checkmate.ObjectModel"]) as {
-        [key: string]: ObjectDetails;
-    }
-).sort(sortAlphabetical);
-const objectItems: JSX.Element[] = objects.map((objectDetails: ObjectEntry) => {
-    sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
-    let pageSectionObject: TableOfContentsItem = {
-        elementId: objectDetails[0],
-        summary: objectDetails[0],
-        details: RenderStringWithUrl(objectDetails[1].description)
-    };
+if (xml === null) {
+    throw new Error("Failed to load or parse data");
+} else {
+    const objects: ObjectEntry[] = Object.entries(
+        myGParser(xml, "object", [
+            "T:Geotab.Checkmate.ObjectModel",
+            "T:Geotab.Checkmate.API",
+            "P:Geotab.Checkmate.ObjectModel",
+            "M:Geotab.Checkmate.API.#ctor",
+            "F:Geotab.Checkmate.ObjectModel"
+        ]) as { [key: string]: ObjectDetails }
+    ).sort(sortAlphabetical);
+    // console.log(objects);
+    objectItems = objects.map((objectDetails: ObjectEntry) => {
+        sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
+        let pageSectionObject: TableOfContentsItem = {
+            elementId: objectDetails[0],
+            summary: objectDetails[0]
+        };
 
-    pageSections.push(pageSectionObject);
+        pageSections.push(pageSectionObject);
 
-    return (
-        <div className="paragraph" id={objectDetails[0]} key={objectDetails[0]}>
-            <h3 className="objects__object-title">
-                {objectDetails[0]}
-                <Link to={`./${objectDetails[0]}`} className="objects__view-button">
-                    <Button>View</Button>
-                </Link>
-            </h3>
-            {RenderStringWithUrl(objectDetails[1].description)}
-        </div>
-    );
-});
+        return (
+            <div key={objectDetails[0]} className="paragraph" id={objectDetails[0]}>
+                <h3 className="objects__object-title">
+                    {objectDetails[0]}
+                    <Link to={`./${objectDetails[0]}`} className="objects__view-button">
+                        <Button>View</Button>
+                    </Link>
+                </h3>
+                {RenderStringWithUrl(objectDetails[0], objectDetails[1].description)}
+            </div>
+        );
+    });
+}
 
 export default function Objects(): JSX.Element {
     return (
