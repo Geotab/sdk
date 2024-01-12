@@ -1,8 +1,16 @@
-.heading {
-    list-style: none;
+@import "../../variables";
+
+.methods__method-title, .objects__object-title{
+    font-size: $font-size-large;
+    color: $text-primary;
     font-weight: 400;
-    font-size: 20px;
     line-height: 24px;
-    margin-block-end: 16px;
+    margin: 0px;
+}
+
+.pageContent__scrollableArea
+{
     display: flex;
+    flex-direction: column;
+    gap: 32px;
 }

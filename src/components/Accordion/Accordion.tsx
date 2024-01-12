@@ -16,7 +16,7 @@ export function createAccordions(pageSections: TableOfContentsItem[]): JSX.Eleme
 export default function Accordion(props: AccordionProps) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let icon: JSX.Element = expanded ? <IconChevronUp/> : <IconChevronDown/>;
+    let icon: JSX.Element = expanded ? <IconChevronUp /> : <IconChevronDown />;
 
     function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>) {
         const detailsElement = e.target as HTMLDetailsElement;

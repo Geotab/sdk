@@ -1,5 +1,5 @@
-import BreadCrumbTrail from './BreadCrumbTrail';
-import './pageTitle.scss';
+import BreadCrumbTrail from "../BreadCrumbTrail/BreadCrumbTrail";
+import "./pageTitle.scss";
 
 export interface PageTitleProps {
     title: string;

@@ -8,9 +8,9 @@ import "./header.scss";
 import { HeaderSections } from "./headerSectionsEnum";
 
 export default function Header(props: { isLandingPage: boolean }) {
-  const { active, setActive } = useContext(MenuContext);
-  const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
-  const [isLanding, setIsLanding] = useState<boolean>(props.isLandingPage);
+    const { active, setActive } = useContext(MenuContext);
+    const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
+    const [isLanding, setIsLanding] = useState<boolean>(props.isLandingPage);
 
     const openSearchModal = () => {
         setSearchModalOpen(true);

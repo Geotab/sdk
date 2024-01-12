@@ -1,9 +1,9 @@
 import { MatchInfo } from "minisearch";
-import { searchIndex } from "../mockSearchData"
+import { searchIndex } from "../mockSearchData";
 
-const EXCERPT_CHAR_LENGTH: number = 200;
+const EXCERPT_CHAR_LENGTH = 200;
 
-type Page = {
+interface Page {
     id: number;
     title: string;
     headers: string[];
@@ -12,17 +12,15 @@ type Page = {
     link: string;
     breadCrumb: string[];
     category: string;
-};
+}
 
 const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, remainingLength: number, foundIndex: number): number => {
     let half: number = Math.floor(remainingLength / 2);
     if (numCharsAhead < half) {
         return 0;
-    }
-    else if (numCharsAfter < half) {
+    } else if (numCharsAfter < half) {
         return foundIndex - remainingLength + numCharsAfter;
-    }
-    else {
+    } else {
         return foundIndex - half;
     }
 };
@@ -33,7 +31,7 @@ export const pullText = (searchId: number, matchTerm: string): string => {
 
     let stringIndex: number = contentString.indexOf(matchTerm);
     if (stringIndex >= 0) {
-        let excerpt: string = "";
+        let excerpt = "";
         let numRemainingChars: number = EXCERPT_CHAR_LENGTH - matchTerm.length;
         let numCharsAhead: number = contentString.substring(0, stringIndex).length;
         let numCharsAfter: number = contentString.substring(stringIndex + matchTerm.length).length;
@@ -48,7 +46,7 @@ export const pullText = (searchId: number, matchTerm: string): string => {
         }
         excerpt += matchTerm;
         excerpt += contentString.substring(stringIndex + matchTerm.length, stringIndex + matchTerm.length + numRemainingChars);
-        if ((excerpt.length - excerpt.indexOf(matchTerm) - matchTerm.length) !== numCharsAfter) {
+        if (excerpt.length - excerpt.indexOf(matchTerm) - matchTerm.length !== numCharsAfter) {
             excerpt += "...";
         }
         return excerpt;
@@ -57,9 +55,9 @@ export const pullText = (searchId: number, matchTerm: string): string => {
     return contentString.substring(0, EXCERPT_CHAR_LENGTH) + "...";
 };
 
-export const findHeaderId = (searchId: number, matchTerms: MatchInfo,): string | null => {
-    let isHeaderLink: boolean = false;
-    let headerMatch: string = "";
+export const findHeaderId = (searchId: number, matchTerms: MatchInfo): string | null => {
+    let isHeaderLink = false;
+    let headerMatch = "";
     for (const term in matchTerms) {
         if (matchTerms[term].includes("headers")) {
             isHeaderLink = true;
@@ -70,7 +68,7 @@ export const findHeaderId = (searchId: number, matchTerms: MatchInfo,): string |
     if (isHeaderLink) {
         let i: number = searchIndex.findIndex((page: Page) => page.id === searchId);
         let pageHeaders: string[] = searchIndex[i].headers;
-        let headerIndex = pageHeaders.findIndex(header => header.toLowerCase().includes(headerMatch));
+        let headerIndex = pageHeaders.findIndex((header) => header.toLowerCase().includes(headerMatch));
         return searchIndex[i].headerIds[headerIndex];
     }
     return null;

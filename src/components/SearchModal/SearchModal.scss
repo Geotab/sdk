@@ -12,11 +12,10 @@
   width: 100vw;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: $backgrounds-search;
   z-index: 1000;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
 .search-modal-container {
@@ -231,7 +230,7 @@ input[type="search"]::-webkit-search-results-decoration {
   align-items: center;
   gap: 8px;
   align-self: stretch;
-  background-color: #fff;
+  background-color: $background-main;
 
   &.tab-container .has.results {
     display: flex;

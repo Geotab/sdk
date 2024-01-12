@@ -2,15 +2,7 @@
 import { IconProps } from "@geotab/react-component-library";
 // import { IconProps, SideNavigationMenuItemType } from "@geotab/react-component-library";
 import { ComponentType } from "react";
-import {
-    IconCircleInfo,
-    IconStar,
-    IconDocument,
-    IconPuzzlePiece,
-    IconDocumentWithMagnifyingGlass,
-    IconHexagonGear,
-    IconCodeBox
-} from "./icons";
+import { IconCircleInfo, IconStar, IconDocument, IconPuzzlePiece, IconDocumentWithMagnifyingGlass, IconHexagonGear, IconCodeBox } from "./icons";
 
 // TODO: Eventually remove and import from library
 export interface SideNavigationMenuItemType {

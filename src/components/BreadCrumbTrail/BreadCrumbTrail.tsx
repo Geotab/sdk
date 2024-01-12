@@ -1,5 +1,5 @@
 import { IconChevronRightSmall } from "@geotab/react-component-library";
-import './pageTitle.scss';
+import "./breadCrumbTrail.scss";
 
 interface BreadCrumbProps {
     name: string;
@@ -18,8 +18,9 @@ function BreadCrumb({ name, isLastOne }: BreadCrumbProps): JSX.Element {
 export default function BreadCrumbTrail(props: { crumbs: string[] }): JSX.Element {
     return (
         <div className="breadCrumbContainer">
-            {props.crumbs.map((crumb: string, index: number) =>
-                <BreadCrumb name={crumb} isLastOne={index < props.crumbs.length - 1} key={crumb.toLowerCase().replace(/\s/g, "")} />)}
+            {props.crumbs.map((crumb: string, index: number) => (
+                <BreadCrumb name={crumb} isLastOne={index < props.crumbs.length - 1} key={crumb.toLowerCase().replace(/\s/g, "")} />
+            ))}
         </div>
     );
 }

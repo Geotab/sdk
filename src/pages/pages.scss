@@ -36,7 +36,7 @@ img {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  color: $lightBlack;
+  color: $text-landing-page;
 
   img {
     border: none;
@@ -184,7 +184,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: $darkBlue;
+  color: $text-secondary;
 }
 
 .title {
@@ -214,12 +214,12 @@ h3 {
 }
 
 a {
-  color: $brightBlue;
+  color: $text-hyperlink;
   text-decoration: none;
 }
 
 .grayBackground {
-  background-color: $lightGray;
+  background-color: $backgrounds-content-0;
 }
 
 .small-code-sample {

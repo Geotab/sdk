@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from './utils/renderStringWithUrl';
+import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import { useParams } from "react-router-dom";
 import CodeSample from "../CodeSamplesContainer/CodeSample";
 import { Page } from "..";
@@ -9,17 +9,17 @@ import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 import "./reference.scss";
 
 interface MethodParameter {
-    name: string,
-    description: string,
-    required: boolean
-};
+    name: string;
+    description: string;
+    required: boolean;
+}
 
 interface MethodData {
-    description: string,
-    param: MethodParameter[],
-    returns: string,
-    example: string
-};
+    description: string;
+    param: MethodParameter[];
+    returns: string;
+    example: string;
+}
 
 export default function Method(): JSX.Element {
     const { methodId = "" } = useParams();
@@ -27,67 +27,59 @@ export default function Method(): JSX.Element {
     const parameters: MethodParameter[] = storedMethodData.param;
     const returnValueDescriptions: string = storedMethodData.returns;
     const codeSample: string = storedMethodData.example;
-    
-    const introductionParagraph: ReactNode = (
-        <div className="paragraph">
-            {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
-        </div>
-    );
+
+    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}</div>;
 
     const parameterParagaphs: ReactNode = (
         <div className="paragraph">
-            {parameters.map((parameter: any) =>
-                <div>
+            {parameters.map((parameter: MethodParameter) => (
+                <div key={parameter.name}>
                     <h3>{parameter.name}</h3>
-                    <p>{RenderStringWithUrl(parameter.description)}</p>
+                    {RenderStringWithUrl(parameter.description)}
                 </div>
-            )}
+            ))}
         </div>
     );
 
     const returnDescription: ReactNode = (
         <div className="paragraph">
-            <p>{RenderStringWithUrl(returnValueDescriptions)}</p>
+            {RenderStringWithUrl(returnValueDescriptions)}
         </div>
     );
 
     const tryMeCodeBlock: ReactNode = (
         <div className="paragraph">
-            <CodeSample
-            language="javascript"
-            code={codeSample} />
+            <CodeSample language="javascript" code={codeSample} />
         </div>
     );
 
     const pageTitle: PageTitleProps = {
-        "title": methodId + " (...)",
-        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + " (...)"]
+        title: methodId + " (...)",
+        breadCrumbItems: ["MYG", "API Reference", "Methods", methodId + " (...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
-            "elementId": "introduction",
-            "summary": "Introduction",
-            "details": introductionParagraph
+            elementId: "introduction",
+            summary: "Introduction",
+            details: introductionParagraph
         },
         {
-            "elementId": "parameters",
-            "summary": "Parameters",
-            "details": parameterParagaphs
+            elementId: "parameters",
+            summary: "Parameters",
+            details: parameterParagaphs
         },
         {
-            "elementId": "returnValue",
-            "summary": "Return value",
-            "details": returnDescription
+            elementId: "returnValue",
+            summary: "Return value",
+            details: returnDescription
         },
         {
-            "elementId": "codeSample",
-            "summary": "Code samples",
-            "details": tryMeCodeBlock
+            elementId: "codeSample",
+            summary: "Code samples",
+            details: tryMeCodeBlock
         }
     ];
 
-    return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
-    );
-}; 
+    return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}
