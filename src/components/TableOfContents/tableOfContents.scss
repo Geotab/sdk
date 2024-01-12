@@ -3,31 +3,43 @@
 .tableOfContents {
     background-color: $page-title-background;
     border-radius: 8px;
+    float: inline-end;
+    width: 20%;
     max-width: 288px;
     height: fit-content;
     margin: 0;
     position: sticky;
-    top: 5px;
-    width: 100%;
+    top: -1px;
     list-style-type: none;
     padding: 0 0 8px 0;
+    max-height: calc(100vh - 260px);
+    overflow: auto;
 
-    &__heading {
+    &.is-pinned {
+        max-height: calc(100vh - 60px);
+    }
+
+    &::before {
+        content: 'Table of contents';
+        display: block;
         padding: 16px 16px 8px 16px;
-
         font-weight: 400;
         font-size: 18px;
         color: $table-of-contents-heading-text;
+        position: sticky;
+        top: 0;
+        background-color: $page-title-background;
+        cursor: default;
     }
 
-    & li:not(:first-of-type) {
+    & li {
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        
+
         &:not(:last-of-type) {
             margin-bottom: 4px;
         }
-        
+
         & a {
             padding: 8px 12px;
             font-weight: 400;
@@ -36,6 +48,7 @@
             color: $text-secondary;
             text-decoration: none;
             display: block;
+            overflow-wrap: anywhere;
         }
 
         &:hover,

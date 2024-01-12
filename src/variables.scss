@@ -1,6 +1,6 @@
 $brightBlue: #0069BF;
 $darkBlue: #4E677E;
-$lightGray:#F9FAFB;
+$lightGray: #F9FAFB;
 $lightBlack: #1E1E1E;
 
 $page-title-background: #F8F9FC;
@@ -28,7 +28,8 @@ $button-bg--focus: #F9FAFB;
 $button-outline: #C0CCD8;
 $button-outline--focus: #0078D3;
 
-$table-border: #d3d3d3;
+$border-color: #c0ccd8;
+$border-radius: 8px;
 
 $code-bg: #f8f9fa;
 $code-color: #bd4147;
@@ -45,6 +46,11 @@ $backgrounds-content-2: #D8DEE9;
 
 $borders-general: #c0ccd8;
 
-$img-border: #DEE2E6;
-
 $dropshadow-default: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);
+
+$dark-mode-content-color: #ffffffb3;
+$dark-mode-content-color-hover: #ffffff;
+$light-mode-content-color: #202124;
+$light-mode-content-color-hover: #5f6368;
+
+$scrollbar-thumb-color: #c1c1c1;

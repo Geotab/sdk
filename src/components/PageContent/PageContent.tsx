@@ -4,6 +4,7 @@ import { Footer, PageTitle, TableOfContents } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import "./pageContent.scss";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import { createAccordions } from "../Accordion/Accordion";
 
 interface PageContentProps {
     isLandingPage: boolean;
@@ -12,16 +13,17 @@ interface PageContentProps {
     tableOfContents?: TableOfContentsItem[];
 }
 
-export default function PageContent(props: PageContentProps) {
+export default function PageContent({ isLandingPage, pageTitle, pageContent, tableOfContents }: PageContentProps): JSX.Element {
     return (
-        <div className="pageContent--container">
-            <Header isLandingPage={props.isLandingPage} />
-            {props.pageTitle && <PageTitle title={props.pageTitle.title} breadCrumbItems={props.pageTitle.breadCrumbItems} /> }
-            <div className={props.isLandingPage ? "pageContent--landing" : "pageContent"}>
-                <div>
-                    {props.pageContent}
+        <div className="pageContent__container">
+            <Header isLandingPage={isLandingPage} />
+            {pageTitle && <PageTitle title={pageTitle.title} breadCrumbItems={pageTitle.breadCrumbItems} /> }
+            <div className={isLandingPage ? "pageContent__landing" : "pageContent"}>
+                <div className={isLandingPage ? "" : "pageContent__scrollableArea"}>
+                    {pageContent}
+                    {!pageTitle?.title.toLowerCase().match(/^(methods|method|objects|object)$/) && createAccordions(tableOfContents || [])}
                 </div>
-                {props.tableOfContents && <TableOfContents items={props.tableOfContents} />}
+                {tableOfContents && <TableOfContents items={tableOfContents} />}
             </div>
             <Footer />
         </div>

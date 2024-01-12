@@ -10,10 +10,10 @@ interface PageProps {
     section: string;
     pageTitle?: PageTitleProps;
     tableOfContents?: TableOfContentsItem[];
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
-export default function Page(props: PageProps) {
+export default function Page(props: PageProps): JSX.Element {
     const isLandingPage: boolean = props.section === HeaderSections.Landing;
 
     return (
