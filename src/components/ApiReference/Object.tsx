@@ -25,7 +25,7 @@ export default function Object(): JSX.Element {
 
     const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(objectId, objectDescription)}</div>;
 
-    const propertyParagaphs: ReactNode = (
+    const propertyParagraphs: ReactNode = (
         <div className="paragraph">
             {properties.map((property: ObjectProperty) => (
                 <div key={property.name}>
@@ -50,7 +50,7 @@ export default function Object(): JSX.Element {
         {
             elementId: "properties",
             summary: "Properties",
-            details: propertyParagaphs
+            details: propertyParagraphs
         }
     ];
 
