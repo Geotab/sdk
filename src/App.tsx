@@ -23,10 +23,10 @@ import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
 import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
-import Methods from "./components/ApiReference/Methods";
-import Method from "./components/ApiReference/Method";
-import Objects from "./components/ApiReference/Objects";
-import Object from "./components/ApiReference/Object";
+import Methods from "./components/apiReference/methods";
+import Method from "./components/apiReference/method";
+import Objects from "./components/apiReference/objects";
+import Object from "./components/apiReference/object";
 
 import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
