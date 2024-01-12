@@ -19,7 +19,7 @@ interface MethodDetails {
     parameters: ParameterDescription[];
     example: string;
     returns: string;
-};
+}
 
 type MethodEntry = [string, MethodDetails];
 
@@ -39,12 +39,14 @@ const pageSections: TableOfContentsItem[] = [];
 if (xml === null) {
     console.log("");
 } else {
-    const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(sortAlphabetical);
+    const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
+        sortAlphabetical
+    );
     methodItems = methods.map((methodDetails: MethodEntry) => {
         sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
         let pageSectionObject: TableOfContentsItem = {
-            "elementId": methodDetails[0],
-            "summary": methodDetails[0]
+            elementId: methodDetails[0],
+            summary: methodDetails[0]
         };
 
         pageSections.push(pageSectionObject);
@@ -59,11 +61,9 @@ if (xml === null) {
                 </h3>
                 {RenderStringWithUrl(methodDetails[0], methodDetails[1].description)}
             </div>
-        )
+        );
     });
 }
-
-
 
 export default function Methods(): JSX.Element {
     return (

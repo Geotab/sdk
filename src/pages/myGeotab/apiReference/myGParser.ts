@@ -2,23 +2,23 @@ interface PropertyDescription {
     name: string;
     description: string;
 }
-  
+
 interface ParameterDescription extends PropertyDescription {
     required: boolean;
 }
-  
+
 interface MethodInfo {
     description: string;
     parameters: ParameterDescription[];
     returns: string;
     example: string;
 }
-  
+
 interface ObjectInfo {
     description: string;
     properties: PropertyDescription[];
 }
-  
+
 type ParserOutput = {
     [name: string]: MethodInfo | ObjectInfo;
 };
@@ -26,7 +26,7 @@ type ParserOutput = {
 function extractSubstrings(input: string): string {
     const webMethodsMatch: RegExpMatchArray | null = input.match(/WebMethods\.([a-zA-Z]+)/);
     const dataStoreMatch: RegExpMatchArray | null = input.match(/DataStore\.([a-zA-Z]+)/);
-  
+
     if (webMethodsMatch) {
         return webMethodsMatch[1];
     } else if (dataStoreMatch) {
@@ -43,15 +43,15 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
             let item: NodeListOf<ChildNode> = xml.childNodes[0].childNodes;
             for (let i = 0; i < item.length; i++) {
                 if (item[i].nodeName === "member") {
-                    if (itemType === "method" && itemStrings.some(method =>  (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes(method))) {
-                        let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem("name")?.nodeValue ?? "").replace(/Async$/,"");
+                    if (itemType === "method" && itemStrings.some((method) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes(method))) {
+                        let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem("name")?.nodeValue ?? "").replace(/Async$/, "");
                         if (!json[methodName]) {
                             json[methodName] = {
-                                "description": "",
-                                "parameters": [],
-                                "returns": "",
-                                "example": ""
-                            }
+                                description: "",
+                                parameters: [],
+                                returns: "",
+                                example: ""
+                            };
                         }
                         for (let j = 0; j < item[i].childNodes.length; j++) {
                             if (item[i].childNodes[j].nodeName === "summary") {
@@ -96,7 +96,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 let descriptionText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
-                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g,  " ");
+                                        descriptionText += item[i].childNodes[j].childNodes[k].nodeValue?.replace(/\s+/g, " ");
                                     }
                                     if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                         descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
@@ -113,7 +113,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 let returnText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                     if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
-                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g,  " ");
+                                        returnText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, " ");
                                     }
                                     if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                         returnText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
@@ -130,18 +130,22 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 }
                                 (json[methodName] as MethodInfo).example = codeText.trimStart();
                             }
-                        } 
+                        }
                     }
 
-                    if (itemType === "object" && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.ObjectModel")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.API")))) {
+                    if (
+                        itemType === "object" &&
+                        (itemStrings.some((object) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.ObjectModel")) ||
+                            itemStrings.some((object) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("T:Geotab.Checkmate.API")))
+                    ) {
                         let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") ?? [];
                         let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, "");
 
                         if (!json[objectName]) {
                             json[objectName] = {
-                                "description": "",
-                                "properties": []
-                            }
+                                description: "",
+                                properties: []
+                            };
                         }
                         for (let j = 0; j < item[i].childNodes.length; j++) {
                             if (item[i].childNodes[j].nodeName === "summary") {
@@ -164,7 +168,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                                     summaryText += (summaryChildren[k].childNodes[l] as Element).outerHTML;
                                                 }
                                             }
-                                            
+
                                             if (k !== summaryChildren.length - 1) {
                                                 summaryText += "\n";
                                             }
@@ -176,18 +180,22 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                                     if (listItems[l].childNodes[m].childNodes[0].nodeName === "see") {
                                                         summaryText += "\n" + "- " + (listItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
                                                     } else {
-                                                        summaryText += "\n" + "- " + listItems[l].childNodes[m].childNodes[0].nodeValue?.replace(/\s+/g,  " ");
-                                                    }   
+                                                        summaryText += "\n" + "- " + listItems[l].childNodes[m].childNodes[0].nodeValue?.replace(/\s+/g, " ");
+                                                    }
                                                 }
-                                            } 
+                                            }
                                         }
                                     }
                                     json[objectName].description = summaryText.trimStart();
-                                } 
+                                }
                             }
-                            
-                        } 
-                    } else if (itemType === "object" && (itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate.ObjectModel")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate")) || itemStrings.some(object => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("F:Geotab.Checkmate.ObjectModel")))) {
+                        }
+                    } else if (
+                        itemType === "object" &&
+                        (itemStrings.some((object) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate.ObjectModel")) ||
+                            itemStrings.some((object) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("P:Geotab.Checkmate")) ||
+                            itemStrings.some((object) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes("F:Geotab.Checkmate.ObjectModel")))
+                    ) {
                         let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") || [];
                         let objectName: string = tagName[tagName.length - 2].replace(/[^a-zA-Z]/g, "");
                         let propertyName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z]/g, "");
@@ -199,7 +207,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 if (item[i].childNodes[j].nodeName === "summary") {
                                     for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
                                         if (item[i].childNodes[j].childNodes[k].nodeName === "#text") {
-                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, " ")
+                                            descriptionText += (item[i].childNodes[j].childNodes[k] as Element).nodeValue?.replace(/\s+/g, " ");
                                         }
                                         if (item[i].childNodes[j].childNodes[k].nodeName === "see") {
                                             descriptionText += (item[i].childNodes[j].childNodes[k] as Element).outerHTML;
@@ -211,15 +219,14 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                                     if (properyListItems[l].childNodes[m].childNodes[0].nodeName === "see") {
                                                         descriptionText += "\n" + "- " + (properyListItems[l].childNodes[m].childNodes[0] as Element).outerHTML;
                                                     } else {
-                                                        descriptionText += "\n" + "- " + (properyListItems[l].childNodes[m].childNodes[0] as Element).nodeValue?.replace(/\s+/g,  " ");
-                                                    }   
+                                                        descriptionText += "\n" + "- " + (properyListItems[l].childNodes[m].childNodes[0] as Element).nodeValue?.replace(/\s+/g, " ");
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
                                 if (item[i].childNodes[j].nodeName === "value") {
-                                    
                                 }
                             }
                             propertyDict["description"] = descriptionText.trimStart();
@@ -231,4 +238,4 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
         }
     }
     return json;
-};
+}

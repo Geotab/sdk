@@ -36,18 +36,26 @@ const pageSections: TableOfContentsItem[] = [];
 if (xml === null) {
     throw new Error("Failed to load or parse data");
 } else {
-    const objects: ObjectEntry[] = Object.entries(myGParser(xml, "object", ["T:Geotab.Checkmate.ObjectModel", "T:Geotab.Checkmate.API", "P:Geotab.Checkmate.ObjectModel", "M:Geotab.Checkmate.API.#ctor", "F:Geotab.Checkmate.ObjectModel"]) as { [key: string]: ObjectDetails }).sort(sortAlphabetical);
+    const objects: ObjectEntry[] = Object.entries(
+        myGParser(xml, "object", [
+            "T:Geotab.Checkmate.ObjectModel",
+            "T:Geotab.Checkmate.API",
+            "P:Geotab.Checkmate.ObjectModel",
+            "M:Geotab.Checkmate.API.#ctor",
+            "F:Geotab.Checkmate.ObjectModel"
+        ]) as { [key: string]: ObjectDetails }
+    ).sort(sortAlphabetical);
     // console.log(objects);
     objectItems = objects.map((objectDetails: ObjectEntry) => {
         sessionStorage.setItem(objectDetails[0], JSON.stringify(objectDetails[1]));
         let pageSectionObject: TableOfContentsItem = {
-            "elementId": objectDetails[0],
-            "summary": objectDetails[0]
+            elementId: objectDetails[0],
+            summary: objectDetails[0]
         };
 
         pageSections.push(pageSectionObject);
 
-        return ( 
+        return (
             <div key={objectDetails[0]} className="paragraph" id={objectDetails[0]}>
                 <h3 className="objects__object-title">
                     {objectDetails[0]}
@@ -57,9 +65,9 @@ if (xml === null) {
                 </h3>
                 {RenderStringWithUrl(objectDetails[0], objectDetails[1].description)}
             </div>
-        )
-    }
-)}
+        );
+    });
+}
 
 export default function Objects(): JSX.Element {
     return (

@@ -36,8 +36,12 @@ export default function RenderStringWithLinks(name: string, text: string): JSX.E
             } else {
                 link = `#${linkText}`;
             }
-            
-            segments.push(<HashLink key={`hashlink-${index}-${currentIndex}`} to={link}>{linkText}</HashLink>);
+
+            segments.push(
+                <HashLink key={`hashlink-${index}-${currentIndex}`} to={link}>
+                    {linkText}
+                </HashLink>
+            );
             currentIndex = seeTagRegex.lastIndex;
         }
 

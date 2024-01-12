@@ -23,18 +23,16 @@ export default function Object(): JSX.Element {
     const objectDescription: string = storedObjectData.description;
     const properties: ObjectProperty[] = storedObjectData.properties;
 
-    const introductionParagraph: ReactNode = (
-        <div className="paragraph">{RenderStringWithUrl(objectId, objectDescription)}</div>
-    );
+    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(objectId, objectDescription)}</div>;
 
     const propertyParagaphs: ReactNode = (
         <div className="paragraph">
-            {properties.map((property: ObjectProperty) =>
+            {properties.map((property: ObjectProperty) => (
                 <div key={property.name}>
                     <h3>{property.name}</h3>
                     {RenderStringWithUrl(property.name, property.description)}
                 </div>
-            )}
+            ))}
         </div>
     );
 
