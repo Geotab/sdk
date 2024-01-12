@@ -2,17 +2,17 @@ import { TabConfig, Tabs } from "@geotab/react-component-library";
 import CodeSample from "./CodeSample";
 
 export interface CodeSamples {
-  javascript?: string;
-  csharp?: string;
-  java?: string;
-  python?: string;
+    javascript?: string;
+    csharp?: string;
+    java?: string;
+    python?: string;
 }
 
 const languages: Record<string, string> = {
-  javascript: "JavaScript",
-  csharp: "C #",
-  java: "Java",
-  python: "Python"
+    javascript: "JavaScript",
+    csharp: "C #",
+    java: "Java",
+    python: "Python"
 };
 
 /*Renders a component that displays code Examples in different programming languages.
@@ -29,20 +29,15 @@ const samples: CodeSamples = {
 };*/
 
 export default function CodeSamplesContainer(props: CodeSamples): JSX.Element {
-  let tabsArray: TabConfig[] = Object.keys(props).map((language) => ({
-    content: (
-      <CodeSample
-        language={language}
-        code={props[language as keyof CodeSamples]!}
-      ></CodeSample>
-    ),
-    name: languages[language as keyof CodeSamples],
-  }));
+    let tabsArray: TabConfig[] = Object.keys(props).map((language) => ({
+        content: <CodeSample language={language} code={props[language as keyof CodeSamples]!}></CodeSample>,
+        name: languages[language as keyof CodeSamples]
+    }));
 
-  return (
-    <div>
-      <h2 className="subtitle">Try me</h2>
-      <Tabs tabs={tabsArray} />
-    </div>
-  );
+    return (
+        <div>
+            <h2 className="subtitle">Try me</h2>
+            <Tabs tabs={tabsArray} />
+        </div>
+    );
 }

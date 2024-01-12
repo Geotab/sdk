@@ -1,21 +1,22 @@
-import { HashLink } from 'react-router-hash-link';
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { HashLink } from "react-router-hash-link";
 
-export default function RenderStringWithLinks(text: string): JSX.Element {
-    const lines: string[] = text.split('\n');
+export default function RenderStringWithUrl(name: string, text: string): JSX.Element {
+    const lines: string[] = text.split("\n");
 
     const renderedText: JSX.Element[] = [];
     let inList = false;
     let listItems: JSX.Element[] = [];
 
     lines.forEach((line: string, index: number) => {
-        if (line.trim() === '') {
+        if (line.trim() === "") {
             return;
         }
 
         const seeTagRegex = /<see cref="([^"]*)"[^>]*>/g;
-        const isListItem: boolean = line.trim().startsWith('- ');
+        const isListItem: boolean = line.trim().startsWith("- ");
 
-        const content: string = isListItem ? line.replace(/^\s*-\s*/, '') : line;
+        const content: string = isListItem ? line.replace(/^\s*-\s*/, "") : line;
 
         let currentIndex = 0;
         const segments: JSX.Element[] = [];
@@ -25,24 +26,28 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
             const start: number = currentIndex;
             const end: number = match.index;
             if (start < end) {
-                segments.push(<span key={`span-${currentIndex}`}>{content.slice(start, end)}</span>);
+                segments.push(<span key={`span-${index}-${start}`}>{content.slice(start, end)}</span>);
             }
 
-            let cref: string[] = match[1].split('.');
-            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z]/g, '');
+            let cref: string[] = match[1].split(".");
+            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z\d]/g, "");
             let link;
-            if (cref.includes('ObjectModel')) {
+            if (cref.includes("ObjectModel")) {
                 link = `/myGeotab/apiReference/objects#${linkText}`;
             } else {
                 link = `#${linkText}`;
             }
-            
-            segments.push(<HashLink to={link}>{linkText}</HashLink>);
+
+            segments.push(
+                <HashLink key={`hashlink-${index}-${currentIndex}`} to={link}>
+                    {linkText}
+                </HashLink>
+            );
             currentIndex = seeTagRegex.lastIndex;
         }
 
         // Handle the case where a dash follows a <see> tag
-        if (isListItem && currentIndex < content.length && content[currentIndex] === '-') {
+        if (isListItem && currentIndex < content.length && content[currentIndex] === "-") {
             currentIndex++; // Skip the dash
         }
 
@@ -58,11 +63,15 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
 
             const link: string = anchorMatch[1];
             const linkText: string = anchorMatch[2];
-            segments.push(<a key={`a-${currentIndex}`} href={link}>{linkText}</a>);
+            segments.push(
+                <a key={`a-${index}-${currentIndex}`} href={link}>
+                    {linkText}
+                </a>
+            );
             currentIndex = anchorTagRegex.lastIndex;
         }
 
-        const remainingText: string = content.slice(currentIndex).replace(/\/>/g, '');
+        const remainingText: string = content.slice(currentIndex).replace(/\/>/g, "");
 
         if (remainingText) {
             segments.push(<span key={`span-${currentIndex}`}>{remainingText}</span>);
@@ -73,15 +82,12 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
                 inList = true;
                 listItems = [];
             }
-            listItems.push(<li key={`li-${listItems.length}`}>{segments}</li>);
+            // console.log(`li-${name}-${index}-${segments[0].props.children}`);
+            listItems.push(<li key={`li-${name}-${index}-${segments[0].props.children}}`}>{segments}</li>);
         } else {
             inList = false;
             if (listItems.length > 0) {
-                renderedText.push(
-                    <ul key={`ul-${renderedText.length}`}>
-                        {listItems}
-                    </ul>
-                );
+                renderedText.push(<ul key={`ul-${renderedText.length}`}>{listItems}</ul>);
                 listItems = [];
             }
             renderedText.push(<p key={`p-${index}`}>{segments}</p>);
@@ -89,12 +95,8 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
     });
 
     if (listItems.length > 0) {
-        renderedText.push(
-            <ul key={`ul-${renderedText.length}`}>
-                {listItems}
-            </ul>
-        );
+        renderedText.push(<ul key={`ul-${renderedText.length}`}>{listItems}</ul>);
     }
 
     return <div>{renderedText}</div>;
-};
+}
