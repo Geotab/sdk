@@ -1,55 +1,6 @@
 import { CodeSamples } from "../../../components/CodeSamplesContainer";
 
 export const methodsCodeSamples: Record<string, CodeSamples> = {
-  Add: {
-    javascript: "",
-    csharp: "",
-    python: "",
-    java: "",
-  },
-  Authenticate: {
-    javascript: "",
-    csharp: "",
-    python: "",
-    java: "",
-  },
-  SetUserPassword: {
-    javascript: "",
-    csharp: "",
-    python: "",
-    java: "",
-  },
-  GenerateCaptcha: {
-    javascript: "",
-    csharp: "",
-    python: "",
-    java: "",
-  },
-
-  //     "api.call("Get",{"typeName":"Device",
-  //                "resultsLimit": 10,
-  //     "search": {
-  //         "fromDate": new Date().toISOString()
-  //     },
-  //     "propertySelector": {
-  //         "fields": ["id", "name"]
-  //     }
-  // });
-  // "
-  Get: {
-    javascript: "",
-    csharp:
-      'await api.CallAsync<List<Device>>("Get", typeof(Device), new { resultsLimit = 10 });',
-    python: "api.get('Device', resultsLimit=10)",
-    java: "",
-  },
-  GetAddresses: {
-    javascript: "",
-    csharp: "",
-    python: "",
-    java: "",
-  },
-
   GetTimeZones: {
     javascript: "",
     csharp: `await api.CallAsync<List<Geotab.Checkmate.ObjectModel.TimeZoneInfo>>("GetTimeZones");`,
@@ -164,80 +115,96 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
   },
   UploadMediaFile: {
     javascript: `
-        import axios from "axios";
+    import axios from "axios";
 
-        const solutionId = prompt("Enter the unique identifier of the solution (solutionId/AddInId): ")
-        const mediaFileName = prompt("Enter the name of the file (must have extension): ")
+    const solutionId = "<your solutionId here>";
+    const mediaFileName = "<your media file name here>";
     
-        let mediaFileId = await api.call(
-            "Add", {
-            typeName: "MediaFile",
-            entity: {
-                solutionId: solutionId,
-                name: mediaFileName
+    
+    let mediaFileId = await api.call(
+        "Add", {
+        typeName: "MediaFile",
+        entity: {
+            solutionId: solutionId,
+            name: mediaFileName
+        }
+    })
+    
+    const requestParams = {
+        method: "UploadMediaFile",
+        params: {
+            mediaFile: {
+                id: mediaFileId
+            },
+            credentials: {
+                database: session.database,
+                sessionId: session.sessionId,
+                userName: session.userName
             }
+        }
+    };
+    
+    let api_path = "https://my.geotab.com/apiv1"
+    
+    let formData = new FormData();
+    formData.append("JSON-RPC", encodeURIComponent(JSON.stringify(requestParams)));
+    
+    let imgFile = "<your file here>"; // blob 
+    
+    formData.append("file", imgFile, mediaFileName);
+    axios.post(api_path, formData)
+        .then(response => {
+            console.log("Success:", response.data);
         })
-    
-        const requestParams = {
-            method: "UploadMediaFile",
-            params: {
-                mediaFile: {
-                    id: mediaFileId
-                },
-                credentials: {
-                    database: session.database,
-                    sessionId: session.sessionId,
-                    userName: session.userName
-                }
-            }
-        };
-        
-        let api_path = "https://my.geotab.com/apiv1"
-
-        let formData = new FormData();
-        formData.append("JSON-RPC", encodeURIComponent(JSON.stringify(requestParams)));
-    
-        // Dummy "file" creation
-        // Create a simple 10x10 black square image
-        let canvas = document.createElement("canvas");
-        canvas.width = 10;
-        canvas.height = 10;
-        let ctx = canvas.getContext("2d");
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-        canvas.toBlob(blob => {
-            // Append our image file to the form data
-            formData.append("file", blob, mediaFileName);
-            axios.post(api_path, formData)
-                .then(response => {
-                    console.log("Success:", response.data);
-                })
-                .catch(error => {
-                    console.error("Error:", error.response ? error.response.data : error.message);
-                });
-        },);        
+        .catch(error => {
+            console.error("Error:", error.response ? error.response.data : error.message);
+        });        
         `,
-    csharp: "",
+    csharp: `
+    var solutionId = Id.Create(Guid.NewGuid()); // the unique solution ID of the integration
+
+    Console.WriteLine("Enter the name of the file (must have extension): ");
+    string mediaFileName = Console.ReadLine();
+
+    // -- Add a media file object which describes the binary file
+    var mediaFile = new MediaFile
+    {
+        Name = mediaFileName, // the name of the file
+        Tags = new List<Tag> { new Tag { Name = "SDK Example" } }, // the tags used as media qualifiers
+        SolutionId = solutionId, // the unique solution ID of the integration
+        FromDate = DateTime.UtcNow,
+        ToDate = DateTime.UtcNow,
+        Device = null, // possible to link to a device
+        Driver = null, // possible to link to a driver
+        Thumbnails = null // media files can serve as thumbnails for other media files
+    };
+
+    mediaFile.Id = await api.CallAsync<Id>("Add", typeof(MediaFile), new { entity = mediaFile});
+
+    // Upload the media file binary
+    Console.WriteLine("Uploading file...");
+
+    string inputfile = ""<your media file here>"; // the path to the file to upload
+
+    var file = new FileInfo(inputfile);
+
+    await using (var inputStream = File.OpenRead(file.FullName)){
+        await api.UploadAsync(inputStream , mediaFile);
+        Console.WriteLine($"Uploading file complete.");
+    }
+    `,
     python: `
-        from PIL import Image
         import requests
-        from io import BytesIO
         import json
 
-        solutionId = input("Enter the unique identifier of the solution (solutionId/AddInId): ")
-        mediaFileName =  input("Enter the name of the file (must have extension): ")
+        solutionId = "<your solutionId here>";
+        mediaFileName = "<your media file name here>";
       
         mediaFileId = api.add("MediaFile", entity={"solutionId": solutionId, "name": mediaFileName})
       
         if mediaFileId:
-            # Dummy 'file' creation
-            # Create a simple 10x10 black square image, saved into a BytesIO object to simulate a file
-            with BytesIO() as buffer:
-                with Image.new("RGB", (10, 10), "black") as img:
-                    img.save(buffer, format="PNG")
-                    buffer.seek(0)
-                    file = buffer.read()
+           
+            file = "<your media file here>"
         
             files = {
                 'file': (mediaFileName, file, 'image/png')
@@ -251,10 +218,9 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
                     "mediaFile": {
                         "id": mediaFileId,
                     },
-                    # Replace credentials (instead of password, sessionID can be used as well)
                     "credentials": {
                         "database": database,
-                        "password": password, 
+                        "sessionId": sessionId, 
                         "userName": userName
                     }
                 }
@@ -265,8 +231,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             }
             
             response = requests.post(api_path, data=data, files=files)
-        
-            # Check the response
+
             print(response.status_code)
             if response.ok:
                 print("Success") 
@@ -306,7 +271,28 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
         });
 
     `,
-    csharp: "",
+    csharp: `
+    Console.WriteLine("Enter the id of the media file:");
+    var mediafileId = Id.Create(Console.ReadLine());
+
+    var mediaFile = (await api.CallAsync<IEnumerable<MediaFile>>("Get", typeof(MediaFile), new { search = new MediaFileSearch(mediafileId) })).FirstOrDefault();
+
+    Console.WriteLine("Downloading file...");
+
+    // Set the directory to the user's download directory
+    string userProfileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+    string downloadDirectory = Path.Combine(userProfileDirectory, "Downloads");
+    Directory.CreateDirectory(downloadDirectory);
+
+    var outputFile = Path.Combine(downloadDirectory, $"{Path.GetRandomFileName()}{mediaFile.Name}");
+
+    await using (var outputStream = File.OpenWrite(outputFile))
+    {
+        await api.DownloadAsync(outputStream, mediaFile);
+    }
+
+    Console.WriteLine($"Downloading file complete: {outputFile}.{Environment.NewLine}");
+    `,
     python: `
         mediaFileId = input("Enter the id of the media file: ")
 
@@ -316,10 +302,9 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
                   "mediaFile": {
                       "id": mediaFileId,
                   },
-                  # Replace credentials (instead of password, sessionID can be used as well)
                   "credentials": {
                       "database": database,
-                      "password": password, 
+                      "sessionId": sessionId, 
                       "userName": userName
                   }
                }
@@ -331,12 +316,11 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
     
         if response.status_code == 200:
           print("Success! Response received.")
-          filename = f"downloaded_media_{mediaFileId}.png"  # Adjust extension as needed
+          filename = f"downloaded_media_{mediaFileId}.png"  
     
           # Stream the content to a file
           with open(filename, 'wb') as file:
-              for chunk in response.iter_content(chunk_size=1024 * 1024):  # Chunks of 1 MB
-                  # Filter out keep-alive new chunks
+              for chunk in response.iter_content(chunk_size=1024 * 1024): 
                   if chunk:
                       file.write(chunk)
     
