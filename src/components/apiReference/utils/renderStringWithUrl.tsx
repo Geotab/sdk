@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { HashLink } from "react-router-hash-link";
 
-export default function RenderStringWithUrl(text: string): JSX.Element {
+export default function RenderStringWithUrl(name: string, text: string): JSX.Element {
     const lines: string[] = text.split("\n");
 
     const renderedText: JSX.Element[] = [];
@@ -29,15 +30,19 @@ export default function RenderStringWithUrl(text: string): JSX.Element {
             }
 
             let cref: string[] = match[1].split(".");
-            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z]/g, "");
-            let link: string;
+            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z\d]/g, "");
+            let link;
             if (cref.includes("ObjectModel")) {
                 link = `/myGeotab/apiReference/objects#${linkText}`;
             } else {
                 link = `#${linkText}`;
             }
 
-            segments.push(<HashLink key={currentIndex} to={link}>{linkText}</HashLink>);
+            segments.push(
+                <HashLink key={`hashlink-${index}-${currentIndex}`} to={link}>
+                    {linkText}
+                </HashLink>
+            );
             currentIndex = seeTagRegex.lastIndex;
         }
 

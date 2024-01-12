@@ -6,12 +6,6 @@ import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 import RenderStringWithUrl from "./utils/renderStringWithUrl";
-import CodeSample from "../CodeSamplesContainer/CodeSample";
-import { Page } from "..";
-import { PageTitleProps } from "../PageTitle/PageTitle";
-import { HeaderSections } from "../Header/headerSectionsEnum";
-import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
-import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import "./reference.scss";
 
 interface MethodParameter {
@@ -40,20 +34,14 @@ export default function Method(): JSX.Element {
         <div className="paragraph">
             {parameters.map((parameter: MethodParameter) => (
                 <div key={parameter.name}>
-            {parameters.map((parameter: MethodParameter) => (
-                <div key={parameter.name}>
                     <h3>{parameter.name}</h3>
-                    {RenderStringWithUrl(parameter.description)}
+                    {RenderStringWithUrl(parameter.name, parameter.description)}
                 </div>
             ))}
         </div>
     );
 
-    const returnDescription: ReactNode = (
-        <div className="paragraph">
-            {RenderStringWithUrl(returnValueDescriptions)}
-        </div>
-    );
+    const returnDescription: ReactNode = <div className="paragraph">{RenderStringWithUrl(methodId, returnValueDescriptions)}</div>;
 
     const tryMeCodeBlock: ReactNode = (
         <div className="paragraph">
@@ -91,4 +79,3 @@ export default function Method(): JSX.Element {
 
     return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }
-

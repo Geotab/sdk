@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 interface PropertyDescription {
     name: string;
     description: string;
@@ -29,7 +31,6 @@ function extractSubstrings(input: string): string {
 
     if (webMethodsMatch) {
         return webMethodsMatch[1];
-    } else if (dataStoreMatch) {
     } else if (dataStoreMatch) {
         return dataStoreMatch[1];
     } else {
@@ -229,8 +230,6 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 }
                                 if (item[i].childNodes[j].nodeName === "value") {
                                 }
-                                if (item[i].childNodes[j].nodeName === "value") {
-                                }
                             }
                             propertyDict["description"] = descriptionText.trimStart();
                             (json[objectName] as ObjectInfo).properties.push(propertyDict);
@@ -242,4 +241,3 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
     }
     return json;
 }
-/* eslint-enable */

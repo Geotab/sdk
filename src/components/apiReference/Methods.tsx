@@ -23,6 +23,7 @@ interface MethodDetails {
 
 type MethodEntry = [string, MethodDetails];
 
+let methodItems: JSX.Element[];
 let request: XMLHttpRequest = new XMLHttpRequest();
 request.open("GET", "https://mypreview.geotab.com/sdk.xml", false);
 request.send();
@@ -35,32 +36,34 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [];
 
-const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
-    sortAlphabetical
-);
-
-const methodItems: JSX.Element[] = methods.map((methodDetails: MethodEntry) => {
-    sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
-    let pageSectionObject: TableOfContentsItem = {
-        elementId: methodDetails[0],
-        summary: methodDetails[0],
-        details: RenderStringWithUrl(methodDetails[1].description)
-    };
-
-    pageSections.push(pageSectionObject);
-
-    return (
-        <div className="paragraph" id={methodDetails[0]} key={methodDetails[0]}>
-            <h3 className="methods__method-title">
-                {methodDetails[0] + " (...)"}
-                <Link to={`./${methodDetails[0]}`} className="methods__view-button">
-                    <Button>View</Button>
-                </Link>
-            </h3>
-            {RenderStringWithUrl(methodDetails[1].description)}
-        </div>
+if (xml === null) {
+    console.log("");
+} else {
+    const methods: MethodEntry[] = Object.entries(myGParser(xml, "method", ["M:CheckmateServer.Web.WebMethods", "M:Geotab.Checkmate.Database.DataStore"]) as { [key: string]: MethodDetails }).sort(
+        sortAlphabetical
     );
-});
+    methodItems = methods.map((methodDetails: MethodEntry) => {
+        sessionStorage.setItem(methodDetails[0], JSON.stringify(methodDetails[1]));
+        let pageSectionObject: TableOfContentsItem = {
+            elementId: methodDetails[0],
+            summary: methodDetails[0]
+        };
+
+        pageSections.push(pageSectionObject);
+
+        return (
+            <div key={methodDetails[0]} className="paragraph" id={methodDetails[0]}>
+                <h3 className="methods__method-title">
+                    {methodDetails[0] + " (...)"}
+                    <Link to={`./${methodDetails[0]}`} className="methods__view-button">
+                        <Button>View</Button>
+                    </Link>
+                </h3>
+                {RenderStringWithUrl(methodDetails[0], methodDetails[1].description)}
+            </div>
+        );
+    });
+}
 
 export default function Methods(): JSX.Element {
     return (
