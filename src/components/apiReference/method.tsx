@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from "./renderStringWithUrl";
 import { useParams } from "react-router-dom";
-import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
-import { Page } from "../../../components";
-import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
-import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
-import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import CodeSample from "../CodeSamplesContainer/CodeSample";
+import { Page } from "..";
+import { PageTitleProps } from "../PageTitle/PageTitle";
+import { HeaderSections } from "../Header/headerSectionsEnum";
+import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import "./reference.scss";
 
 interface MethodParameter {
