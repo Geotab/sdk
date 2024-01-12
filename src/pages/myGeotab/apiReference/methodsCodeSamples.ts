@@ -5,19 +5,19 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
     javascript: "",
     csharp: `await api.CallAsync<List<Geotab.Checkmate.ObjectModel.TimeZoneInfo>>("GetTimeZones");`,
     python: "api.call('GetTimeZones')",
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   GetVersion: {
     javascript: "",
     csharp: `await api.CallAsync<string>("GetVersion");`,
     python: "api.call('GetVersion')",
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   GetVersionInformation: {
     javascript: "",
     csharp: `await api.CallAsync<object>("GetVersionInformation");`,
     python: "api.call('GetVersionInformation')",
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   OptimizeWaypoints: {
     javascript: "",
@@ -58,7 +58,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
                 "description": "E"
             }
           ])`,
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   Remove: {
     javascript: "",
@@ -82,7 +82,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             remove_response = api.remove("Zone",entity = {"id": zones_response[0]["id"]})
         else:
             print("There is no zone with such name.")`,
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   Set: {
     javascript: "",
@@ -111,7 +111,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
           api.set("Zone", entity=zone)
         else:
           print("There is no zone with such name.")`,
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   UploadMediaFile: {
     javascript: `
@@ -238,7 +238,7 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
             else:
                 print("Error:", response.text)
         `,
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
   DownloadMediaFile: {
     javascript: `
@@ -326,6 +326,6 @@ export const methodsCodeSamples: Record<string, CodeSamples> = {
     
           print(f"File downloaded and saved as {filename}.")
         `,
-    java: "",
+    java: "/* Work in progress - Coming soon */",
   },
 };
