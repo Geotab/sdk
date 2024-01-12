@@ -23,10 +23,10 @@ import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
 import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
-import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
-import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
-import MyGeotabMethod from "./pages/myGeotab/apiReference/method";
-import MyGeotabObject from "./pages/myGeotab/apiReference/object";
+import Methods from "./components/apiReference/methods";
+import Method from "./components/apiReference/method";
+import Objects from "./components/apiReference/objects";
+import Object from "./components/apiReference/object";
 
 import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
@@ -93,10 +93,10 @@ function App() {
                     <Route path="/myGeotab/addIns/mapAddIns" Component={MapAddIns} />
 
                     {/* MyGeotab > API Reference Routes */}
-                    <Route path="/myGeotab/apiReference/methods" Component={MyGeotabMethods} />
-                    <Route path="/myGeotab/apiReference/methods/:methodId" element={<MyGeotabMethod />} />
-                    <Route path="/myGeotab/apiReference/objects" Component={MyGeotabObjects} />
-                    <Route path="/myGeotab/apiReference/objects/:objectId" element={<MyGeotabObject />} />
+                    <Route path="/myGeotab/apiReference/methods" Component={Methods} />
+                    <Route path="/myGeotab/apiReference/methods/:methodId" element={<Method />} />
+                    <Route path="/myGeotab/apiReference/objects" Component={Objects} />
+                    <Route path="/myGeotab/apiReference/objects/:objectId" element={<Object />} />
 
                     {/* MyGeotab > ApiClients Route */}
                     <Route path="/myGeotab/apiClients" Component={ApiClients} />

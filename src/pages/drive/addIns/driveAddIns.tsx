@@ -642,7 +642,7 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function DriveAddIns () {
+export default function DriveAddIns() {
     return (
         <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

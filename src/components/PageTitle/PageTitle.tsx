@@ -26,11 +26,7 @@ export default function PageTitle({ title, breadCrumbItems }: PageTitleProps): J
         <div className="pageTitle">
             <div className="breadCrumbContainer">
                 {breadCrumbItems.map((item, index) => (
-                    <BreadCrumb
-                        name={item}
-                        isLastOne={index < breadCrumbItems.length - 1}
-                        key={item.toLowerCase().replace(/\s/g, "")}
-                    />
+                    <BreadCrumb name={item} isLastOne={index < breadCrumbItems.length - 1} key={item.toLowerCase().replace(/\s/g, "")} />
                 ))}
             </div>
             <h1 className="pageTitle__h1">{title}</h1>
