@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import RenderStringWithUrl from './renderStringWithUrl';
+import RenderStringWithUrl from "./renderStringWithUrl";
 import { useParams } from "react-router-dom";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
 import { Page } from "../../../components";
@@ -9,17 +9,17 @@ import { TableOfContentsItem } from "../../../components/TableOfContents/TableOf
 import "./reference.scss";
 
 interface MethodParameter {
-    name: string,
-    description: string,
-    required: boolean
-};
+    name: string;
+    description: string;
+    required: boolean;
+}
 
 interface MethodData {
-    description: string,
-    param: MethodParameter[],
-    returns: string,
-    example: string
-};
+    description: string;
+    param: MethodParameter[];
+    returns: string;
+    example: string;
+}
 
 export default function Method(): JSX.Element {
     const { methodId = "" } = useParams();
@@ -27,21 +27,17 @@ export default function Method(): JSX.Element {
     const parameters: MethodParameter[] = storedMethodData.param;
     const returnValueDescriptions: string = storedMethodData.returns;
     const codeSample: string = storedMethodData.example;
-    
-    const introductionParagraph: ReactNode = (
-        <div className="paragraph">
-            {RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}
-        </div>
-    );
+
+    const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(JSON.parse(sessionStorage[methodId]).description)}</div>;
 
     const parameterParagaphs: ReactNode = (
         <div className="paragraph">
-            {parameters.map((parameter: any) =>
-                <div>
+            {parameters.map((parameter: any, index: number) => (
+                <div key={index}>
                     <h3>{parameter.name}</h3>
                     <p>{RenderStringWithUrl(parameter.description)}</p>
                 </div>
-            )}
+            ))}
         </div>
     );
 
@@ -53,41 +49,37 @@ export default function Method(): JSX.Element {
 
     const tryMeCodeBlock: ReactNode = (
         <div className="paragraph">
-            <CodeSample
-            language="javascript"
-            code={codeSample} />
+            <CodeSample language="javascript" code={codeSample} />
         </div>
     );
 
     const pageTitle: PageTitleProps = {
-        "title": methodId + " (...)",
-        "breadCrumbItems": ["MYG", "API Reference", "Methods", methodId + " (...)"]
+        title: methodId + " (...)",
+        breadCrumbItems: ["MYG", "API Reference", "Methods", methodId + " (...)"]
     };
 
     const pageSections: TableOfContentsItem[] = [
         {
-            "elementId": "introduction",
-            "summary": "Introduction",
-            "details": introductionParagraph
+            elementId: "introduction",
+            summary: "Introduction",
+            details: introductionParagraph
         },
         {
-            "elementId": "parameters",
-            "summary": "Parameters",
-            "details": parameterParagaphs
+            elementId: "parameters",
+            summary: "Parameters",
+            details: parameterParagaphs
         },
         {
-            "elementId": "returnValue",
-            "summary": "Return value",
-            "details": returnDescription
+            elementId: "returnValue",
+            summary: "Return value",
+            details: returnDescription
         },
         {
-            "elementId": "codeSample",
-            "summary": "Code samples",
-            "details": tryMeCodeBlock
+            elementId: "codeSample",
+            summary: "Code samples",
+            details: tryMeCodeBlock
         }
     ];
 
-    return (
-        <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />
-    );
-}; 
+    return <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}
