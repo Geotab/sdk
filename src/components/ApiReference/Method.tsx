@@ -30,7 +30,7 @@ export default function Method(): JSX.Element {
 
     const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(methodId, JSON.parse(sessionStorage[methodId]).description)}</div>;
 
-    const parameterParagaphs: ReactNode = (
+    const parameterParagraphs: ReactNode = (
         <div className="paragraph">
             {parameters.map((parameter: MethodParameter) => (
                 <div key={parameter.name}>
@@ -63,7 +63,7 @@ export default function Method(): JSX.Element {
         {
             elementId: "parameters",
             summary: "Parameters",
-            details: parameterParagaphs
+            details: parameterParagraphs
         },
         {
             elementId: "returnValue",
