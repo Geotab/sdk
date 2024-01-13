@@ -9,6 +9,11 @@
     }
 }
 
+#codeSample div.paragraph div div[data-state="active"] {
+    display: block;
+    height: unset;
+}
+
 .snippetBox__toolsContainer {
     position: absolute;
     top: 0;
