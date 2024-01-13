@@ -14,6 +14,7 @@
     "@types/react-router-hash-link": "^2.4.9",
     "babel-preset-react-app": "^10.0.1",
     "minisearch": "^6.3.0",
+    "jsdom": "^23.2.0",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.4",
     "react-dom": "^18.2.0",
@@ -32,6 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build-search-static": "node ./src/utils/buildSearchIndexFromStatic.js",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
     "format": "prettier --write src/**/*.{ts,tsx} --config .prettierrc.json"

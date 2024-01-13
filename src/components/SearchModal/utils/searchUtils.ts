@@ -1,5 +1,5 @@
 import { MatchInfo } from "minisearch";
-import { searchIndex } from "../mockSearchData";
+import { searchIndex } from "../../../utils/searchIndex.js";
 
 const EXCERPT_CHAR_LENGTH = 200;
 

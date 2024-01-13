@@ -3,9 +3,10 @@ import { useRef, useEffect, useCallback, useState, ComponentType } from "react";
 import { IconSearch, IconClipboard, IconServer, Tabs, TabConfig, IconProps } from "@geotab/react-component-library";
 import { IconClearSearch } from "./icons/IconClearSearch";
 import SearchResultTabContent from "./SearchResultTabContent";
-import searchIndex from "./mockSearchData";
+import { searchIndex } from "../../utils/searchIndex.js";
 import MiniSearch, { SearchResult } from "minisearch";
 import { SearchSections } from "./searchSectionsEnum";
+
 
 import "./searchModal.scss";
 
