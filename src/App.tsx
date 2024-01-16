@@ -23,9 +23,6 @@ import MyGeotabDevelopingAddIns from "./pages/myGeotab/addIns/developingAddIns";
 import MyGeotabAddInStorage from "./pages/myGeotab/addIns/addInStorage";
 import MapAddIns from "./pages/myGeotab/addIns/mapAddIns";
 
-import MyGeotabMethods from "./pages/myGeotab/apiReference/methods";
-import MyGeotabObjects from "./pages/myGeotab/apiReference/objects";
-
 import MyGeotabDotnetSamples from "./pages/myGeotab/codeSamples/dotnetSamples";
 import MyGeotabJavascriptSamples from "./pages/myGeotab/codeSamples/javascriptSamples";
 
@@ -43,10 +40,6 @@ import MyAdminUsingWithJavascript from "./pages/myAdmin/guides/codeBase/usingWit
 import MyAdminUsingWithDotnet from "./pages/myAdmin/guides/codeBase/usingWithDotnet";
 import MyAdminJavascriptExamples from "./pages/myAdmin/codeSamples/javascriptExamples";
 import MyAdminDotnetExamples from "./pages/myAdmin/codeSamples/dotnetExamples";
-
-// TODO: Add MyAdmin API Reference Routes
-// import MyAdminMethods from "./pages/MyAdmin/apiReference/methods";
-// import MyAdminObjects from "./pages/MyAdmin/apiReference/objects";
 
 import HardwareIntroduction from "./pages/hardware/introduction";
 import MessagingProtocol from "./pages/hardware/guides/messagingProtocol";
