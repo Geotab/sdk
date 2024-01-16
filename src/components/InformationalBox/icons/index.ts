@@ -1,1 +1,1 @@
-export * from './IconInformation';
+export * from "./IconInformation";
