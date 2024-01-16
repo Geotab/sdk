@@ -23,7 +23,7 @@ const resultCategories: Record<string, ComponentType<IconProps>> = {
     [SearchSections.Guides]: IconClipboard
 };
 
-let miniSearch: MiniSearch = new MiniSearch({
+export let miniSearch: MiniSearch = new MiniSearch({
     fields: ["title", "content", "headers"], // fields to index for full-text search
     storeFields: ["title", "category", "breadCrumb", "link"], // fields to return with search results
     searchOptions: {

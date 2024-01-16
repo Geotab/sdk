@@ -1,18 +1,8 @@
 import { MatchInfo } from "minisearch";
 import { searchIndex } from "../../../utils/searchIndex.js";
+import { Page } from "../../../utils/pageInterface.js";
 
 const EXCERPT_CHAR_LENGTH = 200;
-
-interface Page {
-    id: number;
-    title: string;
-    headers: string[];
-    headerIds: string[];
-    content: string;
-    link: string;
-    breadCrumb: string[];
-    category: string;
-}
 
 const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, remainingLength: number, foundIndex: number): number => {
     let half: number = Math.floor(remainingLength / 2);
@@ -31,7 +21,7 @@ export const pullText = (searchId: number, matchTerm: string): string => {
 
     let stringIndex: number = contentString.indexOf(matchTerm);
     if (stringIndex >= 0) {
-        let excerpt:string = "";
+        let excerpt: string = "";
         let numRemainingChars: number = EXCERPT_CHAR_LENGTH - matchTerm.length;
         let numCharsAhead: number = contentString.substring(0, stringIndex).length;
         let numCharsAfter: number = contentString.substring(stringIndex + matchTerm.length).length;

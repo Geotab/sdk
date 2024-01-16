@@ -1,8 +1,9 @@
 /* eslint-disable */
 
-import { searchIndex } from "../../../../src/utils/searchIndex";
 import { searchIndexId } from "../../../../src/utils/buildSearchIndexFromDynamic";
 import { removeHtmlAndSpecificTags } from "./filterString";
+import { Page } from "../../../../src/utils/pageInterface";
+import {miniSearch } from "../../SearchModal/SearchModal";
 
 interface PropertyDescription {
     name: string;
@@ -30,8 +31,8 @@ type ParserOutput = {
 };
 
 
-let buildMethodSearchIndex: any = [];
-let buildObjectSearchIndex: any = [];
+let buildMethodSearchIndex: Page[] = [];
+let buildObjectSearchIndex: Page[] = [];
 let buildMethodSearchIndexAdded = false;
 let buildObjectSearchIndexAdded = false;
 
@@ -59,7 +60,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                     if (itemType === "method" && itemStrings.some((method) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes(method))) {
                         let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem("name")?.nodeValue ?? "").replace(/Async$/, "");
                         
-                        buildMethodSearchIndex.push({}); 
+                        buildMethodSearchIndex.push({id: 0, title: "", headers: [], headerIds: [], content: "", link: "", breadCrumb: [], category: ""}); 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].id = searchIndexId(); 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].title = `${methodName} (...)`; 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].headers = ["Introduction", "Parameters", "Return value", "Code samples"]; 
@@ -176,7 +177,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                         let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") ?? [];
                         let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, "");
 
-                        buildObjectSearchIndex.push({}); 
+                        buildObjectSearchIndex.push({id: 0, title: "", headers: [], headerIds: [], content: "", link: "", breadCrumb: [], category: ""}); 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].id = searchIndexId(); 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].title = `${objectName}`; 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].headers = ["Introduction", "Properties"]; 
@@ -287,12 +288,12 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
     }
 
     if (buildMethodSearchIndex.length > 0 && buildMethodSearchIndexAdded === false) {
-        searchIndex.push(...buildMethodSearchIndex);
+        miniSearch.addAll(buildMethodSearchIndex);
         buildMethodSearchIndexAdded = true;
     }
 
     if (buildObjectSearchIndex.length > 0 && buildObjectSearchIndexAdded === false) {
-        searchIndex.push(...buildObjectSearchIndex);
+        miniSearch.addAll(buildObjectSearchIndex);
         buildObjectSearchIndexAdded = true;
     }
 
