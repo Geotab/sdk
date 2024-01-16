@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { searchIndex } from "../../../../src/utils/searchIndex";
-import { searchIndexId } from "../../../../src/utils/buildSearchIndexFromDynamic";
-import { removeHtmlAndSpecificTags } from "../../../../src/utils/buildSearchIndexFromDynamic";
+import { searchIndexId } from "../../../utils/searchIndexUtils";
+import { removeHtmlAndSpecificTags } from "../../../utils/searchIndexUtils";
 import { Page } from "../../../../src/utils/pageInterface";
 import {miniSearch } from "../../SearchModal/SearchModal";
 
