@@ -7,25 +7,28 @@ import { TableOfContentsItem } from "../../components/TableOfContents/TableOfCon
 import { Link } from "react-router-dom";
 
 const updateDecember042023: ReactNode = (
-  <div className="paragraph">
-    <h2>ApiRatePlan</h2>
-    <ul>
-      <li>
-        In September, we added two parameters (<code className="small-code-sample">isAutoActivated</code> and <code className="small-code-sample">billingStartDate</code>) to the <strong>GetDeviceContractsByPage</strong> and <strong>GetDeviceContracts</strong> methods. As a result, we will be deprecating the <code className="small-code-sample">isAutoActivated</code> property from the <strong>ApiRatePlan</strong> object.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>ApiRatePlan</h2>
+        <ul>
+            <li>
+                In September, we added two parameters (<code className="small-code-sample">isAutoActivated</code> and <code className="small-code-sample">billingStartDate</code>) to the{" "}
+                <strong>GetDeviceContractsByPage</strong> and <strong>GetDeviceContracts</strong> methods. As a result, we will be deprecating the{" "}
+                <code className="small-code-sample">isAutoActivated</code> property from the <strong>ApiRatePlan</strong> object.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateOctober042023: ReactNode = (
-  <div className="paragraph">
-    <h2>PostOrder</h2>
-    <ul>
-      <li>
-        Currently, for the <strong>PostOrder</strong> method, <strong>InvalidDataException</strong> is returned when there is an exception. In a future release, these exceptions will be returned as a <strong>MyAdminException</strong> instead.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>PostOrder</h2>
+        <ul>
+            <li>
+                Currently, for the <strong>PostOrder</strong> method, <strong>InvalidDataException</strong> is returned when there is an exception. In a future release, these exceptions will be
+                returned as a <strong>MyAdminException</strong> instead.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateSeptember052023: ReactNode = (
@@ -115,34 +118,26 @@ const updateJuly292023: ReactNode = (
 );
 
 const updateJuly102023: ReactNode = (
-  <div className="paragraph">
-    <h2>GetOnlineOrderStatus</h2>
-    <ul>
-      <li>
-        In a future release, we will be adding a new <code className="small-code-sample">shippingCost</code> field as a return object to the <strong>GetOnlineOrderStatus</strong> method. This field will return the shipping cost at the time the order was placed.
-      </li>
-      <li>
-        In a future release, the <strong>GetOnlineOrderStatus</strong> method will add a default date range and return order data from the last month if the following parameters are sent as null:
-      </li>
-      <ul>
-        <li>
-          purchaseOrderNo
-        </li>
-        <li>
-          orderNo
-        </li>
-        <li>
-          orderDateFrom
-        </li>
-        <li>
-          orderDateTo
-        </li>
-      </ul>
-      <li>
-        There will also be a limit of 5000 orders that can be retrieved in a single request.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>GetOnlineOrderStatus</h2>
+        <ul>
+            <li>
+                In a future release, we will be adding a new <code className="small-code-sample">shippingCost</code> field as a return object to the <strong>GetOnlineOrderStatus</strong> method.
+                This field will return the shipping cost at the time the order was placed.
+            </li>
+            <li>
+                In a future release, the <strong>GetOnlineOrderStatus</strong> method will add a default date range and return order data from the last month if the following parameters are sent as
+                null:
+            </li>
+            <ul>
+                <li>purchaseOrderNo</li>
+                <li>orderNo</li>
+                <li>orderDateFrom</li>
+                <li>orderDateTo</li>
+            </ul>
+            <li>There will also be a limit of 5000 orders that can be retrieved in a single request.</li>
+        </ul>
+    </div>
 );
 
 const updateJuly012023: ReactNode = (
@@ -215,157 +210,164 @@ const updateJuly012023: ReactNode = (
 );
 
 const updateMay292023: ReactNode = (
-  <div className="paragraph">
-    <h2>GetPartnerDeviceContractsAsync</h2>
-    <ul>
-      <li>
-        To help you find devices faster, we've updated the <strong>GetPartnerDeviceContractsAsync</strong> API to include a database search parameter (<code className="small-code-sample">databaseFilter</code>). This parameter allows you to retrieve a list of devices that are owned by the specified database.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>GetPartnerDeviceContractsAsync</h2>
+        <ul>
+            <li>
+                To help you find devices faster, we've updated the <strong>GetPartnerDeviceContractsAsync</strong> API to include a database search parameter (
+                <code className="small-code-sample">databaseFilter</code>). This parameter allows you to retrieve a list of devices that are owned by the specified database.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateMarch272023: ReactNode = (
-  <div className="paragraph">
-    <h2>ApiDeviceContract</h2>
-    <ul>
-      <li>
-        In an upcoming release, we will use the gateway's activation date as the source for <code className="small-code-sample">FirstDeviceActivationDate</code> when returning an <strong>ApiDeviceContract</strong> object (for example, by calling <strong>GetDeviceContractsByPage</strong>) to align with the Device Admin page
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>ApiDeviceContract</h2>
+        <ul>
+            <li>
+                In an upcoming release, we will use the gateway's activation date as the source for <code className="small-code-sample">FirstDeviceActivationDate</code> when returning an{" "}
+                <strong>ApiDeviceContract</strong> object (for example, by calling <strong>GetDeviceContractsByPage</strong>) to align with the Device Admin page
+            </li>
+        </ul>
+    </div>
 );
 
 const updateMarch062023: ReactNode = (
-  <div className="paragraph">
-    <h2>ApiDeviceContract</h2>
-    <ul>
-      <li>
-        In an upcoming release, we will use the gateway's activation date as the source for <code className="small-code-sample">FirstDeviceActivationDate</code> when returning an <strong>ApiDeviceContract</strong> object (for example, by calling <strong>GetDeviceContractsByPage</strong>) to align with the Device Admin page
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>ApiDeviceContract</h2>
+        <ul>
+            <li>
+                In an upcoming release, we will use the gateway's activation date as the source for <code className="small-code-sample">FirstDeviceActivationDate</code> when returning an{" "}
+                <strong>ApiDeviceContract</strong> object (for example, by calling <strong>GetDeviceContractsByPage</strong>) to align with the Device Admin page
+            </li>
+        </ul>
+    </div>
 );
 
 const updateFebruary132023: ReactNode = (
-  <div className="paragraph">
-    <h2>GetPartnerDeviceContractsAsync</h2>
-    <ul>
-      <li>
-        Currently, the <strong>GetPartnerDeviceContractsAsync</strong> method allows you to return a list of third-party devices under your account.
-      </li>
-      <li>
-        In a future release, we'll enhance the <strong>GetPartnerDeviceContractsAsync</strong> method to return a list that includes all device types, including GO devices.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>GetPartnerDeviceContractsAsync</h2>
+        <ul>
+            <li>
+                Currently, the <strong>GetPartnerDeviceContractsAsync</strong> method allows you to return a list of third-party devices under your account.
+            </li>
+            <li>
+                In a future release, we'll enhance the <strong>GetPartnerDeviceContractsAsync</strong> method to return a list that includes all device types, including GO devices.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateJanuary232023: ReactNode = (
-  <div className="paragraph">
-    <h2>EditUserContact</h2>
-    <ul>
-      <li>
-        To ensure that Customers receive their orders in a timely manner, we've updated the  <strong>EditUserContact</strong> method to validate provided addresses with the option to override invalid addresses if the user has the <code className="small-code-sample">Contact-Override</code> role.
-      </li>
-      <li>
-        The API call will now match how shipping contacts are validated in checkout.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>EditUserContact</h2>
+        <ul>
+            <li>
+                To ensure that Customers receive their orders in a timely manner, we've updated the <strong>EditUserContact</strong> method to validate provided addresses with the option to override
+                invalid addresses if the user has the <code className="small-code-sample">Contact-Override</code> role.
+            </li>
+            <li>The API call will now match how shipping contacts are validated in checkout.</li>
+        </ul>
+    </div>
 );
 
 const updateDecember122022: ReactNode = (
-  <div className="paragraph">
-    <h2>DeviceContractsByPage</h2>
-    <ul>
-      <li>
-        The <code className="small-code-sample">fromdate</code> and <code className="small-code-sample">todate</code> parameters are now optional in the GetDeviceContractsByPage API, so more records can be retrieved.
-      </li>
-    </ul>
-    <h2>OnlineOrderStatus</h2>
-    <ul>
-      <li>
-        A new <code className="small-code-sample">OrderSource</code> parameter has been added to the GetOnlineOrderStatus method.
-      </li>
-      <li>
-        The <code className="small-code-sample">OrderSource</code> parameter allows you to view a list of orders based on the channel used to place the order: MyAdmin, Marketplace, or API.
-      </li>
-    </ul>
-    <h2>EditUserContact</h2>
-    <ul>
-      <li>
-        In an upcoming release, we will update the <strong>EditUserContact</strong> method logic to validate provided addresses, and provide the option to override invalid addresses, if the user has the <code className="small-code-sample">Contact-Override</code> role.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>DeviceContractsByPage</h2>
+        <ul>
+            <li>
+                The <code className="small-code-sample">fromdate</code> and <code className="small-code-sample">todate</code> parameters are now optional in the GetDeviceContractsByPage API, so more
+                records can be retrieved.
+            </li>
+        </ul>
+        <h2>OnlineOrderStatus</h2>
+        <ul>
+            <li>
+                A new <code className="small-code-sample">OrderSource</code> parameter has been added to the GetOnlineOrderStatus method.
+            </li>
+            <li>
+                The <code className="small-code-sample">OrderSource</code> parameter allows you to view a list of orders based on the channel used to place the order: MyAdmin, Marketplace, or API.
+            </li>
+        </ul>
+        <h2>EditUserContact</h2>
+        <ul>
+            <li>
+                In an upcoming release, we will update the <strong>EditUserContact</strong> method logic to validate provided addresses, and provide the option to override invalid addresses, if the
+                user has the <code className="small-code-sample">Contact-Override</code> role.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateDecember052022: ReactNode = (
-  <div className="paragraph">
-    <h2>DeviceContractTransactions</h2>
-    <ul>
-      <li>
-        When calling <strong>GetDeviceContractTransactions</strong>, you will now see a new property in the returned <strong>DeviceContractTransactions</strong> object: int <code className="small-code-sample">UserContactId</code>
-      </li>
-      <li>
-        If null, <code className="small-code-sample">UserContactId</code> will return -1
-      </li>
-      <li>
-        Else, it will return the unique ID that belongs to the user contact
-      </li>
-      <li>
-        This ID can be leveraged alongside <strong>GetUserContacts</strong> to return all the contact details of the user contact (currently <strong>DeviceContractTransactions</strong> only returns <code className="small-code-sample">UserContactName</code>)
-      </li>
-    </ul>
-    <h2>ForceChangePasswordForUsersAsync</h2>
-    <ul>
-      <li>
-        The <strong>ForceChangePasswordForUsersAsync</strong> method now allows you to toggle on 'Force Password Change' for user accounts so that you can decide how often users are resetting their passwords
-      </li>
-      <li>
-        The <strong>ForceChangePasswordForUsersAysync</strong> requires the <code className="small-code-sample">apikey</code>, <code className="small-code-sample">sessionID</code>, and a list of usernames <code className="small-code-sample">userNames</code>, and you must toggle <code className="small-code-sample">forceChangePassword</code> to True or False.
-      </li>
-    </ul>
-    <h2>EditUserContact</h2>
-    <ul>
-      <li>
-        In an upcoming release, we will update the <strong>EditUserContact</strong> method logic to validate provided addresses, and provide the option to override invalid addresses, if the user has the <code className="small-code-sample">Contact-Override</code> role.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>DeviceContractTransactions</h2>
+        <ul>
+            <li>
+                When calling <strong>GetDeviceContractTransactions</strong>, you will now see a new property in the returned <strong>DeviceContractTransactions</strong> object: int{" "}
+                <code className="small-code-sample">UserContactId</code>
+            </li>
+            <li>
+                If null, <code className="small-code-sample">UserContactId</code> will return -1
+            </li>
+            <li>Else, it will return the unique ID that belongs to the user contact</li>
+            <li>
+                This ID can be leveraged alongside <strong>GetUserContacts</strong> to return all the contact details of the user contact (currently <strong>DeviceContractTransactions</strong> only
+                returns <code className="small-code-sample">UserContactName</code>)
+            </li>
+        </ul>
+        <h2>ForceChangePasswordForUsersAsync</h2>
+        <ul>
+            <li>
+                The <strong>ForceChangePasswordForUsersAsync</strong> method now allows you to toggle on 'Force Password Change' for user accounts so that you can decide how often users are
+                resetting their passwords
+            </li>
+            <li>
+                The <strong>ForceChangePasswordForUsersAysync</strong> requires the <code className="small-code-sample">apikey</code>, <code className="small-code-sample">sessionID</code>, and a
+                list of usernames <code className="small-code-sample">userNames</code>, and you must toggle <code className="small-code-sample">forceChangePassword</code> to True or False.
+            </li>
+        </ul>
+        <h2>EditUserContact</h2>
+        <ul>
+            <li>
+                In an upcoming release, we will update the <strong>EditUserContact</strong> method logic to validate provided addresses, and provide the option to override invalid addresses, if the
+                user has the <code className="small-code-sample">Contact-Override</code> role.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateNovember142022: ReactNode = (
-  <div className="paragraph">
-    <h2>ApiOnlineOrder</h2>
-    <ul>
-      <li>
-        A new source parameter has been added to the <code className="small-code-sample">ApiOnlineOrder</code> object: <code className="small-code-sample">OrderSource.</code>
-      </li>
-      <li>
-        The Order source parameter allows you to determine the channel used to place the order: MyAdmin, Marketplace, or API.
-      </li>
-    </ul>
-    <h2>MyInstallLogs</h2>
-    <ul>
-      <li>
-        A new <strong>GetMyInstallLogs</strong> method has been added to allow you to easily retrieve your installation record information.
-      </li>
-    </ul>
-    <h2>CreateExternalVendorDeviceBulkAsync</h2>
-    <ul>
-      <li>
-        A new method, <strong>CreateExternalVendorDeviceBulkAsync</strong>, has been added to make it easier for Marketplace Partners to offer products that do not connect to Geotab gateways.
-      </li>
-      <li>
-        The <strong>CreateExternalVendorDeviceBulkAsync</strong> method allows Marketplace Partners to register devices using serial numbers, as well as the option to include IMEI and SIM numbers, so they show up in MyAdmin.
-      </li>
-      <li>
-        To use this method, you must have the <code className="small-code-sample">DeviceRegister-Bulk</code> role.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>ApiOnlineOrder</h2>
+        <ul>
+            <li>
+                A new source parameter has been added to the <code className="small-code-sample">ApiOnlineOrder</code> object: <code className="small-code-sample">OrderSource.</code>
+            </li>
+            <li>The Order source parameter allows you to determine the channel used to place the order: MyAdmin, Marketplace, or API.</li>
+        </ul>
+        <h2>MyInstallLogs</h2>
+        <ul>
+            <li>
+                A new <strong>GetMyInstallLogs</strong> method has been added to allow you to easily retrieve your installation record information.
+            </li>
+        </ul>
+        <h2>CreateExternalVendorDeviceBulkAsync</h2>
+        <ul>
+            <li>
+                A new method, <strong>CreateExternalVendorDeviceBulkAsync</strong>, has been added to make it easier for Marketplace Partners to offer products that do not connect to Geotab
+                gateways.
+            </li>
+            <li>
+                The <strong>CreateExternalVendorDeviceBulkAsync</strong> method allows Marketplace Partners to register devices using serial numbers, as well as the option to include IMEI and SIM
+                numbers, so they show up in MyAdmin.
+            </li>
+            <li>
+                To use this method, you must have the <code className="small-code-sample">DeviceRegister-Bulk</code> role.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateSeptember192022: ReactNode = (
@@ -540,17 +542,19 @@ const updateJuly112022: ReactNode = (
 );
 
 const updateJune202022: ReactNode = (
-  <div className="paragraph">
-    <h2>Orders</h2>
-    <ul>
-      <li>
-        Currently, MyAdmin does not require a zip code or postal code for shipments. As a result, shipments may be delayed due to blank or invalid zip or postal codes, and require verification before the order can be shipped.
-      </li>
-      <li>
-        To ensure we can get your order shipped as quickly as possible, the Zip Code/Postal Code field will be required, and we're adding the functionality to validate the zip or postal code during the checkout process.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>Orders</h2>
+        <ul>
+            <li>
+                Currently, MyAdmin does not require a zip code or postal code for shipments. As a result, shipments may be delayed due to blank or invalid zip or postal codes, and require
+                verification before the order can be shipped.
+            </li>
+            <li>
+                To ensure we can get your order shipped as quickly as possible, the Zip Code/Postal Code field will be required, and we're adding the functionality to validate the zip or postal code
+                during the checkout process.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateJune062022: ReactNode = (
@@ -595,41 +599,42 @@ const updateJune062022: ReactNode = (
 );
 
 const updateMay162022: ReactNode = (
-  <div className="paragraph">
-    <h2>OnlineOrderStatus</h2>
-    <ul>
-      <li>
-        The <strong>GetOnlineOrderStatus</strong> API has been updated to include a new parameter, <code className="small-code-sample">includeCancelledOrders</code>, which allows you to include cancelled orders in the search results.
-      </li>
-    </ul>
-    <h2>ApiOrderHeader</h2>
-    <ul>
-      <li>
-        An optional parameter <code className="small-code-sample">Requested Delivery Date</code> is going to be added to < strong> ApiOrderHeader</strong> object, so Partners can request a specific delivery date for orders placed through the API.
-      </li>
-    </ul>
-    <h2>Monthly Billing</h2>
-    <ul>
-      <li>
-        In an upcoming release, we're adding an Extended from Database column on the Monthly Billing page for clarity and to improve the Monthly Billing reports for Extendable Services.
-      </li>
-      <li>
-        The Extended from Database column displays the names of the originating databases, when a device has extended services from a database in the selected billing period. We are also renaming the Database column to Database Billed to more accurately describe what this column represents.
-      </li>
-      <li>
-        Please take note of this if your integration uses column names rather than column numbers.
-      </li>
-    </ul>
-    <h2>Orders</h2>
-    <ul>
-      <li>
-        Currently, MyAdmin does not require a zip code or postal code for shipments. As a result, shipments may be delayed due to blank or invalid zip or postal codes, and require verification before the order can be shipped.
-      </li>
-      <li>
-        To ensure we can get your order shipped as quickly as possible, the Zip Code/Postal Code field will be required, and we're adding the functionality to validate the zip or postal code during the checkout process.
-      </li>
-    </ul>
-  </div>
+    <div className="paragraph">
+        <h2>OnlineOrderStatus</h2>
+        <ul>
+            <li>
+                The <strong>GetOnlineOrderStatus</strong> API has been updated to include a new parameter, <code className="small-code-sample">includeCancelledOrders</code>, which allows you to
+                include cancelled orders in the search results.
+            </li>
+        </ul>
+        <h2>ApiOrderHeader</h2>
+        <ul>
+            <li>
+                An optional parameter <code className="small-code-sample">Requested Delivery Date</code> is going to be added to <strong> ApiOrderHeader</strong> object, so Partners can request a
+                specific delivery date for orders placed through the API.
+            </li>
+        </ul>
+        <h2>Monthly Billing</h2>
+        <ul>
+            <li>In an upcoming release, we're adding an Extended from Database column on the Monthly Billing page for clarity and to improve the Monthly Billing reports for Extendable Services.</li>
+            <li>
+                The Extended from Database column displays the names of the originating databases, when a device has extended services from a database in the selected billing period. We are also
+                renaming the Database column to Database Billed to more accurately describe what this column represents.
+            </li>
+            <li>Please take note of this if your integration uses column names rather than column numbers.</li>
+        </ul>
+        <h2>Orders</h2>
+        <ul>
+            <li>
+                Currently, MyAdmin does not require a zip code or postal code for shipments. As a result, shipments may be delayed due to blank or invalid zip or postal codes, and require
+                verification before the order can be shipped.
+            </li>
+            <li>
+                To ensure we can get your order shipped as quickly as possible, the Zip Code/Postal Code field will be required, and we're adding the functionality to validate the zip or postal code
+                during the checkout process.
+            </li>
+        </ul>
+    </div>
 );
 
 const updateApril112022: ReactNode = (
@@ -733,118 +738,138 @@ const updateJanuary312022: ReactNode = (
   </div>
 );
 const pageTitle: PageTitleProps = {
-  "title": "Release Notes",
-  "breadCrumbItems":
-    ["MYA", "Release Notes"]
+    title: "Release Notes",
+    breadCrumbItems: ["MYA", "Release Notes"]
 };
 
-const pageSections: TableOfContentsItem[] =
-  [
+const pageSections: TableOfContentsItem[] = [
     {
-      "elementId": "myadmin-december-4-2023",
-      "summary": "December 4, 2023",
-      "details": updateDecember042023,
-    }, {
-      "elementId": "myadmin-october-4-2023",
-      "summary": "October 4, 2023",
-      "details": updateOctober042023,
-    }, {
-      "elementId": "myadmin-september-5-2023",
-      "summary": "September 5, 2023",
-      "details": updateSeptember052023,
-    }, {
-      "elementId": "myadmin-july-29-2023",
-      "summary": "July 29, 2023",
-      "details": updateJuly292023,
-    }, {
-      "elementId": "myadmin-july-10-2023",
-      "summary": "July 10, 2023",
-      "details": updateJuly102023,
-    }, {
-      "elementId": "myadmin-july-1-2023",
-      "summary": "July 1, 2023",
-      "details": updateJuly012023,
-    }, {
-      "elementId": "myadmin-may-29-2023",
-      "summary": "May 29, 2023",
-      "details": updateMay292023,
-    }, {
-      "elementId": "myadmin-march-27-2023",
-      "summary": "March 27, 2023",
-      "details": updateMarch272023,
-    }, {
-      "elementId": "myadmin-march-6-2023",
-      "summary": "March 6, 2023",
-      "details": updateMarch062023,
-    }, {
-      "elementId": "myadmin-february-13-2023",
-      "summary": "February 13, 2023",
-      "details": updateFebruary132023,
-    }, {
-      "elementId": "myadmin-january-23-2023",
-      "summary": "January 23, 2023",
-      "details": updateJanuary232023,
-    }, {
-      "elementId": "myadmin-december-12-2022",
-      "summary": "December 12, 2022",
-      "details": updateDecember122022,
-    }, {
-      "elementId": "myadmin-december-5-2022",
-      "summary": "December 5, 2022",
-      "details": updateDecember052022,
-    }, {
-      "elementId": "myadmin-november-14-2022",
-      "summary": "November 14, 2022",
-      "details": updateNovember142022,
-    }, {
-      "elementId": "myadmin-september-19-2022",
-      "summary": "September 19, 2022",
-      "details": updateSeptember192022,
-    }, {
-      "elementId": "myadmin-september-12-2022",
-      "summary": "September 12, 2022",
-      "details": updateSeptember122022,
-    }, {
-      "elementId": "myadmin-august-17-2022",
-      "summary": "August 17, 2022",
-      "details": updateAugust172022,
-    }, {
-      "elementId": "myadmin-july-11-2022",
-      "summary": "July 11, 2022",
-      "details": updateJuly112022,
-    }, {
-      "elementId": "myadmin-june-20-2022",
-      "summary": "June 20, 2022",
-      "details": updateJune202022,
-    }, {
-      "elementId": "myadmin-june-6-2022",
-      "summary": "June 6, 2022",
-      "details": updateJune062022,
-    }, {
-      "elementId": "myadmin-may-16-2022",
-      "summary": "May 16, 2022",
-      "details": updateMay162022,
-    }, {
-      "elementId": "myadmin-april-11-2022",
-      "summary": "April 11, 2022",
-      "details": updateApril112022,
-    }, {
-      "elementId": "myadmin-march-25-2022",
-      "summary": "March 25, 2022",
-      "details": updateMarch252022,
-    }, {
-      "elementId": "myadmin-february-28-2022",
-      "summary": "February 28, 2022",
-      "details": updateFebruary282022,
-    }, {
-      "elementId": "myadmin-january-31-2022",
-      "summary": "January 31, 2022",
-      "details": updateJanuary312022,
+        elementId: "myadmin-december-4-2023",
+        summary: "December 4, 2023",
+        details: updateDecember042023
+    },
+    {
+        elementId: "myadmin-october-4-2023",
+        summary: "October 4, 2023",
+        details: updateOctober042023
+    },
+    {
+        elementId: "myadmin-september-5-2023",
+        summary: "September 5, 2023",
+        details: updateSeptember052023
+    },
+    {
+        elementId: "myadmin-july-29-2023",
+        summary: "July 29, 2023",
+        details: updateJuly292023
+    },
+    {
+        elementId: "myadmin-july-10-2023",
+        summary: "July 10, 2023",
+        details: updateJuly102023
+    },
+    {
+        elementId: "myadmin-july-1-2023",
+        summary: "July 1, 2023",
+        details: updateJuly012023
+    },
+    {
+        elementId: "myadmin-may-29-2023",
+        summary: "May 29, 2023",
+        details: updateMay292023
+    },
+    {
+        elementId: "myadmin-march-27-2023",
+        summary: "March 27, 2023",
+        details: updateMarch272023
+    },
+    {
+        elementId: "myadmin-march-6-2023",
+        summary: "March 6, 2023",
+        details: updateMarch062023
+    },
+    {
+        elementId: "myadmin-february-13-2023",
+        summary: "February 13, 2023",
+        details: updateFebruary132023
+    },
+    {
+        elementId: "myadmin-january-23-2023",
+        summary: "January 23, 2023",
+        details: updateJanuary232023
+    },
+    {
+        elementId: "myadmin-december-12-2022",
+        summary: "December 12, 2022",
+        details: updateDecember122022
+    },
+    {
+        elementId: "myadmin-december-5-2022",
+        summary: "December 5, 2022",
+        details: updateDecember052022
+    },
+    {
+        elementId: "myadmin-november-14-2022",
+        summary: "November 14, 2022",
+        details: updateNovember142022
+    },
+    {
+        elementId: "myadmin-september-19-2022",
+        summary: "September 19, 2022",
+        details: updateSeptember192022
+    },
+    {
+        elementId: "myadmin-september-12-2022",
+        summary: "September 12, 2022",
+        details: updateSeptember122022
+    },
+    {
+        elementId: "myadmin-august-17-2022",
+        summary: "August 17, 2022",
+        details: updateAugust172022
+    },
+    {
+        elementId: "myadmin-july-11-2022",
+        summary: "July 11, 2022",
+        details: updateJuly112022
+    },
+    {
+        elementId: "myadmin-june-20-2022",
+        summary: "June 20, 2022",
+        details: updateJune202022
+    },
+    {
+        elementId: "myadmin-june-6-2022",
+        summary: "June 6, 2022",
+        details: updateJune062022
+    },
+    {
+        elementId: "myadmin-may-16-2022",
+        summary: "May 16, 2022",
+        details: updateMay162022
+    },
+    {
+        elementId: "myadmin-april-11-2022",
+        summary: "April 11, 2022",
+        details: updateApril112022
+    },
+    {
+        elementId: "myadmin-march-25-2022",
+        summary: "March 25, 2022",
+        details: updateMarch252022
+    },
+    {
+        elementId: "myadmin-february-28-2022",
+        summary: "February 28, 2022",
+        details: updateFebruary282022
+    },
+    {
+        elementId: "myadmin-january-31-2022",
+        summary: "January 31, 2022",
+        details: updateJanuary312022
     }
-  ];
+];
 
 export default function ReleaseNotes() {
-  return (
-    <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />
-  );
-};
+    return <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />;
+}

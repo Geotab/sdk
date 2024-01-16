@@ -6,14 +6,11 @@ import { TableOfContentsItem } from "../../../components/TableOfContents/TableOf
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 
 const spoofAnExternalDevice: ReactNode = (
-  <div className="paragraph">
-    <p>
-      Run this python script while connected to a GO device via an IOX-RS232
-    </p>
-    <CodeSample
-      language="python"
-      code={
-`import serial
+    <div className="paragraph">
+        <p>Run this python script while connected to a GO device via an IOX-RS232</p>
+        <CodeSample
+            language="python"
+            code={`import serial
 import time
       
 def checksum(message):
@@ -30,7 +27,7 @@ def createMessage(message):
     message = message + check + bytes([0x03])
     return message
       
-# look for ttyUSB in Linux (ls /dev/tty\*)
+# look for ttyUSB in Linux (ls /dev/tty)
 # with serial.Serial(port="/dev/ttyUSB0", baudrate = 9600, timeout=1) as tester:
 # Use COMx in windows
 # with serial.Serial(port="COM4", baudrate = 9600, timeout = 10) as tester:
@@ -71,12 +68,11 @@ if len(readback) == 6 and readback[1] == 1:
         print("data ACK received")
 else:
     print("invalid response")`}
-    />
-    <p>If the script executes successfully against an awake (ideally with Ignition On) GO device, the output should resemble:</p>
-    <CodeSample
-      language="python"
-      code={
-`# sending sync char
+        />
+        <p>If the script executes successfully against an awake (ideally with Ignition On) GO device, the output should resemble:</p>
+        <CodeSample
+            language="python"
+            code={`# sending sync char
 ['0x55']
 
 # waiting for handshake request…
@@ -93,17 +89,16 @@ else:
 ['0x2', '0x2', '0x0', '0x4', '0xa', '0x3']
 
 # data ACK received`}
-    />
-  </div>
+        />
+    </div>
 );
 
 const spoofAGODevice: ReactNode = (
-  <div className="paragraph">
-    <p>Run this Python script to emulate a GO device while your external device is connected via the RS232 port:</p>
-    <CodeSample
-      language="python"
-      code={
-`import serial
+    <div className="paragraph">
+        <p>Run this Python script to emulate a GO device while your external device is connected via the RS232 port:</p>
+        <CodeSample
+            language="python"
+            code={`import serial
 import time
 
 def checksum(message):
@@ -120,7 +115,7 @@ def createMessage(message):
     message = message + check + bytes([0x03])
     return message
 
-# look for ttyUSB in Linux (ls /dev/tty\*)
+# look for ttyUSB in Linux (ls /dev/tty)
 # with serial.Serial(port="/dev/ttyUSB1", baudrate = 9600, timeout = 60) as tester:
 # Use COMx in windows
 # with serial.Serial(port="COM7", baudrate = 9600, timeout = 60) as tester:
@@ -160,43 +155,35 @@ if len(readback) and readback[0] == 0x55:
                 print([hex(b) for b in ackMessage])
                 tester.write(ackMessage)
                 break`}
-     />
-  </div>
+        />
+    </div>
 );
 
 const pageTitle: PageTitleProps = {
-  title: "Python Code Samples",
-  breadCrumbItems: ["Hardware", "Code Samples", "Python"],
+    title: "Python Code Samples",
+    breadCrumbItems: ["Hardware", "Code Samples", "Python"]
 };
 
 const pageSections: TableOfContentsItem[] = [
-  {
-    elementId: "spoof-an-external-device",
-    summary: "Spoof an external Device",
-    details: spoofAnExternalDevice,
-  },
-  {
-    elementId: "spoof-a-go-device",
-    summary: "Spoof a Go Device",
-    details: spoofAGODevice,
-  },
+    {
+        elementId: "spoof-an-external-device",
+        summary: "Spoof an external Device",
+        details: spoofAnExternalDevice
+    },
+    {
+        elementId: "spoof-a-go-device",
+        summary: "Spoof a Go Device",
+        details: spoofAGODevice
+    }
 ];
 
 export default function Python() {
-  return (
-    <Page
-      section={HeaderSections.Hardware}
-      pageTitle={pageTitle}
-      tableOfContents={pageSections}
-    >
-      <div className="paragraph">
-        <p>
-          All Python sample code was tested using Python 3.5.2 (64-bit) running
-          under Windows 10. You will need to install pySerial to test these
-          samples.
-        </p>
-        <code className="small-code-sample">{`pip install pyserial`}</code>
-      </div>
-    </Page>
-  );
+    return (
+        <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections}>
+            <div className="paragraph">
+                <p>All Python sample code was tested using Python 3.5.2 (64-bit) running under Windows 10. You will need to install pySerial to test these samples.</p>
+                <code className="small-code-sample">{`pip install pyserial`}</code>
+            </div>
+        </Page>
+    );
 }

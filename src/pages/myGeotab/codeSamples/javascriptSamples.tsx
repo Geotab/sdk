@@ -12,19 +12,11 @@ const addDriver: ReactNode = (
         <p>
             Demonstrates how to add drivers to your database.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/addDriver.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for adding driver">
+            <a href="https://geotab.github.io/sdk/software/js-samples/addDriver.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for adding driver">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/addDriver.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for adding driver">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/addDriver.html" target="_blank" rel="noopener noreferrer" aria-label="Source for adding driver">
                 Source
             </a>
         </p>
@@ -36,19 +28,11 @@ const addZone: ReactNode = (
         <p>
             Demonstrates how to add zones (geofences) your database.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/addZone.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for adding zone">
+            <a href="https://geotab.github.io/sdk/software/js-samples/addZone.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for adding zone">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/addZone.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for adding zone">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/addZone.html" target="_blank" rel="noopener noreferrer" aria-label="Source for adding zone">
                 Source
             </a>
         </p>
@@ -60,19 +44,11 @@ const dataFeed: ReactNode = (
         <p>
             How to use the GetFeed method and retrieve a continuous stream of GPS, engine status and fault data. This is the most efficient and recommended way of getting an ongoing copy of the data reported by a vehicle.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/dataFeed.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for using datafeed">
+            <a href="https://geotab.github.io/sdk/software/js-samples/dataFeed.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for using datafeed">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/dataFeed.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for data feed">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/dataFeed.html" target="_blank" rel="noopener noreferrer" aria-label="Source for data feed">
                 Source
             </a>
         </p>
@@ -84,19 +60,11 @@ const displayOdometer: ReactNode = (
         <p>
             Display a vehicle's odometer readings over time.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/displayOdometer.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for display odometer">
+            <a href="https://geotab.github.io/sdk/software/js-samples/displayOdometer.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for display odometer">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/displayOdometer.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for display odometer">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/displayOdometer.html" target="_blank" rel="noopener noreferrer" aria-label="Source for display odometer">
                 Source
             </a>
         </p>
@@ -105,32 +73,20 @@ const displayOdometer: ReactNode = (
 
 const getCount: ReactNode = (
     <div className="paragraph">
-        <p>
-            This example demonstrates how to retrieve the number of vehicles and users in your database.
-        </p>
+        <p>This example demonstrates how to retrieve the number of vehicles and users in your database.</p>
         <InformationalBox>
-            <p>
-                This does not use API.js; it has been designed to show you a simple integration example.
-            </p>
+            <p>This does not use API.js; it has been designed to show you a simple integration example.</p>
         </InformationalBox>
         <p>
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/getCount.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for using get count">
+            <a href="https://geotab.github.io/sdk/software/js-samples/getCount.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for using get count">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/getCount.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for get count">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/getCount.html" target="_blank" rel="noopener noreferrer" aria-label="Source for get count">
                 Source
             </a>
         </p>
-    </div >
+    </div>
 );
 
 const getVehicleLocation: ReactNode = (
@@ -138,19 +94,11 @@ const getVehicleLocation: ReactNode = (
         <p>
             This examples shows how to obtain the location of a vehicle.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/getLocation.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for get vehicle location">
+            <a href="https://geotab.github.io/sdk/software/js-samples/getLocation.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for get vehicle location">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/getLocation.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for get vehicle location">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/getLocation.html" target="_blank" rel="noopener noreferrer" aria-label="Source for get vehicle location">
                 Source
             </a>
         </p>
@@ -170,13 +118,9 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing devices">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importDevices.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing devices">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importDevices.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing devices">
                     Source
                 </a></li>
             <li>Import groups -{" "}
@@ -186,13 +130,9 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing groups">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importGroups.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing groups">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importGroups.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing groups">
                     Source
                 </a></li>
             <li>Import hos logs -{" "}
@@ -202,13 +142,9 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing hos logs">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importHosLogs.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing hos logs">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importHosLogs.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing hos logs">
                     Source
                 </a></li>
             <li>Import route plan -{" "}
@@ -218,13 +154,14 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing route plan">
                     Demo
-                </a>
-                {" "}/{" "}
+                </a>{" "}
+                /{" "}
                 <a
                     href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importRoutePlan.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Source for importing route plan">
+                    aria-label="Source for importing route plan"
+                >
                     Source
                 </a></li>
             <li>Import routes -{" "}
@@ -234,13 +171,9 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing routes">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importRoutes.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing routes">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importRoutes.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing routes">
                     Source
                 </a></li>
             <li>Import users -{" "}
@@ -250,13 +183,9 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing users">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importUsers.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing users">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importUsers.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing users">
                     Source
                 </a></li>
             <li>Import zones -{" "}
@@ -266,15 +195,12 @@ const importers: ReactNode = (
                     rel="noopener noreferrer"
                     aria-label="Demo for importing zones">
                     Demo
-                </a>
-                {" "}/{" "}
-                <a
-                    href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importZones.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Source for importing zones">
+                </a>{" "}
+                /{" "}
+                <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/importZones.html" target="_blank" rel="noopener noreferrer" aria-label="Source for importing zones">
                     Source
-                </a></li>
+                </a>
+            </li>
         </ul>
     </div>
 );
@@ -284,19 +210,11 @@ const moveAZone: ReactNode = (
         <p>
             Shows how to move an existing zone (geofence) to a new address using reverse geocoding.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/moveZone.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for moving zone">
+            <a href="https://geotab.github.io/sdk/software/js-samples/moveZone.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for moving zone">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/moveZone.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for moving zone">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/moveZone.html" target="_blank" rel="noopener noreferrer" aria-label="Source for moving zone">
                 Source
             </a>
         </p>
@@ -308,19 +226,11 @@ const pollForTextMessages: ReactNode = (
         <p>
             This example illustrates how to poll the system for new text messages to and from compatible GO devices equipped with Garmin navigation systems.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/pollTextMessages.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for poll text messages">
+            <a href="https://geotab.github.io/sdk/software/js-samples/pollTextMessages.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for poll text messages">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/pollTextMessages.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for poll text messages">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/pollTextMessages.html" target="_blank" rel="noopener noreferrer" aria-label="Source for poll text messages">
                 Source
             </a>
         </p>
@@ -332,19 +242,11 @@ const sendATextMessage: ReactNode = (
         <p>
             This example demonstrates how to send text messages to compatible GO devices equipped with Garmin navigation systems.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/sendTextMessage.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for sending text messages">
+            <a href="https://geotab.github.io/sdk/software/js-samples/sendTextMessage.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for sending text messages">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/sendTextMessage.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for sending text messages">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/sendTextMessage.html" target="_blank" rel="noopener noreferrer" aria-label="Source for sending text messages">
                 Source
             </a>
         </p>
@@ -356,43 +258,28 @@ const showVehicleTripsOnMap: ReactNode = (
         <p>
             You will learn how to retrieve vehicles and their trips for any date and show the trips on a map.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/showTrips.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for showing trips">
+            <a href="https://geotab.github.io/sdk/software/js-samples/showTrips.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for showing trips">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/showTrips.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for showing trips">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/showTrips.html" target="_blank" rel="noopener noreferrer" aria-label="Source for showing trips">
                 Source
             </a>
         </p>
     </div>
 );
 
-const EmbeddedURLs: ReactNode = (
+const embeddedURLs: ReactNode = (
     <div className="paragraph">
         <p>
-            This example demonstrates how you can embed MyGeotab functionality into your existing web applications. This is an excellent way to see how to embed your own vehicles on a map inside your projects.
+            This example demonstrates how you can embed MyGeotab functionality into your existing web applications. This is an excellent way to see how to embed your own vehicles on a map inside
+            your projects.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/singleSignOn.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for single sign on">
+            <a href="https://geotab.github.io/sdk/software/js-samples/singleSignOn.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for single sign on">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/singleSignOn.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for single sign on">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/singleSignOn.html" target="_blank" rel="noopener noreferrer" aria-label="Source for single sign on">
                 Source
             </a>
         </p>
@@ -404,19 +291,16 @@ const statusDataSampler: ReactNode = (
         <p>
             Shows how to retrieve the status data (engine data) for a vehicle.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/statusDataSampler.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for retrieving status data">
+            <a href="https://geotab.github.io/sdk/software/js-samples/statusDataSampler.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for retrieving status data">
                 Demo
-            </a>
-            {" "}/{" "}
+            </a>{" "}
+            /{" "}
             <a
                 href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/statusDataSampler.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Source for retrieving status data">
+                aria-label="Source for retrieving status data"
+            >
                 Source
             </a>
         </p>
@@ -426,21 +310,14 @@ const statusDataSampler: ReactNode = (
 const starterKit: ReactNode = (
     <div className="paragraph">
         <p>
-            This is where we recommend you begin your projects. Use the starter kit to learn how to authenticate with Geotab and how to create simple API calls to retrieve information about your fleet. This example can be used as a base to continue building on or starting your own custom projects.
+            This is where we recommend you begin your projects. Use the starter kit to learn how to authenticate with Geotab and how to create simple API calls to retrieve information about your
+            fleet. This example can be used as a base to continue building on or starting your own custom projects.
             <br />
-            <a
-                href="https://geotab.github.io/sdk/software/js-samples/starterKit.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Demo for starter kit">
+            <a href="https://geotab.github.io/sdk/software/js-samples/starterKit.html" target="_blank" rel="noopener noreferrer" aria-label="Demo for starter kit">
                 Demo
-            </a>
-            {" "}/{" "}
-            <a
-                href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for starter kit">
+            </a>{" "}
+            /{" "}
+            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html" target="_blank" rel="noopener noreferrer" aria-label="Source for starter kit">
                 Source
             </a>
         </p>
@@ -450,27 +327,22 @@ const starterKit: ReactNode = (
 const customerRegistration: ReactNode = (
     <div className="paragraph">
         <p>
-            This example illustrates how to create a custom registration page. With this example, you will be able to: determine if a database name is available; register a new database; perform post-registration setup on the new database; send a confirmation email; and redirect a user to the new database. This is an advanced example and is designed for resellers.
+            This example illustrates how to create a custom registration page. With this example, you will be able to: determine if a database name is available; register a new database; perform
+            post-registration setup on the new database; send a confirmation email; and redirect a user to the new database. This is an advanced example and is designed for resellers.
             <br />
-            <a
-                href="https://github.com/Geotab/sample-registration"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Source for sample customer registration">
+            <a href="https://github.com/Geotab/sample-registration" target="_blank" rel="noopener noreferrer" aria-label="Source for sample customer registration">
                 Source
             </a>
         </p>
     </div>
 );
 
-
 const pageTitle: PageTitleProps = {
-    "title": "JavaScript Samples",
-    "breadCrumbItems": ["MYG", "Code Samples", "JavaScript Samples"]
+    title: "JavaScript Samples",
+    breadCrumbItems: ["MYG", "Code Samples", "JavaScript Samples"]
 };
 
 const pageSections: TableOfContentsItem[] = [
-
     {
         "elementId": "javascript-example-add-driver",
         "summary": "Add a driver",
@@ -532,22 +404,20 @@ const pageSections: TableOfContentsItem[] = [
         "summary": "Customer registration",
         "details": customerRegistration
     }
-]
+];
 
 export default function AddInStorage() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <p>
-                    The following examples show common usages of the SDK using JavaScript. We recommend that you examine the examples in the following order to learn more about building great web applications using the Geotab JavaScript API. These examples are stand-alone HTML, JavaScript and CSS written so you can extract them and "run" them without having your own Web server.
+                    The following examples show common usages of the SDK using JavaScript. We recommend that you examine the examples in the following order to learn more about building great web
+                    applications using the Geotab JavaScript API. These examples are stand-alone HTML, JavaScript and CSS written so you can extract them and "run" them without having your own Web
+                    server.
                 </p>
                 <p>
                     You can also use the{" "}
-                    <a
-                        href="https://geotab.github.io/sdk/software/api/runner.html"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="MyGeotab API Runner">
+                    <a href="https://geotab.github.io/sdk/software/api/runner.html" target="_blank" rel="noreferrer" aria-label="MyGeotab API Runner">
                         API Runner tool
                     </a>{" "}
                     to run code snippets that you can run directly against a database. The runner has code snippets that demonstrate:
@@ -578,4 +448,4 @@ export default function AddInStorage() {
             </div>
         </Page>
     );
-};
+}

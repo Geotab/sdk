@@ -25,7 +25,8 @@ const driveOverview: ReactNode = (
         </p>
         <img src={driveAddInImage} alt="Drive dashboard" />
         <p>
-            To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including a trailing forward slash). The menuName, url, and version will remain unchanged. For example:
+            To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including
+            a trailing forward slash). The menuName, url, and version will remain unchanged. For example:
         </p>
         <h2>Listing 1 - Geotab Drive "item" configuration</h2>
         <CodeSample
@@ -38,14 +39,17 @@ const driveOverview: ReactNode = (
         "en": "English Label",
         "fr": "French Label"
     }
-}]`} />
+}]`}
+        />
         <InformationalBox>
             <p>
                 The array of <strong>items</strong> also allows you to have one link item in MyGeotab, and another link item to Geotab Drive
             </p>
         </InformationalBox>
         <p>
-            There are also 2 additional properties that are optional for the configuration file that control the availability to additional page lifecycle methods, <em>onStartup</em> and <em>onShutdown</em>. These configuration properties are boolean, they can be set to <em>true</em> if they are to be used and <em>false</em> when not in use. By default these 2 properties will be set to false if not included in the configuration file.
+            There are also 2 additional properties that are optional for the configuration file that control the availability to additional page lifecycle methods, <em>onStartup</em> and{" "}
+            <em>onShutdown</em>. These configuration properties are boolean, they can be set to <em>true</em> if they are to be used and <em>false</em> when not in use. By default these 2 properties
+            will be set to false if not included in the configuration file.
         </p>
         <ol>
             <li>
@@ -57,19 +61,19 @@ const driveOverview: ReactNode = (
         </ol>
         <InformationalBox>
             <p>
-                More information about these 2 methods can be found in this {" "}
-                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing"
+                More information about these 2 methods can be found in this{" "}
+                <a
+                    href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing"
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="Drive App Add-In SDK (Software Development Kit)">
+                    aria-label="Drive App Add-In SDK (Software Development Kit)"
+                >
                     document
                 </a>
                 .
             </p>
         </InformationalBox>
-        <p>
-            e.g.
-        </p>
+        <p>e.g.</p>
         <CodeSample
             language="json"
             code={`{
@@ -93,8 +97,9 @@ const driveOverview: ReactNode = (
     }],
     "onStartup": true,
     "onShutdown": true
-}`} />
-    </div >
+}`}
+        />
+    </div>
 );
 
 const driveLifeCycle: ReactNode = (
@@ -104,20 +109,24 @@ const driveLifeCycle: ReactNode = (
         </p>
         <h2>Startup</h2>
         <p>
-            When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.
+            When the dashboard page is visible, the startup method is only called once. If the user navigates away from the page then navigates back, the startup method is not called again. If the
+            Add-In requires re-initialization, the user must either log out and log in again, or refresh the application.
         </p>
         <CodeSample
             language="javascript"
             code={`startup: function (freshApi, freshState, initializeCallback) {
     // Code that needs to be executed on dashboard should go here
     initializeCallback();
-}`} />
+}`}
+        />
         <h2>Shutdown</h2>
         <p>
-            Shutdown Add-Ins are executed when the final driver logs out of the Drive App. If there are co-drivers, and one of the co-drivers logs out (while other drivers remain logged in to the Drive App), the shutdown Add-In is not executed.
+            Shutdown Add-Ins are executed when the final driver logs out of the Drive App. If there are co-drivers, and one of the co-drivers logs out (while other drivers remain logged in to the
+            Drive App), the shutdown Add-In is not executed.
         </p>
         <p>
-            Additionally, the Add-In is expected to return a promise since shutdown Add-Ins have a 15-second time limit to perform their function before the Add-Ins time out and the logout process is completed. The time limit prevents the application from freezing in the middle of the logout process as a result of faulty Add-Ins.
+            Additionally, the Add-In is expected to return a promise since shutdown Add-Ins have a 15-second time limit to perform their function before the Add-Ins time out and the logout process
+            is completed. The time limit prevents the application from freezing in the middle of the logout process as a result of faulty Add-Ins.
         </p>
         <CodeSample
             language="javascript"
@@ -126,14 +135,16 @@ const driveLifeCycle: ReactNode = (
         // Do work, make any api calls etc
         resolve() // eventually need to call this somewhere so the promise resolves
     });
-}`} />
+}`}
+        />
     </div>
 );
 
 const driveApiAndState: ReactNode = (
     <div className="paragraph">
         <p>
-            Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
+            Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide
+            you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
         </p>
         <h2>Table 1 - Geotab Drive additional properties and methods</h2>
         <div className="table-container">
@@ -149,33 +160,51 @@ const driveApiAndState: ReactNode = (
                 <tbody>
                     <tr>
                         <td>api.mobile.exists()</td>
-                        <td>Returns <code className="small-code-sample">true</code> if Geotab Drive is running within a native application, and <code className="small-code-sample">false</code> if just as a HTML5 web application</td>
+                        <td>
+                            Returns <code className="small-code-sample">true</code> if Geotab Drive is running within a native application, and <code className="small-code-sample">false</code> if
+                            just as a HTML5 web application
+                        </td>
                         <td>None</td>
                         <td>Boolean</td>
                     </tr>
                     <tr>
                         <td>api.mobile.getVersion()</td>
-                        <td>If <code className="small-code-sample">api.mobile.exists()</code>, gets the Geotab Drive version from the native application</td>
+                        <td>
+                            If <code className="small-code-sample">api.mobile.exists()</code>, gets the Geotab Drive version from the native application
+                        </td>
                         <td>None</td>
                         <td>String</td>
                     </tr>
                     <tr>
                         <td>api.mobile.speak()</td>
-                        <td>If <code className="small-code-sample">api.mobile.exists()</code>, uses the text to speech functionality on the mobile device</td>
+                        <td>
+                            If <code className="small-code-sample">api.mobile.exists()</code>, uses the text to speech functionality on the mobile device
+                        </td>
                         <td>String</td>
                         <td>Void</td>
                     </tr>
                     <tr>
                         <td>api.mobile.notify()</td>
-                        <td>If <code className="small-code-sample">api.mobile.exists()</code>, will add a notification to the top bar of a native operating system Example: <code className="small-code-sample">api.mobile.notify("Fill up your vehicle", "Low on gas")</code></td>
+                        <td>
+                            If <code className="small-code-sample">api.mobile.exists()</code>, will add a notification to the top bar of a native operating system Example:{" "}
+                            <code className="small-code-sample">api.mobile.notify("Fill up your vehicle", "Low on gas")</code>
+                        </td>
                         <td>String[Message], String[Title], String[Id], [String[JsonData]], [Boolean[Permanent]]</td>
                         <td>Void</td>
                     </tr>
                     <tr>
                         <td>api.mobile.notification.hasPermission()</td>
-                        <td>Asynchronously checks the notification permission for the Drive App and returns a promise. e.g. <code className="small-code-sample">notification.hasPermission().then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))</code></td>
+                        <td>
+                            Asynchronously checks the notification permission for the Drive App and returns a promise. e.g.{" "}
+                            <code className="small-code-sample">
+                                notification.hasPermission().then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))
+                            </code>
+                        </td>
                         <td>None</td>
-                        <td>Promise that resolves with a message object. e.g. Response object <code className="small-code-sample">{`{"id":0, "text":"Message", "title":"Title", "icon":"res://ic_stat_notification", "smallIcon":"res://ic_stat_notification", "priority":1 }`}</code> If notification is not successful it can give the following messages:
+                        <td>
+                            Promise that resolves with a message object. e.g. Response object{" "}
+                            <code className="small-code-sample">{`{"id":0, "text":"Message", "title":"Title", "icon":"res://ic_stat_notification", "smallIcon":"res://ic_stat_notification", "priority":1 }`}</code>{" "}
+                            If notification is not successful it can give the following messages:
                             <ol>
                                 <li>Notification permission denied</li>
                                 <li>Request notification permission is not supported</li>
@@ -184,9 +213,15 @@ const driveApiAndState: ReactNode = (
                     </tr>
                     <tr>
                         <td>api.mobile.notification.requestPermission()</td>
-                        <td>Checks the notification permission for the Drive App and returns a promise. e.g. <code className="small-code-sample">notification.hasPermission().then((result) ={`>`} console.log('Notification permission: ', result)).catch((error) ={`>`} console.error(error));</code></td>
+                        <td>
+                            Checks the notification permission for the Drive App and returns a promise. e.g.{" "}
+                            <code className="small-code-sample">
+                                notification.hasPermission().then((result) ={`>`} console.log('Notification permission: ', result)).catch((error) ={`>`} console.error(error));
+                            </code>
+                        </td>
                         <td>None</td>
-                        <td>Promise that resolves with one of the following messages:
+                        <td>
+                            Promise that resolves with one of the following messages:
                             <ol>
                                 <li>Notification permission not granted</li>
                                 <li>Notification permission granted</li>
@@ -196,9 +231,20 @@ const driveApiAndState: ReactNode = (
                     </tr>
                     <tr>
                         <td>api.mobile.notification.notify()</td>
-                        <td>Sends a native notification to the user with the provided title and message. If the application does not yet have notification permission, we will requestNotificationPermission() then notify() if the user granted permission; otherwise, the promise is rejected.</td>
-                        <td>message: String, title: String e.g. <code className="small-code-sample">notification.notify(message, title).then(result ={`>`} console.log(result)).catch( error ={`>`} console.error(error))</code></td>
-                        <td>Promise that resolves with a message object. e.g. Response object <code className="small-code-sample">{`{"id":0, "text":"Message", "title":"Title", "icon":"res://ic_stat_notification", "smallIcon":"res://ic_stat_notification", "priority":1 }`}</code> If notification is not successful it can give the following messages:
+                        <td>
+                            Sends a native notification to the user with the provided title and message. If the application does not yet have notification permission, we will
+                            requestNotificationPermission() then notify() if the user granted permission; otherwise, the promise is rejected.
+                        </td>
+                        <td>
+                            message: String, title: String e.g.{" "}
+                            <code className="small-code-sample">
+                                notification.notify(message, title).then(result ={`>`} console.log(result)).catch( error ={`>`} console.error(error))
+                            </code>
+                        </td>
+                        <td>
+                            Promise that resolves with a message object. e.g. Response object{" "}
+                            <code className="small-code-sample">{`{"id":0, "text":"Message", "title":"Title", "icon":"res://ic_stat_notification", "smallIcon":"res://ic_stat_notification", "priority":1 }`}</code>{" "}
+                            If notification is not successful it can give the following messages:
                             <ol>
                                 <li>Notification permission denied</li>
                                 <li>Request notification permission is not supported</li>
@@ -207,25 +253,44 @@ const driveApiAndState: ReactNode = (
                     </tr>
                     <tr>
                         <td>api.mobile.notification.update()</td>
-                        <td>Allows you to update the content of active notifications. To update active notifications that have not yet been acknowledged, the original notification id -- created at the time the notification is sent -- must be provided. e.g. <code className="small-code-sample">notification.update(message, title, id).then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))</code></td>
+                        <td>
+                            Allows you to update the content of active notifications. To update active notifications that have not yet been acknowledged, the original notification id -- created at
+                            the time the notification is sent -- must be provided. e.g.{" "}
+                            <code className="small-code-sample">
+                                notification.update(message, title, id).then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))
+                            </code>
+                        </td>
                         <td>message: String, title: String, id: Integer</td>
                         <td>Void</td>
                     </tr>
                     <tr>
                         <td>api.mobile.notification.cancel()</td>
-                        <td>e.g. <code className="small-code-sample">notification.cancel(id).then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))</code></td>
+                        <td>
+                            e.g.{" "}
+                            <code className="small-code-sample">
+                                notification.cancel(id).then(result ={`>`} console.log(result)).catch(error ={`>`} console.error(error))
+                            </code>
+                        </td>
                         <td>id: Integer</td>
                         <td>Void</td>
                     </tr>
                     <tr>
                         <td>api.mobile.geolocation</td>
-                        <td>A navigator object that is similar to HTML5  <code className="small-code-sample">navigator.geolocation</code> Example:  <code className="small-code-sample">api.mobile.geolocation.getCurrentPosition(function (position) { }, function (error) { }, {`{enableHighAccuracy: true }`})</code></td>
+                        <td>
+                            A navigator object that is similar to HTML5 <code className="small-code-sample">navigator.geolocation</code> Example:{" "}
+                            <code className="small-code-sample">
+                                api.mobile.geolocation.getCurrentPosition(function (position) {}, function (error) {}, {`{enableHighAccuracy: true }`})
+                            </code>
+                        </td>
                         <td>None</td>
                         <td>None</td>
                     </tr>
                     <tr>
                         <td>api.mobile.camera.takePicture()</td>
-                        <td>If <code className="small-code-sample">api.mobile.exists()</code>, will open up a modal with the following options <code className="small-code-sample">New Picture</code> and <code className="small-code-sample">Upload</code>.</td>
+                        <td>
+                            If <code className="small-code-sample">api.mobile.exists()</code>, will open up a modal with the following options <code className="small-code-sample">New Picture</code>{" "}
+                            and <code className="small-code-sample">Upload</code>.
+                        </td>
                         <td>None</td>
                         <td>Promise&lt;octet-stream&gt;</td>
                     </tr>
@@ -265,13 +330,21 @@ const driveApiAndState: ReactNode = (
                     <tr>
                         <td>api.mobile.navigate()</td>
                         <td>Navigates to default pages on Geotab Drive.</td>
-                        <td>url: String (REQUIRED) String Valid page values: assets, hos, hos/logs, dvir, messaging, inspection, and settings. <em>Note: param will append the string at the end of the URL path with a comma ',' as a delimiter</em></td>
+                        <td>
+                            url: String (REQUIRED) String Valid page values: assets, hos, hos/logs, dvir, messaging, inspection, and settings.{" "}
+                            <em>Note: param will append the string at the end of the URL path with a comma ',' as a delimiter</em>
+                        </td>
                         <td>Void</td>
                     </tr>
                     <tr>
                         <td>api.mobile.listenTo()</td>
                         <td>Event listener that executes the specified callback function whenever a change on the state is detected</td>
-                        <td>Callback Function e.g. <code className="small-code-sample">listenTo((newState) ={`>`} {`{ console.log(JSON.stringify(newState)); }`})</code></td>
+                        <td>
+                            Callback Function e.g.{" "}
+                            <code className="small-code-sample">
+                                listenTo((newState) ={`>`} {`{ console.log(JSON.stringify(newState)); }`})
+                            </code>
+                        </td>
                         <td>Void</td>
                     </tr>
                     <tr>
@@ -323,7 +396,6 @@ const driveApiAndState: ReactNode = (
                                 TextMessage
                             </HashLink >{" "}
                         </td>
-                        <td>TextMessage: Object e.g. <code className="small-code-sample">{`{device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal' } }`}</code> <em>Note: isDirectionToVehicle needs to be true when using this function.</em></td>
                         <td>undefined</td>
                     </tr>
                     <tr>
@@ -467,34 +539,22 @@ const driveApiAndState: ReactNode = (
 const driveThirdPartyFromURISchema: ReactNode = (
     <div className="paragraph">
         <InformationalBox>
-            <p>
-                Drive app v4.1.0+
-            </p>
+            <p>Drive app v4.1.0+</p>
         </InformationalBox>
         <p>
-            It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to <code className="small-code-sample">window.open</code>.
+            It's possible to open different applications like prontoforms or native calendar from add-ins. To do so, it's important to construct correct URI schema string and pass it to{" "}
+            <code className="small-code-sample">window.open</code>.
         </p>
+        <p>For example:</p>
+        <CodeSample language="javascript" code={`window.open(uriSchemaString, "_system")`} />
+        <p>Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:</p>
+        <CodeSample language="javascript" code={`window.open("twitter://messages", "_system")`} />
         <p>
-            For example:
+            You can't use just <code className="small-code-sample">twitter://</code> as it's not correct and app won't open. You need to specify which page you want to open:{" "}
+            <code className="small-code-sample">messages</code>, <code className="small-code-sample">account</code> etc.
         </p>
-        <CodeSample
-            language="javascript"
-            code={`window.open(uriSchemaString, "_system")`} />
-        <p>
-            Make sure to read carefully documentation of the app you're trying to open to use correct schema. For example, to open twitter application from addin you should use:
-        </p>
-        <CodeSample
-            language="javascript"
-            code={`window.open("twitter://messages", "_system")`} />
-        <p>
-            You can't use just <code className="small-code-sample">twitter://</code> as it's not correct and app won't open. You need to specify which page you want to open: <code className="small-code-sample">messages</code>, <code className="small-code-sample">account</code> etc.
-        </p>
-        <p>
-            To open webpage you need to use the same method, but with this notation:
-        </p>
-        <CodeSample
-            language="javascript"
-            code={`window.open("https://google.com", "_blank")`} />
+        <p>To open webpage you need to use the same method, but with this notation:</p>
+        <CodeSample language="javascript" code={`window.open("https://google.com", "_blank")`} />
         <InformationalBox>
             <p>
                 <code className="small-code-sample">_blank</code> is important, especially for iOS devices
@@ -505,36 +565,22 @@ const driveThirdPartyFromURISchema: ReactNode = (
 
 const driveFromThirdParty: ReactNode = (
     <div className="paragraph">
-        <p>
-            On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:
-        </p>
+        <p>On Android and iOS devices with the Geotab Drive app installed, a URL handler is registered which can:</p>
         <ul>
             <li>Launch Drive,</li>
             <li>Navigate to a specified page in Drive, and</li>
             <li>Automatically log into Drive with a token (session ID, user name, and database name) retrieved by authenticating against MyGeotab's API in a third-party app</li>
         </ul>
-        <p>
-            Deep linking is used to provide a seamless link from a third-party app into the Geotab Drive app.
-        </p>
-        <p>
-            On the most basic level, launching Geotab Drive to the main screen, can be executed by creating a link to:
-        </p>
-        <CodeSample
-            language="javascript"
-            code={`geotabdrive://`} />
+        <p>Deep linking is used to provide a seamless link from a third-party app into the Geotab Drive app.</p>
+        <p>On the most basic level, launching Geotab Drive to the main screen, can be executed by creating a link to:</p>
+        <CodeSample language="javascript" code={`geotabdrive://`} />
 
+        <p>From there, it's possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.</p>
         <p>
-            From there, it's possible to automatically login and/or link to specific modules or pages of the Geotab Drive app.
-        </p>
-        <p>
-            For more information on how to <strong>Automatic Login, Single Sign-on</strong> and <strong>Navigate to Desired Page</strong> on Geotab Drive app, please refer to {" "}
-            <a href="https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Geotab Drive Single Sign-on and Deep Linking">
+            For more information on how to <strong>Automatic Login, Single Sign-on</strong> and <strong>Navigate to Desired Page</strong> on Geotab Drive app, please refer to{" "}
+            <a href="https://docs.google.com/document/d/1RwIaVmQ6VEYF9BIMlM4Bp2zWP5ulDX5Xh4NVINPDYzA" target="_blank" rel="noreferrer" aria-label="Geotab Drive Single Sign-on and Deep Linking">
                 Geotab Drive Single Sign-on and Deep Linking
             </a>
-
         </p>
     </div>
 );
@@ -551,10 +597,7 @@ const driveResources: ReactNode = (
                 </a>
             </li>
             <li>
-                <a href="https://docs.google.com/document/d/19crX8xXYsYNY-NwP6PGc7LFqOk2KV1xzNgwdJ-40kb8/edit?usp=sharing"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Daily Totals in the API">
+                <a href="https://docs.google.com/document/d/19crX8xXYsYNY-NwP6PGc7LFqOk2KV1xzNgwdJ-40kb8/edit?usp=sharing" target="_blank" rel="noreferrer" aria-label="Daily Totals in the API">
                     DriverRegulation (Daily Totals)
                 </a>
             </li>
@@ -563,15 +606,15 @@ const driveResources: ReactNode = (
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Drive Add-Ins",
-    "breadCrumbItems": ["Drive", "Add-Ins", "Drive Add-Ins"]
+    title: "Drive Add-Ins",
+    breadCrumbItems: ["Drive", "Add-Ins", "Drive Add-Ins"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "drive-add-in-overview",
-        "summary": "Overview",
-        "details": driveOverview
+        elementId: "drive-add-in-overview",
+        summary: "Overview",
+        details: driveOverview
     },
     {
         "elementId": "drive-add-in-lifecycle-methods",
@@ -605,11 +648,9 @@ export default function DriveAddIns() {
         <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
                 <InformationalBox>
-                    <p>
-                        Geotab Drive Add-Ins are in preview release and subject to change
-                    </p>
+                    <p>Geotab Drive Add-Ins are in preview release and subject to change</p>
                 </InformationalBox>
             </div>
         </Page>
     );
-};
+}

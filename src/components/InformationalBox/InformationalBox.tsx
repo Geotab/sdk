@@ -12,9 +12,7 @@ export default function InformationalBox(props: InformationalBoxProps) {
             <div className="icon-container">
                 <IconInformation />
             </div>
-            <div>
-                {props.children}
-            </div>
+            <div>{props.children}</div>
         </div>
     );
 }
