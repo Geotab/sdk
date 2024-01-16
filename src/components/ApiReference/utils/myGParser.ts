@@ -33,9 +33,6 @@ type ParserOutput = {
 
 let buildMethodSearchIndex: Page[] = [];
 let buildObjectSearchIndex: Page[] = [];
-let buildMethodSearchIndexAdded = false;
-let buildObjectSearchIndexAdded = false;
-
 
 function extractSubstrings(input: string): string {
     const webMethodsMatch: RegExpMatchArray | null = input.match(/WebMethods\.([a-zA-Z]+)/);
@@ -287,14 +284,9 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
         }
     }
 
-    if (buildMethodSearchIndex.length > 0 && buildMethodSearchIndexAdded === false) {
+    if (buildMethodSearchIndex.length > 0 && buildObjectSearchIndex.length > 0) {
         miniSearch.addAll(buildMethodSearchIndex);
-        buildMethodSearchIndexAdded = true;
-    }
-
-    if (buildObjectSearchIndex.length > 0 && buildObjectSearchIndexAdded === false) {
         miniSearch.addAll(buildObjectSearchIndex);
-        buildObjectSearchIndexAdded = true;
     }
 
     return json;
