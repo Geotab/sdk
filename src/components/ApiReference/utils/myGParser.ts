@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+import { searchIndex } from "../../../../src/utils/searchIndex";
 import { searchIndexId } from "../../../../src/utils/buildSearchIndexFromDynamic";
 import { removeHtmlAndSpecificTags } from "./filterString";
 import { Page } from "../../../../src/utils/pageInterface";
@@ -285,8 +285,9 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
     }
 
     if (buildMethodSearchIndex.length > 0 && buildObjectSearchIndex.length > 0) {
-        miniSearch.addAll(buildMethodSearchIndex);
-        miniSearch.addAll(buildObjectSearchIndex);
+        searchIndex.push(...buildMethodSearchIndex);
+        searchIndex.push(...buildObjectSearchIndex);
+        miniSearch.addAll(searchIndex);
     }
 
     return json;
