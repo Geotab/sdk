@@ -36,6 +36,8 @@ export let miniSearch: MiniSearch = new MiniSearch({
     }
 });
 
+miniSearch.addAll(searchIndex); //TODO: should we do this asynchronously? how do we handle the UI until it's ready
+
 export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.Element | null {
     const modalRef: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
     const inputRef: React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement | null>(null);

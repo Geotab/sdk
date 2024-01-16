@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { searchIndex } from "../../../../src/utils/searchIndex";
 import { searchIndexId } from "../../../../src/utils/buildSearchIndexFromDynamic";
-import { removeHtmlAndSpecificTags } from "./filterString";
+import { removeHtmlAndSpecificTags } from "../../../../src/utils/buildSearchIndexFromDynamic";
 import { Page } from "../../../../src/utils/pageInterface";
 import {miniSearch } from "../../SearchModal/SearchModal";
 
@@ -62,8 +62,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].title = `${methodName} (...)`; 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].headers = ["Introduction", "Parameters", "Return value", "Code samples"]; 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].headerIds = ["introduction", "parameters", "return value", "code samples"]; 
-                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content = "";
-                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].link= `myGeotab/apiReference/methods/${methodName}`; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].link= `/myGeotab/apiReference/methods/${methodName}`; 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].breadCrumb = ["MYG", "API Reference", "Methods", methodName + " (...)"]; 
                         buildMethodSearchIndex[buildMethodSearchIndex.length - 1].category = "reference"; 
                         let parametersHeaderAdded = false;
@@ -179,8 +178,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].title = `${objectName}`; 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].headers = ["Introduction", "Properties"]; 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].headerIds = ["introduction", "properties"]; 
-                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].content = "";
-                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].link= `myGeotab/apiReference/objects/${objectName}`; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].link= `/myGeotab/apiReference/objects/${objectName}`; 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].breadCrumb = ["MYG", "API Reference", "Objects", objectName]; 
                         buildObjectSearchIndex[buildObjectSearchIndex.length - 1].category = "reference"; 
 
@@ -287,7 +285,8 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
     if (buildMethodSearchIndex.length > 0 && buildObjectSearchIndex.length > 0) {
         searchIndex.push(...buildMethodSearchIndex);
         searchIndex.push(...buildObjectSearchIndex);
-        miniSearch.addAll(searchIndex);
+        miniSearch.addAll(buildMethodSearchIndex);
+        miniSearch.addAll(buildObjectSearchIndex);
     }
 
     return json;
