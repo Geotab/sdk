@@ -14,3 +14,16 @@
     flex-direction: column;
     gap: 32px;
 }
+
+.method-object-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.detailsContent {
+    h2 {
+        margin-bottom: 0px;
+        color: $text-primary;
+    }
+}
