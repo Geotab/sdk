@@ -1,22 +1,22 @@
 import { ReactNode, useState } from "react";
 import { IconChevronUp, IconChevronDown } from "@geotab/react-component-library";
-import "./accordion.scss";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
+import "./accordion.scss";
 
-interface AccordionContents {
+interface AccordionProps {
     summary: string;
     p: ReactNode;
     id: string;
 }
 
-export function createAccordions(pageSections: TableOfContentsItem[]): ReactNode[] {
+export function createAccordions(pageSections: TableOfContentsItem[]): JSX.Element[] {
     return pageSections.map((section) => <Accordion summary={section.summary} p={section.details} id={section.elementId} key={section.elementId} />);
 }
 
-export default function Accordion(props: AccordionContents): JSX.Element {
+export default function Accordion(props: AccordionProps) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
-    let icon: ReactNode = expanded ? <IconChevronUp /> : <IconChevronDown />;
+    let icon: JSX.Element = expanded ? <IconChevronUp /> : <IconChevronDown />;
 
     function handleToggle(e: React.ChangeEvent<HTMLDetailsElement>): void {
         const detailsElement = e.target as HTMLDetailsElement;
