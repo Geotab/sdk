@@ -93,7 +93,7 @@ const objectModel: ReactNode = (
             </table>
         </div>
         <p>*Required when adding</p>
-        <h4>Solution id</h4>
+        <h4>Solution ID</h4>
         <p>
             A SolutionId must be created before the Storage API methods can be used within your solution. This encoded GUID is used to register and identify which solution some data is associated
             with. SolutionId is a mandatory parameter when calling MediaFile Add, optionally with Get. This allows each solutions' data to be isolated from the data used by other solutions. This

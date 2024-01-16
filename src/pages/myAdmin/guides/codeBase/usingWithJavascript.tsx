@@ -43,29 +43,13 @@ myAdminApi().call('Authenticate', logonParams, function(user) {
     apiKey = user.userId;
     sessionId = user.sessionId;
 });`}
-<<<<<<< HEAD
-    />
-    <p>
-      In the above example, the code passes the user name and password in the{" "}
-      <code className="small-code-sample">logonParams</code> object and provides
-      a callback function to be executed following a successful login. The
-      callback function receives an ApiUser object which contains, among other
-      properties, the user's API key (userId) and session ID. See the reference{" "}
-      documentation for more information on the{" "}
-      <Link to="/myAdmin/apiReference/methods">Authenticate</Link> method and
-      the <Link to="/myAdmin/apiReference/objects">ApiUser</Link> object.
-    </p>
-  </div>
-=======
         />
         <p>
             In the above example, the code passes the user name and password in the <code className="small-code-sample">logonParams</code> object and provides a callback function to be executed
-            following a successful login. The callback function receives an ApiUser object which contains, among other properties, the user's API key (userId) and session ID. See the{" "}
-            <a href="../../api/reference"> {/* ToDo: fix link */}Reference</a> documentation for more information on the <code className="small-code-sample">Authenticate</code> method and the{" "}
-            <code className="small-code-sample">ApiUser</code> object.
+            following a successful login. The callback function receives an ApiUser object which contains, among other properties, the user's API key (userId) and session ID. See the reference{" "}
+            documentation for more information on the <Link to="/myAdmin/apiReference/methods">Authenticate</Link> method and the <Link to="/myAdmin/apiReference/objects">ApiUser</Link> object.
         </p>
     </div>
->>>>>>> INTGR-123
 );
 
 const step2MakingCallsToOtherMethods: ReactNode = (
@@ -89,48 +73,9 @@ myAdminApi().call('GetDevicePlans', devicePlanParams, function(devicePlans) {
 );
 
 const moreInformation: ReactNode = (
-<<<<<<< HEAD
-  <div className="paragraph">
-    <p>
-      For more information, see the{" "}
-      <Link to="/myAdmin/codeSamples/javascriptExamples">
-        JavaScript Examples
-      </Link>{" "}
-      section.
-    </p>
-  </div>
-);
-
-const pageTitle: PageTitleProps = {
-  title: "Using With JavaScript",
-  breadCrumbItems: ["MYA", "Guides", "Code Base", "Using With JavaScript"],
-};
-
-const pageSections: TableOfContentsItem[] = [
-  {
-    elementId: "overview",
-    summary: "Overview",
-    details: overview,
-  },
-  {
-    elementId: "step-1:-initialization-&-authentication",
-    summary: "Step 1: initialization & authentication",
-    details: step1InitializationAuthentication,
-  },
-  {
-    elementId: "step-2:-making-calls-to-other-methods",
-    summary: "Step 2: making calls to other methods",
-    details: step2MakingCallsToOtherMethods,
-  },
-  {
-    elementId: "more-information",
-    summary: "More information",
-    details: moreInformation,
-  },
-=======
     <div className="paragraph">
         <p>
-            For more information, see the <a href="../../code-samples/javascript-examples">{/*TODO: fix link */}JavaScript Examples</a> section.
+            For more information, see the <Link to="/myAdmin/codeSamples/javascriptExamples">JavaScript Examples</Link> section.
         </p>
     </div>
 );
@@ -148,20 +93,19 @@ const pageSections: TableOfContentsItem[] = [
     },
     {
         elementId: "step-1:-initialization-&-authentication",
-        summary: "Step 1: Initialization & Authentication",
+        summary: "Step 1: initialization & authentication",
         details: step1InitializationAuthentication
     },
     {
         elementId: "step-2:-making-calls-to-other-methods",
-        summary: "Step 2: Making Calls To Other Methods",
+        summary: "Step 2: making calls to other methods",
         details: step2MakingCallsToOtherMethods
     },
     {
         elementId: "more-information",
-        summary: "More Information",
+        summary: "More information",
         details: moreInformation
     }
->>>>>>> INTGR-123
 ];
 
 export default function UsingWithJavascript() {

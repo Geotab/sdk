@@ -43,7 +43,7 @@ const deviceManagement: ReactNode = (
                 )
             </li>
             <li>
-                <HashLink to="/myAdmin/apiReference/methods#ProvisionDeviceToAccount_1">ProvisionDeviceToAccount</HashLink> (an example is given in{" "}
+                <HashLink to="/myAdmin/apiReference/methods#ProvisionDeviceToAccount_1">{/*TODO: Confirm*/}ProvisionDeviceToAccount</HashLink> (an example is given in{" "}
                 <a
                     href="https://docs.google.com/document/d/1Mddnxc2qKBCNYvVu0-BXcyR-blPlHwa0Zun0mBzZt88/edit#heading=h.eghr27v40pev"
                     target="_blank"
@@ -55,7 +55,7 @@ const deviceManagement: ReactNode = (
                 )
             </li>
             <li>
-                <HashLink to="/myAdmin/apiReference/methods#ProvisionDevice_1">ProvisionDevice</HashLink> (an example is given in{" "}
+                <HashLink to="/myAdmin/apiReference/methods#ProvisionDevice_1">{/*TODO: Confirm*/}ProvisionDevice</HashLink> (an example is given in{" "}
                 <a
                     href="https://docs.google.com/document/d/1Mddnxc2qKBCNYvVu0-BXcyR-blPlHwa0Zun0mBzZt88/edit#heading=h.eghr27v40pev"
                     target="_blank"
@@ -67,10 +67,10 @@ const deviceManagement: ReactNode = (
                 )
             </li>
             <li>
-                <HashLink to="/myAdmin/apiReference/methods#UpdateDeviceContracts">UpdateDeviceContracts</HashLink>
+                <HashLink to="/myAdmin/apiReference/methods#UpdateDeviceContracts">{/*TODO: Confirm*/}UpdateDeviceContracts</HashLink>
             </li>{" "}
             <li>
-                <HashLink to="/myAdmin/apiReference/methods#TerminateDeviceBilling">TerminateDeviceBilling</HashLink>
+                <HashLink to="/myAdmin/apiReference/methods#TerminateDeviceBilling">{/*TODO: Confirm*/}TerminateDeviceBilling</HashLink>
             </li>{" "}
         </ul>
     </div>

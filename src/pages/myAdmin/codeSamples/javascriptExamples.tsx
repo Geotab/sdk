@@ -5,6 +5,7 @@ import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 import myadminApiExample from "../../../assets/images/javascriptExamples/myadminApiExample.png";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { Link } from "react-router-dom";
 
 const javascriptCodeExampleSnippet = `<html>
     <body>
@@ -80,12 +81,12 @@ const javascriptExampleCodeSnippet1: ReactNode = (
             <li>Error callback (optional).</li>
         </ul>
         <p>
-            <strong>Note</strong>: The Success callback receives the object returned by the API as a parameter. The <a href="../../api/reference">{/*TODO: fix link */}Reference</a> page provides
+            <strong>Note</strong>: The Success callback receives the object returned by the API as a parameter. The <Link to="/myAdmin/apiReference/methods">{/*TODO: Confirm */}Reference</Link> page provides
             details about the objects returned by each method. In the example above, the error callback is called if the login fails. The error callback receives two parameters: an error message and
             an “errors” object that contains an array of individual errors that occurred. In the example above, the <code className="small-code-sample">devicePlans</code> object — returned by
             <code className="small-code-sample">GetDevicePlans</code> — is an array of <code className="small-code-sample">ApiDevicePlans</code>. The device object, returned by{" "}
             <code className="small-code-sample">LookupDevice</code>, is an <code className="small-code-sample">ApiDeviceInstallResult</code>. For more information, see{" "}
-            <a href="../../api/reference"> {/*TODO: fix link */}Reference</a>.{" "}
+            <Link to="/myAdmin/apiReference/methods"> {/*TODO: fix link */}Reference</Link>.{" "}
         </p>
         <img src={myadminApiExample} alt="MyAdmin Api Example" className="javascriptExamples__myadminApiExampleIMG" />
     </div>
@@ -108,10 +109,8 @@ export default function JavascriptExamples() {
     return (
         <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                <p>
-                    The example below demonstrates a simple JavaScript application that authenticates with the MyAdmin API, then calls <code className="small-code-sample">GetDevicePlans</code> and{" "}
-                    <code className="small-code-sample">LookupDevice</code>.
-                </p>
+                The example below demonstrates a simple JavaScript application that authenticates with the MyAdmin API, then calls <code className="small-code-sample">GetDevicePlans</code> and{" "}
+                <code className="small-code-sample">LookupDevice</code>.
             </div>
         </Page>
     );

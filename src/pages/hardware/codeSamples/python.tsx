@@ -165,29 +165,16 @@ const pageTitle: PageTitleProps = {
 };
 
 const pageSections: TableOfContentsItem[] = [
-<<<<<<< HEAD
-  {
-    elementId: "spoof-an-external-device",
-    summary: "Spoof an external device",
-    details: spoofAnExternalDevice,
-  },
-  {
-    elementId: "spoof-a-go-device",
-    summary: "Spoof a GO device",
-    details: spoofAGODevice,
-  },
-=======
     {
         elementId: "spoof-an-external-device",
-        summary: "Spoof an external Device",
+        summary: "Spoof an external device",
         details: spoofAnExternalDevice
     },
     {
         elementId: "spoof-a-go-device",
-        summary: "Spoof a Go Device",
+        summary: "Spoof a GO device",
         details: spoofAGODevice
     }
->>>>>>> INTGR-123
 ];
 
 export default function Python() {
