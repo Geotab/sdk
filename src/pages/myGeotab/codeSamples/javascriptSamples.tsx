@@ -437,7 +437,7 @@ const showVehicleTripsOnMap: ReactNode = (
     </div >
 );
 
-const EmbeddedURLs: ReactNode = (
+const embeddedURLs: ReactNode = (
     <div className="paragraph">
         <p>
             This example demonstrates how you can embed MyGeotab functionality into your existing web applications. This is an excellent way to see how to embed your own vehicles on a map inside your projects.
@@ -588,7 +588,7 @@ const pageSections: TableOfContentsItem[] = [
     }, {
         "elementId": "javascript-example-embedded-urls",
         "summary": "Embedded URLs",
-        "details": EmbeddedURLs
+        "details": embeddedURLs
     }, {
         "elementId": "javascript-example-status-data-sampler",
         "summary": "Status data sampler",
@@ -602,7 +602,7 @@ const pageSections: TableOfContentsItem[] = [
         "summary": "Customer registration",
         "details": customerRegistration
     }
-]
+];
 
 export default function AddInStorage() {
     return (
@@ -648,4 +648,4 @@ export default function AddInStorage() {
             </div>
         </Page >
     );
-};
+}
