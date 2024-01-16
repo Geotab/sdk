@@ -29,7 +29,7 @@ export default function Object(): JSX.Element {
         <div className="paragraph">
             {properties.map((property: ObjectProperty, index: number) => (
                 <div key={`param-${index}`}>
-                    <h3>{property.name}</h3>
+                    <h2>{property.name}</h2>
                     {RenderStringWithUrl(property.name, property.description)}
                 </div>
             ))}

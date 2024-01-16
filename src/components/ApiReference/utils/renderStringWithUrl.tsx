@@ -90,7 +90,7 @@ export default function RenderStringWithUrl(name: string, text: string): JSX.Ele
                 renderedText.push(<ul key={`ul-${renderedText.length}`}>{listItems}</ul>);
                 listItems = [];
             }
-            renderedText.push(<p key={`p-${index}`}>{segments}</p>);
+            renderedText.push(<div key={`p-${index}`}>{segments}</div>);
         }
     });
 

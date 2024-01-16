@@ -34,7 +34,7 @@ export default function Method(): JSX.Element {
         <div className="paragraph">
             {parameters.map((parameter: MethodParameter, index: number) => (
                 <div key={`param-${index}`}>
-                    <h3>{parameter.name}</h3>
+                    <h2>{parameter.name}</h2>
                     {RenderStringWithUrl(parameter.name, parameter.description)}
                 </div>
             ))}
