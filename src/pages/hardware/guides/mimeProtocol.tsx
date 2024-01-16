@@ -32,11 +32,11 @@ const prerequisites: ReactNode = (
                 </ul>
             </li>
         </ul>
-        <h2>Protocol</h2>
+        <h3>Protocol</h3>
         <p>
             The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.
         </p>
-        <h2>Binary data packets</h2>
+        <h4>Binary data packets</h4>
         <p>To accommodate external devices with memory constraints, the packet size is adjustable when sending messages to/from MyGeotab. The packets have a maximum size of 1000 bytes.</p>
         <div className="table-container">
             <table>
@@ -65,7 +65,7 @@ const prerequisites: ReactNode = (
             [1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets
             need to be sent, the sequence number must reset to a value of 1 and continue counting.
         </p>
-        <h2>MIME data</h2>
+        <h4>MIME data</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -99,7 +99,7 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Acknowledge message</h3>
+        <h4>Acknowledge message</h4>
         <p>
             When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of
             payload bytes received.
@@ -142,9 +142,9 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Example</h2>
+        <h3>Example</h3>
         <p>This is an example of binary data packets for image data transferred using the MIME type “image/jpeg”. The image size is 83000 bytes. The packet size is 235.</p>
-        <h3>First packet:</h3>
+        <h4>First packet:</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -304,6 +304,6 @@ const pageSections: TableOfContentsItem[] = [
     }
 ];
 
-export default function MimeProtocol() {
+export default function mimeProtocol() {
     return <Page section={HeaderSections.Hardware} pageTitle={pageTitle} tableOfContents={pageSections} />;
 }
