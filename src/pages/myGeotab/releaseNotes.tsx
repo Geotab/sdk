@@ -9,8 +9,6 @@ import { TableOfContentsItem } from "../../components/TableOfContents/TableOfCon
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-//ToDo Update Object Links
-//ToDo Update Reference Page Link
 const update11: ReactNode = (
     <div className="paragraph">
         <h2>Get and GetFeed for FuelUsed and FillUp</h2>
@@ -105,7 +103,6 @@ const update11: ReactNode = (
     </div>
 );
 
-//ToDo Update Developing Add-Ins Page
 const update10: ReactNode = (
     <div className="paragraph">
         <h2>SDK updates</h2>
@@ -224,7 +221,6 @@ const update10: ReactNode = (
     </div>
 );
 
-//ToDo Update Concepts Page Link
 const update9: ReactNode = (
     <div className="paragraph">
         <h2>Custom security identifiers for Add-Ins</h2>
@@ -327,7 +323,6 @@ const update9: ReactNode = (
     </div>
 );
 
-//ToDo Update Reference Page Link
 const update8: ReactNode = (
     <div className="paragraph">
         <h2>Special note about Trailer and Device</h2>
@@ -625,8 +620,6 @@ const update7: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Introduction Page Link
 const update6: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -805,7 +798,6 @@ const update2103: ReactNode = (
     </div>
 );
 
-//ToDo Update DIG URL
 const update2102: ReactNode = (
     <div className="paragraph">
         <h2>Data Intake Gateway (DIG)</h2>
@@ -935,8 +927,6 @@ const update2101: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Method Links
 const update2004: ReactNode = (
     <div className="paragraph">
         <h2>New Media File API</h2>
@@ -1227,8 +1217,6 @@ const update2004: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Method Links
 const update2003: ReactNode = (
     <div className="paragraph">
         <h2>General improvements</h2>
@@ -1333,10 +1321,6 @@ const update2003: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Method Links
-//ToDo Update Hardware Link
-//ToDo Update SDK Reference Link
 const update2002: ReactNode = (
     <div className="paragraph">
         <h2>NuGet</h2>
@@ -1352,21 +1336,12 @@ const update2002: ReactNode = (
 	"mapScript": {
 		"script": "..."
 	}
-<<<<<<< HEAD
-}`
-            }/>
-        <p>You can now hide Vehicle State and Groups information from the tooltip when hovering or selecting vehicles on the Map. See the example below.</p>
-        <CodeSample
-            language="javascript"
-            code={`service.tooltip.setConfig({
-=======
 }`}
         />
         <p>You can now hide Vehicle State and Groups information from the tooltip when hovering or selecting vehicles on the Map. See the example below.</p>
         <CodeSample
             language="javascript"
             code={`service.tooltip.setConfig({
->>>>>>> INTGR-123
 	device: {
 		state: false,
 		groups: false
@@ -1519,8 +1494,6 @@ const update2002: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Method Links
 const update2001: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1588,7 +1561,6 @@ const update2001: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
 const update1904: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1629,8 +1601,6 @@ const update1904: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Method Links
 const update1903: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1700,8 +1670,6 @@ const update1903: ReactNode = (
     </div>
 );
 
-//ToDo Update Object Links
-//ToDo Update Concepts Page Link
 const update1902: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1806,7 +1774,6 @@ const update1902: ReactNode = (
     </div>
 );
 
-//ToDo Update Object links
 const update1901: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1831,7 +1798,6 @@ const update1901: ReactNode = (
     </div>
 );
 
-//ToDo Update API.cs link
 const update1804Dot1: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1842,8 +1808,6 @@ const update1804Dot1: ReactNode = (
     </div>
 );
 
-//ToDo Update API.cs link
-//ToDo Update methods/objects links
 const update1804: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1913,8 +1877,6 @@ const update1804: ReactNode = (
     </div>
 );
 
-//ToDo: Update CD reference link
-//ToDo: Update object link
 const update1803: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -1931,7 +1893,6 @@ const update1803: ReactNode = (
     </div>
 );
 
-//ToDo: Update all object links
 const update1802: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2091,8 +2052,6 @@ const update1707: ReactNode = (
     </div>
 );
 
-//ToDo: Update helpdesk link
-//ToDo: Update API Wrapper link (this links to my112.geotab.com...)
 const update1706: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2241,7 +2200,6 @@ const update1612: ReactNode = (
     </div>
 );
 
-//ToDo: Update SDK Concepts link
 const update1611: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2507,7 +2465,6 @@ const update1511: ReactNode = (
     </div>
 );
 
-//ToDo: Update reference link
 const update1509: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2692,7 +2649,6 @@ const update1509: ReactNode = (
     </div>
 );
 
-//ToDo: Update reference link
 const update1508: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2758,7 +2714,6 @@ const update1504: ReactNode = (
 
 
 //ToDo: Need Faizan's feedback on these forum post URLs
-//ToDo: Update reference link
 const update1502: ReactNode = (
     <div className="paragraph">
         <ul>
@@ -2775,7 +2730,7 @@ const update1502: ReactNode = (
                 <p>Adding, setting and removing of some entities has been disabled via the API. Exception Event, Trip, Status Data, Fault Data, Log Record with exceptions for adding odometer and engine hours adjustments and dismissing faults</p>
             </li>
             <li>
-                <p>Clearer documentation of date and long values in <a href="../reference">API Reference</a></p>
+                <p>Clearer documentation of date and long values in <Link to="/myGeotab/apiReference/methods">API Reference</Link></p>
             </li>
             <li>
                 <p>Data Feed section added to Guides portion of SDK (<a href="https://docs.google.com/document/d/1LJfb57qyBX2WklnqioHtlWkYN9xKBWxA_FIpaJzjKyY/edit" target="_blank" rel="noopener noreferrer">see document</a>)</p>

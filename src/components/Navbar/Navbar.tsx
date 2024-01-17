@@ -18,18 +18,6 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
         navigate("/sdk");
     };
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <div>
-        <Link to="/myGeotab/introduction">Introduction</Link>
-      </div>
-      <div>
-        <Link to="/myGeotab/whatsNew">Release Notes</Link>
-      </div>
-      <div>
-        Guides
-=======
     const handleMenuItemClick = (menuItem: SideNavigationMenuItemType): void => {
         if (menuItem.route) {
             navigate(menuItem.route);
@@ -51,7 +39,6 @@ export default function Navbar({ section }: NavbarProps): JSX.Element {
     });
 
     return (
->>>>>>> INTGR-123
         <div>
             <TooltipProvider>
                 <SideNavigationCollapseProvider>
