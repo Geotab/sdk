@@ -93,13 +93,13 @@ const objectModel: ReactNode = (
             </table>
         </div>
         <p>*Required when adding</p>
-        <h4>Solution Id</h4>
+        <h4>Solution ID</h4>
         <p>
             A SolutionId must be created before the Storage API methods can be used within your solution. This encoded GUID is used to register and identify which solution some data is associated
             with. SolutionId is a mandatory parameter when calling MediaFile Add, optionally with Get. This allows each solutions' data to be isolated from the data used by other solutions. This
             allows multiple solutions to each have their own collection of MediaFile objects in the same database without the collections mixing. To generate your own SolutionId, please use
             following{" "}
-            <a target="_blank" rel="noreferrer" href="https://geotab.github.io/sdk/software/api/runner.html#sample:generate-addin-guid">
+            <a target="_blank" rel="noreferrer" href="https://geotab.github.io/sdk/software/api/runner.html#sample:generate-addin-guid" aria-label="Generate addIn guid example">
                 example
             </a>
             .
@@ -182,21 +182,6 @@ const objectModel: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <p>*Required when adding</p>
-        <h3>Thumbnails</h3>
-        <p>
-            A media file can reference a list of up to 5 other media files which serve as the thumbnail for it via the <code className="small-code-sample">MediaFile.Thumbnails</code> collection. For
-            example a video media file can reference a jpeg file which serves as it's thumbnail.
-        </p>
-        <h3>Tags</h3>
-        <p>
-            Generic <code className="small-code-sample">Tags</code> can be linked to media files. Tags can be used to categorizing "like" media.
-        </p>
-        <InformationalBox>
-            <p>
-                Searching for media by <code className="small-code-sample">Tag</code> is not yet implemented.
-            </p>
-        </InformationalBox>
     </div>
 );
 
@@ -249,7 +234,7 @@ const security: ReactNode = (
         <p>
             Credentials are required for all <code className="small-code-sample">MediaFile</code> and <code className="small-code-sample">Tag</code> related requests.
         </p>
-        <h3>Security Clearances</h3>
+        <h3>Security clearances</h3>
         <p>
             There are two security clearances applying to media files. By default only administrator clearance will be able to modify files, while clearances derived from view only will be able to
             view files. SecurityIdentifier: <code className="small-code-sample">ViewMedia</code>, <code className="small-code-sample"> ManageMedia</code>.
@@ -352,9 +337,9 @@ const api: ReactNode = (
 
 const limits: ReactNode = (
     <div className="paragraph">
-        <h3>Result Limit</h3>
+        <h3>Result limit</h3>
         <p>A maximum of 10,000 MediaFile objects will be returned from Get:MediaFile and/or GetFeed:MediaFile requests.</p>
-        <h3>Rate Limit</h3>
+        <h3>Rate limit</h3>
         <p>
             <b>:MediaFile</b> 1000 requests per minute, per user
         </p>
@@ -367,7 +352,7 @@ const limits: ReactNode = (
         <p>
             <b>UploadMediaFile</b> 60 file upload requests per minute, per user 10,000 file uploads per day, per user
         </p>
-        <h3> Size Limit</h3>
+        <h3> Size limit</h3>
         <p>Image files (.png, .jpg, .gif, .webp) are limited to 10MB. Video files (.mp4) are limited to 50MB.</p>
         <InformationalBox>
             <p>In MyGeotab v6.0 file size limits were increased. Images from 2MB to 10MB and of videos from 10MB to 50MB.</p>
@@ -383,12 +368,12 @@ const pageTitle: PageTitleProps = {
 const pageSections: TableOfContentsItem[] = [
     {
         elementId: "object-model",
-        summary: "Object Model",
+        summary: "Object model",
         details: objectModel
     },
     {
         elementId: "supported-file-types",
-        summary: "Supported File Types",
+        summary: "Supported file types",
         details: supportedFileTypes
     },
     {
@@ -419,7 +404,7 @@ export default function MgMediaFiles() {
                         generic entity method pattern (<code className="small-code-sample">Add</code>, <code className="small-code-sample">Get</code>, <code className="small-code-sample">Set</code>,{" "}
                         <code className="small-code-sample">Remove</code>, <code className="small-code-sample">GetFeed</code>).
                     </li>
-                    <br></br>
+                    <br />
                     <li>
                         The binary data of the media file. This the the actual file, for example a jpeg image. The binary files are interacted with using bespoke methods{" "}
                         <code className="small-code-sample">DownloadMediaFile</code> and <code className="small-code-sample">UploadMediaFile.</code>

@@ -96,7 +96,7 @@ module.exports = {
         ],
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-for-in-array": "error",
-        "@typescript-eslint/no-inferrable-types": "error",
+        "@typescript-eslint/no-inferrable-types": "warn",
         "@typescript-eslint/no-misused-new": "error",
         "@typescript-eslint/no-namespace": "error",
         "@typescript-eslint/no-non-null-assertion": "off",
@@ -199,14 +199,8 @@ module.exports = {
                 "selector": ["class", "typeAlias", "typeParameter", "enum"],
                 "format": ["PascalCase"]
             },
-            // {
-            //     "selector": "interface",
-            //     "format": ["PascalCase"],
-            //     "prefix": ["I"]
-            // },
             {
                 "selector": "function",
-                "modifiers": ["exported"],
                 "format": ["camelCase", "PascalCase"]
             },
             {
