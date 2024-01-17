@@ -10,7 +10,7 @@ import { SearchSections } from "./searchSectionsEnum";
 
 import "./searchModal.scss";
 
-interface SearchModalProps {
+export interface SearchModalProps {
     isOpen: boolean;
     onClose: () => void;
 }

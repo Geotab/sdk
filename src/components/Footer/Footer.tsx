@@ -1,7 +1,7 @@
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
 
-interface FooterLink {
+export interface FooterLink {
     href: string;
     label: string;
 }
