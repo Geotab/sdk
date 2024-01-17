@@ -52,7 +52,7 @@ if (xml === null) {
         pageSections.push(pageSectionObject);
 
         return (
-            <div key={methodDetails[0]} className="paragraph method-object-container reference-page-content" id={methodDetails[0]}>
+            <div key={methodDetails[0]} className="paragraph method-object-container" id={methodDetails[0]}>
                 <h3 className="methods__method-title">
                     {methodDetails[0] + " (...)"}
                     <Link to={`./${methodDetails[0]}`} className="methods__view-button">
