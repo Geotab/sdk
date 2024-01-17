@@ -13,8 +13,8 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-router-hash-link": "^2.4.9",
     "babel-preset-react-app": "^10.0.1",
-    "minisearch": "^6.3.0",
     "jsdom": "^23.2.0",
+    "minisearch": "^6.3.0",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.4",
     "react-dom": "^18.2.0",
@@ -32,6 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:verbose": "react-scripts test --verbose",
+    "test:coverage": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject",
     "build-search-static": "node ./src/utils/buildSearchIndexFromStatic.js",
     "lint": "eslint src/**/*.{ts,tsx}",
@@ -58,14 +60,15 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@types/react": "^18.2.47",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "@types/react": "^18.2.47",
     "gh-pages": "^6.0.0",
     "react-router-hash-link": "^2.4.3",
-    "sass": "^1.69.0"
+    "sass": "^1.69.0",
+    "ts-jest": "^29.1.1"
   }
 }

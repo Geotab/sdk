@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import LandingPage from "./pages";
 import { BrowserRouter } from "react-router-dom";
 
+// TODO: complete remaining tests
+
 describe("Landing page", () => {
     test("should have a brief description about the site.", () => {
         render(
