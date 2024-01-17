@@ -43,5 +43,5 @@ export const methodsCodeSamples: Record<string, CodeSamples> =
         "csharp": `await api.CallAsync<DateTime>("GetSystemTimeUtc")`,
         "python": `await api.call("GetSystemTimeUtc")`,
         "java": `/* Work in progress - Coming soon */`
-    },
+    }
 };
