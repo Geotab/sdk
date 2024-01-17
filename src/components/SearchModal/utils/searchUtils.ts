@@ -1,18 +1,8 @@
 import { MatchInfo } from "minisearch";
-import { searchIndex } from "../mockSearchData";
+import { searchIndex } from "../../../utils/searchIndex.js";
+import { Page } from "../../../utils/pageInterface.js";
 
 const EXCERPT_CHAR_LENGTH = 200;
-
-interface Page {
-    id: number;
-    title: string;
-    headers: string[];
-    headerIds: string[];
-    content: string;
-    link: string;
-    breadCrumb: string[];
-    category: string;
-}
 
 const findStartingStringIndex = (numCharsAhead: number, numCharsAfter: number, remainingLength: number, foundIndex: number): number => {
     let half: number = Math.floor(remainingLength / 2);

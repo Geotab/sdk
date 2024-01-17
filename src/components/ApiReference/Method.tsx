@@ -42,9 +42,9 @@ export default function Method(): JSX.Element {
 
     const parameterParagraphs: ReactNode = (
         <div className="paragraph">
-            {parameters.map((parameter: MethodParameter) => (
-                <div key={parameter.name}>
-                    <h3>{parameter.name}</h3>
+            {parameters.map((parameter: MethodParameter, index: number) => (
+                <div key={`param-${index}`}>
+                    <h2>{parameter.name}</h2>
                     {RenderStringWithUrl(parameter.name, parameter.description)}
                 </div>
             ))}

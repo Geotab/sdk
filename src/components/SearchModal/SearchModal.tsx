@@ -3,9 +3,10 @@ import { useRef, useEffect, useCallback, useState, ComponentType } from "react";
 import { IconSearch, IconClipboard, IconServer, Tabs, TabConfig, IconProps } from "@geotab/react-component-library";
 import { IconClearSearch } from "./icons/IconClearSearch";
 import SearchResultTabContent from "./SearchResultTabContent";
-import searchIndex from "./mockSearchData";
+import { searchIndex } from "../../utils/searchIndex.js";
 import MiniSearch, { SearchResult } from "minisearch";
 import { SearchSections } from "./searchSectionsEnum";
+
 
 import "./searchModal.scss";
 
@@ -22,7 +23,7 @@ const resultCategories: Record<string, ComponentType<IconProps>> = {
     [SearchSections.Guides]: IconClipboard
 };
 
-let miniSearch: MiniSearch = new MiniSearch({
+export let miniSearch: MiniSearch = new MiniSearch({
     fields: ["title", "content", "headers"], // fields to index for full-text search
     storeFields: ["title", "category", "breadCrumb", "link"], // fields to return with search results
     searchOptions: {
@@ -34,6 +35,7 @@ let miniSearch: MiniSearch = new MiniSearch({
         }
     }
 });
+
 miniSearch.addAll(searchIndex); //TODO: should we do this asynchronously? how do we handle the UI until it's ready
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.Element | null {
