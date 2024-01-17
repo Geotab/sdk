@@ -24,7 +24,48 @@ await api.CallAsync<Id>(
         entity = zone
     }
 );`,
-        "python": "",
+        "python": `await api.add_async(
+    "Zone",
+    entity={
+        "name": "Example zone " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S:%s"),
+        "mustIdentifyStops": True,
+        "displayed": True,
+        "activeFrom": "1986-01-01T00:00:00.000Z",
+        "activeTo": "2050-01-01T00:00:00.000Z",
+        "zoneTypes": ["ZoneTypeOfficeId"],
+        "fillColor": {"r": 255, "g": 165, "b": 0, "a": 191},
+        "points": [
+            {"x": -79.712318, "y": 43.438266},
+            {"x": -79.711181, "y": 43.437461},
+            {"x": -79.712677, "y": 43.436168},
+            {"x": -79.713966, "y": 43.437107},
+            {"x": -79.712318, "y": 43.438266}
+        ],
+        "groups": [{"id": "GroupCompanyId"}]
+    }
+)
+# OR
+await api.call_async(
+    "Add",
+    typeName="Zone",
+    entity={
+        "name": "Example zone " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S:%s"),
+        "mustIdentifyStops": True,
+        "displayed": True,
+        "activeFrom": "1986-01-01T00:00:00.000Z",
+        "activeTo": "2050-01-01T00:00:00.000Z",
+        "zoneTypes": ["ZoneTypeOfficeId"],
+        "fillColor": {"r": 255, "g": 165, "b": 0, "a": 191},
+        "points": [
+            {"x": -79.712318, "y": 43.438266},
+            {"x": -79.711181, "y": 43.437461},
+            {"x": -79.712677, "y": 43.436168},
+            {"x": -79.713966, "y": 43.437107},
+            {"x": -79.712318, "y": 43.438266}
+        ],
+        "groups": [{"id": "GroupCompanyId"}]
+    }
+)`,
         "java": "/* Work in progress - Coming soon */"
     },
     "Authenticate": {
@@ -36,29 +77,20 @@ api.authenticate()`,
         "java": "/* Work in progress - Coming soon */"
     },
     "SetUserPassword": {
-        "javascript": "",
-        "csharp": "",
-        "python": "",
+        "javascript": `api.call("SetUserPassword", {
+    "newPassword": "<new password for the current user>"
+});`,
+        "csharp": `await api.CallAsync<Task>("SetUserPassword", new { newPassword = "<new password for the current user>" });`,
+        "python": `await api.call_async("SetUserPassword", newPassword = "<new password for the current user>")`,
         "java": "/* Work in progress - Coming soon */"
     },
+    // TODO: Add C# & Python of GenerateCaptcha after consulting team SDK
     "GenerateCaptcha": {
         "javascript": "",
         "csharp": "",
         "python": "",
         "java": "/* Work in progress - Coming soon */"
     },
-
-
-//     "api.call("Get",{"typeName":"Device",
-//                "resultsLimit": 10,
-//     "search": {
-//         "fromDate": new Date().toISOString()
-//     },
-//     "propertySelector": {
-//         "fields": ["id", "name"]
-//     }
-// });
-// "
     "Get": {
         "javascript": "",
         "csharp": `await api.CallAsync<List<Device>>(
@@ -79,16 +111,16 @@ api.authenticate()`,
         }
     }
 );`,
-        "python": `api.call_async(
-    "Get",
-    typeName = "Device",
+        "python": `api.get_async(
+    "Device",
     resultsLimit = 10,
     search = { "fromDate": datetime.datetime.now() },
     propertySelector = { "fields": ["id", "name"] }
 )
 # OR
-api.get_async(
-    "Device",
+api.call_async(
+    "Get",
+    typeName = "Device",
     resultsLimit = 10,
     search = { "fromDate": datetime.datetime.now() },
     propertySelector = { "fields": ["id", "name"] }
@@ -101,11 +133,11 @@ api.get_async(
     "GetAddresses",
     new
     {
-        coordinates = 10,
+        coordinates = new List<Coordinate> { new Coordinate(x: 25.856667, y: -17.924444) },
         movingAddresses = true
     }
 );`,
-        "python": `api.call_async(
+        "python": `await api.call_async(
     "GetAddresses",
     coordinates = [{"x":"25.856667", "y":" -17.924444"}],
     movingAddresses = True
