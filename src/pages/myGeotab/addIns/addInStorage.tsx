@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 import { Page } from "./../../../components";
 import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
@@ -67,32 +68,24 @@ const creatingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            {/* TODO: update link */}
-                            <a href="#Id">Id</a>
+                            <Link to="/myGeotab/apiReference/objects/Id">
+                                Id
+                            </Link>
                         </td>
                         <td>The standard Id for any Entity.</td>
                     </tr>
                     <tr>
                         <td>
-                            {/* TODO: update link */}
-                            <a href="#Id">AddInId</a>
-                        </td>
-                        <td>
-                            Used to identify the Add-In Solution to which this AddInData belongs. Add-Ins cannot see data from other Add-Ins. Must be provided when searching for or adding AddInData.
-                            Consider this a Serial Number for the solution that uses the Storage API.
+                            <Link to="/myGeotab/apiReference/objects/Id">
+                                AddInId
+                            </Link>
                         </td>
                     </tr>
                     <tr>
-                        {/* TODO: update link */}
                         <td>
-                            <a href="#Group">Groups</a>
-                        </td>
-                        <td>
-                            Used to define the scope required to interact with the Add-In data. (
-                            <strong>
-                                <em>Optional</em>
-                            </strong>
-                            )
+                            <Link to="/myGeotab/apiReference/objects/Group">
+                                Groups
+                            </Link>
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +165,7 @@ const creatingAddInData: ReactNode = (
 });`}
         />
 
-        <h2>Important Notes</h2>
+        <h2>Important notes</h2>
         <p>
             Each invocation of the Add operation will create a new AddInData object with a unique Id bound to the entered AddInId. The Id of the AddInData object is required to remove the object
             with the <code className="small-code-sample">Remove</code> method. See below for an example.
@@ -231,22 +224,25 @@ const retrievingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            {/* TODO: update link */}
-                            <a href="#Id">Id</a>
+                            <Link to="/myGeotab/apiReference/objects/Id">
+                                Id
+                            </Link>
                         </td>
                         <td>The standard Id for any Entity.</td>
                     </tr>
                     <tr>
                         <td>
-                            {/* TODO: update link */}
-                            <a href="#AddInId">AddInId</a>
+                            <Link to="/myGeotab/apiReference/objects/Id">
+                                AddInId
+                            </Link>
                         </td>
                         <td>Can be optionally provided when searching for AddInData that belongs to a specific AddInData.</td>
                     </tr>
                     <tr>
                         <td>
-                            {/* TODO: update link */}
-                            <a href="#Group">Groups</a>
+                            <Link to="/myGeotab/apiReference/objects/Group">
+                                Groups
+                            </Link>
                         </td>
                         <td>Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity.</td>
                     </tr>
@@ -386,7 +382,7 @@ const retrievingAddInData: ReactNode = (
 }]`}
         />
 
-        <h2>Object Path Notation</h2>
+        <h2>Object path notation</h2>
         <p>
             The <code className="small-code-sample">SELECT</code> and <code className="small-code-sample">WHERE</code> clauses of the AddInDataSearch object use a special notation to describe an
             object path. If we wanted to modify the call in Example 4 to retrieve just the customer name from the AddInData object, we would add the following path notation to the{" "}
@@ -431,7 +427,7 @@ const retrievingAddInData: ReactNode = (
         <p>
             The same notation is used for the <code className="small-code-sample">WHERE</code> clause. This notation can be used to drill down to as many objects as you want.
         </p>
-        <h2>Operators and Arguments</h2>
+        <h2>Operators and arguments</h2>
         <p>
             The <code className="small-code-sample">WHERE</code> clause of the AddInDataSearch object supports the following operators:
         </p>
@@ -479,7 +475,7 @@ const retrievingAddInData: ReactNode = (
             To get all customers with the name "joesmith", the appropriate <code className="small-code-sample">WHERE</code> clause will be:
         </p>
         <code className="small-code-sample">customer.name = "joesmith"</code>
-        <h2>Important Operation Notes for Using Get</h2>
+        <h2>Important operation notes for using Get</h2>
         <ul>
             <li>
                 The <code className="small-code-sample">SELECT</code> clause must be included if the <code className="small-code-sample">WHERE</code> clause is specified, otherwise the entire data
@@ -553,10 +549,11 @@ const deletingAddInData: ReactNode = (
     "entity": {
         "id": "a6tClQu4iFkuroNPqOQsydg"
     }
-});`}
-        />
-        <h2>AddInData JSON Restrictions</h2>
-        <p>The following are the only restrictions on the JSON stored within AddInData objects:</p>
+});`} />
+        <h2>AddInData JSON restrictions</h2>
+        <p>
+            The following are the only restrictions on the JSON stored within AddInData objects:
+        </p>
         <ol>
             <li>The JSON data for an AddInData object must be 10,000 characters or less.</li>
             <li>No property in the JSON data can have the format "geotabXYZ". This naming format is reserved for Geotab use.</li>
@@ -567,7 +564,7 @@ const deletingAddInData: ReactNode = (
 const notesAndLimits: ReactNode = (
     <div className="paragraph">
         <div className="paragraph">
-            <h2>Legacy Property 'Data'</h2>
+            <h2>Legacy property 'data'</h2>
             <p>
                 The AddInData object has been available as a beta feature through several releases and as such, we've made improvements through time. Now that we are officially releasing this
                 feature in 2101, a legacy property we are looking to get rid of is the 'Data' property. This is a string property that is not deserialized as an object when sent over JSON. The newer
@@ -578,43 +575,59 @@ const notesAndLimits: ReactNode = (
                 </strong>
             </p>
 
-            <h2>Cannot Delete Properties of Objects</h2>
-            <p>All objects properties stored in the JSON can be modified but not deleted.</p>
-            <p>Example (Replacing):</p>
-            <CodeSample language="json" code={`{"customer": {"name": "joe", "email": "joe@smith.com"}}`} />
-            <p>With</p>
-            <CodeSample language="json" code={`{"customer": {"apple": "fruit", "salmon": "meat"}}`} />
-            <p>Results in a merged dataset instead of a deletion of the previous content</p>
-            <CodeSample language="json" code={`{"customer": {"name": "joe", "email": "joe@smith.com", "apple": "fruit", "salmon": "meat"}}`} />
-            <p>Workarounds to this issue would be to either:</p>
+            <h2>Cannot delete properties of objects</h2>
+            <p>
+                All objects properties stored in the JSON can be modified but not deleted.
+            </p>
+            <p>
+                Example (Replacing):
+            </p>
+            <CodeSample
+                language="json"
+                code={`{"customer": {"name": "joe", "email": "joe@smith.com"}}`} />
+            <p>
+                With
+            </p>
+            <CodeSample
+                language="json"
+                code={`{"customer": {"apple": "fruit", "salmon": "meat"}}`}
+            />
+            <p>
+                Results in a merged dataset instead of a deletion of the previous content
+            </p>
+            <CodeSample
+                language="json"
+                code={`{"customer": {"name": "joe", "email": "joe@smith.com", "apple": "fruit", "salmon": "meat"}}`}
+            />
+            <p>
+                Workarounds to this issue would be to either:
+            </p>
             <ol>
                 <li>Use arrays as a property of an object as they can be modified and resized without issue.</li>
                 <li>Make two calls: first to change the "customer" value to an empty string, then a second call to set new data.</li>
             </ol>
 
-            <h2>No LIKE Statement</h2>
-            <p>Currently there is no support for fuzzy string matching.</p>
+            <h2>No LIKE statement</h2>
+            <p>
+                Currently there is no support for fuzzy string matching.
+            </p>
 
-            <h2>No AND/OR Statements</h2>
+            <h2>No AND/OR statements</h2>
             <p>
                 The <code className="small-code-sample">WHERE</code> clause cannot perform conjunctions or disjunctions.
             </p>
 
-            <h2>Security Clearance Matters</h2>
-            <p>Security Clearance limitations allow the following API methods:</p>
+            <h2>Security clearance matters</h2>
+            <p>
+                Security Clearance limitations allow the following API methods:
+            </p>
             <ol>
-                <li>
-                    <strong>Administrator, Supervisor, Default User, Drive App User</strong> {`=>`} "Add/Set/Get/Remove"
-                </li>
-                <li>
-                    <strong>ViewOnly</strong> {`=>`} "Get"
-                </li>
-                <li>
-                    <strong>Nothing</strong> {`=>`} None
-                </li>
+                <li><strong>Administrator, Supervisor, Default User, Drive App User</strong> {`=>`} "Add/Set/Get/Remove"</li>
+                <li><strong>ViewOnly</strong> {`=>`} "Get"</li>
+                <li><strong>Nothing</strong> {`=>`} None</li>
             </ol>
 
-            <h2>Small vs Large</h2>
+            <h2>Small vs large</h2>
             <p>
                 While it's possible to create a single AddInData object with an array of details, this approach is less scalable. First is contending with the mandatory limit of 10,000 characters.
                 Second is that it can cause unduly large objects to deal with which can be less memory efficient. Third is that if there is an array of entries and you need to remove one, you will
@@ -640,44 +653,37 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [
     {
-        elementId: "storage-add-in-API",
-        summary: "What Is The Storage API?",
-        details: storageAPI
-    },
-    {
-        elementId: "storage-add-in-id",
-        summary: "AddInId",
-        details: addInId
-    },
-    {
-        elementId: "storage-add-in-creating",
-        summary: "Creating An AddInData Object",
-        details: creatingAddInData
-    },
-    {
-        elementId: "storage-add-in-retrieving",
-        summary: "Retrieving Stored AddInData Content",
-        details: retrievingAddInData
-    },
-    {
-        elementId: "storage-add-in-updating",
-        summary: "Updating Stored AddInData Content",
-        details: updatingAddInData
-    },
-    {
-        elementId: "storage-add-in-deleting",
-        summary: "Deleting An AddInData Object",
-        details: deletingAddInData
-    },
-    {
-        elementId: "storage-add-in-notes-and-limitations",
-        summary: "Additional Notes And Limitations",
-        details: notesAndLimits
-    },
-    {
-        elementId: "storage-add-in-resources",
-        summary: "Additional Resources",
-        details: resources
+        "elementId": "storage-add-in-API",
+        "summary": "What is the storage API?",
+        "details": storageAPI
+    }, {
+        "elementId": "storage-add-in-id",
+        "summary": "AddInId",
+        "details": addInId
+    }, {
+        "elementId": "storage-add-in-creating",
+        "summary": "Creating an AddInData object",
+        "details": creatingAddInData
+    }, {
+        "elementId": "storage-add-in-retrieving",
+        "summary": "Retrieving stored AddInData content",
+        "details": retrievingAddInData
+    }, {
+        "elementId": "storage-add-in-updating",
+        "summary": "Updating stored AddInData content",
+        "details": updatingAddInData
+    }, {
+        "elementId": "storage-add-in-deleting",
+        "summary": "Deleting an AddInData object",
+        "details": deletingAddInData
+    }, {
+        "elementId": "storage-add-in-notes-and-limitations",
+        "summary": "Additional notes And limitations",
+        "details": notesAndLimits
+    }, {
+        "elementId": "storage-add-in-resources",
+        "summary": "Additional resources",
+        "details": resources
     }
 ];
 

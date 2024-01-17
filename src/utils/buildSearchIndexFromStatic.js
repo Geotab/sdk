@@ -50,13 +50,13 @@ function getTitle(fileContent) {
 function getHeaders(fileContent) {
     const pageSectionsSummaryRegex = /"summary"\s*:\s*"([^"]+)"|summary\s*:\s*"([^"]+)"/g;
     const matches = [...fileContent.matchAll(pageSectionsSummaryRegex)];
-    return (matches.length > 0) ? matches.map(match => match[1] || match[2]) : "";
+    return (matches.length > 0) ? matches.map(match => match[1] || match[2]) : [];
 }
 
 function getHeaderIds(fileContent) {
     const pageSectionsElementIdRegex = /"elementId"\s*:\s*"([^"]+)"|elementId\s*:\s*"([^"]+)"/g;
     const matches = [...fileContent.matchAll(pageSectionsElementIdRegex)];
-    return (matches.length > 0) ? matches.map(match => match[1] || match[2]) : "";
+    return (matches.length > 0) ? matches.map(match => match[1] || match[2]) : [];
 }
 
 function getContent(fileContent) {
@@ -98,10 +98,10 @@ function getBreadcrumb(fileContent) {
         try {
             return (matches[1]) ? JSON.parse(matches[1]) : (matches[2]) ? JSON.parse(matches[2]) : "";
         } catch (error) {
-            return "";
+            return [];
         }
     } else {
-        return "";
+        return [];
     }
 }
 

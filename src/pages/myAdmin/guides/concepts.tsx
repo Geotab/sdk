@@ -19,13 +19,13 @@ const httpPostRequest: ReactNode = (
                 JSON-RPC
             </a>{" "}
             version 1.0. The following is a JavaScript example that shows how HTTP POST can be used to invoke a method.
-            <p>
-                <strong>Note</strong>: This can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.HttpWebRequest in
-                Microsoft .NET.
-            </p>
-            <CodeSample
-                language="javascript"
-                code={`var request = new XMLHttpRequest();
+        </p>
+        <p>
+            <strong>Note</strong>: This can be done from any language that has support for HTTP, for example the java.net.HttpUrlConnection class in Java or System.Net.HttpWebRequest in Microsoft .NET.
+        </p>
+        <CodeSample
+            language="javascript"
+            code={`var request = new XMLHttpRequest();
 request.open("POST", "https://myadminapi.geotab.com/v2/MyAdminApi.ashx", true);
 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 request.onreadystatechange = function () {
@@ -67,9 +67,8 @@ var apiMethod = {
    }
 };
 request.send("JSON-RPC=" + encodeURIComponent(JSON.stringify(apiMethod)));`}
-            />
-        </p>
-    </div>
+        />
+    </div >
 );
 
 const resultsAndErrors: ReactNode = (
@@ -182,7 +181,7 @@ const pagination: ReactNode = (
             <li>Keyset-based pagination. Supported on some endpoints. This is faster and more efficient than offset-based pagination, and as such is recommended, where available.</li>
         </ul>
 
-        <h2>Offset-based Pagination</h2>
+        <h2>Offset-based pagination</h2>
 
         <p>This type of pagination breaks the result set into indexed pages, starting at 1. Specify the desired page and results per page by passing them in the request object, like so:</p>
 
@@ -230,7 +229,7 @@ const pagination: ReactNode = (
             <code className="small-code-sample">PerPage</code> and <code className="small-code-sample">Total</code>. Also for <code className="small-code-sample">GET</code> requests, a{" "}
             <code className="small-code-sample">Link</code> header will be returned that can be used to access the next page.
         </p>
-        <h2>Keyset-based Pagination</h2>
+        <h2>Keyset-based pagination</h2>
         <p>
             Keyset-pagination allows for more efficient retrieval of pages, and runtime is independent of the size of the collection, in contrast to offset-based pagination. Use keyset pagination,
             on the methods that support it, like so:
@@ -296,33 +295,47 @@ const pagination: ReactNode = (
     </div>
 );
 
+const maximumResults: ReactNode = (
+    <div className="paragraph">
+        <p>
+            Most unpaginated endpoints (see Pagination above) will be limited to 100,000 results (as of early 2024). However, some endpoints that already return more than 100,000 results (prior to 2024) will be grandfathered-in, to preserve API backwards-compatibility. Geotab may work with integrators in the future to work towards applying record limits to these grandfathered-in endpoints as well. So, integrators are encouraged to move to paginated versions of endpoints, ideally, or to generally avoid making requests that return large numbers of results.
+        </p>
+        <p>
+            The goal of pagination and these record limits is to improve the stability/performance of the API for all.
+        </p>
+    </div>
+);
+
 const pageTitle: PageTitleProps = {
     title: "Concepts",
     breadCrumbItems: ["MYA", "Guides", "Concepts"]
 };
 
-const pageSections: TableOfContentsItem[] = [
-    {
-        elementId: "myadmin-post-request",
-        summary: "HTTP POST Request",
-        details: httpPostRequest
-    },
-    {
-        elementId: "myadmin-results-and-errors",
-        summary: "Results & Errors",
-        details: resultsAndErrors
-    },
-    {
-        elementId: "myadmin-working-with-dates",
-        summary: "Working With Dates",
-        details: workingWithDates
-    },
-    {
-        elementId: "myadmin-pagination",
-        summary: "Pagination",
-        details: pagination
-    }
-];
+const pageSections: TableOfContentsItem[] =
+    [{
+        "elementId": "myadmin-post-request",
+        "summary": "HTTP POST request",
+        "details": httpPostRequest
+
+    }, {
+        "elementId": "myadmin-results-and-errors",
+        "summary": "Results & errors",
+        "details": resultsAndErrors
+
+    }, {
+        "elementId": "myadmin-working-with-dates",
+        "summary": "Working with dates",
+        "details": workingWithDates
+
+    }, {
+        "elementId": "myadmin-pagination",
+        "summary": "Pagination",
+        "details": pagination
+    }, {
+        "elementId": "myadmin-maximum-number-of-results",
+        "summary": "Maximum number of results",
+        "details": maximumResults
+    }];
 
 export default function Concepts() {
     return (
@@ -335,9 +348,9 @@ export default function Concepts() {
                     <a href="https://www.json.org/" target="_blank" rel="noreferrer" aria-label="JSON website">
                         JSON
                     </a>{" "}
-                    format. The {/* TODO: update link */}
-                    <Link to=""> Reference</Link> contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked
-                    using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
+                    format. The{" "}
+                    <Link to="/myAdmin/apiReference/methods"> Reference</Link>{" "}
+                    contains a listing of the methods that can be invoked, the parameters they expect, and the results they return. Requests to the API can be invoked using HTTP POST. HTTP POST requests use the JSON-RPC standard. The following sections explain how to construct HTTP POST requests to the MyAdmin API.
                 </p>
             </div>
         </Page>
