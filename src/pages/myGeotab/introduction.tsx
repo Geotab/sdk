@@ -22,11 +22,11 @@ const deviceData: ReactNode = (
             {/*TODO: is this right?*/}
         </InformationalBox>
         The data feed service sample application allows the feed to be installed as a service and run continuously in the background downloading data from the database (see{" "}
-        <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples/tree/master/DataFeed#data-feed">
             here for .Net
         </a>{" "}
         or{" "}
-        <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Geotab/sdk-java-samples/tree/master/src/main/java/com/geotab/sdk/datafeed">
             here for Java
         </a>
         ).
@@ -39,7 +39,7 @@ const importExport: ReactNode = (
         <ul>
             <li>
                 Import your customer list from a{" "}
-                <a target="_blank" rel="noreferrer" href="http://en.wikipedia.org/wiki/Customer_relationship_management">
+                <a target="_blank" rel="noopener noreferrer" href="http://en.wikipedia.org/wiki/Customer_relationship_management">
                     CRM
                 </a>{" "}
                 (Customer Relationship Management) system
@@ -50,11 +50,11 @@ const importExport: ReactNode = (
             <li>Track Hours of Service (HOS) for regulations compliance</li>
         </ul>
         You can start using these tools right now by trying the{" "}
-        <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Geotab/sdk-dotnet-samples">
             .Net examples
         </a>
         , <Link to="/myGeotab/codeSamples/javascriptSamples">JavaScript examples</Link> and{" "}
-        <a target="_blank" rel="noreferrer" href="https://github.com/Geotab/sdk-java-samples">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Geotab/sdk-java-samples">
             Java examples
         </a>
         .
@@ -77,7 +77,7 @@ const workingWithAddins: ReactNode = (
         <ul>
             <li>
                 Ready availability of Add-Ins to instantly integrate into your MyGeotab and Geotab Drive. Visit the{" "}
-                <a target="_blank" rel="noreferrer" href="http://www.geotab.com/marketplace/">
+                <a target="_blank" rel="noopener noreferrer" href="http://www.geotab.com/marketplace/">
                     Geotab Marketplace
                 </a>{" "}
                 and the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> SDK page to see the available Add-Ins
@@ -125,7 +125,7 @@ const softwareToolkit: ReactNode = (
         <p>The toolkit provides helpful integration resources and context which are in addition to the existing documentation and make it easier for partners to get up and running.</p>
         <p>
             Please refer to{" "}
-            <a target="_blank" rel="noreferrer" href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">
+            <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/presentation/d/1fqtMPgsdwF3CQuvhqhC8SBwdI8PZDjUtpVGEzsdDYjo/">
                 Geotab Integrations: Software Technical Toolkit
             </a>{" "}
             for further details.

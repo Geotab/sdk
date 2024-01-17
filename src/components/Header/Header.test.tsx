@@ -16,7 +16,7 @@ jest.mock("../SearchModal/SearchModal", () => ({
     default: ({ isOpen, onClose }: SearchModalProps) => (isOpen ? <div data-testid="search-modal">SearchModal</div> : null)
 }));
 jest.mock("@geotab/react-component-library", () => ({
-    IconSearch: () => <div>IconSearch</div>
+    IconSearch: () => <div data-testid="header-search-icon">IconSearch</div>
 }));
 
 describe("Header Component", () => {
@@ -26,6 +26,10 @@ describe("Header Component", () => {
         activeSiteSection: HeaderSections.MyGeotab,
         setActiveSiteSection
     };
+
+    afterEach(() => {
+        jest.clearAllMocks(); // Clear mock call history after each test
+    });
 
     it("renders the logo when isLandingPage is true", () => {
         // Act
