@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
 import { useParams } from "react-router-dom";
-import CodeSample from "../CodeSamplesContainer/CodeSample";
 import { Page } from "..";
 import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 import RenderStringWithUrl from "./utils/renderStringWithUrl";
 import "./reference.scss";
+import { CodeSamples, CodeSamplesContainer } from "../CodeSamplesContainer";
+import { methodsCodeSamples } from "./utils/methodsCodeSamples";
 
 interface MethodParameter {
     name: string;
@@ -26,7 +27,16 @@ export default function Method(): JSX.Element {
     const storedMethodData: MethodData = JSON.parse(sessionStorage[methodId]);
     const parameters: MethodParameter[] = storedMethodData.parameters;
     const returnValueDescriptions: string = storedMethodData.returns;
-    const codeSample: string = storedMethodData.example;
+    const javascriptCodeSampleFromXML: string = storedMethodData.example;
+    let codeSamples: CodeSamples = methodsCodeSamples[methodId];
+    if (javascriptCodeSampleFromXML !== "") {
+        // Format the JS code sample that is pulled from the XML since there's extra whitespace
+        codeSamples.javascript = javascriptCodeSampleFromXML
+            .replaceAll("               ", "    ")
+            .replaceAll("             ", "    ")
+            .replace(/(\s*)}\);/, "\n});")
+            .trim();
+    }
 
     const introductionParagraph: ReactNode = <div className="paragraph">{RenderStringWithUrl(methodId, JSON.parse(sessionStorage[methodId]).description)}</div>;
 
@@ -45,7 +55,7 @@ export default function Method(): JSX.Element {
 
     const tryMeCodeBlock: ReactNode = (
         <div className="paragraph">
-            <CodeSample language="javascript" code={codeSample} />
+            <CodeSamplesContainer {...codeSamples} />
         </div>
     );
 
