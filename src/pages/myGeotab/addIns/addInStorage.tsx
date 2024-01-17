@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 
 import { Page } from "./../../../components";
 import { PageTitleProps } from "./../../../components/PageTitle/PageTitle";
@@ -68,24 +68,24 @@ const creatingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Id">
+                            <Link to="/myGeotab/apiReference/objects/Id">
                                 Id
-                            </HashLink>
+                            </Link>
                         </td>
                         <td>The standard Id for any Entity.</td>
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Id">
+                            <Link to="/myGeotab/apiReference/objects/Id">
                                 AddInId
-                            </HashLink>
+                            </Link>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Group">
+                            <Link to="/myGeotab/apiReference/objects/Group">
                                 Groups
-                            </HashLink>
+                            </Link>
                         </td>
                     </tr>
                     <tr>
@@ -224,25 +224,25 @@ const retrievingAddInData: ReactNode = (
                 <tbody>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Id">
+                            <Link to="/myGeotab/apiReference/objects/Id">
                                 Id
-                            </HashLink>
+                            </Link>
                         </td>
                         <td>The standard Id for any Entity.</td>
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Id">
+                            <Link to="/myGeotab/apiReference/objects/Id">
                                 AddInId
-                            </HashLink>
+                            </Link>
                         </td>
                         <td>Can be optionally provided when searching for AddInData that belongs to a specific AddInData.</td>
                     </tr>
                     <tr>
                         <td>
-                            <HashLink to="/myGeotab/apiReference/objects#Group">
+                            <Link to="/myGeotab/apiReference/objects/Group">
                                 Groups
-                            </HashLink>
+                            </Link>
                         </td>
                         <td>Used to define the scope of a row of Add-In data. Works the same as any other ObjectModel Entity.</td>
                     </tr>
