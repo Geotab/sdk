@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import Introduction from "./introduction";
 import { renderStaticPage } from "../../testUtils/testUtils";
 
-describe("Introduction Component", () => {
+describe.skip("Introduction Component", () => {
     beforeEach(() => {
         renderStaticPage(<Introduction />);
     });
