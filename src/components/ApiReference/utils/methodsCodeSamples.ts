@@ -43,28 +43,6 @@ await api.CallAsync<Id>(
         ],
         "groups": [{"id": "GroupCompanyId"}]
     }
-)
-# OR
-await api.call_async(
-    "Add",
-    typeName="Zone",
-    entity={
-        "name": "Example zone " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S:%s"),
-        "mustIdentifyStops": True,
-        "displayed": True,
-        "activeFrom": "1986-01-01T00:00:00.000Z",
-        "activeTo": "2050-01-01T00:00:00.000Z",
-        "zoneTypes": ["ZoneTypeOfficeId"],
-        "fillColor": {"r": 255, "g": 165, "b": 0, "a": 191},
-        "points": [
-            {"x": -79.712318, "y": 43.438266},
-            {"x": -79.711181, "y": 43.437461},
-            {"x": -79.712677, "y": 43.436168},
-            {"x": -79.713966, "y": 43.437107},
-            {"x": -79.712318, "y": 43.438266}
-        ],
-        "groups": [{"id": "GroupCompanyId"}]
-    }
 )`,
         "java": "/* Work in progress - Coming soon */"
     },
@@ -72,7 +50,7 @@ await api.call_async(
         "javascript": "",
         "csharp": `API api = new API("user@example.com", "password", null, "database");
 await api.AuthenticateAsync();`,
-        "python": `api = mygeotab.API(username='user@example.com', password='password', database='database')
+        "python": `api = mygeotab.API(username="user@example.com", password="password", database="database")
 api.authenticate()`,
         "java": "/* Work in progress - Coming soon */"
     },
@@ -113,14 +91,6 @@ api.authenticate()`,
 );`,
         "python": `api.get_async(
     "Device",
-    resultsLimit = 10,
-    search = { "fromDate": datetime.datetime.now() },
-    propertySelector = { "fields": ["id", "name"] }
-)
-# OR
-api.call_async(
-    "Get",
-    typeName = "Device",
     resultsLimit = 10,
     search = { "fromDate": datetime.datetime.now() },
     propertySelector = { "fields": ["id", "name"] }

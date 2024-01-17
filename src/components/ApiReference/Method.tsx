@@ -29,8 +29,8 @@ export default function Method(): JSX.Element {
     const returnValueDescriptions: string = storedMethodData.returns;
     const javascriptCodeSampleFromXML: string = storedMethodData.example;
     let codeSamples: CodeSamples = methodsCodeSamples[methodId];
-    console.log(javascriptCodeSampleFromXML.replaceAll("               ", "\t").trim());
     if (javascriptCodeSampleFromXML !== "") {
+        // Format the JS code sample that is pulled from the XML since there's extra whitespace
         codeSamples.javascript = javascriptCodeSampleFromXML
             .replaceAll("               ", "    ")
             .replaceAll("             ", "    ")

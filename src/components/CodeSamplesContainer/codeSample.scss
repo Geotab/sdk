@@ -9,6 +9,11 @@
     }
 }
 
+// Set height for the code sample container on the method page
+#codeSample .snippetBox span {
+    height: 336px;
+}
+
 #codeSample div.paragraph div div[data-state="active"] {
     display: block;
     height: unset;
