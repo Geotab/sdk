@@ -87,8 +87,8 @@ api.authenticate()`,
     // TODO: Add C# & Python of GenerateCaptcha after consulting team SDK
     "GenerateCaptcha": {
         "javascript": "",
-        "csharp": "",
-        "python": "",
+        "csharp": "/* Work in progress - Coming soon */",
+        "python": "# Work in progress - Coming soon",
         "java": "/* Work in progress - Coming soon */"
     },
     "Get": {
