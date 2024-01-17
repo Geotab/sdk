@@ -27,9 +27,9 @@ export default function Object(): JSX.Element {
 
     const propertyParagraphs: ReactNode = (
         <div className="paragraph">
-            {properties.map((property: ObjectProperty) => (
-                <div key={property.name}>
-                    <h3>{property.name}</h3>
+            {properties.map((property: ObjectProperty, index: number) => (
+                <div key={`param-${index}`}>
+                    <h2>{property.name}</h2>
                     {RenderStringWithUrl(property.name, property.description)}
                 </div>
             ))}

@@ -1,4 +1,9 @@
 /* eslint-disable */
+import { searchIndex } from "../../../../src/utils/searchIndex";
+import { searchIndexId } from "../../../utils/searchIndexUtils";
+import { removeHtmlAndSpecificTags } from "../../../utils/searchIndexUtils";
+import { Page } from "../../../../src/utils/pageInterface";
+import {miniSearch } from "../../SearchModal/SearchModal";
 
 interface PropertyDescription {
     name: string;
@@ -25,6 +30,10 @@ type ParserOutput = {
     [name: string]: MethodInfo | ObjectInfo;
 };
 
+
+let buildMethodSearchIndex: Page[] = [];
+let buildObjectSearchIndex: Page[] = [];
+
 function extractSubstrings(input: string): string {
     const webMethodsMatch: RegExpMatchArray | null = input.match(/WebMethods\.([a-zA-Z]+)/);
     const dataStoreMatch: RegExpMatchArray | null = input.match(/DataStore\.([a-zA-Z]+)/);
@@ -47,6 +56,17 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                 if (item[i].nodeName === "member") {
                     if (itemType === "method" && itemStrings.some((method) => (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.includes(method))) {
                         let methodName: string = extractSubstrings((item[i] as Element).attributes.getNamedItem("name")?.nodeValue ?? "").replace(/Async$/, "");
+                        
+                        buildMethodSearchIndex.push({id: 0, title: "", headers: [], headerIds: [], content: "", link: "", breadCrumb: [], category: ""}); 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].id = searchIndexId(); 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].title = `${methodName} (...)`; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].headers = ["Introduction", "Parameters", "Return value", "Code samples"]; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].headerIds = ["introduction", "parameters", "return value", "code samples"]; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].link= `/myGeotab/apiReference/methods/${methodName}`; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].breadCrumb = ["MYG", "API Reference", "Methods", methodName + " (...)"]; 
+                        buildMethodSearchIndex[buildMethodSearchIndex.length - 1].category = "reference"; 
+                        let parametersHeaderAdded = false;
+                        
                         if (!json[methodName]) {
                             json[methodName] = {
                                 description: "",
@@ -55,6 +75,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                 example: ""
                             };
                         }
+
                         for (let j = 0; j < item[i].childNodes.length; j++) {
                             if (item[i].childNodes[j].nodeName === "summary") {
                                 if (item[i].childNodes[j].hasChildNodes()) {
@@ -91,9 +112,14 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                         }
                                     }
                                     json[methodName].description = summaryText.trimStart();
+                                    buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content += `Introduction ${removeHtmlAndSpecificTags(summaryText.trimStart())}`; 
                                 }
                             }
                             if (item[i].childNodes[j].nodeName === "param" && !(item[i].childNodes[j] as Element).attributes.hasOwnProperty("jsHide")) {
+                                if (parametersHeaderAdded === false) {
+                                    buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content += " Parameters "; 
+                                    parametersHeaderAdded  = true;
+                                }
                                 let paramDict: any = {};
                                 let descriptionText = "";
                                 for (let k = 0; k < item[i].childNodes[j].childNodes.length; k++) {
@@ -110,6 +136,8 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                     paramDict["required"] = true;
                                 }
                                 (json[methodName] as MethodInfo).parameters.push(paramDict);
+                                buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content += `${paramDict.name} ${removeHtmlAndSpecificTags(paramDict.description)} `; 
+
                             }
                             if (item[i].childNodes[j].nodeName === "returns") {
                                 let returnText = "";
@@ -122,6 +150,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                     }
                                 }
                                 (json[methodName] as MethodInfo).returns = returnText.trimStart();
+                                buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content += ` Return value ${removeHtmlAndSpecificTags(returnText.trimStart())}`; 
                             }
                             if (item[i].childNodes[j].nodeName === "example") {
                                 let codeText = "";
@@ -131,6 +160,7 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                     }
                                 }
                                 (json[methodName] as MethodInfo).example = codeText.trimStart();
+                                buildMethodSearchIndex[buildMethodSearchIndex.length - 1].content += ` Code samples ${codeText.trimStart()}`; 
                             }
                         }
                     }
@@ -142,6 +172,15 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                     ) {
                         let tagName: string[] = (item[i] as Element).attributes.getNamedItem("name")?.nodeValue?.split(".") ?? [];
                         let objectName: string = tagName[tagName.length - 1].replace(/[^a-zA-Z\d]/g, "");
+
+                        buildObjectSearchIndex.push({id: 0, title: "", headers: [], headerIds: [], content: "", link: "", breadCrumb: [], category: ""}); 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].id = searchIndexId(); 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].title = `${objectName}`; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].headers = ["Introduction", "Properties"]; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].headerIds = ["introduction", "properties"]; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].link= `/myGeotab/apiReference/objects/${objectName}`; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].breadCrumb = ["MYG", "API Reference", "Objects", objectName]; 
+                        buildObjectSearchIndex[buildObjectSearchIndex.length - 1].category = "reference"; 
 
                         if (!json[objectName]) {
                             json[objectName] = {
@@ -189,6 +228,8 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                                         }
                                     }
                                     json[objectName].description = summaryText.trimStart();
+                                    buildObjectSearchIndex[buildObjectSearchIndex.length - 1].content += `Introduction ${removeHtmlAndSpecificTags(summaryText.trimStart())}`; 
+                                    buildObjectSearchIndex[buildObjectSearchIndex.length - 1].content += " Properties "; 
                                 }
                             }
                         }
@@ -233,11 +274,20 @@ export default function myGParser(xml: XMLDocument, itemType: string, itemString
                             }
                             propertyDict["description"] = descriptionText.trimStart();
                             (json[objectName] as ObjectInfo).properties.push(propertyDict);
+                            buildObjectSearchIndex[buildObjectSearchIndex.length - 1].content += `${propertyDict["name"]} ${removeHtmlAndSpecificTags(propertyDict["description"])} `; 
                         }
                     }
                 }
             }
         }
     }
+
+    if (buildMethodSearchIndex.length > 0 && buildObjectSearchIndex.length > 0) {
+        searchIndex.push(...buildMethodSearchIndex);
+        searchIndex.push(...buildObjectSearchIndex);
+        miniSearch.addAll(buildMethodSearchIndex);
+        miniSearch.addAll(buildObjectSearchIndex);
+    }
+
     return json;
 }
