@@ -11,37 +11,37 @@ export const methodsCodeSamples: Record<string, CodeSamples> =
     "GetCountOf": {
         "javascript": ``,
         "csharp": `await api.CallAsync<int?>("GetCountOf", typeof(Zone))`,
-        "python": `await api.call("GetCountOf", typeName = "Zone")`,
+        "python": `await api.call_async("GetCountOf", typeName = "Zone")`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetDaylightSavingRules": {
         "javascript": ``,
         "csharp": `await api.CallAsync<TimeZoneInfoWithRules>("GetDaylightSavingRules", new { timeZoneId = "America/Toronto" });`,
-        "python": `await api.call("GetDaylightSavingRules", timeZoneId = "America/Toronto")`,
+        "python": `await api.call_async("GetDaylightSavingRules", timeZoneId = "America/Toronto")`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetDirections": {
         "javascript": ``,
         "csharp": `await api.CallAsync<Directions>("GetDirections", new { waypoints = new List<Waypoint> { new Waypoint { Coordinate = new Coordinate { X = -115.1477861, Y = 36.0632094 }, Sequence = 0, Description = "A" }, new Waypoint { Coordinate = new Coordinate { X = -79.6863441, Y = 43.5153199 }, Sequence = 1, Description = "B" }, new Waypoint { Coordinate = new Coordinate { X = -99.163876, Y = 19.4305696 }, Sequence = 2, Description = "C" } } });`,
-        "python": `await api.call("GetDirections", waypoints = [{ "coordinate": { "x": -115.1477861, "y": 36.0632094 }, "sequence": 0, "description": "A" }, { "coordinate": { "x": -79.6863441, "y": 43.5153199 }, "sequence": 1, "description": "B" }, { "coordinate": { "x": -99.163876, "y": 19.4305696 }, "sequence": 2, "description": "C" }])`,
+        "python": `await api.call_async("GetDirections", waypoints = [{ "coordinate": { "x": -115.1477861, "y": 36.0632094 }, "sequence": 0, "description": "A" }, { "coordinate": { "x": -79.6863441, "y": 43.5153199 }, "sequence": 1, "description": "B" }, { "coordinate": { "x": -99.163876, "y": 19.4305696 }, "sequence": 2, "description": "C" }])`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetFeed": {
         "javascript": ``,
         "csharp": `await api.CallAsync<FeedResult<StatusData>>("GetFeed", typeof(StatusData), new { fromVersion = 0L });`,
-        "python": `await api.call("GetFeed", typeName = "StatusData", fromVersion = "0")`,
+        "python": `await api.call_async("GetFeed", typeName = "StatusData", fromVersion = "0")`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetRoadMaxSpeeds": {
         "javascript": ``,
         "csharp": `await api.CallAsync<Dictionary<DateTime, float>>("GetRoadMaxSpeeds", new { deviceSearch = new DeviceSearch(Id.Create("b2")), fromDate = new DateTime(2024, 01, 01, 00, 00, 00, DateTimeKind.Utc), toDate = new DateTime(2024, 01, 02, 00, 00, 00, DateTimeKind.Utc) });`,
-        "python": `await api.call("GetRoadMaxSpeeds", deviceSearch = dict(id = "<enter desired id>"), fromDate = "2024-01-01T00:00:00.000Z", toDate = "2024-01-02T00:00:00.000Z")`,
+        "python": `await api.call_async("GetRoadMaxSpeeds", deviceSearch = dict(id = "<enter desired id>"), fromDate = "2024-01-01T00:00:00.000Z", toDate = "2024-01-02T00:00:00.000Z")`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetSystemTimeUtc": {
         "javascript": ``,
         "csharp": `await api.CallAsync<DateTime>("GetSystemTimeUtc")`,
-        "python": `await api.call("GetSystemTimeUtc")`,
+        "python": `await api.call_async("GetSystemTimeUtc")`,
         "java": `/* Work in progress - Coming soon */`
     }
 };
