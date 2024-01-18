@@ -1,7 +1,6 @@
 runtime: nodejs18
 
 handlers:
-handlers:
 - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|css|js))$
   static_files: build/\1
   upload: build/(.*)
