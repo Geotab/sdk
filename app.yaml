@@ -1,5 +1,4 @@
 runtime: nodejs18
-instance_class: F1
 handlers:
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
@@ -8,6 +7,4 @@ handlers:
 # Catch all handler to index.html
 - url: /.*
   static_files: build/index.html
-  secure: always
-  redirect_http_response_code: 301
-  script: auto
+  upload: build/index.html
