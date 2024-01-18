@@ -4,31 +4,15 @@ import { PageTitleProps } from "../../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import { CodeSample } from "../../../../components/CodeSamplesContainer";
+import { Link } from "react-router-dom";
 
 const overview: ReactNode = (
     <div className="paragraph">
-        <p>
-            The .NET SDK tools facilitate the integration of MyAdmin with your own .NET software. All communication to MyGeotab services occurs through HTTPS and the data is serialized in{" "}
-            <a href="http://www.json.org/" target="_blank" rel="noreferrer">
-                JSON
-            </a>{" "}
-            format. The provided .NET library automatically handles both serialization and deserialization of JSON into MyAdmin objects.
-        </p>
+        <p>The .NET SDK tools facilitate the integration of MyAdmin with your own .NET software. All communication to MyGeotab services occurs through HTTPS and the data is serialized in <a href="http://www.json.org/" target="_blank" rel="noreferrer">JSON</a> format. The provided .NET library automatically handles both serialization and deserialization of JSON into MyAdmin objects.</p>
         <h2>Packages</h2>
-        <p>
-            The inclusion of the Geotab.Internal.MyAdmin.APILib and Geotab.Checkmate.ObjectModel packages allows you to interact with the API. The nuget packages include tools to assist with
-            serialization and deserialization of JSON and provide definitions for MyAdmin object classes. The packages can be found on the NuGet website:
-        </p>
-        <p>
-            <a href="https://www.nuget.org/packages/Geotab.Internal.MyAdmin.APILib" target="_blank" rel="noreferrer">
-                Geotab.Internal.MyAdmin.APILib
-            </a>
-        </p>
-        <p>
-            <a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel" target="_blank" rel="noreferrer">
-                Geotab.Checkmate.ObjectModel
-            </a>
-        </p>
+        <p>The inclusion of the Geotab.Internal.MyAdmin.APILib and Geotab.Checkmate.ObjectModel packages allows you to interact with the API. The nuget packages include tools to assist with serialization and deserialization of JSON and provide definitions for MyAdmin object classes. The packages can be found on the NuGet website:</p>
+        <p><a href="https://www.nuget.org/packages/Geotab.Internal.MyAdmin.APILib" target="_blank" rel="noreferrer">Geotab.Internal.MyAdmin.APILib</a></p>
+        <p><a href="https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel" target="_blank" rel="noreferrer">Geotab.Checkmate.ObjectModel</a></p>
     </div>
 );
 
@@ -39,30 +23,21 @@ const step1: ReactNode = (
             language="csharp"
             code={`using MyAdminApiLib.Geotab.MyAdmin.MyAdminApi;
 using MyAdminApiLib.Geotab.MyAdmin.MyAdminApi.ObjectModel;
-`}
-        />
+`}/>
         <p>Then, create an instance of the API invoker in your code:</p>
         <CodeSample
             language="csharp"
             code={`MyAdminInvoker api = new MyAdminInvoker("https://myadminapi.geotab.com/v2/MyAdminApi.ashx");
-`}
-        />
-        <p>
-            The parameters required by each method are passed using a Dictionary {`<string, object>`}. For example, to authenticate with the API, pass a valid username and password to call the
-            Authenticate method using the code below:
-        </p>
+`}/>
+        <p>The parameters required by each method are passed using a Dictionary {`<string, object>`}. For example, to authenticate with the API, pass a valid username and password to call the Authenticate method using the code below:</p>
         <CodeSample
             language="csharp"
             code={`Dictionary<string, object> parameters = new Dictionary<string, object> { { "username", "user@geotab.com" }, { "password", "<password>" } };
 
 
 ApiUser apiUser = await api.InvokeAsync<ApiUser>("Authenticate", parameters);
-`}
-        />
-        <p>
-            The Authenticate method authenticates with the MyAdmin API and, if successful, returns an ApiUser object. The ApiUser object contains the SessionId and UserId - used as the API key for
-            all other methods.
-        </p>
+`}/>
+        <p>The Authenticate method authenticates with the MyAdmin API and, if successful, returns an ApiUser object. The ApiUser object contains the SessionId and UserId - used as the API key for all other methods.</p>
     </div>
 );
 
@@ -76,47 +51,46 @@ Dictionary<string, object> parameters = new Dictionary<string, object> { { "apiK
         
         
 ApiDeviceInstallResult installResult = await api.InvokeAsync<ApiDeviceInstallResult>("LookupDevice", parameters);
-`}
-        />
+`}/>
     </div>
 );
 
 const moreInformation: ReactNode = (
     <div className="paragraph">
-        <p>
-            For more information, see <a href="../../code-samples/dotnet-examples">.NET examples</a>.
-        </p>
+        <p>For more information, see <Link to="/myAdmin/codeSamples/dotNetExamples">.NET examples</Link>.</p>
     </div>
 );
 
 const pageTitle: PageTitleProps = {
-    title: "Using With .NET",
-    breadCrumbItems: ["MYA", "Guides", "Code Base", "Using With .NET"]
+    "title": "Using With .NET",
+    "breadCrumbItems": ["MYA", "Guides", "Using With .NET"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        elementId: "overview",
-        summary: "Overview",
-        details: overview
+        "elementId": "overview",
+        "summary": "Overview",
+        "details": overview
     },
     {
-        elementId: "step1",
-        summary: "Step 1: Initialization & Authentication",
-        details: step1
+        "elementId": "step1",
+        "summary": "Step 1: Initialization & Authentication",
+        "details": step1
     },
     {
-        elementId: "step2",
-        summary: "Step 2: Making Calls",
-        details: step2
+        "elementId": "step2",
+        "summary": "Step 2: Making calls",
+        "details": step2
     },
     {
-        elementId: "moreInformation",
-        summary: "More Information",
-        details: moreInformation
+        "elementId": "more-nformation",
+        "summary": "More information",
+        "details": moreInformation
     }
 ];
 
 export default function UsingWithDotnet() {
-    return <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections} />;
+    return (
+        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}/>
+    );
 }
