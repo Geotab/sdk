@@ -364,6 +364,7 @@ let mediaFileId = await api.call( "Add", { typeName: "MediaFile",
     entity: {
         solutionId: solutionId,
         name: mediaFileName
+    }
 });
 
 const requestParams = {
