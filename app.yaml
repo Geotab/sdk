@@ -1,5 +1,10 @@
 runtime: nodejs18
 
 handlers:
-- url: .*
-  script: auto
+handlers:
+- url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|css|js))$
+  static_files: build/\1
+  upload: build/(.*)
+- url: /(.*)
+  static_files: build/index.html
+  upload: build/index.html
