@@ -58,7 +58,7 @@ export default function TableOfContents({ items }: TableOfContentsProps): JSX.El
             }
         );
 
-        const pageSections: NodeListOf<Element> = document.querySelectorAll("details summary, details div.detailsContent");
+        const pageSections: NodeListOf<Element> = document.querySelectorAll("details summary, details div.detailsContent, div.method-object-container");
 
         pageSections.forEach((section): void => {
             pageContentScrollObserver.current.observe(section);
