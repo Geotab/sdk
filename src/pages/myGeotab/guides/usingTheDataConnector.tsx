@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import CodeSample from "../../../components/CodeSamplesContainer/CodeSample";
-import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
