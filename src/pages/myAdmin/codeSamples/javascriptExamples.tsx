@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { CodeSample } from "../../../components/CodeSamplesContainer";
 import myadminApiExample from "../../../assets/images/javascriptExamples/myadminApiExample.png";
+import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { Link } from "react-router-dom";
 
 const javascriptCodeExampleSnippet = `<html>
     <body>
@@ -65,48 +68,50 @@ const javascriptCodeExampleSnippet = `<html>
     </body>
 </html>`;
 
-const pageTitle: PageTitleProps = {
-  title: "JavaScript Examples",
-  breadCrumbItems: ["MYA", "Code Samples", "JavaScript Examples"],
-};
-
-export default function JavascriptExamples() {
-  return (
-    <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle}>
-      <div className="paragraph">
-        <p>
-          The example below demonstrates a simple JavaScript application that
-          authenticates with the MyAdmin API, then calls{" "}
-          <code className="small-code-sample">GetDevicePlans</code> and{" "}
-          <code className="small-code-sample">LookupDevice</code>.
-        </p>
+const javascriptExampleCodeSnippet1: ReactNode = (
+    <div className="paragraph">
         <CodeSample language="javascript" code={javascriptCodeExampleSnippet} />
         <p>
-          The <code className="small-code-sample">call</code> method uses the
-          following parameters:
+            The <code className="small-code-sample">call</code> method uses the following parameters:
         </p>
         <ul>
-          <li>Method name;</li>
-          <li>Parameters;</li>
-          <li>Success callback; and</li>
-          <li>Error callback (optional).</li>
+            <li>Method name;</li>
+            <li>Parameters;</li>
+            <li>Success callback; and</li>
+            <li>Error callback (optional).</li>
         </ul>
         <p>
-          <strong>Note</strong>: The Success callback receives the object
-          returned by the API as a parameter. The{" "}
-          <a href="../../api/reference">{/*TODO: fix link */}Reference</a> page
-          provides details about the objects returned by each method. In the
-          example above, the error callback is called if the login fails. The
-          error callback receives two parameters: an error message and an
-          “errors” object that contains an array of individual errors that
-          occurred. In the example above, the <code className="small-code-sample">devicePlans</code> object — returned by
-          <code className="small-code-sample">GetDevicePlans</code> — is an array of <code className="small-code-sample">ApiDevicePlans</code>. The device object,
-          returned by <code className="small-code-sample">LookupDevice</code>, is an <code className="small-code-sample">ApiDeviceInstallResult</code>. For more
-          information, see{" "}
-          <a href="../../api/reference"> {/*TODO: fix link */}Reference</a>.{" "}
+            <strong>Note</strong>: The Success callback receives the object returned by the API as a parameter. The <Link to="/myAdmin/apiReference/methods">{/*TODO: Confirm */}Reference</Link> page provides
+            details about the objects returned by each method. In the example above, the error callback is called if the login fails. The error callback receives two parameters: an error message and
+            an “errors” object that contains an array of individual errors that occurred. In the example above, the <code className="small-code-sample">devicePlans</code> object — returned by
+            <code className="small-code-sample">GetDevicePlans</code> — is an array of <code className="small-code-sample">ApiDevicePlans</code>. The device object, returned by{" "}
+            <code className="small-code-sample">LookupDevice</code>, is an <code className="small-code-sample">ApiDeviceInstallResult</code>. For more information, see{" "}
+            <Link to="/myAdmin/apiReference/methods"> {/*TODO: fix link */}Reference</Link>.{" "}
         </p>
         <img src={myadminApiExample} alt="MyAdmin Api Example" className="javascriptExamples__myadminApiExampleIMG" />
-      </div>
-    </Page>
-  );
+    </div>
+);
+
+const pageTitle: PageTitleProps = {
+    title: "JavaScript Examples",
+    breadCrumbItems: ["MYA", "Code Samples", "JavaScript Examples"]
+};
+
+const pageSections: TableOfContentsItem[] = [
+    {
+        elementId: "javascript-example-code-snippet1",
+        summary: "Example 1",
+        details: javascriptExampleCodeSnippet1
+    }
+];
+
+export default function JavascriptExamples() {
+    return (
+        <Page section={HeaderSections.MyAdmin} pageTitle={pageTitle} tableOfContents={pageSections}>
+            <div className="paragraph">
+                The example below demonstrates a simple JavaScript application that authenticates with the MyAdmin API, then calls <code className="small-code-sample">GetDevicePlans</code> and{" "}
+                <code className="small-code-sample">LookupDevice</code>.
+            </div>
+        </Page>
+    );
 }

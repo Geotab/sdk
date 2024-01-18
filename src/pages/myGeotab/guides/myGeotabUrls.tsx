@@ -4,14 +4,17 @@ import { Page } from "../../../components";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { HashLink } from "react-router-hash-link";
 
 const linkToAPage: ReactNode = (
     <div className="paragraph">
         <p>To create a link to a page, the following URL structure is used:</p>
         <code className="small-code-sample">{`https://<serverName>/<databaseName>/#<page>,<parameters>`}</code>
         <InformationalBox>
-            <p>The portions of the examples noted with {`<`} and {`>`} (e.g. <code className="small-code-sample">{`<serverName>`}</code>)
-                indicate where the user will enter information specific to their requirements.</p>
+            <p>
+                The portions of the examples noted with {`<`} and {`>`} (e.g. <code className="small-code-sample">{`<serverName>`}</code>) indicate where the user will enter information specific to
+                their requirements.
+            </p>
         </InformationalBox>
         <div className="table-container">
             <table>
@@ -28,7 +31,9 @@ const linkToAPage: ReactNode = (
                     </tr>
                     <tr>
                         <td>databaseName</td>
-                        <td>The name of the database. This is typically the company name used during registration. If there are spaces in the name, they are replaced with underscore characters (_)</td>
+                        <td>
+                            The name of the database. This is typically the company name used during registration. If there are spaces in the name, they are replaced with underscore characters (_)
+                        </td>
                     </tr>
                     <tr>
                         <td>page</td>
@@ -36,9 +41,10 @@ const linkToAPage: ReactNode = (
                     </tr>
                     <tr>
                         <td>parameters</td>
-                        <td>Additional arguments to apply to the request. For example,  <code className="small-code-sample">{`currentSortMode:deviceName`}</code> will sort the devices on the device
-                            list page by name.
-                            Note: each additional parameter is separated by a comma</td>
+                        <td>
+                            Additional arguments to apply to the request. For example, <code className="small-code-sample">{`currentSortMode:deviceName`}</code> will sort the devices on the device
+                            list page by name. Note: each additional parameter is separated by a comma
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -52,8 +58,9 @@ const linkToAPage: ReactNode = (
 
 const standalonePages: ReactNode = (
     <div className="paragraph">
-        <p>Standalone pages are used to get a my.geotab.com page without the header and side menu. This is useful when specific functionality is required,
-            for example adding a new vehicle to the system.
+        <p>
+            Standalone pages are used to get a my.geotab.com page without the header and side menu. This is useful when specific functionality is required, for example adding a new vehicle to the
+            system.
         </p>
         <p>To create a link to a page, the following URL structure is used:</p>
         <code className="small-code-sample">{`https://<serverName>/<databaseName>/geotab/checkmate/ui/<page>,<parameters>`}</code>
@@ -65,8 +72,10 @@ const standalonePages: ReactNode = (
 
 const passingParameters: ReactNode = (
     <div className="paragraph">
-        <p>Parameters are added at the end of the URL and each is separated by a comma. They work the same for both the normal and standalone page types. It is also important to note when no parameters
-            are requested, the page will load with the default settings. The parameter and its value are always separated by a colon (":").</p>
+        <p>
+            Parameters are added at the end of the URL and each is separated by a comma. They work the same for both the normal and standalone page types. It is also important to note when no
+            parameters are requested, the page will load with the default settings. The parameter and its value are always separated by a colon (":").
+        </p>
         <h2>Example</h2>
         <p>These links will navigate to the map pages showing the live position of a device with id `b21`, and with the group `b1234` highlighted.</p>
         <code className="small-code-sample">{`https://<serverName>/<databaseName>/#map,highlightGroup:b1234,liveVehicleIds:!(b21)`}</code>
@@ -99,7 +108,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>groupSelection</td>
                         <td>Divides the device list into subheadings, which are children groups of the selected parent</td>
-                        <td><code className="small-code-sample">{`<groupName>`}</code> — parent group name that the device belongs to</td>
+                        <td>
+                            <code className="small-code-sample">{`<groupName>`}</code> — parent group name that the device belongs to
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -128,7 +139,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>id</td>
                         <td>Goes to a device's edit page</td>
-                        <td><code className="small-code-sample">{`<deviceId>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<deviceId>`}</code>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -156,17 +169,23 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>liveVehicleIds</td>
                         <td>Used to show the live location of a device by its id</td>
-                        <td><code className="small-code-sample">{`<list of deviceIds>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<list of deviceIds>`}</code>
+                        </td>
                     </tr>
                     <tr>
                         <td>planRoutes</td>
                         <td>Show a route on the map</td>
-                        <td><code className="small-code-sample">{`<list of deviceIds>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<list of deviceIds>`}</code>
+                        </td>
                     </tr>
                     <tr>
                         <td>highlightGroup</td>
                         <td>Will highlight all devices in that group on the map display</td>
-                        <td><code className="small-code-sample">{`<groupId>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<groupId>`}</code>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -192,14 +211,10 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>dateRange</td>
                         <td>Sets the range of dates for the trips</td>
-                        <td><code className="small-code-sample">{`(interval:<value>)`}</code>
-                            — values:
-                            <code className="small-code-sample">Today</code>,
-                            <code className="small-code-sample">Yesterday</code>,
-                            <code className="small-code-sample">This Week</code>,
-                            <code className="small-code-sample">Last Week</code>,
-                            <code className="small-code-sample">This Month</code>,
-                            <code className="small-code-sample">Last Month</code>,
+                        <td>
+                            <code className="small-code-sample">{`(interval:<value>)`}</code>— values:
+                            <code className="small-code-sample">Today</code>,<code className="small-code-sample">Yesterday</code>,<code className="small-code-sample">This Week</code>,
+                            <code className="small-code-sample">Last Week</code>,<code className="small-code-sample">This Month</code>,<code className="small-code-sample">Last Month</code>,
                             <code className="small-code-sample">{`(interval:custom,startDate: <date1>,endDate:<date2>)`}</code>
                         </td>
                     </tr>
@@ -211,7 +226,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>selectedEntities</td>
                         <td>Vehicles to list information for</td>
-                        <td>!(<code className="small-code-sample">{`<listOfEnitities>`}</code>) or <code className="small-code-sample">{`all`}</code></td>
+                        <td>
+                            !(<code className="small-code-sample">{`<listOfEnitities>`}</code>) or <code className="small-code-sample">{`all`}</code>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -238,17 +255,18 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>sortOrder</td>
                         <td>The list order</td>
-                        <td><code className="small-code-sample">{`1`}</code> — list alphabetically, <code className="small-code-sample">{`-1`}</code> — Invert the list</td>
+                        <td>
+                            <code className="small-code-sample">{`1`}</code> — list alphabetically, <code className="small-code-sample">{`-1`}</code> — Invert the list
+                        </td>
                     </tr>
                     <tr>
                         <td>sortMode</td>
                         <td>Choose how the sort the list</td>
-                        <td><code className="small-code-sample">{`zoneName`}</code>
-                            — sorts by name,
-                            <code className="small-code-sample">{`zoneType`}</code>
-                            — sorts by type,
-                            <code className="small-code-sample">{`zoneGroup`}</code>
-                            — sorts by group</td>
+                        <td>
+                            <code className="small-code-sample">{`zoneName`}</code>— sorts by name,
+                            <code className="small-code-sample">{`zoneType`}</code>— sorts by type,
+                            <code className="small-code-sample">{`zoneGroup`}</code>— sorts by group
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -277,7 +295,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>id</td>
                         <td>Goes to edit page for the selected zone</td>
-                        <td><code className="small-code-sample">{`<zoneId>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<zoneId>`}</code>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -300,12 +320,16 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>sortOrder</td>
                         <td>The list order</td>
-                        <td><code className="small-code-sample">{`1`}</code> — list the most recent time first <code className="small-code-sample">{`-1`}</code> — invert the list</td>
+                        <td>
+                            <code className="small-code-sample">{`1`}</code> — list the most recent time first <code className="small-code-sample">{`-1`}</code> — invert the list
+                        </td>
                     </tr>
                     <tr>
                         <td>sortMode</td>
                         <td>Selects the sort mode</td>
-                        <td><code className="small-code-sample">{`machineName`}</code> — sorts by machine</td>
+                        <td>
+                            <code className="small-code-sample">{`machineName`}</code> — sorts by machine
+                        </td>
                     </tr>
                     <tr>
                         <td>showDismissed:!t</td>
@@ -333,7 +357,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>sortOrder</td>
                         <td>The list order</td>
-                        <td><code className="small-code-sample">{`1`}</code> — list the most recent time first <code className="small-code-sample">{`-1`}</code> — invert the list</td>
+                        <td>
+                            <code className="small-code-sample">{`1`}</code> — list the most recent time first <code className="small-code-sample">{`-1`}</code> — invert the list
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -356,7 +382,9 @@ const listOfPages: ReactNode = (
                     <tr>
                         <td>id</td>
                         <td>The user’s id. Will link to the edit page for that user</td>
-                        <td><code className="small-code-sample">{`<userId>`}</code></td>
+                        <td>
+                            <code className="small-code-sample">{`<userId>`}</code>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -373,7 +401,7 @@ const listOfPages: ReactNode = (
 
 const credentials: ReactNode = (
     <div className="paragraph">
-        <h2>Links That Include Username And Database</h2>
+        <h2>Links that include username and database</h2>
         <p>It is possible to insert username and database credentials into a URL. Note that the user will be required to be logged in to utilize these types of links.</p>
         <p>MyGeotab Page Example</p>
         <code className="small-code-sample">{`https://<serverName>/<databaseName>/?('userName':'<userName>','database':<databaseName>)#<page>`}</code>
@@ -385,76 +413,79 @@ const credentials: ReactNode = (
 
 const gettingSessionId: ReactNode = (
     <div className="paragraph">
-        Refer to the <a href="../concepts/#authentication">Authentication</a> section. Within that section the instructions explain the process of authenticating a user to obtain their session id.
-        {/*TODO: fix link */}
+        Refer to the <HashLink to="/myGeotab/guides/concepts/#authentication">Authentication</HashLink> section. Within that section the instructions explain the process of authenticating a user to
+        obtain their session id.
     </div>
 );
 
 const securitySessionId: ReactNode = (
     <div className="paragraph">
-        By using the sessionId, a valid login is created for that account. Another user will be able to fully access that account as long as the sessionId credential remain valid.
-        If an application is being created where the sessionId could potentially be viewed by another party, it is advised to generate the credentials using an account with access limited only
-        to the necessary data.
+        By using the sessionId, a valid login is created for that account. Another user will be able to fully access that account as long as the sessionId credential remain valid. If an application
+        is being created where the sessionId could potentially be viewed by another party, it is advised to generate the credentials using an account with access limited only to the necessary data.
     </div>
 );
 
 const embeddingMyGInIframe: ReactNode = (
     <div className="paragraph">
-        <h2>Trusted Domains Only</h2>
-        <p>Due to the risk of <a href="https://en.wikipedia.org/wiki/Clickjacking">ClickJacking</a>, MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came
-            from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.</p>
-        <h3>Info For Resellers</h3>
-        <p>If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business
-            justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.</p>
+        <h2>Trusted domains only</h2>
+        <p>
+            Due to the risk of <a href="https://en.wikipedia.org/wiki/Clickjacking">ClickJacking</a>, MyGeotab will instruct the browser to prevent MyGeotab from loading inside a frame that came
+            from an arbitrary domain. Customers wishing to utilize this feature must meet the minimum security requirements. Please contact your reseller for more details.
+        </p>
+        <h3>Info for resellers</h3>
+        <p>
+            If your customer wish to embed MyGeotab pages inside an iFrame, you need to request it through MyAdmin. Please, create a ticket specifying the URL of the MyGeotab database, business
+            justification and URL on which it will be integrated. Geotab's support team will initiate the process to get the requested domains approved.
+        </p>
         <p>This process can take some time as the domains need to be reviewed by Geotab's security team before being added to the approved list by the development team.</p>
     </div>
 );
 
 const pageTitle: PageTitleProps = {
-    "title": "Using MyGeotab URLs",
-    "breadCrumbItems": ["MYG", "Guides", "Using MyGeotab URLs"]
+    title: "Using MyGeotab URLs",
+    breadCrumbItems: ["MYG", "Guides", "Using MyGeotab URLs"]
 };
 
 const pageSections: TableOfContentsItem[] = [
     {
-        "elementId": "link-to-page",
-        "summary": "Link To A Page",
-        "details": linkToAPage
+        elementId: "link-to-page",
+        summary: "Link to a page",
+        details: linkToAPage
     },
     {
-        "elementId": "standalone-pages",
-        "summary": "Standalone pages",
-        "details": standalonePages
+        elementId: "standalone-pages",
+        summary: "Standalone pages",
+        details: standalonePages
     },
     {
-        "elementId": "passing-parameters",
-        "summary": "Passing Parameters To A Page",
-        "details": passingParameters
+        elementId: "passing-parameters",
+        summary: "Passing parameters to a page",
+        details: passingParameters
     },
     {
-        "elementId": "list-of-pages",
-        "summary": "List Of Pages And Accepted Parameters",
-        "details": listOfPages
+        elementId: "list-of-pages",
+        summary: "List of pages and accepted parameters",
+        details: listOfPages
     },
     {
-        "elementId": "credentials",
-        "summary": "Credentials",
-        "details": credentials
+        elementId: "credentials",
+        summary: "Credentials",
+        details: credentials
     },
     {
-        "elementId": "custom-devices",
-        "summary": "Getting The Session Id Using The API",
-        "details": gettingSessionId
+        elementId: "custom-devices",
+        summary: "Getting the session id using the API",
+        details: gettingSessionId
     },
     {
-        "elementId": "security-session-id",
-        "summary": "Getting The Session Id Using The API",
-        "details": securitySessionId
+        elementId: "security-session-id",
+        summary: "Security using the session id",
+        details: securitySessionId
     },
     {
-        "elementId": "embedding-myg-in-iframe",
-        "summary": "Embedding MyGeotab Inside An IFrame",
-        "details": embeddingMyGInIframe
+        elementId: "embedding-myg-in-iframe",
+        summary: "Embedding MyGeotab inside an IFrame",
+        details: embeddingMyGInIframe
     }
 ];
 
@@ -462,8 +493,8 @@ export default function myGeotabUrls() {
     return (
         <Page section={HeaderSections.MyGeotab} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">
-                This guide explains how to format a URL (Uniform Resource Locator) to obtain access to a specific page/feature in MyGeotab.
-                This can be used to link to MyGeotab from an Internet application, sending an email notification, third-party applications and other customized functions.
+                This guide explains how to format a URL (Uniform Resource Locator) to obtain access to a specific page/feature in MyGeotab. This can be used to link to MyGeotab from an Internet
+                application, sending an email notification, third-party applications and other customized functions.
             </div>
         </Page>
     );
