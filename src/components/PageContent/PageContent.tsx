@@ -17,7 +17,7 @@ export default function PageContent({ isLandingPage, pageTitle, pageContent, tab
     return (
         <div className="pageContent__container">
             <Header isLandingPage={isLandingPage} />
-            {pageTitle && <PageTitle title={pageTitle.title} breadCrumbItems={pageTitle.breadCrumbItems} /> }
+            {pageTitle && <PageTitle title={pageTitle.title} breadCrumbItems={pageTitle.breadCrumbItems} />}
             <div className={isLandingPage ? "pageContent__landing" : "pageContent"}>
                 <div className={isLandingPage ? "" : "pageContent__scrollableArea"}>
                     {pageContent}

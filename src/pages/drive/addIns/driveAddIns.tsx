@@ -14,26 +14,20 @@ import driveAddInImage from "./../../../assets/images/driveAddIns/drive-addins_0
 const driveOverview: ReactNode = (
     <div className="paragraph">
         <p>
-            The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors
-            (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state — so your Add-In must be
-            able to handle having no internet connection, or sleeping in the background of the mobile device.
+            The MyGeotab Add-In structure can be applied to the Geotab Drive application as well, providing you the ability to extend the functionality for drivers in an environment with sensors (e.g. geolocation and acceleration) and actuators (e.g. voice alerts and notifications). This environment must also be completely operable in an offline state - so your Add-In must be able to handle having no internet connection, or sleeping in the background of the mobile device.
         </p>
         <p>
             Please read the <Link to="/myGeotab/addIns/developingAddIns">Developing Add-Ins</Link> guide first before attempting a Geotab Drive Add-In.
         </p>
         <p>
-            All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and
-            scripts upon user login. This way, as the user is authenticated over the internet — they will have your Add-In with them as they travel or disconnect from the network. If your Add-In
-            requires dynamic loading of CSS, images, or JavaScript — these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on
-            creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the
-            dashboard and the menu.
+            All Add-Ins that have been designed to work with MyGeotab will work on the Geotab Drive app as well. Your Add-In will be completely downloaded for all referenced links, images, and scripts upon user login. This way, as the user is authenticated over the internet - they will have your Add-In with them as they travel or disconnect from the network. If your Add-In requires dynamic loading of CSS, images, or JavaScript - these requests will fail if the user does not have a network connection. As such you should either: include all dependencies on creation of the Add-In, explicitly link to them, or provide a fallback if <strong>state.online</strong> returns False. Geotab Drive Add-Ins will also display differently, on both the dashboard and the menu.
         </p>
         <img src={driveAddInImage} alt="Drive dashboard" />
         <p>
             To make an Add-In on the Geotab Drive app, the <strong>item</strong> in your configuration file must have a <strong>path</strong> that equals "<strong>DriveAppLink/</strong>" (including
             a trailing forward slash). The menuName, url, and version will remain unchanged. For example:
         </p>
-        <h2>Listing 1 — Geotab Drive "Item" Configuration</h2>
+        <h2>Listing 1 - Geotab Drive "item" configuration</h2>
         <CodeSample
             language="json"
             code={`"items": [{
@@ -151,7 +145,7 @@ const driveApiAndState: ReactNode = (
             Inside the Geotab Drive app, we provide the same <em>api</em> and <em>state</em> properties for your initialize method that we do for our normal Add-Ins. In addition to this, we provide
             you with properties and methods to allow access to mobile device sensors/actuators. See Table 1 below for a list of the properties and methods provided.
         </p>
-        <h2>Table 1 — Geotab Drive Additional Properties And Methods</h2>
+        <h2>Table 1 - Geotab Drive additional properties and methods</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -303,32 +297,34 @@ const driveApiAndState: ReactNode = (
                         <td>api.mobile.dutyStatusLog.getCurrentDrivingLog()</td>
                         <td>Gets the current DutyStatusLog of the driver.</td>
                         <td>None</td>
-                        <td>
-                            Promise that resolves with a {/* TODO: update link */}
-                            <a href="#DutyStatusLog">DutyStatusLog</a> object.
-                        </td>
+                        <td>Promise that resolves with a {" "}
+                            <Link
+                                to="/myGeotab/apiReference/objects/DutyStatusLog">
+                                DutyStatusLog
+                            </Link>{" "}
+                            object.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.dutyStatusLog.get()</td>
                         <td>Gets all of the DutyStatusLogs for the current user</td>
                         <td>None</td>
-                        <td>
-                            Promise that resolves with an array of {/* TODO: update link */}
-                            <a href="#DutyStatusLog">DutyStatusLog</a> objects.
-                        </td>
+                        <td>Promise that resolves with an array of {" "}
+                            <Link
+                                to="/myGeotab/apiReference/objects/DutyStatusLog">
+                                DutyStatusLog
+                            </Link>{" "}
+                            objects.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.dutyStatusLog.add()</td>
-                        <td>
-                            Adds a new DutyStatusLog. <strong>Note:</strong> The log will not be immediately added with this method, it will be synced during the next drive sync cycle.
-                        </td>
-                        <td>
-                            DutyStatusLog: Object <strong>Required properties</strong>: dateTime: String, device: Object, driver: Object, status: String, origin: String
-                        </td>
-                        <td>
-                            Promise that resolves with the newly added {/* TODO: update link */}
-                            <a href="#DutyStatusLog">DutyStatusLog</a> object
-                        </td>
+                        <td>Adds a new DutyStatusLog. <strong>Note:</strong> The log will not be immediately added with this method, it will be synced during the next drive sync cycle.</td>
+                        <td>DutyStatusLog: Object <strong>Required properties</strong>: dateTime: String, device: Object, driver: Object, status: String, origin: String</td>
+                        <td>Promise that resolves with the newly added{" "}
+                            <Link
+                                to="/myGeotab/apiReference/objects/DutyStatusLog">
+                                DutyStatusLog
+                            </Link>{" "}
+                            object</td>
                     </tr>
                     <tr>
                         <td>api.mobile.navigate()</td>
@@ -352,125 +348,126 @@ const driveApiAndState: ReactNode = (
                     </tr>
                     <tr>
                         <td>api.mobile.shipment.get()</td>
-                        <td>
-                            Gets the {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLogs</a> for the device.
-                        </td>
+                        <td>Gets the{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLogs
+                            </Link >{" "}
+                            for the device.</td>
                         <td>None</td>
-                        <td>
-                            Returns an array of {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLogs</a>.{" "}
-                            <em>
-                                Note that the method will return all devices that have been added and removed during the current session. The list should be filtered by the activeTo property
-                                according to the requirement.
-                            </em>
-                        </td>
+                        <td>Returns an array of{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLogs
+                            </Link >
+                            . <em>Note that the method will return all devices that have been added and removed during the current session. The list should be filtered by the activeTo property according to the requirement.</em></td>
                     </tr>
                     <tr>
                         <td>api.mobile.shipment.add()</td>
-                        <td>
-                            Adds a new {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLog</a>{" "}
+                        <td>Adds a new{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLog
+                            </Link >{" "}
                         </td>
-                        <td>
-                            ShipmentLog: Object <code className="small-code-sample">{`{driver: {id: '' }, activeFrom: '', dateTime: '', shipperName: '', commodity: ''}`}</code>
-                        </td>
-                        <td>
-                            Promise that resolves with the {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLogs</a> object that was added.
-                        </td>
+                        <td>ShipmentLog: Object <code className="small-code-sample">{`{driver: {id: '' }, activeFrom: '', dateTime: '', shipperName: '', commodity: ''}`}</code></td>
+                        <td>Promise that resolves with the{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLogs
+                            </Link >{" "}
+                            object that was added.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.shipment.remove()</td>
-                        <td>
-                            Removes the specified {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLog</a> by setting the activeTo datetime string to the current date.
-                        </td>
+                        <td>Removes the specified{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLog
+                            </Link >{" "}
+                            by setting the activeTo datetime string to the current date.</td>
                         <td>shipmentId: String</td>
-                        <td>
-                            Promise that resolves with the {/* TODO: update link */}
-                            <a href="#ShipmentLog">ShipmentLogs</a> object that was removed.
-                        </td>
+                        <td>Promise that resolves with the{" "}
+                            <Link to="/myGeotab/apiReference/objects/ShipmentLog">
+                                ShipmentLogs
+                            </Link >{" "}
+                            object that was removed.</td>
                     </tr>
                     <tr>
                         <td>api.mobile.textMessage.add()</td>
-                        <td>
-                            Adds a new {/* TODO: update link */}
-                            <a href="#TextMessage">TextMessage</a>{" "}
-                        </td>
-                        <td>
-                            TextMessage: Object e.g.{" "}
-                            <code className="small-code-sample">{`{device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal' } }`}</code>{" "}
-                            <em>Note: isDirectionToVehicle needs to be true when using this function.</em>
+                        <td>Adds a new{" "}
+                            <Link to="/myGeotab/apiReference/objects/TextMessage">
+                                TextMessage
+                            </Link >{" "}
                         </td>
                         <td>undefined</td>
                     </tr>
                     <tr>
                         <td>api.mobile.textMessage.get()</td>
-                        <td>
-                            Returns any {/* TODO: update link */}
-                            <a href="#TextMessage">TextMessage</a> received in the current session.
-                        </td>
+                        <td>Returns any{" "}
+                            <Link to="/myGeotab/apiReference/objects/TextMessage">
+                                TextMessage
+                            </Link >{" "}
+                            received in the current session.</td>
                         <td>None</td>
-                        <td>
-                            A promise that resolves with an array of {/* TODO: update link */}
-                            <a href="#TextMessage">TextMessages</a>{" "}
+                        <td>A promise that resolves with an array of{" "}
+                            <Link to="/myGeotab/apiReference/objects/TextMessage">
+                                TextMessages
+                            </Link >{" "}
                         </td>
                     </tr>
                     <tr>
                         <td>api.mobile.textMessage.set()</td>
-                        <td>
-                            Allows to update the properties for an existing {/* TODO: update link */}
-                            <a href="#TextMessage">TextMessage</a>{" "}
+                        <td>Allows to update the properties for an existing{" "}
+                            <Link to="/myGeotab/apiReference/objects/TextMessage">
+                                TextMessage
+                            </Link >{" "}
                         </td>
-                        <td>
-                            TextMessage: Object e.g.{" "}
-                            <code className="small-code-sample">{`{id: 'bd1', device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal'} }`}</code>{" "}
-                            <em>Note: An existing message ID is needed to modify the message.</em>
-                        </td>
-                        <td>
-                            Promise that resolves with the modified {/* TODO: update link */}
-                            <a href="#TextMessage">TextMessages</a>{" "}
+                        <td>TextMessage: Object e.g. <code className="small-code-sample">{`{id: 'bd1', device: {id: 'b1'}, isDirectionToVehicle: true, messageContent: {message: 'Message', contentType: 'Normal'} }`}</code> <em>Note: An existing message ID is needed to modify the message.</em></td>
+                        <td>Promise that resolves with the modified{" "}
+                            <Link to="/myGeotab/apiReference/objects/TextMessage">
+                                TextMessages
+                            </Link >{" "}
                         </td>
                     </tr>
                     <tr>
                         <td>api.mobile.user.get()</td>
                         <td>Retrieves driver information</td>
                         <td>includeAllDrivers: boolean Default: true</td>
-                        <td>
-                            Promise that resolves with an array of {/* TODO: update link */}
-                            <a href="#Driver">Driver</a> objects
-                        </td>
+                        <td>Promise that resolves with an array of{" "}
+                            <Link to="/myGeotab/apiReference/objects/Driver">
+                                Driver
+                            </Link >{" "}
+                            objects</td>
                     </tr>
                     <tr>
                         <td>api.mobile.user.getHosRuleSet()</td>
-                        <td>
-                            Gets the {/* TODO: update link */}
-                            <a href="#HosRuleSet">HosRuleSet</a> for the current driver
-                        </td>
+                        <td>Gets the{" "}
+                            <Link to="/myGeotab/apiReference/objects/HosRuleSet">
+                                HosRuleSet
+                            </Link >{" "}
+                            for the current driver</td>
                         <td>None</td>
-                        <td>
-                            Promise that resolves with the {/* TODO: update link */}
-                            <a href="#HosRuleSet">HosRuleSet</a> object
-                        </td>
+                        <td>Promise that resolves with the{" "}
+                            <Link to="/myGeotab/apiReference/objects/HosRuleSet">
+                                HosRuleSet
+                            </Link >{" "}
+                            object</td>
                     </tr>
                     <tr>
                         <td>api.mobile.user.getAvailability()</td>
                         <td>Gets driver availability</td>
                         <td>None</td>
-                        <td>
-                            Promise that resolves with {/* TODO: update link */}
-                            <a href="#DutyStatusAvailability">DutyStatusAvailability</a> object
-                        </td>
+                        <td>Promise that resolves with{" "}
+                            <Link to="/myGeotab/apiReference/objects/DutyStatusAvailability">
+                                DutyStatusAvailability
+                            </Link >{" "}
+                            object</td>
                     </tr>
                     <tr>
                         <td>api.mobile.user.getViolations()</td>
                         <td>Gets driver violations</td>
                         <td>None</td>
-                        <td>
-                            Promise that resolves with an array of {/* TODO: update link */}
-                            <a href="#DutyStatusViolation">DutyStatusViolation</a> objects
-                        </td>
+                        <td>Promise that resolves with an array of{" "}
+                            <Link to="/myGeotab/apiReference/objects/DutyStatusViolation">
+                                DutyStatusViolation
+                            </Link >{" "}
+                            objects</td>
                     </tr>
                     <tr>
                         <td>api.mobile.vehicle.get()</td>
@@ -591,8 +588,11 @@ const driveResources: ReactNode = (
     <div className="paragraph">
         <ul>
             <li>
-                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing" target="_blank" rel="noreferrer" aria-label="Geotab Drive Addin SDK">
-                    Geotab Drive Addin SDK
+                <a href="https://docs.google.com/document/d/1-r9o9epj61WMmGxRveA9SXR86lQGHcxgMh8lsVXGL54/edit?usp=sharing"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Geotab Drive Add-In SDK">
+                    Geotab Drive Add-In SDK
                 </a>
             </li>
             <li>
@@ -616,33 +616,33 @@ const pageSections: TableOfContentsItem[] = [
         details: driveOverview
     },
     {
-        elementId: "drive-add-in-lifecycle-methods",
-        summary: "GEOTAB Drive Page Lifecycle Methods",
-        details: driveLifeCycle
+        "elementId": "drive-add-in-lifecycle-methods",
+        "summary": "Geotab Drive page lifecycle methods",
+        "details": driveLifeCycle
     },
     {
-        elementId: "drive-add-in-api-and-state",
-        summary: "API And State Documentation",
-        details: driveApiAndState
+        "elementId": "drive-add-in-api-and-state",
+        "summary": "API and state documentation",
+        "details": driveApiAndState
     },
     {
-        elementId: "drive-add-in-third-party-uri-schema",
-        summary: "Opening Third - Party Applications Using URI Schema",
-        details: driveThirdPartyFromURISchema
+        "elementId": "drive-add-in-third-party-uri-schema",
+        "summary": "Opening third-party applications using URI schema",
+        "details": driveThirdPartyFromURISchema
     },
     {
-        elementId: "drive-add-in-from-third-party",
-        summary: "Opening Geotab Drive From Third - Party Applications",
-        details: driveFromThirdParty
+        "elementId": "drive-add-in-from-third-party",
+        "summary": "Opening Geotab Drive from third-party applications",
+        "details": driveFromThirdParty
     },
     {
-        elementId: "drive-add-in-other-resources",
-        summary: "Other Useful Resources",
-        details: driveResources
+        "elementId": "drive-add-in-other-resources",
+        "summary": "Other useful resources",
+        "details": driveResources
     }
 ];
 
-export default function DriveAddIns () {
+export default function DriveAddIns() {
     return (
         <Page section={HeaderSections.Drive} pageTitle={pageTitle} tableOfContents={pageSections}>
             <div className="paragraph">

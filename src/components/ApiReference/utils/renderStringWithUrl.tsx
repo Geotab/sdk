@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { HashLink } from "react-router-hash-link";
 
-export default function RenderStringWithLinks(text: string): JSX.Element {
+export default function RenderStringWithUrl(name: string, text: string): JSX.Element {
     const lines: string[] = text.split("\n");
 
     const renderedText: JSX.Element[] = [];
@@ -25,11 +26,11 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
             const start: number = currentIndex;
             const end: number = match.index;
             if (start < end) {
-                segments.push(<span key={`span-${currentIndex}`}>{content.slice(start, end)}</span>);
+                segments.push(<span key={`span-${index}-${start}`}>{content.slice(start, end)}</span>);
             }
 
             let cref: string[] = match[1].split(".");
-            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z]/g, "");
+            let linkText: string = cref[cref.length - 1].replace(/[^a-zA-Z\d]/g, "");
             let link;
             if (cref.includes("ObjectModel")) {
                 link = `/myGeotab/apiReference/objects#${linkText}`;
@@ -37,7 +38,11 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
                 link = `#${linkText}`;
             }
 
-            segments.push(<HashLink to={link}>{linkText}</HashLink>);
+            segments.push(
+                <HashLink key={`hashlink-${index}-${currentIndex}`} to={link}>
+                    {linkText}
+                </HashLink>
+            );
             currentIndex = seeTagRegex.lastIndex;
         }
 
@@ -59,7 +64,7 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
             const link: string = anchorMatch[1];
             const linkText: string = anchorMatch[2];
             segments.push(
-                <a key={`a-${currentIndex}`} href={link}>
+                <a key={`a-${index}-${currentIndex}`} href={link}>
                     {linkText}
                 </a>
             );
@@ -77,14 +82,15 @@ export default function RenderStringWithLinks(text: string): JSX.Element {
                 inList = true;
                 listItems = [];
             }
-            listItems.push(<li key={`li-${listItems.length}`}>{segments}</li>);
+            // console.log(`li-${name}-${index}-${segments[0].props.children}`);
+            listItems.push(<li key={`li-${name}-${index}-${segments[0].props.children}}`}>{segments}</li>);
         } else {
             inList = false;
             if (listItems.length > 0) {
                 renderedText.push(<ul key={`ul-${renderedText.length}`}>{listItems}</ul>);
                 listItems = [];
             }
-            renderedText.push(<p key={`p-${index}`}>{segments}</p>);
+            renderedText.push(<div key={`p-${index}`}>{segments}</div>);
         }
     });
 

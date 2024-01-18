@@ -1,0 +1,241 @@
+@import "../../variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+/* SearchModal.tsx styles */
+.search-modal-backdrop {
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: $backgrounds-search;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  height: 520px;
+  border-radius: 8px;
+  background-color: $background-main;
+  box-shadow: $dropshadow-default;
+  font-size: $font-size-small;
+  color: $text-secondary;
+}
+
+/* Search Modal Header Styles */
+.search-modal-header-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.search-modal-input-field-container {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid $borders-general;
+  background-color: $background-main;
+}
+
+.search-modal-input-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+}
+
+.modal-search-input {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  color: $text-placeholder;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: $font-size-small;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  /* 133.333% */
+  letter-spacing: 0.32px;
+}
+
+/* clears the default ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* clears the default ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Add the custom styling for the user inputted text */
+.search-modal-input-field.search-has-value .modal-search-input {
+  overflow: hidden;
+  color: $text-primary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-search-icon>svg {
+  width: 16px;
+  height: 16px;
+}
+
+.clear-search-button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.search-result-match {
+  font-weight: 500;
+  text-decoration-line: underline;
+}
+
+.search-results-container {
+  align-self: flex-start;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  max-height: 100%;
+  width: 705px;
+  overflow: scroll;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-inline-start: 8px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .breadCrumbContainer {
+    color: $text-secondary;
+  }
+
+  .guide-title {
+    padding-left: 3px;
+  }
+
+  .guide-icon {
+    padding-left: 3px;
+  }
+}
+
+.result-item-title {
+  font-size: $font-size-medium;
+}
+
+.result-listing-header-container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 12px;
+}
+
+.empty-search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-search-not-found {
+  text-align: center;
+
+  img {
+    border: none;
+  }
+}
+
+.modal-search-icon.hidden {
+  display: none;
+}
+
+
+/* NOTE: The Geotab tab component renders the content of the tabs as below and so far, the only way to properly add custom styling is by targeting the specific class and data-state or it will apply styling to all tab components horizontally
+  <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r9h:-trigger-All" id="All" tabindex="0" class="Tabs-module_TabsContent__wDBJ4" style=""><div class="tab-container"><div class="tab-search-icon"></div></div></div>*/
+
+.Tabs-module_TabsRoot__tfB8h {
+  background-color: $background-main;
+}
+
+.Tabs-module_tabsWrapper__vprxe {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  margin: 0px;
+  border-bottom: 1px solid $backgrounds-content-1;
+}
+
+.Tabs-module_tabsContainer__LLjH7 {
+  margin: 0px 16px;
+  border-bottom: 1px solid $backgrounds-content-1;
+  overflow: 0;
+}
+
+.Tabs-module_TabsContent__wDBJ4:not([data-state="active"]) {
+  display: none;
+}
+
+.Tabs-module_TabsContent__wDBJ4[data-state="active"] {
+  display: flex;
+  padding: 8px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  background-color: $background-main;
+
+  &.tab-container .has.results {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    height: auto;
+  }
+}

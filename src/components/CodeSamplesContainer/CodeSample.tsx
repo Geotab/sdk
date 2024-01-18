@@ -1,6 +1,6 @@
 import copyCode from "./CopyCode";
 import { CodeBlock } from "react-code-blocks";
-import "./CodeSample.scss";
+import "./codeSample.scss";
 import { IconCopy, IconDarkModeMoon, IconLightModeSun } from "./icons";
 import CustomDarkModeTheme from "./themes/CustomDarkModeTheme";
 import CustomLightModeTheme from "./themes/CustomLightModeTheme";

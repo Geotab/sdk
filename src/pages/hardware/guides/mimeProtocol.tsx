@@ -4,6 +4,7 @@ import { Page } from "../../../components";
 import { PageTitleProps } from "../../../components/PageTitle/PageTitle";
 import { HeaderSections } from "../../../components/Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../../../components/TableOfContents/TableOfContents";
+import { HashLink } from "react-router-hash-link";
 
 const mime: ReactNode = (
     <div className="paragraph">
@@ -23,30 +24,19 @@ const prerequisites: ReactNode = (
                 An external device must be connected, and its external device ID must be in the range of 4200-4299
                 <ul>
                     <li>
-                        This connection is established using IOX-specific messaging, such as{" "}
-                        <a href="https://geotab.github.io/sdk/hardware/developing-an-iox/messaging-protocol/#iox-single-frame-log-data-0x1d" target="_blank" rel="noreferrer">
-                            message 0x1D
-                        </a>{" "}
-                        for custom IOX devices or{" "}
-                        <a href="https://geotab.github.io/sdk/hardware/addon-protocols/rs232-usb/#msg-type-0x81-handshake-confirmation" target="_blank" rel="noreferrer">
-                            message 0x81
-                        </a>{" "}
-                        for IOX-RS232/USB
+                        This connection is established using IOX-specific messaging, such as <HashLink to="/hardware/guides/messagingProtocol#iox-single-frame-log-data-0x1d">message 0x1D</HashLink> for custom IOX devices or <HashLink to="/hardware/protocolReference/rs232-usb#msg-type-0x81-handshake-confirmation">message 0x81</HashLink> for IOX-RS232/USB
                     </li>
                     <li>
-                        <a href="https://geotab.github.io/sdk/hardware/addon-protocols/rs232-usb/#contact-solutions-engineering" target="_blank" rel="noreferrer">
-                            Contact Solutions Engineering
-                        </a>{" "}
-                        with integration details if you require an external device ID for your integration
+                        <HashLink to="/hardware/protocolReference/rs232-usb#contact-solutions-engineering">Contact Solutions Engineering</HashLink> with integration details if you require an external device ID for your integration
                     </li>
                 </ul>
             </li>
         </ul>
-        <h2>Protocol</h2>
+        <h3>Protocol</h3>
         <p>
             The complete MIME message is broken into chunks and sent as binary data packets. The first byte within the message is a sequence counter. All the remaining bytes contain the MIME data.
         </p>
-        <h2>Binary Data Packets</h2>
+        <h4>Binary data packets</h4>
         <p>To accommodate external devices with memory constraints, the packet size is adjustable when sending messages to/from MyGeotab. The packets have a maximum size of 1000 bytes.</p>
         <div className="table-container">
             <table>
@@ -75,7 +65,7 @@ const prerequisites: ReactNode = (
             [1] A sequence number of 0 is only used for the first packet. The sequence number increments by 1 for each subsequent packet. If the sequence number reaches 255 (0xFF) and more packets
             need to be sent, the sequence number must reset to a value of 1 and continue counting.
         </p>
-        <h2>MIME Data</h2>
+        <h4>MIME data</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -109,7 +99,7 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Acknowledge Message</h3>
+        <h4>Acknowledge message</h4>
         <p>
             When transferring MIME data from the external device to MyGeotab, once the complete message is received MyGeotab will reply with an acknowledge message indicating the total number of
             payload bytes received.
@@ -152,9 +142,9 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Example</h2>
+        <h3>Example</h3>
         <p>This is an example of binary data packets for image data transferred using the MIME type “image/jpeg”. The image size is 83000 bytes. The packet size is 235.</p>
-        <h3>First Packet:</h3>
+        <h4>First packet:</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -193,7 +183,7 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h3>Second Packet:</h3>
+        <h4>Second packet:</h4>
         <div className="table-container">
             <table>
                 <thead>
@@ -217,16 +207,9 @@ const prerequisites: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>MyGeotab API</h2>
-        <p>
-            To send/receive messages between MyGeotab and the external device, please download the source code of the <a href="/sdk/software/js-samples/#starter-kit">Starter Kit</a> sample, and
-            replace the{" "}
-            <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html" target="_blank" rel="noreferrer">
-                Sample API
-            </a>{" "}
-            with the following script. The alternative is to paste the script in the <a href="/sdk/software/api/runner.html">Runner</a>.
-        </p>
-        <h3>MIME Messages From MyGeotab To The External Device:</h3>
+        <h3>MyGeotab API</h3>
+        <p>To send/receive messages between MyGeotab and the external device, please download the source code of the <HashLink to="/myGeotab/codeSamples/javascriptSamples#javascript-example-starter-kit">Starter Kit</HashLink> sample, and replace the <a href="https://github.com/Geotab/sdk/blob/master/src/software/js-samples/starterKit.html" target="_blank" rel="noreferrer">Sample API</a> with the following script. The alternative is to paste the script in the <a href="https://geotab.github.io/sdk/software/api/runner.html" target="_blank" rel="noreferrer">Runner</a>.</p>
+        <h4>MIME messages from MyGeotab to the external device:</h4>
         <CodeSample
             language="javascript"
             code={`api.call("Add", {
@@ -250,7 +233,7 @@ const prerequisites: ReactNode = (
 });
 `}
         />
-        <h3>Retrieving MIME Data From MyGeotab:</h3>
+        <h3>Retrieving MIME data from MyGeotab:</h3>
         <p>
             Once the data has been sent to the cloud, you can use the MyGeotab SDK to pull the message content out of the target database. For each MIME payload, the data is stored within a single
             TextMessage Object and can be retrieved using the Get method (search criteria can be added):

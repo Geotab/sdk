@@ -60,7 +60,7 @@ const addInConfiguration: ReactNode = (
             </a>
             ) of keys and values which describes the Add-In, who is responsible for it, what source code it contains, and a digital security signature.
         </p>
-        <h2>Table 1 — Add-In Configuration File Keys/Values</h2>
+        <h2>Table 1 - Add-In configuration file keys/values</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -155,7 +155,7 @@ const exampleAddInConfiguration: ReactNode = (
             The Add-In configuration file below demonstrates how to define a simple Add-In which references an HTML page specified by its URL. Any CSS or JavaScript which is required by the Add-In
             would be specified in the referenced HTML.
         </p>
-        <h2>Listing 1 — A Simple Add-In Configuration JSON File</h2>
+        <h2>Listing 1 - A simple Add-In configuration JSON file</h2>
         <CodeSample
             language="json"
             code={`{
@@ -195,8 +195,8 @@ const exampleAddInConfiguration: ReactNode = (
         />
 
         <figure>
-            <img src={navigationMenuImage} alt="Image 1 — Modified left-hand-side menu" />
-            <figcaption>Image 1 — Modified left-hand-side menu</figcaption>
+            <img src={navigationMenuImage} alt="Image 1 - Modified left-hand-side menu" />
+            <figcaption>Image 1 - Modified left-hand-side menu</figcaption>
         </figure>
         <p>The Add-In navigation entry can be placed after any of the following built-in values:</p>
         <ul>
@@ -230,7 +230,7 @@ const exampleAddInConfiguration: ReactNode = (
         <p>This will insert the custom navigation entry as follows:</p>
         <figure>
             <img src={navigationSubmenuImage} alt="Navigation entry after ZoneAndMessagesLink" />
-            <figcaption>Image 4 — Navigation entry after ZoneAndMessagesLink</figcaption>
+            <figcaption>Image 4 - Navigation entry after ZoneAndMessagesLink</figcaption>
         </figure>
         <p>
             Navigation entries cannot be set at the third level (sub-sub-menu) and below. If done so by the steps outlined above, the entry will simply appear as a non-formatted bullet point in the
@@ -239,7 +239,7 @@ const exampleAddInConfiguration: ReactNode = (
         <InformationalBox>
             <p>A user may not have access to some entries of the left hand side menu. The custom navigation entry will be shown after the nearest entry which is accessible to them.</p>
         </InformationalBox>
-        <h2 id="geotab-add-in-table-2--menu-item">Table 2 — Menu Item</h2>
+        <h2 id="geotab-add-in-table-2--menu-item">Table 2 - Menu item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -303,7 +303,7 @@ const exampleAddInConfiguration: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2 id="geotab-add-in-table-3--parent-menu-item">Table 3 — Parent Menu Item</h2>
+        <h2 id="geotab-add-in-table-3--parent-menu-item">Table 3 - Parent menu item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -375,10 +375,13 @@ const exampleAddInConfiguration: ReactNode = (
 
 const creatingSubmenu: ReactNode = (
     <div className="paragraph">
-        <p>To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item — with the exception of the URL property.</p>
+        <p>
+            To create a sub-menu, add to the items array a special JSON object that looks nearly identical to the page item - with the exception of the URL property.
+        </p>
         <p>
             The process consists in creating a{" "}
-            <a href="#geotab-add-in-table-3--parent-menu-item" aria-label="Scroll to Table 3 — Parent Menu Item">
+            <a href="#geotab-add-in-table-3--parent-menu-item"
+                aria-label="Scroll to Table 3 - Parent menu item">
                 parent menu item
             </a>{" "}
             with the menuName for the submenu item, a menuId, icon, and a path for one of the build-in path navigation values (<em>GettingStartedLink</em>, <em>ActivityLink</em>,{" "}
@@ -386,7 +389,9 @@ const creatingSubmenu: ReactNode = (
         </p>
         <p>
             To place a{" "}
-            <a href="#geotab-add-in-table-2--menu-item" rel="noreferrer" aria-label="Table 2 — Menu Item">
+            <a href="#geotab-add-in-table-2--menu-item"
+                rel="noreferrer"
+                aria-label="Table 2 - Menu item">
                 menu item
             </a>{" "}
             under a parent menu item you will use the unique ID of the submenu as a path for the item. This is illustrated in the sample configuration below:
@@ -412,13 +417,12 @@ const creatingSubmenu: ReactNode = (
         },
         "icon": "images/icon.svg"
     }]
-}`}
-        />
-        <h2>Referencing Source Items</h2>
+}`} />
+        <h2>Referencing source items</h2>
         <p>
             Each Add-In can define zero or more <em>items</em> as part of its configuration file. An item is a collection of keys and values which represent a page or a button.
         </p>
-        <h2>Table 4 — Button Item</h2>
+        <h2>Table 4 - Button item</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -524,12 +528,12 @@ const creatingSubmenu: ReactNode = (
         <InformationalBox>
             <code className="small-code-sample">https://my-web-server.com/pathToAddIn/index.html</code>
         </InformationalBox>
-        <h2>Embedding Source Code</h2>
+        <h2>Embedding source code</h2>
         <p>
             When developing a custom page or button Add-In, you have the option to embed the source code for your project in the JSON configuration file. When using this method, there is no
             requirement to host your own HTML, CSS, or JavaScript files as they will be converted into strings and written inside the configuration file itself.
         </p>
-        <h2>Listing 3 — Add-In Configuration File Using Embedded Source Code</h2>
+        <h2>Listing 3 - Add-In configuration file using embedded source code</h2>
         <CodeSample
             language="json"
             code={`{
@@ -563,19 +567,26 @@ const creatingSubmenu: ReactNode = (
                 for the overall JSON object to be validated.
             </p>
         </InformationalBox>
-        <p>By reproducing the previous example, there would be two folders, one named "js" and the other "css". Inside the folders are two JavaScript files and one CSS stylesheet; respectively.</p>
-        <p>The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.</p>
-        <h2>Listing 4 — Absolute Path to Image in HTML</h2>
-        <p>Referencing an external image using an absolute URL in the HTML or CSS.</p>
-        <CodeSample language="html" code={`<img src="https://mycompany.com/images/customImage.png" alt="CustomImage" />`} />
-        <h2>Listing 5 — Absolute Path to Image in CSS</h2>
+        <p>
+            By reproducing the previous example, there would be two folders, one named "js" and the other "css". Inside the folders are two JavaScript files and one CSS stylesheet; respectively.
+        </p>
+        <p>
+            The user experience of your custom Add-In can be enhanced by including images in the configuration file. This can be performed in two ways; see Listings 4, 5, and 6 below.
+        </p>
+        <h2>Listing 4 - Absolute path to image in HTML</h2>
+        <p>
+            Referencing an external image using an absolute URL in the HTML or CSS.
+        </p>
+        <CodeSample
+            language="html"
+            code={`<img src="https://mycompany.com/images/customImage.png" alt="CustomImage" />`} />
+        <h2>Listing 5 - Absolute path to image in CSS</h2>
         <CodeSample
             language="css"
             code={`#customImage {
     background: url('https://mycompany.com/images/customImage.png') no-repeat; 
-}`}
-        />
-        <h2>Listing 6 — Add-In Configuration File with Base64 Encoded Image</h2>
+}`} />
+        <h2>Listing 6 - Add-In configuration file with Base64 encoded image</h2>
         <p>
             The other method is to embed the images along with the rest of the source code in the markup. First, the images will need to be encoded using{" "}
             <a href="http://en.wikipedia.org/wiki/Base64" target="_blank" rel="noreferrer" aria-label="Base64">
@@ -610,7 +621,7 @@ const thirdPartyLibraries: ReactNode = (
             </code>{" "}
             tag to the URL of the file.
         </p>
-        <h2>Listing 7 — Referencing jQuery from an Add-In</h2>
+        <h2>Listing 7 - Referencing jQuery from an Add-In</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -624,8 +635,10 @@ const thirdPartyLibraries: ReactNode = (
             Keep in mind that the end-user using the Add-In will be viewing your Add-In from a Geotab server. The files referenced must be publicly available on the Internet. Firewalls cannot be
             configured with a specific IP address for the Geotab server as the address may change in the future.
         </p>
-        <p>References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.</p>
-        <h2>Listing 8 — Avoiding CSS Naming Conflicts</h2>
+        <p>
+            References to external source files can either be absolute URLs such as the example in Listing 7 or can be relative references to local files as demonstrated in Listing 3.
+        </p>
+        <h2>Listing 8 - Avoiding CSS naming conflicts</h2>
         <p>
             When referencing the CSS files, keep in mind that naming conflicts are possible. Geotab's outer framework defines a number of CSS styles for common HTML tags which the custom Add-In may
             inherit. When designing HTML tags, it is recommended to prefix the HTML tags with a common name when they are stylized with the CSS.
@@ -652,8 +665,10 @@ const pageLifecycle: ReactNode = (
             object which will be created with a predefined parameter signature. From these parameters, a signed-in Geotab API object will be received, along with the page state and a callback
             synchronization function.
         </p>
-        <p>Every page on Geotab's servers, including custom page Add-Ins, have the following three methods called during their lifecycle:</p>
-        <p>Table 5 — Add-In lifecycle methods</p>
+        <p>
+            Every page on Geotab's servers, including custom page Add-Ins, have the following three methods called during their lifecycle:
+        </p>
+        <p>Table 5 - Add-In lifecycle methods</p>
         <div className="table-container">
             <table>
                 <thead>
@@ -691,7 +706,7 @@ const pageLifecycle: ReactNode = (
                 </tbody>
             </table>
         </div>
-        <h2>Visual Diagram</h2>
+        <h2>Visual diagram</h2>
         <p>
             Understanding the workflow and methods called will help you design a responsive custom page Add-In. Keep in mind that your initialize method will only be called once, unless the user
             explicitly refreshes their web browser. When the user interface is ready, the <code className="small-code-sample">focus</code> method will be called. Finally, when the user is navigating
@@ -704,10 +719,10 @@ const pageLifecycle: ReactNode = (
             </p>
         </InformationalBox>
         <figure>
-            <img src={flowChartImage} alt="Image 2 — Add-In lifecycle workflow diagram" />
-            <figcaption>Image 2 — Add-In lifecycle workflow diagram</figcaption>
+            <img src={flowChartImage} alt="Image 2 - Add-In lifecycle workflow diagram" />
+            <figcaption>Image 2 - Add-In lifecycle workflow diagram</figcaption>
         </figure>
-        <h2>Lifecycle Implementation</h2>
+        <h2>Lifecycle implementation</h2>
         <p>
             The following code can be used as a starting point for a custom page Add-In. All of the lifecycle methods are defined, and the optional <code className="small-code-sample">focus</code>{" "}
             and <code className="small-code-sample">blur</code> methods will be called due to the <code className="small-code-sample">callback</code> method being called in the{" "}
@@ -718,7 +733,7 @@ const pageLifecycle: ReactNode = (
             <code className="small-code-sample">geotab.addin</code> (note that the namespace is not hyphenated). In the example below, the full namespace is{" "}
             <code className="small-code-sample">geotab.addin.myCustomPage1</code>.
         </p>
-        <h2>Listing 9 — HTML and JavaScript Entry Point Example</h2>
+        <h2>Listing 9 - HTML and JavaScript entry point example</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -765,7 +780,7 @@ const customButtonAddIns: ReactNode = (
             the JavaScript method that has been defined will be called. This JavaScript method has access to the event which was generated by the click, the Geotab API under the credentials of the
             current user, and the page state variables.
         </p>
-        <h2>Button Add-In Configuration File</h2>
+        <h2>Button Add-In configuration file</h2>
         <p>
             The following example adds a custom button Add-In to the live map page. When clicked, the button will redirect the user to the vehicles page. Use this example as a starting point for
             creating your own custom button Add-Ins.
@@ -781,18 +796,20 @@ const customButtonAddIns: ReactNode = (
             </p>
         </InformationalBox>
         <figure>
-            <img src={mapImage} alt="Image 3 — Custom button Add-In on the live map page" />
-            <figcaption>Image 3 — Custom button Add-In on the live map page</figcaption>
+            <img src={mapImage} alt="Image 3 - Custom button Add-In on the live map page" />
+            <figcaption>Image 3 - Custom button Add-In on the live map page</figcaption>
         </figure>
-        <h2>Use Cases</h2>
-        <p>The action your custom button Add-In performs is decided by your specific business requirement. The following are example actions that can be implemented:</p>
+        <h2>Use cases</h2>
+        <p>
+            The action your custom button Add-In performs is decided by your specific business requirement. The following are example actions that can be implemented:
+        </p>
         <ul>
             <li>One-click navigation between maps and reports</li>
             <li>Call an API to alert for driver proximity</li>
             <li>Create a new zone at the current location</li>
             <li>Automated execution of a sequence of actions</li>
         </ul>
-        <h2>Listing 10 — Custom Button Add-In Configuration File</h2>
+        <h2>Listing 10 - Custom button Add-In configuration file</h2>
         <p>
             Almost any page is available to have a custom button Add-In added to it. Use a web browser's address bar to find the correct value for the Page property. Geotab pages will have a
             trailing hash (“#”) symbol followed by the page name. Determine the page name and then set the “page” value of your custom button Add-In configuration file to that value.
@@ -826,16 +843,17 @@ const javaScriptButtonAction: ReactNode = (
         <InformationalBox>
             <p>To avoid conflicts with multiple Add-Ins enabled on an account, be certain to create unique namespaces for each Add-In.</p>
         </InformationalBox>
-        <h2>Listing 12 — Custom Button Click Method</h2>
+        <h2>Listing 12 - Custom button click method</h2>
         <CodeSample
             language="javascript"
             code={`geotab.customButtons.customExample1 = (event, api, state) => {
     alert("Custom button Add-In clicked!");
     state.gotoPage("map");
-};`}
-        />
-        <p>The state object is a powerful tool for creating navigational components by changing the current page state. The state object has access to a number of methods as follows:</p>
-        <h2>Table 6 - Geotab Page State Methods</h2>
+};`} />
+        <p>
+            The state object is a powerful tool for creating navigational components by changing the current page state. The state object has access to a number of methods as follows:
+        </p>
+        <h2>Table 6 - Geotab page state methods</h2>
         <div className="table-container">
             <table>
                 <thead>
@@ -929,8 +947,8 @@ const completeIntegrationExample: ReactNode = (
         <InformationalBox>
             <p>For the purpose of this example, the integrationExample.css and integrationExample.js are empty files.</p>
         </InformationalBox>
-        <h2>Source Code</h2>
-        <h2>Listing 13 — HTML and JavaScript code for integration example</h2>
+        <h2>Source code</h2>
+        <h2>Listing 13 - HTML and JavaScript code for integration example</h2>
         <CodeSample
             language="html"
             code={`<!DOCTYPE html>
@@ -999,9 +1017,8 @@ const completeIntegrationExample: ReactNode = (
             Go to vehicles page</button>
         </div>
     </body>
-</html>`}
-        />
-        <h2>Listing 14 — Configuration file for integration example</h2>
+</html>`} />
+        <h2>Listing 14 - Configuration file for integration example</h2>
         <CodeSample
             language="json"
             code={`{
@@ -1065,8 +1082,11 @@ const addInIconValidator: ReactNode = (
             <a href="https://www.geotab.com/blog/mygeotab-add-in-icons-specs/" target="_blank" rel="noreferrer" aria-label="MyGeotab Add-In Icons Specifications">
                 Geotab's requirements
             </a>{" "}
-            and displays them in the reformatted colors and style that will be displayed in MyGeotab. {/* TODO: update link */}
-            <a href="https://geotab.github.io/sdk/software/guides/developing-addins/addin-icon-validator.html" target="_blank" rel="noreferrer" aria-label="MyGeotab SVG Icon Validator">
+            and displays them in the reformatted colors and style that will be displayed in MyGeotab.{" "}
+            <a href="https://geotab.github.io/sdk/software/guides/developing-addins/addin-icon-validator.html"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="MyGeotab SVG Icon Validator">
                 Launch the validator
             </a>
             .
@@ -1081,69 +1101,57 @@ const pageTitle: PageTitleProps = {
 
 const pageSections: TableOfContentsItem[] = [
     {
-        elementId: "geotab-add-in-types",
-        summary: "Geotab Add-Ins Can Be of Two Types",
-        details: addInTypes
-    },
-    {
-        elementId: "geotab-add-in-use-cases",
-        summary: "Use Cases",
-        details: useCases
-    },
-    {
-        elementId: "geotab-add-in-requirements",
-        summary: "Requirements",
-        details: requirements
-    },
-    {
-        elementId: "geotab-add-in-configuration",
-        summary: "Add-In Configuration Files",
-        details: addInConfiguration
-    },
-    {
-        elementId: "geotab-add-in-configuration-example",
-        summary: "Example Add-In Configuration File",
-        details: exampleAddInConfiguration
-    },
-    {
-        elementId: "geotab-add-in-submenu",
-        summary: "Listing 2 — Creating Submenu Items",
-        details: creatingSubmenu
-    },
-    {
-        elementId: "geotab-add-in-third-party-libraries",
-        summary: "Using Third-Party Libraries",
-        details: thirdPartyLibraries
-    },
-    {
-        elementId: "geotab-add-in-page-life-cycle",
-        summary: "Page Lifecycle",
-        details: pageLifecycle
-    },
-    {
-        elementId: "geotab-add-in-custom-button-add-ins",
-        summary: "Custom Button Add-Ins",
-        details: customButtonAddIns
-    },
-    {
-        elementId: "geotab-add-in-js-action-button",
-        summary: "JavaScript Button Action",
-        details: javaScriptButtonAction
-    },
-    {
-        elementId: "geotab-add-in-integration-example",
-        summary: "Complete Integration Example",
-        details: completeIntegrationExample
-    },
-    {
-        elementId: "geotab-add-in-troubleshooting-and-debugging",
-        summary: "Troubleshooting and Debugging",
-        details: troubleshootingAndDebugging
-    },
-    {
-        elementId: "geotab-add-in-icon-validator",
-        summary: "Add-In Icon Validator",
-        details: addInIconValidator
+        "elementId": "geotab-add-in-types",
+        "summary": "Geotab Add-Ins can be of two types",
+        "details": addInTypes
+    }, {
+        "elementId": "geotab-add-in-use-cases",
+        "summary": "Use cases",
+        "details": useCases
+    }, {
+        "elementId": "geotab-add-in-requirements",
+        "summary": "Requirements",
+        "details": requirements
+    }, {
+        "elementId": "geotab-add-in-configuration",
+        "summary": "Add-In configuration files",
+        "details": addInConfiguration
+    }, {
+        "elementId": "geotab-add-in-configuration-example",
+        "summary": "Example Add-In configuration file",
+        "details": exampleAddInConfiguration
+    }, {
+        "elementId": "geotab-add-in-submenu",
+        "summary": "Listing 2 - Creating submenu items",
+        "details": creatingSubmenu
+    }, {
+        "elementId": "geotab-add-in-third-party-libraries",
+        "summary": "Using third-party libraries",
+        "details": thirdPartyLibraries
+    }, {
+        "elementId": "geotab-add-in-page-life-cycle",
+        "summary": "Page lifecycle",
+        "details": pageLifecycle
+    }, {
+        "elementId": "geotab-add-in-custom-button-add-ins",
+        "summary": "Custom button Add-Ins",
+        "details": customButtonAddIns
+    }, {
+        "elementId": "geotab-add-in-js-action-button",
+        "summary": "JavaScript button action",
+        "details": javaScriptButtonAction
+    }, {
+        "elementId": "geotab-add-in-integration-example",
+        "summary": "Complete integration example",
+        "details": completeIntegrationExample
+    }, {
+        "elementId": "geotab-add-in-troubleshooting-and-debugging",
+        "summary": "Troubleshooting and debugging",
+        "details": troubleshootingAndDebugging
+    }, {
+        "elementId": "geotab-add-in-icon-validator",
+        "summary": "Add-In icon validator",
+        "details": addInIconValidator
     }
 ];
 

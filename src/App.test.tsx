@@ -3,12 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import LandingPage from "./pages";
 import { BrowserRouter } from "react-router-dom";
 
-// test("renders learn react link.", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
 describe("Landing page", () => {
     test("should have a brief description about the site.", () => {
         render(
@@ -60,7 +54,7 @@ describe("Landing page", () => {
         );
         const link = screen.getByRole("link", { name: "Navigate to MyGeotab introduction" });
         fireEvent.click(link);
-        expect(window.location.pathname).toBe("/myGeotabIntroduction");
+        expect(window.location.pathname).toBe("/myGeotab/introduction");
     });
 
     test("should redirect to the MyAdmin section when the MyAdmin button is clicked.", () => {
@@ -71,7 +65,7 @@ describe("Landing page", () => {
         );
         const link = screen.getByRole("link", { name: "Navigate to MyAdmin introduction" });
         fireEvent.click(link);
-        expect(window.location.pathname).toBe("/myAdminIntroduction");
+        expect(window.location.pathname).toBe("/myAdmin/introduction");
     });
 
     test("should redirect to the Drive section when the Drive button is clicked.", () => {
@@ -82,7 +76,7 @@ describe("Landing page", () => {
         );
         const link = screen.getByRole("link", { name: "Navigate to Drive introduction" });
         fireEvent.click(link);
-        expect(window.location.pathname).toBe("/driveIntroduction");
+        expect(window.location.pathname).toBe("/drive/introduction");
     });
 
     test("should redirect to the Hardware section when the Hardware button is clicked.", () => {
@@ -93,6 +87,6 @@ describe("Landing page", () => {
         );
         const link = screen.getByRole("link", { name: "Navigate to Hardware introduction" });
         fireEvent.click(link);
-        expect(window.location.pathname).toBe("/hardwareIntroduction");
+        expect(window.location.pathname).toBe("/hardware/introduction");
     });
 });

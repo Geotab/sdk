@@ -10,7 +10,7 @@ export interface CodeSamples {
 
 const languages: Record<string, string> = {
     javascript: "JavaScript",
-    csharp: "C #",
+    csharp: "C#",
     java: "Java",
     python: "Python"
 };
@@ -28,16 +28,13 @@ const samples: CodeSamples = {
 <CodeSamplesContainer {...samples}></CodeSamplesContainer>
 };*/
 
-export default function CodeSamplesContainer (props: CodeSamples): JSX.Element {
+export default function CodeSamplesContainer(props: CodeSamples): JSX.Element {
     let tabsArray: TabConfig[] = Object.keys(props).map((language) => ({
         content: <CodeSample language={language} code={props[language as keyof CodeSamples]!}></CodeSample>,
         name: languages[language as keyof CodeSamples]
     }));
 
-    return (
-        <div>
-            <h2 className="subtitle">Try me</h2>
-            <Tabs tabs={tabsArray} />
-        </div>
-    );
+  return (
+      <Tabs tabs={tabsArray} defaultTab={languages.javascript} />
+  );
 }

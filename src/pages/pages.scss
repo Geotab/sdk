@@ -14,12 +14,12 @@
 }
 
 .text--large {
-  font-size: $font-size-large;
+  font-size: $font-size-x-large;
   margin: 0;
 }
 
 .text--medium {
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
 }
 
 img {
@@ -36,7 +36,7 @@ img {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  color: $lightBlack;
+  color: $text-landing-page;
 
   img {
     border: none;
@@ -184,7 +184,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: $darkBlue;
+  color: $text-secondary;
 }
 
 .title {
@@ -197,7 +197,7 @@ ul {
 
 .subtitle {
   font-weight: 300;
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
   line-height: 28px;
 }
 
@@ -214,12 +214,12 @@ h3 {
 }
 
 a {
-  color: $brightBlue;
+  color: $text-hyperlink;
   text-decoration: none;
 }
 
 .grayBackground {
-  background-color: $lightGray;
+  background-color: $backgrounds-content-0;
 }
 
 .small-code-sample {

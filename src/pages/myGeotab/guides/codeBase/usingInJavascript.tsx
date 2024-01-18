@@ -5,8 +5,8 @@ import { HeaderSections } from "../../../../components/Header/headerSectionsEnum
 import { TableOfContentsItem } from "../../../../components/TableOfContents/TableOfContents";
 import InformationalBox from "../../../../components/InformationalBox/InformationalBox";
 import CodeSample from "../../../../components/CodeSamplesContainer/CodeSample";
-import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const geotabApiObject: ReactNode = (
     <div className="paragraph">
