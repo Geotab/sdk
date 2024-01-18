@@ -5,9 +5,9 @@ import { PageTitleProps } from "../PageTitle/PageTitle";
 import { HeaderSections } from "../Header/headerSectionsEnum";
 import { TableOfContentsItem } from "../TableOfContents/TableOfContents";
 import RenderStringWithUrl from "./utils/renderStringWithUrl";
-import "./reference.scss";
 import { CodeSamples, CodeSamplesContainer } from "../CodeSamplesContainer";
 import { methodsCodeSamples } from "./utils/methodsCodeSamples";
+import "./reference.scss";
 
 interface MethodParameter {
     name: string;
@@ -28,7 +28,11 @@ export default function Method(): JSX.Element {
     const parameters: MethodParameter[] = storedMethodData.parameters;
     const returnValueDescriptions: string = storedMethodData.returns;
     const javascriptCodeSampleFromXML: string = storedMethodData.example;
-    let codeSamples: CodeSamples = methodsCodeSamples[methodId];
+    let codeSamples: CodeSamples = methodId in methodsCodeSamples ?
+        methodsCodeSamples[methodId] :
+        {
+            javascript: "/* Work in progress - Coming soon */"
+        };
     if (javascriptCodeSampleFromXML !== "") {
         // Format the JS code sample that is pulled from the XML since there's extra whitespace
         codeSamples.javascript = javascriptCodeSampleFromXML

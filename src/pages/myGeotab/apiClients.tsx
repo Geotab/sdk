@@ -168,6 +168,7 @@ api.get('Device', resultsLimit=1)`}
     </div>
 );
 
+/* eslint-disable no-useless-escape */
 const php: ReactNode = (
     <div className="paragraph">
         <h2>Quick start</h2>

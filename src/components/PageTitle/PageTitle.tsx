@@ -6,11 +6,6 @@ export interface PageTitleProps {
     breadCrumbItems: string[];
 }
 
-interface BreadCrumbProps {
-    name: string;
-    isLastOne: boolean;
-}
-
 export default function PageTitle({ title, breadCrumbItems }: PageTitleProps): JSX.Element {
     return (
         <div className="pageTitle">
