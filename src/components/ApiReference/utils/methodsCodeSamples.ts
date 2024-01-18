@@ -114,27 +114,27 @@ api.authenticate()`,
 )`,
         "java": "/* Work in progress - Coming soon */"
     },
-    GetTimeZones: {
-        javascript: "",
-        csharp: `await api.CallAsync<List<TimeZoneInfo>>("GetTimeZones");`,
-        python: `await api.call_async("GetTimeZones")`,
-        java: "/* Work in progress - Coming soon */"
+    "GetTimeZones": {
+        "javascript": "",
+        "csharp": `await api.CallAsync<List<TimeZoneInfo>>("GetTimeZones");`,
+        "python": `await api.call_async("GetTimeZones")`,
+        "java": "/* Work in progress - Coming soon */"
     },
-    GetVersion: {
-        javascript: "",
-        csharp: `await api.CallAsync<string>("GetVersion");`,
-        python: `await api.call_async("GetVersion")`,
-        java: "/* Work in progress - Coming soon */"
+    "GetVersion": {
+        "javascript": "",
+        "csharp": `await api.CallAsync<string>("GetVersion");`,
+        "python": `await api.call_async("GetVersion")`,
+        "java": "/* Work in progress - Coming soon */"
     },
-    GetVersionInformation: {
-        javascript: "",
-        csharp: `await api.CallAsync<VersionInformation>("GetVersionInformation");`,
-        python: `await api.call_async("GetVersionInformation")`,
-        java: "/* Work in progress - Coming soon */"
+    "GetVersionInformation": {
+        "javascript": "",
+        "csharp": `await api.CallAsync<VersionInformation>("GetVersionInformation");`,
+        "python": `await api.call_async("GetVersionInformation")`,
+        "java": "/* Work in progress - Coming soon */"
     },
-    OptimizeWaypoints: {
-        javascript: "",
-        csharp: `IList<Waypoint>  waypointsList = new List<Waypoint> {
+    "OptimizeWaypoints": {
+        "javascript": "",
+        "csharp": `IList<Waypoint>  waypointsList = new List<Waypoint> {
     new Waypoint(new Coordinate(-79.78167419433593, 43.51832580566406), 0, "A"),
     new Waypoint(new Coordinate(-79.8455322265625, 43.51230010986328), 1, "B"),
     new Waypoint(new Coordinate(-79.968017578125, 43.42531967163086), 2 , "C"),
@@ -143,7 +143,7 @@ api.authenticate()`,
 };
         
 await api.CallAsync<List<Waypoint>>("OptimizeWaypoints", new {waypoints = waypointsList});`,
-        python: `await api.call_async("OptimizeWaypoints", waypoints=[
+        "python": `await api.call_async("OptimizeWaypoints", waypoints=[
     {
        "coordinate": {"x": -79.78167419433593, "y": 43.51832580566406},
        "sequence": 0,
@@ -170,29 +170,29 @@ await api.CallAsync<List<Waypoint>>("OptimizeWaypoints", new {waypoints = waypoi
         "description": "E"
     }
 ])`,
-        java: "/* Work in progress - Coming soon */"
+        "java": "/* Work in progress - Coming soon */"
     },
-    Remove: {
-        javascript: "",
-        csharp: `Console.WriteLine("Enter the name of the zone that you want to remove:");
+    "Remove": {
+        "javascript": "",
+        "csharp": `Console.WriteLine("Enter the name of the zone that you want to remove:");
 string zoneName = Console.ReadLine();
-var zones = await api.CallAsync<List<Zone>>("Get", typeof(Zone), new { search = new { name = $"%{zoneName}%"}});
+IList<Zone> = await api.CallAsync<List<Zone>>("Get", typeof(Zone), new { search = new { name = $"%{zoneName}%"}});
 if (zones.Count > 0) {
     await api.CallAsync<Zone>("Remove", typeof(Zone), new { entity = new { id = zones[0].Id } });
 } else {
     Console.WriteLine("There is no zone with such name");
 }`,
-        python: `zone_name = input("Enter the name of the zone that you want to remove: ")
+        "python": `zone_name = input("Enter the name of the zone that you want to remove: ")
 zones_response = await api.get_async("Zone", name= "%" + zone_name + "%")
 if zones_response:
     remove_response = await api.remove_async("Zone",entity = {"id": zones_response[0]["id"]})
 else:
     print("There is no zone with such name.")`,
-        java: "/* Work in progress - Coming soon */"
+        "java": "/* Work in progress - Coming soon */"
     },
-    Set: {
-        javascript: "",
-        csharp: `Console.WriteLine("Enter current zone name: ");
+    "Set": {
+        "javascript": "",
+        "csharp": `Console.WriteLine("Enter current zone name: ");
 string currentZoneName = Console.ReadLine();
 Console.WriteLine("Enter new zone name: ");
 string newZoneName = Console.ReadLine();
@@ -200,12 +200,12 @@ string newZoneName = Console.ReadLine();
 IList<Zone> zones = await api.CallAsync<List<Zone>>("Get", typeof(Zone), new { search = new { name = $"%{currentZoneName}%"}});
 
 if (zones.Count > 0) {
-    var zone = zones[0];
+    Zone zone = zones[0];
     zone.Name = newZoneName;
             
     await api.CallAsync<Zone>("Set", typeof(Zone), new { entity = zone });
 }`,
-        python: `current_zone_name = input("Enter current zone name: ")
+        "python": `current_zone_name = input("Enter current zone name: ")
 new_zone_name = input("Enter new zone name: ")
         
 zones_response = await api.get_async("Zone", name="%" + current_zone_name + "%")
@@ -216,10 +216,10 @@ if zones_response:
     await api.set_async("Zone", entity=zone)
 else:
     print("There is no zone with such name.")`,
-        java: "/* Work in progress - Coming soon */"
+        "java": "/* Work in progress - Coming soon */"
     },
-    UploadMediaFile: {
-        javascript: `import axios from "axios";
+    "UploadMediaFile": {
+        "javascript": `import axios from "axios";
         
 const solutionId = "<your solutionId here>";
 const mediaFileName = "<your media file name here>";
@@ -229,7 +229,7 @@ let mediaFileId = await api.call( "Add", { typeName: "MediaFile",
         solutionId: solutionId,
         name: mediaFileName
     }
-})
+});
 
 const requestParams = {
     method: "UploadMediaFile",
@@ -259,7 +259,7 @@ axios.post(api_path, formData)
 .catch(error => {
     console.error("Error:", error.response ? error.response.data : error.message);
 });`,
-        csharp: `Id solutionId = Id.Create(Guid.NewGuid()); // the unique solution ID of the integration
+        "csharp": `Id solutionId = Id.Create(Guid.NewGuid()); // the unique solution ID of the integration
         
 Console.WriteLine("Enter the name of the file (must have extension): ");
 string mediaFileName = Console.ReadLine();
@@ -287,7 +287,7 @@ await using (var inputStream = File.OpenRead(file.FullName)) {
     await api.UploadAsync(inputStream , mediaFile);
     Console.WriteLine($"Uploading file complete.");
 }`,
-        python: `import requests
+        "python": `import requests
 import json
         
 solutionId = "<your solutionId here>";
@@ -328,10 +328,10 @@ if mediaFileId:
         print("Success") 
     else:
         print("Error:", response.text)`,
-        java: "/* Work in progress - Coming soon */"
+        "java": "/* Work in progress - Coming soon */"
     },
-    DownloadMediaFile: {
-        javascript: `import axios from "axios";
+    "DownloadMediaFile": {
+        "javascript": `import axios from "axios";
 const mediaFileId = prompt("Enter the id of the media file: ")
 const requestParams = {
     method: "DownloadMediaFile",
@@ -356,7 +356,7 @@ axios.post(api_path, requestParams, { responseType: "blob" })
     .catch(error => {
         console.error("Error:", error.response ? error.response.data : error.message);
     });`,
-        csharp: `Console.WriteLine("Enter the id of the media file:");
+        "csharp": `Console.WriteLine("Enter the id of the media file:");
 Id mediafileId = Id.Create(Console.ReadLine());
 
 MediaFile mediaFile = (await api.CallAsync<IEnumerable<MediaFile>>("Get", typeof(MediaFile), new { search = new MediaFileSearch(mediafileId) })).FirstOrDefault();
@@ -375,7 +375,7 @@ await using (var outputStream = File.OpenWrite(outputFile)) {
 }
 
 Console.WriteLine($"Downloading file complete: {outputFile}.{Environment.NewLine}");`,
-        python: `mediaFileId = input("Enter the id of the media file: ")
+        "python": `mediaFileId = input("Enter the id of the media file: ")
 request_params = {
     "method": "DownloadMediaFile",
     "params": {
@@ -405,6 +405,6 @@ if response.status_code == 200:
                 file.write(chunk)
                         
     print(f"File downloaded and saved as {filename}.")`,
-        java: "/* Work in progress - Coming soon */"
+        "java": "/* Work in progress - Coming soon */"
     }
 };
