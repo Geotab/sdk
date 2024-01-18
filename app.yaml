@@ -1,4 +1,4 @@
-runtime: nodejs10
+runtime: nodejs18
 
 handlers:
 - url: /static
