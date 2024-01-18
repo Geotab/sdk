@@ -122,27 +122,37 @@ api.authenticate()`,
     { 
         addresses = new List<string> 
         { 
-            "770 E Pilot Rd Suite A, Las Vegas, NV 89119", 
-            "21-1075 North Service Rd W, Oakville, ON L6M 2G2, Canada" 
+            "New York City, NY, USA" 
         } 
     }
 );`,
         "python": `await api.call_async(
     "GetCoordinates", 
-    addresses = ["770 E Pilot Rd Suite A, Las Vegas, NV 89119", "2440 Winston Park Dr, Oakville, ON L6H 7V2, Canada"]
-    )`,
+    addresses = ["New York City, NY, USA"]
+)`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetCountOf": {
         "javascript": ``,
-        "csharp": `await api.CallAsync<int?>("GetCountOf", typeof(Zone))`,
+        "csharp": `await api.CallAsync<int>("GetCountOf", typeof(Zone))`,
         "python": `await api.call_async("GetCountOf", typeName = "Zone")`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetDaylightSavingRules": {
         "javascript": ``,
-        "csharp": `await api.CallAsync<TimeZoneInfoWithRules>("GetDaylightSavingRules", new { timeZoneId = "America/Toronto" });`,
-        "python": `await api.call_async("GetDaylightSavingRules", timeZoneId = "America/Toronto")`,
+        "csharp": `await api.CallAsync<TimeZoneInfoWithRules>(
+    "GetDaylightSavingRules", 
+    new 
+    { 
+        timeZoneId = "America/Toronto",
+        minYear = 1990
+    }
+);`,
+        "python": `await api.call_async(
+    "GetDaylightSavingRules", 
+    timeZoneId = "America/Toronto",
+    minYear = 1990
+)`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetDirections": {
@@ -157,8 +167,8 @@ api.authenticate()`,
             { 
                 Coordinate = new Coordinate 
                 { 
-                    X = -115.1477861, 
-                    Y = 36.0632094 
+                    X = -79.38424129999999, 
+                    Y = 43.65411539999999 
                 }, 
                 Sequence = 0, 
                 Description = "A" 
@@ -167,8 +177,8 @@ api.authenticate()`,
             { 
                 Coordinate = new Coordinate 
                 { 
-                    X = -79.6863441, 
-                    Y = 43.5153199 
+                    X = -79.38931020000001, 
+                    Y = 43.640473 
                 }, 
                 Sequence = 1, 
                 Description = "B" 
@@ -177,8 +187,8 @@ api.authenticate()`,
             { 
                 Coordinate = new Coordinate 
                 { 
-                    X = -99.163876, 
-                    Y = 19.4305696 
+                    X = -79.38424129999999, 
+                    Y = 43.65411539999999 
                 }, 
                 Sequence = 2, 
                 Description = "C" 
@@ -189,17 +199,30 @@ api.authenticate()`,
         "python": `await api.call_async(
     "GetDirections", 
     waypoints = [
-        { "coordinate": { "x": -115.1477861, "y": 36.0632094 }, "sequence": 0, "description": "A" }, 
-        { "coordinate": { "x": -79.6863441, "y": 43.5153199 }, "sequence": 1, "description": "B" }, 
-        { "coordinate": { "x": -99.163876, "y": 19.4305696 }, "sequence": 2, "description": "C" }
+        { "coordinate": { "x": -79.38424129999999, "y": 43.65411539999999 }, "sequence": 0, "description": "A" }, 
+        { "coordinate": { "x": -79.38931020000001, "y": 43.640473 }, "sequence": 1, "description": "B" }, 
+        { "coordinate": { "x": -79.38424129999999, "y": 43.65411539999999 }, "sequence": 2, "description": "C" }
     ]
 )`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetFeed": {
         "javascript": ``,
-        "csharp": `await api.CallAsync<FeedResult<StatusData>>("GetFeed", typeof(StatusData), new { fromVersion = 0L });`,
-        "python": `await api.call_async("GetFeed", typeName = "StatusData", fromVersion = "0")`,
+        "csharp": `await api.CallAsync<FeedResult<StatusData>>(
+    "GetFeed", 
+    typeof(StatusData), 
+    new 
+    { 
+        resultsLimit = 10, 
+        fromVersion = 0L 
+    }
+);`,
+        "python": `await api.call_async(
+    "GetFeed", 
+    typeName = "StatusData", 
+    resultsLimit = 10, 
+    fromVersion = "0"
+)`,
         "java": `/* Work in progress - Coming soon */`
     },
     "GetRoadMaxSpeeds": {
@@ -209,15 +232,15 @@ api.authenticate()`,
     new 
     { 
         deviceSearch = new DeviceSearch(Id.Create("<enter desired id>")), 
-        fromDate = new DateTime(2024, 01, 01, 00, 00, 00, DateTimeKind.Utc), 
-        toDate = new DateTime(2024, 01, 02, 00, 00, 00, DateTimeKind.Utc) 
+        fromDate = DateTime.UtcNow.AddDays(-7), 
+        toDate = DateTime.UtcNow 
     }
 );`,
         "python": `await api.call_async(
     "GetRoadMaxSpeeds", 
-    deviceSearch = dict(id = "<enter desired id>"), 
-    fromDate = "2024-01-01T00:00:00.000Z", 
-    toDate = "2024-01-02T00:00:00.000Z"
+    deviceSearch=dict(id="<enter desired id>"), 
+    fromDate=(datetime.datetime.now() - timedelta(days=7)), 
+    toDate=datetime.datetime.now()
 )`,
         "java": `/* Work in progress - Coming soon */`
     },
