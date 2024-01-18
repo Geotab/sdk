@@ -1,3 +1,4 @@
+runtime: nodejs18 
 handlers:
 - url: /static
   secure: always
