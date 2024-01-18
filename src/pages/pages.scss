@@ -1,12 +1,25 @@
 @import "../variables";
 
+// Scrollbar styling - Track & handle hover not required thus not defined
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-color;
+  border-radius: 8px;
+}
+
 .text--large {
-  font-size: $font-size-large;
+  font-size: $font-size-x-large;
   margin: 0;
 }
 
 .text--medium {
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
 }
 
 img {
@@ -23,7 +36,7 @@ img {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  color: $lightBlack;
+  color: $text-landing-page;
 
   img {
     border: none;
@@ -171,7 +184,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: $darkBlue;
+  color: $text-secondary;
 }
 
 .title {
@@ -184,7 +197,7 @@ ul {
 
 .subtitle {
   font-weight: 300;
-  font-size: $font-size-medium;
+  font-size: $font-size-large;
   line-height: 28px;
 }
 
@@ -201,16 +214,26 @@ h3 {
 }
 
 a {
-  color: $brightBlue;
+  color: $text-hyperlink;
   text-decoration: none;
 }
 
 .grayBackground {
-  background-color: $lightGray;
+  background-color: $backgrounds-content-0;
 }
 
 .small-code-sample {
   color: $code-color;
   background-color: $code-bg;
   padding: 4px;
+}
+
+.code-samples-pages__button-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin: 5px 0;
 }

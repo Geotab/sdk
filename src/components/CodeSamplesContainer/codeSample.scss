@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+
+.snippetBox {
+    position: relative;
+    font-family: "Roboto Mono", monospace;
+
+    &--dark-mode span::-webkit-scrollbar-thumb {
+        background: $dark-mode-content-color;
+    }
+}
+
+// Set height for the code sample container on the method page
+#codeSample .snippetBox span {
+    height: 336px;
+}
+
+#codeSample div.paragraph div div[data-state="active"] {
+    display: block;
+    height: unset;
+}
+
+.snippetBox__toolsContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 8px;
+
+    button {
+        & svg path {
+            fill: $light-mode-content-color;
+        }
+
+        &:hover svg path {
+            fill: $light-mode-content-color-hover;
+        }
+
+        &.snippetBox__tool--dark-mode {
+            & svg path {
+                fill: $dark-mode-content-color;
+            }
+
+            &:hover svg path {
+                fill: $dark-mode-content-color-hover;
+            }
+        }
+    }
+}
