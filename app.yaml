@@ -1,7 +1,8 @@
 runtime: nodejs18 
 handlers:
-- url: /js
-  static_dir: js
+- url: /myGeotab/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
   static_files: build/\1
