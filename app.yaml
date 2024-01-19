@@ -7,13 +7,13 @@ handlers:
 - url: /myGeotab/addIns/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
+- url: /myGeotab/apiReference/methods/(.+\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myGeotab/apiReference/objects/(.+\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 - url: /myGeotab/apiReference/(.*\..+)$
-  static_files: build/\1
-  upload: build/(.*\..+)$
-- url: /myGeotab/apiReference/methods/(.*\..+)$
-  static_files: build/\1
-  upload: build/(.*\..+)$
-- url: /myGeotab/apiReference/objects/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /myGeotab/codeSamples/(.*\..+)$
