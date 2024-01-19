@@ -1,6 +1,6 @@
 runtime: nodejs18 
 handlers:
-- url: js
+- url: /js
   static_dir: js
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
