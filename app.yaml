@@ -1,9 +1,6 @@
 runtime: nodejs18 
 handlers:
 #myGeotab section
-- url: /myGeotab/(.*\..+)$
-  static_files: build/\1
-  upload: build/(.*\..+)$
 - url: /myGeotab/guides/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
@@ -20,6 +17,9 @@ handlers:
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /myGeotab/codeSamples/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myGeotab/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 #myAdmin section
