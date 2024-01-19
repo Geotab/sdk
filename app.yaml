@@ -1,13 +1,10 @@
 runtime: nodejs18 
 handlers:
-#myGeotab section
+# MyGeotab section
 - url: /myGeotab/guides/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /myGeotab/addIns/(.*\..+)$
-  static_files: build/\1
-  upload: build/(.*\..+)$
-- url: /myGeotab/apiReference/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /myGeotab/apiReference/methods/(.*\..+)$
@@ -16,17 +13,49 @@ handlers:
 - url: /myGeotab/apiReference/objects/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
+- url: /myGeotab/apiReference/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 - url: /myGeotab/codeSamples/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /myGeotab/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
-#myAdmin section
+# MyAdmin section
+- url: /myAdmin/guides/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myAdmin/apiReference/methods/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myAdmin/apiReference/objects/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myAdmin/apiReference/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /myAdmin/codeSamples/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 - url: /myAdmin/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
+# Drive section
+- url: /drive/addIns/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 - url: /drive/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+# Hardware section
+- url: /hardware/guides/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /hardware/protocolReference/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /hardware/codeSamples/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
 - url: /hardware/(.*\..+)$
