@@ -1,34 +1,32 @@
 {
   "name": "sdk",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "homepage": ".",
   "dependencies": {
     "@geotab/react-component-library": "1.0.102",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.69",
-    "@types/react-dom": "^18.2.7",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.5",
+    "@types/react-dom": "^18.2.18",
     "@types/react-router-hash-link": "^2.4.9",
     "babel-preset-react-app": "^10.0.1",
-    "minisearch": "^6.3.0",
     "jsdom": "^23.2.0",
+    "minisearch": "^6.3.0",
     "react": "^18.2.0",
-    "react-code-blocks": "^0.1.4",
+    "react-code-blocks": "^0.1.6",
     "react-dom": "^18.2.0",
     "react-minisearch": "^6.3.0",
-    "react-router-dom": "^6.16.0",
+    "react-router-dom": "^6.21.3",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "sass": "^1.69.2",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "^5.3.3",
+    "web-vitals": "^3.5.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -57,15 +55,13 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@types/react": "^18.2.48",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "@types/react": "^18.2.47",
-    "gh-pages": "^6.0.0",
     "react-router-hash-link": "^2.4.3",
-    "sass": "^1.69.0"
+    "sass": "^1.70.0"
   }
 }

@@ -1,4 +1,4 @@
-runtime: nodejs18 
+runtime: nodejs20 
 handlers:
 # MyGeotab section
 - url: /myGeotab/guides/(.*\..+)$
