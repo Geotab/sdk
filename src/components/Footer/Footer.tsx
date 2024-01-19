@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FooterDivider, LogoGeotabFooter } from "../Footer";
 import "./footer.scss";
 
@@ -17,7 +18,7 @@ const footerLinks: FooterLink[] = [
         label: "Terms of Service"
     },
     {
-        href: "https://geotab.github.io/sdk/software/guides/addin-storage/",
+        href: "/myGeotab/addIns/addInStorage",
         label: "Storage Preferences"
     }
 ];
@@ -31,9 +32,7 @@ export default function Footer(): JSX.Element {
                 <LogoGeotabFooter />
                 {footerLinks.map((link, index) => (
                     <div key={link.label} className="link-container">
-                        <a href={link.href} aria-label={link.label} target="_blank" rel="noopener noreferrer">
-                            {link.label}
-                        </a>
+                        <Link to={link.href}>{link.label}</Link>
                         <span className="footer-link-divider">{index < footerLinks.length - 1 && <FooterDivider />}</span>
                     </div>
                 ))}

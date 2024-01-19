@@ -65,7 +65,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps): JSX.
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setInputValue(e.currentTarget.value.trim());
+        setInputValue(e.currentTarget.value);
     };
 
     //debounce for search bar

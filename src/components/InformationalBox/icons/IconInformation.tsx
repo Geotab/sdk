@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable */
 import * as React from "react";
 import { LogoProps } from "@geotab/react-component-library";
 

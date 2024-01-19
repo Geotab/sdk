@@ -34,7 +34,7 @@ export default function CodeSamplesContainer(props: CodeSamples): JSX.Element {
         name: languages[language as keyof CodeSamples]
     }));
 
-  return (
-      <Tabs tabs={tabsArray} defaultTab={languages.javascript} />
-  );
+    return (
+        <Tabs tabs={tabsArray} defaultTab={languages.javascript} />
+    );
 }
