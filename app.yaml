@@ -1,11 +1,11 @@
 runtime: nodejs18 
 handlers:
 # Serve all static files with url ending with a file extension
-- url: /(.*)/(.*\..+)$
-  static_files: build/\2
-  upload: build/(.*\..+)$
 - url: /(.*\..+)$
   static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /(.*)/(.*\..+)$
+  static_files: build/\2
   upload: build/(.*\..+)$
 # Catch all handler to index.html
 - url: /.*
