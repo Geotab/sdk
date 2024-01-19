@@ -3,6 +3,15 @@ handlers:
 - url: /myGeotab/(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
+- url: /myAdmin/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /drive/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /hardware/(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
   static_files: build/\1
