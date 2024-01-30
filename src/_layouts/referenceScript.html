@@ -64,7 +64,7 @@ layout: pageNoEdit
                 parts = location.pathname.split("/"), path;
             path = parts.splice(0, parts.length - 2).join("/"),
             url = referenceType === 'MyAdmin' ?  'https://myadmin.geotab.com/sdk-xml/MyAdminAPI.xml' : 'https://mypreview.geotab.com/sdk.xml';
-
+            
             xhr.open("GET", url);
             xhr.setRequestHeader("Content-Type", "text/xml");
             xhr.onreadystatechange = function () {
@@ -427,7 +427,7 @@ layout: pageNoEdit
                                     returnText.push(pullTextWithLinked(nodeChildren[j].childNodes[0].childNodes, [])); // item and description tags for list
 
                                     // nested list
-                                    if (nodeChildren[j].childNodes.length > 1) {debugger;
+                                    if (nodeChildren[j].childNodes.length > 1) {
                                         let childNode  = nodeChildren[j].childNodes[1];
                                         if (childNode.nodeName === "list") {
                                             returnText.push("<ul>");
@@ -654,6 +654,15 @@ layout: pageNoEdit
                             beta: beta
                         };
                     },
+                    rateLimitRule = function (method, description, limit, period, active) {
+                        return {
+                            method,
+                            description,
+                            limit,
+                            period,
+                            status: active ? "Active" : "Coming soon"
+                        };
+                    },
                     processNode = function (node) {
                         var summary,
                             remarks,
@@ -662,6 +671,7 @@ layout: pageNoEdit
                             isPropertyMethod,
                             returns,
                             supported,
+                            rateLimit,
                             indexesToHide,
                             hasCredentials,
                             memberTree,
@@ -689,6 +699,7 @@ layout: pageNoEdit
                                 runnerArgs: undefined,
                                 nameSpace: undefined,
                                 supported: false,
+                                rateLimit: [],
                                 isGeneric: false,
                                 baseType: undefined,
                                 isBeta: false,
@@ -827,6 +838,11 @@ layout: pageNoEdit
                         memberNameResults = getMemberName(memberName, memberPropMeth.args);
                         memberName = memberNameResults.memberName;
 
+                        //Rate Limit Rules
+                        rateLimit = node.getElementsByTagName("rateLimit");
+                        Array.prototype.forEach.call(node.getElementsByTagName("rateLimit"), function (rateLimit, i) {
+                            memberPropMeth.rateLimit.push(rateLimitRule(rateLimit.getAttribute("method") || memberName[memberName.length - 1], rateLimit.textContent, rateLimit.getAttribute("limit"), rateLimit.getAttribute("period")));
+                        });
 
                         // Type name property
                         if (memberNameResults.isGeneric) {
@@ -1150,6 +1166,8 @@ layout: pageNoEdit
                         memberHtmlString += '</table></div></div>';
                     }
                 }
+
+                memberHtmlString += generateRateLimitTable(member.rateLimit);
                 memberHtmlString += '</div></div>';
                 return memberHtmlString;
             },
@@ -1275,6 +1293,31 @@ layout: pageNoEdit
                 anchorTextNoParents = anchorTextNoParents.replace("Async1", "1").replace("Async","");
                 return anchorTextNoParents;
             },
+            generateRateLimitTable =  function (rateLimitList) {
+                if (!rateLimitList || rateLimitList.length === 0) {
+                    return "";
+                }
+                const title = '<div class="member-parameters"><h4><a href="#">Rate Limit Rules</a></h4><div class="slideContainer"><table class="member-parameters-list">';
+                const table = generateTable(rateLimitList)
+                return `${title}${table}</div></div>`;
+            },            
+            generateTable =  function (genericList) {
+                // Define the table headers with the first letter uppercase
+                const tableHeaders = Object.keys(genericList[0]).map(header => header.charAt(0).toUpperCase() + header.slice(1));
+
+                // Generate the table header row
+                const headerRow = `<tr>${tableHeaders.map(header => `<th>${header}</th>`).join('')}</tr>`;
+
+                // Generate the table rows
+                const bodyRows = genericList.map(rateLimit => {
+                    const row = Object.values(rateLimit);
+                    return `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`;
+                });
+
+                // Combine header and body rows to form the complete table
+                const tableHtmlString = `<table>${headerRow}${bodyRows.join('')}</table>`;
+                return tableHtmlString;
+            }, 
             loading = document.getElementById("loading-content"),
             main = document.getElementById("main"),
             nav = document.getElementById("navigation"),
