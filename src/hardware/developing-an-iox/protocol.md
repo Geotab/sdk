@@ -231,6 +231,7 @@ Binary Data Packet Wrapping:
 Note: If sending large payloads of variable sizes, it is recommended to use the binary wrapping flag to allow the device to distinguish and accommodate different packet sizes. The device should implement support for both 0x23 and 0x25 message formats as the GO will dynamically select which one to use based on the amount of data within each packet received from MyGeotab. The maximum packet size currently supported is 1000 bytes.
 
 For payloads with a length of 0 - 255 bytes, this format is used:
+
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
@@ -241,6 +242,7 @@ For payloads with a length of 0 - 255 bytes, this format is used:
 | ETX (0x03) | 1 | 5+x |
 
 For payloads with a length of 256 - 1000 bytes, this format is used:
+
 |   | Bytes | Position |
 | --- | --- | --- |
 | STX (0x02) | 1 | 0 |
@@ -412,12 +414,13 @@ Sent from the IOX to the GO device to inform the GO device of events or status c
 
 #### Information Type 0 — Busy
 
-This message indicates to the GO device that the issuing IOX is busy with a critical task and that the GO should not enter the sleep state. The IOX should send this message again to release the GO device once it has completed its critical tasks.
+This message indicates to the GO device that the issuing IOX is busy with a critical task and that the GO should not enter the sleep state. The IOX should send a message clearing the flags once it has completed its critical tasks.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0000 |
-| 2 | 0 = Not busy <br> 1 = Busy |
+| 2 - Bit 0 | Busy, Request GO stay awake |
+| 2 - Bit 1 | Busy, Request GO keep the modem active |
 
 #### Information Type 1 - Packet Wrapper
 
@@ -429,7 +432,7 @@ Use cases:
 3. Send Packet Wrapper - End of data packet (1).
 4. At the end, GO sends confirmation with a Application Specific Data (0x1C) Type 0 (Modem transmission result) message to indicate if the packet has been accepted within 6 seconds.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0001 |
 | 2 | 0 = Beginning of data packet <br> 1 = End of data packet |
@@ -438,7 +441,7 @@ Use cases:
 
 This message is used by an IOX which requires vehicle information from the GO device. The GO device responds with a GO Multi-Frame Data (0x27) - Type 2 message.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0002 |
 | 2 | Message Version = 2 |
@@ -447,7 +450,7 @@ This message is used by an IOX which requires vehicle information from the GO de
 
 This message requests the GO modem initiate a connection to the server.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0003 |
 | 2 | Unused |
@@ -456,7 +459,7 @@ This message requests the GO modem initiate a connection to the server.
 
 An IOX uses this message to request the vehicle's VIN from the GO device. The GO device responds with a GO Multi-frame Data (0x27) - Type 3 message.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0004 |
 | 2 | Unused |
@@ -467,7 +470,7 @@ Supported from protocol version 1.1.
 
 Sent from the IOX to the GO device requesting the identification information. The GO device responds with a GO Multi-Frame Data (0x27) - Type 12 message.
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x000C |
 | 2 | Request info:  <br> 0 = GO serial number  <br> 1 = GO firmware version  <br> 2 = IOX protocol version |
@@ -486,14 +489,14 @@ Sent from the GO device to the IOX to pass information the IOX may need. This is
 
 #### Information Type 0 - Ignition
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0000 |
 | 2 | 0 = Ignition Off <br> 1 = Ignition On |
 
 #### Information Type 1 - Modem Availability
 
-| Parameter Type | Description |
+| Byte # | Description |
 | --- | --- |
 | 0-1 | 0x0000 |
 | 2 | 0 = Modem is not ready <br> 1 = Modem is available |
