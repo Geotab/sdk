@@ -5,30 +5,50 @@ title: What's New
 ---
 <a class="btn btn-primary" href="https://community.geotab.com/CommunitiesLogin?startURL=%2Fs%2Fgroup%2F0F92J000000bnW9SAI%2Fintegrators-hub%3Flanguage%3Den_US%26t%3D1643135255743" target="_blank">Subscribe for Updates </a>
 
-## 11.0.60xx
-### November 3, 2023
+## February 2, 2024
+### Patch 11.7
+- Added EV Real Time Range API. Note that this is an interpolated value, and is not the range data pulled from the vehicle.
+- Added a default rule for **Enhanced Minor Collision**.
+- Renamed the built-in rule previously known as **Enhanced Major Collision** to **Major Collision**. Similarly, **Possible Accident** has been renamed to **Possible Collision (Legacy)** to better reflect its functionality.
+- Added a description for the **AutoGroups** property (in the [**UntrackedAsset**](https://geotab.github.io/sdk/software/api/reference/#UntrackedAsset) object) to the SDK reference page.
+- Added new built-in zone type **VendorServiceCenter**, allowing for more specific categorization.
+
+## January 26, 2024
+### Patch 11.6
+- Generic exception changed to "Invalid group id used. {ID} is not a valid group id." when an invalid group ID is provided.
+
+## January 12, 2024
+### Patch 11.4
+- Added the **ChargeEvent** object to **GetFeed**. For more information about **ChargeEvent**, refer to [this document](https://docs.google.com/document/d/1f5aUkK9t3JiEqg6oL9dep5UDps_ymuC2refw7pEZ0VU/edit#heading=h.4t4zr0erfpzp).
+
+## December 8, 2023
+### Patch 11.0.6844
+- Fixed an issue where the startOfDay property could be null, instead of having a fallback default value (the default value is midnight, 00:00:00).
+
+## November 3, 2023
+### Patch 11.0.60xx
 - Added property **"isIgnored"** and removed property **"isHidden"** from the [DutyStatusLog](https://geotab.github.io/sdk/software/api/reference/#DutyStatusLog) object.
 -  [LogRecords](https://geotab.github.io/sdk/software/api/reference/#LogRecord) are no longer interpolated when no device is provided. Interpolation is now gated behind a custom code.
 - **"cycleDriving"** property was added to [DutyStatusAvailability](https://geotab.github.io/sdk/software/api/reference/#DutyStatusAvailability) object. "CycleDriving" property is also added to the [DutyStatusViolationType](https://geotab.github.io/sdk/software/api/reference/#DutyStatusViolationType) object.
 - Removed all logic related to Viewport in [ZoneSearch](https://geotab.github.io/sdk/software/api/reference/#ZoneSearch), since it has been deprecated for some time. If a ZoneSearch is provided with Viewport, an error message is returned.
 - Added **"minYear"** parameter to [GetDaylightSavingRules](https://geotab.github.io/sdk/software/api/reference/#GetDaylightSavingRules) so that adjustment rules are returned only for the year 2000 and onward. Previously, years going back to 1920 were stored causing a large amount of wasted localstorage.
 
-## 11.0.48xx
-### September 8, 2023
+## September 8, 2023
+### Patch 11.0.48xx
 - Fixed an error when retrieving DutyStatusLogs for all drivers.
 
-## 11.0.30xx
-### June 2, 2023
+## June 2, 2023
+### Patch 11.0.30xx
 - Added support for the [AddIn](https://geotab.github.io/sdk/software/api/reference/#AddInSearch) search object.
 
-## 11.0.29xx
-### May 26, 2023
+## May 26, 2023
+### Patch 11.0.29xx
 - A property called **'jobPriorities'** is added to the [User](https://geotab.github.io/sdk/software/api/reference/#User) object, it stores the list of selected job priorities.
 - A property called **'activeDefaultDashboards'** is added to the [User](https://geotab.github.io/sdk/software/api/reference/#User) object, it stores the list of default dashboards.
 - The [GetDaylightSavingRules](https://geotab.github.io/sdk/software/api/reference/#GetDaylightSavingRules) method now returns only rules from the year 2000 onwards by default.
 
-## 11.0.28xx
-### May 19, 2023
+## May 19, 2023
+### Patch 11.0.28xx
 - Sealed objects are removed from **Nuget** package for existing objects.
 - Bug fixed by ensuring **PropertySelector** for [Device](https://geotab.github.io/sdk/software/api/reference/#Device) only returns the property added to the field id within PropertySelector.
 - New ruleset **"CanadaBCLoggingTruck"** added to the list of [HosRuleSet](https://geotab.github.io/sdk/software/api/reference/#HosRuleSet).
