@@ -4,6 +4,40 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## Feb 26, 2024
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### Max Results for Unpaginated Enpdoints
+
+- Starting February 10, 2024, most of our API endpoints that provide all results in a single request will be limited to a maximum of 100,000 results.
+- Some endpoints that previously returned more than 100,000 results (prior to 2024) will maintain their existing functionality to ensure continuous API backward-compatibility. 
+<br/>  
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### PostOrder
+
+- In a future release, we will be adding character limits to the following fields:
+    - `My reference` — 500-character limit
+    - `General comments for packing slip` — 300-character limit
+    - `Order comments` — 300-character limit
+- Orders processed through the **PostOrder** method that exceed these character limits will not be placed.
+<br/>    
+
+#### Updating firstDeviceActivationDate to Align with First Connect Date in Device Admin
+
+- We will be updating the  `firstDeviceActivationDate` property (in **ApiDeviceContract** and **DeviceContract** objects) to retrieve the same data as the **First Connect Date** column in **Device Admin**.
+<br/>   
+
+#### Deprecating currentStatus property in ApiOnlineOrder
+
+- On April 27, 2024, we will be deprecating the `currentStatus` property, as it has been replaced by `currentOrderStatus` to return the current status of the order.
+- The deprecation of `currentStatus` was previously communicated in March 2021, which was also when `currentOrderStatus` became available for use.
+
+<br/>  
+
+***  
 ## Jan 15, 2024
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
