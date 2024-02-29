@@ -618,7 +618,7 @@
                             description,
                             limit,
                             period,
-                            status: active === false ? "Coming soon" : "Active"
+                            status: (active && active.toLowerCase() === "false") ? "Coming soon" : "Active"
                         };
                     },
                     processNode = function (node) {
@@ -799,7 +799,7 @@
                         //Rate Limit Rules
                         rateLimit = node.getElementsByTagName("rateLimit");
                         Array.prototype.forEach.call(node.getElementsByTagName("rateLimit"), function (rateLimit, i) {
-                            memberPropMeth.rateLimit.push(rateLimitRule(rateLimit.getAttribute("method") || memberName[memberName.length - 1], rateLimit.textContent, rateLimit.getAttribute("limit"), rateLimit.getAttribute("period")));
+                            memberPropMeth.rateLimit.push(rateLimitRule(rateLimit.getAttribute("method") || memberName[memberName.length - 1], rateLimit.textContent, rateLimit.getAttribute("limit"), rateLimit.getAttribute("period"), rateLimit.getAttribute("active")));
                         });
 
                         // Type name property
