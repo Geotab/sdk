@@ -3747,6 +3747,15 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
+
+  .navbar-deprecation-banner {
+    background-color: #002641;
+    color: white;
+    margin: -6px -16px 0px -16px;
+    padding: 19px;
+    text-align: center;
+    font-weight: 500;
+  }
   
   .navbar-brand {
     display: inline-block;
@@ -6945,6 +6954,9 @@
     right: 0;
     left: 0;
     z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
   }
   
   .fixed-bottom {
