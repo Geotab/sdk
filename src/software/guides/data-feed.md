@@ -71,10 +71,6 @@ For example, as new GPS and engine data arrives from a device, it is processed t
 
 * FaultData
 
-* FillUp
-
-* FuelUsed
-
 * IoxAddOn
 
 * LogRecord
@@ -100,9 +96,15 @@ For example, as new GPS and engine data arrives from a device, it is processed t
 
 **Calculated data feeds** (New data and updated data from the past.)
 
+* ChargeEvent
+
 * ExceptionEvent
 
+* FillUp
+
 * FuelTaxDetail
+
+* FuelUsed
 
 * Trip
 
