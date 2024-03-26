@@ -4,6 +4,53 @@ permalink: /myadmin-sdk/new/
 title: What's New
 ---
 
+## Mar 25, 2024
+
+<h3 class="text-primary font-weight-bold">Updates</h3>
+
+#### Added newCustomerPlan property to ApiDeviceContractRatePlan method
+
+- To help you determine whether a device is on the New Customer Plan, the **ApiDeviceContractRatePlan** method will now have a new property: `newCustomerPlan`. This new property will return one of the following responses:
+    - **true** — The device is on the New Customer Plan
+    - **false** — The device is not on the New Customer Plan
+<br/>  
+
+#### PostOrder
+
+- As previously announced, we have added character limits to the following fields:
+    - `My reference` — 500-character limit
+    - `General comments for packing slip` — 300-character limit
+    - `Order comments` — 300-character limit
+- Orders processed through the **PostOrder** method that exceed these character limits will not be placed, and will prompt an error.
+<br/>   
+
+<h3 class="text-danger font-weight-bold">Coming Soon</h3>
+
+#### Moving devicePlanLevel property to ApiOnlineOrderItem API
+
+- In a future release, we will be improving the checkout experience for selecting Device Plans when you buy devices. Currently, a single Device Plan applies to your entire order. Soon, you’ll be able to select and assign a Device Plan for each product in your cart. For GO Anywhere devices, the Device Plan will be assigned automatically.
+- Together with the upcoming feature that allows assigning a Device Plan for each product in your cart in the MyAdmin UI, we will be moving the `devicePlanLevel` property from the **ApiOrderHeader** API to **ApiOnlineOrderItem** in a future release.
+<br/>  
+
+#### Adding OptionalPara parameter to GetDeviceContracts method 
+
+- In a future release, we will be adding the `OptionalPara` parameter to the **GetDeviceContracts** method. This will allow Integrators to select and define the properties they want to see in the returned object, as well as improve response times.
+<br/>  
+
+#### Updating firstDeviceActivationDate to Align with First Connect Date in Device Admin
+
+- In a future release, we will be renaming the **First Device Activation Date** column to **First Connect Date** in the Monthly Billing report (accessible via Billing > Monthly Billings). This change is to align with the **First Connect Date** column in Device Admin.
+- We will be updating the  `firstDeviceActivationDate` property (in **ApiDeviceContract** and **DeviceContract** objects) to retrieve the same data as the **First Connect Date** column in **Device Admin**.
+<br/>   
+
+#### Deprecating currentStatus property in ApiOnlineOrder
+
+- On April 27, 2024, we will be deprecating the `currentStatus` property, as it has been replaced by `currentOrderStatus` to return the current status of the order.
+- The deprecation of `currentStatus` was previously communicated in March 2021, which was also when `currentOrderStatus` became available for use.
+
+<br/>  
+
+***  
 ## Feb 26, 2024
 
 <h3 class="text-primary font-weight-bold">Updates</h3>
