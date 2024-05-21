@@ -10,21 +10,19 @@ title: What's New
 
 #### Updated firstDeviceActivationDate to align with First Connect Date in Device Admin
 
-- We’ve updated the `firstDeviceActivationDate` property (in **ApiDeviceContract** and **DeviceContract** objects) to retrieve the same data as the `First Connect Date` column in **Device Admin**.
-
-<br/>  
+- We’ve updated the `firstDeviceActivationDate` property (in **ApiDeviceContract** and **DeviceContract** objects) to retrieve the same data as the `First Connect Date` column in **Device Admin**.   
+<br/>   
 
 #### Added OptionalPara parameter to GetDeviceContracts method
 
 - As previously announced, we’ve added the `OptionalPara` parameter to the **GetDeviceContracts** method. This will allow Integrators to select and define the properties they want to see in the returned object.
-- Previously, when device information was retrieved through the **GetDeviceContracts** method, the only option available was to return all data for a device. With this update, you can control how much data you want to retrieve, reducing the response times and the amount of data that has to be processed.
-
+- Previously, when device information was retrieved through the **GetDeviceContracts** method, the only option available was to return all data for a device. With this update, you can control how much data you want to retrieve, reducing the response times and the amount of data that has to be processed.   
 <br/>   
 
 #### Reminder — Deprecating currentStatus property in ApiOnlineOrder
 
 - We’ve extended the deprecation date for the `currentStatus` property to May 25, 2024. 
-- **NOTE**: The `currentStatus` property has been replaced by `currentOrderStatus` to return the current status of the order.
+- **NOTE**: The `currentStatus` property has been replaced by `currentOrderStatus` to return the current status of the order. 
 
 <br/>  
 
