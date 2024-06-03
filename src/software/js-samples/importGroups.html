@@ -121,90 +121,93 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("importGroups").addEventListener("click", function (event) {
                 event.preventDefault();
+                groupCache = refreshGroupCache().then(() => { //This is to fix a bug where the the groups id will get fetched only at the loading of the page and will not update after group creation, this will mean that creating a group "Group 1" and then later trying to add "Group 2" with parent "Group 1" will not be possible 
+                    var content = document.getElementById("content").value,
+                        addGroups = function (groups) {
+                            if (!groups.length) {
+                                document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
+                                return;
+                            }
+                            // Split up the group properties
+                            var group = groups.shift(),
+                                split = group.split(",");
 
-                var content = document.getElementById("content").value,
-                    addGroups = function (groups) {
-                        if (!groups.length) {
-                            document.getElementById("result").innerHTML = "Importing finished. Check the browser console for details.";
-                            return;
-                        }
-                        // Split up the group properties
-                        var group = groups.shift(),
-                            split = group.split(",");
-
-                        if (split.length !== 3) {
-                            console.log("Could not import " + group);
-                            addGroups(groups);
-                            return;
-                        }
-
-                        var name = split[0];
-                        var comments = split[1];
-                        var parent = parseParentGroup(split[2]);
-
-                        if (parent === null) {
-                            console.log("Could not import " + group);
-                            addGroups(groups);
-                            return;
-                        }
-
-                        if (name.length > 255) {
-                            alert("Group name on line " + (i + 1) + " exceeds 255 characters");
-                            return;
-                        }
-
-                        if (comments.length > 255) {
-                            alert("Description on line " + (i + 1) + " exceeds 255 characters");
-                            return;
-                        }
-
-                        if (groupCache.hasOwnProperty(name)) {
-                            console.log("Skipped group " + name + " because it already exists");
-                            addGroups(groups);
-                        } else {
-                            var entity = {
-                                name: name,
-                                comments: comments,
-                                parent: {
-                                    id: parent.id
-                                },
-                                color: {
-                                    a: 0,
-                                    r: 0,
-                                    g: 0,
-                                    b: 255
-                                },
-                                isGlobalReportingGroup: parent.isGlobalReportingGroup
-                            };
-                            api.call("Add", {
-                                typeName: "Group",
-                                entity: entity
-                            }, function (result) {
-                                if (result !== undefined && result) {
-                                    groupCache[split[0]] = result
-                                }
-                                setTimeout(function () {
-                                    addGroups(groups);
-                                }, 10);
-                                console.log("Successfully imported the group!");
-                            }, function (error) {
-                                console.log(error);
+                            if (split.length !== 3) {
+                                console.log("Could not import " + group);
                                 addGroups(groups);
-                            });
-                        }
-                    };
+                                return;
+                            }
 
-                if (content === "") {
-                    alert("At least one group is required");
-                } else {
-                    // Split up the lines one by one
-                    var groups = content.split("\n");
+                            var name = split[0];
+                            var comments = split[1];
+                            var parent = parseParentGroup(split[2]);
 
-                    // Reset the result display
-                    document.getElementById("result").innerHTML = "";
+                            if (parent === null) {
+                                console.log("Could not import " + group);
+                                addGroups(groups);
+                                return;
+                            }
 
-                    addGroups(content.split("\n"));
-                }
+                            if (name.length > 255) {
+                                alert("Group name on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            if (comments.length > 255) {
+                                alert("Description on line " + (i + 1) + " exceeds 255 characters");
+                                return;
+                            }
+
+                            if (groupCache.hasOwnProperty(name)) {
+                                console.log("Skipped group " + name + " because it already exists");
+                                addGroups(groups);
+                            } else {
+                                var entity = {
+                                    name: name,
+                                    comments: comments,
+                                    parent: {
+                                        id: parent.id
+                                    },
+                                    color: {
+                                        a: 0,
+                                        r: 0,
+                                        g: 0,
+                                        b: 255
+                                    },
+                                    isGlobalReportingGroup: parent.isGlobalReportingGroup
+                                };
+                                api.call("Add", {
+                                    typeName: "Group",
+                                    entity: entity
+                                }, function (result) {
+                                    if (result !== undefined && result) {
+                                        groupCache[split[0]] = result
+                                    }
+                                    setTimeout(function () {
+                                        addGroups(groups);
+                                    }, 10);
+                                    console.log("Successfully imported the group!");
+                                }, function (error) {
+                                    console.log(error);
+                                    addGroups(groups);
+                                });
+                            }
+                        };
+
+                    if (content === "") {
+                        alert("At least one group is required");
+                    } else {
+                        // Split up the lines one by one
+                        var groups = content.split("\n");
+
+                        // Reset the result display
+                        document.getElementById("result").innerHTML = "";
+
+                        addGroups(content.split("\n"));
+                    }
+                }).catch((error) => {
+                    console.error("Error refreshing group cache:", error);
+                });
             });
             groupCache = refreshGroupCache(null);
         });
@@ -219,32 +222,35 @@
             }
         }
 
-        function refreshGroupCache(callback) {
-            api.call("Get", {
-                typeName: "Group"
-            }, function (result) {
-                if (result !== undefined && result.length > 0) {
-                    groupCache = {};
-                    for (var i = 0; i < result.length; i++) {
-                        // Built-in groups do not have proper names
-                        if (result[i].name === undefined) {
-                            groupCache[result[i].id] = {
-                                "id": result[i].id,
-                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
-                            };
-                        } else {
-                            groupCache[result[i].name] = {
-                                "id": result[i].id,
-                                "isGlobalReportingGroup": result[i].isGlobalReportingGroup
-                            };
+        function refreshGroupCache() {
+            return new Promise((resolve, reject) => {
+                api.call("Get", {
+                    typeName: "Group"
+                }, function (result) {
+                    if (result !== undefined && result.length > 0) {
+                        groupCache = {};
+                        for (var i = 0; i < result.length; i++) {
+                            // Built-in groups do not have proper names
+                            if (result[i].name === undefined) {
+                                groupCache[result[i].id] = {
+                                    "id": result[i].id,
+                                    "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                                };
+                            } else {
+                                groupCache[result[i].name] = {
+                                    "id": result[i].id,
+                                    "isGlobalReportingGroup": result[i].isGlobalReportingGroup
+                                };
+                            }
                         }
+                        resolve(); // Resolve the promise once the operation is done
+                    } else {
+                        reject(new Error("No groups found")); // Reject the promise if no groups are found
                     }
-                }
-                if (callback) {
-                    callback();
-                }
-            }, function (error) {
-                console.log(error);
+                }, function (error) {
+                    console.log(error);
+                    reject(error); // Reject the promise if there's an error
+                });
             });
         }
 
