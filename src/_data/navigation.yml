@@ -1,0 +1,139 @@
+toc:
+  - title: MyGeotab SDK
+    folderitems:
+    - page: MyGeotab SDK Introduction
+      url: /software/introduction/
+    - page: What's New
+      url: /resources/new/
+    subfolders:
+      - title: Guides
+        subfolderitems:
+          - page: Getting Started
+            url: /software/guides/getting-started/
+          - page: Concepts
+            url: /software/guides/concepts/
+          - page: Using in Javascript
+            url: /software/guides/using-in-javascript/
+          - page: Using in .Net
+            url: /software/guides/using-in-dotnet/
+          - page: Using in Java
+            url: /software/guides/using-in-java/
+            beta: true
+          - page: Data Feed
+            url: /software/guides/data-feed/
+          - page: Using MyGeotab URLs
+            url: /software/guides/mygeotab-urls/
+          - page: Using GO Devices
+            url: /software/guides/using-go-devices/
+          - page: GO Device Logging
+            url: /software/guides/go-device-logging/
+          - page: Using Custom Telematics Devices
+            url: /software/guides/custom-telematics-devices/
+          - page: Developing Add-Ins
+            url: /software/guides/developing-addins/
+          - page: Using Add-Ins for data storage
+            url: /software/guides/addin-storage/
+          - page: Geotab Drive Add-Ins
+            url: /software/guides/drive-addins/
+          - page: Map Add-ins
+            url: /software/guides/map-add-ins-docs/
+          - page: Media Files
+            url: https://github.com/Geotab/mg-media-files
+            external: true
+            beta: true
+          - page: Connect to Power BI
+            url: /software/guides/power-bi/
+          - page: Using the Geotab Data Connector
+            url: /software/guides/geotab-data-connector/
+      - title: API
+        subfolderitems:
+          - page: Reference
+            url: /software/api/reference/
+          - page: Runner
+            url: /software/api/runner.html
+          - page: API Clients
+            url: /software/api/clients/
+      - title: Code Samples
+        subfolderitems:
+          - page: Javascript Examples
+            url: /software/js-samples/
+          - page: .Net Examples
+            url: /software/dotnet-samples/
+          - page: Java Examples
+            url: https://github.com/Geotab/sdk-java-samples
+            external: true
+            beta: true
+          - page: Add-in Examples
+            url: https://github.com/Geotab/sdk-addin-samples
+            external: true
+  - title: Hardware
+    folderitems:
+      - page: Hardware Introduction
+        url: /hardware/introduction/
+    subfolders:
+      - title: Add-on Protocols
+        subfolderitems:
+          - page: RS232 & USB
+            url: /hardware/addon-protocols/rs232-usb/
+          - page: CAN
+            url: /hardware/addon-protocols/can/
+          - page: BLE
+            url: /hardware/addon-protocols/ble/
+      - title: Code Samples
+        subfolderitems:
+          - page: Python
+            url: /hardware/samples/python/
+          - page: Android
+            url: https://github.com/Geotab/android-external-device-example
+            external: true
+          - page: Raspberry Pi
+            url: https://github.com/Geotab/IOX-raspberryPi-demo
+            external: true
+      - title: Developing an IOX
+        subfolderitems:
+          - page: Hardware Design Guide
+            url: /hardware/developing-an-iox/hardware-design-guide/
+          - page: Messaging Protocol
+            url: /hardware/developing-an-iox/messaging-protocol/
+          - page: MIME Protocol
+            url: /hardware/developing-an-iox/mime-protocol/
+  - title: MyAdmin SDK
+    folderitems:
+    - page: MyAdmin SDK Introduction
+      url: /myadmin-sdk/introduction/
+    - page: What's New
+      url: /myadmin-sdk/new/
+    subfolders:
+      - title: Guides
+        subfolderitems:
+          - page: Getting Started
+            url: /myadmin-sdk/guides/getting-started/
+          - page: Concepts
+            url: /myadmin-sdk/guides/concepts/
+          - page: Using with .NET
+            url: /myadmin-sdk/guides/using-with-dotnet/
+          - page: Using with JavaScript
+            url: /myadmin-sdk/guides/using-with-javascript/
+          - page: Using Third-Party Devices with MyGeotab
+            url:  /myadmin-sdk/guides/using-third-party-devices/
+            legacy: true
+      - title: API
+        subfolderitems:
+          - page: Reference
+            url: /myadmin-sdk/api/reference/
+      - title: Code Samples
+        subfolderitems:
+          - page: .NET Examples
+            url: /myadmin-sdk/code-samples/dotnet-examples/
+          - page: JavaScript Examples
+            url: /myadmin-sdk/code-samples/javascript-examples/
+  - title: Resources
+    folderitems:
+      - page: Forums
+        url: https://community.geotab.com/s/
+        external: true
+      - page: Dev Channel
+        url: https://www.geotab.com/dev-channel/
+        external: true
+      - page: Toolkits
+        url: /resources/toolkits/
