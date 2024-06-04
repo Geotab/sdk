@@ -40,5 +40,9 @@
         if (window.location.href.includes("runner") && modal) {
             modal.parentElement.removeChild(modal);
         }
+
+        if(!window.location.href.includes("runner")) {
+            window.location.href = "https://developers.geotab.com";
+        }
     </script>
 </header>
