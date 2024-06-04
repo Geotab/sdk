@@ -1,0 +1,41 @@
+<div id="sidebar-wrapper" class="bg-light">
+    <nav id="sidebar" class="sidebar">
+    {% for item in site.data.navigation.toc %}
+        <h4>{{ item.title }}</h4>
+        <ul class="nav flex-column">
+            {% for entry in item.folderitems %}
+            <li class="nav-link{% if page.url == entry.url %} active{% endif %}">
+                {% if entry.external %}
+                <a href="{{ entry.url }}">{{ entry.page }}</a>
+                {% else %}
+                <a href="{{site.baseurl}}{{ entry.url }}">{{ entry.page }}</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        {% for entry in item.subfolders %}
+        <li>
+        <h5>{{ entry.title }}</h5>
+        <ul class="nav flex-column">
+            {% for entry in entry.subfolderitems %}
+            <li class="nav-link{% if page.url == entry.url %} active{% endif %}">
+                {% if entry.external %}
+                <a href="{{ entry.url }}">{{ entry.page }}</a>
+                {% else %}
+                <a href="{{site.baseurl}}{{ entry.url }}">{{ entry.page }}</a>
+                {% endif %}
+                {% if entry.beta %}
+                <span class="beta">Beta</span>
+                {% endif %}
+                {% if entry.legacy %}
+                <span class="legacy">Legacy</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>        
+        </li>        
+        {% endfor %} 
+        </ul>
+        <hr/>
+    {% endfor %}
+    </nav>
+</div>  
