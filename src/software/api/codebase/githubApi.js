@@ -33,8 +33,6 @@ var GithubApi = function(userName, repoName) {
             window.setTimeout(function() {
                 var sampleContainer = document.getElementById(sampleName),
                     options, temp;
-
-                sampleContainer = sampleContainer || document.getElementById("device-location");
                 options = sampleContainer.querySelector(".sample-options").innerHTML;
                 try {
                     eval("temp = " + options);
@@ -62,7 +60,6 @@ var SamplesApi = function() {
     var samples = [
             "new",
             "api-call",
-            "device-location",
             "current-location-and-driving-status",
             "move-vehicle-to-group-and-enable-speed-buzzing",
             "get-odometer-and-vin-for-vehicles-in-a-group",
