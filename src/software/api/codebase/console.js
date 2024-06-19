@@ -135,21 +135,76 @@ var ConsoleManager = (function() {
                             marker = createElement("span", "data-object-marker", "+"),
                             keyElement = isChildProperty ? createElement("span", "data-object-key", key + ": ") : null;
                         
-                        let arrayLabel = 'Array';
+                        let arrayLabel = ' Results';
                         const value = createElement("span", "data-object-value", `${arrayLabel}[${data.length}]`),
-                            preview = !isChildProperty ? createElement("span", "data-object-preview", " [ ... ]") : null,
+                            preview = !isChildProperty ? createElement("span", "data-object-preview", " ") : null,
                             children = createElement("span", "data-object-children-hidden", "");
+
+
+                    // Adding the Expand button
+                    let expandButton = document.createElement('button');
+                    expandButton.innerHTML = 'Expand to Table';
+                    expandButton.onclick = function() {
+                        if (expandButton.innerHTML === 'Expand to Table') {
+                            let table = document.createElement('table');
+                            let header = table.createTHead();
+                            let row = header.insertRow(0);
+                            Object.keys(data[0]).forEach((key, index) => {
+                                let cell = row.insertCell(index);
+                                cell.outerHTML = `<th>${key}</th>`;
+                            });
+
+                            let body = table.createTBody();
+                            data.forEach(item => {
+                                let row = body.insertRow();
+                                Object.values(item).forEach((value, index) => {
+                                    let cell = row.insertCell(index);
+                                    let cellContent = value;
+                                    if (typeof cellContent === 'string' && cellContent.length > 20) {
+                                        let shortContent = cellContent.substring(0, 10) + '...';
+                                        let contentSpan = document.createElement('span');
+                                        contentSpan.innerHTML = shortContent;
+                                        let expandCellButton = document.createElement('button');
+                                        expandCellButton.innerHTML = 'Expand';
+                                        expandCellButton.onclick = function() {
+                                            if (expandCellButton.innerHTML === 'Expand') {
+                                                contentSpan.innerHTML = cellContent;
+                                                expandCellButton.innerHTML = 'Collapse';
+                                            } else {
+                                                contentSpan.innerHTML = shortContent;
+                                                expandCellButton.innerHTML = 'Expand';
+                                            }
+                                        };
+                                        cell.innerHTML = '';
+                                        cell.appendChild(contentSpan);
+                                        cell.appendChild(document.createElement('br'));
+                                        cell.appendChild(expandCellButton);
+                                    } else {
+                                        cell.innerHTML = cellContent;
+                                    }
+                                });
+                            });
+
+                            children.appendChild(table);
+                            expandButton.innerHTML = 'Collapse';
+                        } else {
+                            children.innerHTML = '';
+                            expandButton.innerHTML = 'Expand to Table';
+                        }
+                    };
 
                         if (!isChildProperty) {
                             title.appendChild(marker);
                             title.appendChild(value);
                             title.appendChild(preview);
+                            title.appendChild(expandButton); // Add the button to the title
                             parent.appendChild(title);
                             parent.appendChild(children);
                         } else {
                             title.appendChild(marker);
                             title.appendChild(keyElement);
                             title.appendChild(value);
+                            title.appendChild(expandButton); // Add the button to the title
                             parent.appendChild(title);
                             parent.appendChild(children);
                         }

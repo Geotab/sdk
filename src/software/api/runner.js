@@ -127,12 +127,10 @@ export default function ApiRunnerCore() {
             }), "*");
         };
         const process = value => {
-            if (!iframe) {
-                clear();
-                iframe = createIframe();
-            } else {
-                iframe.contentWindow.location.reload();
-            }
+
+            clear();
+            iframe = createIframe();
+
 
             // listen to post messages from iframe
             postMessages.on("ready", data => {

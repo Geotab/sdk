@@ -20,7 +20,10 @@
         "@babel/preset-env": "^7.20.2",
         "@babel/preset-react": "^7.18.6",
         "autoprefixer": "^10.4.2",
+        "babel-cli": "^7.0.0-beta.3",
         "babel-loader": "^8.3.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-react-app": "^3.1.2",
         "browser-sync": "^2.27.10",
         "del": "^6.0.0",
         "gh-pages": "^6.1.1",
@@ -28,6 +31,7 @@
         "gulp-babel": "^8.0.0",
         "gulp-cache": "^1.1.3",
         "gulp-clean-css": "^4.3.0",
+        "gulp-cli": "^2.3.0",
         "gulp-concat": "^2.6.1",
         "gulp-gzip": "^1.4.2",
         "gulp-htmlmin": "^5.0.1",
@@ -42,17 +46,13 @@
         "gulp-size": "^3.0.0",
         "gulp-sourcemaps": "^3.0.0",
         "gulp-uglify": "^3.0.2",
+        "postcss": "^8.4.5",
         "require-dir": "^1.2.0",
         "sass": "^1.49.9",
         "shelljs": "^0.8.5",
         "webpack": "^5.90.3",
         "webpack-cli": "^4.10.0",
-        "yargs": "^17.6.2",
-        "babel-cli": "^7.0.0-beta.3",
-        "babel-plugin-transform-react-jsx": "^6.24.1",
-        "babel-preset-react-app": "^3.1.2",
-        "gulp-cli": "^2.3.0",
-        "postcss": "^8.4.5"
+        "yargs": "^17.6.2"
     },
     "browserslist": [
         "last 2 version",
@@ -66,7 +66,8 @@
         "@mui/material": "^5.10.13",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-split": "^2.0.14"
+        "react-split": "^2.0.14",
+        "simple-datatables": "^9.0.3"
     },
     "engines": {
         "npm": ">=8.3.0",
