@@ -172,7 +172,7 @@ var ConsoleManager = (function() {
                                     let row = body.insertRow();
                                     keys.forEach((key, index) => {
                                         let cell = row.insertCell(index);
-                                        let cellContent = item[key] !== null ? item[key] : 'null'; 
+                                        let cellContent = item[key] !== null ? item[key] : ' '; 
                                         let cellWrapper = document.createElement('div');
                                         cellWrapper.style.maxWidth = '100px'; 
                                         cellWrapper.style.maxHeight = '50px'; 
