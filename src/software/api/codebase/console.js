@@ -141,7 +141,6 @@ var ConsoleManager = (function() {
                             children = createElement("span", "data-object-children-hidden", "");
 
 
-                    // Adding the Expand button
                     let expandButton = document.createElement('button');
                     expandButton.innerHTML = 'Expand to Table';
                     expandButton.onclick = function() {
@@ -150,13 +149,13 @@ var ConsoleManager = (function() {
                             let header = table.createTHead();
                             let row = header.insertRow(0);
                             let keys = Object.keys(data[0]);
-                            let sortDirection = {}; // To keep track of sorting direction for each column
+                            let sortDirection = {}; 
                     
                             keys.forEach((key, index) => {
                                 let cell = document.createElement('th');
                                 cell.innerHTML = key;
                                 cell.style.cursor = 'pointer';
-                                sortDirection[key] = 'asc'; // Default sorting direction
+                                sortDirection[key] = 'asc'; 
                                 cell.onclick = () => {
                                     sortDirection[key] = sortDirection[key] === 'asc' ? 'desc' : 'asc';
                                     sortTable(key, sortDirection[key]);
@@ -167,20 +166,23 @@ var ConsoleManager = (function() {
                     
                             let body = table.createTBody();
                     
-                            // Function to render table body
                             function renderTableBody(sortedData) {
-                                body.innerHTML = ''; // Clear existing rows
+                                body.innerHTML = ''; 
                                 sortedData.forEach(item => {
                                     let row = body.insertRow();
                                     keys.forEach((key, index) => {
                                         let cell = row.insertCell(index);
-                                        let cellContent = item[key] !== null ? item[key] : 'null'; // Handle null values
+                                        let cellContent = item[key] !== null ? item[key] : 'null'; 
                                         let cellWrapper = document.createElement('div');
-                                        cellWrapper.style.maxWidth = '100px'; // Set cell width limit
-                                        cellWrapper.style.maxHeight = '50px'; // Set cell height limit
+                                        cellWrapper.style.maxWidth = '100px'; 
+                                        cellWrapper.style.maxHeight = '50px'; 
                                         cellWrapper.style.overflow = 'hidden';
                                         cellWrapper.style.textOverflow = 'ellipsis';
                                         cellWrapper.style.whiteSpace = 'nowrap';
+
+                                        if (typeof cellContent !== 'string') {
+                                            cellContent = JSON.stringify(cellContent, null, 2);
+                                        }
                     
                                         if (typeof cellContent === 'string' && (cellContent.length > 20 || cellWrapper.scrollWidth > cellWrapper.clientWidth)) {
                                             let shortContent = cellContent.substring(0, 20) + '...';
@@ -208,19 +210,16 @@ var ConsoleManager = (function() {
                                             cellWrapper.appendChild(contentSpan);
                                             cellWrapper.appendChild(document.createElement('br'));
                                             cellWrapper.appendChild(expandCellButton);
-                                        } else {
-                                            cellWrapper.innerHTML = cellContent;
-                                        }
+                                        } 
                                         cell.appendChild(cellWrapper);
                                     });
                                 });
                             }
                     
-                            // Function to sort table data
                             function sortTable(column, direction) {
                                 let sortedData = [...data].sort((a, b) => {
-                                    let valA = a[column] !== null ? a[column] : ''; // Handle null values
-                                    let valB = b[column] !== null ? b[column] : ''; // Handle null values
+                                    let valA = a[column] !== null ? a[column] : '';
+                                    let valB = b[column] !== null ? b[column] : ''; 
                                     if (typeof valA === 'string' && typeof valB === 'string') {
                                         valA = valA.toLowerCase();
                                         valB = valB.toLowerCase();
@@ -234,7 +233,6 @@ var ConsoleManager = (function() {
                                 renderTableBody(sortedData);
                             }
                     
-                            // Function to update headers with sorting indicators
                             function updateHeaders() {
                                 keys.forEach((key, index) => {
                                     let cell = header.rows[0].cells[index];
@@ -243,7 +241,7 @@ var ConsoleManager = (function() {
                                 });
                             }
                     
-                            renderTableBody(data); // Initial rendering of table body
+                            renderTableBody(data); 
                     
                             children.appendChild(table);
                             expandButton.innerHTML = 'Collapse to Table';
@@ -254,9 +252,7 @@ var ConsoleManager = (function() {
                     };
                     
                     
-                    
-                    
-
+                
                         if (!isChildProperty) {
                             title.appendChild(marker);
                             title.appendChild(value);
