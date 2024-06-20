@@ -149,7 +149,9 @@ var ConsoleManager = (function() {
                             let table = document.createElement('table');
                             let header = table.createTHead();
                             let row = header.insertRow(0);
-                            Object.keys(data[0]).forEach((key, index) => {
+                            let keys = Object.keys(data[0]);
+                    
+                            keys.forEach((key, index) => {
                                 let cell = row.insertCell(index);
                                 cell.outerHTML = `<th>${key}</th>`;
                             });
@@ -157,11 +159,11 @@ var ConsoleManager = (function() {
                             let body = table.createTBody();
                             data.forEach(item => {
                                 let row = body.insertRow();
-                                Object.values(item).forEach((value, index) => {
+                                keys.forEach((key, index) => {
                                     let cell = row.insertCell(index);
-                                    let cellContent = value;
+                                    let cellContent = item[key] !== null ? item[key] : 'null'; // Handle null values
                                     let cellWrapper = document.createElement('div');
-                                    cellWrapper.style.maxWidth = '50px'; // Set cell width limit
+                                    cellWrapper.style.maxWidth = '100px'; // Set cell width limit
                                     cellWrapper.style.maxHeight = '50px'; // Set cell height limit
                                     cellWrapper.style.overflow = 'hidden';
                                     cellWrapper.style.textOverflow = 'ellipsis';
@@ -203,6 +205,7 @@ var ConsoleManager = (function() {
                             expandButton.innerHTML = 'Expand to Table';
                         }
                     };
+                    
 
                         if (!isChildProperty) {
                             title.appendChild(marker);
