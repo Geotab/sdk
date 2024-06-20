@@ -193,11 +193,15 @@ var ConsoleManager = (function() {
                                                     contentSpan.innerHTML = cellContent;
                                                     cellWrapper.style.whiteSpace = 'normal';
                                                     cellWrapper.style.overflow = 'visible';
+                                                    cellWrapper.style.maxWidth = 'none';
+                                                    cellWrapper.style.maxHeight = 'none';
                                                     expandCellButton.innerHTML = 'Collapse';
                                                 } else {
                                                     contentSpan.innerHTML = shortContent;
                                                     cellWrapper.style.whiteSpace = 'nowrap';
                                                     cellWrapper.style.overflow = 'hidden';
+                                                    cellWrapper.style.maxWidth = '100px';
+                                                    cellWrapper.style.maxHeight = '50px';
                                                     expandCellButton.innerHTML = 'Expand';
                                                 }
                                             };
@@ -212,11 +216,11 @@ var ConsoleManager = (function() {
                                 });
                             }
                     
-
+                            // Function to sort table data
                             function sortTable(column, direction) {
                                 let sortedData = [...data].sort((a, b) => {
-                                    let valA = a[column] !== null ? a[column] : ''; 
-                                    let valB = b[column] !== null ? b[column] : ''; 
+                                    let valA = a[column] !== null ? a[column] : ''; // Handle null values
+                                    let valB = b[column] !== null ? b[column] : ''; // Handle null values
                                     if (typeof valA === 'string' && typeof valB === 'string') {
                                         valA = valA.toLowerCase();
                                         valB = valB.toLowerCase();
@@ -230,7 +234,7 @@ var ConsoleManager = (function() {
                                 renderTableBody(sortedData);
                             }
                     
-
+                            // Function to update headers with sorting indicators
                             function updateHeaders() {
                                 keys.forEach((key, index) => {
                                     let cell = header.rows[0].cells[index];
@@ -239,7 +243,7 @@ var ConsoleManager = (function() {
                                 });
                             }
                     
-                            renderTableBody(data); 
+                            renderTableBody(data); // Initial rendering of table body
                     
                             children.appendChild(table);
                             expandButton.innerHTML = 'Collapse to Table';
@@ -248,6 +252,7 @@ var ConsoleManager = (function() {
                             expandButton.innerHTML = 'Expand to Table';
                         }
                     };
+                    
                     
                     
                     
