@@ -210,7 +210,10 @@ var ConsoleManager = (function() {
                                             cellWrapper.appendChild(contentSpan);
                                             cellWrapper.appendChild(document.createElement('br'));
                                             cellWrapper.appendChild(expandCellButton);
-                                        } 
+                                        } else {
+                                            cellWrapper.innerHTML = cellContent;
+                                            console.log(typeof(cellContent), cellContent)
+                                        }
                                         cell.appendChild(cellWrapper);
                                     });
                                 });
