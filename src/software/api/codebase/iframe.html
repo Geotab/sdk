@@ -102,10 +102,10 @@
                                 method: method,
                                 params: params
                             }, function(result) {
-                                (successCallback || console.log)(result);
+                                successCallback && successCallback(result);
                                 resolve(result);
                             }, function(error) {
-                                (errorCallback || console.error)(error);
+                                errorCallback && errorCallback(error);
                                 reject(error);
                             });
                         });
@@ -138,14 +138,10 @@
                         document.body.appendChild(css);
                     },
                     injectJavaScript = function(jsText) {
-                        var injectMethodName = "___injectScript___",
-                            javascript = "window." + injectMethodName + " = function(api) {\r\n\"use strict\";\r\n" + jsText + " \r\n}",
-                            script = document.createElement("script");
-
-                        script.setAttribute("type", "text/javascript");
-                        script.text = javascript;
+                        let script = document.createElement("script");
+                        script.setAttribute("type", "module");
+                        script.text = jsText;
                         document.body.appendChild(script);
-                        window[injectMethodName] && window[injectMethodName](window.api);
                     },
                     abort = function() {
 
