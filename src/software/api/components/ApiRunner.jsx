@@ -51,6 +51,7 @@ const createAppState = () => {
     const [ showNotification, setShowNotification ] = useState(false);
     const [ editors, setEditors ] = useState({ javascript: {}, css: {}, html: {} });
     const [ currentConfigName, setCurrentConfigName ] = useState('');
+    const [ darkMode, setDarkMode ] = useState(localStorageUtils.getObject('api-runner-dark-mode') || false);
 
     // Shows toast notifications.
     notificationServiceRef.current = {
@@ -86,6 +87,7 @@ const createAppState = () => {
         paneToggleButtonStatesRef: refHelper(paneToggleButtonStatesRef),
         editorRef,
         jsOnlyRef,
+        darkMode, setDarkMode
     };
 
     function getPreviousToggleButtonState() {

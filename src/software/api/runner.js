@@ -31,7 +31,7 @@ export default function ApiRunnerCore() {
             render = () => {
                 language = !supportedLanguages[language] ? "javascript" : language;
                 editor = ace.edit(container);
-                editor.setTheme("ace/theme/dracula");
+                editor.setTheme(appState.darkMode ? "ace/theme/dracula" : "ace/theme/chrome");
                 if (!window.Worker) {
                     editor.getSession().setOption("useWorker", false);
                 }
@@ -414,6 +414,7 @@ export default function ApiRunnerCore() {
             urlState = (() => {
                 const jsOnlyEditorStateKey = 'api-runner-state-js-only';
                 const editorModeKey = 'api-runner-editor-mode';
+                const darkModeKey = 'api-runner-dark-mode';
                 const editors = {};
                 var sampleNameRegexp = /sample:[\w\d-]+/i,
                     localStorageSampleName = "geotabAPIRunner_sample",
@@ -582,6 +583,7 @@ export default function ApiRunnerCore() {
                     },
                     saveState = (sampleName, toggleStates) => {
                         const state = getState(sampleName, true, toggleStates);
+                        localStorageUtils.setObject(darkModeKey, appState.darkMode);
                         if (sampleName) {
                             window.location.hash = state;
                         } else {

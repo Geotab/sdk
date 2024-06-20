@@ -26,7 +26,6 @@ footer {
 
 .toolbar {
     width: 100%;
-    background-color: #ffffff;
     padding: 1rem 0;
     box-sizing: border-box;
     display: flex;
@@ -237,13 +236,17 @@ footer {
     min-height: 30px;
 }
 
-.consoleRecord:hover {
+#pane-console.non-dark-mode {
+    background-color: #ffffff;
+}
+
+/* .consoleRecord:hover {
     background-color: #fbfafabf;
 }
 
 .data-object-line:hover {
     background-color: #bbbbbb2b;
-}
+} */
 
 @media (max-width: 711px) {
     #toolbar > div {

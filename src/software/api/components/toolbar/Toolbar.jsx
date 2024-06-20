@@ -20,6 +20,9 @@ export default function Toolbar({ appState }) {
                     <Tooltip title="Create link to share your code with others">
                         <button id="share" onClick={shareButtonClicked} className="btn btn-secondary">Share</button>
                     </Tooltip>
+                    <Tooltip title="Switch between light and dark mode">
+                        <button id="darkMode" onClick={darkModeClicked} className="btn btn-secondary">{appState.darkMode ? 'Light' : 'Dark'}</button>
+                    </Tooltip>
                     <Tooltip title="Clear the content in the output and console panels">
                         <button id="clear" className="btn btn-secondary">Clear output</button>
                     </Tooltip>
@@ -39,6 +42,13 @@ export default function Toolbar({ appState }) {
         shareDialog.style.display = "block";
         shareTextarea.focus();
         shareTextarea.select();
+    }
+    function darkModeClicked() {
+        appState.setDarkMode(!appState.darkMode);
+        //TODO: Not sure how to trigger editor re-render when React appState changes
+        setTimeout(() => {
+            appState.editorRef.current.js.render();
+        }, 0);
     }
 };
 
