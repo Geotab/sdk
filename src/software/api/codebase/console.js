@@ -150,53 +150,96 @@ var ConsoleManager = (function() {
                             let header = table.createTHead();
                             let row = header.insertRow(0);
                             let keys = Object.keys(data[0]);
+                            let sortDirection = {}; // To keep track of sorting direction for each column
                     
                             keys.forEach((key, index) => {
-                                let cell = row.insertCell(index);
-                                cell.outerHTML = `<th>${key}</th>`;
+                                let cell = document.createElement('th');
+                                cell.innerHTML = key;
+                                cell.style.cursor = 'pointer';
+                                sortDirection[key] = 'asc'; // Default sorting direction
+                                cell.onclick = () => {
+                                    sortDirection[key] = sortDirection[key] === 'asc' ? 'desc' : 'asc';
+                                    sortTable(key, sortDirection[key]);
+                                    updateHeaders();
+                                };
+                                row.appendChild(cell);
                             });
                     
                             let body = table.createTBody();
-                            data.forEach(item => {
-                                let row = body.insertRow();
-                                keys.forEach((key, index) => {
-                                    let cell = row.insertCell(index);
-                                    let cellContent = item[key] !== null ? item[key] : 'null'; // Handle null values
-                                    let cellWrapper = document.createElement('div');
-                                    cellWrapper.style.maxWidth = '100px'; // Set cell width limit
-                                    cellWrapper.style.maxHeight = '50px'; // Set cell height limit
-                                    cellWrapper.style.overflow = 'hidden';
-                                    cellWrapper.style.textOverflow = 'ellipsis';
-                                    cellWrapper.style.whiteSpace = 'nowrap';
                     
-                                    if (typeof cellContent === 'string' && (cellContent.length > 20 || cellWrapper.scrollWidth > cellWrapper.clientWidth)) {
-                                        let shortContent = cellContent.substring(0, 20) + '...';
-                                        let contentSpan = document.createElement('span');
-                                        contentSpan.innerHTML = shortContent;
-                                        let expandCellButton = document.createElement('button');
-                                        expandCellButton.innerHTML = 'Expand';
-                                        expandCellButton.onclick = function() {
-                                            if (expandCellButton.innerHTML === 'Expand') {
-                                                contentSpan.innerHTML = cellContent;
-                                                cellWrapper.style.whiteSpace = 'normal';
-                                                cellWrapper.style.overflow = 'visible';
-                                                expandCellButton.innerHTML = 'Collapse';
-                                            } else {
-                                                contentSpan.innerHTML = shortContent;
-                                                cellWrapper.style.whiteSpace = 'nowrap';
-                                                cellWrapper.style.overflow = 'hidden';
-                                                expandCellButton.innerHTML = 'Expand';
-                                            }
-                                        };
-                                        cellWrapper.appendChild(contentSpan);
-                                        cellWrapper.appendChild(document.createElement('br'));
-                                        cellWrapper.appendChild(expandCellButton);
-                                    } else {
-                                        cellWrapper.innerHTML = cellContent;
-                                    }
-                                    cell.appendChild(cellWrapper);
+                            // Function to render table body
+                            function renderTableBody(sortedData) {
+                                body.innerHTML = ''; // Clear existing rows
+                                sortedData.forEach(item => {
+                                    let row = body.insertRow();
+                                    keys.forEach((key, index) => {
+                                        let cell = row.insertCell(index);
+                                        let cellContent = item[key] !== null ? item[key] : 'null'; // Handle null values
+                                        let cellWrapper = document.createElement('div');
+                                        cellWrapper.style.maxWidth = '100px'; // Set cell width limit
+                                        cellWrapper.style.maxHeight = '50px'; // Set cell height limit
+                                        cellWrapper.style.overflow = 'hidden';
+                                        cellWrapper.style.textOverflow = 'ellipsis';
+                                        cellWrapper.style.whiteSpace = 'nowrap';
+                    
+                                        if (typeof cellContent === 'string' && (cellContent.length > 20 || cellWrapper.scrollWidth > cellWrapper.clientWidth)) {
+                                            let shortContent = cellContent.substring(0, 20) + '...';
+                                            let contentSpan = document.createElement('span');
+                                            contentSpan.innerHTML = shortContent;
+                                            let expandCellButton = document.createElement('button');
+                                            expandCellButton.innerHTML = 'Expand';
+                                            expandCellButton.onclick = function() {
+                                                if (expandCellButton.innerHTML === 'Expand') {
+                                                    contentSpan.innerHTML = cellContent;
+                                                    cellWrapper.style.whiteSpace = 'normal';
+                                                    cellWrapper.style.overflow = 'visible';
+                                                    expandCellButton.innerHTML = 'Collapse';
+                                                } else {
+                                                    contentSpan.innerHTML = shortContent;
+                                                    cellWrapper.style.whiteSpace = 'nowrap';
+                                                    cellWrapper.style.overflow = 'hidden';
+                                                    expandCellButton.innerHTML = 'Expand';
+                                                }
+                                            };
+                                            cellWrapper.appendChild(contentSpan);
+                                            cellWrapper.appendChild(document.createElement('br'));
+                                            cellWrapper.appendChild(expandCellButton);
+                                        } else {
+                                            cellWrapper.innerHTML = cellContent;
+                                        }
+                                        cell.appendChild(cellWrapper);
+                                    });
                                 });
-                            });
+                            }
+                    
+
+                            function sortTable(column, direction) {
+                                let sortedData = [...data].sort((a, b) => {
+                                    let valA = a[column] !== null ? a[column] : ''; 
+                                    let valB = b[column] !== null ? b[column] : ''; 
+                                    if (typeof valA === 'string' && typeof valB === 'string') {
+                                        valA = valA.toLowerCase();
+                                        valB = valB.toLowerCase();
+                                    }
+                                    if (direction === 'asc') {
+                                        return valA > valB ? 1 : valA < valB ? -1 : 0;
+                                    } else {
+                                        return valA < valB ? 1 : valA > valB ? -1 : 0;
+                                    }
+                                });
+                                renderTableBody(sortedData);
+                            }
+                    
+
+                            function updateHeaders() {
+                                keys.forEach((key, index) => {
+                                    let cell = header.rows[0].cells[index];
+                                    let direction = sortDirection[key];
+                                    cell.innerHTML = key + (direction === 'asc' ? ' ↑' : ' ↓');
+                                });
+                            }
+                    
+                            renderTableBody(data); 
                     
                             children.appendChild(table);
                             expandButton.innerHTML = 'Collapse to Table';
@@ -206,19 +249,21 @@ var ConsoleManager = (function() {
                         }
                     };
                     
+                    
+                    
 
                         if (!isChildProperty) {
                             title.appendChild(marker);
                             title.appendChild(value);
                             title.appendChild(preview);
-                            title.appendChild(expandButton); // Add the button to the title
+                            title.appendChild(expandButton); 
                             parent.appendChild(title);
                             parent.appendChild(children);
                         } else {
                             title.appendChild(marker);
                             title.appendChild(keyElement);
                             title.appendChild(value);
-                            title.appendChild(expandButton); // Add the button to the title
+                            title.appendChild(expandButton); 
                             parent.appendChild(title);
                             parent.appendChild(children);
                         }
