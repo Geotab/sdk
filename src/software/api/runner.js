@@ -127,8 +127,10 @@ export default function ApiRunnerCore() {
             }), "*");
         };
         const process = value => {
+
             clear();
             iframe = createIframe();
+
 
             // listen to post messages from iframe
             postMessages.on("ready", data => {
@@ -157,8 +159,10 @@ export default function ApiRunnerCore() {
         var clear = () => {
             postMessages.clear();
             api.abort();
-            iframe && iframe.parentNode.removeChild(iframe);
-            iframe = null;
+            if (iframe) {
+                iframe.parentNode.removeChild(iframe);
+                iframe = null;
+            }
         };
 
         return {
