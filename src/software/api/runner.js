@@ -31,10 +31,20 @@ export default function ApiRunnerCore() {
             render = () => {
                 language = !supportedLanguages[language] ? "javascript" : language;
                 editor = ace.edit(container);
-                editor.setTheme("ace/theme/chrome");
+                editor.setTheme("ace/theme/dracula");
                 if (!window.Worker) {
                     editor.getSession().setOption("useWorker", false);
                 }
+                editor.session.on('changeMode', function(e, session) {
+                    if ("ace/mode/javascript" === session.getMode().$id) {
+                        if (!!session.$worker) {
+                            session.$worker.send("setOptions", [{
+                                "esversion": 9,
+                                "esnext": false,
+                            }]);
+                        }
+                    }
+                });
                 editor.getSession().setMode("ace/mode/" + language);
                 editor.$blockScrolling = Infinity;
                 editor.on("change", debounce(() => {
