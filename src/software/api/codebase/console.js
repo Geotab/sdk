@@ -153,15 +153,22 @@ var ConsoleManager = (function() {
                                 let cell = row.insertCell(index);
                                 cell.outerHTML = `<th>${key}</th>`;
                             });
-
+                    
                             let body = table.createTBody();
                             data.forEach(item => {
                                 let row = body.insertRow();
                                 Object.values(item).forEach((value, index) => {
                                     let cell = row.insertCell(index);
                                     let cellContent = value;
-                                    if (typeof cellContent === 'string' && cellContent.length > 20) {
-                                        let shortContent = cellContent.substring(0, 10) + '...';
+                                    let cellWrapper = document.createElement('div');
+                                    cellWrapper.style.maxWidth = '50px'; // Set cell width limit
+                                    cellWrapper.style.maxHeight = '50px'; // Set cell height limit
+                                    cellWrapper.style.overflow = 'hidden';
+                                    cellWrapper.style.textOverflow = 'ellipsis';
+                                    cellWrapper.style.whiteSpace = 'nowrap';
+                    
+                                    if (typeof cellContent === 'string' && (cellContent.length > 20 || cellWrapper.scrollWidth > cellWrapper.clientWidth)) {
+                                        let shortContent = cellContent.substring(0, 20) + '...';
                                         let contentSpan = document.createElement('span');
                                         contentSpan.innerHTML = shortContent;
                                         let expandCellButton = document.createElement('button');
@@ -169,24 +176,28 @@ var ConsoleManager = (function() {
                                         expandCellButton.onclick = function() {
                                             if (expandCellButton.innerHTML === 'Expand') {
                                                 contentSpan.innerHTML = cellContent;
+                                                cellWrapper.style.whiteSpace = 'normal';
+                                                cellWrapper.style.overflow = 'visible';
                                                 expandCellButton.innerHTML = 'Collapse';
                                             } else {
                                                 contentSpan.innerHTML = shortContent;
+                                                cellWrapper.style.whiteSpace = 'nowrap';
+                                                cellWrapper.style.overflow = 'hidden';
                                                 expandCellButton.innerHTML = 'Expand';
                                             }
                                         };
-                                        cell.innerHTML = '';
-                                        cell.appendChild(contentSpan);
-                                        cell.appendChild(document.createElement('br'));
-                                        cell.appendChild(expandCellButton);
+                                        cellWrapper.appendChild(contentSpan);
+                                        cellWrapper.appendChild(document.createElement('br'));
+                                        cellWrapper.appendChild(expandCellButton);
                                     } else {
-                                        cell.innerHTML = cellContent;
+                                        cellWrapper.innerHTML = cellContent;
                                     }
+                                    cell.appendChild(cellWrapper);
                                 });
                             });
-
+                    
                             children.appendChild(table);
-                            expandButton.innerHTML = 'Collapse';
+                            expandButton.innerHTML = 'Collapse to Table';
                         } else {
                             children.innerHTML = '';
                             expandButton.innerHTML = 'Expand to Table';
