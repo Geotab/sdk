@@ -3,6 +3,7 @@
 # Ignore hidden folders
 # This takes care of .tmp, .sass-cache, and many others
 .*/
+./package-lock.json
 
 # OSX
 ._*
