@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Geotab SDK | Import Users Example - ENHANCED</title>
+        <title>Geotab SDK | Import Users Example</title>
         <link rel="icon" href="./images/favicon.ico">
         <!-- Updated CSS file to reflect the UI refresh -->
         <link href="css/JavaScriptExamples.css" rel="stylesheet" type="text/css" />
@@ -10,116 +10,6 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css" rel="stylesheet" type="text/css" />
-
-        <style>
-            /* Enhanced Progress Container Styles */
-            .progress-container {
-                display: none;
-                margin: 20px 0;
-                padding: 20px;
-                background: #f5f5f5;
-                border-radius: 8px;
-            }
-
-            .progress-bar-container {
-                width: 100%;
-                height: 30px;
-                background-color: #e0e0e0;
-                border-radius: 15px;
-                overflow: hidden;
-                margin-bottom: 20px;
-            }
-
-            .progress-bar-fill {
-                height: 100%;
-                background: linear-gradient(90deg, #2196F3 0%, #1976D2 100%);
-                color: white;
-                text-align: center;
-                line-height: 30px;
-                font-weight: bold;
-                transition: width 0.3s ease;
-                width: 0;
-            }
-
-            .progress-stats {
-                display: flex;
-                justify-content: space-around;
-                gap: 15px;
-                flex-wrap: wrap;
-            }
-
-            .stat-card {
-                flex: 1;
-                min-width: 120px;
-                background: white;
-                padding: 15px;
-                border-radius: 8px;
-                text-align: center;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-
-            .stat-value {
-                font-size: 32px;
-                font-weight: bold;
-                color: #333;
-                margin-bottom: 5px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: transparent;
-            }
-
-            .stat-label {
-                font-size: 14px;
-                color: #666;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
-            /* Results Section Styles */
-            .results-section {
-                display: none;
-                margin: 20px 0;
-            }
-
-            .results-section h3 {
-                margin-bottom: 15px;
-                color: #333;
-            }
-
-            .results-table {
-                width: 100%;
-                border-collapse: collapse;
-                background: white;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-
-            .results-table thead {
-                background: #2c3e50;
-                color: white;
-            }
-
-            .results-table th,
-            .results-table td {
-                padding: 12px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
-
-            .results-table tbody tr:hover {
-                background-color: #f5f5f5;
-            }
-
-            .status-success {
-                color: #4CAF50;
-                font-weight: bold;
-            }
-
-            .status-failure {
-                color: #f44336;
-                font-weight: bold;
-            }
-        </style>
     </head>
 
     <body>
@@ -173,7 +63,7 @@
 
                 <!-- Description section of the example -->
                 <div class="description">
-                    This SDK example assists with importing users to your database using comma separated values (CSV). Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source. You can also control whether to delay sending the verification email to users.
+                    This SDK example assists with importing users to your database using comma separated values (CSV). Use the form to add new users with optional NFC or GO driver keys. You can also use the text box to paste in users from another source.
                 </div>
 
                 <!-- Methods/objects used section containing the links to the specific SDK references used -->
@@ -432,16 +322,7 @@
 						<label for="options_userTimeZoneOffset">Time Zone:</label>
                         <select id="options_userTimeZoneOffset"></select>
 					</p>
-					<p>
-						<div class="checkmateField">
-							<label class="label">Delay Verification Email: <span style="background-color: #ffeb3b; color: #000; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-left: 5px;">NEW</span></label>
-							<div><input type="radio" name="delayVerificationEmailRadioButton" value="On" id="idDelayVerificationEmailOn">
-								<label>On</label>
-								<input type="radio" name="delayVerificationEmailRadioButton" value="Off" id="idDelayVerificationEmailOff" checked>
-								<label>Off</label></div>
-						</div>
-					</p>
-
+										
 					<button type="button" class="clickable-heading secondary-btn">Click me to toggle HOS fields:</button>
 
 					<ul style="display:none">
@@ -721,57 +602,10 @@
 						<button class="primary-btn" id="addUser">Add user</button>
 					</p>
 					<p>
-						<h3>Step 2: Click Import users</h3>
-						<button class="primary-btn" id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;
-<button type="button" class="secondary-btn" id="pauseBtn" style="display:none;">Pause</button>&nbsp;&nbsp;
-<button type="button" class="primary-btn" id="resumeBtn" style="display:none;">Resume</button>&nbsp;&nbsp;
-<button type="button" class="secondary-btn" id="exportResultsBtn" disabled="disabled" onclick="exportImportResults();">Export Results CSV</button>&nbsp;&nbsp;
-<button type="button" class="secondary-btn" id="clear" onclick="ClearFields();">Clear</button>
+						<h3>Step 2: Click Import users (to import the user to the database) </h3>
+						<button class="primary-btn" id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" class="secondary-btn" id="clear" onclick="ClearFields();">Clear</button>
 					</p>
-                    
-<!-- Enhanced Progress Container -->
-<div class="progress-container" id="progressContainer">
-    <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progressBarFill">0%</div>
-    </div>
-    <div class="progress-stats">
-        <div class="stat-card">
-            <div class="stat-value" id="totalUsers">0</div>
-            <div class="stat-label">Total Users</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="successCount">0</div>
-            <div class="stat-label">Success</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="failureCount">0</div>
-            <div class="stat-label">Failed</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="remainingCount">0</div>
-            <div class="stat-label">Remaining</div>
-        </div>
-    </div>
-</div>
-
-<!-- Enhanced Results Section -->
-<div class="results-section" id="resultsSection">
-    <h3>Import Results</h3>
-    <table class="results-table">
-        <thead>
-            <tr>
-                <th>Status</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody id="resultsBody">
-        </tbody>
-    </table>
-</div>
-
-<p>
+                    <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
                     </p>
                 </form>
@@ -972,19 +806,13 @@
 							<td>Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
 							<td><b>Yes</b></td>
 						</tr>
-						<tr>
-							<td>Delay verification email</td>
-							<td>On or Off (true or false)</td>
-							<td>Toggling this setting to ON will delay sending the verification email to the user.</td>
-							<td><b>Yes</b></td>
-						</tr>
 					</tbody>
 				</table>
                 <p>
-                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br><br>The Delay Verification Email setting (On or Off) is required and controls whether the verification email is sent immediately or delayed when creating new users.<br>
+                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
                 </p>
                 <div class="code">
-                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,DelayVerificationEmail<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,DelayVerificationEmail<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,,</pre>
+                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
                 </div>
             </p>
         </div>
@@ -1007,19 +835,6 @@
             var selectedReportGroups = [];
 			var passwordResetCheckbox = document.getElementById("import-password-reset");
 			var hosRulesetArray = [];
-            // Enhanced import state for progressive removal
-            var enhancedImportState = {
-                isRunning: false,
-                isPaused: false,
-                users: [],
-                currentIndex: 0,
-                successCount: 0,
-                failureCount: 0,
-                failedCSVLines: [],
-                processNextUserFn: null,
-                importResults: []  // Store all import results for export
-            };
-
 			var moreCalls = [];
 
 			function toggleDocs(event) {
@@ -1177,158 +992,14 @@
                     newContent += user.licenseProvince + ",";
                     newContent += user.hosRuleSet + ",";
 					newContent += user.isYardMoveEnabled + ",";
-					newContent += user.isPersonalConveyanceEnabled + ",";
-					newContent += user.delayWelcomeEmail;
-
+					newContent += user.isPersonalConveyanceEnabled;
+					
 					document.getElementById("content").value = newContent;
 					document.getElementById("importUsers").disabled = false;
 				});
 
-                
-            // Helper: Update user count badge
-            function updateUserCount() {
-                var content = document.getElementById("content").value.trim();
-                if (!content) {
-                    document.getElementById("userCountBadge").textContent = '0 users';
-                    return;
-                }
-                var lines = content.split("\n").filter(function(line) { return line.trim() !== ""; });
-                document.getElementById("userCountBadge").textContent = lines.length + ' user' + (lines.length !== 1 ? 's' : '');
-            }
-
-            // Helper: Update progress UI
-            function updateProgressUI() {
-                var total = enhancedImportState.users.length;
-                var processed = enhancedImportState.currentIndex;
-                var remaining = total - processed;
-                var percentage = total > 0 ? Math.round((processed / total) * 100) : 0;
-
-                document.getElementById("progressBarFill").style.width = percentage + '%';
-                document.getElementById("progressBarFill").textContent = percentage + '%';
-                document.getElementById("totalUsers").textContent = total;
-                document.getElementById("successCount").textContent = enhancedImportState.successCount;
-                document.getElementById("failureCount").textContent = enhancedImportState.failureCount;
-                document.getElementById("remainingCount").textContent = remaining;
-            }
-
-            // Helper: Add result row to table (NO EMOJIS)
-            function addResultRow(success, email, name, message) {
-                var tbody = document.getElementById("resultsBody");
-                var row = tbody.insertRow(0);
-                row.className = success ? 'success-row' : 'error-row';
-                row.insertCell(0).textContent = success ? '[OK]' : '[FAIL]';
-                row.insertCell(1).textContent = email;
-                row.insertCell(2).textContent = name;
-                row.insertCell(3).textContent = message;
-
-                // Store result for export
-                enhancedImportState.importResults.push({
-                    success: success,
-                    email: email,
-                    name: name,
-                    message: message
-                });
-            }
-
-            // Helper: Remove CSV line from textarea
-            function removeCSVLineFromTextarea(index) {
-                try {
-                    var currentText = document.getElementById("content").value;
-                    var lines = currentText.split("\n").filter(function(line) { return line.trim() !== ""; });
-                    lines.splice(index, 1);
-                    document.getElementById("content").value = lines.join("\n");
-                    updateUserCount();
-                } catch (error) {
-                    console.error('Error removing CSV line:', error);
-                }
-            }
-
-            // Helper: Export failed users to CSV
-            function exportFailedUsers() {
-                if (enhancedImportState.failedCSVLines.length === 0) {
-                    alert('No failed users to export');
-                    return;
-                }
-                var csvContent = enhancedImportState.failedCSVLines.join("\n");
-                var blob = new Blob([csvContent], { type: 'text/csv' });
-                var url = URL.createObjectURL(blob);
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = 'failed-users-' + new Date().toISOString().split('T')[0] + '.csv';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                alert('Exported ' + enhancedImportState.failedCSVLines.length + ' failed users to CSV file');
-            }
-
-            // Helper: Export import results to CSV (Global scope)
-            window.exportImportResults = function() {
-                if (enhancedImportState.importResults.length === 0) {
-                    alert('No import results to export. Please run an import first.');
-                    return;
-                }
-
-                // Create CSV header
-                var csvContent = 'Status,Email,Name,Message\n';
-
-                // Add each result row (no quotes)
-                enhancedImportState.importResults.forEach(function(result) {
-                    var status = result.success ? 'SUCCESS' : 'FAILED';
-                    var email = result.email || '';
-                    var name = result.name || '';
-                    var message = result.message || '';
-
-                    csvContent += status + ',' + email + ',' + name + ',' + message + '\n';
-                });
-
-                // Create and download the file
-                var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                var url = URL.createObjectURL(blob);
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = 'import-results-' + new Date().toISOString().split('T')[0] + '.csv';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                alert('Exported ' + enhancedImportState.importResults.length + ' import results to CSV file');
-            };
-
-            // Helper: Pause import
-            function pauseImport() {
-                enhancedImportState.isPaused = true;
-                document.getElementById("pauseBtn").style.display = 'none';
-                document.getElementById("resumeBtn").style.display = 'inline-block';
-                alert('Import paused. Click Resume to continue.');
-            }
-
-            // Helper: Resume import
-            function resumeImport() {
-                enhancedImportState.isPaused = false;
-                document.getElementById("pauseBtn").style.display = 'inline-block';
-                document.getElementById("resumeBtn").style.display = 'none';
-                if (enhancedImportState.processNextUserFn) {
-                    enhancedImportState.processNextUserFn();
-                }
-            }
-
-            // Update count on textarea change
-            document.addEventListener("DOMContentLoaded", function() {
-                document.getElementById("content").addEventListener("input", updateUserCount);
-                document.getElementById("pauseBtn").addEventListener("click", pauseImport);
-                document.getElementById("resumeBtn").addEventListener("click", resumeImport);
-            });
-
-document.getElementById("importUsers").addEventListener("click", function(event) {
+                document.getElementById("importUsers").addEventListener("click", function(event) {
                     event.preventDefault();
-
-                    // Check authentication before starting import
-                    if (typeof api === 'undefined' || !api || typeof api.call !== 'function') {
-                        alert("Please sign in to MyGeotab before importing users.\n\nClick the 'Sign in' button at the top right to authenticate.");
-                        return;
-                    }
 
                     hosRulesetArray = [];
 
@@ -1353,7 +1024,7 @@ document.getElementById("importUsers").addEventListener("click", function(event)
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
 
-                            if (split.length !== 29) {
+                            if (split.length !== 28) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -1384,9 +1055,8 @@ document.getElementById("importUsers").addEventListener("click", function(event)
                             var licenseProvince = split[24];    
                             var hosRuleSet = split[25];
 							var isYardMoveEnabled = split[26];
-							var isPersonalConveyanceEnabled = split[27];
-							var delayWelcomeEmail = split[28];
-
+							var isPersonalConveyanceEnabled = split[27];  
+							
 							// when pasting in ',' seperated string make sure values aren't empty
 							if (isYardMoveEnabled === '') {
 								var isYardMoveEnabled = false;
@@ -1394,7 +1064,6 @@ document.getElementById("importUsers").addEventListener("click", function(event)
 							if (isPersonalConveyanceEnabled === '') {
 								var isPersonalConveyanceEnabled = false;
 							}
-							delayWelcomeEmail = (delayWelcomeEmail === 'true');
 							
 							var newUser = {
 								name: userName,
@@ -1424,8 +1093,7 @@ document.getElementById("importUsers").addEventListener("click", function(event)
                                 licenseNumber: licenseNumber,
                                 licenseProvince: licenseProvince,
 								isYardMoveEnabled: isYardMoveEnabled,
-								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled,
-								sendWelcomeEmail: !delayWelcomeEmail
+								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
 							};
 
 							if (keys.length > 0){
@@ -1454,164 +1122,37 @@ document.getElementById("importUsers").addEventListener("click", function(event)
 							]);                            
                         }
 						
-						// Initialize enhanced import state
-						enhancedImportState.isRunning = true;
-						enhancedImportState.isPaused = false;
-						enhancedImportState.users = users;
-						enhancedImportState.currentIndex = 0;
-						enhancedImportState.successCount = 0;
-						enhancedImportState.failureCount = 0;
-						enhancedImportState.failedCSVLines = [];
-						enhancedImportState.importResults = [];  // Reset results for new import
+						api.multiCall(calls, function(results) {
+                            var userIds = results;
+							pushRulesets(userIds);
+              
+							api.multiCall(moreCalls, function(results) {moreCalls = [];}, function(error) {console.log(error); moreCalls = [];});
 
-						// Show progress container and results section
-						document.getElementById("progressContainer").style.display = 'block';
-						document.getElementById("resultsSection").style.display = 'block';
-						document.getElementById("resultsBody").innerHTML = '';
-						document.getElementById("pauseBtn").style.display = 'inline-block';
-						document.getElementById("resumeBtn").style.display = 'none';
-						document.getElementById("exportResultsBtn").disabled = true;
-
-						// Disable import button during processing
-						document.getElementById("importUsers").disabled = true;
-
-						// Start sequential processing
-						processUsersSequentially(calls, users, hosRulesetArray);
-
-						// Sequential user processing function
-						function processUsersSequentially(calls, userRows, hosRulesets) {
-							var currentCallIndex = 0;
-
-							function processNextUser() {
-								// Store reference for resume functionality
-								enhancedImportState.processNextUserFn = processNextUser;
-
-								// Check if paused
-								if (enhancedImportState.isPaused) {
-									return; // Wait for resume
-								}
-
-								// Check if finished
-								if (currentCallIndex >= calls.length) {
-									// All users processed
-									enhancedImportState.isRunning = false;
-									document.getElementById("importUsers").disabled = false;
-									document.getElementById("pauseBtn").style.display = 'none';
-									document.getElementById("resumeBtn").style.display = 'none';
-
-									// Enable export results button
-									document.getElementById("exportResultsBtn").disabled = false;
-
-									// Show completion alert
-									alert("Import complete!\nSuccess: " + enhancedImportState.successCount + "\nFailed: " + enhancedImportState.failureCount + "\nTotal: " + calls.length);
-									return;
-								}
-
-								// Process current user
-								var call = calls[currentCallIndex];
-								var userEntity = call[1].entity;
-								var originalCSVLine = userRows[currentCallIndex];
-								var userEmail = userEntity.name;
-								var userName = userEntity.firstName + " " + userEntity.lastName;
-								var hosRuleset = hosRulesets[currentCallIndex];
-
-								// Make API call for single user
-								api.call("Add", {
-									typeName: "User",
-									entity: userEntity
-								}, function(userId) {
-									// SUCCESS - Add HOS ruleset if specified, then handle success
-									if (hosRuleset !== "" && hosRuleset !== undefined) {
-										var hosEntity = {
-											dateTime: new Date().toISOString(),
-											hosRuleSet: {"id": hosRuleset},
-											user: {"id": userId}
-										};
-										api.call("Add", {
-											typeName: "UserHosRuleSet",
-											entity: hosEntity
-										}, function(result) {
-											// HOS ruleset added successfully
-											handleSuccess(userId, userEmail, userName, originalCSVLine, currentCallIndex);
-										}, function(hosError) {
-											// User added but HOS ruleset failed
-											console.error("HOS ruleset error:", hosError);
-											handleSuccess(userId, userEmail, userName, originalCSVLine, currentCallIndex, "User added but HOS ruleset failed: " + hosError);
-										});
-									} else {
-										// No HOS ruleset, just handle success
-										handleSuccess(userId, userEmail, userName, originalCSVLine, currentCallIndex);
-									}
-								}, function(error) {
-									// FAILURE
-									handleFailure(error, userEmail, userName, originalCSVLine, currentCallIndex);
-								});
-
-								currentCallIndex++;
-								enhancedImportState.currentIndex = currentCallIndex;
-								updateProgressUI();
+							if (results !== undefined && results !== null && results.length > 0) {
+								alert("Imported " + results.length + " of " + users.length + " users");
 							}
-
-							function handleSuccess(userId, email, name, csvLine, index, warningMessage) {
-								enhancedImportState.successCount++;
-								var message = warningMessage || "User imported successfully";
-								addResultRow(true, email, name, message);
-
-								// PROGRESSIVE REMOVAL - Always remove first line (index 0)
-								// because we process users sequentially from top to bottom
-								removeCSVLineFromTextarea(0);
-
-								// Update progress display
-								updateProgressUI();
-
-								// Continue to next user after short delay
-								setTimeout(processNextUser, 100);
-							}
-
-							function handleFailure(error, email, name, csvLine, index) {
-								enhancedImportState.failureCount++;
-								enhancedImportState.failedCSVLines.push(csvLine);
-
-								// Parse error message
-								var errorMessage = "Unknown error";
-								var errorStr = error.toString();
-
-								if (errorStr.indexOf("checksum") > -1) {
-									errorMessage = "NFC driver keys entered incorrectly";
-								} else if (errorStr.indexOf("Index was outside") > -1) {
-									errorMessage = "Custom NFC driver keys entered incorrectly";
-								} else if (errorStr.indexOf("DuplicateUserException") > -1) {
-									errorMessage = "User name already exists";
-								} else if (errorStr.indexOf("DuplicateException") > -1) {
-									errorMessage = "Driver key already exists";
-								} else if (errorStr.indexOf("The password cannot contain the username") > -1) {
-									errorMessage = "Password cannot contain username/first name/last name";
-								} else if (errorStr.indexOf("Password policy requires") > -1) {
-									errorMessage = "Password must be at least 8 characters";
-								} else if (errorStr.indexOf("Common passwords") > -1) {
-									errorMessage = "Common passwords not allowed";
-								} else if (errorStr.indexOf("CompanyGroups cannot be null or empty") > -1) {
-									errorMessage = "Invalid company group name";
-								} else if (errorStr.indexOf("SecurityGroups") > -1) {
-									errorMessage = "Invalid security group name";
+						}, function(error) {
+							if (error !== undefined && error !== null) {
+								if (error.indexOf("checksum") > 0) {
+									alert("There was a problem importing users. Please check that the NFC driver keys are entered correctly.");
+								} else if (error.indexOf("Index was outside") > 0) {
+									alert("There was a problem importing users. Please check that the Custom NFC driver keys are entered correctly.");
+								} else if (error.indexOf("DuplicateUserException") > 0) {
+									alert("There was a problem importing users. You have attempted to import a user name which already exists on your database.");
+								} else if (error.indexOf("DuplicateException") > 0) {
+									alert("There was a problem importing users. You have attmepted to import a driver key which already exists on your database.");
+								} else if (error.indexOf("The password cannot contain the username") > 0) {
+									alert("The password cannot contain the username, first name or last name.");
+								} else if (error.indexOf("Password policy requires") > 0) {
+									alert("Password policy requires a minimum length of 8 characters.");
+								} else if (error.indexOf("Common passwords") > 0) {
+									alert("Common passwords are not allowed.");
 								} else {
-									errorMessage = errorStr.substring(0, 100); // Truncate long errors
+									console.error(error);
+									alert("There was a problem importing users. Please check that all fields are entered correctly, the groups and security clearances still exist on your account and that the email addresses or user names are not currently in use.");
 								}
-
-								addResultRow(false, email, name, errorMessage);
-
-								// DO NOT remove failed line from textarea - keep it for user to see/fix
-								// Update progress display
-								updateProgressUI();
-
-								// Continue to next user after short delay
-								setTimeout(processNextUser, 100);
 							}
-
-							// Start processing first user
-							updateProgressUI();
-							processNextUser();
-						}
+                        });
 
 						var pushRulesets = function (userIds) {
 							for (i = 0; i < userIds.length; i++) {
@@ -1765,28 +1306,7 @@ document.getElementById("importUsers").addEventListener("click", function(event)
             }
 
 			function ClearFields() {
-				// Clear textarea
 				document.getElementById("content").value = "";
-
-				// Hide progress container and results
-				document.getElementById("progressContainer").style.display = 'none';
-				document.getElementById("resultsSection").style.display = 'none';
-
-				// Clear results table
-				document.getElementById("resultsBody").innerHTML = '';
-
-				// Reset import state
-				enhancedImportState.importResults = [];
-				enhancedImportState.successCount = 0;
-				enhancedImportState.failureCount = 0;
-				enhancedImportState.failedCSVLines = [];
-				enhancedImportState.currentIndex = 0;
-
-				// Disable export button
-				document.getElementById("exportResultsBtn").disabled = true;
-
-				// Update user count badge
-				updateUserCount();
 			}
 
 			function parseUserFromFields() {
@@ -1859,13 +1379,7 @@ document.getElementById("importUsers").addEventListener("click", function(event)
 					var isPersonalConveyanceEnabled = true;
 				} else {
 					var isPersonalConveyanceEnabled = false;
-				}
-
-				if (document.getElementById("idDelayVerificationEmailOn").checked) {
-					var delayWelcomeEmail = true;
-				} else {
-					var delayWelcomeEmail = false;
-				}
+				}       
 
                 return {
 					userName: document.getElementById("import-userName").value,
@@ -1895,8 +1409,7 @@ document.getElementById("importUsers").addEventListener("click", function(event)
                     licenseProvince: plateState,
                     hosRuleSet: document.getElementById("options_hosRuleSet").value,
 					isYardMoveEnabled: isYardMoveEnabled,
-					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled,
-					delayWelcomeEmail: delayWelcomeEmail
+					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
 				}
 			}
 
