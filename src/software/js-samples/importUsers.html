@@ -903,12 +903,18 @@
 			function generateTemporaryPassword() {
 				var length = 16;
 				var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-				var password = "";
-				password += "Aa1!";
-				for (var i = 4; i < length; i++) {
-					password += charset.charAt(Math.floor(Math.random() * charset.length));
+				var password = "Aa1!"; // Ensure complexity requirements
+				var randomValues = new Uint32Array(length - 4);
+				window.crypto.getRandomValues(randomValues);
+				for (var i = 0; i < randomValues.length; i++) {
+					password += charset.charAt(randomValues[i] % charset.length);
 				}
-				return password.split('').sort(function() { return 0.5 - Math.random(); }).join('');
+				// Shuffle using crypto
+				var shuffleArray = password.split('');
+				var shuffleRandom = new Uint32Array(shuffleArray.length);
+				window.crypto.getRandomValues(shuffleRandom);
+				shuffleArray.sort(function(a, b) { return shuffleRandom[shuffleArray.indexOf(a)] - shuffleRandom[shuffleArray.indexOf(b)]; });
+				return shuffleArray.join('');
 			}
 
 			function toggleDocs(event) {
