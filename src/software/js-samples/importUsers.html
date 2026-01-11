@@ -95,7 +95,6 @@
                     <p>
                         <label for="import-password">Password</label>
 						<input id="import-password" type="password" placeholder="Minimum of 8 characters" maxlength="255" />
-						<label style="font-size: 14px; margin-top: 10px;"><input id="import-password-reset" style="float:none" type="checkbox" title="This user will need to enter a new password the first time they log in to the database.">Force password change on next login</label>
 					</p>
                     <p>
 						<label for="import-groups">Groups</label>
@@ -597,6 +596,27 @@
 						</div>
 					</p>
 					</ul>
+
+					<div class="import-settings-box">
+						<p class="import-settings-title">Import Settings</p>
+						<p class="import-settings-description">
+							The following settings will be applied to ALL users in this import batch.
+						</p>
+						<p class="import-settings-option">
+							<label>
+								<input id="import-password-reset" type="checkbox" title="All imported users will need to enter a new password the first time they log in to the database.">
+								Force password change on next login
+							</label>
+						</p>
+						<p class="import-settings-option">
+							<label>
+								<input id="import-delay-verification-email" type="checkbox" title="Delay sending the verification email to all imported users. This is useful when importing a large number of users and you want to send the emails later.">
+								Delay verification email
+							</label>
+							<span class="import-settings-note">(Only applies to users with a valid email address as their username)</span>
+						</p>
+					</div>
+
 					<p>
 						<h3>Step 1: Click Add user (can view the inputted information in the input container below) </h3>
 						<button class="primary-btn" id="addUser">Add user</button>
@@ -834,6 +854,7 @@
 			var selectedGroups = [];
             var selectedReportGroups = [];
 			var passwordResetCheckbox = document.getElementById("import-password-reset");
+			var delayVerificationEmailCheckbox = document.getElementById("import-delay-verification-email");
 			var hosRulesetArray = [];
 			var moreCalls = [];
 
@@ -1111,7 +1132,11 @@
 							{
 								newUser.changePassword = true;
                             }
-                            
+							if ($(delayVerificationEmailCheckbox).is(":checked"))
+							{
+								newUser.sendWelcomeEmail = false;
+                            }
+
 							hosRulesetArray.push(hosRuleSet);
 
 							calls.push([

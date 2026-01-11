@@ -791,3 +791,53 @@ p {
 .importDevices-result *{
     margin: 0;
 }
+
+.import-settings-box {
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.import-settings-box .import-settings-title {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #202328;
+}
+
+.import-settings-box .import-settings-description {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.import-settings-box .import-settings-option {
+    margin: 0 0 10px 0;
+}
+
+.import-settings-box .import-settings-option:last-child {
+    margin: 0;
+}
+
+.import-settings-box .import-settings-option label {
+    display: inline;
+    font-size: 14px;
+    padding-bottom: 0;
+}
+
+.import-settings-box .import-settings-option input[type="checkbox"] {
+    float: none;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.import-settings-box .import-settings-note {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-left: 24px;
+    margin-top: 4px;
+    font-style: italic;
+}
