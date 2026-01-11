@@ -625,6 +625,47 @@
 						<h3>Step 2: Click Import users (to import the user to the database) </h3>
 						<button class="primary-btn" id="importUsers" disabled="disabled">Import users</button>&nbsp;&nbsp;<button type="button" class="secondary-btn" id="clear" onclick="ClearFields();">Clear</button>
 					</p>
+
+					<div id="import-progress-container" class="import-progress-container">
+						<div class="import-progress-bar-wrapper">
+							<div id="import-progress-bar" class="import-progress-bar" style="width: 0%;">0%</div>
+						</div>
+						<div class="import-stats">
+							<div class="import-stat">
+								<span class="import-stat-value" id="stat-total">0</span>
+								<span class="import-stat-label">Total</span>
+							</div>
+							<div class="import-stat import-stat-success">
+								<span class="import-stat-value" id="stat-success">0</span>
+								<span class="import-stat-label">Succeeded</span>
+							</div>
+							<div class="import-stat import-stat-failed">
+								<span class="import-stat-value" id="stat-failed">0</span>
+								<span class="import-stat-label">Failed</span>
+							</div>
+							<div class="import-stat">
+								<span class="import-stat-value" id="stat-remaining">0</span>
+								<span class="import-stat-label">Remaining</span>
+							</div>
+						</div>
+					</div>
+
+					<div id="import-results-container" class="import-results-container">
+						<h3>Import Results</h3>
+						<table class="import-results-table">
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Email/Username</th>
+									<th>Name</th>
+									<th>Message</th>
+								</tr>
+							</thead>
+							<tbody id="import-results-body">
+							</tbody>
+						</table>
+					</div>
+
                     <p>
                         <textarea id="content" cols="80" rows="8"></textarea>
                     </p>
@@ -858,6 +899,18 @@
 			var hosRulesetArray = [];
 			var moreCalls = [];
 
+			// Generate a temporary random password that meets MyGeotab requirements
+			function generateTemporaryPassword() {
+				var length = 16;
+				var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+				var password = "";
+				password += "Aa1!";
+				for (var i = 4; i < length; i++) {
+					password += charset.charAt(Math.floor(Math.random() * charset.length));
+				}
+				return password.split('').sort(function() { return 0.5 - Math.random(); }).join('');
+			}
+
 			function toggleDocs(event) {
 
 				if (event.target && event.target.className == 'clickable-heading secondary-btn') {
@@ -1090,7 +1143,6 @@
 								name: userName,
 								firstName: firstName,
 								lastName: lastName,
-								password: password,
 								companyGroups: groups,
                                 reportGroups: reportGroups,
 								securityGroups: securityGroups,
@@ -1117,6 +1169,19 @@
 								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
 							};
 
+							// Handle password field based on whether it's provided and changePassword setting
+							var isChangePasswordChecked = $(passwordResetCheckbox).is(":checked");
+							if (password && password.length > 0) {
+								newUser.password = password;
+							} else if (isChangePasswordChecked) {
+								// Empty password with "Force password change" - generate temporary random password
+								// User will be forced to change it on first login
+								newUser.password = generateTemporaryPassword();
+							} else {
+								// Empty password without "Force password change" - include empty so API returns proper error
+								newUser.password = password;
+							}
+
 							if (keys.length > 0){
 								newUser.driverGroups =  groups;
 								newUser.viewDriversOwnDataOnly =  false;
@@ -1128,7 +1193,7 @@
 								newUser.viewDriversOwnDataOnly =  false;
                                 newUser.isDriver = true;
                             }
-							if ($(passwordResetCheckbox).is(":checked"))
+							if (isChangePasswordChecked)
 							{
 								newUser.changePassword = true;
                             }
@@ -1147,59 +1212,250 @@
 							]);                            
                         }
 						
-						api.multiCall(calls, function(results) {
-                            var userIds = results;
-							pushRulesets(userIds);
-              
-							api.multiCall(moreCalls, function(results) {moreCalls = [];}, function(error) {console.log(error); moreCalls = [];});
+						// Batch processing configuration
+						var BATCH_SIZE = 10;
+						var BATCH_DELAY_MS = 500;
 
-							if (results !== undefined && results !== null && results.length > 0) {
-								alert("Imported " + results.length + " of " + users.length + " users");
-							}
-						}, function(error) {
-							if (error !== undefined && error !== null) {
-								if (error.indexOf("checksum") > 0) {
-									alert("There was a problem importing users. Please check that the NFC driver keys are entered correctly.");
-								} else if (error.indexOf("Index was outside") > 0) {
-									alert("There was a problem importing users. Please check that the Custom NFC driver keys are entered correctly.");
-								} else if (error.indexOf("DuplicateUserException") > 0) {
-									alert("There was a problem importing users. You have attempted to import a user name which already exists on your database.");
-								} else if (error.indexOf("DuplicateException") > 0) {
-									alert("There was a problem importing users. You have attmepted to import a driver key which already exists on your database.");
-								} else if (error.indexOf("The password cannot contain the username") > 0) {
-									alert("The password cannot contain the username, first name or last name.");
-								} else if (error.indexOf("Password policy requires") > 0) {
-									alert("Password policy requires a minimum length of 8 characters.");
-								} else if (error.indexOf("Common passwords") > 0) {
-									alert("Common passwords are not allowed.");
-								} else {
-									console.error(error);
-									alert("There was a problem importing users. Please check that all fields are entered correctly, the groups and security clearances still exist on your account and that the email addresses or user names are not currently in use.");
-								}
-							}
-                        });
+						// Track import results
+						var importResults = {
+							total: calls.length,
+							succeeded: 0,
+							failed: 0,
+							details: [] // {success: bool, userName, firstName, lastName, message, userId, hosRuleSet}
+						};
 
-						var pushRulesets = function (userIds) {
-							for (i = 0; i < userIds.length; i++) {
+						// Store user metadata for each call
+						var userMetadata = [];
+						for (var j = 0; j < calls.length; j++) {
+							userMetadata.push({
+								userName: calls[j][1].entity.name,
+								firstName: calls[j][1].entity.firstName,
+								lastName: calls[j][1].entity.lastName,
+								hosRuleSet: hosRulesetArray[j]
+							});
+						}
 
-								var anotherUser = {
-									dateTime: new Date().toISOString(),
-									hosRuleSet: {"id": hosRulesetArray[i]},
-									user: {"id": userIds[i]}
-								};
+						// Show progress UI
+						document.getElementById("import-progress-container").style.display = "block";
+						document.getElementById("import-results-container").style.display = "block";
+						document.getElementById("import-results-body").innerHTML = "";
+						document.getElementById("importUsers").disabled = true;
 
-								//if no ruleset is selected, do not push one to user
-								if (hosRulesetArray[i] !== "") {
+						// Update stats display
+						function updateStats() {
+							var processed = importResults.succeeded + importResults.failed;
+							var remaining = importResults.total - processed;
+							var percentage = importResults.total > 0 ? Math.round((processed / importResults.total) * 100) : 0;
 
-								moreCalls.push([
-									"Add", {
-										typeName: "UserHosRuleSet",
-										entity: anotherUser
-									}
-								]);
-								}
+							document.getElementById("stat-total").textContent = importResults.total;
+							document.getElementById("stat-success").textContent = importResults.succeeded;
+							document.getElementById("stat-failed").textContent = importResults.failed;
+							document.getElementById("stat-remaining").textContent = remaining;
+
+							var progressBar = document.getElementById("import-progress-bar");
+							progressBar.style.width = percentage + "%";
+							progressBar.textContent = percentage + "%";
+						}
+
+						// Add result row to table
+						function addResultRow(success, userName, fullName, message) {
+							var tbody = document.getElementById("import-results-body");
+							var row = document.createElement("tr");
+
+							var statusCell = document.createElement("td");
+							statusCell.textContent = success ? "Success" : "Failed";
+							statusCell.className = success ? "import-status-success" : "import-status-failed";
+
+							var userCell = document.createElement("td");
+							userCell.textContent = userName;
+
+							var nameCell = document.createElement("td");
+							nameCell.textContent = fullName;
+
+							var messageCell = document.createElement("td");
+							messageCell.textContent = message;
+
+							row.appendChild(statusCell);
+							row.appendChild(userCell);
+							row.appendChild(nameCell);
+							row.appendChild(messageCell);
+							tbody.appendChild(row);
+						}
+
+						// Parse error message to user-friendly text
+						function parseErrorMessage(error) {
+							var errorStr = String(error);
+							if (errorStr.indexOf("checksum") > 0) {
+								return "NFC driver key entered incorrectly";
+							} else if (errorStr.indexOf("Index was outside") > 0) {
+								return "Custom NFC driver key entered incorrectly";
+							} else if (errorStr.indexOf("DuplicateUserException") > 0) {
+								return "User name already exists";
+							} else if (errorStr.indexOf("DuplicateException") > 0) {
+								return "Driver key already exists";
+							} else if (errorStr.indexOf("The password cannot contain the username") > 0) {
+								return "Password cannot contain username, first name or last name";
+							} else if (errorStr.indexOf("Password policy requires") > 0) {
+								return "Password must be at least 8 characters";
+							} else if (errorStr.indexOf("Common passwords") > 0) {
+								return "Common passwords are not allowed";
+							} else if (errorStr.indexOf("CompanyGroups cannot be null or empty") > 0) {
+								return "Invalid group name";
+							} else if (errorStr.indexOf("SecurityGroups") > 0) {
+								return "Invalid security clearance";
+							} else {
+								return errorStr.length > 100 ? errorStr.substring(0, 100) + "..." : errorStr;
 							}
 						}
+
+						// Process a single user (used as fallback)
+						function processSingleUser(call, metadata, index, callback) {
+							api.call("Add", call[1], function(userId) {
+								importResults.succeeded++;
+								importResults.details.push({
+									success: true,
+									userName: metadata.userName,
+									firstName: metadata.firstName,
+									lastName: metadata.lastName,
+									message: "Imported successfully",
+									userId: userId,
+									hosRuleSet: metadata.hosRuleSet
+								});
+								addResultRow(true, metadata.userName, metadata.firstName + " " + metadata.lastName, "Imported successfully");
+								updateStats();
+								callback();
+							}, function(error) {
+								importResults.failed++;
+								var errorMsg = parseErrorMessage(error);
+								importResults.details.push({
+									success: false,
+									userName: metadata.userName,
+									firstName: metadata.firstName,
+									lastName: metadata.lastName,
+									message: errorMsg,
+									userId: null,
+									hosRuleSet: metadata.hosRuleSet
+								});
+								addResultRow(false, metadata.userName, metadata.firstName + " " + metadata.lastName, errorMsg);
+								updateStats();
+								callback();
+							});
+						}
+
+						// Process a batch of users individually (fallback mode)
+						function processBatchIndividually(batchCalls, batchMetadata, batchStartIndex, callback) {
+							var currentIndex = 0;
+
+							function processNext() {
+								if (currentIndex >= batchCalls.length) {
+									callback();
+									return;
+								}
+
+								processSingleUser(batchCalls[currentIndex], batchMetadata[currentIndex], batchStartIndex + currentIndex, function() {
+									currentIndex++;
+									processNext();
+								});
+							}
+
+							processNext();
+						}
+
+						// Process batches
+						function processBatches(allCalls, allMetadata) {
+							var batchIndex = 0;
+							var totalBatches = Math.ceil(allCalls.length / BATCH_SIZE);
+
+							function processNextBatch() {
+								if (batchIndex >= totalBatches) {
+									// All batches processed - handle HOS rulesets for successful users
+									finishImport();
+									return;
+								}
+
+								var startIdx = batchIndex * BATCH_SIZE;
+								var endIdx = Math.min(startIdx + BATCH_SIZE, allCalls.length);
+								var batchCalls = allCalls.slice(startIdx, endIdx);
+								var batchMetadata = allMetadata.slice(startIdx, endIdx);
+
+								// Try batch with multiCall
+								api.multiCall(batchCalls, function(results) {
+									// Batch succeeded - all users in batch imported
+									for (var k = 0; k < results.length; k++) {
+										importResults.succeeded++;
+										importResults.details.push({
+											success: true,
+											userName: batchMetadata[k].userName,
+											firstName: batchMetadata[k].firstName,
+											lastName: batchMetadata[k].lastName,
+											message: "Imported successfully",
+											userId: results[k],
+											hosRuleSet: batchMetadata[k].hosRuleSet
+										});
+										addResultRow(true, batchMetadata[k].userName, batchMetadata[k].firstName + " " + batchMetadata[k].lastName, "Imported successfully");
+									}
+									updateStats();
+
+									batchIndex++;
+									// Delay before next batch
+									setTimeout(processNextBatch, BATCH_DELAY_MS);
+
+								}, function(error) {
+									// Batch failed - fall back to individual processing
+									console.log("Batch " + (batchIndex + 1) + " failed, processing individually...");
+									processBatchIndividually(batchCalls, batchMetadata, startIdx, function() {
+										batchIndex++;
+										// Delay before next batch
+										setTimeout(processNextBatch, BATCH_DELAY_MS);
+									});
+								});
+							}
+
+							updateStats();
+							processNextBatch();
+						}
+
+						// Finish import - add HOS rulesets and show summary
+						function finishImport() {
+							// Collect HOS ruleset calls for successful users
+							var hosRulesetCalls = [];
+							for (var k = 0; k < importResults.details.length; k++) {
+								var detail = importResults.details[k];
+								if (detail.success && detail.hosRuleSet && detail.hosRuleSet !== "") {
+									hosRulesetCalls.push([
+										"Add", {
+											typeName: "UserHosRuleSet",
+											entity: {
+												dateTime: new Date().toISOString(),
+												hosRuleSet: {"id": detail.hosRuleSet},
+												user: {"id": detail.userId}
+											}
+										}
+									]);
+								}
+							}
+
+							// Add HOS rulesets if any
+							if (hosRulesetCalls.length > 0) {
+								api.multiCall(hosRulesetCalls, function(results) {
+									showFinalSummary();
+								}, function(error) {
+									console.error("Error adding HOS rulesets:", error);
+									showFinalSummary();
+								});
+							} else {
+								showFinalSummary();
+							}
+						}
+
+						// Show final summary
+						function showFinalSummary() {
+							document.getElementById("importUsers").disabled = false;
+							alert("Import complete!\n\nSucceeded: " + importResults.succeeded + "\nFailed: " + importResults.failed + "\nTotal: " + importResults.total);
+						}
+
+						// Start batch processing
+						processBatches(calls, userMetadata);
                     }
                 });		
 				groupCache = refreshGroupCache(null);
@@ -1332,6 +1588,15 @@
 
 			function ClearFields() {
 				document.getElementById("content").value = "";
+				document.getElementById("import-progress-container").style.display = "none";
+				document.getElementById("import-results-container").style.display = "none";
+				document.getElementById("import-results-body").innerHTML = "";
+				document.getElementById("import-progress-bar").style.width = "0%";
+				document.getElementById("import-progress-bar").textContent = "0%";
+				document.getElementById("stat-total").textContent = "0";
+				document.getElementById("stat-success").textContent = "0";
+				document.getElementById("stat-failed").textContent = "0";
+				document.getElementById("stat-remaining").textContent = "0";
 			}
 
 			function parseUserFromFields() {
