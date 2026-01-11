@@ -1219,8 +1219,10 @@
                         }
 						
 						// Batch processing configuration
-						var BATCH_SIZE = 10;
-						var BATCH_DELAY_MS = 500;
+						// Rate limit for Add:User is 250 calls/minute (~4/sec)
+						// With batch size 4 and 1000ms delay = 240 calls/minute (safe margin)
+						var BATCH_SIZE = 4;
+						var BATCH_DELAY_MS = 1000;
 
 						// Track import results
 						var importResults = {
