@@ -1293,23 +1293,23 @@
 						// Parse error message to user-friendly text
 						function parseErrorMessage(error) {
 							var errorStr = String(error);
-							if (errorStr.indexOf("checksum") > 0) {
+							if (errorStr.indexOf("checksum") >= 0) {
 								return "NFC driver key entered incorrectly";
-							} else if (errorStr.indexOf("Index was outside") > 0) {
+							} else if (errorStr.indexOf("Index was outside") >= 0) {
 								return "Custom NFC driver key entered incorrectly";
-							} else if (errorStr.indexOf("DuplicateUserException") > 0) {
+							} else if (errorStr.indexOf("DuplicateUserException") >= 0) {
 								return "User name already exists";
-							} else if (errorStr.indexOf("DuplicateException") > 0) {
+							} else if (errorStr.indexOf("DuplicateException") >= 0) {
 								return "Driver key already exists";
-							} else if (errorStr.indexOf("The password cannot contain the username") > 0) {
+							} else if (errorStr.indexOf("The password cannot contain the username") >= 0) {
 								return "Password cannot contain username, first name or last name";
-							} else if (errorStr.indexOf("Password policy requires") > 0) {
+							} else if (errorStr.indexOf("Password policy requires") >= 0) {
 								return "Password must be at least 8 characters";
-							} else if (errorStr.indexOf("Common passwords") > 0) {
+							} else if (errorStr.indexOf("Common passwords") >= 0) {
 								return "Common passwords are not allowed";
-							} else if (errorStr.indexOf("CompanyGroups cannot be null or empty") > 0) {
+							} else if (errorStr.indexOf("CompanyGroups cannot be null or empty") >= 0) {
 								return "Invalid group name";
-							} else if (errorStr.indexOf("SecurityGroups") > 0) {
+							} else if (errorStr.indexOf("SecurityGroups") >= 0) {
 								return "Invalid security clearance";
 							} else {
 								return errorStr.length > 100 ? errorStr.substring(0, 100) + "..." : errorStr;
@@ -1605,6 +1605,8 @@
 				document.getElementById("stat-success").textContent = "0";
 				document.getElementById("stat-failed").textContent = "0";
 				document.getElementById("stat-remaining").textContent = "0";
+				document.getElementById("import-password-reset").checked = false;
+				document.getElementById("import-delay-verification-email").checked = false;
 			}
 
 			function parseUserFromFields() {
