@@ -113,6 +113,12 @@
 						<input id="import-nfcKey" type="text" placeholder="NFC key number" />
 						<input id="import-customNFC" type="text" placeholder="Custom NFC key number" />
 					</p>
+					<p>
+						<label>
+							<input id="import-isDriver" type="checkbox" title="Create this user as a Driver even when no NFC key or driver license number is provided.">
+							Create as Driver without driver key or license
+						</label>
+					</p>
 			
 					<p>
                         <!-- Phone Code takes priority over country code (e.g. if the countryCode for Algeria is selected but the phone number code is +1 then the country will be Canada)  -->
@@ -867,13 +873,19 @@
 							<td>Toggling this setting to ON allows the driver to apply the personal conveyance exemption.</td>
 							<td><b>Yes</b></td>
 						</tr>
+						<tr>
+							<td>Is Driver</td>
+							<td>true</td>
+							<td>Set to true to create this user as a Driver without an NFC key or driver license number. Users with an NFC key or driver license number are still created as Drivers automatically.</td>
+							<td>No</td>
+						</tr>
 					</tbody>
 				</table>
                 <p>
-                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a license plate is entered, it must be unique to the database. License state is required only if a license plate is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
+                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a driver license number is entered, it must be unique to the database. License state is required only if a driver license number is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>Set Is Driver to true when you need to create a Driver without an NFC key or driver license number.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
                 </p>
                 <div class="code">
-                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,EmployeeNumber,,,,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,,,,,,,,,,,,,Ruleset,,</pre>
+                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,,,,,,,,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,,,,,,,,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver</pre>
                 </div>
             </p>
         </div>
@@ -1072,7 +1084,8 @@
                     newContent += user.licenseProvince + ",";
                     newContent += user.hosRuleSet + ",";
 					newContent += user.isYardMoveEnabled + ",";
-					newContent += user.isPersonalConveyanceEnabled;
+					newContent += user.isPersonalConveyanceEnabled + ",";
+					newContent += user.isDriver;
 					
 					document.getElementById("content").value = newContent;
 					document.getElementById("importUsers").disabled = false;
@@ -1104,7 +1117,7 @@
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
 
-                            if (split.length !== 28) {
+                            if (split.length !== 28 && split.length !== 29) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -1135,7 +1148,8 @@
                             var licenseProvince = split[24];    
                             var hosRuleSet = split[25];
 							var isYardMoveEnabled = split[26];
-							var isPersonalConveyanceEnabled = split[27];  
+							var isPersonalConveyanceEnabled = split[27];
+							var isDriver = split.length === 29 ? parseBoolean(split[28]) : false;
 							
 							// when pasting in ',' seperated string make sure values aren't empty
 							if (isYardMoveEnabled === '') {
@@ -1188,16 +1202,14 @@
 								newUser.password = password;
 							}
 
-							if (keys.length > 0){
-								newUser.driverGroups =  groups;
-								newUser.viewDriversOwnDataOnly =  false;
-								newUser.keys = keys;
+							var shouldCreateDriver = isDriver || keys.length > 0 || licenseNumber.length > 0;
+							if (shouldCreateDriver){
+								newUser.driverGroups = groups;
+								newUser.viewDriversOwnDataOnly = false;
 								newUser.isDriver = true;
-                            }
-                            if (licenseNumber.length > 0){
-                                newUser.driverGroups =  groups;
-								newUser.viewDriversOwnDataOnly =  false;
-                                newUser.isDriver = true;
+								if (keys.length > 0){
+									newUser.keys = keys;
+								}
                             }
 							if (isChangePasswordChecked)
 							{
@@ -1607,6 +1619,7 @@
 				document.getElementById("stat-remaining").textContent = "0";
 				document.getElementById("import-password-reset").checked = false;
 				document.getElementById("import-delay-verification-email").checked = false;
+				document.getElementById("import-isDriver").checked = false;
 			}
 
 			function parseUserFromFields() {
@@ -1709,7 +1722,8 @@
                     licenseProvince: plateState,
                     hosRuleSet: document.getElementById("options_hosRuleSet").value,
 					isYardMoveEnabled: isYardMoveEnabled,
-					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
+					isPersonalConveyanceEnabled: isPersonalConveyanceEnabled,
+					isDriver: document.getElementById("import-isDriver").checked
 				}
 			}
 
@@ -1751,6 +1765,10 @@
                     result.push(securityClearanceCache["GroupEverythingSecurityId"]);
                 }
                 return result;
+            }
+
+            function parseBoolean(text) {
+                return String(text).trim().toLowerCase() === "true" || String(text).trim().toLowerCase() === "yes" || String(text).trim().toLowerCase() === "on" || String(text).trim() === "1";
             }
 
             function parseKeys(nfcKey, customNfcKey) {
