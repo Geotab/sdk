@@ -879,13 +879,19 @@
 							<td>Set to true to create this user as a Driver without an NFC key or driver license number. Users with an NFC key or driver license number are still created as Drivers automatically.</td>
 							<td>No</td>
 						</tr>
+						<tr>
+							<td>Delay verification email</td>
+							<td>true</td>
+							<td>Set to true to delay sending the verification email to this user. Only applies to users with a valid email address as their username. When the "Delay verification email" import setting is checked, it applies to every user in the batch regardless of this value.</td>
+							<td>No</td>
+						</tr>
 					</tbody>
 				</table>
                 <p>
-                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a driver license number is entered, it must be unique to the database. License state is required only if a driver license number is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>Set Is Driver to true when you need to create a Driver without an NFC key or driver license number.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
+                    To make things easier, we've provided you with an <a href="templates/import-users-template.xlsx" target="_blank">excel template</a>. Please follow the input requirements outlined in the Help menu.<br><br>Keep in mind that Time Zone is a required input and if a driver license number is entered, it must be unique to the database. License state is required only if a driver license number is provided. You may enter a state other than those provided.<br><br>NFC and Custom NFC keys must be unique to the database; no duplicates can exist.<br><br>Set Is Driver to true when you need to create a Driver without an NFC key or driver license number.<br><br>Set Delay Verification Email to true to delay the verification email for individual users. Leave it empty or set it to false to send the email as usual.<br><br>If you want to import any reporting groups - the user groups cannot include the "CompanyGroupId", otherwise all reporting groups wiil be ignored.<br>
                 </p>
                 <div class="code">
-                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,,,,,,,,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,,,,,,,,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver</pre>
+                    <pre>Email1,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,CustomNfcKey,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver,DelayVerificationEmail<br />Email2,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,NfcKey,,CountryCode,PhoneNumber,PhoneNumberExtension,Designation,EmployeeNumber,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,AuthorityName,AuthorityAddress,CarrierNumber,HomeTerminal,HomeTerminalAddress,DriverLicenseNumber,LicenseState,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver,DelayVerificationEmail<br />Email3,FirstName,LastName,Password,GroupName1|GroupName2|...|GroupNameN,ReportingGroupName1|ReportingGroupName2|...|ReportingGroupNameN,SecurityClearanceId,,,,,,,,FuelEconomyMeasurement,DistanceMeasurementSystem,FeaturePreview,TimeZone,,,,,,,,Ruleset,YardMoveAllowed,PersonalConveyanceAllowed,IsDriver,DelayVerificationEmail</pre>
                 </div>
             </p>
         </div>
@@ -1117,7 +1123,7 @@
                         for (i = 0; i < users.length; i++) {
                             var split = users[i].split(",");
 
-                            if (split.length !== 28 && split.length !== 29) {
+                            if (split.length < 28 || split.length > 30) {
                                 alert("Missing necessary information from user: " + users[i]);
                                 continue;
                             }
@@ -1149,7 +1155,8 @@
                             var hosRuleSet = split[25];
 							var isYardMoveEnabled = split[26];
 							var isPersonalConveyanceEnabled = split[27];
-							var isDriver = split.length === 29 ? parseBoolean(split[28]) : false;
+							var isDriver = split.length >= 29 ? parseBoolean(split[28]) : false;
+							var delayVerificationEmail = split.length === 30 ? parseBoolean(split[29]) : false;
 							
 							// when pasting in ',' seperated string make sure values aren't empty
 							if (isYardMoveEnabled === '') {
@@ -1215,7 +1222,7 @@
 							{
 								newUser.changePassword = true;
                             }
-							if ($(delayVerificationEmailCheckbox).is(":checked"))
+							if (delayVerificationEmail || $(delayVerificationEmailCheckbox).is(":checked"))
 							{
 								newUser.sendWelcomeEmail = false;
                             }
