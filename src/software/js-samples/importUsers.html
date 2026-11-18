@@ -718,8 +718,8 @@
 						<tr>
 							<td>Password</td>
 							<td></td>
-							<td>Minimum of 6 characters.</td>
-							<td><b>Yes</b></td>
+							<td>Minimum of 8 characters. Leave blank on databases that use Unified Login to send the user an invitation email.</td>
+							<td>No</td>
 						</tr>
 						<tr>
 							<td>Groups</td>
@@ -917,24 +917,6 @@
 			var hosRulesetArray = [];
 			var moreCalls = [];
 
-			// Generate a temporary random password that meets MyGeotab requirements
-			function generateTemporaryPassword() {
-				var length = 16;
-				var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-				var password = "Aa1!"; // Ensure complexity requirements
-				var randomValues = new Uint32Array(length - 4);
-				window.crypto.getRandomValues(randomValues);
-				for (var i = 0; i < randomValues.length; i++) {
-					password += charset.charAt(randomValues[i] % charset.length);
-				}
-				// Shuffle using crypto
-				var shuffleArray = password.split('');
-				var shuffleRandom = new Uint32Array(shuffleArray.length);
-				window.crypto.getRandomValues(shuffleRandom);
-				shuffleArray.sort(function(a, b) { return shuffleRandom[shuffleArray.indexOf(a)] - shuffleRandom[shuffleArray.indexOf(b)]; });
-				return shuffleArray.join('');
-			}
-
 			function toggleDocs(event) {
 
 				if (event.target && event.target.className == 'clickable-heading secondary-btn') {
@@ -1013,10 +995,6 @@
 					}
 					if (user.lastName === "") {
 						alert("Last name is required");
-						return;
-					}
-					if (!$(passwordResetCheckbox).is(":checked") && user.password === "") {
-						alert("Password is required");
 						return;
 					}
 					if (user.groups.length <= 0) {
@@ -1196,18 +1174,9 @@
 								isPersonalConveyanceEnabled: isPersonalConveyanceEnabled
 							};
 
-							// Handle password field based on whether it's provided and changePassword setting
+							// a blank password lets Unified Login send the user an invitation email
 							var isChangePasswordChecked = $(passwordResetCheckbox).is(":checked");
-							if (password && password.length > 0) {
-								newUser.password = password;
-							} else if (isChangePasswordChecked) {
-								// Empty password with "Force password change" - generate temporary random password
-								// User will be forced to change it on first login
-								newUser.password = generateTemporaryPassword();
-							} else {
-								// Empty password without "Force password change" - include empty so API returns proper error
-								newUser.password = password;
-							}
+							newUser.password = password;
 
 							var shouldCreateDriver = isDriver || keys.length > 0 || licenseNumber.length > 0;
 							if (shouldCreateDriver){
@@ -1310,9 +1279,12 @@
 						}
 
 						// Parse error message to user-friendly text
-						function parseErrorMessage(error) {
+						function parseErrorMessage(error, isPasswordBlank) {
 							var errorStr = String(error);
-							if (errorStr.indexOf("checksum") >= 0) {
+							// a blank password only works on Unified Login databases, other databases reject it with the username error
+							if (isPasswordBlank && errorStr.indexOf("The password cannot contain the username") >= 0) {
+								return "Password is required on this database";
+							} else if (errorStr.indexOf("checksum") >= 0) {
 								return "NFC driver key entered incorrectly";
 							} else if (errorStr.indexOf("Index was outside") >= 0) {
 								return "Custom NFC driver key entered incorrectly";
@@ -1353,7 +1325,7 @@
 								callback();
 							}, function(error) {
 								importResults.failed++;
-								var errorMsg = parseErrorMessage(error);
+								var errorMsg = parseErrorMessage(error, !call[1].entity.password);
 								importResults.details.push({
 									success: false,
 									userName: metadata.userName,
